@@ -1,0 +1,433 @@
+    .text       start:0x02128060 end:0x021352a4 kind:code align:32
+    .rodata     start:0x021352a4 end:0x021358bc kind:rodata align:4
+    .init       start:0x021358bc end:0x02135cd4 kind:code align:4
+    .ctor       start:0x02135cd4 end:0x02135d08 kind:rodata align:4
+    .data       start:0x02135d20 end:0x02136ba0 kind:data align:32
+    .bss        start:0x02136ba0 end:0x0216f200 kind:bss align:32
+
+src/ov005/fld/FieldFairyMap.cpp:
+    complete
+    .text       start:0x02128060 end:0x02128174
+    .data       start:0x02135d20 end:0x02135d7c
+
+src/ov005/fld/carrier/FieldCarpetDraw.cpp:
+    complete
+    .text       start:0x02128174 end:0x02128330
+    .data       start:0x02135d7c end:0x02135df0
+
+src/ov005/fld/command/FieldCommandBookingTownMenu.cpp:
+    complete
+    .text       start:0x02128330 end:0x02128370
+    .data       start:0x02135df0 end:0x02135e04
+
+src/ov005/fld/action/FieldActionRana.cpp:
+    complete
+    .text       start:0x02128370 end:0x02128440
+    .data       start:0x02135e04 end:0x02135e24
+
+src/ov005/fld/action/FieldActionTabi.cpp:
+    complete
+    .text       start:0x02128440 end:0x02128548
+    .data       start:0x02135e24 end:0x02135e44
+
+src/ov005/script/ScriptCommandField.cpp:
+    complete
+    .text       start:0x02128548 end:0x02128974
+    .init       start:0x021358bc end:0x0213599c
+    .ctor       start:0x02135cd4 end:0x02135cd8
+    .data       start:0x02135e44 end:0x02135f18
+    .bss        start:0x02136ba0 end:0x02136cb8
+
+src/ov005/fld/command/FieldCommandScreenEffect.cpp:
+    complete
+    .text       start:0x02128974 end:0x021289b0
+    .data       start:0x02135f18 end:0x02135f2c
+
+src/ov005/fld/system/FieldSystemScreenEffect.cpp:
+    complete
+    .text       start:0x021289b0 end:0x02128a48
+    .data       start:0x02135f2c end:0x02135f44
+
+src/ov005/fld/carrier/FieldCarrierDraw.cpp:
+    complete
+    .text       start:0x02128a48 end:0x02128a84
+    .data       start:0x02135f44 end:0x02135f90
+
+src/ov005/fld/carrier/SpriteShipCharacter.cpp:
+    complete
+    .text       start:0x02128a84 end:0x02128bb0
+    .data       start:0x02135f90 end:0x02135fb4
+
+src/ov005/fld/carrier/FieldShipDraw.cpp:
+    complete
+    .text       start:0x02128bb0 end:0x02128d9c
+    .init       start:0x0213599c end:0x021359bc
+    .ctor       start:0x02135cd8 end:0x02135cdc
+    .data       start:0x02135fb4 end:0x02136044
+    .bss        start:0x02136cb8 end:0x02136da0
+
+src/ov005/fld/carrier/FieldFirmamentDraw.cpp:
+    complete
+    .text       start:0x02128d9c end:0x021290a4
+    .data       start:0x02136044 end:0x021360dc
+
+src/ov005/fld/carrier/FieldDragonDraw.cpp:
+    complete
+    .text       start:0x021290a4 end:0x021292f0
+    .data       start:0x021360dc end:0x02136150
+
+src/ov005/fld/command/FieldCommandVehicle.cpp:
+    complete
+    .text       start:0x021292f0 end:0x02129324
+    .data       start:0x02136150 end:0x02136164
+
+src/ov005/fld/action/FieldActionCarpet.cpp:
+    complete
+    .text       start:0x02129324 end:0x0212999c
+    .data       start:0x02136164 end:0x02136184
+
+src/ov005/fld/action/FieldActionCastle.cpp:
+    complete
+    .text       start:0x0212999c end:0x02129e60
+    .data       start:0x02136184 end:0x021361a4
+
+src/ov005/fld/action/FieldActionDragon.cpp:
+    complete
+    .text       start:0x02129e60 end:0x0212a63c
+    .init       start:0x021359bc end:0x021359d0
+    .ctor       start:0x02135cdc end:0x02135ce0
+    .data       start:0x021361a4 end:0x021361cc
+
+src/ov005/fld/command/FieldCommandBookingMenu.cpp:
+    complete
+    .text       start:0x0212a63c end:0x0212a73c
+    .data       start:0x021361cc end:0x021361e0
+
+src/ov005/fld/command/FieldCommandButtonSearch.cpp:
+    complete
+    .text       start:0x0212a73c end:0x0212a7b8
+    .data       start:0x021361e0 end:0x021361f4
+
+src/ov005/fld/command/FieldCommandMenuSearch.cpp:
+    complete
+    .text       start:0x0212a7b8 end:0x0212a894
+    .data       start:0x021361f4 end:0x02136208
+
+src/ov005/fld/command/FieldCommandWalkCount.cpp:
+    complete
+    .text       start:0x0212a894 end:0x0212a9c0
+    .data       start:0x02136208 end:0x0213621c
+
+src/ov005/fld/system/FieldSystemWorldMap.cpp:
+    complete
+    .text       start:0x0212a9c0 end:0x0212aa58
+    .data       start:0x0213621c end:0x02136234
+
+src/ov005/fld/command/FieldCommandAreaMap.cpp:
+    complete
+    .text       start:0x0212aa58 end:0x0212ab30
+    .data       start:0x02136234 end:0x02136248
+
+src/ov005/fld/system/FieldSystemMaterielMenu.cpp:
+    complete
+    .text       start:0x0212ab30 end:0x0212ab6c
+    .data       start:0x02136248 end:0x02136260
+
+src/ov005/fld/system/FieldSystemMenu.cpp:
+    complete
+    .text       start:0x0212ab6c end:0x0212aba8
+    .data       start:0x02136260 end:0x02136278
+
+src/ov005/fld/system/FieldSystemMessage.cpp:
+    complete
+    .text       start:0x0212aba8 end:0x0212abe4
+    .data       start:0x02136278 end:0x02136290
+
+src/ov005/fld/system/FieldSystemPlayer.cpp:
+    complete
+    .text       start:0x0212abe4 end:0x0212ac50
+    .data       start:0x02136290 end:0x021362a8
+
+src/ov005/fld/system/FieldSystemStage.cpp:
+    complete
+    .text       start:0x0212ac50 end:0x0212accc
+    .data       start:0x021362a8 end:0x021362c0
+
+src/ov005/fld/command/FieldCommandEvent.cpp:
+    complete
+    .text       start:0x0212accc end:0x0212acec
+    .data       start:0x021362c0 end:0x021362d4
+
+src/ov005/fld/command/FieldCommandMaterielMenu.cpp:
+    complete
+    .text       start:0x0212acec end:0x0212ad24
+    .data       start:0x021362d4 end:0x021362e8
+
+src/ov005/fld/command/FieldCommandMenu.cpp:
+    complete
+    .text       start:0x0212ad24 end:0x0212ad78
+    .data       start:0x021362e8 end:0x021362fc
+
+src/ov005/fld/command/FieldCommandMessage.cpp:
+    complete
+    .text       start:0x0212ad78 end:0x0212adbc
+    .data       start:0x021362fc end:0x02136310
+
+src/ov005/fld/command/FieldCommandNormal.cpp:
+    complete
+    .text       start:0x0212adbc end:0x0212add8
+    .data       start:0x02136310 end:0x02136324
+
+src/ov005/fld/command/FieldCommandPartChange.cpp:
+    complete
+    .text       start:0x0212add8 end:0x0212adf0
+    .data       start:0x02136324 end:0x02136338
+
+src/ov005/fld/command/FieldCommandPartyTalk.cpp:
+    complete
+    .text       start:0x0212adf0 end:0x0212ae3c
+    .data       start:0x02136338 end:0x0213634c
+
+src/ov005/fld/command/FieldCommandPlayer.cpp:
+    complete
+    .text       start:0x0212ae3c end:0x0212ae84
+    .data       start:0x0213634c end:0x02136360
+
+src/ov005/fld/action/FieldActionBase.cpp:
+    complete
+    .text       start:0x0212ae84 end:0x0212be64
+    .rodata     start:0x021352a4 end:0x021352c4
+    .init       start:0x021359d0 end:0x02135aac
+    .ctor       start:0x02135ce0 end:0x02135ce4
+    .data       start:0x02136360 end:0x021363b0
+    .bss        start:0x02136da0 end:0x02136e28
+
+src/ov005/fld/action/FieldActionRura.cpp:
+    complete
+    .text       start:0x0212be64 end:0x0212c354
+    .data       start:0x021363b0 end:0x021363d4
+    .bss        start:0x02136e28 end:0x02136e2c
+
+src/ov005/fld/action/FieldActionShip.cpp:
+    complete
+    .text       start:0x0212c354 end:0x0212cc50
+    .data       start:0x021363d4 end:0x021363f4
+
+src/ov005/fld/action/FieldActionWalk.cpp:
+    complete
+    .text       start:0x0212cc50 end:0x0212d070
+    .rodata     start:0x021352c4 end:0x021352cc
+    .data       start:0x021363f4 end:0x02136414
+
+src/ov005/fld/player/FieldPlayerDoku.cpp:
+    complete
+    .text       start:0x0212d070 end:0x0212d174
+    .data       start:0x02136414 end:0x02136434
+    .bss        start:0x02136e2c end:0x02136e4c
+
+src/ov005/fld/player/FieldActionCalculate.cpp:
+    complete
+    .text       start:0x0212d174 end:0x0212e104
+    .data       start:0x02136434 end:0x021364a4
+    .bss        start:0x02136e4c end:0x02136e58
+
+src/ov005/fld/stage/FieldData.cpp:
+    complete
+    .text       start:0x0212e104 end:0x0212fc10
+    .rodata     start:0x021352cc end:0x02135324
+    .data       start:0x021364a4 end:0x021367b0
+    .bss        start:0x02136e58 end:0x02169240
+
+src/ov005/fld/stage/CWorldMap.cpp:
+    complete
+    .text       start:0x0212fc10 end:0x0212fe00
+
+src/ov005/fld/stage/CWorldSymbol.cpp:
+    complete
+    .text       start:0x0212fe00 end:0x0212fe40
+
+src/ov005/fld/player/FieldPlayer.cpp:
+    complete
+    .text       start:0x0212fe40 end:0x0212ffc0
+    .data       start:0x021367b0 end:0x021367c8
+
+src/ov005/fld/player/FieldParty.cpp:
+    complete
+    .text       start:0x0212ffc0 end:0x0213080c
+    .data       start:0x021367c8 end:0x02136810
+    .bss        start:0x02169240 end:0x02169244
+
+src/ov005/fld/FieldSystem.cpp:
+    complete
+    .text       start:0x0213080c end:0x02130d9c
+    .bss        start:0x02169244 end:0x02169dfc
+
+src/ov005/fld/player/FieldPlayerManager.cpp:
+    complete
+    .text       start:0x02130d9c end:0x021321fc
+    .rodata     start:0x02135324 end:0x02135328
+    .data       start:0x02136810 end:0x0213685c
+    .bss        start:0x02169dfc end:0x0216ae30
+
+src/ov005/fld/player/FieldPartyDraw.cpp:
+    complete
+    .text       start:0x021321fc end:0x02132f68
+    .data       start:0x0213685c end:0x02136870
+
+src/ov005/fld/stage/FieldStage.cpp:
+    complete
+    .text       start:0x02132f68 end:0x0213382c
+    .data       start:0x02136870 end:0x02136878
+    .bss        start:0x0216ae30 end:0x0216d6bc
+
+src/ov005/fld/player/FieldSymbolManager.cpp:
+    complete
+    .text       start:0x0213382c end:0x02133978
+    .bss        start:0x0216d6bc end:0x0216d85c
+
+src/ov005/fld/stage/FieldRectColl.cpp:
+    complete
+    .text       start:0x02133978 end:0x021339d0
+    .bss        start:0x0216d85c end:0x0216d8f0
+
+src/ov005/ov005_entry.cpp:
+    complete
+    .text       start:0x021339d0 end:0x021339d4
+
+src/ov005/fld/FieldImageMap.cpp:
+    complete
+    .text       start:0x021339d4 end:0x02133ce0
+    .data       start:0x02136878 end:0x021368a0
+
+src/ov005/fld/FieldLargeMap.cpp:
+    complete
+    .text       start:0x02133ce0 end:0x02134108
+    .init       start:0x02135aac end:0x02135b50
+    .ctor       start:0x02135ce4 end:0x02135ce8
+    .data       start:0x021368a0 end:0x021369e8
+
+src/ov005/fld/FieldRegionMap.cpp:
+    complete
+    .text       start:0x02134108 end:0x0213424c
+    .data       start:0x021369e8 end:0x02136a0c
+
+src/ov005/fld/FieldSmallMap.cpp:
+    complete
+    .text       start:0x0213424c end:0x021343bc
+    .data       start:0x02136a0c end:0x02136a4c
+
+src/ov005/fld/FieldWindowSystem.cpp:
+    complete
+    .text       start:0x021343bc end:0x02134434
+    .bss        start:0x0216d8f0 end:0x0216d8f8
+
+src/ov005/fld/FieldYamiMap.cpp:
+    complete
+    .text       start:0x02134434 end:0x02134548
+    .data       start:0x02136a4c end:0x02136aa8
+
+src/ov005/fld/system/FieldSystemEncount.cpp:
+    complete
+    .text       start:0x02134548 end:0x021346fc
+    .data       start:0x02136aa8 end:0x02136ac0
+
+src/ov005/fld/system/FieldSystemScript.cpp:
+    complete
+    .text       start:0x021346fc end:0x021347e4
+    .data       start:0x02136ac0 end:0x02136afc
+
+src/ov005/fld/system/FieldSystemCommand.cpp:
+    complete
+    .text       start:0x021347e4 end:0x02134ba8
+    .data       start:0x02136afc end:0x02136b14
+
+src/ov005/fld/command/FieldCommandEncount.cpp:
+    complete
+    .text       start:0x02134ba8 end:0x02134c34
+    .data       start:0x02136b14 end:0x02136b28
+
+src/ov005/fld/stage/FieldSymbolAnimation.cpp:
+    complete
+    .text       start:0x02134c34 end:0x02134cd8
+
+src/ov005/leveldata/LevelDataField.cpp:
+    complete
+    .text       start:0x02134cd8 end:0x02134d18
+    .rodata     start:0x02135328 end:0x02135864
+
+src/ov005/fld/effect/FieldEffectBase.cpp:
+    complete
+    .text       start:0x02134d18 end:0x02134d6c
+    .data       start:0x02136b28 end:0x02136b50
+
+src/ov005/leveldata/EncountTile1.cpp:
+    complete
+    .rodata     start:0x02135864 end:0x02135870
+    .init       start:0x02135b50 end:0x02135b7c
+    .ctor       start:0x02135ce8 end:0x02135cec
+    .bss        start:0x0216d8f8 end:0x0216d914
+
+src/ov005/leveldata/EncountTile2.cpp:
+    complete
+    .rodata     start:0x02135870 end:0x0213587c
+    .init       start:0x02135b7c end:0x02135ba8
+    .ctor       start:0x02135cec end:0x02135cf0
+    .bss        start:0x0216d914 end:0x0216d930
+
+src/ov005/leveldata/EncountTile3.cpp:
+    complete
+    .rodata     start:0x0213587c end:0x02135888
+    .init       start:0x02135ba8 end:0x02135bd4
+    .ctor       start:0x02135cf0 end:0x02135cf4
+    .bss        start:0x0216d930 end:0x0216d94c
+
+src/ov005/leveldata/EncountFairyTile.cpp:
+    complete
+    .rodata     start:0x02135888 end:0x02135894
+    .init       start:0x02135bd4 end:0x02135c00
+    .ctor       start:0x02135cf4 end:0x02135cf8
+    .bss        start:0x0216d94c end:0x0216d968
+
+src/ov005/leveldata/EncountDarkTile.cpp:
+    complete
+    .rodata     start:0x02135894 end:0x021358a0
+    .init       start:0x02135c00 end:0x02135c2c
+    .ctor       start:0x02135cf8 end:0x02135cfc
+    .bss        start:0x0216d968 end:0x0216d984
+
+src/ov005/leveldata/EncountSeaTile1.cpp:
+    complete
+    .rodata     start:0x021358a0 end:0x021358ac
+    .init       start:0x02135c2c end:0x02135c58
+    .ctor       start:0x02135cfc end:0x02135d00
+    .bss        start:0x0216d984 end:0x0216d9a0
+
+src/ov005/leveldata/EncountSeaTile2.cpp:
+    complete
+    .rodata     start:0x021358ac end:0x021358b8
+    .init       start:0x02135c58 end:0x02135c84
+    .ctor       start:0x02135d00 end:0x02135d04
+    .bss        start:0x0216d9a0 end:0x0216d9bc
+
+src/ov005/fld/effect/FieldEffectManager.cpp:
+    complete
+    .text       start:0x02134d6c end:0x02134fac
+    .bss        start:0x0216d9bc end:0x0216f0c4
+
+src/ov005/fld/effect/FieldEffectSprite.cpp:
+    complete
+    .text       start:0x02134fac end:0x02135080
+    .data       start:0x02136b50 end:0x02136b78
+
+src/ov005/fld/effect/FieldEffectStorage.cpp:
+    complete
+    .text       start:0x02135080 end:0x02135114
+
+src/ov005/fld/FieldCamera.cpp:
+    complete
+    .text       start:0x02135114 end:0x021352a4
+    .rodata     start:0x021358b8 end:0x021358bc
+    .init       start:0x02135c84 end:0x02135cd4
+    .ctor       start:0x02135d04 end:0x02135d08
+    .data       start:0x02136b78 end:0x02136b90
+    .bss        start:0x0216f0c4 end:0x0216f1f0

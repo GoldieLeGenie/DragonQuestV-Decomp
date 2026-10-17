@@ -1,0 +1,22 @@
+# ROM / BIOS (copyrighted, never commit)
+*.nds
+*.bin
+extract/
+
+# Build outputs
+build/
+build.ninja
+.ninja_log
+.ninja_deps
+objdiff.json
+
+# Downloaded tools
+*.exe
+tools/mwccarm/
+
+# Python
+__pycache__/
+*.pyc
+
+# Broken old git history backup
+.git_corrompu/

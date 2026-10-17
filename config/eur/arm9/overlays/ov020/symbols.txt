@@ -1,0 +1,2 @@
+ov020_entry kind:function(thumb,size=0x8) addr:0x0216f200
+data_ov020_0216f220 kind:bss addr:0x0216f220

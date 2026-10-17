@@ -1,0 +1,20 @@
+    .text       start:0x02186980 end:0x021873ec kind:code align:32
+    .ctor       start:0x021873ec end:0x021873ec kind:rodata align:4
+    .data       start:0x02187400 end:0x02187480 kind:data align:32
+    .bss        start:0x02187480 end:0x021875a0 kind:bss align:32
+
+src/ov031/materielmenu/hukubiki/MaterielMenu_HUKUBIKI_ROOT.cpp:
+    complete
+    .text       start:0x02186980 end:0x02186ef4
+    .data       start:0x02187400 end:0x0218741c
+
+src/ov031/materielmenu/hukubiki/MaterielMenu_HUKUBIKI_SELECTCHARA.cpp:
+    complete
+    .text       start:0x02186ef4 end:0x0218739c
+    .data       start:0x0218741c end:0x02187438
+
+src/ov031/leveldata/HukubikiMessage.cpp:
+    complete
+    .text       start:0x0218739c end:0x021873ec
+    .data       start:0x02187438 end:0x02187468
+    .bss        start:0x02187480 end:0x0218758c

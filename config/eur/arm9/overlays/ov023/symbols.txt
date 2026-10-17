@@ -1,0 +1,20 @@
+_ZN21MaterielMenu_INN_ROOT9menuSetupEv kind:function(thumb,size=0x74) addr:0x02186980
+_ZN21MaterielMenu_INN_ROOT8menuDrawEv kind:function(thumb,size=0x20) addr:0x021869f4
+_ZN21MaterielMenu_INN_ROOT10menuUpdateEv kind:function(thumb,size=0xf8) addr:0x02186a14
+_ZN21MaterielMenu_INN_ROOT9selectYesEv kind:function(thumb,size=0x54) addr:0x02186b0c
+_ZN21MaterielMenu_INN_ROOT10checkMoneyEv kind:function(thumb,size=0x84) addr:0x02186b60
+_ZN21MaterielMenu_INN_ROOT10fadeEffectEv kind:function(thumb,size=0x144) addr:0x02186be4
+_ZN21MaterielMenu_INN_ROOT11showMessageEii kind:function(thumb,size=0x90) addr:0x02186d28
+_ZN21MaterielMenu_INN_ROOT12revivalPartyEv kind:function(thumb,size=0x30) addr:0x02186db8
+_ZN21MaterielMenu_INN_ROOT11menuExecuteEv kind:function(arm,size=0x4) addr:0x02186de8
+_ZN3dq55level10InnMessage5setupEv kind:function(thumb,size=0x4c) addr:0x02186dec
+_ZN3dq55level10InnMessage7cleanupEv kind:function(thumb,size=0x2) addr:0x02186e38
+_ZTV21MaterielMenu_INN_ROOT kind:data(any) addr:0x02186e40
+_ZN3dq55level10InnMessage9filename_E kind:data(any) addr:0x02186e5c
+@183 kind:data(any) addr:0x02186e60 local
+data_ov023_02186e88 kind:data(any) addr:0x02186e88
+_ZN3dq55level10InnMessage5addr_E kind:bss addr:0x02186ea0
+_ZN3dq55level10InnMessage11loadSwitch_E kind:bss addr:0x02186ea4
+_ZN3dq55level10InnMessage7binary_E kind:bss addr:0x02186ea8
+_ZN3dq55level10InnMessage10dataRegionE kind:bss addr:0x02186ebc
+data_ov023_02186f3c kind:bss addr:0x02186f3c

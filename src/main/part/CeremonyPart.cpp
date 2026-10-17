@@ -1,0 +1,71 @@
+#include "main/part/CeremonyPart.hpp"
+#include "main/debug/UnkDebugDisplay.hpp"
+#include "main/dss/DssUtils.hpp"
+#include "main/dss/Pad.hpp"
+#include "main/dss/UnkDisplay.hpp"
+#include "main/dss/UnkDisplayPlugin.hpp"
+#include "main/dss/UnkOverlaySlot.hpp"
+#include "main/dss/UnkRenderObject.hpp"
+#include "main/dss/UnkVramTransfer.hpp"
+#include "main/global/Global.hpp"
+#include "nitro/gx.h"
+#include "nitro/gx.hpp"
+#include "ov004/ceremony/CeremonySystem.hpp"
+#include <nitro/os/interrupt.h>
+
+ceremony::CeremonyPart g_CeremonyPart;
+
+ARM void ceremony::CeremonyPart::initialize()
+{
+    func_02075360();
+    func_0207534c();
+    GX_ResetBankForTex();
+    GX_ResetBankForSubObj();
+    GX_ResetBankForSubBg();
+    GX_SetBankForTex(GX_VRAM_AB);
+    data_020f4f74.unkfunc_0204a53c(0x40000, 0x4000);
+    unkfunc_0204c9d8(&dss::g_DISPLAYPLUGIN_DOUBLE3D);
+    unkfunc_02048728(0);
+    unkfunc_0204b5d4((int)&OVERLAY_4_ID);
+    ov004_entry();
+    unkfunc_0204b5d4((int)&OVERLAY_19_ID);
+    ov019_entry();
+    CeremonySystem::getSingleton()->initialize();
+    g_Global.fadeIn(30);
+    unkfunc_020270dc();
+}
+
+ARM void ceremony::CeremonyPart::terminate()
+{
+    CeremonySystem::getSingleton()->terminate();
+    unkfunc_0204b5e8((int)&OVERLAY_4_ID);
+    unkfunc_0204b5e8((int)&OVERLAY_19_ID);
+    dss::g_Pad.unkfunc_0204bc24(0);
+    data_020f4f74.unkfunc_0204a5f0();
+}
+
+ARM void ceremony::CeremonyPart::onExecutePart()
+{
+    CeremonySystem::getSingleton()->execute();
+}
+
+ARM void ceremony::CeremonyPart::onDrawPart()
+{
+    CeremonySystem::getSingleton()->draw();
+}
+
+ARM void ceremony::CeremonyPart::onWindowPart()
+{
+}
+
+ARM void ceremony::CeremonyPart::onDebugPart()
+{
+    unkfunc_0202711c();
+}
+
+ARM void ceremony::CeremonyPart::onSwapBuffersPart()
+{
+    BOOL enable = OS_DisableIME();
+    REG_GFX_FIFO_SWAP_BUFFERS = 1;
+    OS_RestoreIME(enable);
+}

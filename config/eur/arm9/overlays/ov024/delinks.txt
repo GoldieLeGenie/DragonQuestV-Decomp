@@ -1,0 +1,14 @@
+    .text       start:0x02186980 end:0x02186e3c kind:code align:32
+    .ctor       start:0x02186e3c end:0x02186e3c kind:rodata align:4
+    .data       start:0x02186e40 end:0x02186e80 kind:data align:32
+    .bss        start:0x02186e80 end:0x02186e80 kind:bss align:32
+
+src/ov024/materielmenu/casino/MaterielMenu_SlimeTouch.cpp:
+    complete
+    .text       start:0x02186980 end:0x02186bec
+    .data       start:0x02186e40 end:0x02186e5c
+
+src/ov024/materielmenu/casino/MaterielMenu_TouchResult.cpp:
+    complete
+    .text       start:0x02186bec end:0x02186e3c
+    .data       start:0x02186e5c end:0x02186e78

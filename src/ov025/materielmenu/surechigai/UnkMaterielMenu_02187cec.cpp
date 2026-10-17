@@ -1,0 +1,110 @@
+#include "ov025/materielmenu/surechigai/UnkMaterielMenu_02187cec.hpp"
+#include "ov001/town/TownPlayerManager.hpp"
+#include "ov019/materielmenu/MaterielMenu_WINDOW_MANAGER.hpp"
+#include "ov019/materielmenu/MenuTemplate_materiel.hpp"
+#include "ov019/materielmenu/UnkMaterielMenuDrawParts.hpp"
+#include "main/dss/UnkDisplay.hpp"
+#include "main/menu/MenuStatusInfo.hpp"
+#include "main/menu/TownMenu_MESSAGE.hpp"
+#include "main/status/MuseumStatus.hpp"
+#include "main/text/TextAPI.hpp"
+
+using menu::MenuStatusInfo;
+
+THUMB void UnkMaterielMenu_02187cec::menuSetup()
+{
+    MenuStatusInfo::setMode(MenuStatusInfo::PLAYER_MODE);
+    menuItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD_CANCEL, menu::MenuItem::CURSORTYPE_NONE);
+    menuItem_.active_ = 0;
+    navigator_.setupBase();
+    unk_1c = status::g_MuseumStatus.findMuseumItemStatus(twn::TownPlayerManager::getSingleton().searchMapUid_);
+    status::MuseumItemStatus* item = &status::g_MuseumStatus.museumitem_[unk_1c];
+    unk_20 = item->mapid_;
+    unk_24 = item->iconid_;
+    gTownMenu_MESSAGE.openMessageForMENU();
+    if (unk_24 == 0) {
+        if (unk_20 == 0x27c) {
+            gTownMenu_MESSAGE.addMessage(0xcc5c6);
+        } else {
+            gTownMenu_MESSAGE.addMessage(0xcc643);
+        }
+    } else if (unk_20 == 0x27c) {
+        unkfunc_02187bac(-1);
+        gTownMenu_MESSAGE.addMessageNOWAIT(0xcc5c6);
+        gTownMenu_MESSAGE.addMessageWAITKEY();
+    } else {
+        unkfunc_02187bac(unk_1c - 0x1b);
+        gTownMenu_MESSAGE.addMessageNOWAIT(0xcc63f);
+        gTownMenu_MESSAGE.addMessageWAITKEY();
+    }
+    unkfunc_0204c9bc(-4, 0);
+}
+
+THUMB void UnkMaterielMenu_02187cec::menuExecute()
+{
+    menu::MenuTemplate_materiel::MATERIEL_PICTUREBOOK_MONSTERANIME(&menuItem_);
+}
+
+THUMB void UnkMaterielMenu_02187cec::menuDraw()
+{
+    MenuStatusInfo::setMode(MenuStatusInfo::PLAYER_MODE);
+    if (unk_24 != 0) {
+        if (unk_20 == 0x27c) {
+            unkfunc_0217ad28(unk_1c, 1, 1);
+            return;
+        }
+        unkfunc_0217ad28(unk_1c - 0x1b, 0, 1);
+    }
+}
+
+THUMB void UnkMaterielMenu_02187cec::menuUpdate()
+{
+    MenuStatusInfo::setMode(MenuStatusInfo::PLAYER_MODE);
+    if (gTownMenu_MESSAGE.isOpen() == true) {
+        if (gTownMenu_MESSAGE.isMessageWAITPROG() == true) {
+            navigator_.setup(1, 1, 1);
+            int result = MenuUpdate_Assist::menuSelect(menuItem_, navigator_);
+            if (result == 0) {
+                return;
+            }
+            if (result == 2 || result == 3) {
+                MaterielMenu_WINDOW_MANAGER::getSingleton()->closeMaterielWindow();
+                unkfunc_0204c9c8();
+            }
+            redraw_ = 1;
+            return;
+        }
+        int stat = gTownMenu_MESSAGE.stat_;
+        if (stat == MENUBASE_STAT_OK || stat == MENUBASE_STAT_CANCEL) {
+            gTownMenu_MESSAGE.close();
+            MaterielMenu_WINDOW_MANAGER::getSingleton()->closeMaterielWindow();
+            unkfunc_0204c9c8();
+        }
+    }
+}
+
+THUMB void UnkMaterielMenu_02187cec::unkfunc_02187bac(int index)
+{
+    char line1[0x40];
+    char line2[0x40];
+    char line3[0x40];
+    status::TaishiBase* taishi;
+    if (index == -1) {
+        taishi = &status::g_MuseumStatus.playerTaishi_;
+    } else {
+        taishi = &status::g_MuseumStatus.othersTaishi_[index];
+    }
+    unkfunc_0217b858(line1, line2, line3, taishi->message_);
+    TextAPI::setUserString(0, line1);
+    TextAPI::setUserString(1, line2);
+    TextAPI::setUserString(2, line3);
+    if (index == -1) {
+        TextAPI::setMACRO1(0x90, 0xd0000000, 0);
+        TextAPI::setMACRO2(0x90, 0xd0000000, 1);
+        TextAPI::setMACRO3(0x90, 0xd0000000, 2);
+        return;
+    }
+    TextAPI::setMACRO1(0x94, 0xd0000000, 0);
+    TextAPI::setMACRO2(0x94, 0xd0000000, 1);
+    TextAPI::setMACRO3(0x94, 0xd0000000, 2);
+}

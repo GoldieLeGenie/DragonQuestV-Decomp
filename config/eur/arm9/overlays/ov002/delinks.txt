@@ -1,0 +1,24 @@
+    .text       start:0x02128060 end:0x0212e280 kind:code align:32
+    .init       start:0x0212e280 end:0x0212e2ac kind:code align:4
+    .ctor       start:0x0212e2ac end:0x0212e2b0 kind:rodata align:4
+    .data       start:0x0212e2c0 end:0x02133a20 kind:data align:32
+    .bss        start:0x02133a20 end:0x02135300 kind:bss align:32
+
+src/ov002/slimetouch/SlimeTouchParam.cpp:
+    complete
+    .text       start:0x0212dd3c end:0x0212e170
+    .data       start:0x0212f1f4 end:0x02133a10
+
+src/ov002/slimetouch/SlimeTouch.cpp:
+    complete
+    .text       start:0x0212e170 end:0x0212e280
+    .data       start:0x02133a10 end:0x02133a20
+    .bss        start:0x02135288 end:0x02135300
+
+src/ov002/slimetouch/SlimeTouchGame.cpp:
+    complete
+    .text       start:0x02128060 end:0x0212dd3c
+    .init       start:0x0212e280 end:0x0212e2ac
+    .ctor       start:0x0212e2ac end:0x0212e2b0
+    .data       start:0x0212e2c0 end:0x0212f1f4
+    .bss        start:0x02133a20 end:0x02135288

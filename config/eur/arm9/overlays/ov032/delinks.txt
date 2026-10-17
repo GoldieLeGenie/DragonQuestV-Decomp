@@ -1,0 +1,57 @@
+    .text       start:0x02186980 end:0x02188f10 kind:code align:32
+    .rodata     start:0x02188f10 end:0x02188f20 kind:rodata align:4
+    .ctor       start:0x02188f20 end:0x02188f20 kind:rodata align:4
+    .data       start:0x02188f40 end:0x02189080 kind:data align:32
+    .bss        start:0x02189080 end:0x02189300 kind:bss align:32
+
+src/ov032/materielmenu/jisan/MaterielMenu_JISAN_CHECK_NAME.cpp:
+    complete
+    .text       start:0x02186980 end:0x0218701c
+    .data       start:0x02188f40 end:0x02188f5c
+
+src/ov032/materielmenu/jisan/MaterielMenu_JISAN_CHANGE_NAME.cpp:
+    complete
+    .text       start:0x0218701c end:0x021875a8
+    .data       start:0x02188f5c end:0x02188f78
+
+src/ov032/materielmenu/jisan/MaterielMenu_JISAN_LEAVE_MESSAGE.cpp:
+    complete
+    .text       start:0x021875a8 end:0x02187a28
+    .data       start:0x02188f78 end:0x02188f94
+
+src/ov032/materielmenu/jisan/MaterielMenu_JISAN_ADD_MONSTER.cpp:
+    complete
+    .text       start:0x02187a28 end:0x02187d7c
+    .data       start:0x02188f94 end:0x02188fb0
+
+src/ov032/materielmenu/jisan/MaterielMenu_JISAN_DEL_MONSTER.cpp:
+    complete
+    .text       start:0x02187d7c end:0x02188158
+    .data       start:0x02188fb0 end:0x02188fcc
+
+src/ov032/materielmenu/jisan/MaterielMenu_JISAN_LEAVE_MONSTER.cpp:
+    complete
+    .text       start:0x02188158 end:0x021882fc
+    .data       start:0x02188fcc end:0x02188fe8
+
+src/ov032/materielmenu/jisan/MaterielMenu_JISAN_ROOT.cpp:
+    complete
+    .text       start:0x021882fc end:0x021887dc
+    .data       start:0x02188fe8 end:0x02189004
+
+src/ov032/materielmenu/jisan/MaterielMenu_JISAN_STATUS.cpp:
+    complete
+    .text       start:0x021887dc end:0x021889e0
+    .data       start:0x02189004 end:0x02189020
+
+src/ov032/materielmenu/jisan/MaterielMenu_JISAN_LEAVE_SCRIPT.cpp:
+    complete
+    .text       start:0x021889e0 end:0x02188ebc
+    .rodata     start:0x02188f10 end:0x02188f20
+    .data       start:0x02189020 end:0x0218903c
+
+src/ov032/leveldata/JisanMessage.cpp:
+    complete
+    .text       start:0x02188ebc end:0x02188f10
+    .data       start:0x0218903c end:0x02189068
+    .bss        start:0x02189080 end:0x021892f4

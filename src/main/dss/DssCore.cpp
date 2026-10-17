@@ -1,0 +1,271 @@
+#include "main/dss/DssCore.hpp"
+#include "main/dss/UnkDisplay.hpp"
+#include "main/dss/DssUtils.hpp"
+#include "main/dss/UnkBgBuffer.hpp"
+#include "main/dss/UnkMemory.hpp"
+#include "main/data/FileLoader.hpp"
+#include "nitro/os.hpp"
+#include "nitro/gx.h"
+#include <stdio.h>
+
+inline UnkDebugConsole::UnkDebugConsole()
+{
+    unkfunc_0204aff0();
+}
+
+THUMB void unkfunc_0204afd8()
+{
+}
+
+THUMB void unkfunc_0204afdc()
+{
+}
+
+THUMB int unkfunc_0204afe0()
+{
+    return func_020885e0();
+}
+
+THUMB void unkfunc_0204afe8(const char* format, ...)
+{
+}
+
+THUMB void UnkDebugConsole::unkfunc_0204aff0()
+{
+}
+
+THUMB void UnkDebugConsole::unkfunc_0204aff4()
+{
+    unkfunc_0204affc();
+}
+
+THUMB void UnkDebugConsole::unkfunc_0204affc()
+{
+    unkfunc_0204ea94(unkfunc_0204d048(), -1);
+}
+
+THUMB void UnkDebugConsole::unkfunc_0204b00c(int x, int y, int w, int h)
+{
+    unkfunc_0204eaac(unkfunc_0204d048(), x, y, w, h, -1);
+}
+
+THUMB void UnkDebugConsole::unkfunc_0204b034(int x, int y, const char* str)
+{
+    unkfunc_0204ea5c(unkfunc_0204d048(), x, y, str);
+}
+
+THUMB void UnkDebugConsole::unkfunc_0204b04c(int x, int y, const char* format, ...)
+{
+    char buf[0x41];
+    va_list args;
+    va_start(args, format);
+    vsnprintf(buf, sizeof(buf), format, args);
+    unkfunc_0204ea5c(unkfunc_0204d048(), x, y, buf);
+}
+
+ARM void unkfunc_0204b080()
+{
+    *(volatile unsigned int*)((unsigned int)data_027e0000 + 0x3ff8) |= 1;
+}
+
+ARM void unkfunc_0204b09c(int exArena)
+{
+    if (exArena != 0) {
+        OS_EnableMainExArena();
+        data_020f6fa0 = 1;
+    }
+    OS_InitAllSystems();
+    func_020786d4();
+    func_0208a8b0();
+    GX_SetPower(GX_POWER_ALL);
+    GX_Init();
+    func_020743b4(2);
+    func_02088548();
+    OS_InitThread();
+    GX_DispOff();
+    GXS_DispOff();
+    func_02086f88(1, unkfunc_0204b080);
+    func_020870c4(1);
+    OS_EnableIrq();
+    func_02073850(3);
+    GX_VBlankIntr(TRUE);
+    func_0207b328();
+}
+
+ARM void unkfunc_0204b15c()
+{
+    GX_SetBankForLcdc(GX_VRAM_ALL);
+    MI_CpuFill(0, (void*)0x06800000, 0xa4000);
+    func_02075550();
+    MI_CpuFill(0xc0, (void*)0x07000000, 0x400);
+    MI_CpuFill(0xc0, (void*)0x07000400, 0x400);
+    MI_CpuFill(0, (void*)0x05000000, 0x400);
+    MI_CpuFill(0, (void*)0x05000400, 0x400);
+}
+
+ARM void dss::File::unkfunc_0204b1cc(int)
+{
+    unkfunc_0204b1e8();
+    unk_4c = 0;
+    unk_50 = 0;
+}
+
+ARM void dss::File::unkfunc_0204b1e8()
+{
+    unsigned int size = FS_TryLoadTable(NULL, 0);
+    FS_TryLoadTable(unkfunc_0204c504(&data_020fd24c, size, 0x20), size);
+}
+
+ARM int dss::File::unkfunc_0204b21c(const char* fname, void* dst, int a)
+{
+    int size;
+    if (a == 0) {
+        size = unkfunc_0204b26c(fname, dst);
+        unk_4c = 0;
+    } else {
+        size = unkfunc_0204b284(fname, dst);
+        unk_4c = 0;
+    }
+    DC_CleanAll();
+    return size;
+}
+
+ARM int dss::File::unkfunc_0204b250(const char* fname, void* dst, int offset, int size, int a)
+{
+    unk_4c = offset;
+    unk_50 = size;
+    return unkfunc_0204b21c(fname, dst, a);
+}
+
+ARM int dss::File::unkfunc_0204b26c(const char* fname, void* dst)
+{
+    int size = unkfunc_0204b370(fname, dst);
+    DC_CleanAll();
+    return size;
+}
+
+ARM int dss::File::unkfunc_0204b284(const char* fname, void* dst)
+{
+    int size = unkfunc_0204b370(fname, dst);
+    DC_CleanAll();
+    return size;
+}
+
+ARM void* dss::File::unkfunc_0204b29c(const char* fname, int a, LoadSwitch sw)
+{
+    int size = 0;
+    void* archive = 0;
+    if (archive == 0) {
+        size = unkfunc_0204b4c8(fname);
+    }
+    size_ = size;
+    void* p;
+    if (a != 0) {
+        p = unkfunc_0204c5bc(&data_020fd24c, size, -0x20);
+    } else {
+        p = unkfunc_0204c5bc(&data_020fd24c, size, 0x20);
+    }
+    unkfunc_0204b21c(fname, p, 0);
+    return p;
+}
+
+ARM void* dss::File::unkfunc_0204b310(const char* fname, LoadSwitch sw)
+{
+    void* p = 0;
+    if (p == 0) {
+        p = unkfunc_0204b418(fname);
+    }
+    return p;
+}
+
+ARM int dss::File::unkfunc_0204b32c(const char* fname, LoadSwitch sw)
+{
+    int size = 0;
+    void* archive = 0;
+    if (archive == 0) {
+        size = unkfunc_0204b4c8(fname);
+    }
+    return size;
+}
+
+ARM bool dss::File::isExist(const char* fname, LoadSwitch sw)
+{
+    return unkfunc_0204b32c(fname, sw) != 0;
+}
+
+ARM unsigned int unkfunc_0204b360(unsigned int value, unsigned int align)
+{
+    return value & ~(align - 1);
+}
+
+ARM int dss::File::unkfunc_0204b370(const char* fname, void* dst)
+{
+    func_02073868(&file_);
+    int ok = func_02073a3c(&file_, fname);
+    if (unk_4c != 0) {
+        func_02073b64(&file_, unk_4c, 0);
+    }
+    if (ok) {
+        size_ = file_.endRomOffset - file_.startRomOffset;
+        if (unk_50 != 0) {
+            size_ = unk_50;
+            unk_50 = 0;
+        }
+        size_ = func_02073b58(&file_, dst, size_);
+        if (size_ == -1) {
+            return 0;
+        }
+        func_02073a68(&file_);
+    } else {
+        size_ = 0;
+    }
+    return size_;
+}
+
+ARM void* dss::File::unkfunc_0204b418(const char* fname)
+{
+    unsigned char* buf = data_020f6fe0;
+    MIUncompContextLZ context;
+    func_02073868(&file_);
+    func_02073a3c(&file_, fname);
+    func_02073b58(&file_, buf, 4);
+    size_ = *(unsigned int*)buf >> 8;
+    void* dst = unkfunc_0204c5bc(&data_020fd24c, size_, 0x20);
+    func_020708d4(&context, dst, buf);
+    while (func_020708fc(&context, buf, func_02073b58(&file_, buf, 0x1400)) != 0) {
+    }
+    DC_CleanAll();
+    func_02073a68(&file_);
+    return dst;
+}
+
+ARM int dss::File::unkfunc_0204b4c8(const char* fname)
+{
+    FSFile file;
+    func_02073868(&file);
+    if (!func_02073a3c(&file, fname)) {
+        return 0;
+    }
+    return file.endRomOffset - file.startRomOffset;
+}
+
+ARM void unkfunc_0204b50c()
+{
+    func_02075b38();
+    func_02075cd8();
+    func_020827ac();
+    *(volatile unsigned int*)0x04000000 &= ~0x07000000;
+    *(volatile unsigned int*)0x04000000 &= ~0x38000000;
+}
+
+ARM void unkfunc_0204b53c(int brightness)
+{
+    func_0207438c((void*)0x0400006c, brightness);
+}
+
+ARM void unkfunc_0204b554(int brightness)
+{
+    func_0207438c((void*)0x0400106c, brightness);
+}
+
+THUMB UnkDebugConsole data_020f6f9c;

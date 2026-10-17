@@ -1,0 +1,403 @@
+_Z16unkfunc_02128060v kind:function(arm,size=0x44) addr:0x02128060
+_Z16unkfunc_021280a4v kind:function(arm,size=0x64) addr:0x021280a4
+_Z16unkfunc_02128108v kind:function(arm,size=0x160) addr:0x02128108
+_Z16unkfunc_02128268v kind:function(arm,size=0x4) addr:0x02128268
+_Z16unkfunc_0212826citi kind:function(arm,size=0x30) addr:0x0212826c
+_Z16unkfunc_0212829ci kind:function(arm,size=0x78) addr:0x0212829c
+_Z16unkfunc_02128314v kind:function(arm,size=0x20) addr:0x02128314
+_Z16unkfunc_02128334v kind:function(arm,size=0x60) addr:0x02128334
+_Z16unkfunc_02128394i kind:function(arm,size=0xf0) addr:0x02128394
+_Z10set_pMGArgP9ST_MG_ARG kind:function(arm,size=0x10) addr:0x02128484
+_Z10get_pMGArgv kind:function(arm,size=0x10) addr:0x02128494
+_Z16unkfunc_021284a4v kind:function(arm,size=0x1c) addr:0x021284a4
+_Z9bg_manage9BG_MANAGE kind:function(arm,size=0x198) addr:0x021284c0
+_Z14MiniGame2_initv kind:function(arm,size=0xe4) addr:0x02128658 local
+_Z16unkfunc_0212873cv kind:function(arm,size=0xb8) addr:0x0212873c
+_Z16unkfunc_021287f4v kind:function(arm,size=0x10) addr:0x021287f4
+_Z12chk_touchPadPiS_ kind:function(arm,size=0x50) addr:0x02128804
+_Z9MiniGame2P9MG2_STATE kind:function(arm,size=0x3b0) addr:0x02128854
+_Z16unkfunc_02128c04v kind:function(arm,size=0x8) addr:0x02128c04
+_Z16unkfunc_02128c0cv kind:function(arm,size=0x40) addr:0x02128c0c
+_Z16unkfunc_02128c4cv kind:function(arm,size=0x10) addr:0x02128c4c
+_Z16unkfunc_02128c5cj kind:function(arm,size=0x1c) addr:0x02128c5c
+_Z16unkfunc_02128c78Pv kind:function(arm,size=0x1c) addr:0x02128c78
+_Z11MG_LoadFilePKcPj kind:function(arm,size=0x98) addr:0x02128c94
+_Z16unkfunc_02128d2cPKcPPvPP12NNSG3dResMdl kind:function(arm,size=0x50) addr:0x02128d2c
+_Z16unkfunc_02128d7cv kind:function(arm,size=0xb4) addr:0x02128d7c
+_Z14rand32_min_maxjj kind:function(arm,size=0x5c) addr:0x02128e30
+_Z16randSel_intTablePii kind:function(arm,size=0xa8) addr:0x02128e8c
+_Z13MG_IsUpScreenv kind:function(arm,size=0x20) addr:0x02128f34
+_Z11set_drawFinv kind:function(arm,size=0x14) addr:0x02128f54
+_Z16unkfunc_02128f68v kind:function(arm,size=0x5c) addr:0x02128f68
+_Z16unkfunc_02128fc4v kind:function(arm,size=0x4) addr:0x02128fc4
+_Z16get_iwaSpdNormalv kind:function(arm,size=0x10) addr:0x02128fc8
+_Z10get_sideUpv kind:function(arm,size=0x8) addr:0x02128fd8
+_Z13get_pSideInfoi kind:function(arm,size=0x1c) addr:0x02128fe0
+_Z10get_pSlimeii kind:function(arm,size=0x34) addr:0x02128ffc
+_Z18get_normaSlimeKindii kind:function(arm,size=0x8c) addr:0x02129030
+_Z13get_id_pSlimeP8ST_SLIME kind:function(arm,size=0x28) addr:0x021290bc
+_Z13sideInfo_initv kind:function(arm,size=0xfc) addr:0x021290e4
+_Z15sideInfo_updatei kind:function(arm,size=0x20) addr:0x021291e0
+_Z20get_stageClear_alphaiiPi kind:function(arm,size=0xac) addr:0x02129200 local
+_Z17bakudanIwa_returni kind:function(arm,size=0x28) addr:0x021292ac local
+_Z36sideInfo_draw_downScr_clearStage_subiiiii kind:function(arm,size=0xc4) addr:0x021292d4 local
+_Z10chk_kemuriP12ST_SIDE_INFO kind:function(arm,size=0x14) addr:0x02129398 local
+_Z32sideInfo_draw_downScr_clearStagei kind:function(arm,size=0x188) addr:0x021293ac local
+_Z21sideInfo_draw_downScr9MG2_STATE kind:function(arm,size=0x40) addr:0x02129534 local
+_Z13sideInfo_draw9MG2_STATE kind:function(arm,size=0x80) addr:0x02129574
+_Z16unkfunc_021295f4PKci kind:function(arm,size=0x68) addr:0x021295f4
+_Z21sideInfo_stage_add_exiii kind:function(arm,size=0x6c) addr:0x0212965c
+_Z21sideInfo_taoshita_inci4KINDPiS0_ kind:function(arm,size=0x1e8) addr:0x021296c8
+_Z22sideInfo_nigashita_inci4KIND kind:function(arm,size=0x48) addr:0x021298b0
+_Z22sideInfo_slime_chk_addi kind:function(arm,size=0x14) addr:0x021298f8
+_Z24sideInfo_slime_chk_touchii kind:function(arm,size=0x18) addr:0x0212990c
+_Z24sideInfo_slime_update_exiii kind:function(arm,size=0x20) addr:0x02129924
+_Z19sideInfo_slime_drawv kind:function(arm,size=0x188) addr:0x02129944
+_Z19sideInfo_get_gameSTi kind:function(arm,size=0x2c) addr:0x02129acc
+_Z10slime_initii kind:function(arm,size=0x74) addr:0x02129af8
+_Z13slime_get_cntiPj kind:function(arm,size=0x6c) addr:0x02129b6c local
+_Z11_rand_sel32ji kind:function(arm,size=0xb0) addr:0x02129bd8 local
+_Z10get_anmNum4KIND10SLIME_MOVE kind:function(arm,size=0x38) addr:0x02129c88 local
+_Z9slime_setP8ST_SLIME4KINDP7VecFx3210SLIME_MOVE kind:function(arm,size=0xb4) addr:0x02129cc0 local
+_Z15slime_set_normaii kind:function(arm,size=0x90) addr:0x02129d74 local
+_Z13slime_set_objii4KIND kind:function(arm,size=0x3c) addr:0x02129e04
+_Z20slime_set_bakudanIwai kind:function(arm,size=0x14) addr:0x02129e40
+_Z16slime_set_playeri kind:function(arm,size=0x14) addr:0x02129e54
+_Z19set_absoluteCnt_BufP12ST_SIDE_INFO kind:function(arm,size=0x16c) addr:0x02129e68 local
+_Z20bakudanIwa_kemuri_oni kind:function(arm,size=0x48) addr:0x02129fd4 local
+_Z14add_normaSlimeii kind:function(arm,size=0x108) addr:0x0212a01c local
+_Z19chk_normaSlime_movei10SLIME_MOVE kind:function(arm,size=0x64) addr:0x0212a124 local
+_Z19slime_chk_add_normaii kind:function(arm,size=0xb0) addr:0x0212a188 local
+_Z13slime_chk_addii kind:function(arm,size=0x1c4) addr:0x0212a238
+_Z16get_slime_scr_xyP8ST_SLIMEPiS1_i kind:function(arm,size=0x1c) addr:0x0212a3fc
+_Z7chk_hitiiP8ST_SLIME kind:function(arm,size=0x6c) addr:0x0212a418 local
+_Z13slime_anm_subP8ST_SLIMEiiiii kind:function(arm,size=0x78) addr:0x0212a484 local
+_Z9slime_anmP8ST_SLIME13SLIME_ANM_OPT kind:function(arm,size=0x120) addr:0x0212a4fc local
+_Z15slime_chk_touchiii kind:function(arm,size=0xe8) addr:0x0212a61c
+_Z18get_bakudanIwa_spdi kind:function(arm,size=0x34) addr:0x0212a704 local
+_Z13set_ase0_dispii kind:function(arm,size=0x48) addr:0x0212a738 local
+_Z25nokori_anaSlime_force_deliP8ST_SLIME kind:function(arm,size=0x88) addr:0x0212a780
+_Z27slime_update_rot_bakudanIwaP8ST_SLIMEii kind:function(arm,size=0x8c) addr:0x0212a808 local
+_Z29slime_update_trans_bakudanIwaP8ST_SLIMEii kind:function(arm,size=0x1dc) addr:0x0212a894 local
+_Z18slime_update_transP8ST_SLIMEii kind:function(arm,size=0x18) addr:0x0212aa70 local
+_Z18slime_update_frameP8ST_SLIMEi kind:function(arm,size=0xe8) addr:0x0212aa88 local
+_Z22slime_del_norma_updateii kind:function(arm,size=0x40) addr:0x0212ab70 local
+_Z9slime_deliP8ST_SLIME kind:function(arm,size=0x168) addr:0x0212abb0 local
+_Z15hosei_passFrameiP8ST_SLIMEi kind:function(arm,size=0x5c) addr:0x0212ad18 local
+_Z18slime_update_anmSeP8ST_SLIMEi kind:function(arm,size=0x94) addr:0x0212ad74 local
+_Z21slime_update_anmFrameP8ST_SLIMEi kind:function(arm,size=0x228) addr:0x0212ae08 local
+_Z15slime_update_exiiii kind:function(arm,size=0xcc) addr:0x0212b030
+_Z16unkfunc_0212b0fcP8ST_SLIMEP7MtxFx33P7VecFx32 kind:function(arm,size=0x8c) addr:0x0212b0fc local
+_Z16unkfunc_0212b188i kind:function(arm,size=0x3c) addr:0x0212b188 local
+_Z13slime_tp_drawP8ST_SLIME kind:function(arm,size=0x98) addr:0x0212b1c4 local
+_Z10slime_drawiP7MtxFx33ii kind:function(arm,size=0xa4) addr:0x0212b25c
+_Z20bakudanIwa_bakuhatsuii kind:function(arm,size=0xe8) addr:0x0212b300
+_Z17get_bonusPointIwai kind:function(arm,size=0x44) addr:0x0212b3e8
+_Z16unkfunc_0212b42cv kind:function(arm,size=0xdc) addr:0x0212b42c
+_Z16slime_cg_ReleaseP8ST_SLIME kind:function(arm,size=0x48) addr:0x0212b508
+_Z20slime_cg_Release_allv kind:function(arm,size=0x40) addr:0x0212b550
+_Z16slime_cg_set_subP8ST_SLIME4KINDi kind:function(arm,size=0x148) addr:0x0212b590 local
+_Z12slime_cg_setP8ST_SLIME4KINDi kind:function(arm,size=0xa0) addr:0x0212b6d8
+_Z17slime_sprite_initv kind:function(arm,size=0xa8) addr:0x0212b778
+_Z17slime_sprite_drawP8ST_SLIME kind:function(arm,size=0xac) addr:0x0212b820
+_Z16slime_sprite_setP8ST_SLIME4KINDi kind:function(arm,size=0x104) addr:0x0212b8cc
+_Z20sprite_data_load_subiii kind:function(arm,size=0x2fc) addr:0x0212b9d0
+_Z16sprite_data_loadii kind:function(arm,size=0x64) addr:0x0212bccc
+_Z16unkfunc_0212bd30i kind:function(arm,size=0x84) addr:0x0212bd30
+_Z16unkfunc_0212bdb4i kind:function(arm,size=0x38) addr:0x0212bdb4
+_Z11sprite_initP6SPRITE kind:function(arm,size=0x48) addr:0x0212bdec local
+_Z13sprite_createi kind:function(arm,size=0x24) addr:0x0212be34
+_Z11sprite_termP6SPRITE kind:function(arm,size=0xc) addr:0x0212be58
+_Z15sprite_set_animP6SPRITEii kind:function(arm,size=0x20) addr:0x0212be64
+_Z17sprite_draw_startv kind:function(arm,size=0x50) addr:0x0212be84
+_Z15sprite_draw_endv kind:function(arm,size=0x14) addr:0x0212bed4
+_Z15sprite_activatei kind:function(arm,size=0xe8) addr:0x0212bee8
+_Z23split_G2dDrawSpriteFastssiiiiiiii kind:function(arm,size=0xc0) addr:0x0212bfd0 local
+_Z9font_drawP6SPRITEi kind:function(arm,size=0x108) addr:0x0212c090 local
+_Z10chara_drawP6SPRITE kind:function(arm,size=0xf8) addr:0x0212c198 local
+_Z15ssa_sprite_drawP6SPRITE kind:function(arm,size=0x4c) addr:0x0212c290
+_Z16sprite_draw_rectP6SPRITEiiii kind:function(arm,size=0x64) addr:0x0212c2dc
+_Z16sprite_font_initv kind:function(arm,size=0xd0) addr:0x0212c340
+_Z11sprite_drawP6SPRITEi kind:function(arm,size=0x22c) addr:0x0212c410
+_Z14draw_touch_numiiii kind:function(arm,size=0xe8) addr:0x0212c63c
+_Z14draw_stage_numi kind:function(arm,size=0xcc) addr:0x0212c724
+_Z13draw_score_exiiiit kind:function(arm,size=0x1a4) addr:0x0212c7f0
+_Z16draw_stage_cleariiiiiii kind:function(arm,size=0x184) addr:0x0212c994
+_Z15sprite_all_freev kind:function(arm,size=0x84) addr:0x0212cb18
+_Z12ssa_eff_initv kind:function(arm,size=0x9c) addr:0x0212cb9c
+_Z16ssa_eff_get_bssai kind:function(arm,size=0x10) addr:0x0212cc38
+_Z18ssa_eff_get_nframei kind:function(arm,size=0x14) addr:0x0212cc48
+_Z12ssa_eff_drawiiiiii kind:function(arm,size=0x60) addr:0x0212cc5c
+_Z15ssa_eff_draw_3Diiiiii kind:function(arm,size=0x5c) addr:0x0212ccbc
+_Z13ssa_eff_startiiiii kind:function(arm,size=0x90) addr:0x0212cd18
+_Z14ssa_eff_updatei kind:function(arm,size=0xec) addr:0x0212cda8
+_Z11ssa_eff_chkii kind:function(arm,size=0x34) addr:0x0212ce94
+_Z14bssa_draw_primP9BSSA_PRIMP10BSSA_PARTSi kind:function(arm,size=0x120) addr:0x0212cec8
+_Z9bssa_drawP9BSSA_DATAiiiii kind:function(arm,size=0x1c0) addr:0x0212cfe8
+_Z12bssa_draw_3DP9BSSA_DATAiiiii kind:function(arm,size=0x214) addr:0x0212d1a8
+_Z9bssa_initPv kind:function(arm,size=0x9c) addr:0x0212d3bc
+_Z16unkfunc_0212d458v kind:function(arm,size=0x18) addr:0x0212d458
+_Z16unkfunc_0212d470v kind:function(arm,size=0x84) addr:0x0212d470
+_Z16unkfunc_0212d4f4jPvi kind:function(arm,size=0x70) addr:0x0212d4f4
+_Z16unkfunc_0212d564jPvi kind:function(arm,size=0x70) addr:0x0212d564
+_Z16unkfunc_0212d5d4j kind:function(arm,size=0x14) addr:0x0212d5d4
+_Z16unkfunc_0212d5e8j kind:function(arm,size=0xc) addr:0x0212d5e8
+_Z16unkfunc_0212d5f4j kind:function(arm,size=0x14) addr:0x0212d5f4
+_Z16unkfunc_0212d608j kind:function(arm,size=0xc) addr:0x0212d608
+_Z16unkfunc_0212d614Pvji kind:function(arm,size=0xa0) addr:0x0212d614
+_Z16unkfunc_0212d6b4Pvji kind:function(arm,size=0xa0) addr:0x0212d6b4
+_Z16unkfunc_0212d754P12NNSG3dResTexi kind:function(arm,size=0x3c) addr:0x0212d754
+_Z16unkfunc_0212d790P12NNSG3dResTexi kind:function(arm,size=0xac) addr:0x0212d790
+_Z16unkfunc_0212d83cPv kind:function(arm,size=0x220) addr:0x0212d83c
+_Z16unkfunc_0212da5cv kind:function(arm,size=0x64) addr:0x0212da5c
+_Z16unkfunc_0212dac0P7VecFx32PiS1_S1_ kind:function(arm,size=0x1e0) addr:0x0212dac0
+_Z16unkfunc_0212dca0P19NNSG2dCharacterData kind:function(arm,size=0x10) addr:0x0212dca0
+_Z16unkfunc_0212dcb0PvPP19NNSG2dCharacterData kind:function(arm,size=0x3c) addr:0x0212dcb0
+_Z16unkfunc_0212dcecP17NNSG2dPaletteData kind:function(arm,size=0x10) addr:0x0212dcec
+_Z16unkfunc_0212dcfcPvPP17NNSG2dPaletteData kind:function(arm,size=0x3c) addr:0x0212dcfc
+_ZN13UnkTouchPointC1Ev kind:function(arm,size=0x4) addr:0x0212dd38
+_Z13get_kind_data4KINDi kind:function(arm,size=0xf8) addr:0x0212dd3c
+_Z18get_kind_time_rand4KIND kind:function(arm,size=0x5c) addr:0x0212de34
+_Z14get_stage_dataii kind:function(arm,size=0x144) addr:0x0212de90
+_Z28get_kind_from_stage_data_subPiiS_ kind:function(arm,size=0x14) addr:0x0212dfd4 local
+_Z24get_time_from_stage_datai kind:function(arm,size=0x30) addr:0x0212dfe8
+_Z24get_kind_from_stage_datai kind:function(arm,size=0x20) addr:0x0212e018
+_Z29get_normaKind_from_stage_datai kind:function(arm,size=0x20) addr:0x0212e038
+_Z15get_kind_anmNum4KIND10SLIME_MOVE kind:function(arm,size=0x110) addr:0x0212e058
+_Z16unkfunc_0212e168v kind:function(arm,size=0x8) addr:0x0212e168
+_Z14SlimeTouchInitPvjP15ST_ARG_SL_TOUCH kind:function(arm,size=0x94) addr:0x0212e170
+_Z14SlimeTouchDrawv kind:function(arm,size=0x20) addr:0x0212e204
+_Z14SlimeTouchExecv kind:function(arm,size=0xc) addr:0x0212e224
+_Z14SlimeTouchTermv kind:function(arm,size=0x20) addr:0x0212e230
+_Z16SlimeTouchResultP15ST_ARG_SL_TOUCH kind:function(arm,size=0x30) addr:0x0212e250
+__sinit_SlimeTouchGame.cpp kind:function(arm,size=0x2c) addr:0x0212e280 local
+.p__sinit_SlimeTouchGame.cpp kind:data(word) addr:0x0212e2ac local
+@2041 kind:data(any) addr:0x0212e2c0 local
+bakudanIwa_r kind:data(any) addr:0x0212e2c4 local
+s_playerSprite kind:data(any) addr:0x0212e39c local
+s_slimeCgModel kind:data(any) addr:0x0212e3e0 local
+s_bgRect kind:data(any) addr:0x0212e450 local
+ssa_data_touch kind:data(any) addr:0x0212e504 local
+obj_data kind:data(any) addr:0x0212e5e4 local
+sprite_kind_data kind:data(any) addr:0x0212e6f4 local
+s_slimeCgAnm kind:data(any) addr:0x0212e814 local
+slime_anm_param_data$3112 kind:data(any) addr:0x0212e934 local
+tbl_w$3854 kind:data(any) addr:0x0212eb14 local
+tbl_h$3855 kind:data(any) addr:0x0212eb1c local
+@2046 kind:data(any) addr:0x0212eb24 local
+@2048 kind:data(any) addr:0x0212eb2c local
+@2050 kind:data(any) addr:0x0212eb34 local
+@2047 kind:data(any) addr:0x0212eb3c local
+@2054 kind:data(any) addr:0x0212eb44 local
+@2042 kind:data(any) addr:0x0212eb50 local
+@2053 kind:data(any) addr:0x0212eb5c local
+@2049 kind:data(any) addr:0x0212eb68 local
+@2043 kind:data(any) addr:0x0212eb74 local
+@2052 kind:data(any) addr:0x0212eb80 local
+@2051 kind:data(any) addr:0x0212eb8c local
+@2044 kind:data(any) addr:0x0212eb9c local
+@2045 kind:data(any) addr:0x0212ebac local
+@2072 kind:data(any) addr:0x0212ebbc local
+@2061 kind:data(any) addr:0x0212ebd4 local
+@2062 kind:data(any) addr:0x0212ebec local
+@2063 kind:data(any) addr:0x0212ec04 local
+@2055 kind:data(any) addr:0x0212ec1c local
+@2056 kind:data(any) addr:0x0212ec34 local
+@2057 kind:data(any) addr:0x0212ec4c local
+@2070 kind:data(any) addr:0x0212ec64 local
+@2064 kind:data(any) addr:0x0212ec7c local
+@2065 kind:data(any) addr:0x0212ec98 local
+@2066 kind:data(any) addr:0x0212ecb4 local
+@2067 kind:data(any) addr:0x0212ecd0 local
+@2068 kind:data(any) addr:0x0212ecec local
+@2069 kind:data(any) addr:0x0212ed08 local
+@2073 kind:data(any) addr:0x0212ed24 local
+@2074 kind:data(any) addr:0x0212ed40 local
+@2075 kind:data(any) addr:0x0212ed5c local
+@2058 kind:data(any) addr:0x0212ed78 local
+@2059 kind:data(any) addr:0x0212ed94 local
+@2060 kind:data(any) addr:0x0212edb0 local
+@2080 kind:data(any) addr:0x0212edcc local
+@2071 kind:data(any) addr:0x0212ede8 local
+@2076 kind:data(any) addr:0x0212ee04 local
+@2087 kind:data(any) addr:0x0212ee24 local
+@2088 kind:data(any) addr:0x0212ee44 local
+@2089 kind:data(any) addr:0x0212ee64 local
+@2090 kind:data(any) addr:0x0212ee84 local
+@2091 kind:data(any) addr:0x0212eea4 local
+@2092 kind:data(any) addr:0x0212eec4 local
+@2093 kind:data(any) addr:0x0212eee4 local
+@2094 kind:data(any) addr:0x0212ef04 local
+@2095 kind:data(any) addr:0x0212ef24 local
+@2096 kind:data(any) addr:0x0212ef44 local
+@2097 kind:data(any) addr:0x0212ef64 local
+@2098 kind:data(any) addr:0x0212ef84 local
+@2081 kind:data(any) addr:0x0212efa4 local
+@2099 kind:data(any) addr:0x0212efc4 local
+@2084 kind:data(any) addr:0x0212efe4 local
+@2086 kind:data(any) addr:0x0212f004 local
+@2102 kind:data(any) addr:0x0212f024 local
+@2103 kind:data(any) addr:0x0212f044 local
+@2100 kind:data(any) addr:0x0212f064 local
+@2101 kind:data(any) addr:0x0212f084 local
+@2085 kind:data(any) addr:0x0212f0a4 local
+@2078 kind:data(any) addr:0x0212f0c4 local
+@2077 kind:data(any) addr:0x0212f0e8 local
+@2079 kind:data(any) addr:0x0212f10c local
+@2082 kind:data(any) addr:0x0212f130 local
+@2083 kind:data(any) addr:0x0212f154 local
+@5896 kind:data(any) addr:0x0212f178 local
+@6571 kind:data(any) addr:0x0212f184 local
+@6572 kind:data(any) addr:0x0212f18c local
+@6573 kind:data(any) addr:0x0212f194 local
+@6574 kind:data(any) addr:0x0212f1a0 local
+@6575 kind:data(any) addr:0x0212f1a8 local
+@6576 kind:data(any) addr:0x0212f1b0 local
+@6910 kind:data(any) addr:0x0212f1bc local
+@6911 kind:data(any) addr:0x0212f1d8 local
+@520 kind:data(any) addr:0x0212f1f4 local
+@515 kind:data(any) addr:0x0212f1f8 local
+@490 kind:data(any) addr:0x0212f1fc local
+@491 kind:data(any) addr:0x0212f204 local
+@498 kind:data(any) addr:0x0212f20c local
+@494 kind:data(any) addr:0x0212f214 local
+@512 kind:data(any) addr:0x0212f21c local
+@499 kind:data(any) addr:0x0212f224 local
+@497 kind:data(any) addr:0x0212f22c local
+@495 kind:data(any) addr:0x0212f234 local
+@496 kind:data(any) addr:0x0212f23c local
+@502 kind:data(any) addr:0x0212f244 local
+@509 kind:data(any) addr:0x0212f24c local
+@508 kind:data(any) addr:0x0212f254 local
+@504 kind:data(any) addr:0x0212f25c local
+@501 kind:data(any) addr:0x0212f264 local
+@503 kind:data(any) addr:0x0212f26c local
+@505 kind:data(any) addr:0x0212f274 local
+@507 kind:data(any) addr:0x0212f27c local
+@506 kind:data(any) addr:0x0212f284 local
+@500 kind:data(any) addr:0x0212f28c local
+@510 kind:data(any) addr:0x0212f294 local
+@514 kind:data(any) addr:0x0212f29c local
+@516 kind:data(any) addr:0x0212f2a8 local
+@517 kind:data(any) addr:0x0212f2b4 local
+@521 kind:data(any) addr:0x0212f2c0 local
+@518 kind:data(any) addr:0x0212f2cc local
+@524 kind:data(any) addr:0x0212f2d8 local
+@492 kind:data(any) addr:0x0212f2e4 local
+@513 kind:data(any) addr:0x0212f2f0 local
+@493 kind:data(any) addr:0x0212f2fc local
+@511 kind:data(any) addr:0x0212f308 local
+@535 kind:data(any) addr:0x0212f314 local
+@519 kind:data(any) addr:0x0212f324 local
+@529 kind:data(any) addr:0x0212f334 local
+@530 kind:data(any) addr:0x0212f344 local
+@531 kind:data(any) addr:0x0212f354 local
+@522 kind:data(any) addr:0x0212f364 local
+@526 kind:data(any) addr:0x0212f374 local
+@534 kind:data(any) addr:0x0212f384 local
+@538 kind:data(any) addr:0x0212f394 local
+@536 kind:data(any) addr:0x0212f3a4 local
+@523 kind:data(any) addr:0x0212f3b4 local
+@537 kind:data(any) addr:0x0212f3c4 local
+@527 kind:data(any) addr:0x0212f3d4 local
+@528 kind:data(any) addr:0x0212f3e8 local
+@532 kind:data(any) addr:0x0212f3fc local
+@525 kind:data(any) addr:0x0212f410 local
+@533 kind:data(any) addr:0x0212f424 local
+anmNum_data kind:data(any) addr:0x0212f438 local
+kind_info kind:data(any) addr:0x0212f498 local
+slime_data kind:data(any) addr:0x0212f678
+MG2State kind:data(any) addr:0x02133a10
+s_tpSampleCount kind:bss addr:0x02133a20 local
+s_expHeap kind:bss addr:0x02133a38 local
+g_mgWorkAddr kind:bss addr:0x02133a50
+g_mgWorkSize kind:bss addr:0x02133a54
+s_allocator kind:bss addr:0x02133adc local
+font_sprite_data kind:bss addr:0x02133b04 local
+s_tpSample kind:bss addr:0x02133b28 local
+s_scoreMessage kind:bss addr:0x02133bbc local
+g_bssa kind:bss addr:0x02133c1c local
+s_tpAutoBuf kind:bss addr:0x02133c8c local
+s_plttCache kind:bss addr:0x02133d0c local
+s_texCache kind:bss addr:0x02133d8c local
+g_eff_work kind:bss addr:0x02133e0c local
+sideInfo kind:bss addr:0x0213408c local
+g_sprite_data kind:bss addr:0x02134968 local
+bonusStr$3354 kind:bss addr:0x02135268 local
+g_game_fin kind:bss addr:0x02135288
+g_arg kind:bss addr:0x0213528c
+stage_data kind:data(any) addr:0x0212f870 local
+slime_r kind:data(any) addr:0x0212e2c6 local
+s_touchInitY kind:data(any) addr:0x0212e2c8 local
+chara_r kind:data(any) addr:0x0212e2ca local
+s_cameraAngle kind:data(any) addr:0x0212e2cc local
+s_touch2InitX kind:data(any) addr:0x0212e2ce local
+s_touchInitX kind:data(any) addr:0x0212e2d0 local
+s_touch2InitY kind:data(any) addr:0x0212e2d2 local
+s_tpAlphaMul kind:data(any) addr:0x0212e2d4 local
+s_fadeMode kind:data(any) addr:0x0212e2d8 local
+data_ov002_0212e2dc kind:data(any) addr:0x0212e2dc local
+s_fadeFrames kind:data(any) addr:0x0212e2e0 local
+s_tpAlphaDiv kind:data(any) addr:0x0212e2e4 local
+s_clearStageX kind:data(any) addr:0x0212e2e8 local
+s_rotxAngle kind:data(any) addr:0x0212e2ec local
+s_effDz kind:data(any) addr:0x0212e2f0 local
+s_tpY kind:data(any) addr:0x0212e2f4 local
+s_passFrame kind:data(any) addr:0x0212e2f8 local
+data_ov002_0212e2fc kind:data(any) addr:0x0212e2fc local
+data_ov002_0212e300 kind:data(any) addr:0x0212e300 local
+s_bgDisp kind:data(any) addr:0x0212e304 local
+bakuFrame$3536 kind:data(any) addr:0x0212e308 local
+s_tpMoveDiv kind:data(any) addr:0x0212e30c local
+s_tpFrameOfs kind:data(any) addr:0x0212e310 local
+normaSlimeScale kind:data(any) addr:0x0212e314 local
+slimeScale kind:data(any) addr:0x0212e318 local
+s_tpMoveMul kind:data(any) addr:0x0212e31c local
+s_clearStageDx kind:data(any) addr:0x0212e320 local
+s_clearStageY kind:data(any) addr:0x0212e324 local
+s_housekiAmp kind:data(any) addr:0x0212e328 local
+s_clearStageX2 kind:data(any) addr:0x0212e32c local
+dwscr_score_x$3956 kind:data(any) addr:0x0212e330 local
+data_ov002_0212e334 kind:data(any) addr:0x0212e334 local
+dwscr_score_y$3957 kind:data(any) addr:0x0212e338 local
+s_nrotxAngle kind:data(any) addr:0x0212e33c local
+iwaSpdNormal$2440 kind:data(any) addr:0x0212e340 local
+dwscr_score_y_rankin$3958 kind:data(any) addr:0x0212e344 local
+s_fadeQuad kind:data(any) addr:0x0212e348 local
+data_ov002_0212e364 kind:data(any) addr:0x0212e364 local
+s_plttCacheCount kind:bss addr:0x02133a22 local
+s_charaDrawOffset kind:bss addr:0x02133a24 local
+s_texCacheCount kind:bss addr:0x02133a26 local
+s_touchPos kind:bss addr:0x02133a28 local
+s_pause kind:bss addr:0x02133a2c local
+s_touchPos2 kind:bss addr:0x02133a30 local
+s_playTime kind:bss addr:0x02133a34 local
+s_slimeSpriteInit kind:bss addr:0x02133a3c local
+s_fadeState kind:bss addr:0x02133a40 local
+s_touchValid kind:bss addr:0x02133a44 local
+s_pAllocator kind:bss addr:0x02133a48 local
+s_drawFin kind:bss addr:0x02133a4c local
+s_expHeapCreated kind:bss addr:0x02133a58 local
+s_tpAutoSampling kind:bss addr:0x02133a5c local
+data_ov002_02133a60 kind:bss addr:0x02133a60 local
+s_clearStageRestart kind:bss addr:0x02133a64 local
+pMiniGameArg kind:bss addr:0x02133a68 local
+data_ov002_02133a6c kind:bss addr:0x02133a6c local
+s_ssaEffInit kind:bss addr:0x02133a70 local
+s_firstFrame kind:bss addr:0x02133a74 local
+updateCnt_downScr kind:bss addr:0x02133a78 local
+s_sideInfoInit$2488 kind:bss addr:0x02133a7c local
+s_fadeCount kind:bss addr:0x02133a80 local
+s_touchTrg kind:bss addr:0x02133a84 local
+data_ov002_02133a88 kind:bss addr:0x02133a88 local
+s_touchOld kind:bss addr:0x02133a8c local
+data_ov002_02133a90 kind:bss addr:0x02133a90 local
+s_pad kind:bss addr:0x02133a94 local
+s_bgSprite kind:bss addr:0x02133a9c local
+s_bgDataId kind:bss addr:0x02133aa4 local
+intTrans0 kind:bss addr:0x02133aac local
+s_rand16 kind:bss addr:0x02133ab8 local
+data_ov002_02133ac4 kind:bss addr:0x02133ac4 local
+data_ov002_02133ad0 kind:bss addr:0x02133ad0 local
+s_rand32 kind:bss addr:0x02133aec local
+data_ov002_02133b68 kind:bss addr:0x02133b68 local

@@ -1,0 +1,881 @@
+    .text       start:0x02128060 end:0x0214ed84 kind:code align:32
+    .rodata     start:0x0214ed84 end:0x0214ee54 kind:rodata align:4
+    .init       start:0x0214ee54 end:0x021503e4 kind:code align:4
+    .ctor       start:0x021503e4 end:0x02150488 kind:rodata align:4
+    .data       start:0x021504a0 end:0x02152700 kind:data align:32
+    .bss        start:0x02152700 end:0x0216f020 kind:bss align:32
+
+src/ov001/town/shop/TownCurseSpotLight.cpp:
+    complete
+    .text       start:0x02128060 end:0x021281f0
+    .bss        start:0x02152700 end:0x02152720
+
+src/ov001/town/character/TownMotionlessDraw.cpp:
+    complete
+    .text       start:0x021281f0 end:0x021286b0
+    .init       start:0x0214ee54 end:0x0214ee78
+    .ctor       start:0x021503e4 end:0x021503e8
+    .data       start:0x021504a0 end:0x0215057c
+
+src/ov001/town/command/TownCommandScope.cpp:
+    complete
+    .text       start:0x021286b0 end:0x021287d0
+    .init       start:0x0214ee78 end:0x0214ee98
+    .ctor       start:0x021503e8 end:0x021503ec
+    .data       start:0x0215057c end:0x021505a0
+
+src/ov001/script/ScriptSurechigaiCommand.cpp:
+    complete
+    .text       start:0x021287d0 end:0x02128a0c
+    .init       start:0x0214ee98 end:0x0214ef20
+    .ctor       start:0x021503ec end:0x021503f0
+    .data       start:0x021505a0 end:0x02150600
+    .bss        start:0x02152720 end:0x02152770
+
+src/ov001/script/ScriptMeisanhinCommand.cpp:
+    complete
+    .text       start:0x02128a0c end:0x02129270
+    .init       start:0x0214ef20 end:0x0214ef48
+    .ctor       start:0x021503f0 end:0x021503f4
+    .data       start:0x02150600 end:0x02150618
+    .bss        start:0x02152770 end:0x02152780
+
+src/ov001/town/command/TownCommandCoercionSort.cpp:
+    complete
+    .text       start:0x02129270 end:0x02129554
+    .data       start:0x02150618 end:0x0215062c
+
+src/ov001/town/main/system/TownSystemMuseum.cpp:
+    complete
+    .text       start:0x02129554 end:0x021295a4
+    .data       start:0x0215062c end:0x02150644
+
+src/ov001/town/riseup/TownRiseupModel.cpp:
+    complete
+    .text       start:0x021295a4 end:0x021296c8
+    .data       start:0x02150644 end:0x02150690
+
+src/ov001/town/museum/TownMuseumManager.cpp:
+    complete
+    .text       start:0x021296c8 end:0x02129858
+    .bss        start:0x02152780 end:0x02152894
+
+src/ov001/town/riseup/TownRiseupExhibit.cpp:
+    complete
+    .text       start:0x02129858 end:0x02129be4
+    .init       start:0x0214ef48 end:0x0214f068
+    .ctor       start:0x021503f4 end:0x021503f8
+    .data       start:0x02150690 end:0x021506dc
+    .bss        start:0x02152894 end:0x021528b4
+
+src/ov001/town/command/TownCommandRestartGame.cpp:
+    complete
+    .text       start:0x02129be4 end:0x02129df8
+    .data       start:0x021506dc end:0x021506f0
+
+src/ov001/town/main/system/TownSystemGlobalMap.cpp:
+    complete
+    .text       start:0x02129df8 end:0x02129e38
+    .data       start:0x021506f0 end:0x02150708
+
+src/ov001/town/player/TownActionTruck.cpp:
+    complete
+    .text       start:0x02129e38 end:0x0212b120
+    .init       start:0x0214f068 end:0x0214f0c4
+    .ctor       start:0x021503f8 end:0x021503fc
+    .data       start:0x02150708 end:0x02150738
+
+src/ov001/town/player/TownTruckRail.cpp:
+    complete
+    .text       start:0x0212b120 end:0x0212b204
+
+src/ov001/town/player/TownTruckSystem.cpp:
+    complete
+    .text       start:0x0212b204 end:0x0212bfa0
+    .data       start:0x02150738 end:0x0215073c
+    .bss        start:0x021528b4 end:0x021528b8
+
+src/ov001/town/command/TownCommandBookingTownMenu.cpp:
+    complete
+    .text       start:0x0212bfa0 end:0x0212bfe0
+    .data       start:0x0215073c end:0x02150750
+
+src/ov001/town/command/TownCommandComebackChurch.cpp:
+    complete
+    .text       start:0x0212bfe0 end:0x0212c514
+    .rodata     start:0x0214ed84 end:0x0214edec
+    .data       start:0x02150750 end:0x02150764
+
+src/ov001/town/furniture/TownFurnitureGroupRotate.cpp:
+    complete
+    .text       start:0x0212c514 end:0x0212c5ac
+    .data       start:0x02150764 end:0x02150794
+
+src/ov001/town/furniture/TownFurnitureGroupMove.cpp:
+    complete
+    .text       start:0x0212c5ac end:0x0212c630
+    .data       start:0x02150794 end:0x021507c4
+
+src/ov001/script/ScriptCommandTown.cpp:
+    complete
+    .text       start:0x0212c630 end:0x0212d84c
+    .init       start:0x0214f0c4 end:0x0214f3f8
+    .ctor       start:0x021503fc end:0x02150400
+    .data       start:0x021507c4 end:0x02150a0c
+    .bss        start:0x021528b8 end:0x02152ad4
+
+src/ov001/town/command/TownCommandFukubikiDraw.cpp:
+    complete
+    .text       start:0x0212d84c end:0x0212d880
+    .data       start:0x02150a0c end:0x02150a20
+
+src/ov001/town/command/TownCommandScreenEffect.cpp:
+    complete
+    .text       start:0x0212d880 end:0x0212d8bc
+    .data       start:0x02150a20 end:0x02150a34
+
+src/ov001/town/main/system/TownSystemScreenEffect.cpp:
+    complete
+    .text       start:0x0212d8bc end:0x0212d9d8
+    .data       start:0x02150a34 end:0x02150a4c
+
+src/ov001/town/stage/effect/TownStageWireTrap.cpp:
+    complete
+    .text       start:0x0212d9d8 end:0x0212df58
+    .init       start:0x0214f3f8 end:0x0214f46c
+    .ctor       start:0x02150400 end:0x02150404
+    .data       start:0x02150a4c end:0x02150a64
+    .bss        start:0x02152ad4 end:0x02152ae0
+
+src/ov001/town/furniture/TownFurnitureControlRotate.cpp:
+    complete
+    .text       start:0x0212df58 end:0x0212e020
+    .data       start:0x02150a64 end:0x02150a94
+
+src/ov001/town/player/gimmick/TownGimmickKanbotsuLower.cpp:
+    complete
+    .text       start:0x0212e020 end:0x0212e040
+    .data       start:0x02150a94 end:0x02150aac
+
+src/ov001/town/player/gimmick/TownGimmickKanbotsuUpper.cpp:
+    complete
+    .text       start:0x0212e040 end:0x0212e0b0
+    .data       start:0x02150aac end:0x02150ac4
+
+src/ov001/town/player/gimmick/TownGimmickTrap.cpp:
+    complete
+    .text       start:0x0212e0b0 end:0x0212e0d8
+    .data       start:0x02150ac4 end:0x02150adc
+
+src/ov001/town/player/gimmick/TownGimmickYari.cpp:
+    complete
+    .text       start:0x0212e0d8 end:0x0212e10c
+    .data       start:0x02150adc end:0x02150af4
+
+src/ov001/town/player/TownActionGimmick.cpp:
+    complete
+    .text       start:0x0212e10c end:0x0212e264
+    .data       start:0x02150af4 end:0x02150b0c
+
+src/ov001/town/stage/MapObjectAnimation.cpp:
+    complete
+    .text       start:0x0212e264 end:0x0212e2e4
+
+src/ov001/town/player/gimmick/MapGimmickBase.cpp:
+    complete
+    .text       start:0x0212e2e4 end:0x0212e640
+    .data       start:0x02150b0c end:0x02150b24
+
+src/ov001/town/main/system/TownSystemParticle.cpp:
+    complete
+    .text       start:0x0212e640 end:0x0212e690
+    .data       start:0x02150b24 end:0x02150b3c
+
+src/ov001/town/stage/effect/UnkTownSpotlight.cpp:
+    complete
+    .text       start:0x0212e690 end:0x0212e998
+    .init       start:0x0214f46c end:0x0214f4a0
+    .ctor       start:0x02150404 end:0x02150408
+    .data       start:0x02150b3c end:0x02150b64
+    .bss        start:0x02152ae0 end:0x02152b8c
+
+src/ov001/town/stage/effect/TownStageTinction.cpp:
+    complete
+    .text       start:0x0212e998 end:0x0212ed4c
+
+src/ov001/town/stage/effect/TownStageWrap.cpp:
+    complete
+    .text       start:0x0212ed4c end:0x0212ef4c
+    .data       start:0x02150b64 end:0x02150bac
+
+src/ov001/town/stage/TownStageEffectManager.cpp:
+    complete
+    .text       start:0x0212ef4c end:0x0212f530
+    .init       start:0x0214f4a0 end:0x0214f4f4
+    .ctor       start:0x02150408 end:0x0215040c
+    .data       start:0x02150bac end:0x02150bd4
+    .bss        start:0x02152b8c end:0x02152e40
+
+src/ov001/town/main/system/TownSystemStageEffect.cpp:
+    complete
+    .text       start:0x0212f530 end:0x0212f580
+    .data       start:0x02150bd4 end:0x02150bec
+
+src/ov001/town/player/TownActionIce.cpp:
+    complete
+    .text       start:0x0212f580 end:0x0212f8d4
+    .data       start:0x02150bec end:0x02150c04
+
+src/ov001/town/player/TownActionRanaruta.cpp:
+    complete
+    .text       start:0x0212f8d4 end:0x0212f9c0
+    .data       start:0x02150c04 end:0x02150c1c
+
+src/ov001/town/player/TownActionRiremito.cpp:
+    complete
+    .text       start:0x0212f9c0 end:0x0212facc
+    .data       start:0x02150c1c end:0x02150c34
+
+src/ov001/town/player/TownActionTabi.cpp:
+    complete
+    .text       start:0x0212facc end:0x0212fd08
+    .data       start:0x02150c34 end:0x02150c4c
+
+src/ov001/town/player/TownActionKaifuku.cpp:
+    complete
+    .text       start:0x0212fd08 end:0x0212fdac
+    .data       start:0x02150c4c end:0x02150c64
+
+src/ov001/town/command/TownCommandBookingMenu.cpp:
+    complete
+    .text       start:0x0212fdac end:0x0212ff94
+    .data       start:0x02150c64 end:0x02150c78
+
+src/ov001/town/command/TownCommandLink.cpp:
+    complete
+    .text       start:0x0212ff94 end:0x0212ffc0
+    .data       start:0x02150c78 end:0x02150c8c
+
+src/ov001/town/command/TownCommandEvent.cpp:
+    complete
+    .text       start:0x0212ffc0 end:0x0212ffe0
+    .data       start:0x02150c8c end:0x02150ca0
+
+src/ov001/town/command/TownMapDrawCommand.cpp:
+    complete
+    .text       start:0x0212ffe0 end:0x021300b4
+    .data       start:0x02150ca0 end:0x02150cb4
+
+src/ov001/town/command/UnkTownCommandMenuTalk.cpp:
+    complete
+    .text       start:0x021300b4 end:0x021300e4
+    .data       start:0x02150cb4 end:0x02150cc8
+
+src/ov001/town/command/TownCommandPartChange.cpp:
+    complete
+    .text       start:0x021300e4 end:0x021301d4
+    .data       start:0x02150cc8 end:0x02150cdc
+
+src/ov001/town/command/TownCommandInitWait.cpp:
+    complete
+    .text       start:0x021301d4 end:0x02130210
+    .data       start:0x02150cdc end:0x02150cf0
+
+src/ov001/town/command/UnkTownCommandMenuSearch.cpp:
+    complete
+    .text       start:0x02130210 end:0x02130378
+    .data       start:0x02150cf0 end:0x02150d04
+
+src/ov001/town/command/TownCommandPartyTalk.cpp:
+    complete
+    .text       start:0x02130378 end:0x021303c4
+    .data       start:0x02150d04 end:0x02150d18
+
+src/ov001/town/command/TownCommandWalkCount.cpp:
+    complete
+    .text       start:0x021303c4 end:0x021304f0
+    .data       start:0x02150d18 end:0x02150d2c
+
+src/ov001/town/command/TownCommandButtonSearch.cpp:
+    complete
+    .text       start:0x021304f0 end:0x021305d4
+    .data       start:0x02150d2c end:0x02150d40
+
+src/ov001/town/command/TownCommandButtonTalk.cpp:
+    complete
+    .text       start:0x021305d4 end:0x0213060c
+    .data       start:0x02150d40 end:0x02150d54
+
+src/ov001/town/command/TownShopListDrawCommand.cpp:
+    complete
+    .text       start:0x0213060c end:0x02130698
+    .data       start:0x02150d54 end:0x02150d68
+
+src/ov001/town/main/system/TownSystemDrawShopList.cpp:
+    complete
+    .text       start:0x02130698 end:0x02130704
+    .init       start:0x0214f4f4 end:0x0214f514
+    .ctor       start:0x0215040c end:0x02150410
+    .data       start:0x02150d68 end:0x02150d80
+    .bss        start:0x02152e40 end:0x02152efc
+
+src/ov001/town/main/system/TownSystemCommand.cpp:
+    complete
+    .text       start:0x02130704 end:0x02130f94
+    .data       start:0x02150d80 end:0x02150e38
+
+src/ov001/town/main/system/TownSystemEncount.cpp:
+    complete
+    .text       start:0x02130f94 end:0x02130ff0
+    .data       start:0x02150e38 end:0x02150e50
+
+src/ov001/town/main/system/TownSystemFurniture.cpp:
+    complete
+    .text       start:0x02130ff0 end:0x02131040
+    .data       start:0x02150e50 end:0x02150e68
+
+src/ov001/town/main/system/TownSystemMaterielMenu.cpp:
+    complete
+    .text       start:0x02131040 end:0x0213107c
+    .data       start:0x02150e68 end:0x02150e80
+
+src/ov001/town/main/system/TownSystemMenu.cpp:
+    complete
+    .text       start:0x0213107c end:0x021310b8
+    .data       start:0x02150e80 end:0x02150e98
+
+src/ov001/town/main/system/TownSystemMessage.cpp:
+    complete
+    .text       start:0x021310b8 end:0x021310f4
+    .data       start:0x02150e98 end:0x02150eb0
+
+src/ov001/town/main/system/TownSystemPlayer.cpp:
+    complete
+    .text       start:0x021310f4 end:0x0213116c
+    .data       start:0x02150eb0 end:0x02150ec8
+
+src/ov001/town/main/system/TownSystemRiseup.cpp:
+    complete
+    .text       start:0x0213116c end:0x021311bc
+    .data       start:0x02150ec8 end:0x02150ee0
+
+src/ov001/town/main/system/TownSystemScript.cpp:
+    complete
+    .text       start:0x021311bc end:0x021312d8
+    .data       start:0x02150ee0 end:0x02150ef8
+
+src/ov001/town/main/system/TownSystemStage.cpp:
+    complete
+    .text       start:0x021312d8 end:0x02131344
+    .data       start:0x02150ef8 end:0x02150f10
+
+src/ov001/town/main/system/TownSystemSugoroku.cpp:
+    complete
+    .text       start:0x02131344 end:0x02131394
+    .data       start:0x02150f10 end:0x02150f28
+
+src/ov001/town/main/system/TownSystemCamera.cpp:
+    complete
+    .text       start:0x02131394 end:0x0213140c
+    .data       start:0x02150f28 end:0x02150f40
+
+src/ov001/town/main/system/TownSystemCharacter.cpp:
+    complete
+    .text       start:0x0213140c end:0x021314a8
+    .data       start:0x02150f40 end:0x02150f64
+
+src/ov001/script/ScriptCharaCommand.cpp:
+    complete
+    .text       start:0x021314a8 end:0x02132bc4
+    .init       start:0x0214f514 end:0x0214f7dc
+    .ctor       start:0x02150410 end:0x02150414
+    .data       start:0x02150f64 end:0x02151174
+    .bss        start:0x02152efc end:0x02153064
+
+src/ov001/town/player/TownDamageFloor.cpp:
+    complete
+    .text       start:0x0213c3d8 end:0x0213c6a8
+    .init       start:0x0214fa28 end:0x0214fa3c
+    .ctor       start:0x0215043c end:0x02150440
+    .data       start:0x02151754 end:0x0215177c
+    .bss        start:0x02153350 end:0x02153388
+
+src/ov001/town/character/TownCharacterFuniture.cpp:
+    complete
+    .text       start:0x02132bc4 end:0x02132dc4
+    .data       start:0x02151174 end:0x02151220
+
+src/ov001/town/player/TownActionRuraFailed.cpp:
+    complete
+    .text       start:0x02132dc4 end:0x02133158
+    .data       start:0x02151220 end:0x0215123c
+    .bss        start:0x02153064 end:0x02153068
+
+src/ov001/town/stage/TownExtraCollManager.cpp:
+    complete
+    .text       start:0x02133158 end:0x021335b4
+    .init       start:0x0214f7dc end:0x0214f820
+    .ctor       start:0x02150414 end:0x02150418
+    .data       start:0x0215123c end:0x02151248
+    .bss        start:0x02153068 end:0x021532c4
+
+src/ov001/town/player/TownActionRura.cpp:
+    complete
+    .text       start:0x021335b4 end:0x0213387c
+    .data       start:0x02151248 end:0x02151264
+    .bss        start:0x021532c4 end:0x021532c8
+
+src/ov001/town/player/TownActionWalk.cpp:
+    complete
+    .text       start:0x0213387c end:0x02133d70
+    .data       start:0x02151264 end:0x0215127c
+
+src/ov001/town/player/TownActionDoor.cpp:
+    complete
+    .text       start:0x02133d70 end:0x02134c30
+    .rodata     start:0x0214edec end:0x0214edfc
+    .init       start:0x0214f820 end:0x0214f834
+    .ctor       start:0x02150418 end:0x0215041c
+    .data       start:0x0215127c end:0x021512b0
+    .bss        start:0x021532c8 end:0x021532d0
+
+src/ov001/town/player/TownActionFall.cpp:
+    complete
+    .text       start:0x02134c30 end:0x0213541c
+    .init       start:0x0214f834 end:0x0214f858
+    .ctor       start:0x0215041c end:0x02150420
+    .data       start:0x021512b0 end:0x021512d8
+    .bss        start:0x021532d0 end:0x021532d8
+
+src/ov001/town/player/TownActionIkada.cpp:
+    complete
+    .text       start:0x0213541c end:0x021359f0
+    .data       start:0x021512d8 end:0x021512f0
+
+src/ov001/town/player/TownActionKaidan.cpp:
+    complete
+    .text       start:0x021359f0 end:0x02136864
+    .rodata     start:0x0214edfc end:0x0214ee04
+    .init       start:0x0214f858 end:0x0214f89c
+    .ctor       start:0x02150420 end:0x02150424
+    .data       start:0x021512f0 end:0x02151340
+    .bss        start:0x021532d8 end:0x021532f0
+
+src/ov001/town/player/TownActionRope.cpp:
+    complete
+    .text       start:0x02136864 end:0x02137048
+    .init       start:0x0214f89c end:0x0214f900
+    .ctor       start:0x02150424 end:0x02150428
+    .data       start:0x02151340 end:0x02151388
+    .bss        start:0x021532f0 end:0x021532f4
+
+src/ov001/town/player/TownActionShip.cpp:
+    complete
+    .text       start:0x02137048 end:0x02137ae4
+    .init       start:0x0214f900 end:0x0214f914
+    .ctor       start:0x02150428 end:0x0215042c
+    .data       start:0x02151388 end:0x021513b0
+    .bss        start:0x021532f4 end:0x02153304
+
+src/ov001/town/player/TownActionSube.cpp:
+    complete
+    .text       start:0x02137ae4 end:0x02137ee8
+    .init       start:0x0214f914 end:0x0214f938
+    .ctor       start:0x0215042c end:0x02150430
+    .data       start:0x021513b0 end:0x021513d0
+
+src/ov001/town/character/TownCharacterBase.cpp:
+    complete
+    .text       start:0x02137ee8 end:0x0213a148
+    .init       start:0x0214f938 end:0x0214f94c
+    .ctor       start:0x02150430 end:0x02150434
+    .data       start:0x021513d0 end:0x021514dc
+    .bss        start:0x02153304 end:0x02153320
+
+src/ov001/town/character/TownMonsterDraw.cpp:
+    complete
+    .text       start:0x0213a148 end:0x0213a5fc
+    .data       start:0x021514dc end:0x021515d4
+
+src/ov001/town/character/TownModelDraw.cpp:
+    complete
+    .text       start:0x0213a5fc end:0x0213ac8c
+    .init       start:0x0214f94c end:0x0214fa14
+    .ctor       start:0x02150434 end:0x02150438
+    .data       start:0x021515d4 end:0x02151718
+
+src/ov001/town/character/TownCharacterStorage.cpp:
+    complete
+    .text       start:0x0213ac8c end:0x0213af84
+
+src/ov001/town/TownActionCalculate.cpp:
+    complete
+    .text       start:0x0213af84 end:0x0213c3d8
+    .init       start:0x0214fa14 end:0x0214fa28
+    .ctor       start:0x02150438 end:0x0215043c
+    .data       start:0x02151718 end:0x02151754
+    .bss        start:0x02153320 end:0x02153350
+
+src/ov001/town/main/TownSystem.cpp:
+    complete
+    .text       start:0x0213c6a8 end:0x0213ce30
+    .data       start:0x0215177c end:0x0215179c
+    .bss        start:0x02153388 end:0x02153bc8
+
+src/ov001/town/player/TownPlayerManager.cpp:
+    complete
+    .text       start:0x0213ce30 end:0x0213edb8
+    .init       start:0x0214fa3c end:0x0214fa50
+    .ctor       start:0x02150440 end:0x02150444
+    .data       start:0x0215179c end:0x02151820
+    .bss        start:0x02153bc8 end:0x02157b04
+
+src/ov001/town/main/TownCamera.cpp:
+    complete
+    .text       start:0x0213edb8 end:0x021407ec
+    .rodata     start:0x0214ee04 end:0x0214ee08
+    .init       start:0x0214fa50 end:0x0214faa0
+    .ctor       start:0x02150444 end:0x02150448
+    .data       start:0x02151820 end:0x0215183c
+    .bss        start:0x02157b04 end:0x02157dc8
+
+src/ov001/town/character/TownCharacterManager.cpp:
+    complete
+    .text       start:0x021407ec end:0x02141540
+    .init       start:0x0214faa0 end:0x0214fab0
+    .ctor       start:0x02150448 end:0x0215044c
+    .data       start:0x0215183c end:0x02151840
+    .bss        start:0x02157dc8 end:0x02165c94
+
+src/ov001/town/character/TownCharacterDraw.cpp:
+    complete
+    .text       start:0x02141540 end:0x02141950
+    .data       start:0x02151840 end:0x02151900
+
+src/ov001/town/stage/TownStageManager.cpp:
+    complete
+    .text       start:0x02141950 end:0x02142728
+    .init       start:0x0214fab0 end:0x0214fac4
+    .ctor       start:0x0215044c end:0x02150450
+    .data       start:0x02151900 end:0x02151940
+    .bss        start:0x02165c94 end:0x02166890
+
+src/ov001/town/player/TownPartyDraw.cpp:
+    complete
+    .text       start:0x02142728 end:0x02143508
+    .rodata     start:0x0214ee08 end:0x0214ee10
+    .init       start:0x0214fac4 end:0x0214fad8
+    .ctor       start:0x02150450 end:0x02150454
+    .data       start:0x02151940 end:0x02151958
+    .bss        start:0x02166890 end:0x0216689c
+
+src/ov001/town/player/TownPartyAction.cpp:
+    complete
+    .text       start:0x02143508 end:0x02143ad0
+    .init       start:0x0214fad8 end:0x0214faec
+    .ctor       start:0x02150454 end:0x02150458
+    .data       start:0x02151958 end:0x02151980
+    .bss        start:0x0216689c end:0x021668a4
+
+src/ov001/town/player/TownPlayerAction.cpp:
+    complete
+    .text       start:0x02143ad0 end:0x021441d0
+    .init       start:0x0214faec end:0x0214fc78
+    .ctor       start:0x02150458 end:0x0215045c
+    .data       start:0x02151980 end:0x02151a00
+
+src/ov001/town/stage/TownExtraMapObjManager.cpp:
+    complete
+    .text       start:0x021441d0 end:0x02144380
+    .bss        start:0x021668a4 end:0x021669ec
+
+src/ov001/town/riseup/TownRiseupBase.cpp:
+    complete
+    .text       start:0x02144380 end:0x021444ac
+    .init       start:0x0214fc78 end:0x0214fc8c
+    .ctor       start:0x0215045c end:0x02150460
+    .data       start:0x02151a00 end:0x02151ac0
+    .bss        start:0x021669ec end:0x021669f4
+
+src/ov001/town/riseup/TownRiseupIcon.cpp:
+    complete
+    .text       start:0x021444ac end:0x02144708
+    .data       start:0x02151ac0 end:0x02151b0c
+
+src/ov001/town/riseup/TownRiseupManager.cpp:
+    complete
+    .text       start:0x02144708 end:0x02144f90
+    .bss        start:0x021669f4 end:0x0216abc8
+
+src/ov001/town/riseup/TownRiseupMedal.cpp:
+    complete
+    .text       start:0x02144f90 end:0x02145284
+    .data       start:0x02151b0c end:0x02151b58
+
+src/ov001/town/riseup/BillbordItemResource.cpp:
+    complete
+    .text       start:0x02145284 end:0x021453f8
+    .data       start:0x02151b58 end:0x02151bfc
+
+src/ov001/town/riseup/TownRiseupScriptMove.cpp:
+    complete
+    .text       start:0x021453f8 end:0x02145570
+    .data       start:0x02151bfc end:0x02151c48
+
+src/ov001/town/riseup/TownRiseupSprite.cpp:
+    complete
+    .text       start:0x02145570 end:0x021459e4
+    .data       start:0x02151c48 end:0x02151c94
+
+src/ov001/town/riseup/TownRiseupStorage.cpp:
+    complete
+    .text       start:0x021459e4 end:0x02145db4
+
+src/ov001/town/furniture/TownFurnitureControlBase.cpp:
+    complete
+    .text       start:0x02145db4 end:0x02145e20
+    .data       start:0x02151c94 end:0x02151cc4
+
+src/ov001/town/furniture/TownFurnitureControlFade.cpp:
+    complete
+    .text       start:0x02145e20 end:0x02145eb8
+    .data       start:0x02151cc4 end:0x02151cf4
+
+src/ov001/town/furniture/TownFurnitureControlManager.cpp:
+    complete
+    .text       start:0x02145eb8 end:0x021462a0
+    .bss        start:0x0216abc8 end:0x0216b514
+
+src/ov001/town/furniture/TownFurnitureControlMove.cpp:
+    complete
+    .text       start:0x021462a0 end:0x02146364
+    .data       start:0x02151cf4 end:0x02151d24
+
+src/ov001/town/furniture/TownFurnitureControlMove2.cpp:
+    complete
+    .text       start:0x02146364 end:0x0214640c
+    .data       start:0x02151d24 end:0x02151d54
+
+src/ov001/town/furniture/TownFurnitureControlStorage.cpp:
+    complete
+    .text       start:0x0214640c end:0x02146784
+
+src/ov001/town/furniture/TownFurnitureEncount.cpp:
+    complete
+    .text       start:0x02146784 end:0x021467e8
+    .data       start:0x02151d54 end:0x02151d7c
+
+src/ov001/town/furniture/TownFurnitureGold.cpp:
+    complete
+    .text       start:0x021467e8 end:0x021468d4
+    .data       start:0x02151d7c end:0x02151da4
+
+src/ov001/town/furniture/TownFurnitureItem.cpp:
+    complete
+    .text       start:0x021468d4 end:0x02146b94
+    .data       start:0x02151da4 end:0x02151dcc
+
+src/ov001/town/furniture/TownFurnitureManager.cpp:
+    complete
+    .text       start:0x02146b94 end:0x02147c30
+    .init       start:0x0214fc8c end:0x0214fcbc
+    .ctor       start:0x02150460 end:0x02150464
+    .bss        start:0x0216b514 end:0x0216b718
+
+src/ov001/town/furniture/TownFurnitureMessage.cpp:
+    complete
+    .text       start:0x02147c30 end:0x02147ca0
+    .data       start:0x02151dcc end:0x02151df4
+
+src/ov001/town/furniture/TownFurnitureNothing.cpp:
+    complete
+    .text       start:0x02147ca0 end:0x02147cd8
+    .data       start:0x02151df4 end:0x02151e1c
+
+src/ov001/town/furniture/TownFurnitureObject.cpp:
+    complete
+    .text       start:0x02147cd8 end:0x02148010
+    .data       start:0x02151e1c end:0x02151e44
+
+src/ov001/ov001_entry.cpp:
+    complete
+    .text       start:0x02148010 end:0x02148014
+
+src/ov001/town/window/TownGlobalMap.cpp:
+    complete
+    .text       start:0x02148014 end:0x021482fc
+    .data       start:0x02151e44 end:0x02151ec4
+    .bss        start:0x0216b718 end:0x0216b830
+
+src/ov001/town/window/TownImageMap.cpp:
+    complete
+    .text       start:0x021482fc end:0x02148a2c
+    .data       start:0x02151ec4 end:0x02151f1c
+
+src/ov001/town/window/TownImageShoplist.cpp:
+    complete
+    .text       start:0x02148a2c end:0x02148cdc
+    .init       start:0x0214fcbc end:0x0214fcdc
+    .ctor       start:0x02150464 end:0x02150468
+    .data       start:0x02151f1c end:0x02151f5c
+    .bss        start:0x0216b830 end:0x0216b8ec
+
+src/ov001/town/window/TownWindowSystem.cpp:
+    complete
+    .text       start:0x02148cdc end:0x02148e10
+    .bss        start:0x0216b8ec end:0x0216b8f8
+
+src/ov001/town/main/system/TownSystemDrawTownMap.cpp:
+    complete
+    .text       start:0x02148e10 end:0x02148e8c
+    .init       start:0x0214fcdc end:0x0214fcfc
+    .ctor       start:0x02150468 end:0x0215046c
+    .data       start:0x02151f5c end:0x02151f74
+    .bss        start:0x0216b8f8 end:0x0216bb0c
+
+src/ov001/script/ScriptEffectCommandTown.cpp:
+    complete
+    .text       start:0x02148e8c end:0x02148f18
+    .init       start:0x0214fcfc end:0x0214fd24
+    .ctor       start:0x0215046c end:0x02150470
+    .data       start:0x02151f74 end:0x02151f8c
+    .bss        start:0x0216bb0c end:0x0216bb20
+
+src/ov001/script/ScriptCameraCommand.cpp:
+    complete
+    .text       start:0x02148f18 end:0x02148f9c
+    .init       start:0x0214fd24 end:0x0214fd4c
+    .ctor       start:0x02150470 end:0x02150474
+    .data       start:0x02151f8c end:0x02151fa4
+    .bss        start:0x0216bb20 end:0x0216bb34
+
+src/ov001/script/ScriptMapCommand.cpp:
+    complete
+    .text       start:0x02148f9c end:0x02149d74
+    .init       start:0x0214fd4c end:0x0214fea4
+    .ctor       start:0x02150474 end:0x02150478
+    .data       start:0x02151fa4 end:0x02152094
+    .bss        start:0x0216bb34 end:0x0216bc28
+
+src/ov001/script/ScriptPlayerCommandTown.cpp:
+    complete
+    .text       start:0x02149d74 end:0x0214a884
+    .rodata     start:0x0214ee10 end:0x0214ee30
+    .init       start:0x0214fea4 end:0x0215006c
+    .ctor       start:0x02150478 end:0x0215047c
+    .data       start:0x02152094 end:0x021521e4
+    .bss        start:0x0216bc28 end:0x0216bd18
+
+src/ov001/script/ScriptMessageCommandTown.cpp:
+    complete
+    .text       start:0x0214a884 end:0x0214ad44
+    .init       start:0x0215006c end:0x02150194
+    .ctor       start:0x0215047c end:0x02150480
+    .data       start:0x021521e4 end:0x021522bc
+    .bss        start:0x0216bd18 end:0x0216bdc0
+
+src/ov001/town/sugoroku/SugorokuCommandBase.cpp:
+    complete
+    .text       start:0x0214ad44 end:0x0214ad4c
+    .data       start:0x021522bc end:0x021522d4
+
+src/ov001/town/sugoroku/TownSugorokuManager.cpp:
+    complete
+    .text       start:0x0214ad4c end:0x0214d290
+    .rodata     start:0x0214ee30 end:0x0214ee48
+    .data       start:0x021522d4 end:0x02152434
+    .bss        start:0x0216bdc0 end:0x0216d8f0
+
+src/ov001/town/sugoroku/TownSugorokuDraw.cpp:
+    complete
+    .text       start:0x0214d290 end:0x0214da98
+    .data       start:0x02152434 end:0x0215248c
+
+src/ov001/town/stage/effect/TownStageNinePuzzle.cpp:
+    complete
+    .text       start:0x0214da98 end:0x0214df7c
+    .rodata     start:0x0214ee48 end:0x0214ee54
+
+src/ov001/town/stage/effect/TownStageLightning.cpp:
+    complete
+    .text       start:0x0214df7c end:0x0214e1a4
+    .data       start:0x0215248c end:0x021524d4
+
+src/ov001/leveldata/LevelDataTown.cpp:
+    complete
+    .text       start:0x0214e1a4 end:0x0214e1ec
+
+src/ov001/leveldata/MapCamera.cpp:
+    complete
+    .text       start:0x0214e1ec end:0x0214e254
+    .data       start:0x021524d4 end:0x021524fc
+    .bss        start:0x0216d8f0 end:0x0216dd1c
+
+src/ov001/leveldata/FloorBackColor.cpp:
+    complete
+    .text       start:0x0214e254 end:0x0214e2bc
+    .data       start:0x021524fc end:0x02152524
+    .bss        start:0x0216dd1c end:0x0216e008
+
+src/ov001/leveldata/FloorFog.cpp:
+    complete
+    .text       start:0x0214e2bc end:0x0214e320
+    .data       start:0x02152524 end:0x0215254c
+    .bss        start:0x0216e008 end:0x0216e060
+
+src/ov001/leveldata/ColorCorrect.cpp:
+    complete
+    .text       start:0x0214e320 end:0x0214e374
+    .data       start:0x0215254c end:0x02152578
+    .bss        start:0x0216e060 end:0x0216e47c
+
+src/ov001/leveldata/TruckRail.cpp:
+    complete
+    .text       start:0x0214e374 end:0x0214e3e4
+    .data       start:0x02152578 end:0x021525a0
+    .bss        start:0x0216e47c end:0x0216e498
+
+src/ov001/leveldata/FurnitureData.cpp:
+    complete
+    .text       start:0x0214e3e4 end:0x0214e434
+    .data       start:0x021525a0 end:0x021525cc
+    .bss        start:0x0216e498 end:0x0216e57c
+
+src/ov001/leveldata/FurnitureParam.cpp:
+    complete
+    .text       start:0x0214e434 end:0x0214e49c
+    .data       start:0x021525cc end:0x021525fc
+    .bss        start:0x0216e57c end:0x0216eca0
+
+src/ov001/leveldata/MirrorMessage.cpp:
+    complete
+    .text       start:0x0214e49c end:0x0214e4ec
+    .data       start:0x021525fc end:0x02152628
+    .bss        start:0x0216eca0 end:0x0216ed0c
+
+src/ov001/town/shop/TownFukubikiDraw.cpp:
+    complete
+    .text       start:0x0214e4ec end:0x0214e7f4
+    .data       start:0x02152628 end:0x02152688
+    .bss        start:0x0216ed0c end:0x0216eea0
+
+src/ov001/town/riseup/BillboardItem.cpp:
+    complete
+    .text       start:0x0214e7f4 end:0x0214ea44
+    .init       start:0x02150194 end:0x021503d4
+    .ctor       start:0x02150480 end:0x02150484
+    .data       start:0x02152688 end:0x021526cc
+    .bss        start:0x0216eea0 end:0x0216ef00
+
+src/ov001/leveldata/BoobyTrap.cpp:
+    complete
+    .text       start:0x0214ea44 end:0x0214eaa8
+    .data       start:0x021526cc end:0x021526f4
+    .bss        start:0x0216ef00 end:0x0216f00c
+
+src/ov001/town/stage/gimmick/MapObjGridMove.cpp:
+    complete
+    .text       start:0x0214eaa8 end:0x0214ed84
+    .init       start:0x021503d4 end:0x021503e4
+    .ctor       start:0x02150484 end:0x02150488
+    .data       start:0x021526f4 end:0x021526f8

@@ -1,0 +1,25 @@
+    .text       start:0x02186980 end:0x02187318 kind:code align:32
+    .ctor       start:0x02187318 end:0x02187318 kind:rodata align:4
+    .data       start:0x02187320 end:0x021873a0 kind:data align:32
+    .bss        start:0x021873a0 end:0x02187480 kind:bss align:32
+
+src/ov030/materielmenu/bank/MaterielMenu_BANK_DRAW.cpp:
+    complete
+    .text       start:0x02186980 end:0x02186cbc
+    .data       start:0x02187320 end:0x0218733c
+
+src/ov030/materielmenu/bank/MaterielMenu_BANK_PUTIN.cpp:
+    complete
+    .text       start:0x02186cbc end:0x02187064
+    .data       start:0x0218733c end:0x02187358
+
+src/ov030/materielmenu/bank/MaterielMenu_BANK_ROOT.cpp:
+    complete
+    .text       start:0x02187064 end:0x021872c8
+    .data       start:0x02187358 end:0x02187374
+
+src/ov030/leveldata/GoldMessage.cpp:
+    complete
+    .text       start:0x021872c8 end:0x02187318
+    .data       start:0x02187374 end:0x021873a0
+    .bss        start:0x021873a0 end:0x02187474

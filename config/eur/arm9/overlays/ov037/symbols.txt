@@ -1,0 +1,31 @@
+_ZN19FightStadiumManager5setupEv kind:function(thumb,size=0x1ec) addr:0x02186980
+_ZN19FightStadiumManager12getCardCountEv kind:function(thumb,size=0x88) addr:0x02186b6c
+_ZN19FightStadiumManager12getMonsterIDEi kind:function(thumb,size=0x6) addr:0x02186bf4
+_ZN19FightStadiumManager13getOrderCountEi kind:function(thumb,size=0xa) addr:0x02186bfc
+_ZN19FightStadiumManager11getDiameterEi kind:function(thumb,size=0xa) addr:0x02186c08
+_ZN19FightStadiumManager13setBetOnMacroEv kind:function(thumb,size=0x50) addr:0x02186c14
+_ZN19FightStadiumManager11battleStartEv kind:function(thumb,size=0x38) addr:0x02186c64
+_ZN26MaterielMenu_FIGHT_STADIUM9menuSetupEv kind:function(thumb,size=0x84) addr:0x02186c9c
+_ZN26MaterielMenu_FIGHT_STADIUM11menuExecuteEv kind:function(thumb,size=0x34) addr:0x02186d20
+_ZN26MaterielMenu_FIGHT_STADIUM8menuDrawEv kind:function(thumb,size=0x1b8) addr:0x02186d54
+_ZN26MaterielMenu_FIGHT_STADIUM10menuUpdateEv kind:function(thumb,size=0x28) addr:0x02186f0c
+_ZN26MaterielMenu_FIGHT_STADIUM13messageUpdateEv kind:function(thumb,size=0x224) addr:0x02186f34
+_ZN26MaterielMenu_FIGHT_STADIUM12statusUpdateEv kind:function(thumb,size=0x198) addr:0x02187158
+_ZN26MaterielMenu_FIGHT_STADIUM17monsterListUpdateEv kind:function(thumb,size=0x1ec) addr:0x021872f0
+_ZN26MaterielMenu_FIGHT_STADIUM10coinUpdateEv kind:function(thumb,size=0x218) addr:0x021874dc
+_ZN26MaterielMenu_FIGHT_STADIUM12resultUpdateEv kind:function(thumb,size=0x140) addr:0x021876f4
+_ZN26MaterielMenu_FIGHT_STADIUM11battleStartEv kind:function(thumb,size=0x3c) addr:0x02187834
+_ZN26MaterielMenu_FIGHT_STADIUM12playBackMenuEi kind:function(thumb,size=0x58) addr:0x02187870
+_ZN26MaterielMenu_FIGHT_STADIUM11playFanfareEv kind:function(thumb,size=0x44) addr:0x021878c8
+_ZN26MaterielMenu_FIGHT_STADIUM11showMessageEi kind:function(thumb,size=0x18) addr:0x0218790c
+_ZN26MaterielMenu_FIGHT_STADIUM12closeMessageEv kind:function(thumb,size=0x18) addr:0x02187924
+__sinit_FightStadiumManager.cpp kind:function(thumb,size=0x2) addr:0x0218793c local
+.p__sinit_FightStadiumManager.cpp kind:data(word) addr:0x02187940 local
+@1776 kind:data(any) addr:0x02187960 local
+x$2788 kind:data(any) addr:0x02187968 local
+z$2789 kind:data(any) addr:0x0218796c local
+y$2790 kind:data(any) addr:0x02187970 local
+_ZTV26MaterielMenu_FIGHT_STADIUM kind:data(any) addr:0x02187974
+data_ov037_02187990 kind:data(any) addr:0x02187990
+_ZN19FightStadiumManager11m_singletonE kind:bss addr:0x021879a0
+data_ov037_021879bc kind:bss addr:0x021879bc

@@ -1,0 +1,15 @@
+    .text       start:0x02186980 end:0x02186e3c kind:code align:32
+    .ctor       start:0x02186e3c end:0x02186e3c kind:rodata align:4
+    .data       start:0x02186e40 end:0x02186ea0 kind:data align:32
+    .bss        start:0x02186ea0 end:0x02186f40 kind:bss align:32
+
+src/ov023/materielmenu/inn/MaterielMenu_INN_ROOT.cpp:
+    complete
+    .text       start:0x02186980 end:0x02186dec
+    .data       start:0x02186e40 end:0x02186e5c
+
+src/ov023/leveldata/InnMessage.cpp:
+    complete
+    .text       start:0x02186dec end:0x02186e3c
+    .data       start:0x02186e5c end:0x02186e88
+    .bss        start:0x02186ea0 end:0x02186f3c

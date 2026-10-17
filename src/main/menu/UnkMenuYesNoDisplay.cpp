@@ -1,0 +1,111 @@
+#include "main/menu/UnkMenuYesNoDisplay.hpp"
+#include "main/dss/UnkDisplay.hpp"
+#include "main/menu/UnkMenuDisplays.hpp"
+#include "main/text/TextAPI.hpp"
+#include "nitro/g2.hpp"
+
+THUMB UnkMenuYesNoDisplay::UnkMenuYesNoDisplay()
+{
+}
+
+THUMB void UnkMenuYesNoDisplay::setup(int id)
+{
+    id_ = id;
+    unkfunc_0204e558(&yesChar_, yesData_, 6, 2);
+    unkfunc_0204e558(&noChar_, noData_, 6, 2);
+    unkfunc_020646c8();
+    unkfunc_0206477c(2);
+    transfer_ = 0;
+    cursor_ = 0;
+    unkfunc_0206478c(192, 208);
+    unkfunc_02064794(64, 56);
+}
+
+THUMB void UnkMenuYesNoDisplay::update(UnkOamBuffer* main, UnkOamBuffer* sub)
+{
+}
+
+THUMB void UnkMenuYesNoDisplay::execute(UnkOamBuffer* main, UnkOamBuffer* sub)
+{
+}
+
+inline void UnkMenuYesNoDisplay::transferRow(int row)
+{
+    int chr = id_ + row * 32;
+    int tile = row * 6;
+    unkfunc_0204dca8(0x13, chr * 32, yesData_ + tile * 32, 0xc0);
+    unkfunc_0204dca8(0x13, (chr + 6) * 32, noData_ + tile * 32, 0xc0);
+}
+
+THUMB void UnkMenuYesNoDisplay::draw(UnkOamBuffer* main, UnkOamBuffer* sub)
+{
+    if (!enable_) {
+        unkfunc_0204d074(0);
+    }
+    if (!unkfunc_02064730(main, sub)) {
+        return;
+    }
+    int y = y_ % 192;
+    UnkMenuWindowFrame* frame = &data_02114dd4.windowFrame2_;
+    frame->unkfunc_0206529c(0);
+    frame->unkfunc_0206478c(x_, y_);
+    frame->unkfunc_02064794(w_, h_);
+    frame->unkfunc_020652bc(x_ + 10, y + 16 + cursor_ * 24, 1);
+    frame->unkfunc_020652c4(1);
+    frame->unkfunc_02064780(1);
+    G2_SetOBJAttr(sub->unkfunc_0204dbc4(), x_ + 14, y + 10, 0, GX_OAM_MODE_NORMAL, 0, GX_OAM_EFFECT_NONE,
+                  GX_OAM_SHAPE_32x16, GX_OAM_COLORMODE_16, id_, 15, 0);
+    G2_SetOBJAttr(sub->unkfunc_0204dbc4(), x_ + 46, y + 10, 0, GX_OAM_MODE_NORMAL, 0, GX_OAM_EFFECT_NONE,
+                  GX_OAM_SHAPE_8x16, GX_OAM_COLORMODE_16, id_ + 4, 15, 0);
+    G2_SetOBJAttr(sub->unkfunc_0204dbc4(), x_ + 14, y + 34, 0, GX_OAM_MODE_NORMAL, 0, GX_OAM_EFFECT_NONE,
+                  GX_OAM_SHAPE_32x16, GX_OAM_COLORMODE_16, id_ + 6, 15, 0);
+    G2_SetOBJAttr(sub->unkfunc_0204dbc4(), x_ + 46, y + 34, 0, GX_OAM_MODE_NORMAL, 0, GX_OAM_EFFECT_NONE,
+                  GX_OAM_SHAPE_8x16, GX_OAM_COLORMODE_16, id_ + 10, 15, 0);
+    if (transfer_ == 1) {
+        for (int i = 0; i < 2; i++) {
+            transferRow(i);
+        }
+    }
+    int type;
+    switch (unkfunc_0204d0b8()) {
+    case 1:
+        type = 0x14;
+        break;
+    case 2:
+        type = 0x11;
+        break;
+    case 3:
+        type = 0x11;
+        break;
+    default:
+        type = 0;
+        break;
+    }
+    if (type) {
+        unkfunc_0204d074(1);
+        unkfunc_0204d098(type, x_ + 2, y_ - 0xbe, w_ - 4, h_ - 4);
+    }
+}
+
+THUMB void UnkMenuYesNoDisplay::unkfunc_0206756c(UnkOamBuffer* main, UnkOamBuffer* sub)
+{
+}
+
+THUMB void UnkMenuYesNoDisplay::unkfunc_02067570(int yesMessageId, int noMessageId)
+{
+    char yes[0x200];
+    char no[0x200];
+    unkfunc_0204e478(10);
+    unkfunc_0204e574(&yesChar_, 0);
+    unkfunc_0204e574(&noChar_, 0);
+    g_text_extractor.extractText(yes, sizeof(yes), yesMessageId);
+    g_text_extractor.extractText(no, sizeof(no), noMessageId);
+    unkfunc_0204dfa8(&yesChar_, 0, 0, 1, yes);
+    unkfunc_0204dfa8(&noChar_, 0, 0, 1, no);
+    transfer_ = 1;
+}
+
+THUMB void UnkMenuYesNoDisplay::unkfunc_020675ec(int cursor)
+{
+    cursor_ = cursor;
+}

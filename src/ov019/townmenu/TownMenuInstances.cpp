@@ -1,0 +1,56 @@
+#pragma ipa file
+#include "ov019/townmenu/TownMenu_ROOT.hpp"
+#include "ov019/commonmenu/CommonMenu_Dummy.hpp"
+#include "ov019/townmenu/TownMenu_PARTY_TALK.hpp"
+#include "main/menu/TownShopMenu.hpp"
+#include "ov019/townmenu/town_magic/UnkTownMenuMagicChara.hpp"
+#include "ov019/townmenu/town_magic/TownMenu_MAGIC_ROOT.hpp"
+#include "ov019/townmenu/town_magic/TownMenu_MAGIC_CHARSELECT.hpp"
+#include "ov019/townmenu/town_magic/TownMenu_MAGIC_MOVE.hpp"
+#include "ov019/townmenu/town_item/UnkTownMenuItemCharaSelect.hpp"
+#include "ov019/townmenu/town_item/TownMenuItemSelectChara.hpp"
+#include "ov019/townmenu/town_item/TownMenuItemSelectTargetChara.hpp"
+#include "ov019/townmenu/town_item/TownMenuItemSelectTargetItem.hpp"
+#include "ov019/townmenu/town_item/TownMenuItemSelectCommand.hpp"
+#include "ov019/townmenu/town_item/TownMenuItemSelectCommandUse.hpp"
+#include "ov019/townmenu/town_item/TownMenuItemMeisanMessage.hpp"
+#include "ov019/townmenu/town_item/TownMenu_ITEM_USE.hpp"
+#include "ov019/townmenu/town_item/TownMenu_ITEM_CHECKTARGET.hpp"
+#include "ov019/townmenu/town_item/TownMenu_ITEM_EQUIPCHECK.hpp"
+#include "ov019/townmenu/town_status/TownMenu_STATUS.hpp"
+#include "ov019/townmenu/town_operation/TownMenu_OPERATION_ROOT.hpp"
+#include "ov019/townmenu/town_operation/TownMenu_OPERATION_TACTICS.hpp"
+#include "ov019/townmenu/town_operation/TownMenu_OPERATION_SHIFT_PARTY.hpp"
+#include "ov019/townmenu/town_operation/TownMenu_OPERATION_SETTING.hpp"
+#include "ov019/townmenu/town_operation/TownMenu_OPERATION_SORTITEM.hpp"
+#include "ov019/townmenu/town_operation/TownMenu_OPERATION_EQUIP.hpp"
+#include "ov019/townmenu/town_operation/UnkTownMenuOperationEquipItem.hpp"
+
+// global instances of the town menus
+THUMB
+TownMenu_ROOT gTownMenu_ROOT;
+CommonMenu_Dummy gTownMenu_MapInfo;
+TownMenu_PARTY_TALK gTownMenu_PARTY_TALK;
+menu::TownShopMenu data_ov019_02182f2c;
+UnkTownMenuMagicChara data_ov019_021830a8;
+TownMenu_MAGIC_ROOT gTownMenu_MAGIC_ROOT;
+TownMenu_MAGIC_CHARSELECT gTownMenu_MAGIC_CHARSELECT;
+TownMenu_MAGIC_MOVE gTownMenu_MAGIC_MOVE;
+UnkTownMenuItemCharaSelect data_ov019_02183524;
+TownMenuItemSelectChara gTownMenuItemSelectChara;
+TownMenuItemSelectTargetChara gTownMenuItemSelectTargetChara;
+TownMenuItemSelectTargetItem gTownMenuItemSelectTargetItem;
+TownMenuItemSelectCommand gTownMenuItemSelectCommand;
+TownMenuItemSelectCommandUse gTownMenuItemSelectCommandUse;
+TownMenuItemMeisanMessage gTownMenuItemMeisanMessage;
+TownMenu_ITEM_USE gTownMenu_ITEM_USE;
+TownMenu_ITEM_CHECKTARGET gTownMenu_ITEM_CHECKTARGET;
+TownMenu_ITEM_EQUIPCHECK gTownMenu_ITEM_EQUIPCHECK;
+TownMenu_STATUS gTownMenu_STATUS;
+TownMenu_OPERATION_ROOT gTownMenu_OPERATION_ROOT;
+TownMenu_OPERATION_TACTICS gTownMenu_OPERATION_TACTICS;
+TownMenu_OPERATION_SHIFT_PARTY gTownMenu_OPERATION_SHIFT_PARTY;
+TownMenu_OPERATION_SETTING gTownMenu_OPERATION_SETTING;
+TownMenu_OPERATION_SORTITEM gTownMenu_OPERATION_SORTITEM;
+TownMenu_OPERATION_EQUIP gTownMenu_OPERATION_EQUIP;
+UnkTownMenuOperationEquipItem data_ov019_02183b54;

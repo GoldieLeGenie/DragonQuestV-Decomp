@@ -1,0 +1,317 @@
+ov012_entry kind:function(thumb,size=0x2) addr:0x02128060
+_ZN6casino12CasinoCameraC1Ev kind:function(thumb,size=0xc) addr:0x02128064
+_ZN6casino12CasinoCameraD1Ev kind:function(thumb,size=0x2) addr:0x02128070
+_ZN6casino12CasinoCamera12getSingletonEv kind:function(thumb,size=0x3c) addr:0x02128074
+_ZN6casino12CasinoCamera10initializeEv kind:function(thumb,size=0xb4) addr:0x021280b0
+_ZN6casino12CasinoCamera9terminateEv kind:function(thumb,size=0x2) addr:0x02128164
+_ZN6casino12CasinoCamera4drawEv kind:function(thumb,size=0x8) addr:0x02128168
+_ZN6casino12CasinoSystemC1Ev kind:function(thumb,size=0xe) addr:0x02128170
+_ZN6casino12CasinoSystemD1Ev kind:function(thumb,size=0x2) addr:0x02128180
+_ZN6casino12CasinoSystem12getSingletonEv kind:function(thumb,size=0x3c) addr:0x02128184
+_ZN6casino12CasinoSystem10initializeEv kind:function(thumb,size=0x4c) addr:0x021281c0
+_ZN6casino12CasinoSystem9terminateEv kind:function(thumb,size=0x24) addr:0x0212820c
+_ZN6casino12CasinoSystem7executeEv kind:function(thumb,size=0xc) addr:0x02128230
+_ZN6casino12CasinoSystem4drawEv kind:function(thumb,size=0x1c) addr:0x0212823c
+_ZN6casino9PokerCardC1Ev kind:function(thumb,size=0x58) addr:0x02128258
+_ZN6casino9PokerCardD1Ev kind:function(thumb,size=0x2a) addr:0x021282b0
+_ZN6casino9PokerCard5setupEv kind:function(thumb,size=0x12) addr:0x021282dc
+_ZN6casino9PokerCard16unkfunc_021282f0EN3dss5Fix32E kind:function(thumb,size=0x5e) addr:0x021282f0
+_ZN6casino9PokerCard16unkfunc_02128350EPK16UnkPolygonVertex kind:function(thumb,size=0x2e) addr:0x02128350
+_ZN6casino9PokerCard11setPositionERN3dss12Fix32Vector3E kind:function(thumb,size=0x40) addr:0x02128380
+_ZN6casino9PokerCard11getPositionEv kind:function(thumb,size=0x2c) addr:0x021283c0
+_ZN6casino9PokerCard8setAngleEi kind:function(thumb,size=0x14) addr:0x021283ec
+_ZN6casino9PokerCard16unkfunc_02128400EPK20UnkBillboardTexCoord kind:function(thumb,size=0x8) addr:0x02128400
+_ZN6casino9PokerCard16unkfunc_02128408EPK20UnkBillboardTexCoord kind:function(thumb,size=0xc) addr:0x02128408
+_ZN6casino9PokerCard16unkfunc_02128414EPK20UnkBillboardTexCoord kind:function(thumb,size=0x8c) addr:0x02128414
+_ZN6casino9PokerCard16unkfunc_021284a0EPK20UnkBillboardTexCoord kind:function(thumb,size=0x10) addr:0x021284a0
+_ZN6casino9PokerCard16unkfunc_021284b0EPv kind:function(thumb,size=0x4) addr:0x021284b0
+_ZN6casino9PokerCard16unkfunc_021284b4EPv kind:function(thumb,size=0x6) addr:0x021284b4
+_ZN6casino9PokerCard16unkfunc_021284bcEPv kind:function(thumb,size=0x8) addr:0x021284bc
+_ZN6casino9PokerCard16unkfunc_021284c4EPv kind:function(thumb,size=0x16) addr:0x021284c4
+_ZN6casino9PokerCard4drawEv kind:function(thumb,size=0x14a) addr:0x021284dc
+_ZN6casino9PokerCard9setEffectEv kind:function(thumb,size=0x60) addr:0x02128628
+_ZN6casino9PokerCard16unkfunc_02128688Eb kind:function(thumb,size=0x20) addr:0x02128688
+_ZN6casino9PokerCard8setAlphaEh kind:function(thumb,size=0x1a) addr:0x021286a8
+_ZN6casino23PokerDoubleupHighAndLow10initializeEv kind:function(thumb,size=0x20) addr:0x021286c4
+_ZN6casino23PokerDoubleupHighAndLow15startHighAndLowEc kind:function(thumb,size=0xae) addr:0x021286e4
+_ZN6casino23PokerDoubleupHighAndLow15getSelectCardNoEv kind:function(thumb,size=0x16) addr:0x02128794
+_ZN6casino23PokerDoubleupHighAndLow9setAnswerENS_6ANSWERE kind:function(thumb,size=0x18) addr:0x021287ac
+_ZN6casino23PokerDoubleupHighAndLow9getResultEv kind:function(thumb,size=0x80) addr:0x021287c4
+_ZN6casino23PokerDoubleupHighAndLow9getCardNoEc kind:function(thumb,size=0x20) addr:0x02128844
+_ZN6casino15CasinoPokerDrawC1Ev kind:function(thumb,size=0x70) addr:0x02128864
+_ZN6casino15CasinoPokerDrawD1Ev kind:function(thumb,size=0x2c) addr:0x021288d4
+_ZN6casino15CasinoPokerDraw12getSingletonEv kind:function(thumb,size=0x3c) addr:0x02128900
+_ZN6casino15CasinoPokerDraw10initializeEv kind:function(thumb,size=0x23c) addr:0x0212893c
+_ZN6casino15CasinoPokerDraw15setPoolPositionEv kind:function(thumb,size=0x84) addr:0x02128b78
+_ZN6casino15CasinoPokerDraw18setHighLowPositionEv kind:function(thumb,size=0xa8) addr:0x02128bfc
+_ZN6casino15CasinoPokerDraw9terminateEv kind:function(thumb,size=0x26) addr:0x02128ca4
+_ZN6casino15CasinoPokerDraw4drawEv kind:function(thumb,size=0x1c) addr:0x02128ccc
+_ZN6casino15CasinoPokerDraw14setCardReverseEi kind:function(thumb,size=0xc) addr:0x02128ce8
+_ZN6casino15CasinoPokerDraw14setCardTextureEiii kind:function(thumb,size=0x134) addr:0x02128cf4
+_ZN6casino15CasinoPokerDraw18setBackCardTextureEv kind:function(thumb,size=0x10c) addr:0x02128e28
+_ZN6casino15CasinoPokerDraw20setEffectCardTextureEv kind:function(thumb,size=0x1f0) addr:0x02128f34
+_ZN6casino15CasinoPokerDraw15setCardPositionEiN3dss12Fix32Vector3E kind:function(thumb,size=0x14) addr:0x02129124
+_ZN6casino15CasinoPokerDraw11getDistanceEv kind:function(thumb,size=0x8) addr:0x02129138
+_ZN6casino15CasinoPokerDraw8getSpaceEv kind:function(thumb,size=0xc) addr:0x02129140
+_ZN6casino15CasinoPokerDraw12setCardAngleEit kind:function(thumb,size=0x14) addr:0x0212914c
+_ZN6casino15CasinoPokerDraw9setEffectEi kind:function(thumb,size=0x14) addr:0x02129160
+_ZN6casino15CasinoPokerDraw10setDisplayEib kind:function(thumb,size=0x14) addr:0x02129174
+_ZN6casino15CasinoPokerDraw8setAlphaEih kind:function(thumb,size=0x28) addr:0x02129188
+_ZN6casino15CasinoPokerDraw8getAlphaEv kind:function(thumb,size=0xc) addr:0x021291b0
+_ZN6casino16PokerCardPolygonC1Ev kind:function(thumb,size=0xb0) addr:0x021291bc
+_ZN6casino16PokerCardPolygonD1Ev kind:function(thumb,size=0xe) addr:0x0212926c
+_ZN6casino16PokerCardPolygon4drawEv kind:function(thumb,size=0xfc) addr:0x0212927c
+_ZN6casino14PokerJudgement12getSingletonEv kind:function(thumb,size=0x8) addr:0x02129378
+_ZN6casino14PokerJudgement16JudgeCombinationEv kind:function(thumb,size=0xf2) addr:0x02129380
+_ZN6casino14PokerJudgement8sortCardEv kind:function(thumb,size=0x4a) addr:0x02129474
+_ZN6casino14PokerJudgement10judgeFlashEv kind:function(thumb,size=0x7e) addr:0x021294c0
+_ZN6casino14PokerJudgement13judgeStraightEv kind:function(thumb,size=0xf4) addr:0x02129540
+_ZN6casino14PokerJudgement10judgePairsEPiS1_ kind:function(thumb,size=0x9a) addr:0x02129634
+_ZN6casino14PokerJudgement18setWinningPositionEv kind:function(thumb,size=0x1a) addr:0x021296d0
+_ZN6casino14PokerJudgement18setWinningPositionEPi kind:function(thumb,size=0x80) addr:0x021296ec
+_ZN6casino11CasinoPokerC1Ev kind:function(thumb,size=0x18) addr:0x0212976c
+_ZN6casino11CasinoPokerD1Ev kind:function(thumb,size=0xe) addr:0x02129784
+_ZN6casino11CasinoPoker12getSingletonEv kind:function(thumb,size=0x3c) addr:0x02129794
+_ZN6casino11CasinoPoker10initializeEv kind:function(thumb,size=0x94) addr:0x021297d0
+_ZN6casino11CasinoPoker9terminateEv kind:function(thumb,size=0x12) addr:0x02129864
+_ZN6casino11CasinoPoker7executeEv kind:function(thumb,size=0x2) addr:0x02129878
+_ZN6casino11CasinoPoker4drawEv kind:function(thumb,size=0x1a) addr:0x0212987c
+_ZN6casino11CasinoPoker12getStageNameEv kind:function(arm,size=0x10) addr:0x02129898
+_ZN6casino12PokerManager12getSingletonEv kind:function(thumb,size=0x8) addr:0x021298a8
+_ZN6casino12PokerManager10initializeEv kind:function(thumb,size=0x3c) addr:0x021298b0
+_ZN6casino12PokerManager9clearCardEv kind:function(thumb,size=0x32) addr:0x021298ec
+_ZN6casino12PokerManager14clearDebugCardEi kind:function(thumb,size=0x40) addr:0x02129920
+_ZN6casino12PokerManager8dealCardEi kind:function(thumb,size=0x14e) addr:0x02129960
+_ZN6casino12PokerManager10setBetCoinEi kind:function(thumb,size=0x14) addr:0x02129ab0
+_ZN6casino12PokerManager20judgementCombinationEv kind:function(thumb,size=0x16) addr:0x02129ac4
+_ZN6casino12PokerManager11getMultipleEv kind:function(thumb,size=0x24) addr:0x02129adc
+_ZN6casino12PokerManager20resetCombinationCardEv kind:function(thumb,size=0x10) addr:0x02129b00
+_ZN6casino12PokerManager15startHighAndLowEv kind:function(thumb,size=0x10) addr:0x02129b10
+_ZN6casino12PokerManager9setAnswerEi kind:function(thumb,size=0x14) addr:0x02129b20
+_ZN6casino12PokerManager19getHighAndLowResultEv kind:function(thumb,size=0xc) addr:0x02129b34
+_ZN6casino12PokerManager21getHighAndLowCardTypeEi kind:function(thumb,size=0x24) addr:0x02129b40
+_ZN6casino12PokerManager19getHighAndLowCardNoEi kind:function(thumb,size=0x24) addr:0x02129b64
+_ZN6casino12PokerManager11setGameCardEPNS0_10POKER_CARDEic kind:function(thumb,size=0x32) addr:0x02129b88
+_ZN6casino12PokerManager12changeCardNoEi kind:function(thumb,size=0x18) addr:0x02129bbc
+_ZN6casino12PokerManager14changeCardTypeEi kind:function(thumb,size=0xc) addr:0x02129bd4
+_ZN6casino11PokerAction12getSingletonEv kind:function(thumb,size=0x98) addr:0x02129be0
+_ZN6casino11PokerAction10initializeEv kind:function(thumb,size=0x24) addr:0x02129c78
+_ZN6casino11PokerAction7executeEv kind:function(thumb,size=0x10) addr:0x02129c9c
+_ZN6casino11PokerAction5isEndEv kind:function(thumb,size=0x10) addr:0x02129cac
+_ZN6casino11PokerAction13setCardActionENS_11CARD_ACTIONE kind:function(thumb,size=0x16) addr:0x02129cbc
+_ZN6casino11PokerAction12setCardIndexEi kind:function(thumb,size=0xa) addr:0x02129cd4
+_ZN6casino15PokerActionBase5isEndEv kind:function(thumb,size=0x12) addr:0x02129ce0
+_ZN6casino15PokerActionBase7hopCardEi kind:function(thumb,size=0x86) addr:0x02129cf4
+_ZN6casino15PokerActionFade5setupEv kind:function(thumb,size=0x32) addr:0x02129d7c
+_ZN6casino15PokerActionFade7executeEv kind:function(thumb,size=0x52) addr:0x02129db0
+_ZN6casino15PokerActionMove5setupEv kind:function(thumb,size=0x2) addr:0x02129e04
+_ZN6casino15PokerActionMove7executeEv kind:function(thumb,size=0x86) addr:0x02129e08
+_ZN6casino18PokerActionReverse5setupEv kind:function(thumb,size=0x3a) addr:0x02129e90
+_ZN6casino18PokerActionReverse7executeEv kind:function(thumb,size=0xc4) addr:0x02129ecc
+_ZN6casino19PokerActionTabulate5setupEv kind:function(thumb,size=0x3a) addr:0x02129f90
+_ZN6casino19PokerActionTabulate7executeEv kind:function(thumb,size=0xc8) addr:0x02129fcc
+_ZN6casino11CasinoStageC1Ev kind:function(thumb,size=0x24) addr:0x0212a094
+_ZN6casino11CasinoStageD1Ev kind:function(thumb,size=0xc) addr:0x0212a0b8
+_ZN6casino11CasinoStage12getSingletonEv kind:function(thumb,size=0x3c) addr:0x0212a0c4
+_ZN6casino11CasinoStage10initializeEv kind:function(thumb,size=0x68) addr:0x0212a100
+_ZN6casino11CasinoStage9terminateEv kind:function(thumb,size=0x12) addr:0x0212a168
+_ZN6casino11CasinoStage13setObjectDrawEiii kind:function(thumb,size=0x20) addr:0x0212a17c
+_ZN6casino11Casino_Slot12getSingletonEv kind:function(thumb,size=0x3c) addr:0x0212a19c
+_ZN6casino11Casino_SlotC1Ev kind:function(thumb,size=0x1c) addr:0x0212a1d8
+_ZN6casino11Casino_SlotD1Ev kind:function(thumb,size=0xe) addr:0x0212a1f4
+_ZN6casino11Casino_Slot11setSlotTypeEi kind:function(thumb,size=0x14) addr:0x0212a204
+_ZN6casino11Casino_Slot9resetSlotEv kind:function(thumb,size=0x18) addr:0x0212a218
+_ZN6casino11Casino_Slot7addCoinERi kind:function(thumb,size=0x3c) addr:0x0212a230
+_ZN6casino11Casino_Slot14instantAddCoinERii kind:function(thumb,size=0x60) addr:0x0212a26c
+_ZN6casino11Casino_Slot7subCoinERi kind:function(thumb,size=0x34) addr:0x0212a2cc
+_ZN6casino11Casino_Slot16getResultAllCoinEv kind:function(thumb,size=0x9a) addr:0x0212a300
+_ZN6casino11Casino_Slot11runningSlotEv kind:function(thumb,size=0x1a) addr:0x0212a39c
+_ZN6casino11Casino_Slot8cashCoinERi kind:function(thumb,size=0x30) addr:0x0212a3b8
+_ZN6casino11Casino_Slot11cashAllCoinERi kind:function(thumb,size=0x1c) addr:0x0212a3e8
+_ZN6casino11Casino_Slot9startSlotEv kind:function(thumb,size=0x24) addr:0x0212a404
+_ZN6casino11Casino_Slot10showEffectEv kind:function(thumb,size=0xfc) addr:0x0212a428
+_ZN6casino18Casino_SlotMachineC1Ev kind:function(thumb,size=0x28) addr:0x0212a524
+_ZN6casino18Casino_SlotMachineD1Ev kind:function(thumb,size=0x18) addr:0x0212a54c
+_ZN6casino18Casino_SlotMachine9setupSlotEi kind:function(thumb,size=0x3e) addr:0x0212a564
+_ZN6casino18Casino_SlotMachine9resetSlotEv kind:function(thumb,size=0x30) addr:0x0212a5a4
+_ZN6casino18Casino_SlotMachine10scrollSlotEv kind:function(thumb,size=0x50) addr:0x0212a5d4
+_ZN6casino18Casino_SlotMachine18setCoordinateImageEv kind:function(thumb,size=0x22) addr:0x0212a624
+_ZN6casino18Casino_SlotMachine13getResultCoinEi kind:function(thumb,size=0xf8) addr:0x0212a648
+_ZN6casino10CasinoSlotC1Ev kind:function(thumb,size=0xc) addr:0x0212a740
+_ZN6casino10CasinoSlot12getSingletonEv kind:function(thumb,size=0x3c) addr:0x0212a74c
+_ZN6casino10CasinoSlotD1Ev kind:function(thumb,size=0x2) addr:0x0212a788
+_ZN6casino10CasinoSlot10initializeEv kind:function(thumb,size=0xac) addr:0x0212a78c
+_ZN6casino10CasinoSlot9terminateEv kind:function(thumb,size=0x2) addr:0x0212a838
+_ZN6casino10CasinoSlot7executeEv kind:function(thumb,size=0x54) addr:0x0212a83c
+_ZN6casino10CasinoSlot4drawEv kind:function(thumb,size=0x2) addr:0x0212a890
+_ZN6casino10CasinoSlot13playLightAnimEi kind:function(thumb,size=0x13c) addr:0x0212a894
+_ZN6casino10CasinoSlot12playDarkAnimEi kind:function(thumb,size=0x12c) addr:0x0212a9d0
+_ZN6casino10CasinoSlot11setSlotTypeEi kind:function(thumb,size=0x40) addr:0x0212aafc
+_ZN6casino10CasinoSlot7rotReelEit kind:function(thumb,size=0x2a) addr:0x0212ab3c
+_ZN6casino10CasinoSlot16getSlotStageNameEi kind:function(thumb,size=0x20) addr:0x0212ab68
+_ZN6casino10CasinoSlot13stopEventAnimEv kind:function(thumb,size=0x22) addr:0x0212ab88
+_ZN6casino10CasinoSlot10setUseReelEib kind:function(thumb,size=0x34) addr:0x0212abac
+_ZN6casino10CasinoSlot11setLineLampEib kind:function(thumb,size=0x54) addr:0x0212abe0
+_ZN6casino10CasinoSlot14setLampReelOffEv kind:function(thumb,size=0x2c) addr:0x0212ac34
+_ZN6casino10CasinoSlot10setLampOffEv kind:function(thumb,size=0x9c) addr:0x0212ac60
+_ZN6casino10CasinoSlot12setLineBingoEi kind:function(thumb,size=0xa) addr:0x0212acfc
+_ZN6casino10CasinoSlot12setBingoAnimEii kind:function(thumb,size=0x64) addr:0x0212ad08
+_ZN6casino10CasinoSlot14judgeBingoTypeEi kind:function(thumb,size=0xa) addr:0x0212ad6c
+_ZN6casino10CasinoSlot15setBigBingoAnimEv kind:function(thumb,size=0xb8) addr:0x0212ad78
+_ZN6casino10CasinoSlot12getStageNameEv kind:function(arm,size=0x10) addr:0x0212ae30
+_ZN6casino15Casino_SlotReelC1Ev kind:function(thumb,size=0x16) addr:0x0212ae40
+_ZN6casino15Casino_SlotReelD1Ev kind:function(thumb,size=0x2) addr:0x0212ae58
+_ZN6casino15Casino_SlotReel7setReelEi kind:function(thumb,size=0x60) addr:0x0212ae5c
+_ZN6casino15Casino_SlotReel15setStopImageNumEi kind:function(thumb,size=0x24) addr:0x0212aebc
+_ZN6casino15Casino_SlotReel15setStopPositionEi kind:function(thumb,size=0x24) addr:0x0212aee0
+_ZN6casino15Casino_SlotReel9resetReelEv kind:function(thumb,size=0x18) addr:0x0212af04
+_ZN6casino15Casino_SlotReel10scrollReelEv kind:function(thumb,size=0x98) addr:0x0212af1c
+_ZN6casino15Casino_SlotReel11rollSpeedUpEv kind:function(thumb,size=0x1c) addr:0x0212afb4
+_ZN6casino15Casino_SlotReel13rollSpeedDownEv kind:function(thumb,size=0x16) addr:0x0212afd0
+_ZN6casino15Casino_SlotReel11reelRollingEv kind:function(thumb,size=0x1c) addr:0x0212afe8
+_ZN6casino15Casino_SlotReel17checkPassingPointEi kind:function(thumb,size=0x2a) addr:0x0212b004
+_ZN6casino15Casino_SlotReel11getImageNumENS0_8REEL_POSE kind:function(thumb,size=0x40) addr:0x0212b030
+_ZN6casino15Casino_SlotReel13searchDeBoostEi kind:function(thumb,size=0x24) addr:0x0212b070
+_ZN6casino15Casino_SlotReel11getDrumDataEi kind:function(thumb,size=0x30) addr:0x0212b094
+_ZN6casino15Casino_SlotReel12getDrumImageEi kind:function(thumb,size=0x66) addr:0x0212b0c4
+_ZN24MaterielMenuPokerBetcoin9menuSetupEv kind:function(thumb,size=0x3a) addr:0x0212b12c
+_ZN24MaterielMenuPokerBetcoin11menuExecuteEv kind:function(thumb,size=0x10) addr:0x0212b168
+_ZN24MaterielMenuPokerBetcoin8menuDrawEv kind:function(thumb,size=0x26) addr:0x0212b178
+_ZN24MaterielMenuPokerBetcoin10menuUpdateEv kind:function(thumb,size=0x1c) addr:0x0212b1a0
+_ZN24MaterielMenuPokerBetcoin16unkfunc_0212b1bcEv kind:function(thumb,size=0x180) addr:0x0212b1bc
+_ZN24MaterielMenuPokerBetcoin16unkfunc_0212b33cEv kind:function(thumb,size=0x44) addr:0x0212b33c
+_ZN24MaterielMenuPokerBetcoin16unkfunc_0212b380Ev kind:function(thumb,size=0x30) addr:0x0212b380
+_ZN27MaterielMenuPokerChangecard9menuSetupEv kind:function(thumb,size=0xd4) addr:0x0212b3b0
+_ZN27MaterielMenuPokerChangecard11menuExecuteEv kind:function(thumb,size=0x1e) addr:0x0212b484
+_ZN27MaterielMenuPokerChangecard8menuDrawEv kind:function(thumb,size=0x96) addr:0x0212b4a4
+_ZN27MaterielMenuPokerChangecard10menuUpdateEv kind:function(thumb,size=0x4c) addr:0x0212b53c
+_ZN27MaterielMenuPokerChangecard13messageUpdataEv kind:function(thumb,size=0x17c) addr:0x0212b588
+_ZN27MaterielMenuPokerChangecard10menuUpdataEv kind:function(thumb,size=0x116) addr:0x0212b704
+_ZN27MaterielMenuPokerChangecard10changeCardEv kind:function(thumb,size=0x3c) addr:0x0212b81c
+_ZN27MaterielMenuPokerChangecard11showMessageEii kind:function(thumb,size=0x2c) addr:0x0212b858
+_ZN27MaterielMenuPokerChangecard13pokerDealCardEv kind:function(thumb,size=0x70) addr:0x0212b884
+_ZN27MaterielMenuPokerChangecard15pokerChangeCardEv kind:function(thumb,size=0xe8) addr:0x0212b8f4
+_ZN27MaterielMenuPokerChangecard16pokerReverseCardEb kind:function(thumb,size=0x54) addr:0x0212b9dc
+_ZN27MaterielMenuPokerChangecard18pokerFadeAnimationEv kind:function(thumb,size=0x40) addr:0x0212ba30
+_ZN27MaterielMenuPokerChangecard10setSoundNoEv kind:function(thumb,size=0x40) addr:0x0212ba70
+_ZN27MaterielMenuPokerChangecard16unkfunc_0212bab0Ev kind:function(thumb,size=0x3e) addr:0x0212bab0
+_ZN27MaterielMenuPokerChangecard16unkfunc_0212baf0Ev kind:function(thumb,size=0x84) addr:0x0212baf0
+_ZN27MaterielMenuPokerChangecard16unkfunc_0212bb74Ev kind:function(thumb,size=0xfc) addr:0x0212bb74
+_ZN27MaterielMenuPokerChangecard16unkfunc_0212bc70Ev kind:function(thumb,size=0x64) addr:0x0212bc70
+_ZN29MaterielMenu_POKER_HIGHANDLOW9menuSetupEv kind:function(thumb,size=0x70) addr:0x0212bcd4
+_ZN29MaterielMenu_POKER_HIGHANDLOW11menuExecuteEv kind:function(thumb,size=0x10) addr:0x0212bd44
+_ZN29MaterielMenu_POKER_HIGHANDLOW8menuDrawEv kind:function(thumb,size=0x64) addr:0x0212bd54
+_ZN29MaterielMenu_POKER_HIGHANDLOW10menuUpdateEv kind:function(thumb,size=0x34) addr:0x0212bdb8
+_ZN29MaterielMenu_POKER_HIGHANDLOW13messageUpdateEv kind:function(thumb,size=0x148) addr:0x0212bdec
+_ZN29MaterielMenu_POKER_HIGHANDLOW12statusUpdateEv kind:function(thumb,size=0x54) addr:0x0212bf34
+_ZN29MaterielMenu_POKER_HIGHANDLOW9selectYesEv kind:function(thumb,size=0xe0) addr:0x0212bf88
+_ZN29MaterielMenu_POKER_HIGHANDLOW8selectNoEv kind:function(thumb,size=0x78) addr:0x0212c068
+_ZN29MaterielMenu_POKER_HIGHANDLOW17judgementHiAndLowEv kind:function(thumb,size=0x9c) addr:0x0212c0e0
+_ZN29MaterielMenu_POKER_HIGHANDLOW11showMessageEii kind:function(thumb,size=0x28) addr:0x0212c17c
+_ZN29MaterielMenu_POKER_HIGHANDLOW13getCoinActionEv kind:function(thumb,size=0xd4) addr:0x0212c1a4
+_ZN29MaterielMenu_POKER_HIGHANDLOW10actionFadeEv kind:function(thumb,size=0x128) addr:0x0212c278
+_ZN29MaterielMenu_POKER_HIGHANDLOW11actionSwingEv kind:function(thumb,size=0xcc) addr:0x0212c3a0
+_ZN29MaterielMenu_POKER_HIGHANDLOW10actionMoveEv kind:function(thumb,size=0x72) addr:0x0212c46c
+_ZN29MaterielMenu_POKER_HIGHANDLOW10setCardTexEib kind:function(thumb,size=0x34) addr:0x0212c4e0
+_ZN29MaterielMenu_POKER_HIGHANDLOW10setSoundNoEv kind:function(thumb,size=0x34) addr:0x0212c514
+_ZN17MaterielMenu_SLOT9menuSetupEv kind:function(thumb,size=0xc0) addr:0x0212c548
+_ZN17MaterielMenu_SLOT11menuExecuteEv kind:function(thumb,size=0xc) addr:0x0212c608
+_ZN17MaterielMenu_SLOT8menuDrawEv kind:function(thumb,size=0x10) addr:0x0212c614
+_ZN17MaterielMenu_SLOT10menuUpdateEv kind:function(thumb,size=0x28) addr:0x0212c624
+_ZN17MaterielMenu_SLOT13messageUpdateEv kind:function(thumb,size=0x6c) addr:0x0212c64c
+_ZN17MaterielMenu_SLOT12statusUpdateEv kind:function(thumb,size=0x1cc) addr:0x0212c6b8
+_ZN17MaterielMenu_SLOT11inputUpdateEv kind:function(thumb,size=0xf6) addr:0x0212c884
+_ZN17MaterielMenu_SLOT10showEffectEv kind:function(thumb,size=0xac) addr:0x0212c97c
+_ZN17MaterielMenu_SLOT9startSlotEv kind:function(thumb,size=0x36) addr:0x0212ca28
+_ZN17MaterielMenu_SLOT11showMessageEi kind:function(thumb,size=0x18) addr:0x0212ca60
+_ZN17MaterielMenu_SLOT12closeMessageEv kind:function(thumb,size=0x18) addr:0x0212ca78
+CAMERA_DISTANCE kind:data(any) addr:0x0212ca90 local
+@268 kind:data(any) addr:0x0212ca94 local
+__sinit_CasinoCamera.cpp kind:function(thumb,size=0x50) addr:0x0212cab8 local
+__sinit_CasinoPokerDraw.cpp kind:function(thumb,size=0x1c4) addr:0x0212cb08 local
+.p__sinit_CasinoCamera.cpp kind:data(word) addr:0x0212cccc local
+.p__sinit_CasinoPokerDraw.cpp kind:data(word) addr:0x0212ccd0 local
+@755 kind:data(any) addr:0x0212cce0 local
+@754 kind:data(any) addr:0x0212cce2 local
+@756 kind:data(any) addr:0x0212cce4 local
+fov kind:data(any) addr:0x0212cce6 local
+dir_offset kind:data(any) addr:0x0212cce8 local
+position kind:data(any) addr:0x0212ccec local
+@1282 kind:data(any) addr:0x0212ccf8 local
+@1281 kind:data(any) addr:0x0212ccfc local
+@1283 kind:data(any) addr:0x0212cd00 local
+_ZTVN6casino16PokerCardPolygonE kind:data(any) addr:0x0212cd04
+@1453 kind:data(any) addr:0x0212cd40 local
+@1454 kind:data(any) addr:0x0212cd60 local
+@1455 kind:data(any) addr:0x0212cd80 local
+@1456 kind:data(any) addr:0x0212cda0 local
+@1457 kind:data(any) addr:0x0212cdc0 local
+@1458 kind:data(any) addr:0x0212cde4 local
+_ZN6casino11CasinoPoker10stagePokerE kind:data(any) addr:0x0212ce04
+@692 kind:data(any) addr:0x0212ce08 local
+_ZTVN6casino11CasinoPokerE kind:data(any) addr:0x0212ce10
+@751 kind:data(any) addr:0x0212ce2c local
+diameter$1121 kind:data(any) addr:0x0212ce4c local
+_ZTVN6casino15PokerActionBaseE kind:data(any) addr:0x0212ce74
+_ZTVN6casino15PokerActionFadeE kind:data(any) addr:0x0212ce84
+_ZTVN6casino15PokerActionMoveE kind:data(any) addr:0x0212ce94
+_ZTVN6casino18PokerActionReverseE kind:data(any) addr:0x0212cea4
+_ZTVN6casino19PokerActionTabulateE kind:data(any) addr:0x0212ceb4
+_ZN6casino15CASINO_MAP_PATHE kind:data(any) addr:0x0212cec4
+@1383 kind:data(any) addr:0x0212cec8 local
+unk_0212ced4 kind:data(any) addr:0x0212ced4 local
+_ZN6casino18Casino_SlotMachine16bingoBonusTable_E kind:data(any) addr:0x0212cee0
+cameraAngleZ kind:data(any) addr:0x0212cf58 local
+cameraAngleY kind:data(any) addr:0x0212cf5a local
+cameraAngleX kind:data(any) addr:0x0212cf5c local
+_ZN6casino10CasinoSlot10stageSlot1E kind:data(any) addr:0x0212cf60
+_ZN6casino10CasinoSlot12stageSlot100E kind:data(any) addr:0x0212cf64
+cameraDistance kind:data(any) addr:0x0212cf68 local
+lampBlinkFrame kind:data(any) addr:0x0212cf6c local
+_ZN6casino10CasinoSlot11stageSlot10E kind:data(any) addr:0x0212cf70
+@1342 kind:data(any) addr:0x0212cf74 local
+@1340 kind:data(any) addr:0x0212cf7c local
+@1341 kind:data(any) addr:0x0212cf84 local
+_ZTVN6casino10CasinoSlotE kind:data(any) addr:0x0212cf8c
+_ZTV24MaterielMenuPokerBetcoin kind:data(any) addr:0x0212cfa8
+_ZTV27MaterielMenuPokerChangecard kind:data(any) addr:0x0212cfc4
+_ZTV29MaterielMenu_POKER_HIGHANDLOW kind:data(any) addr:0x0212cfe0
+_ZTV17MaterielMenu_SLOT kind:data(any) addr:0x0212cffc
+offset kind:bss addr:0x0212d020 local
+_ZGVcamera_$794 kind:bss addr:0x0212d024 local
+distance kind:bss addr:0x0212d028 local
+_ZN6casino13default_angleE kind:bss addr:0x0212d02c local
+@797 kind:bss addr:0x0212d034 local
+camera_$794 kind:bss addr:0x0212d040 local
+_ZGVcasinoSystem$1449 kind:bss addr:0x0212d14c local
+@1065 kind:bss addr:0x0212d150 local
+casinoSystem$1449 kind:bss addr:0x0212d15c local
+_ZGVm_singleton$1026 kind:bss addr:0x0212d768 local
+s_vertexLeftBottom kind:bss addr:0x0212d76c local
+s_vertexRightBottom kind:bss addr:0x0212d772 local
+s_vertexRightTop kind:bss addr:0x0212d778 local
+s_vertexLeftTop kind:bss addr:0x0212d77e local
+s_texCoordLeftTop kind:bss addr:0x0212d784 local
+s_texCoordRightTop kind:bss addr:0x0212d78c local
+s_texCoordRightBottom kind:bss addr:0x0212d794 local
+s_texCoordLeftBottom kind:bss addr:0x0212d79c local
+@1028 kind:bss addr:0x0212d7a4 local
+s_vertex kind:bss addr:0x0212d7b0 local
+s_texCoord kind:bss addr:0x0212d7c8 local
+m_singleton$1026 kind:bss addr:0x0212d7e8 local
+pokerJudgement$44 kind:bss addr:0x0212e440 local
+_ZGVcasinoPoker$719 kind:bss addr:0x0212e454 local
+@718 kind:bss addr:0x0212e458 local
+casinoPoker$719 kind:bss addr:0x0212e464 local
+pokerManager$929 kind:bss addr:0x0212e4bc local
+_ZGVpokerAction$421 kind:bss addr:0x0212e594 local
+pokerAction$421 kind:bss addr:0x0212e598 local
+_ZGVcasinoStage$1414 kind:bss addr:0x0212e654 local
+@1400 kind:bss addr:0x0212e658 local
+casinoStage$1414 kind:bss addr:0x0212e664 local
+_ZGVcasinoSlot$901 kind:bss addr:0x0212ef44 local
+@903 kind:bss addr:0x0212ef48 local
+casinoSlot$901 kind:bss addr:0x0212ef54 local
+_ZGVcasinoSlot$1353 kind:bss addr:0x0212f07c local
+@1354 kind:bss addr:0x0212f080 local
+casinoSlot$1353 kind:bss addr:0x0212f08c local

@@ -1,0 +1,168 @@
+    .text       start:0x0216f200 end:0x02176484 kind:code align:32
+    .rodata     start:0x02176484 end:0x02176714 kind:rodata align:4
+    .init       start:0x02176714 end:0x02176970 kind:code align:4
+    .ctor       start:0x02176970 end:0x02176978 kind:rodata align:4
+    .data       start:0x02176980 end:0x02177d40 kind:data align:32
+    .bss        start:0x02177d40 end:0x021854e0 kind:bss align:32
+
+src/ov018/ov018_entry.cpp:
+    complete
+    .text       start:0x0216f200 end:0x0216f204
+
+src/ov018/menu/UnkBattleMenuDraw_0216f204.cpp:
+    complete
+    .text       start:0x0216f204 end:0x0216fff0
+    .rodata     start:0x02176484 end:0x0217659c
+    .data       start:0x02176980 end:0x021772ac
+
+src/ov018/menu/UnkBattleMenuDraw_0216fff0.cpp:
+    complete
+    .text       start:0x0216fff0 end:0x02170d0c
+    .rodata     start:0x0217659c end:0x021765fc
+    .data       start:0x021772ac end:0x02177660
+    .bss        start:0x02177d40 end:0x02177d48
+
+src/ov018/menu/BattleMenu_FRIEND_ENTRANCE.cpp:
+    complete
+    .text       start:0x02170d0c end:0x02171294
+    .data       start:0x02177660 end:0x0217767c
+
+src/ov018/menu/UnkBattleMenuFriendSelect.cpp:
+    complete
+    .text       start:0x02171294 end:0x02171418
+    .data       start:0x0217767c end:0x02177698
+
+src/ov018/menu/BattleMenuSub_HISTORY.cpp:
+    complete
+    .text       start:0x02171418 end:0x021714ec
+    .data       start:0x02177698 end:0x021776b4
+
+src/ov018/menu/BattleMenu_StadiumAbort.cpp:
+    complete
+    .text       start:0x021714ec end:0x0217150c
+    .data       start:0x021776b4 end:0x021776d0
+
+src/ov018/menu/BattleMenu_ACTIONMENU.cpp:
+    complete
+    .text       start:0x0217150c end:0x02171920
+    .data       start:0x021776d0 end:0x021776ec
+
+src/ov018/menu/BattleMenu_ARRAYMENU.cpp:
+    complete
+    .text       start:0x02171920 end:0x02171bc0
+    .data       start:0x021776ec end:0x02177708
+
+src/ov018/menu/BattleMenu_ARRAY_ALL.cpp:
+    complete
+    .text       start:0x02171bc0 end:0x0217212c
+    .rodata     start:0x021765fc end:0x0217661c
+    .data       start:0x02177708 end:0x02177724
+
+src/ov018/menu/BattleMenu_ARRAY_CHANGE.cpp:
+    complete
+    .text       start:0x0217212c end:0x02172670
+    .rodata     start:0x0217661c end:0x0217664c
+    .data       start:0x02177724 end:0x02177740
+
+src/ov018/menu/UnkBattleMenuAttackCancel.cpp:
+    complete
+    .text       start:0x02172670 end:0x0217273c
+    .data       start:0x02177740 end:0x0217775c
+
+src/ov018/menu/BattleMenu_ITEM.cpp:
+    complete
+    .text       start:0x0217273c end:0x02172bc4
+    .data       start:0x0217775c end:0x02177778
+
+src/ov018/menu/UnkBattleMenuEquipItem.cpp:
+    complete
+    .text       start:0x02172bc4 end:0x02173038
+    .data       start:0x02177778 end:0x021777b4
+
+src/ov018/menu/BattleMenu_ITEMUSE2ENEMY.cpp:
+    complete
+    .text       start:0x02173038 end:0x02173178
+    .data       start:0x021777b4 end:0x021777d0
+
+src/ov018/menu/BattleMenu_ITEMUSE2PARTY.cpp:
+    complete
+    .text       start:0x02173178 end:0x0217331c
+    .data       start:0x021777d0 end:0x021777ec
+
+src/ov018/menu/BattleMenu.cpp:
+    complete
+    .init       start:0x02176714 end:0x0217695c
+    .ctor       start:0x02176970 end:0x02176974
+    .bss        start:0x02177d48 end:0x021792a4
+
+src/ov018/menu/BattleMenuJudge.cpp:
+    complete
+    .text       start:0x0217331c end:0x02173768
+    .bss        start:0x021792a4 end:0x0217932c
+
+src/ov018/menu/BattleMenu_MAGIC.cpp:
+    complete
+    .text       start:0x02173768 end:0x02173c7c
+    .data       start:0x021777ec end:0x02177808
+
+src/ov018/menu/BattleMenu_MAGIC2ENEMY.cpp:
+    complete
+    .text       start:0x02173c7c end:0x02173d78
+    .data       start:0x02177808 end:0x02177824
+
+src/ov018/menu/BattleMenu_MAGIC2PARTY.cpp:
+    complete
+    .text       start:0x02173d78 end:0x02173ee8
+    .data       start:0x02177824 end:0x02177840
+
+src/ov018/menu/BattleMenu_NGMESSAGE.cpp:
+    complete
+    .text       start:0x02173ee8 end:0x02173f9c
+    .data       start:0x02177840 end:0x0217785c
+
+src/ov018/menu/BattleMenuPlayerControl.cpp:
+    complete
+    .text       start:0x02173f9c end:0x02174b08
+    .rodata     start:0x0217664c end:0x021766cc
+    .bss        start:0x0217932c end:0x021796d0
+
+src/ov018/menu/BattleMenu_ROOT.cpp:
+    complete
+    .text       start:0x02174b08 end:0x02174d88
+    .data       start:0x0217785c end:0x02177878
+
+src/ov018/menu/BattleMenu_TACTICSMENU.cpp:
+    complete
+    .text       start:0x02174d88 end:0x02175164
+    .rodata     start:0x021766cc end:0x021766e4
+    .data       start:0x02177878 end:0x02177894
+
+src/ov018/menu/UnkBattleMenuTest.cpp:
+    complete
+    .text       start:0x02175164 end:0x021751e4
+    .data       start:0x02177894 end:0x021779c0
+    .bss        start:0x021796d0 end:0x02179750
+
+src/ov018/menu/BattleMonsterNamePlate.cpp:
+    complete
+    .text       start:0x021751e4 end:0x02175a5c
+    .rodata     start:0x021766e4 end:0x02176714
+    .bss        start:0x02179750 end:0x021797c0
+
+src/ov018/menu/UnkMenuTemplateBattle.cpp:
+    complete
+    .text       start:0x02175a5c end:0x02175c4c
+    .data       start:0x021779c0 end:0x02177d14
+
+src/ov018/menu/BattleMenu_ATTACK.cpp:
+    complete
+    .text       start:0x02175c4c end:0x02175f74
+    .data       start:0x02177d14 end:0x02177d30
+
+src/ov018/btl/BattleMonsterDraw2.cpp:
+    complete
+    .text       start:0x02175f74 end:0x02176484
+    .init       start:0x0217695c end:0x02176970
+    .ctor       start:0x02176974 end:0x02176978
+    .data       start:0x02177d30 end:0x02177d40
+    .bss        start:0x021797c0 end:0x021854e0

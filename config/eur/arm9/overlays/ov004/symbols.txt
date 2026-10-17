@@ -1,0 +1,148 @@
+_ZN12DSSAObject2DC1Ev kind:function(arm,size=0x20) addr:0x02128060 local
+_ZN8ceremony20CeremonyEndingSystemC1Ev kind:function(thumb,size=0x8c) addr:0x02128080
+_ZN8ceremony20CeremonyEndingSystemD1Ev kind:function(thumb,size=0x58) addr:0x0212810c
+_ZN8ceremony20CeremonyEndingSystem12getSingletonEv kind:function(thumb,size=0x3c) addr:0x02128164
+_ZN8ceremony20CeremonyEndingSystem10initializeEv kind:function(thumb,size=0x258) addr:0x021281a0
+_ZN8ceremony20CeremonyEndingSystem9terminateEv kind:function(thumb,size=0x64) addr:0x021283f8
+_ZN8ceremony20CeremonyEndingSystem7executeEv kind:function(thumb,size=0x40c) addr:0x0212845c
+_ZN8ceremony20CeremonyEndingSystem4drawEv kind:function(thumb,size=0x158) addr:0x02128868
+_ZN8ceremony20CeremonyEndingSystem12setNextPhaseEi kind:function(thumb,size=0xc) addr:0x021289c0
+_ZN8ceremony20CeremonyEndingSystem5isEndEv kind:function(thumb,size=0x14) addr:0x021289cc
+_ZN8ceremony21CeremonyOpeningSystemC1Ev kind:function(thumb,size=0x74) addr:0x021289e0
+_ZN8ceremony21CeremonyOpeningSystemD1Ev kind:function(thumb,size=0x4a) addr:0x02128a54
+_ZN8ceremony21CeremonyOpeningSystem12getSingletonEv kind:function(thumb,size=0x3c) addr:0x02128aa0
+_ZN8ceremony21CeremonyOpeningSystem10initializeEv kind:function(thumb,size=0x388) addr:0x02128adc
+_ZN8ceremony21CeremonyOpeningSystem9terminateEv kind:function(thumb,size=0x58) addr:0x02128e64
+_ZN8ceremony21CeremonyOpeningSystem7executeEv kind:function(thumb,size=0x158) addr:0x02128ebc
+_ZN8ceremony21CeremonyOpeningSystem4drawEv kind:function(thumb,size=0x68) addr:0x02129014
+_ZN8ceremony21CeremonyOpeningSystem12setNextPhaseEi kind:function(thumb,size=0xe) addr:0x0212907c
+_ZN8ceremony14CeremonyCameraC1Ev kind:function(thumb,size=0xc) addr:0x0212908c
+_ZN8ceremony14CeremonyCameraD1Ev kind:function(thumb,size=0x2) addr:0x02129098
+_ZN8ceremony14CeremonyCamera12getSingletonEv kind:function(thumb,size=0x3c) addr:0x0212909c
+_ZN8ceremony14CeremonyCamera10initializeEv kind:function(thumb,size=0xe8) addr:0x021290d8
+_ZN8ceremony14CeremonyCamera9terminateEv kind:function(thumb,size=0x2) addr:0x021291c0
+_ZN8ceremony14CeremonyCamera4drawEv kind:function(thumb,size=0xec) addr:0x021291c4
+_ZN8ceremony13CeremonyStageC1Ev kind:function(thumb,size=0xe) addr:0x021292b0
+_ZN8ceremony13CeremonyStageD1Ev kind:function(thumb,size=0xe) addr:0x021292c0
+_ZN8ceremony13CeremonyStage12getSingletonEv kind:function(thumb,size=0x3c) addr:0x021292d0
+_ZN8ceremony13CeremonyStage10initializeEv kind:function(thumb,size=0x40) addr:0x0212930c
+_ZN8ceremony13CeremonyStage9terminateEv kind:function(thumb,size=0x1a) addr:0x0212934c
+_ZN8ceremony13CeremonyStage4drawEv kind:function(thumb,size=0x12) addr:0x02129368
+_ZN8ceremony14CeremonySystemC1Ev kind:function(thumb,size=0x2) addr:0x0212937c
+_ZN8ceremony14CeremonySystemD1Ev kind:function(thumb,size=0x2) addr:0x02129380
+_ZN8ceremony14CeremonySystem12getSingletonEv kind:function(thumb,size=0x3c) addr:0x02129384
+_ZN8ceremony14CeremonySystem10initializeEv kind:function(thumb,size=0x8c) addr:0x021293c0
+_ZN8ceremony14CeremonySystem9terminateEv kind:function(thumb,size=0x2e) addr:0x0212944c
+_ZN8ceremony14CeremonySystem7executeEv kind:function(thumb,size=0x1e) addr:0x0212947c
+_ZN8ceremony14CeremonySystem4drawEv kind:function(thumb,size=0x1e) addr:0x0212949c
+ov004_entry kind:function(thumb,size=0x2) addr:0x021294bc
+_ZN8ceremony19CeremonyStaffSystemC1Ev kind:function(thumb,size=0x58) addr:0x021294c0
+_ZN8ceremony19CeremonyStaffSystemD1Ev kind:function(thumb,size=0x36) addr:0x02129518
+_ZN8ceremony19CeremonyStaffSystem12getSingletonEv kind:function(thumb,size=0x3c) addr:0x02129550
+_ZN8ceremony19CeremonyStaffSystem10initializeEv kind:function(thumb,size=0x294) addr:0x0212958c
+_ZN8ceremony19CeremonyStaffSystem9terminateEv kind:function(thumb,size=0x44) addr:0x02129820
+_ZN8ceremony19CeremonyStaffSystem7executeEv kind:function(thumb,size=0xd0) addr:0x02129864
+_ZN8ceremony19CeremonyStaffSystem4drawEv kind:function(thumb,size=0x70) addr:0x02129934
+_ZN8ceremony19CeremonyStaffSystem12setNextPhaseEi kind:function(thumb,size=0xe) addr:0x021299a4
+_ZN8ceremony17CeremonyEndingFinC1Ev kind:function(thumb,size=0x84) addr:0x021299b4
+_ZN8ceremony17CeremonyEndingFinD1Ev kind:function(thumb,size=0x58) addr:0x02129a38
+_ZN8ceremony17CeremonyEndingFin12getSingletonEv kind:function(thumb,size=0x3c) addr:0x02129a90
+_ZN8ceremony17CeremonyEndingFin10initializeEv kind:function(thumb,size=0x20c) addr:0x02129acc
+_ZN8ceremony17CeremonyEndingFin9terminateEv kind:function(thumb,size=0x68) addr:0x02129cd8
+_ZN8ceremony17CeremonyEndingFin7executeEv kind:function(thumb,size=0x8) addr:0x02129d40
+_ZN8ceremony17CeremonyEndingFin4drawEv kind:function(thumb,size=0x4e) addr:0x02129d48
+_ZN8ceremony17CeremonyEndingFin10animTheEndEv kind:function(thumb,size=0x114) addr:0x02129d98
+_ZN8ceremony17CeremonyEndingFin5isEndEv kind:function(thumb,size=0xe) addr:0x02129eac
+_ZN3dq55level9PetalData5setupEv kind:function(thumb,size=0x60) addr:0x02129ebc
+_ZN3dq520TOWN_CAMERA_DISTANCEE kind:data(any) addr:0x02129f1c local
+__sinit_CeremonyCamera.cpp kind:function(thumb,size=0x50) addr:0x02129f20 local
+.p__sinit_CeremonyCamera.cpp kind:data(word) addr:0x02129f70 local
+@2382 kind:data(any) addr:0x02129f98 local
+@2383 kind:data(any) addr:0x02129fbc local
+@2552 kind:data(any) addr:0x02129fe4 local
+@2553 kind:data(any) addr:0x0212a008 local
+@2554 kind:data(any) addr:0x0212a02c local
+@2555 kind:data(any) addr:0x0212a050 local
+@2556 kind:data(any) addr:0x0212a06c local
+@2557 kind:data(any) addr:0x0212a088 local
+_ZTVN8ceremony21CeremonyOpeningSystemE kind:data(any) addr:0x0212a0a4
+@2711 kind:data(any) addr:0x0212a0bc local
+@2712 kind:data(any) addr:0x0212a0d8 local
+@2713 kind:data(any) addr:0x0212a0f4 local
+@2714 kind:data(any) addr:0x0212a110 local
+@2715 kind:data(any) addr:0x0212a12c local
+@2716 kind:data(any) addr:0x0212a130 local
+@2717 kind:data(any) addr:0x0212a134 local
+@2718 kind:data(any) addr:0x0212a138 local
+@2719 kind:data(any) addr:0x0212a13c local
+@2720 kind:data(any) addr:0x0212a140 local
+@2721 kind:data(any) addr:0x0212a144 local
+@2722 kind:data(any) addr:0x0212a148 local
+@2723 kind:data(any) addr:0x0212a170 local
+@2724 kind:data(any) addr:0x0212a194 local
+@2725 kind:data(any) addr:0x0212a1b8 local
+@2171 kind:data(any) addr:0x0212a1dc local
+@2170 kind:data(any) addr:0x0212a1de local
+@2172 kind:data(any) addr:0x0212a1e0 local
+fov kind:data(any) addr:0x0212a1e2 local
+dir_offset kind:data(any) addr:0x0212a1e4 local
+position kind:data(any) addr:0x0212a1e8 local
+_ZN8ceremony17CEREMONY_MAP_PATHE kind:data(any) addr:0x0212a1f4
+@1386 kind:data(any) addr:0x0212a1f8 local
+@1423 kind:data(any) addr:0x0212a204 local
+@1540 kind:data(any) addr:0x0212a20c local
+_ZTVN8ceremony19CeremonyStaffSystemE kind:data(any) addr:0x0212a214
+@2225 kind:data(any) addr:0x0212a22c local
+@2226 kind:data(any) addr:0x0212a24c local
+@2227 kind:data(any) addr:0x0212a26c local
+@2228 kind:data(any) addr:0x0212a28c local
+@2229 kind:data(any) addr:0x0212a290 local
+@2230 kind:data(any) addr:0x0212a294 local
+@2231 kind:data(any) addr:0x0212a298 local
+@2232 kind:data(any) addr:0x0212a29c local
+@2233 kind:data(any) addr:0x0212a2a0 local
+@2234 kind:data(any) addr:0x0212a2a4 local
+@2235 kind:data(any) addr:0x0212a2a8 local
+@2236 kind:data(any) addr:0x0212a2d0 local
+@2237 kind:data(any) addr:0x0212a2f8 local
+_ZTVN8ceremony17CeremonyEndingFinE kind:data(any) addr:0x0212a320
+@2148 kind:data(any) addr:0x0212a338 local
+@2149 kind:data(any) addr:0x0212a354 local
+@2150 kind:data(any) addr:0x0212a374 local
+@2151 kind:data(any) addr:0x0212a394 local
+@2152 kind:data(any) addr:0x0212a3b4 local
+@2153 kind:data(any) addr:0x0212a3d4 local
+@2154 kind:data(any) addr:0x0212a3f4 local
+_ZN3dq55level9PetalData9filename_E kind:data(any) addr:0x0212a410
+@187 kind:data(any) addr:0x0212a414 local
+data_ov004_0212a43c kind:data(any) addr:0x0212a43c
+_ZGVm_singleton$2041 kind:bss addr:0x0212a440 local
+@2044 kind:bss addr:0x0212a444 local
+m_singleton$2041 kind:bss addr:0x0212a450 local
+_ZGVm_singleton$2483 kind:bss addr:0x0212a9a0 local
+@2486 kind:bss addr:0x0212a9a4 local
+m_singleton$2483 kind:bss addr:0x0212a9b0 local
+offset kind:bss addr:0x0212abd4 local
+_ZGVcamera_$2247 kind:bss addr:0x0212abd8 local
+distance kind:bss addr:0x0212abdc local
+default_angle kind:bss addr:0x0212abe0 local
+@2250 kind:bss addr:0x0212abe8 local
+camera_$2247 kind:bss addr:0x0212abf4 local
+_ZGVm_singleton$1408 kind:bss addr:0x0212ad00 local
+@1411 kind:bss addr:0x0212ad04 local
+m_singleton$1408 kind:bss addr:0x0212ad10 local
+m_singleton$1464 kind:bss addr:0x0212b5d4 local
+@1467 kind:bss addr:0x0212b5dc local
+_ZGVm_singleton$2043 kind:bss addr:0x0212b5e8 local
+@2046 kind:bss addr:0x0212b5ec local
+m_singleton$2043 kind:bss addr:0x0212b5f8 local
+_ZGVm_singleton$1969 kind:bss addr:0x0212b770 local
+@1972 kind:bss addr:0x0212b774 local
+m_singleton$1969 kind:bss addr:0x0212b780 local
+_ZN3dq55level9PetalData5addr_E kind:bss addr:0x0212bbc0
+_ZN3dq55level9PetalData11loadSwitch_E kind:bss addr:0x0212bbc4
+_ZN3dq55level9PetalData7binary_E kind:bss addr:0x0212bbc8
+_ZN3dq55level9PetalData10dataRegionE kind:bss addr:0x0212bbdc
+_ZGVm_singleton$1464 kind:bss addr:0x0212b5d8 local
+data_ov004_0212bcd4 kind:bss addr:0x0212bcd4
+_ZTVN8ceremony20CeremonyEndingSystemE kind:data(any) addr:0x02129f80

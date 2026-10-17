@@ -1,0 +1,18 @@
+    .text       start:0x02186980 end:0x0218793c kind:code align:32
+    .init       start:0x0218793c end:0x02187940 kind:code align:4
+    .ctor       start:0x02187940 end:0x02187944 kind:rodata align:4
+    .data       start:0x02187960 end:0x021879a0 kind:data align:32
+    .bss        start:0x021879a0 end:0x021879c0 kind:bss align:32
+
+src/ov037/materielmenu/casino/FightStadiumManager.cpp:
+    complete
+    .text       start:0x02186980 end:0x02186c9c
+    .init       start:0x0218793c end:0x02187940
+    .ctor       start:0x02187940 end:0x02187944
+    .data       start:0x02187960 end:0x02187968
+    .bss        start:0x021879a0 end:0x021879bc
+
+src/ov037/materielmenu/casino/MaterielMenu_FIGHT_STADIUM.cpp:
+    complete
+    .text       start:0x02186c9c end:0x0218793c
+    .data       start:0x02187968 end:0x02187990

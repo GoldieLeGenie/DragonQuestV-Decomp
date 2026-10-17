@@ -1,0 +1,66 @@
+#pragma once
+#include <globaldefs.h>
+#include "main/dss/DssCore.hpp"
+#include "nnsys/fnd.hpp"
+
+// touch panel state
+struct UnkTouchPanel {
+    char unk_00[0x18];                          // 0x00
+    int touch_;                                 // 0x18
+    int x_;                                     // 0x1C
+    int y_;                                     // 0x20
+    int unk_24;                                 // 0x24
+    int unk_28;                                 // 0x28
+    int unk_2c;                                 // 0x2C
+
+    UnkTouchPanel();
+};
+
+// main heap: system, sub and application expanded heaps
+struct UnkHeap {
+    void* heap0_;                               // 0x00
+    void* heap1_;                               // 0x04 system heap
+    void* heap2_;                               // 0x08 application heap
+    NNSFndAllocator allocator0_;                // 0x0C
+    NNSFndAllocator allocator1_;                // 0x1C
+    NNSFndAllocator allocator2_;                // 0x2C
+    unsigned int size0_;                        // 0x3C
+    unsigned int size1_;                        // 0x40
+    unsigned int size2_;                        // 0x44
+    unsigned int free0_;                        // 0x48
+    unsigned int free1_;                        // 0x4C
+    unsigned int free2_;                        // 0x50
+    unsigned int unk_54;                        // 0x54 program size
+};
+
+extern UnkTouchPanel data_0211a5d4;
+extern void* data_020fd244[2];                  // compressed data, uncompressed data
+extern UnkHeap data_020fd24c;
+
+void unkfunc_0204c1ac(void* src);               // set the compressed data
+void unkfunc_0204c1bc(void* dst);               // uncompress
+unsigned int unkfunc_0204c214(void* src);       // uncompressed size
+int unkfunc_0204c230(void* data);               // is compressed
+void* unkfunc_0204c278(void* data);             // uncompress (allocates)
+void unkfunc_0204c2b0(UnkHeap* heap, unsigned int size0, unsigned int size1, unsigned int size2, int mode);    // init
+int unkfunc_0204c49c(int value, int alignment);  // round up
+void unkfunc_0204c4b0(UnkHeap* heap, void* p);  // free (system heap)
+void* unkfunc_0204c504(UnkHeap* heap, int size, int align);     // alloc
+void unkfunc_0204c568(UnkHeap* heap, void* p);  // free
+void* unkfunc_0204c5bc(UnkHeap* heap, int size, int align);     // alloc
+void unkfunc_0204c5c8(UnkHeap* heap, void* p);  // free
+unsigned int unkfunc_0204c5d4(UnkHeap* heap);   // free size of the heap 0
+unsigned int unkfunc_0204c5e4(UnkHeap* heap);   // free size of the system heap
+unsigned int unkfunc_0204c5f4(UnkHeap* heap);   // free size of the application heap
+unsigned int unkfunc_0204c604(UnkHeap* heap);   // free size of the application heap
+void** unkfunc_0204c614(UnkHeap* heap);         // heap 0
+void** unkfunc_0204c618(UnkHeap* heap);         // system heap
+void** unkfunc_0204c620(UnkHeap* heap);         // heap 2
+void unkfunc_0204c628(UnkHeap* heap);           // mark the allocated blocks
+void unkfunc_0204c63c(void* p);                 // free (system heap)
+
+extern "C" {
+    void func_02070620(const void* src, void* dst);         // MI_UncompressLZ8
+    void func_02070720(const void* src, void* dst);         // MI_UncompressHuffman
+    void func_02070818(const void* src, void* dst);         // MI_UncompressRL8
+}

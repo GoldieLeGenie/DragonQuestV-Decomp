@@ -1,0 +1,74 @@
+ov009_entry kind:function(thumb,size=0x2) addr:0x02128060
+_ZN4book10BookCameraC1Ev kind:function(thumb,size=0xc) addr:0x02128064
+_ZN4book10BookCameraD1Ev kind:function(thumb,size=0x2) addr:0x02128070
+_ZN4book10BookCamera12getSingletonEv kind:function(thumb,size=0x3c) addr:0x02128074
+_ZN4book10BookCamera10initializeEv kind:function(thumb,size=0x88) addr:0x021280b0
+_ZN4book10BookCamera9terminateEv kind:function(thumb,size=0x2) addr:0x02128138
+_ZN4book10BookCamera4drawEv kind:function(thumb,size=0x8) addr:0x0212813c
+_ZN4book15BookEffectGroupC1Ev kind:function(thumb,size=0x2e) addr:0x02128144
+_ZN4book15BookEffectGroupD1Ev kind:function(thumb,size=0x16) addr:0x02128174
+_ZN4book15BookEffectGroup4drawEv kind:function(thumb,size=0x3a) addr:0x0212818c
+_ZN4book15BookEffectGroup5startEv kind:function(thumb,size=0x34) addr:0x021281c8
+_ZN4book15BookEffectGroup9addEffectEPN3cmn16CommonEffectDataEi kind:function(thumb,size=0x4c) addr:0x021281fc
+_ZN4book15BookEffectGroup7cleanupEi kind:function(thumb,size=0x30) addr:0x02128248
+_ZN4book15BookEffectGroup8setScaleEN3dss5Fix32E kind:function(thumb,size=0x4a) addr:0x02128278
+_ZN4book15BookEffectGroup14setDisplayTypeEii kind:function(thumb,size=0x68) addr:0x021282c4
+_ZN4book15BookEffectGroup11setPositionERN3dss12Fix32Vector3E kind:function(thumb,size=0x2a) addr:0x0212832c
+_ZN4book15BookEffectGroup8isEnableEv kind:function(thumb,size=0x12) addr:0x02128358
+_ZN4book15BookEffectGroup5isEndEv kind:function(thumb,size=0x4a) addr:0x0212836c
+_ZN4book15BookMonsterDrawC1Ev kind:function(thumb,size=0x44) addr:0x021283b8
+_ZN4book15BookMonsterDrawD1Ev kind:function(thumb,size=0x34) addr:0x021283fc
+_ZN4book15BookMonsterDraw12getSingletonEv kind:function(thumb,size=0x3c) addr:0x02128430
+_ZN4book15BookMonsterDraw10initializeEv kind:function(thumb,size=0xc) addr:0x0212846c
+_ZN4book15BookMonsterDraw9terminateEv kind:function(thumb,size=0x30) addr:0x02128478
+_ZN4book15BookMonsterDraw5setupEi kind:function(thumb,size=0x194) addr:0x021284a8
+_ZN4book9setCameraEPN3dss6CameraE kind:function(arm,size=0x10) addr:0x0212863c local
+_ZN4book15BookMonsterDraw7cleanupEv kind:function(thumb,size=0x58) addr:0x0212864c
+_ZN4book15BookMonsterDraw7executeEv kind:function(thumb,size=0x7c) addr:0x021286a4
+_ZN4book15BookMonsterDraw4drawEv kind:function(thumb,size=0x54) addr:0x02128720
+_ZN4book15BookMonsterDraw14startAnimationEi kind:function(thumb,size=0x8c) addr:0x02128774
+_ZN4book15BookMonsterDraw10isActivateEv kind:function(thumb,size=0x28) addr:0x02128800
+_ZN4book15BookMonsterDraw14setPaletteAnimEi kind:function(thumb,size=0x2) addr:0x02128828
+_ZN4book15BookMonsterDraw11setupEffectEi kind:function(thumb,size=0x2ac) addr:0x0212882c
+_ZN4book15BookMonsterDraw13cleanupEffectEv kind:function(thumb,size=0x48) addr:0x02128ad8
+_ZN4book15BookMonsterDraw19getMonsterAnimIndexEttt kind:function(thumb,size=0xcc) addr:0x02128b20
+_ZN4book10BookSystemC1Ev kind:function(thumb,size=0x18) addr:0x02128bec
+_ZN4book10BookSystemD1Ev kind:function(thumb,size=0x14) addr:0x02128c04
+_ZN4book10BookSystem12getSingletonEv kind:function(thumb,size=0x3c) addr:0x02128c18
+_ZN4book10BookSystem10initializeEv kind:function(thumb,size=0xbc) addr:0x02128c54
+_ZN4book10BookSystem9terminateEv kind:function(thumb,size=0x30) addr:0x02128d10
+_ZN4book10BookSystem7executeEv kind:function(thumb,size=0x18) addr:0x02128d40
+_ZN4book10BookSystem4drawEv kind:function(thumb,size=0x38) addr:0x02128d58
+_ZN31MaterielMenu_PICTUREBOOK_DETAIL9menuSetupEv kind:function(thumb,size=0x78) addr:0x02128d90
+_ZN31MaterielMenu_PICTUREBOOK_DETAIL11menuExecuteEv kind:function(thumb,size=0xc) addr:0x02128e08
+_ZN31MaterielMenu_PICTUREBOOK_DETAIL8menuDrawEv kind:function(thumb,size=0x1c) addr:0x02128e14
+_ZN31MaterielMenu_PICTUREBOOK_DETAIL10menuUpdateEv kind:function(thumb,size=0xbc) addr:0x02128e30
+_ZN31MaterielMenu_PICTUREBOOK_DETAIL9checkPageEb kind:function(thumb,size=0x7c) addr:0x02128eec
+_ZN29MaterielMenu_PICTUREBOOK_ROOT9menuSetupEv kind:function(thumb,size=0xcc) addr:0x02128f68
+_ZN29MaterielMenu_PICTUREBOOK_ROOT11menuExecuteEv kind:function(thumb,size=0x24) addr:0x02129034
+_ZN29MaterielMenu_PICTUREBOOK_ROOT8menuDrawEv kind:function(thumb,size=0x28) addr:0x02129058
+_ZN29MaterielMenu_PICTUREBOOK_ROOT10menuUpdateEv kind:function(thumb,size=0x1ec) addr:0x02129080
+_ZN29MaterielMenu_PICTUREBOOK_ROOT9checkPageEv kind:function(thumb,size=0x2c) addr:0x0212926c
+s_distanceF kind:data(any) addr:0x02129298 local
+__sinit_BookCamera.cpp kind:function(thumb,size=0x54) addr:0x0212929c local
+.p__sinit_BookCamera.cpp kind:data(word) addr:0x021292f0 local
+@757 kind:data(any) addr:0x02129300 local
+@756 kind:data(any) addr:0x02129302 local
+@758 kind:data(any) addr:0x02129304 local
+s_target kind:data(any) addr:0x02129308 local
+@2845 kind:data(any) addr:0x02129314 local
+@1264 kind:data(any) addr:0x02129330 local
+_ZTV31MaterielMenu_PICTUREBOOK_DETAIL kind:data(any) addr:0x02129350
+_ZTV29MaterielMenu_PICTUREBOOK_ROOT kind:data(any) addr:0x0212936c
+s_offset kind:bss addr:0x021293a0 local
+_ZGVm_singleton$772 kind:bss addr:0x021293a4 local
+s_distance kind:bss addr:0x021293a8 local
+s_angle kind:bss addr:0x021293ac local
+@775 kind:bss addr:0x021293b4 local
+m_singleton$772 kind:bss addr:0x021293c0 local
+_ZGVbookSystem$2270 kind:bss addr:0x02129430 local
+@2273 kind:bss addr:0x02129434 local
+bookSystem$2270 kind:bss addr:0x02129440 local
+_ZGVbookSystem$1205 kind:bss addr:0x0212b024 local
+@1208 kind:bss addr:0x0212b028 local
+bookSystem$1205 kind:bss addr:0x0212b034 local

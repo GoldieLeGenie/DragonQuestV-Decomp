@@ -1,0 +1,301 @@
+    .text       start:0x02128060 end:0x0213c874 kind:code align:32
+    .rodata     start:0x0213c874 end:0x0213c8f8 kind:rodata align:4
+    .init       start:0x0213c8f8 end:0x0213ce1c kind:code align:4
+    .ctor       start:0x0213ce1c end:0x0213ce3c kind:rodata align:4
+    .data       start:0x0213ce40 end:0x0213d760 kind:data align:32
+    .bss        start:0x0213d760 end:0x0216ec00 kind:bss align:32
+
+src/ov000/leveldata/CameraFile.cpp:
+    complete
+    .text       start:0x02128060 end:0x021280b0
+    .data       start:0x0213ce40 end:0x0213ce6c
+    .bss        start:0x0213d760 end:0x0213db7c
+
+src/ov000/btl/CameraControl.cpp:
+    complete
+    .text       start:0x021280b0 end:0x021285e0
+    .data       start:0x0213ce6c end:0x0213ce88
+    .bss        start:0x0213db7c end:0x0213db84
+
+src/ov000/btl/BattleActorSound.cpp:
+    complete
+    .text       start:0x021285e0 end:0x02128ae8
+
+src/ov000/btl/BeforeMessageTask2.cpp:
+    complete
+    .text       start:0x02128ae8 end:0x02128b58
+    .data       start:0x0213ce88 end:0x0213cea0
+    .bss        start:0x0213db84 end:0x0213db88
+
+src/ov000/btl/ExecActionTask2.cpp:
+    complete
+    .text       start:0x02128b58 end:0x02128bac
+    .data       start:0x0213cea0 end:0x0213ced0
+    .bss        start:0x0213db88 end:0x0213db8c
+
+src/ov000/btl/ExecMessageTask2.cpp:
+    complete
+    .text       start:0x02128bac end:0x02128ddc
+    .data       start:0x0213ced0 end:0x0213cee8
+    .bss        start:0x0213db8c end:0x0213db90
+
+src/ov000/btl/ResultMessageTask2.cpp:
+    complete
+    .text       start:0x02128ddc end:0x02128e98
+    .data       start:0x0213cee8 end:0x0213cf00
+    .bss        start:0x0213db90 end:0x0213db94
+
+src/ov000/btl/SpecialMessageTask2.cpp:
+    complete
+    .text       start:0x02128e98 end:0x0212906c
+    .data       start:0x0213cf00 end:0x0213cf18
+    .bss        start:0x0213db94 end:0x0213db98
+
+src/ov000/btl/AfterMessageTask2.cpp:
+    complete
+    .text       start:0x0212906c end:0x0212929c
+    .data       start:0x0213cf18 end:0x0213cf30
+    .bss        start:0x0213db98 end:0x0213db9c
+
+src/ov000/status/MonsterStatus.cpp:
+    complete
+    .text       start:0x0212929c end:0x02129dc8
+    .data       start:0x0213cf30 end:0x0213cf50
+    .bss        start:0x0213db9c end:0x0213dba0
+
+src/ov000/status/MonsterParty.cpp:
+    complete
+    .text       start:0x02129dc8 end:0x0212a51c
+    .rodata     start:0x0213c874 end:0x0213c894
+    .data       start:0x0213cf50 end:0x0213cf74
+
+src/ov000/status/MonsterPartyWithDraw.cpp:
+    complete
+    .text       start:0x0212a51c end:0x0212a784
+    .init       start:0x0213c8f8 end:0x0213c928
+    .ctor       start:0x0213ce1c end:0x0213ce20
+    .data       start:0x0213cf74 end:0x0213cf88
+    .bss        start:0x0213dba0 end:0x02141984
+
+src/ov000/btl/BattleEffectManager.cpp:
+    complete
+    .text       start:0x0212a784 end:0x0212aaa0
+    .bss        start:0x02141984 end:0x02145a3c
+
+src/ov000/btl/BattleEffectStorage.cpp:
+    complete
+    .text       start:0x0212aaa0 end:0x0212ab44
+
+src/ov000/btl/UnkBattleMenuFace.cpp:
+    complete
+    .text       start:0x0212ab44 end:0x0212abc4
+    .bss        start:0x02145a3c end:0x02145aa8
+
+src/ov000/btl/BattleMonsterMask.cpp:
+    complete
+    .text       start:0x0212abc4 end:0x0212b0a0
+    .init       start:0x0213c928 end:0x0213c93c
+    .ctor       start:0x0213ce20 end:0x0213ce24
+    .data       start:0x0213cf88 end:0x0213cfb4
+    .bss        start:0x02145aa8 end:0x02145c2c
+
+src/ov000/btl/BattleSystem.cpp:
+    complete
+    .text       start:0x0212b0a0 end:0x0212b27c
+    .data       start:0x0213cfb4 end:0x0213cfbc
+    .bss        start:0x02145c2c end:0x02146244
+
+src/ov000/btl/BattleCamera.cpp:
+    complete
+    .text       start:0x0212b27c end:0x0212b788
+    .init       start:0x0213c93c end:0x0213c970
+    .ctor       start:0x0213ce24 end:0x0213ce28
+    .data       start:0x0213cfbc end:0x0213cfc8
+    .bss        start:0x02146244 end:0x02146f08
+
+src/ov000/btl/BattleCameraHoming.cpp:
+    complete
+    .text       start:0x0212b788 end:0x0212b8d8
+
+src/ov000/btl/BattleStage.cpp:
+    complete
+    .text       start:0x0212b8d8 end:0x0212bae4
+    .data       start:0x0213cfc8 end:0x0213cfe4
+    .bss        start:0x02146f08 end:0x02147818
+
+src/ov000/ov000_entry.cpp:
+    complete
+    .text       start:0x0212bae4 end:0x0212bae8
+
+src/ov000/btl/BattleEffectGroup.cpp:
+    complete
+    .text       start:0x0212bae8 end:0x0212bd98
+
+src/ov000/btl/BattleEffectUnit.cpp:
+    complete
+    .text       start:0x0212bd98 end:0x0212ccec
+    .data       start:0x0213cfe4 end:0x0213d000
+    .bss        start:0x02147818 end:0x02147820
+
+src/ov000/btl/BattleRoot.cpp:
+    complete
+    .text       start:0x0212ccec end:0x0212d6a4
+    .init       start:0x0213c970 end:0x0213c9ac
+    .ctor       start:0x0213ce28 end:0x0213ce2c
+    .bss        start:0x02147820 end:0x02148598
+
+src/ov000/btl/BattleRound.cpp:
+    complete
+    .text       start:0x0212d6a4 end:0x0212df04
+    .data       start:0x0213d000 end:0x0213d010
+    .bss        start:0x02148598 end:0x0214859c
+
+src/ov000/btl/BattleTask.cpp:
+    complete
+    .text       start:0x0212df04 end:0x0212eb00
+    .data       start:0x0213d010 end:0x0213d1c0
+    .bss        start:0x0214859c end:0x021485ac
+
+src/ov000/btl/BattleTurn.cpp:
+    complete
+    .text       start:0x0212eb00 end:0x0212ebe0
+
+src/ov000/btl/BattleSecondCheck.cpp:
+    complete
+    .text       start:0x0212ebe0 end:0x0212fadc
+
+src/ov000/btl/BattleSelectTarget.cpp:
+    complete
+    .text       start:0x0212fadc end:0x0213173c
+    .rodata     start:0x0213c894 end:0x0213c8c8
+    .bss        start:0x021485ac end:0x021485cc
+
+src/ov000/btl/BattleSelectTargetParam.cpp:
+    complete
+    .text       start:0x0213173c end:0x021318d0
+
+src/ov000/btl/BattleActor.cpp:
+    complete
+    .text       start:0x021318d0 end:0x02132524
+    .init       start:0x0213c9ac end:0x0213c9cc
+    .ctor       start:0x0213ce2c end:0x0213ce30
+    .bss        start:0x021485cc end:0x02153c14
+
+src/ov000/btl/BattleActorAnimation.cpp:
+    complete
+    .text       start:0x02132524 end:0x02133184
+    .data       start:0x0213d1c0 end:0x0213d1c8
+
+src/ov000/btl/BattleActorEffect.cpp:
+    complete
+    .text       start:0x02133184 end:0x02133d38
+    .bss        start:0x02153c14 end:0x02153c1c
+
+src/ov000/btl/BattleActorMacro.cpp:
+    complete
+    .text       start:0x02133d38 end:0x02133f1c
+
+src/ov000/btl/BattleActorManager.cpp:
+    complete
+    .text       start:0x02133f1c end:0x02135c74
+    .rodata     start:0x0213c8c8 end:0x0213c8f8
+    .bss        start:0x02153c1c end:0x0216e42c
+
+src/ov000/btl/AutoActionParam.cpp:
+    complete
+    .text       start:0x02135c74 end:0x02136574
+    .init       start:0x0213c9cc end:0x0213ca00
+    .ctor       start:0x0213ce30 end:0x0213ce34
+    .data       start:0x0213d1c8 end:0x0213d1e8
+    .bss        start:0x0216e42c end:0x0216e6c0
+
+src/ov000/btl/AutoAction.cpp:
+    complete
+    .text       start:0x02136574 end:0x021375ac
+    .data       start:0x0213d1e8 end:0x0213d1ec
+
+src/ov000/btl/BattleExecVictory.cpp:
+    complete
+    .text       start:0x021375ac end:0x02138658
+    .init       start:0x0213ca00 end:0x0213cdd4
+    .ctor       start:0x0213ce34 end:0x0213ce38
+    .data       start:0x0213d1ec end:0x0213d4b0
+    .bss        start:0x0216e6c0 end:0x0216eb58
+
+src/ov000/btl/BattleMessage.cpp:
+    complete
+    .text       start:0x02138658 end:0x021388d0
+
+src/ov000/btl/BattleAutoFeed.cpp:
+    complete
+    .text       start:0x021388d0 end:0x02138d64
+    .data       start:0x0213d4b0 end:0x0213d4b4
+    .bss        start:0x0216eb58 end:0x0216eb74
+
+src/ov000/btl/MonsterAnimInfo.cpp:
+    complete
+    .text       start:0x02138d64 end:0x02138f08
+
+src/ov000/btl/BattleMonster.cpp:
+    complete
+    .text       start:0x02138f08 end:0x02139424
+    .data       start:0x0213d4b4 end:0x0213d4dc
+
+src/ov000/btl/BattleArray.cpp:
+    complete
+    .text       start:0x02139424 end:0x02139cac
+
+src/ov000/leveldata/LevelDataBattle.cpp:
+    complete
+    .text       start:0x02139cac end:0x02139cc8
+
+src/ov000/btl/BattleActorExec2.cpp:
+    complete
+    .text       start:0x02139cc8 end:0x02139f78
+    .data       start:0x0213d4dc end:0x0213d530
+
+src/ov000/btl/BattleRoundEnd.cpp:
+    complete
+    .text       start:0x02139f78 end:0x0213b28c
+    .data       start:0x0213d530 end:0x0213d670
+
+src/ov000/btl/BattleRoundStart.cpp:
+    complete
+    .text       start:0x0213b28c end:0x0213b414
+    .init       start:0x0213cdd4 end:0x0213ce1c
+    .ctor       start:0x0213ce38 end:0x0213ce3c
+    .data       start:0x0213d670 end:0x0213d698
+    .bss        start:0x0216eb74 end:0x0216ebd8
+
+src/ov000/btl/AfterActionTask2.cpp:
+    complete
+    .text       start:0x0213b414 end:0x0213b62c
+    .data       start:0x0213d698 end:0x0213d6b0
+    .bss        start:0x0216ebd8 end:0x0216ebdc
+
+src/ov000/btl/AttackAutoActionParam.cpp:
+    complete
+    .text       start:0x0213b62c end:0x0213bb64
+    .data       start:0x0213d6b0 end:0x0213d6d8
+    .bss        start:0x0216ebdc end:0x0216ebe0
+
+src/ov000/btl/RecoveryAutoActionParam.cpp:
+    complete
+    .text       start:0x0213bb64 end:0x0213c168
+    .data       start:0x0213d6d8 end:0x0213d6f8
+
+src/ov000/btl/AssistAutoActionParam.cpp:
+    complete
+    .text       start:0x0213c168 end:0x0213c474
+    .data       start:0x0213d6f8 end:0x0213d718
+
+src/ov000/btl/DefenceAutoActionParam.cpp:
+    complete
+    .text       start:0x0213c474 end:0x0213c7c0
+    .data       start:0x0213d718 end:0x0213d738
+
+src/ov000/btl/EndTask.cpp:
+    complete
+    .text       start:0x0213c7c0 end:0x0213c874
+    .data       start:0x0213d738 end:0x0213d750
+    .bss        start:0x0216ebe0 end:0x0216ebe4

@@ -1,0 +1,35 @@
+    .text       start:0x02186980 end:0x021878e4 kind:code align:32
+    .ctor       start:0x021878e4 end:0x021878e4 kind:rodata align:4
+    .data       start:0x02187900 end:0x021879c0 kind:data align:32
+    .bss        start:0x021879c0 end:0x02187ae0 kind:bss align:32
+
+src/ov033/materielmenu/luida/MaterielMenu_LUIDA_STATUS.cpp:
+    complete
+    .text       start:0x02186980 end:0x02186b78
+    .data       start:0x02187900 end:0x0218791c
+
+src/ov033/materielmenu/luida/MaterielMenu_LUIDA_ADD_PLAYER.cpp:
+    complete
+    .text       start:0x02186b78 end:0x02186fe0
+    .data       start:0x0218791c end:0x02187938
+
+src/ov033/materielmenu/luida/MaterielMenu_LUIDA_LEAVE_PLAYER.cpp:
+    complete
+    .text       start:0x02186fe0 end:0x02187188
+    .data       start:0x02187938 end:0x02187954
+
+src/ov033/materielmenu/luida/MaterielMenu_LUIDA_ROOT.cpp:
+    complete
+    .text       start:0x02187188 end:0x021874fc
+    .data       start:0x02187954 end:0x02187970
+
+src/ov033/materielmenu/luida/MaterielMenu_LUIDA_LEAVE_MESSAGE.cpp:
+    complete
+    .text       start:0x021874fc end:0x02187894
+    .data       start:0x02187970 end:0x0218798c
+
+src/ov033/leveldata/LuidaMessage.cpp:
+    complete
+    .text       start:0x02187894 end:0x021878e4
+    .data       start:0x0218798c end:0x021879b8
+    .bss        start:0x021879c0 end:0x02187acc

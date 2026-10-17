@@ -1,0 +1,17 @@
+_ZN23MaterielMenu_SlimeTouch9menuSetupEv kind:function(thumb,size=0x18) addr:0x02186980
+_ZN23MaterielMenu_SlimeTouch11menuExecuteEv kind:function(thumb,size=0xc) addr:0x02186998
+_ZN23MaterielMenu_SlimeTouch8menuDrawEv kind:function(thumb,size=0x26) addr:0x021869a4
+_ZN23MaterielMenu_SlimeTouch10menuUpdateEv kind:function(thumb,size=0x14) addr:0x021869cc
+_ZN23MaterielMenu_SlimeTouch13messageUpdateEv kind:function(thumb,size=0xb0) addr:0x021869e0
+_ZN23MaterielMenu_SlimeTouch13commandUpdateEv kind:function(thumb,size=0x5c) addr:0x02186a90
+_ZN23MaterielMenu_SlimeTouch12selectUpdateEv kind:function(thumb,size=0x80) addr:0x02186aec
+_ZN23MaterielMenu_SlimeTouch8okUpdateEv kind:function(thumb,size=0x80) addr:0x02186b6c
+_ZN24MaterielMenu_TouchResult9menuSetupEv kind:function(thumb,size=0x14) addr:0x02186bec
+_ZN24MaterielMenu_TouchResult11menuExecuteEv kind:function(thumb,size=0x2) addr:0x02186c00
+_ZN24MaterielMenu_TouchResult8menuDrawEv kind:function(thumb,size=0x2) addr:0x02186c04
+_ZN24MaterielMenu_TouchResult10menuUpdateEv kind:function(thumb,size=0x14) addr:0x02186c08
+_ZN24MaterielMenu_TouchResult13commandUpdateEv kind:function(thumb,size=0xa0) addr:0x02186c1c
+_ZN24MaterielMenu_TouchResult13messageUpdateEv kind:function(thumb,size=0x180) addr:0x02186cbc
+_ZTV23MaterielMenu_SlimeTouch kind:data(any) addr:0x02186e40
+_ZTV24MaterielMenu_TouchResult kind:data(any) addr:0x02186e5c
+data_ov024_02186e78 kind:data(any) addr:0x02186e78

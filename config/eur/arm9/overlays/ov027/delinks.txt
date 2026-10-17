@@ -1,0 +1,127 @@
+    .text       start:0x02186980 end:0x0218a558 kind:code align:32
+    .ctor       start:0x0218a558 end:0x0218a558 kind:rodata align:4
+    .data       start:0x0218a560 end:0x0218a800 kind:data align:32
+    .bss        start:0x0218a800 end:0x0218ad40 kind:bss align:32
+
+src/ov027/materielmenu/shop/MaterielMenu_SHOP_MANAGER.cpp:
+    complete
+    .text       start:0x02187958 end:0x02187e4c
+    .bss        start:0x0218a800 end:0x0218a834
+
+src/ov027/materielmenu/shop/MaterielMenu_SHOP_MESSAGE_MANAGER.cpp:
+    complete
+    .text       start:0x02187e4c end:0x021881fc
+    .bss        start:0x0218a834 end:0x0218a838
+
+src/ov027/leveldata/MedalPrize.cpp:
+    complete
+    .text       start:0x0218a400 end:0x0218a464
+    .data       start:0x0218a73c end:0x0218a768
+    .bss        start:0x0218a838 end:0x0218a870
+
+src/ov027/leveldata/MedalMessage.cpp:
+    complete
+    .text       start:0x0218a464 end:0x0218a4b4
+    .data       start:0x0218a768 end:0x0218a794
+    .bss        start:0x0218a870 end:0x0218a934
+
+src/ov027/leveldata/ShopMessage.cpp:
+    complete
+    .text       start:0x0218a4b4 end:0x0218a508
+    .data       start:0x0218a794 end:0x0218a7c0
+    .bss        start:0x0218a934 end:0x0218ac5c
+
+src/ov027/leveldata/GiftMessage.cpp:
+    complete
+    .text       start:0x0218a508 end:0x0218a558
+    .data       start:0x0218a7c0 end:0x0218a7ec
+    .bss        start:0x0218ac5c end:0x0218ad30
+
+src/ov027/materielmenu/shop/MaterielMenu_SHOP_BUYMENU.cpp:
+    complete
+    .text       start:0x02186980 end:0x02186c78
+    .data       start:0x0218a560 end:0x0218a57c
+
+src/ov027/materielmenu/shop/MaterielMenu_SHOP_ROOT.cpp:
+    complete
+    .text       start:0x021881fc end:0x02188444
+    .data       start:0x0218a5b4 end:0x0218a5d0
+
+src/ov027/materielmenu/shop/MaterielMenu_SHOP_EQUIPCHECK.cpp:
+    complete
+    .text       start:0x02186c78 end:0x021872dc
+    .data       start:0x0218a57c end:0x0218a598
+
+src/ov027/materielmenu/shop/MaterielMenu_SHOP_WHOSE.cpp:
+    complete
+    .text       start:0x021872dc end:0x02187958
+    .data       start:0x0218a598 end:0x0218a5b4
+
+src/ov027/materielmenu/shop/UnkMaterielMenu_0218a5d0.cpp:
+    complete
+    .text       start:0x02188444 end:0x02188654
+    .data       start:0x0218a5d0 end:0x0218a5ec
+
+src/ov027/materielmenu/shop/UnkMaterielMenu_0218a5ec.cpp:
+    complete
+    .text       start:0x02188654 end:0x02188824
+    .data       start:0x0218a5ec end:0x0218a608
+
+src/ov027/materielmenu/shop/MaterielMenu_SHOP_VALUE.cpp:
+    complete
+    .text       start:0x02188824 end:0x02188e08
+    .data       start:0x0218a608 end:0x0218a624
+
+src/ov027/materielmenu/shop/UnkMaterielMenu_0218a624.cpp:
+    complete
+    .text       start:0x02188e08 end:0x02188fd0
+    .data       start:0x0218a624 end:0x0218a640
+
+src/ov027/materielmenu/shop/MaterielMenu_SHOP_WHO_SELL.cpp:
+    complete
+    .text       start:0x02188fd0 end:0x021891ac
+    .data       start:0x0218a640 end:0x0218a65c
+
+src/ov027/materielmenu/changegift/MaterielMenu_CHANGEGIFT_EQUIPCHECK.cpp:
+    complete
+    .text       start:0x021891ac end:0x0218966c
+    .data       start:0x0218a65c end:0x0218a678
+
+src/ov027/materielmenu/changegift/MaterielMenu_CHANGEGIFT_ROOT.cpp:
+    complete
+    .text       start:0x0218966c end:0x02189824
+    .data       start:0x0218a678 end:0x0218a694
+
+src/ov027/materielmenu/changegift/MaterielMenu_CHANGEGIFT_SELECTCHARA.cpp:
+    complete
+    .text       start:0x02189824 end:0x02189938
+    .data       start:0x0218a694 end:0x0218a6b0
+
+src/ov027/materielmenu/changegift/MaterielMenu_CHANGEGIFT_SELECTGIFT.cpp:
+    complete
+    .text       start:0x02189938 end:0x02189b10
+    .data       start:0x0218a6b0 end:0x0218a6cc
+
+src/ov027/materielmenu/medalking/MaterielMenu_MEDALKING_EQUIP.cpp:
+    complete
+    .text       start:0x02189b10 end:0x02189d74
+    .data       start:0x0218a6cc end:0x0218a6e8
+
+src/ov027/materielmenu/medalking/MaterielMenuMedalKingManager.cpp:
+    complete
+    .text       start:0x02189d74 end:0x02189ed8
+
+src/ov027/materielmenu/medalking/MaterielMenu_MEDALKING_ROOT.cpp:
+    complete
+    .text       start:0x02189ed8 end:0x02189fc0
+    .data       start:0x0218a6e8 end:0x0218a704
+
+src/ov027/materielmenu/medalking/MaterielMenu_MEDALKING_SELECTCHARA.cpp:
+    complete
+    .text       start:0x02189fc0 end:0x0218a27c
+    .data       start:0x0218a704 end:0x0218a720
+
+src/ov027/materielmenu/medalking/MaterielMenu_MEDALKING_SELECTITEM.cpp:
+    complete
+    .text       start:0x0218a27c end:0x0218a400
+    .data       start:0x0218a720 end:0x0218a73c

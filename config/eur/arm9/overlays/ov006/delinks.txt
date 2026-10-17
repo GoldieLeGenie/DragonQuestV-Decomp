@@ -1,0 +1,27 @@
+    .text       start:0x02128060 end:0x0212b158 kind:code align:32
+    .rodata     start:0x0212b158 end:0x0212b160 kind:rodata align:4
+    .ctor       start:0x0212b160 end:0x0212b160 kind:rodata align:4
+    .data       start:0x0212b180 end:0x0212b780 kind:data align:32
+    .bss        start:0x0212b780 end:0x0212e7e0 kind:bss align:32
+
+src/ov006/ov006_entry.cpp:
+    complete
+    .text       start:0x02128060 end:0x02128064
+
+src/ov006/mp/UnkWH.cpp:
+    complete
+    .text       start:0x02128064 end:0x02129990
+    .data       start:0x0212b180 end:0x0212b504
+    .bss        start:0x0212b780 end:0x0212e0c0
+
+src/ov006/mp/UnkMPExchangeState.cpp:
+    complete
+    .text       start:0x02129990 end:0x0212a1b4
+    .data       start:0x0212b504 end:0x0212b564
+
+src/ov006/mp/UnkMPExchange.cpp:
+    complete
+    .text       start:0x0212a1b4 end:0x0212b158
+    .rodata     start:0x0212b158 end:0x0212b160
+    .data       start:0x0212b564 end:0x0212b780
+    .bss        start:0x0212e0c0 end:0x0212e7e0

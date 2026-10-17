@@ -1,0 +1,34 @@
+    .text       start:0x02186980 end:0x0218b4e0 kind:code align:32
+    .ctor       start:0x0218b4e0 end:0x0218b4e0 kind:rodata align:4
+    .data       start:0x0218b500 end:0x0218c1a0 kind:data align:32
+    .bss        start:0x0218c1a0 end:0x0218c1a0 kind:bss align:32
+
+src/ov028/materielmenu/sugoroku/MaterielMenu_SUGOROKU_ROOT.cpp:
+    complete
+    .text       start:0x02186980 end:0x02186ac0
+    .data       start:0x0218b500 end:0x0218b51c
+
+src/ov028/materielmenu/sugoroku/MaterielMenu_SUGOROKU_STATUS.cpp:
+    complete
+    .text       start:0x02186ac0 end:0x02186c1c
+    .data       start:0x0218b51c end:0x0218b538
+
+src/ov028/materielmenu/sugoroku/MaterielMenu_SUGOROKU_GETITEM.cpp:
+    complete
+    .text       start:0x02186c1c end:0x02186fb8
+    .data       start:0x0218b538 end:0x0218b554
+
+src/ov028/sugoroku/TownSugorokuPanelAction.cpp:
+    complete
+    .text       start:0x02186fb8 end:0x02188d8c
+    .data       start:0x0218b554 end:0x0218bb84
+
+src/ov028/sugoroku/TownSugorokuPanelChanceCard.cpp:
+    complete
+    .text       start:0x02188d8c end:0x02189bb0
+    .data       start:0x0218bb84 end:0x0218bf14
+
+src/ov028/sugoroku/TownSugorokuCommand.cpp:
+    complete
+    .text       start:0x02189bb0 end:0x0218b4e0
+    .data       start:0x0218bf14 end:0x0218c184

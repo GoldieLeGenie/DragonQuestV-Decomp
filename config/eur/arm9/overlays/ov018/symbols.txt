@@ -1,0 +1,472 @@
+ov018_entry kind:function(thumb,size=0x2) addr:0x0216f200
+_Z16unkfunc_0216f204iiii kind:function(thumb,size=0x38) addr:0x0216f204
+_Z16unkfunc_0216f23ciiiPN6status14HaveStatusInfoE kind:function(thumb,size=0x8c) addr:0x0216f23c
+_Z16unkfunc_0216f2c8PN6status14HaveStatusInfoEii kind:function(thumb,size=0x22) addr:0x0216f2c8
+_Z16unkfunc_0216f2eci kind:function(thumb,size=0x8c) addr:0x0216f2ec
+_Z16unkfunc_0216f378iiii kind:function(thumb,size=0x138) addr:0x0216f378
+_Z16unkfunc_0216f4b0iii kind:function(thumb,size=0x28) addr:0x0216f4b0
+_Z16unkfunc_0216f4d8iiii kind:function(thumb,size=0x48) addr:0x0216f4d8
+_Z16unkfunc_0216f520iiii kind:function(thumb,size=0x50) addr:0x0216f520
+_Z16unkfunc_0216f570iii kind:function(thumb,size=0x34) addr:0x0216f570
+_Z16unkfunc_0216f5a4PN6status14HaveStatusInfoEi kind:function(thumb,size=0xf0) addr:0x0216f5a4
+_Z16unkfunc_0216f694iiPN6status14HaveStatusInfoE kind:function(thumb,size=0xf8) addr:0x0216f694
+_Z16unkfunc_0216f78cPiii kind:function(thumb,size=0xa0) addr:0x0216f78c
+_Z16unkfunc_0216f82cPN6status14HaveStatusInfoEii kind:function(thumb,size=0xdc) addr:0x0216f82c
+_Z16unkfunc_0216f908v kind:function(thumb,size=0x14) addr:0x0216f908
+_Z16unkfunc_0216f91cPN6status14HaveStatusInfoEiiii kind:function(thumb,size=0xd4) addr:0x0216f91c
+_Z16unkfunc_0216f9f0iiii kind:function(thumb,size=0x84) addr:0x0216f9f0
+_Z16unkfunc_0216fa74iiii kind:function(thumb,size=0x78) addr:0x0216fa74
+_Z16unkfunc_0216faecii kind:function(thumb,size=0x4c) addr:0x0216faec
+_Z16unkfunc_0216fb38ii kind:function(thumb,size=0x5c) addr:0x0216fb38
+_Z16unkfunc_0216fb94iiiiiiii kind:function(thumb,size=0x124) addr:0x0216fb94
+_Z16unkfunc_0216fcb8stttttttt kind:function(thumb,size=0xb4) addr:0x0216fcb8
+_Z16unkfunc_0216fd6ciii kind:function(thumb,size=0x1c) addr:0x0216fd6c
+_Z16unkfunc_0216fd88PN6status12BaseHaveItemEii kind:function(thumb,size=0xc0) addr:0x0216fd88
+_Z16unkfunc_0216fe48PN6status10HaveActionEii kind:function(thumb,size=0x94) addr:0x0216fe48
+_Z16unkfunc_0216fedciiPN6status14HaveStatusInfoEi kind:function(thumb,size=0x4c) addr:0x0216fedc
+_Z30BattleDrawParts_getStatusColorRN6status14HaveStatusInfoE kind:function(thumb,size=0x28) addr:0x0216ff28
+_Z16unkfunc_0216ff50ii kind:function(thumb,size=0x1e) addr:0x0216ff50
+_Z16unkfunc_0216ff70v kind:function(thumb,size=0x10) addr:0x0216ff70
+_Z16unkfunc_0216ff80i kind:function(thumb,size=0x6e) addr:0x0216ff80
+_Z16unkfunc_0216fff0v kind:function(thumb,size=0x8) addr:0x0216fff0
+_Z16unkfunc_0216fff8Piii kind:function(thumb,size=0x18) addr:0x0216fff8
+_Z16unkfunc_02170010Piii kind:function(thumb,size=0x68) addr:0x02170010
+_Z16unkfunc_02170078v kind:function(thumb,size=0xc) addr:0x02170078
+_Z16unkfunc_02170084v kind:function(thumb,size=0x8) addr:0x02170084
+_Z16unkfunc_0217008ci kind:function(thumb,size=0x8) addr:0x0217008c
+_Z16unkfunc_02170094Piii kind:function(thumb,size=0xb4) addr:0x02170094
+_Z16unkfunc_02170148v kind:function(thumb,size=0x8) addr:0x02170148
+_Z16unkfunc_02170150v kind:function(thumb,size=0xc) addr:0x02170150
+_Z16unkfunc_0217015cv kind:function(thumb,size=0xb4) addr:0x0217015c
+_Z16unkfunc_02170210v kind:function(thumb,size=0x114) addr:0x02170210
+_Z16unkfunc_02170324v kind:function(thumb,size=0x40) addr:0x02170324
+_Z16unkfunc_02170364v kind:function(thumb,size=0x78) addr:0x02170364
+_Z16unkfunc_021703dcPiii kind:function(thumb,size=0x5e) addr:0x021703dc
+_Z16unkfunc_0217043cPiiS_i kind:function(thumb,size=0x144) addr:0x0217043c
+_Z16unkfunc_02170580v kind:function(thumb,size=0x40) addr:0x02170580
+_Z16unkfunc_021705c0iii kind:function(thumb,size=0x26c) addr:0x021705c0
+_Z16unkfunc_0217082ci kind:function(thumb,size=0x34) addr:0x0217082c
+_Z16unkfunc_02170860v kind:function(thumb,size=0x34) addr:0x02170860
+_Z16unkfunc_02170894Piii kind:function(thumb,size=0xbc) addr:0x02170894
+_Z16unkfunc_02170950v kind:function(thumb,size=0x10) addr:0x02170950
+_Z16unkfunc_02170960v kind:function(thumb,size=0x9c) addr:0x02170960
+_Z16unkfunc_021709fcv kind:function(thumb,size=0x34) addr:0x021709fc
+_Z16unkfunc_02170a30v kind:function(thumb,size=0x10) addr:0x02170a30
+_Z16unkfunc_02170a40v kind:function(thumb,size=0x10) addr:0x02170a40
+_Z16unkfunc_02170a50Pii kind:function(thumb,size=0x80) addr:0x02170a50
+_Z16unkfunc_02170ad0i kind:function(thumb,size=0x48) addr:0x02170ad0
+_Z16unkfunc_02170b18iii kind:function(thumb,size=0xb4) addr:0x02170b18
+_Z16unkfunc_02170bcci kind:function(thumb,size=0xac) addr:0x02170bcc
+_Z16unkfunc_02170c78Piii kind:function(thumb,size=0x94) addr:0x02170c78
+_ZN26BattleMenu_FRIEND_ENTRANCE9menuSetupEv kind:function(thumb,size=0x90) addr:0x02170d0c
+_ZN26BattleMenu_FRIEND_ENTRANCE11menuExecuteEv kind:function(thumb,size=0x2) addr:0x02170d9c
+_ZN26BattleMenu_FRIEND_ENTRANCE8menuDrawEv kind:function(thumb,size=0x2) addr:0x02170da0
+_ZN26BattleMenu_FRIEND_ENTRANCE10menuUpdateEv kind:function(thumb,size=0x14) addr:0x02170da4
+_ZN26BattleMenu_FRIEND_ENTRANCE13messageUpdateEv kind:function(thumb,size=0x29c) addr:0x02170db8
+_ZN26BattleMenu_FRIEND_ENTRANCE13commandUpdateEv kind:function(thumb,size=0x124) addr:0x02171054
+_ZN26BattleMenu_FRIEND_ENTRANCE16unkfunc_02171178Ev kind:function(thumb,size=0x74) addr:0x02171178
+_ZN26BattleMenu_FRIEND_ENTRANCE16unkfunc_021711ecEi kind:function(thumb,size=0x58) addr:0x021711ec
+_ZN26BattleMenu_FRIEND_ENTRANCE16unkfunc_02171244Ei kind:function(thumb,size=0x50) addr:0x02171244
+_ZN25UnkBattleMenuFriendSelect9menuSetupEv kind:function(thumb,size=0xd4) addr:0x02171294
+_ZN25UnkBattleMenuFriendSelect11menuExecuteEv kind:function(thumb,size=0x1a) addr:0x02171368
+_ZN25UnkBattleMenuFriendSelect8menuDrawEv kind:function(thumb,size=0x38) addr:0x02171384
+_ZN25UnkBattleMenuFriendSelect10menuUpdateEv kind:function(thumb,size=0x8) addr:0x021713bc
+_ZN25UnkBattleMenuFriendSelect16unkfunc_021713c4Ev kind:function(thumb,size=0x54) addr:0x021713c4
+_ZN21BattleMenuSub_HISTORY9menuSetupEv kind:function(thumb,size=0x36) addr:0x02171418
+_ZN21BattleMenuSub_HISTORY11menuExecuteEv kind:function(thumb,size=0x2) addr:0x02171450
+_ZN21BattleMenuSub_HISTORY8menuDrawEv kind:function(thumb,size=0x18) addr:0x02171454
+_ZN21BattleMenuSub_HISTORY10menuUpdateEv kind:function(thumb,size=0x80) addr:0x0217146c
+_ZN23BattleMenu_StadiumAbort9menuSetupEv kind:function(arm,size=0x4) addr:0x021714ec
+_ZN23BattleMenu_StadiumAbort11menuExecuteEv kind:function(arm,size=0x4) addr:0x021714f0
+_ZN23BattleMenu_StadiumAbort8menuDrawEv kind:function(arm,size=0x14) addr:0x021714f4
+_ZN23BattleMenu_StadiumAbort10menuUpdateEv kind:function(arm,size=0x4) addr:0x02171508
+_ZN21BattleMenu_ACTIONMENU9menuSetupEv kind:function(thumb,size=0x74) addr:0x0217150c
+_ZN21BattleMenu_ACTIONMENU11menuExecuteEv kind:function(thumb,size=0x36) addr:0x02171580
+_ZN21BattleMenu_ACTIONMENU8menuDrawEv kind:function(thumb,size=0x34) addr:0x021715b8
+_ZN21BattleMenu_ACTIONMENU10menuUpdateEv kind:function(thumb,size=0xf4) addr:0x021715ec
+_ZN21BattleMenu_ACTIONMENU15getUseActionNumERi kind:function(thumb,size=0x4c) addr:0x021716e0
+_ZN21BattleMenu_ACTIONMENU12selectAttackEv kind:function(thumb,size=0xa4) addr:0x0217172c
+_ZN21BattleMenu_ACTIONMENU11selectMagicEv kind:function(thumb,size=0x90) addr:0x021717d0
+_ZN21BattleMenu_ACTIONMENU10selectItemEv kind:function(thumb,size=0x68) addr:0x02171860
+_ZN21BattleMenu_ACTIONMENU13selectDefenceEv kind:function(thumb,size=0x22) addr:0x021718c8
+_ZN21BattleMenu_ACTIONMENU11isWeaponAllEi kind:function(thumb,size=0x34) addr:0x021718ec
+_ZN20BattleMenu_ARRAYMENU9menuSetupEv kind:function(thumb,size=0x6c) addr:0x02171920
+_ZN20BattleMenu_ARRAYMENU11menuExecuteEv kind:function(thumb,size=0x16) addr:0x0217198c
+_ZN20BattleMenu_ARRAYMENU8menuDrawEv kind:function(thumb,size=0x20) addr:0x021719a4
+_ZN20BattleMenu_ARRAYMENU12isChangelingEv kind:function(thumb,size=0x80) addr:0x021719c4
+_ZN20BattleMenu_ARRAYMENU10isBlockingEv kind:function(thumb,size=0x50) addr:0x02171a44
+_ZN20BattleMenu_ARRAYMENU10menuUpdateEv kind:function(thumb,size=0xb0) addr:0x02171a94
+_ZN20BattleMenu_ARRAYMENU12changeUpdateEv kind:function(thumb,size=0x7c) addr:0x02171b44
+_ZN20BattleMenu_ARRAY_ALL9menuSetupEv kind:function(thumb,size=0x84) addr:0x02171bc0
+_ZN20BattleMenu_ARRAY_ALL11menuExecuteEv kind:function(thumb,size=0x52) addr:0x02171c44
+_ZN20BattleMenu_ARRAY_ALL8menuDrawEv kind:function(thumb,size=0x28) addr:0x02171c98
+_ZN20BattleMenu_ARRAY_ALL16unkfunc_02171cc0Ev kind:function(thumb,size=0xdc) addr:0x02171cc0
+_ZN20BattleMenu_ARRAY_ALL16unkfunc_02171d9cEv kind:function(thumb,size=0x9a) addr:0x02171d9c
+_ZN20BattleMenu_ARRAY_ALL10menuUpdateEv kind:function(thumb,size=0x164) addr:0x02171e38
+_ZN20BattleMenu_ARRAY_ALL16unkfunc_02171f9cEv kind:function(thumb,size=0x1a) addr:0x02171f9c
+_ZN20BattleMenu_ARRAY_ALL16unkfunc_02171fb8Ev kind:function(thumb,size=0x34) addr:0x02171fb8
+_ZN20BattleMenu_ARRAY_ALL16unkfunc_02171fecEv kind:function(thumb,size=0x1a) addr:0x02171fec
+_ZN20BattleMenu_ARRAY_ALL16unkfunc_02172008Ei kind:function(thumb,size=0x2a) addr:0x02172008
+_ZN20BattleMenu_ARRAY_ALL16unkfunc_02172034Ev kind:function(thumb,size=0x38) addr:0x02172034
+_ZN20BattleMenu_ARRAY_ALL16unkfunc_0217206cEv kind:function(thumb,size=0x50) addr:0x0217206c
+_ZN20BattleMenu_ARRAY_ALL16unkfunc_021720bcEv kind:function(thumb,size=0x6e) addr:0x021720bc
+_ZN23BattleMenu_ARRAY_CHANGE9menuSetupEv kind:function(thumb,size=0x64) addr:0x0217212c
+_ZN23BattleMenu_ARRAY_CHANGE11menuExecuteEv kind:function(thumb,size=0xd6) addr:0x02172190
+_ZN23BattleMenu_ARRAY_CHANGE8menuDrawEv kind:function(thumb,size=0x14c) addr:0x02172268
+_ZN23BattleMenu_ARRAY_CHANGE10menuUpdateEv kind:function(thumb,size=0xa0) addr:0x021723b4
+_ZN23BattleMenu_ARRAY_CHANGE16unkfunc_02172454Ev kind:function(thumb,size=0x46) addr:0x02172454
+_ZN23BattleMenu_ARRAY_CHANGE16unkfunc_0217249cEv kind:function(thumb,size=0x190) addr:0x0217249c
+_ZN23BattleMenu_ARRAY_CHANGE16unkfunc_0217262cEv kind:function(thumb,size=0x44) addr:0x0217262c
+_ZN25UnkBattleMenuAttackCancel9menuSetupEv kind:function(thumb,size=0x10) addr:0x02172670
+_ZN25UnkBattleMenuAttackCancel11menuExecuteEv kind:function(thumb,size=0xc) addr:0x02172680
+_ZN25UnkBattleMenuAttackCancel8menuDrawEv kind:function(thumb,size=0xe) addr:0x0217268c
+_ZN25UnkBattleMenuAttackCancel10menuUpdateEv kind:function(thumb,size=0x54) addr:0x0217269c
+_ZN25UnkBattleMenuAttackCancel16unkfunc_021726f0Ev kind:function(thumb,size=0x4c) addr:0x021726f0
+_ZN15BattleMenu_ITEM9menuSetupEv kind:function(thumb,size=0xde) addr:0x0217273c
+_ZN15BattleMenu_ITEM11menuExecuteEv kind:function(thumb,size=0x94) addr:0x0217281c
+_ZN15BattleMenu_ITEM8menuDrawEv kind:function(thumb,size=0x88) addr:0x021728b0
+_ZN15BattleMenu_ITEM10menuUpdateEv kind:function(thumb,size=0xe0) addr:0x02172938
+_ZN15BattleMenu_ITEM13selectUseItemEv kind:function(thumb,size=0x190) addr:0x02172a18
+_ZN15BattleMenu_ITEM16unkfunc_02172ba8Ev kind:function(thumb,size=0x1c) addr:0x02172ba8
+_ZN22UnkBattleMenuEquipItem9menuSetupEv kind:function(thumb,size=0x4e) addr:0x02172bc4
+_ZN22UnkBattleMenuEquipItem11menuExecuteEv kind:function(thumb,size=0x50) addr:0x02172c14
+_ZN22UnkBattleMenuEquipItem8menuDrawEv kind:function(thumb,size=0x88) addr:0x02172c64
+_ZN22UnkBattleMenuEquipItem10menuUpdateEv kind:function(thumb,size=0x60) addr:0x02172cec
+_ZN22UnkBattleMenuEquipItem16unkfunc_02172d4cEv kind:function(thumb,size=0x2c) addr:0x02172d4c
+_ZN22UnkBattleMenuEquipItem16unkfunc_02172d78Ev kind:function(thumb,size=0xac) addr:0x02172d78
+_ZN22UnkBattleMenuEquipItem13selectUseItemEv kind:function(thumb,size=0x1a4) addr:0x02172e24
+_ZN22UnkBattleMenuEquipItem16unkfunc_02172fc8Ev kind:function(thumb,size=0x42) addr:0x02172fc8
+_ZN22UnkBattleMenuEquipItem16unkfunc_0217300cEv kind:function(thumb,size=0x2a) addr:0x0217300c
+_ZN24BattleMenu_ITEMUSE2ENEMY9menuSetupEv kind:function(thumb,size=0x2a) addr:0x02173038
+_ZN24BattleMenu_ITEMUSE2ENEMY11menuExecuteEv kind:function(thumb,size=0x14) addr:0x02173064
+_ZN24BattleMenu_ITEMUSE2ENEMY8menuDrawEv kind:function(thumb,size=0xe) addr:0x02173078
+_ZN24BattleMenu_ITEMUSE2ENEMY10menuUpdateEv kind:function(thumb,size=0x2e) addr:0x02173088
+_ZN24BattleMenu_ITEMUSE2ENEMY16unkfunc_021730b8Ev kind:function(thumb,size=0x54) addr:0x021730b8
+_ZN24BattleMenu_ITEMUSE2ENEMY16unkfunc_0217310cEv kind:function(thumb,size=0x26) addr:0x0217310c
+_ZN24BattleMenu_ITEMUSE2ENEMY16unkfunc_02173134Ev kind:function(thumb,size=0x38) addr:0x02173134
+_ZN24BattleMenu_ITEMUSE2ENEMY16unkfunc_0217316cEii kind:function(thumb,size=0xc) addr:0x0217316c
+_ZN24BattleMenu_ITEMUSE2PARTY9menuSetupEv kind:function(thumb,size=0x8e) addr:0x02173178
+_ZN24BattleMenu_ITEMUSE2PARTY11menuExecuteEv kind:function(thumb,size=0x34) addr:0x02173208
+_ZN24BattleMenu_ITEMUSE2PARTY8menuDrawEv kind:function(thumb,size=0x18) addr:0x0217323c
+_ZN24BattleMenu_ITEMUSE2PARTY10menuUpdateEv kind:function(thumb,size=0xb4) addr:0x02173254
+_ZN24BattleMenu_ITEMUSE2PARTY16unkfunc_02173308Ei kind:function(thumb,size=0x14) addr:0x02173308
+_ZN15BattleMenuJudge9baseSetupEv kind:function(thumb,size=0xc) addr:0x0217331c
+_ZN15BattleMenuJudge9turnSetupEv kind:function(thumb,size=0x30) addr:0x02173328
+_ZN15BattleMenuJudge12getSingletonEv kind:function(thumb,size=0x8) addr:0x02173358
+_ZN15BattleMenuJudge14judgeBackCharaEv kind:function(thumb,size=0x46) addr:0x02173360
+_ZN15BattleMenuJudge14judgeNextCharaEv kind:function(thumb,size=0x34) addr:0x021733a8
+_ZN15BattleMenuJudge14backActionMenuEi kind:function(thumb,size=0x28) addr:0x021733dc
+_ZN15BattleMenuJudge9setAttackEi kind:function(thumb,size=0x1c) addr:0x02173404
+_ZN15BattleMenuJudge13setMagicEnemyEii kind:function(thumb,size=0x36) addr:0x02173420
+_ZN15BattleMenuJudge13setMagicPartyEii kind:function(thumb,size=0x3a) addr:0x02173458
+_ZN15BattleMenuJudge12setItemEnemyEii kind:function(thumb,size=0x26) addr:0x02173494
+_ZN15BattleMenuJudge15setItemEnemyAllEi kind:function(thumb,size=0xc) addr:0x021734bc
+_ZN15BattleMenuJudge12setItemPartyEii kind:function(thumb,size=0x2a) addr:0x021734c8
+_ZN15BattleMenuJudge15setItemPartyAllEi kind:function(thumb,size=0x24) addr:0x021734f4
+_ZN15BattleMenuJudge19getMonsterTouchRectEPN4menu9TOUCHRECTE kind:function(thumb,size=0x80) addr:0x02173518
+_ZN15BattleMenuJudge16getLiveMonsterIDEv kind:function(thumb,size=0x30) addr:0x02173598
+_ZN15BattleMenuJudge22judgeBattleArrayChangeEv kind:function(thumb,size=0x14) addr:0x021735c8
+_ZN15BattleMenuJudge13setNextPlayerEv kind:function(thumb,size=0x64) addr:0x021735dc
+_ZN15BattleMenuJudge13setPrevPlayerEv kind:function(thumb,size=0x54) addr:0x02173640
+_ZN15BattleMenuJudge18isCommandingPlayerEi kind:function(thumb,size=0xc2) addr:0x02173694
+_ZN6status12StatusChange27getCharacterTypeForTimeStopEv kind:function(arm,size=0x10) addr:0x02173758
+_ZN16BattleMenu_MAGIC9menuSetupEv kind:function(thumb,size=0xb6) addr:0x02173768
+_ZN16BattleMenu_MAGIC17setActiveMagicPosEi kind:function(thumb,size=0x28) addr:0x02173820
+_ZN16BattleMenu_MAGIC11menuExecuteEv kind:function(thumb,size=0x60) addr:0x02173848
+_ZN16BattleMenu_MAGIC8menuDrawEv kind:function(thumb,size=0x44) addr:0x021738a8
+_ZN16BattleMenu_MAGIC10menuUpdateEv kind:function(thumb,size=0x1f0) addr:0x021738ec
+_ZN16BattleMenu_MAGIC16unkfunc_02173adcEii kind:function(thumb,size=0xfc) addr:0x02173adc
+_ZN16BattleMenu_MAGIC16unkfunc_02173bd8Ev kind:function(thumb,size=0x82) addr:0x02173bd8
+_ZN16BattleMenu_MAGIC18setMagicTargetFreeEi kind:function(thumb,size=0x20) addr:0x02173c5c
+_ZN22BattleMenu_MAGIC2ENEMY9menuSetupEv kind:function(thumb,size=0x1e) addr:0x02173c7c
+_ZN22BattleMenu_MAGIC2ENEMY11menuExecuteEv kind:function(thumb,size=0xc) addr:0x02173c9c
+_ZN22BattleMenu_MAGIC2ENEMY8menuDrawEv kind:function(thumb,size=0xe) addr:0x02173ca8
+_ZN22BattleMenu_MAGIC2ENEMY10menuUpdateEv kind:function(thumb,size=0xc0) addr:0x02173cb8
+_ZN22BattleMenu_MAGIC2PARTY9menuSetupEv kind:function(thumb,size=0x82) addr:0x02173d78
+_ZN22BattleMenu_MAGIC2PARTY11menuExecuteEv kind:function(thumb,size=0x34) addr:0x02173dfc
+_ZN22BattleMenu_MAGIC2PARTY8menuDrawEv kind:function(thumb,size=0x12) addr:0x02173e30
+_ZN22BattleMenu_MAGIC2PARTY10menuUpdateEv kind:function(thumb,size=0x90) addr:0x02173e44
+_ZN22BattleMenu_MAGIC2PARTY16unkfunc_02173ed4Ei kind:function(thumb,size=0x14) addr:0x02173ed4
+_ZN20BattleMenu_NGMESSAGE9menuSetupEv kind:function(thumb,size=0x8) addr:0x02173ee8
+_ZN20BattleMenu_NGMESSAGE11menuExecuteEv kind:function(thumb,size=0x2) addr:0x02173ef0
+_ZN20BattleMenu_NGMESSAGE8menuDrawEv kind:function(thumb,size=0x2) addr:0x02173ef4
+_ZN20BattleMenu_NGMESSAGE10menuUpdateEv kind:function(thumb,size=0xa4) addr:0x02173ef8
+_ZN23BattleMenuPlayerControl12getSingletonEv kind:function(thumb,size=0x8) addr:0x02173f9c
+_ZN23BattleMenuPlayerControl15getPlayerItemIdEv kind:function(thumb,size=0x10) addr:0x02173fa4
+_ZN23BattleMenuPlayerControl5clearEv kind:function(thumb,size=0x8a) addr:0x02173fb4
+_ZN23BattleMenuPlayerControl8allClearEv kind:function(thumb,size=0x8) addr:0x02174040
+_ZN23BattleMenuPlayerControl17makePlayerHistoryEv kind:function(thumb,size=0xd2) addr:0x02174048
+_ZN23BattleMenuPlayerControl18resetPlayerHistoryEi kind:function(thumb,size=0x24c) addr:0x0217411c
+_ZN23BattleMenuPlayerControl17setTacticsHistoryEi kind:function(thumb,size=0x64) addr:0x02174368
+_ZN23BattleMenuPlayerControl16setAttackHistoryEv kind:function(thumb,size=0x120) addr:0x021743cc
+_ZN23BattleMenuPlayerControl17setDefenceHistoryEv kind:function(thumb,size=0x30) addr:0x021744ec
+_ZN23BattleMenuPlayerControl14setItemHistoryEv kind:function(thumb,size=0x58) addr:0x0217451c
+_ZN23BattleMenuPlayerControl15setMagicHistoryEv kind:function(thumb,size=0xa4) addr:0x02174574
+_ZN23BattleMenuPlayerControl11flashStatusEi kind:function(thumb,size=0x5e) addr:0x02174618
+_ZN23BattleMenuPlayerControl7flashHPEi kind:function(thumb,size=0x2c) addr:0x02174678
+_ZN23BattleMenuPlayerControl7flashMPEi kind:function(thumb,size=0x2c) addr:0x021746a4
+_ZN23BattleMenuPlayerControl12flashHPColorEi kind:function(thumb,size=0x2c) addr:0x021746d0
+_ZN23BattleMenuPlayerControl14flashConditionEi kind:function(thumb,size=0x1b4) addr:0x021746fc
+_ZN23BattleMenuPlayerControl16isFlashConditionEiN6status14HaveStatusInfo16MenuStatusChangeE kind:function(thumb,size=0xfa) addr:0x021748b0
+_ZN23BattleMenuPlayerControl14getTargetGroupEv kind:function(thumb,size=0x54) addr:0x021749ac
+_ZN23BattleMenuPlayerControl14setTargetGroupEi kind:function(thumb,size=0xc) addr:0x02174a00
+_ZN23BattleMenuPlayerControl16resetTargetGroupEv kind:function(thumb,size=0x10) addr:0x02174a0c
+_ZN23BattleMenuPlayerControl16setMagicPositionEi kind:function(thumb,size=0x10) addr:0x02174a1c
+_ZN23BattleMenuPlayerControl16getMagicPositionEv kind:function(thumb,size=0xe) addr:0x02174a2c
+_ZN23BattleMenuPlayerControl16checkSpecialFlagEi kind:function(thumb,size=0x24) addr:0x02174a3c
+_ZN23BattleMenuPlayerControl13changeHistoryEv kind:function(thumb,size=0xa8) addr:0x02174a60
+_ZN15BattleMenu_ROOT9menuSetupEv kind:function(thumb,size=0x78) addr:0x02174b08
+_ZN15BattleMenu_ROOT11menuExecuteEv kind:function(thumb,size=0x58) addr:0x02174b80
+_ZN15BattleMenu_ROOT8menuDrawEv kind:function(thumb,size=0x1a) addr:0x02174bd8
+_ZN15BattleMenu_ROOT10menuUpdateEv kind:function(thumb,size=0x194) addr:0x02174bf4
+_ZN22BattleMenu_TACTICSMENU9menuSetupEv kind:function(thumb,size=0xc8) addr:0x02174d88
+_ZN22BattleMenu_TACTICSMENU11menuExecuteEv kind:function(thumb,size=0x56) addr:0x02174e50
+_ZN22BattleMenu_TACTICSMENU8menuDrawEv kind:function(thumb,size=0x2e) addr:0x02174ea8
+_ZN22BattleMenu_TACTICSMENU10menuUpdateEv kind:function(thumb,size=0x9e) addr:0x02174ed8
+_ZN22BattleMenu_TACTICSMENU16unkfunc_02174f78Ev kind:function(thumb,size=0x5c) addr:0x02174f78
+_ZN22BattleMenu_TACTICSMENU16unkfunc_02174fd4Ev kind:function(thumb,size=0x68) addr:0x02174fd4
+_ZN22BattleMenu_TACTICSMENU16unkfunc_0217503cEv kind:function(thumb,size=0x4c) addr:0x0217503c
+_ZN22BattleMenu_TACTICSMENU16unkfunc_02175088Ev kind:function(thumb,size=0x42) addr:0x02175088
+_ZN22BattleMenu_TACTICSMENU16unkfunc_021750ccEv kind:function(thumb,size=0x98) addr:0x021750cc
+_ZN17UnkBattleMenuTest9menuSetupEv kind:function(thumb,size=0x10) addr:0x02175164
+_ZN17UnkBattleMenuTest11menuExecuteEv kind:function(thumb,size=0x28) addr:0x02175174
+_ZN17UnkBattleMenuTest8menuDrawEv kind:function(thumb,size=0x3c) addr:0x0217519c
+_ZN17UnkBattleMenuTest10menuUpdateEv kind:function(thumb,size=0xc) addr:0x021751d8
+_ZN22BattleMonsterNamePlate12getSingletonEv kind:function(thumb,size=0x8) addr:0x021751e4
+_ZN22BattleMonsterNamePlate4initEv kind:function(thumb,size=0x30) addr:0x021751ec
+_ZN22BattleMonsterNamePlate10setMonsterEv kind:function(thumb,size=0x140) addr:0x0217521c
+_ZN22BattleMonsterNamePlate14getMonsterDataEi kind:function(thumb,size=0xa) addr:0x0217535c
+_ZN22BattleMonsterNamePlate11seekMonsterEi kind:function(thumb,size=0x4c) addr:0x02175368
+_ZN22BattleMonsterNamePlate19setMonsterParameterEii kind:function(thumb,size=0x1c4) addr:0x021753b4
+_ZN22BattleMonsterNamePlate14getGroupCenterEi kind:function(thumb,size=0x60) addr:0x02175578
+_ZN22BattleMonsterNamePlate11maxPriorityEi kind:function(thumb,size=0x2c) addr:0x021755d8
+_ZN22BattleMonsterNamePlate15adjustFlyHeightEv kind:function(thumb,size=0xac) addr:0x02175604
+_ZN22BattleMonsterNamePlate12sortPositionEv kind:function(thumb,size=0xa8) addr:0x021756b0
+_ZN22BattleMonsterNamePlate12makeSortListEv kind:function(thumb,size=0x164) addr:0x02175758
+_ZN22BattleMonsterNamePlate12changeHeightERNS_12Monster_DATAES1_ kind:function(thumb,size=0xb0) addr:0x021758bc
+_ZN22BattleMonsterNamePlate10movePumpUpERNS_12Monster_DATAE kind:function(thumb,size=0x4e) addr:0x0217596c
+_ZN22BattleMonsterNamePlate17adjustPlateCenterERNS_12Monster_DATAEb kind:function(thumb,size=0x54) addr:0x021759bc
+_ZN22BattleMonsterNamePlate14adjustPositionEsi kind:function(thumb,size=0x4a) addr:0x02175a10
+_Z16unkfunc_02175a5cPN4menu8MenuItemE kind:function(thumb,size=0x14) addr:0x02175a5c
+_Z16unkfunc_02175a70PN4menu8MenuItemE kind:function(thumb,size=0x14) addr:0x02175a70
+_Z16unkfunc_02175a84PN4menu8MenuItemEii kind:function(thumb,size=0x34) addr:0x02175a84
+_Z16unkfunc_02175ab8PN4menu8MenuItemEi kind:function(thumb,size=0x14) addr:0x02175ab8
+_Z16unkfunc_02175accPN4menu8MenuItemEi kind:function(thumb,size=0x1c) addr:0x02175acc
+_Z16unkfunc_02175ae8PN4menu8MenuItemEi kind:function(thumb,size=0x14) addr:0x02175ae8
+_Z16unkfunc_02175afcPN4menu8MenuItemEi kind:function(thumb,size=0x1c) addr:0x02175afc
+_Z16unkfunc_02175b18PN4menu8MenuItemEii kind:function(thumb,size=0x1c) addr:0x02175b18
+_Z16unkfunc_02175b34PN4menu8MenuItemEii kind:function(thumb,size=0x1c) addr:0x02175b34
+_Z16unkfunc_02175b50PN4menu8MenuItemEii kind:function(thumb,size=0x1c) addr:0x02175b50
+_Z16unkfunc_02175b6cPN4menu8MenuItemEii kind:function(thumb,size=0x1c) addr:0x02175b6c
+_Z16unkfunc_02175b88PN4menu8MenuItemEiPNS_9TOUCHRECTEi kind:function(thumb,size=0x58) addr:0x02175b88
+_Z16unkfunc_02175be0PN4menu8MenuItemE kind:function(thumb,size=0x2c) addr:0x02175be0
+_Z16unkfunc_02175c0cPN4menu8MenuItemEiiii kind:function(thumb,size=0x40) addr:0x02175c0c
+_ZN17BattleMenu_ATTACK9menuSetupEv kind:function(thumb,size=0xbe) addr:0x02175c4c
+_ZN17BattleMenu_ATTACK11menuExecuteEv kind:function(thumb,size=0x72) addr:0x02175d0c
+_ZN17BattleMenu_ATTACK8menuDrawEv kind:function(thumb,size=0x26) addr:0x02175d80
+_ZN17BattleMenu_ATTACK10menuUpdateEv kind:function(thumb,size=0x48) addr:0x02175da8
+_ZN17BattleMenu_ATTACK16unkfunc_02175df0Ei kind:function(thumb,size=0x42) addr:0x02175df0
+_ZN17BattleMenu_ATTACK16unkfunc_02175e34Ei kind:function(thumb,size=0x46) addr:0x02175e34
+_ZN17BattleMenu_ATTACK16unkfunc_02175e7cEv kind:function(thumb,size=0xd2) addr:0x02175e7c
+_ZN17BattleMenu_ATTACK16unkfunc_02175f50Ev kind:function(thumb,size=0x24) addr:0x02175f50
+_ZN3btl18BattleMonsterDraw2C1Ev kind:function(thumb,size=0x38) addr:0x02175f74
+_ZN3btl13BattleMonsterD1Ev kind:function(thumb,size=0x1c) addr:0x02175fac
+_ZN3btl18BattleMonsterDraw2D1Ev kind:function(thumb,size=0x28) addr:0x02175fc8
+_ZN3btl18BattleMonsterDraw212getSingletonEv kind:function(thumb,size=0x3c) addr:0x02175ff0
+_ZN3btl18BattleMonsterDraw25setupEv kind:function(thumb,size=0x98) addr:0x0217602c
+_ZN3btl18BattleMonsterDraw27cleanupEv kind:function(thumb,size=0x38) addr:0x021760c4
+_ZN3btl18BattleMonsterDraw216setupBattleArrayEii kind:function(thumb,size=0x104) addr:0x021760fc
+_ZN3btl18BattleMonsterDraw25setupEiib kind:function(thumb,size=0xa8) addr:0x02176200
+_ZN3btl18BattleMonsterDraw27cleanupEi kind:function(thumb,size=0x28) addr:0x021762a8
+_ZN3btl18BattleMonsterDraw214addBattleArrayEiii kind:function(thumb,size=0x104) addr:0x021762d0
+_ZN3btl18BattleMonsterDraw214delBattleArrayEi kind:function(thumb,size=0x24) addr:0x021763d4
+_ZN3btl18BattleMonsterDraw24drawEv kind:function(thumb,size=0x34) addr:0x021763f8
+_ZN3btl18BattleMonsterDraw212isCallFriendEi kind:function(thumb,size=0x10) addr:0x0217642c
+_ZN3btl18BattleMonsterDraw218isAppearKingSlime2Ev kind:function(thumb,size=0x24) addr:0x0217643c
+_ZN3btl18BattleMonsterDraw222startAnimationWithLoopEiii kind:function(thumb,size=0x14) addr:0x02176460
+_ZN3btl18BattleMonsterDraw215changeArrayCtrlEii kind:function(thumb,size=0x10) addr:0x02176474
+@1968 kind:data(any) addr:0x02176484 local
+@1894 kind:data(any) addr:0x0217648c local
+@2140 kind:data(any) addr:0x02176494 local
+@1937 kind:data(any) addr:0x021764a0 local
+@2059 kind:data(any) addr:0x021764ac local
+@2002 kind:data(any) addr:0x021764b8 local
+@1927 kind:data(any) addr:0x021764c4 local
+@2081 kind:data(any) addr:0x021764d4 local
+@1972 kind:data(any) addr:0x021764e4 local
+@2088 kind:data(any) addr:0x021764f8 local
+@2131 kind:data(any) addr:0x0217650c local
+@1970 kind:data(any) addr:0x02176528 local
+@2234 kind:data(any) addr:0x0217654c local
+@2232 kind:data(any) addr:0x02176574 local
+@2275 kind:data(any) addr:0x0217659c local
+@2324 kind:data(any) addr:0x021765a4 local
+@2347 kind:data(any) addr:0x021765b4 local
+tactics$2223 kind:data(any) addr:0x021765c8 local
+@2280 kind:data(any) addr:0x021765e0 local
+@2669 kind:data(any) addr:0x021765fc local
+@2633 kind:data(any) addr:0x0217661c local
+@2550 kind:data(any) addr:0x0217662c local
+commandName$2128 kind:data(any) addr:0x0217664c local
+@2402 kind:data(any) addr:0x02176664 local
+@2404 kind:data(any) addr:0x02176684 local
+@2406 kind:data(any) addr:0x021766a8 local
+@1330 kind:data(any) addr:0x021766cc local
+@1910 kind:data(any) addr:0x021766e4 local
+@1894 kind:data(any) addr:0x021766f4 local
+@1902 kind:data(any) addr:0x02176704 local
+__sinit_BattleMenu.cpp kind:function(thumb,size=0x248) addr:0x02176714 local
+__sinit_BattleMonsterDraw2.cpp kind:function(thumb,size=0x14) addr:0x0217695c local
+.p__sinit_BattleMenu.cpp kind:data(word) addr:0x02176970 local
+.p__sinit_BattleMonsterDraw2.cpp kind:data(word) addr:0x02176974 local
+@2001 kind:data(any) addr:0x02176980 local
+@1967 kind:data(any) addr:0x02176984 local
+@1926 kind:data(any) addr:0x0217698c local
+@2058 kind:data(any) addr:0x02176994 local
+@1936 kind:data(any) addr:0x0217699c local
+s_parts_021769a4 kind:data(any) addr:0x021769a4 local
+s_parts_021769c0 kind:data(any) addr:0x021769c0 local
+s_parts_021769dc kind:data(any) addr:0x021769dc local
+s_parts_021769f8 kind:data(any) addr:0x021769f8 local
+s_parts_02176a14 kind:data(any) addr:0x02176a14 local
+s_parts_02176a30 kind:data(any) addr:0x02176a30 local
+s_parts_02176a4c kind:data(any) addr:0x02176a4c local
+s_parts_02176a68 kind:data(any) addr:0x02176a68 local
+s_parts_02176a84 kind:data(any) addr:0x02176a84 local
+s_parts_02176aa0 kind:data(any) addr:0x02176aa0 local
+s_parts_02176abc kind:data(any) addr:0x02176abc local
+s_parts_02176ad8 kind:data(any) addr:0x02176ad8 local
+s_parts_02176af4 kind:data(any) addr:0x02176af4 local
+s_parts_02176b10 kind:data(any) addr:0x02176b10 local
+s_parts_02176b2c kind:data(any) addr:0x02176b2c local
+s_parts_02176b48 kind:data(any) addr:0x02176b48 local
+s_parts_02176b64 kind:data(any) addr:0x02176b64 local
+s_parts_02176b80 kind:data(any) addr:0x02176b80 local
+s_parts_02176b9c kind:data(any) addr:0x02176b9c local
+s_parts_02176bc6 kind:data(any) addr:0x02176bc6 local
+s_parts_02176bf0 kind:data(any) addr:0x02176bf0 local
+s_parts_02176c1a kind:data(any) addr:0x02176c1a local
+s_parts_02176c44 kind:data(any) addr:0x02176c44 local
+s_parts_02176c6e kind:data(any) addr:0x02176c6e local
+s_parts_02176c98 kind:data(any) addr:0x02176c98 local
+s_parts_02176cc2 kind:data(any) addr:0x02176cc2 local
+s_parts_02176cec kind:data(any) addr:0x02176cec local
+s_parts_02176d16 kind:data(any) addr:0x02176d16 local
+s_parts_02176d40 kind:data(any) addr:0x02176d40 local
+s_parts_02176d6a kind:data(any) addr:0x02176d6a local
+s_parts_02176da2 kind:data(any) addr:0x02176da2 local
+s_parts_02176dda kind:data(any) addr:0x02176dda local
+s_parts_02176e12 kind:data(any) addr:0x02176e12 local
+s_parts_02176e58 kind:data(any) addr:0x02176e58 local
+s_parts_02176e9e kind:data(any) addr:0x02176e9e local
+s_parts_02176ee4 kind:data(any) addr:0x02176ee4 local
+s_parts_02176f2a kind:data(any) addr:0x02176f2a local
+s_parts_02176f70 kind:data(any) addr:0x02176f70 local
+s_parts_02176fd2 kind:data(any) addr:0x02176fd2 local
+s_parts_02177034 kind:data(any) addr:0x02177034 local
+s_parts_021770ce kind:data(any) addr:0x021770ce local
+s_parts_02177192 kind:data(any) addr:0x02177192 local
+@2418 kind:data(any) addr:0x02177290 local
+@2419 kind:data(any) addr:0x02177298 local
+@2534 kind:data(any) addr:0x021772a0 local
+@2535 kind:data(any) addr:0x021772a8 local
+@2323 kind:data(any) addr:0x021772ac local
+s_parts_021772b4 kind:data(any) addr:0x021772b4 local
+s_parts_021772d0 kind:data(any) addr:0x021772d0 local
+s_parts_021772ec kind:data(any) addr:0x021772ec local
+s_parts_02177308 kind:data(any) addr:0x02177308 local
+s_parts_02177324 kind:data(any) addr:0x02177324 local
+s_parts_02177340 kind:data(any) addr:0x02177340 local
+s_parts_0217735c kind:data(any) addr:0x0217735c local
+s_parts_02177378 kind:data(any) addr:0x02177378 local
+s_parts_02177394 kind:data(any) addr:0x02177394 local
+s_parts_021773b0 kind:data(any) addr:0x021773b0 local
+s_parts_021773da kind:data(any) addr:0x021773da local
+s_parts_02177404 kind:data(any) addr:0x02177404 local
+s_parts_0217742e kind:data(any) addr:0x0217742e local
+s_parts_02177458 kind:data(any) addr:0x02177458 local
+s_parts_02177482 kind:data(any) addr:0x02177482 local
+s_parts_021774ac kind:data(any) addr:0x021774ac local
+s_parts_021774d6 kind:data(any) addr:0x021774d6 local
+s_parts_02177500 kind:data(any) addr:0x02177500 local
+s_parts_0217752a kind:data(any) addr:0x0217752a local
+s_parts_02177554 kind:data(any) addr:0x02177554 local
+s_parts_0217757e kind:data(any) addr:0x0217757e local
+s_parts_021775a8 kind:data(any) addr:0x021775a8 local
+s_parts_021775e0 kind:data(any) addr:0x021775e0 local
+s_parts_02177618 kind:data(any) addr:0x02177618 local
+@2847 kind:data(any) addr:0x02177650 local
+@2848 kind:data(any) addr:0x02177658 local
+_ZTV26BattleMenu_FRIEND_ENTRANCE kind:data(any) addr:0x02177660
+_ZTV25UnkBattleMenuFriendSelect kind:data(any) addr:0x0217767c
+_ZTV21BattleMenuSub_HISTORY kind:data(any) addr:0x02177698
+_ZTV23BattleMenu_StadiumAbort kind:data(any) addr:0x021776b4
+_ZTV21BattleMenu_ACTIONMENU kind:data(any) addr:0x021776d0
+_ZTV20BattleMenu_ARRAYMENU kind:data(any) addr:0x021776ec
+_ZTV20BattleMenu_ARRAY_ALL kind:data(any) addr:0x02177708
+_ZTV23BattleMenu_ARRAY_CHANGE kind:data(any) addr:0x02177724
+_ZTV25UnkBattleMenuAttackCancel kind:data(any) addr:0x02177740
+_ZTV15BattleMenu_ITEM kind:data(any) addr:0x0217775c
+_ZTV22UnkBattleMenuEquipItem kind:data(any) addr:0x02177778
+menu$2744 kind:data(any) addr:0x02177794 local
+_ZTV24BattleMenu_ITEMUSE2ENEMY kind:data(any) addr:0x021777b4
+_ZTV24BattleMenu_ITEMUSE2PARTY kind:data(any) addr:0x021777d0
+_ZTV16BattleMenu_MAGIC kind:data(any) addr:0x021777ec
+_ZTV22BattleMenu_MAGIC2ENEMY kind:data(any) addr:0x02177808
+_ZTV22BattleMenu_MAGIC2PARTY kind:data(any) addr:0x02177824
+_ZTV20BattleMenu_NGMESSAGE kind:data(any) addr:0x02177840
+_ZTV15BattleMenu_ROOT kind:data(any) addr:0x0217785c
+_ZTV22BattleMenu_TACTICSMENU kind:data(any) addr:0x02177878
+_ZTV17UnkBattleMenuTest kind:data(any) addr:0x02177894
+menu$326 kind:data(any) addr:0x021778b0 local
+s_parts kind:data(any) addr:0x021778e2 local
+@344 kind:data(any) addr:0x021779b4 local
+menu$228 kind:data(any) addr:0x021779c0 local
+menu$130 kind:data(any) addr:0x021779d4 local
+menu$219 kind:data(any) addr:0x021779e8 local
+menu$125 kind:data(any) addr:0x021779fc local
+menu$165 kind:data(any) addr:0x02177a10 local
+menuB$138 kind:data(any) addr:0x02177a2e local
+menu$184 kind:data(any) addr:0x02177a4c local
+menu$191 kind:data(any) addr:0x02177a7e local
+menuA$137 kind:data(any) addr:0x02177ab0 local
+menu$159 kind:data(any) addr:0x02177ae2 local
+menu$172 kind:data(any) addr:0x02177b14 local
+menu$147 kind:data(any) addr:0x02177b50 local
+menu$153 kind:data(any) addr:0x02177b96 local
+menu$237 kind:data(any) addr:0x02177bdc local
+menu$198 kind:data(any) addr:0x02177c22 local
+menu$206 kind:data(any) addr:0x02177c90 local
+_ZTV17BattleMenu_ATTACK kind:data(any) addr:0x02177d14
+_ZN3btl18BattleMonsterDraw217airMonsterHeight_E kind:data(any) addr:0x02177d30
+@1560 kind:data(any) addr:0x02177d34 local
+s_param kind:bss addr:0x02177d40 local
+gBattleMenu_StadiumAbort kind:bss addr:0x02177d48
+gBattleMenu_NGMESSAGE kind:bss addr:0x02177d64
+gBattleMenuSub_HISTORY kind:bss addr:0x02177d8c
+gBattleMenu_FRIEND_ENTRANCE kind:bss addr:0x02177dbc
+gUnkBattleMenuTest kind:bss addr:0x02177e00
+gUnkBattleMenuAttackCancel kind:bss addr:0x02177e80
+gBattleMenu_MAGIC2ENEMY kind:bss addr:0x02177f08
+gUnkBattleMenuFriendSelect kind:bss addr:0x02177f94
+gBattleMenu_ARRAYMENU kind:bss addr:0x02178060
+gBattleMenu_ROOT kind:bss addr:0x02178148
+gBattleMenu_ITEMUSE2PARTY kind:bss addr:0x02178240
+gBattleMenu_MAGIC2PARTY kind:bss addr:0x0217833c
+gUnkBattleMenuEquipItem kind:bss addr:0x0217843c
+gBattleMenu_ITEM kind:bss addr:0x02178594
+gBattleMenu_ACTIONMENU kind:bss addr:0x021786f0
+gBattleMenu_ITEMUSE2ENEMY kind:bss addr:0x0217884c
+gBattleMenu_ARRAY_ALL kind:bss addr:0x021789b0
+gBattleMenu_ATTACK kind:bss addr:0x02178b1c
+gBattleMenu_ARRAY_CHANGE kind:bss addr:0x02178c8c
+gBattleMenu_TACTICSMENU kind:bss addr:0x02178e5c
+gBattleMenu_MAGIC kind:bss addr:0x0217905c
+_ZN15BattleMenuJudge11m_singletonE kind:bss addr:0x021792a4
+_ZN23BattleMenuPlayerControl11m_singletonE kind:bss addr:0x0217932c
+s_param kind:bss addr:0x021796d0 local
+_ZN22BattleMonsterNamePlate11m_singletonE kind:bss addr:0x02179750
+defaultWidth kind:bss addr:0x021797c0 local
+_ZGVm_singleton$1556 kind:bss addr:0x021797c4 local
+@1559 kind:bss addr:0x021797c8 local
+m_singleton$1556 kind:bss addr:0x021797d4 local

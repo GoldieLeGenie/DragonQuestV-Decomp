@@ -1,0 +1,61 @@
+    .text       start:0x02128060 end:0x02129f1c kind:code align:32
+    .rodata     start:0x02129f1c end:0x02129f20 kind:rodata align:4
+    .init       start:0x02129f20 end:0x02129f70 kind:code align:4
+    .ctor       start:0x02129f70 end:0x02129f74 kind:rodata align:4
+    .data       start:0x02129f80 end:0x0212a440 kind:data align:32
+    .bss        start:0x0212a440 end:0x0212bce0 kind:bss align:32
+
+src/ov004/ceremony/CeremonyEndingSystem.cpp:
+    complete
+    .text       start:0x02128060 end:0x021289e0
+    .data       start:0x02129f80 end:0x0212a0a4
+    .bss        start:0x0212a440 end:0x0212a9a0
+
+src/ov004/ceremony/CeremonyOpeningSystem.cpp:
+    complete
+    .text       start:0x021289e0 end:0x0212908c
+    .data       start:0x0212a0a4 end:0x0212a1dc
+    .bss        start:0x0212a9a0 end:0x0212abd4
+
+src/ov004/ceremony/CeremonyCamera.cpp:
+    complete
+    .text       start:0x0212908c end:0x021292b0
+    .rodata     start:0x02129f1c end:0x02129f20
+    .init       start:0x02129f20 end:0x02129f70
+    .ctor       start:0x02129f70 end:0x02129f74
+    .data       start:0x0212a1dc end:0x0212a1f4
+    .bss        start:0x0212abd4 end:0x0212ad00
+
+src/ov004/ceremony/CeremonyStage.cpp:
+    complete
+    .text       start:0x021292b0 end:0x0212937c
+    .data       start:0x0212a1f4 end:0x0212a20c
+    .bss        start:0x0212ad00 end:0x0212b5d4
+
+src/ov004/ceremony/CeremonySystem.cpp:
+    complete
+    .text       start:0x0212937c end:0x021294bc
+    .data       start:0x0212a20c end:0x0212a214
+    .bss        start:0x0212b5d4 end:0x0212b5e8
+
+src/ov004/ov004_entry.cpp:
+    complete
+    .text       start:0x021294bc end:0x021294c0
+
+src/ov004/ceremony/CeremonyStaffSystem.cpp:
+    complete
+    .text       start:0x021294c0 end:0x021299b4
+    .data       start:0x0212a214 end:0x0212a320
+    .bss        start:0x0212b5e8 end:0x0212b770
+
+src/ov004/ceremony/CeremonyEndingFin.cpp:
+    complete
+    .text       start:0x021299b4 end:0x02129ebc
+    .data       start:0x0212a320 end:0x0212a410
+    .bss        start:0x0212b770 end:0x0212bbc0
+
+src/ov004/leveldata/PetalData.cpp:
+    complete
+    .text       start:0x02129ebc end:0x02129f1c
+    .data       start:0x0212a410 end:0x0212a43c
+    .bss        start:0x0212bbc0 end:0x0212bcd4

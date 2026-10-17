@@ -1,0 +1,45 @@
+    .text       start:0x02128060 end:0x02129298 kind:code align:32
+    .rodata     start:0x02129298 end:0x0212929c kind:rodata align:4
+    .init       start:0x0212929c end:0x021292f0 kind:code align:4
+    .ctor       start:0x021292f0 end:0x021292f4 kind:rodata align:4
+    .data       start:0x02129300 end:0x021293a0 kind:data align:32
+    .bss        start:0x021293a0 end:0x0212b6a0 kind:bss align:32
+
+src/ov009/ov009_entry.cpp:
+    complete
+    .text       start:0x02128060 end:0x02128064
+
+src/ov009/book/BookCamera.cpp:
+    complete
+    .text       start:0x02128064 end:0x02128144
+    .rodata     start:0x02129298 end:0x0212929c
+    .init       start:0x0212929c end:0x021292f0
+    .ctor       start:0x021292f0 end:0x021292f4
+    .data       start:0x02129300 end:0x02129314
+    .bss        start:0x021293a0 end:0x02129430
+
+src/ov009/book/BookEffectGroup.cpp:
+    complete
+    .text       start:0x02128144 end:0x021283b8
+
+src/ov009/book/BookMonsterDraw.cpp:
+    complete
+    .text       start:0x021283b8 end:0x02128bec
+    .data       start:0x02129314 end:0x02129330
+    .bss        start:0x02129430 end:0x0212b024
+
+src/ov009/book/BookSystem.cpp:
+    complete
+    .text       start:0x02128bec end:0x02128d90
+    .data       start:0x02129330 end:0x02129350
+    .bss        start:0x0212b024 end:0x0212b6a0
+
+src/ov009/materielmenu/MaterielMenu_PICTUREBOOK_DETAIL.cpp:
+    complete
+    .text       start:0x02128d90 end:0x02128f68
+    .data       start:0x02129350 end:0x0212936c
+
+src/ov009/materielmenu/MaterielMenu_PICTUREBOOK_ROOT.cpp:
+    complete
+    .text       start:0x02128f68 end:0x02129298
+    .data       start:0x0212936c end:0x021293a0

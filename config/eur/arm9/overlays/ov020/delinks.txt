@@ -1,0 +1,8 @@
+    .text       start:0x0216f200 end:0x0216f208 kind:code align:32
+    .ctor       start:0x0216f208 end:0x0216f208 kind:rodata align:4
+    .bss        start:0x0216f220 end:0x0217b220 kind:bss align:32
+
+src/ov020/ov020_entry.cpp:
+    complete
+    .text       start:0x0216f200 end:0x0216f208
+    .bss        start:0x0216f220 end:0x0217b220

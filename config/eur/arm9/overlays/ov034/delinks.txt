@@ -1,0 +1,29 @@
+    .text       start:0x02186980 end:0x02187d74 kind:code align:32
+    .ctor       start:0x02187d74 end:0x02187d74 kind:rodata align:4
+    .data       start:0x02187d80 end:0x02187e20 kind:data align:32
+    .bss        start:0x02187e20 end:0x02187e20 kind:bss align:32
+
+src/ov034/materielmenu/casino/MaterielMenu_SlimeRace.cpp:
+    complete
+    .text       start:0x02186980 end:0x02186a98
+    .data       start:0x02187d80 end:0x02187d9c
+
+src/ov034/materielmenu/casino/MaterielMenu_RaceOdds.cpp:
+    complete
+    .text       start:0x02186a98 end:0x02186e4c
+    .data       start:0x02187d9c end:0x02187db8
+
+src/ov034/materielmenu/casino/MaterielMenu_RaceEntrance.cpp:
+    complete
+    .text       start:0x02186e4c end:0x0218715c
+    .data       start:0x02187db8 end:0x02187dd4
+
+src/ov034/materielmenu/casino/MaterielMenu_ChoiceSlime.cpp:
+    complete
+    .text       start:0x0218715c end:0x02187670
+    .data       start:0x02187dd4 end:0x02187df0
+
+src/ov034/materielmenu/casino/MaterielMenu_RaceResult.cpp:
+    complete
+    .text       start:0x02187670 end:0x02187d74
+    .data       start:0x02187df0 end:0x02187e0c

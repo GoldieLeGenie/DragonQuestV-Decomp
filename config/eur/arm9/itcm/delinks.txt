@@ -1,0 +1,10 @@
+    .text       start:0x01ff8000 end:0x01ff8298 kind:code align:32
+    .bss        start:0x01ff82a0 end:0x01ff82a0 kind:bss align:32
+
+libs/NitroSDK/src/mi/mi_dma_itcm.c:
+    complete
+    .text       start:0x01ff8000 end:0x01ff80b4
+
+libs/NitroSDK/src/os/os_irqhandler.c:
+    complete
+    .text       start:0x01ff80b4 end:0x01ff8298

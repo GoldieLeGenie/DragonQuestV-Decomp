@@ -1,0 +1,3071 @@
+    .text       start:0x02000000 end:0x0208b00c kind:code align:32
+    .exceptix   start:0x0208b00c end:0x0208b00c kind:rodata align:4
+    .init       start:0x0208b00c end:0x0208d384 kind:code align:4
+    .rodata     start:0x0208d384 end:0x02092e24 kind:rodata align:4
+    .ctor       start:0x02092e24 end:0x02092fe4 kind:rodata align:4
+    .data       start:0x02093000 end:0x0209c8e0 kind:data align:32
+    .bss        start:0x0209c8e0 end:0x02128060 kind:bss align:32
+
+libs/MSL/src/ctype.c:
+    complete
+    .rodata     start:0x0208d384 end:0x0208d484
+
+libs/NitroSDK/src/init/secure_area.s:
+    complete
+    .text       start:0x02000000 end:0x02000850
+
+libs/NitroSDK/src/init/crt0.c:
+    complete
+    .text       start:0x02000850 end:0x02000c28
+
+src/main/main.cpp:
+    complete
+    .text       start:0x02000c28 end:0x02000c48
+
+libs/MSL/src/abort_exit_arm_eabi.c:
+    complete
+    .text       start:0x02000c48 end:0x02000de0
+    .bss        start:0x0209c8e0 end:0x0209c9f0
+
+libs/MSL/src/critical_regions.c:
+    complete
+    .bss        start:0x0209c9f0 end:0x0209cb10
+
+libs/MSL/src/ansi_files.c:
+    complete
+    .text       start:0x02000de0 end:0x02000e48
+    .data       start:0x02093000 end:0x020930e4
+    .bss        start:0x0209cb10 end:0x0209ce10
+
+libs/MSL/src/arith.c:
+    complete
+    .text       start:0x02000e48 end:0x02000e54
+
+libs/MSL/src/buffer_io.c:
+    complete
+    .text       start:0x02000e54 end:0x02000f10
+
+libs/MSL/src/file_io.c:
+    complete
+    .text       start:0x02000f10 end:0x02000ff8
+
+libs/MSL/src/mbstring.c:
+    complete
+    .text       start:0x02000ff8 end:0x020010d8
+
+libs/MSL/src/mem.c:
+    complete
+    .text       start:0x020010d8 end:0x02001138
+
+libs/MSL/src/mem_funcs.c:
+    complete
+    .text       start:0x02001138 end:0x020011e8
+
+libs/MSL/src/locale.c:
+    complete
+    .data       start:0x020930e4 end:0x02093300
+
+libs/MSL/src/printf.c:
+    complete
+    .text       start:0x020011e8 end:0x02003338
+    .data       start:0x02093300 end:0x02093340
+
+libs/MSL/src/signal.c:
+    complete
+    .text       start:0x02003338 end:0x02003468
+    .bss        start:0x0209ce10 end:0x0209ce2c
+
+libs/MSL/src/string.c:
+    complete
+    .text       start:0x02003468 end:0x02003750
+
+libs/MSL/src/math/s_copysign.c:
+    complete
+    .text       start:0x02003750 end:0x02003778
+
+libs/MSL/src/math/s_fabs.c:
+    complete
+    .text       start:0x02003778 end:0x02003798
+
+libs/MSL/src/math/s_frexp.c:
+    complete
+    .text       start:0x02003798 end:0x02003854
+
+libs/MSL/src/math/s_ldexp.c:
+    complete
+    .text       start:0x02003854 end:0x02003aa0
+
+libs/MSL/src/ansi_fp.c:
+    complete
+    .text       start:0x02003aa0 end:0x020044c8
+    .data       start:0x02093340 end:0x02093414
+
+libs/MSL/src/math_api.c:
+    complete
+    .text       start:0x020044c8 end:0x0200454c
+
+libs/Runtime/src/fp_emu.s:
+    complete
+    .text       start:0x0200454c end:0x02005d8c
+
+libs/Runtime/src/ll_div.s:
+    complete
+    .text       start:0x02005d8c end:0x020063a4
+
+libs/Runtime/src/runtime_init.c:
+    complete
+    .text       start:0x020063a4 end:0x020063a8
+
+libs/Runtime/src/console_io.c:
+    complete
+    .text       start:0x020063a8 end:0x0200646c
+
+libs/Runtime/src/CompressedNumbers.cpp:
+    complete
+    .text       start:0x0200646c end:0x02006584
+
+libs/Runtime/src/ExceptionHandler.cpp:
+    complete
+    .text       start:0x02006584 end:0x020078c8
+
+libs/Runtime/src/StaticInitializers.cpp:
+    complete
+    .text       start:0x020078c8 end:0x02007938
+    .bss        start:0x0209ce2c end:0x0209ce30
+
+libs/Runtime/src/cxxabi_alloc.cpp:
+    complete
+    .text       start:0x02007938 end:0x02007aa0
+
+libs/Runtime/src/MWException.cpp:
+    complete
+    .text       start:0x02007aa0 end:0x02007ad0
+    .data       start:0x02093414 end:0x0209341c
+
+libs/Runtime/src/__register_global_object.c:
+    complete
+    .text       start:0x02007ad0 end:0x02007af0
+
+libs/Runtime/src/ExceptionHandlerTS.cpp:
+    complete
+    .text       start:0x02007af0 end:0x02007e68
+
+libs/Runtime/src/__arm_eabi_init.c:
+    complete
+    .text       start:0x02007e68 end:0x02007e74
+
+libs/DSProtect/src/dsprot.c:
+    complete
+    .text       start:0x02007e74 end:0x02008618
+
+libs/Runtime/src/startup_hook.c:
+    complete
+    .text       start:0x02008618 end:0x0200861c
+
+src/main/global/UnkGameApplication.cpp:
+    complete
+    .text       start:0x0200861c end:0x02008f30
+    .init       start:0x0208b00c end:0x0208b104
+    .ctor       start:0x02092e24 end:0x02092e28
+    .data       start:0x0209341c end:0x02093b1c
+    .bss        start:0x0209ce30 end:0x0209cf50
+
+src/main/part/BattlePart.cpp:
+    complete
+    .text       start:0x02008f30 end:0x02009060
+    .init       start:0x0208b104 end:0x0208b11c
+    .ctor       start:0x02092e28 end:0x02092e2c
+    .data       start:0x02093b1c end:0x02093b54
+    .bss        start:0x0209cf50 end:0x0209cf54
+
+src/main/part/UnkBattleMenuPart.cpp:
+    complete
+    .text       start:0x02009060 end:0x020096a0
+    .init       start:0x0208b11c end:0x0208b12c
+    .rodata     start:0x0208d484 end:0x0208d49c
+    .ctor       start:0x02092e2c end:0x02092e30
+    .data       start:0x02093b54 end:0x02093ca8
+    .bss        start:0x0209cf54 end:0x0209cf98
+
+src/main/part/FieldPart.cpp:
+    complete
+    .text       start:0x020096a0 end:0x020097d8
+    .init       start:0x0208b12c end:0x0208b144
+    .ctor       start:0x02092e30 end:0x02092e34
+    .data       start:0x02093ca8 end:0x02093ce0
+    .bss        start:0x0209cf98 end:0x0209cf9c
+
+src/main/part/UnkTitlePart.cpp:
+    complete
+    .text       start:0x020097d8 end:0x020097f0
+    .init       start:0x0208b144 end:0x0208b160
+    .ctor       start:0x02092e34 end:0x02092e38
+    .data       start:0x02093ce0 end:0x02093d18
+    .bss        start:0x0209cf9c end:0x0209cfcc
+
+src/main/part/TownPart.cpp:
+    complete
+    .text       start:0x020097f0 end:0x02009948
+    .init       start:0x0208b160 end:0x0208b178
+    .ctor       start:0x02092e38 end:0x02092e3c
+    .data       start:0x02093d18 end:0x02093d54
+    .bss        start:0x0209cfcc end:0x0209cfd0
+
+src/main/part/UnkMenuPart.cpp:
+    complete
+    .text       start:0x02009948 end:0x02009b04
+    .init       start:0x0208b178 end:0x0208b1c4
+    .ctor       start:0x02092e3c end:0x02092e40
+    .data       start:0x02093d54 end:0x02093e2c
+    .bss        start:0x0209cfd0 end:0x0209d690
+
+src/main/global/Global.cpp:
+    complete
+    .text       start:0x02009b04 end:0x0200a53c
+    .init       start:0x0208b1c4 end:0x0208b208
+    .ctor       start:0x02092e40 end:0x02092e44
+    .data       start:0x02093e2c end:0x02093e84
+    .bss        start:0x0209d690 end:0x0209d7a4
+
+src/main/global/StageLink.cpp:
+    complete
+    .text       start:0x0200a53c end:0x0200a5e4
+    .init       start:0x0208b208 end:0x0208b228
+    .ctor       start:0x02092e44 end:0x02092e48
+    .data       start:0x02093e84 end:0x02093ea4
+    .bss        start:0x0209d7a4 end:0x0209d7d0
+
+src/main/status/Status.cpp:
+    complete
+    .text       start:0x0200a5e4 end:0x0200b4b0
+    .data       start:0x02093ea4 end:0x02093ea8
+    .bss        start:0x0209d7d0 end:0x0209d7d4
+
+src/main/status/BaseStatus.cpp:
+    complete
+    .text       start:0x0200b4b0 end:0x0200b680
+
+src/main/status/PlayerStatus.cpp:
+    complete
+    .text       start:0x0200b680 end:0x0200bb34
+    .data       start:0x02093ea8 end:0x02093ec8
+
+src/main/status/PartyStatus.cpp:
+    complete
+    .text       start:0x0200bb34 end:0x0200c9d4
+    .init       start:0x0208b228 end:0x0208b248
+    .ctor       start:0x02092e48 end:0x02092e4c
+    .bss        start:0x0209d7d4 end:0x020a1000
+
+src/main/status/HaveItem.cpp:
+    complete
+    .text       start:0x0200c9d4 end:0x0200cdd8
+    .data       start:0x02093ec8 end:0x02093ee4
+
+src/main/status/HaveStatus.cpp:
+    complete
+    .text       start:0x0200cdd8 end:0x0200d7ec
+    .init       start:0x0208b248 end:0x0208b268
+    .ctor       start:0x02092e4c end:0x02092e50
+    .bss        start:0x020a1000 end:0x020a1024
+
+src/main/status/HaveAction.cpp:
+    complete
+    .text       start:0x0200d7ec end:0x0200dcc8
+    .bss        start:0x020a1024 end:0x020a1030
+
+src/main/status/HaveEquipment.cpp:
+    complete
+    .text       start:0x0200dcc8 end:0x0200ded0
+
+src/main/status/HaveStatusInfo.cpp:
+    complete
+    .text       start:0x0200ded0 end:0x020105d0
+    .init       start:0x0208b268 end:0x0208b274
+    .ctor       start:0x02092e50 end:0x02092e54
+    .bss        start:0x020a1030 end:0x020a1034
+
+src/main/status/ItemData.cpp:
+    complete
+    .text       start:0x020105d0 end:0x02010638
+
+src/main/status/BaseHaveItem.cpp:
+    complete
+    .text       start:0x02010638 end:0x020109a4
+    .data       start:0x02093ee4 end:0x02093efc
+
+src/main/status/HaveItemSack.cpp:
+    complete
+    .text       start:0x020109a4 end:0x02010c48
+    .data       start:0x02093efc end:0x02093f1c
+
+src/main/status/ActionDefence.cpp:
+    complete
+    .text       start:0x02010c48 end:0x0201160c
+
+src/main/status/HaveBattleStatus.cpp:
+    complete
+    .text       start:0x0201160c end:0x02012948
+    .init       start:0x0208b274 end:0x0208b290
+    .rodata     start:0x0208d49c end:0x0208d660
+    .ctor       start:0x02092e54 end:0x02092e58
+    .data       start:0x02093f1c end:0x02093f94
+    .bss        start:0x020a1034 end:0x020a1068
+
+src/main/dss/arrayToIndex.cpp:
+    complete
+    .text       start:0x02012948 end:0x020129cc
+
+src/main/dss/getRandomVariation.cpp:
+    complete
+    .text       start:0x020129cc end:0x020129e8
+
+src/main/dss/arrayToMinIndex.cpp:
+    complete
+    .text       start:0x020129e8 end:0x02012a14
+
+src/main/status/StatusChange.cpp:
+    complete
+    .text       start:0x02012a14 end:0x02013354
+    .init       start:0x0208b290 end:0x0208b328
+    .ctor       start:0x02092e58 end:0x02092e5c
+    .data       start:0x02093f94 end:0x020940ac
+    .bss        start:0x020a1068 end:0x020a10f8
+
+src/main/status/CharacterStatus.cpp:
+    complete
+    .text       start:0x02013354 end:0x0201357c
+    .data       start:0x020940ac end:0x020940cc
+
+src/main/cmn/ExtraMapLink.cpp:
+    complete
+    .text       start:0x0201357c end:0x02014104
+    .init       start:0x0208b328 end:0x0208b38c
+    .ctor       start:0x02092e5c end:0x02092e60
+    .bss        start:0x020a10f8 end:0x020a1414
+
+src/main/cmn/GameManager.cpp:
+    complete
+    .text       start:0x02014104 end:0x02014150
+    .bss        start:0x020a1414 end:0x020a141c
+
+src/main/cmn/PlayerAction.cpp:
+    complete
+    .text       start:0x02014150 end:0x0201417c
+    .data       start:0x020940cc end:0x020940e4
+
+src/main/cmn/PlayerManager.cpp:
+    complete
+    .text       start:0x0201417c end:0x0201426c
+    .data       start:0x020940e4 end:0x02094130
+    .bss        start:0x020a141c end:0x020a1420
+
+src/main/cmn/MoveBase.cpp:
+    complete
+    .text       start:0x0201426c end:0x02014f0c
+    .init       start:0x0208b38c end:0x0208b3d8
+    .rodata     start:0x0208d660 end:0x0208d690
+    .ctor       start:0x02092e60 end:0x02092e64
+    .data       start:0x02094130 end:0x02094134
+    .bss        start:0x020a1420 end:0x020a1444
+
+src/main/cmn/CommonCalculate.cpp:
+    complete
+    .text       start:0x02014f0c end:0x0201530c
+    .rodata     start:0x0208d690 end:0x0208d6a4
+
+src/main/cmn/CommonPartyInfo.cpp:
+    complete
+    .text       start:0x0201530c end:0x0201561c
+    .init       start:0x0208b3d8 end:0x0208b3e8
+    .ctor       start:0x02092e64 end:0x02092e68
+    .bss        start:0x020a1444 end:0x020a1578
+
+src/main/cmn/CommonWalkDamage.cpp:
+    complete
+    .text       start:0x0201561c end:0x02015b44
+    .bss        start:0x020a1578 end:0x020a1618
+
+src/main/cmn/CommonRuraData.cpp:
+    complete
+    .text       start:0x02015b44 end:0x02015bd4
+    .bss        start:0x020a1618 end:0x020a1630
+
+src/main/cmn/ResourceStorage.cpp:
+    complete
+    .text       start:0x02015bd4 end:0x02015d4c
+    .data       start:0x02094134 end:0x0209414c
+
+src/main/cmn/CommonEffectResource.cpp:
+    complete
+    .text       start:0x02015d4c end:0x02015e3c
+    .data       start:0x0209414c end:0x02094164
+
+src/main/cmn/CommonEffectSimple.cpp:
+    complete
+    .text       start:0x02015e3c end:0x02016308
+    .data       start:0x02094164 end:0x02094234
+
+src/main/cmn/CommonEffectData.cpp:
+    complete
+    .text       start:0x02016308 end:0x02016490
+    .data       start:0x02094234 end:0x0209426c
+
+src/main/cmn/NonBattleActionManager.cpp:
+    complete
+    .text       start:0x02016490 end:0x020164f8
+    .bss        start:0x020a1630 end:0x020a163c
+
+src/main/status/StatusChangeOne.cpp:
+    complete
+    .text       start:0x020164f8 end:0x02016ad0
+    .bss        start:0x020a163c end:0x020a1644
+
+src/main/cmn/PartyTalk.cpp:
+    complete
+    .text       start:0x02016ad0 end:0x02018274
+    .rodata     start:0x0208d6a4 end:0x0208d6f0
+    .bss        start:0x020a1644 end:0x020a28c0
+
+src/main/cmn/TalkSoundManager.cpp:
+    complete
+    .text       start:0x02018274 end:0x020185b0
+    .bss        start:0x020a28c0 end:0x020a2950
+
+src/main/cmn/WorldLocation.cpp:
+    complete
+    .text       start:0x020185b0 end:0x02018a08
+
+src/main/cmn/CommonChapterTitle.cpp:
+    complete
+    .text       start:0x02018a08 end:0x02018a84
+    .bss        start:0x020a2950 end:0x020a29b0
+
+src/main/cmn/CommonEffectLocation.cpp:
+    complete
+    .text       start:0x02018a84 end:0x02018d64
+    .bss        start:0x020a29b0 end:0x020a29ec
+
+src/main/menu/UnkMenuOverlay.cpp:
+    complete
+    .text       start:0x02018d64 end:0x02018ebc
+    .init       start:0x0208b3e8 end:0x0208b420
+    .ctor       start:0x02092e68 end:0x02092e6c
+    .bss        start:0x020a29ec end:0x020a2a14
+
+src/main/window/InputControl.cpp:
+    complete
+    .text       start:0x02018ebc end:0x02018f40
+    .data       start:0x0209426c end:0x02094288
+
+src/main/window/MenuControl.cpp:
+    complete
+    .text       start:0x02018f40 end:0x02019174
+    .init       start:0x0208b420 end:0x0208b440
+    .ctor       start:0x02092e6c end:0x02092e70
+    .data       start:0x02094288 end:0x0209429c
+    .bss        start:0x020a2a14 end:0x020a2a30
+
+src/main/window/MessageControl.cpp:
+    complete
+    .text       start:0x02019174 end:0x0201928c
+    .init       start:0x0208b440 end:0x0208b460
+    .ctor       start:0x02092e70 end:0x02092e74
+    .data       start:0x0209429c end:0x020942b0
+    .bss        start:0x020a2a30 end:0x020a2a48
+
+src/main/window/NormalControl.cpp:
+    complete
+    .text       start:0x0201928c end:0x020194c8
+    .init       start:0x0208b460 end:0x0208b490
+    .ctor       start:0x02092e74 end:0x02092e78
+    .data       start:0x020942b0 end:0x020942c4
+    .bss        start:0x020a2a48 end:0x020a2a60
+
+src/main/window/GlobalMap.cpp:
+    complete
+    .text       start:0x020194c8 end:0x02019860
+    .data       start:0x020942c4 end:0x02094328
+
+src/main/window/ImageMap.cpp:
+    complete
+    .text       start:0x02019860 end:0x02019884
+    .data       start:0x02094328 end:0x02094350
+
+src/main/window/WorldMap.cpp:
+    complete
+    .text       start:0x02019884 end:0x020199cc
+    .data       start:0x02094350 end:0x02094374
+
+src/main/menu/MenuAPI.cpp:
+    complete
+    .text       start:0x020199cc end:0x02019fe0
+    .data       start:0x02094374 end:0x02094468
+    .bss        start:0x020a2a60 end:0x020a2a68
+
+src/main/text/TextHook.cpp:
+    complete
+    .text       start:0x02019fe0 end:0x0201a874
+    .init       start:0x0208b490 end:0x0208b4a0
+    .ctor       start:0x02092e78 end:0x02092e7c
+    .data       start:0x02094468 end:0x020944b8
+    .bss        start:0x020a2a68 end:0x020a2ae8
+
+src/main/menu/UnkMenuInstance.cpp:
+    complete
+    .text       start:0x0201a874 end:0x0201a888
+    .init       start:0x0208b4a0 end:0x0208b500
+    .ctor       start:0x02092e7c end:0x02092e80
+    .data       start:0x020944b8 end:0x020944d4
+    .bss        start:0x020a2ae8 end:0x020a308c
+
+src/main/menu/TownMenu_MESSAGE.cpp:
+    complete
+    .text       start:0x0201a888 end:0x0201adac
+    .rodata     start:0x0208d6f0 end:0x0208d70c
+    .data       start:0x020944d4 end:0x02094504
+
+src/main/menu/CommonMenu_YESNO.cpp:
+    complete
+    .text       start:0x0201adac end:0x0201af04
+    .data       start:0x02094504 end:0x02094540
+
+src/main/menu/UnkCursorMoveGridLoop.cpp:
+    complete
+    .text       start:0x0201af04 end:0x0201b0f8
+    .data       start:0x02094540 end:0x02094558
+
+src/main/menu/UnkMenuStatusDraw.cpp:
+    complete
+    .text       start:0x0201b0f8 end:0x0201c364
+    .rodata     start:0x0208d70c end:0x0208d8b8
+    .data       start:0x02094558 end:0x02094dd4
+
+src/main/menu/MenuDataCommon.cpp:
+    complete
+    .text       start:0x0201c364 end:0x0201c8e8
+    .rodata     start:0x0208d8b8 end:0x0208d91c
+
+src/main/menu/UnkMenuTemplate.cpp:
+    complete
+    .text       start:0x0201c8e8 end:0x0201c920
+    .data       start:0x02094dd4 end:0x02094e70
+
+src/main/menu/MenuUpdateAssist.cpp:
+    complete
+    .text       start:0x0201c920 end:0x0201ca40
+
+src/main/menu/MenuStatusInfo.cpp:
+    complete
+    .text       start:0x0201ca40 end:0x0201da54
+
+src/main/menu/TownShopMenu.cpp:
+    complete
+    .text       start:0x0201da54 end:0x0201dc54
+    .data       start:0x02094e70 end:0x02094e8c
+
+src/main/status/BaseAction.cpp:
+    complete
+    .text       start:0x0201dc54 end:0x0201eb88
+    .bss        start:0x020a308c end:0x020a30a4
+
+src/main/status/BaseActionStatus.cpp:
+    complete
+    .text       start:0x0201eb88 end:0x020212a4
+    .init       start:0x0208b500 end:0x0208b50c
+    .rodata     start:0x0208d91c end:0x0208d95c
+    .ctor       start:0x02092e80 end:0x02092e84
+    .bss        start:0x020a30a4 end:0x020a30f4
+
+src/main/status/ExtraAction.cpp:
+    complete
+    .text       start:0x020212a4 end:0x02021b4c
+    .bss        start:0x020a30f4 end:0x020a3138
+
+src/main/status/UseAction.cpp:
+    complete
+    .text       start:0x02021b4c end:0x0202224c
+    .bss        start:0x020a3138 end:0x020a3144
+
+src/main/status/UseActionMacro.cpp:
+    complete
+    .text       start:0x0202224c end:0x02022818
+    .bss        start:0x020a3144 end:0x020a3148
+
+src/main/status/UseActionMessage.cpp:
+    complete
+    .text       start:0x02022818 end:0x02022860
+
+src/main/status/UseActionParam.cpp:
+    complete
+    .text       start:0x02022860 end:0x02022924
+
+src/main/status/BaseItem.cpp:
+    complete
+    .text       start:0x02022924 end:0x02022928
+
+src/main/status/UseItem.cpp:
+    complete
+    .text       start:0x02022928 end:0x020233b4
+    .data       start:0x02094e8c end:0x02095aec
+    .bss        start:0x020a3148 end:0x020a31b8
+
+src/main/btl/BattleExecLevelup.cpp:
+    complete
+    .text       start:0x020233b4 end:0x020237e8
+    .init       start:0x0208b50c end:0x0208b5c0
+    .ctor       start:0x02092e84 end:0x02092e88
+    .data       start:0x02095aec end:0x02095ba0
+    .bss        start:0x020a31b8 end:0x020a3298
+
+src/main/task/ExecTask.cpp:
+    complete
+    .text       start:0x020237e8 end:0x02023aa4
+    .data       start:0x02095ba0 end:0x02095bdc
+
+src/main/btl/UnkBattleSystem.cpp:
+    complete
+    .text       start:0x02023aa4 end:0x02023ae0
+    .bss        start:0x020a3298 end:0x020a32a4
+
+src/main/btl/Encount.cpp:
+    complete
+    .text       start:0x02023ae0 end:0x02023f78
+    .rodata     start:0x0208d95c end:0x0208d97c
+    .bss        start:0x020a32a4 end:0x020a344c
+
+src/main/script/ScriptBaseCommand.cpp:
+    complete
+    .text       start:0x02023f78 end:0x02024104
+    .bss        start:0x020a344c end:0x020a35d4
+
+src/main/script/ScriptCommand.cpp:
+    complete
+    .text       start:0x02024104 end:0x02026544
+
+src/main/script/ScriptCommandCommon.cpp:
+    complete
+    .text       start:0x02026544 end:0x02026988
+    .init       start:0x0208b5c0 end:0x0208b698
+    .ctor       start:0x02092e88 end:0x02092e8c
+    .data       start:0x02095bdc end:0x02095c6c
+    .bss        start:0x020a35d4 end:0x020a366c
+
+src/main/script/ScriptSystem.cpp:
+    complete
+    .text       start:0x02026988 end:0x02026b3c
+    .data       start:0x02095c6c end:0x02095c80
+    .bss        start:0x020a366c end:0x020c2c40
+
+src/main/debug/UnkBattleTest.cpp:
+    complete
+    .text       start:0x02026b3c end:0x02026ffc
+    .init       start:0x0208b698 end:0x0208b6a8
+    .ctor       start:0x02092e8c end:0x02092e90
+    .data       start:0x02095c80 end:0x02095cb0
+    .bss        start:0x020c2c40 end:0x020c2cac
+
+src/main/debug/UnkDebugDisplay.cpp:
+    complete
+    .text       start:0x02026ffc end:0x020271e0
+    .bss        start:0x020c2cac end:0x020c2ce4
+
+src/main/debug/UnkDebugBattleInfo.cpp:
+    complete
+    .text       start:0x020271e0 end:0x020278bc
+    .init       start:0x0208b6a8 end:0x0208b6b8
+    .ctor       start:0x02092e90 end:0x02092e94
+    .rodata     start:0x0208d97c end:0x0208d980
+    .data       start:0x02095cb0 end:0x02095fb0
+    .bss        start:0x020c2ce4 end:0x020c2d00
+
+src/main/debug/UnkDebugInfo.cpp:
+    complete
+    .text       start:0x020278bc end:0x020282e8
+    .init       start:0x0208b6b8 end:0x0208b6d8
+    .ctor       start:0x02092e94 end:0x02092e98
+    .data       start:0x02095fb0 end:0x0209617c
+    .bss        start:0x020c2d00 end:0x020c32a0
+
+src/main/window/UnkScreenEffect.cpp:
+    complete
+    .text       start:0x020282e8 end:0x02028970
+    .init       start:0x0208b6d8 end:0x0208b8a4
+    .ctor       start:0x02092e98 end:0x02092e9c
+    .data       start:0x0209617c end:0x0209619c
+    .bss        start:0x020c32a0 end:0x020c3314
+
+src/main/window/UnkRiremitoEffect.cpp:
+    complete
+    .text       start:0x02028970 end:0x02028cb4
+    .rodata     start:0x0208d980 end:0x0208d98c
+    .data       start:0x0209619c end:0x020961b0
+
+src/main/window/UnkRanarutaScreenEffect.cpp:
+    complete
+    .text       start:0x02028cb4 end:0x020291a0
+    .init       start:0x0208b8a4 end:0x0208b8f4
+    .ctor       start:0x02092e9c end:0x02092ea0
+    .rodata     start:0x0208d98c end:0x0208d99c
+    .data       start:0x020961b0 end:0x020961d8
+    .bss        start:0x020c3314 end:0x020c33a4
+
+src/main/window/ScreenEffectManager.cpp:
+    complete
+    .text       start:0x020291a0 end:0x02029548
+    .init       start:0x0208b8f4 end:0x0208b96c
+    .ctor       start:0x02092ea0 end:0x02092ea4
+    .bss        start:0x020c33a4 end:0x020c3520
+
+src/main/window/UnkBattleEffect.cpp:
+    complete
+    .text       start:0x02029548 end:0x02029828
+    .rodata     start:0x0208d99c end:0x0208d9ac
+    .data       start:0x020961d8 end:0x020961ec
+
+src/main/window/UnkTabiEffect.cpp:
+    complete
+    .text       start:0x02029828 end:0x02029bcc
+    .rodata     start:0x0208d9ac end:0x0208d9b8
+    .data       start:0x020961ec end:0x02096200
+
+src/main/cmn/CommonActionMoveToTarget.cpp:
+    complete
+    .text       start:0x02029bcc end:0x02029eac
+    .init       start:0x0208b96c end:0x0208b9b0
+    .ctor       start:0x02092ea4 end:0x02092ea8
+    .data       start:0x02096200 end:0x02096234
+    .bss        start:0x020c3520 end:0x020c357c
+
+src/main/cmn/MoveAction.cpp:
+    complete
+    .text       start:0x02029eac end:0x02029eb4
+
+src/main/menu/MaterielMenu_SlotEnter.cpp:
+    complete
+    .text       start:0x02029eb4 end:0x02029fa4
+    .data       start:0x02096234 end:0x02096250
+    .bss        start:0x020c357c end:0x020c3580
+
+src/main/menu/UnkMenuCasinoDraw.cpp:
+    complete
+    .text       start:0x02029fa4 end:0x0202a4bc
+    .rodata     start:0x0208d9b8 end:0x0208d9e4
+    .data       start:0x02096250 end:0x02096720
+
+src/main/menu/MaterielMenu_NameEdit.cpp:
+    complete
+    .text       start:0x0202a4bc end:0x0202b8b0
+    .data       start:0x02096720 end:0x02096740
+    .bss        start:0x020c3580 end:0x020c3bcc
+
+src/main/script/ScriptPartyCommand.cpp:
+    complete
+    .text       start:0x0202b8b0 end:0x0202c194
+    .rodata     start:0x0208d9e4 end:0x0208da64
+
+src/main/script/ScriptMessageCommand.cpp:
+    complete
+    .text       start:0x0202c194 end:0x0202d1ac
+    .init       start:0x0208b9b0 end:0x0208bb3c
+    .ctor       start:0x02092ea8 end:0x02092eac
+    .rodata     start:0x0208da64 end:0x0208da94
+    .data       start:0x02096740 end:0x02096868
+    .bss        start:0x020c3bcc end:0x020c3cd0
+
+src/main/script/ScriptStatusCommand.cpp:
+    complete
+    .text       start:0x0202d1ac end:0x0202e13c
+    .rodata     start:0x0208da94 end:0x0208dae4
+
+src/main/script/ScriptFlagCommand.cpp:
+    complete
+    .text       start:0x0202e13c end:0x0202e250
+
+src/main/script/ScriptSystemCommand.cpp:
+    complete
+    .text       start:0x0202e250 end:0x0202f910
+    .init       start:0x0208bb3c end:0x0208bbe4
+    .rodata     start:0x0208dae4 end:0x0208daf4
+    .ctor       start:0x02092eac end:0x02092eb0
+    .data       start:0x02096868 end:0x02096900
+    .bss        start:0x020c3cd0 end:0x020c3d30
+
+src/main/script/ScriptPlayerCommand.cpp:
+    complete
+    .text       start:0x0202f910 end:0x020305fc
+    .rodata     start:0x0208daf4 end:0x0208db18
+
+src/main/script/ScriptLinkCommand.cpp:
+    complete
+    .text       start:0x020305fc end:0x0203092c
+
+src/main/cmn/CommonSoundManager.cpp:
+    complete
+    .text       start:0x0203092c end:0x02030b24
+    .bss        start:0x020c3d30 end:0x020c3d54
+
+src/main/leveldata/ActionParam.cpp:
+    complete
+    .text       start:0x02030b24 end:0x02030b88
+    .data       start:0x02096900 end:0x02096924
+    .bss        start:0x020c3d54 end:0x020cba70
+
+src/main/leveldata/MonsterData.cpp:
+    complete
+    .text       start:0x02030b88 end:0x02030bec
+    .data       start:0x02096924 end:0x0209694c
+    .bss        start:0x020cba70 end:0x020cec84
+
+src/main/leveldata/SplitMessage.cpp:
+    complete
+    .text       start:0x02030bec end:0x02030c3c
+    .data       start:0x0209694c end:0x02096978
+    .bss        start:0x020cec84 end:0x020cf628
+
+src/main/leveldata/FloorList.cpp:
+    complete
+    .text       start:0x02030c3c end:0x02030ca0
+    .data       start:0x02096978 end:0x020969a0
+    .bss        start:0x020cf628 end:0x020d1d94
+
+src/main/leveldata/CharacterInitData.cpp:
+    complete
+    .text       start:0x02030ca0 end:0x02030d04
+    .data       start:0x020969a0 end:0x020969cc
+    .bss        start:0x020d1d94 end:0x020d3cf8
+
+src/main/leveldata/CharacterData.cpp:
+    complete
+    .text       start:0x02030d04 end:0x02030da8
+    .data       start:0x020969cc end:0x020969f8
+    .bss        start:0x020d3cf8 end:0x020d3d34
+
+src/main/leveldata/LevelData.cpp:
+    complete
+    .text       start:0x02030da8 end:0x02030e6c
+    .init       start:0x0208bbe4 end:0x0208bc04
+    .ctor       start:0x02092eb0 end:0x02092eb4
+    .data       start:0x020969f8 end:0x02096a1c
+    .bss        start:0x020d3d34 end:0x020d3d6c
+
+src/main/status/BattleResult.cpp:
+    complete
+    .text       start:0x02030e6c end:0x020311b4
+    .init       start:0x0208bc04 end:0x0208bc24
+    .ctor       start:0x02092eb4 end:0x02092eb8
+    .bss        start:0x020d3d6c end:0x020d4274
+
+src/main/cmn/CommonCounterInfo.cpp:
+    complete
+    .text       start:0x020311b4 end:0x020312dc
+    .bss        start:0x020d4274 end:0x020d4288
+
+src/main/status/GameFlag.cpp:
+    complete
+    .text       start:0x020312dc end:0x02031368
+    .init       start:0x0208bc24 end:0x0208bc74
+    .ctor       start:0x02092eb8 end:0x02092ebc
+    .bss        start:0x020d4288 end:0x020d442c
+
+src/main/status/GameStatus.cpp:
+    complete
+    .text       start:0x02031368 end:0x02031454
+    .init       start:0x0208bc74 end:0x0208bc94
+    .ctor       start:0x02092ebc end:0x02092ec0
+    .bss        start:0x020d442c end:0x020d4444
+
+src/main/status/OptionStatus.cpp:
+    complete
+    .text       start:0x02031454 end:0x020314e8
+    .init       start:0x0208bc94 end:0x0208bcb4
+    .ctor       start:0x02092ec0 end:0x02092ec4
+    .bss        start:0x020d4444 end:0x020d4458
+
+src/main/status/ShopList.cpp:
+    complete
+    .text       start:0x020314e8 end:0x02031954
+    .init       start:0x0208bcb4 end:0x0208bcd4
+    .ctor       start:0x02092ec4 end:0x02092ec8
+    .bss        start:0x020d4458 end:0x020d446c
+
+src/main/status/StageInfo.cpp:
+    complete
+    .text       start:0x02031954 end:0x02032550
+    .init       start:0x0208bcd4 end:0x0208bd9c
+    .ctor       start:0x02092ec8 end:0x02092ecc
+    .bss        start:0x020d446c end:0x020d470c
+
+src/main/status/StoryStatus.cpp:
+    complete
+    .text       start:0x02032550 end:0x02032718
+    .init       start:0x0208bd9c end:0x0208bdbc
+    .ctor       start:0x02092ecc end:0x02092ed0
+    .bss        start:0x020d470c end:0x020d4738
+
+src/main/status/PlayerData.cpp:
+    complete
+    .text       start:0x02032718 end:0x02032fec
+
+src/main/status/BasePartyStatus.cpp:
+    complete
+    .text       start:0x02032fec end:0x02033138
+
+src/main/status/PartyStatusUtility.cpp:
+    complete
+    .text       start:0x02033138 end:0x02034958
+    .rodata     start:0x0208db18 end:0x0208dc68
+    .data       start:0x02096a1c end:0x02096a68
+    .bss        start:0x020d4738 end:0x020d4744
+
+src/main/leveldata/EncountSpecial.cpp:
+    complete
+    .text       start:0x02034958 end:0x020349a4
+    .data       start:0x02096a68 end:0x02096a98
+    .bss        start:0x020d4744 end:0x020d47b0
+
+src/main/leveldata/EncountData.cpp:
+    complete
+    .text       start:0x020349a4 end:0x020349f4
+    .data       start:0x02096a98 end:0x02096ac4
+    .bss        start:0x020d47b0 end:0x020d48e4
+
+src/main/leveldata/EventList.cpp:
+    complete
+    .text       start:0x020349f4 end:0x02034a50
+    .data       start:0x02096ac4 end:0x02096aec
+    .bss        start:0x020d48e4 end:0x020d4900
+
+src/main/leveldata/EventFlag.cpp:
+    complete
+    .text       start:0x02034a50 end:0x02034aac
+    .data       start:0x02096aec end:0x02096b14
+    .bss        start:0x020d4900 end:0x020d491c
+
+src/main/script/ScriptBattleCommand.cpp:
+    complete
+    .text       start:0x02034aac end:0x02034f7c
+    .init       start:0x0208bdbc end:0x0208be24
+    .ctor       start:0x02092ed0 end:0x02092ed4
+    .rodata     start:0x0208dc68 end:0x0208dc78
+    .data       start:0x02096b14 end:0x02096b5c
+    .bss        start:0x020d491c end:0x020d4950
+
+src/main/btl/BattleScriptManager.cpp:
+    complete
+    .text       start:0x02034f7c end:0x02035034
+    .init       start:0x0208be24 end:0x0208be34
+    .ctor       start:0x02092ed4 end:0x02092ed8
+    .bss        start:0x020d4950 end:0x020d4960
+
+src/main/leveldata/FloorParam.cpp:
+    complete
+    .text       start:0x02035034 end:0x02035080
+    .data       start:0x02096b5c end:0x02096b88
+    .bss        start:0x020d4960 end:0x020d49f4
+
+src/main/btl/encount/BattleEncountData.cpp:
+    complete
+    .text       start:0x02035080 end:0x02035914
+
+src/main/btl/encount/BattleEncountSpecial.cpp:
+    complete
+    .text       start:0x02035914 end:0x02035a38
+
+src/main/script/ScriptSoundCommand.cpp:
+    complete
+    .text       start:0x02035a38 end:0x02035b50
+    .init       start:0x0208be34 end:0x0208be5c
+    .ctor       start:0x02092ed8 end:0x02092edc
+    .data       start:0x02096b88 end:0x02096ba0
+    .bss        start:0x020d49f4 end:0x020d4a18
+
+src/main/leveldata/ItemList.cpp:
+    complete
+    .text       start:0x02035b50 end:0x02035bb4
+    .data       start:0x02096ba0 end:0x02096bc8
+    .bss        start:0x020d4a18 end:0x020d7794
+
+src/main/leveldata/EffectParam.cpp:
+    complete
+    .text       start:0x02035bb4 end:0x02035c24
+    .data       start:0x02096bc8 end:0x02096bf4
+    .bss        start:0x020d7794 end:0x020d77b0
+
+src/main/leveldata/AppriseItem.cpp:
+    complete
+    .text       start:0x02036410 end:0x02036460
+    .data       start:0x02096c04 end:0x02096c30
+    .bss        start:0x020d8654 end:0x020d8800
+
+src/main/cmn/PartyMoveAction.cpp:
+    complete
+    .text       start:0x02035c24 end:0x02036410
+    .init       start:0x0208be5c end:0x0208bf0c
+    .ctor       start:0x02092edc end:0x02092ee0
+    .data       start:0x02096bf4 end:0x02096c04
+    .bss        start:0x020d77b0 end:0x020d8654
+
+src/main/debug/UnkMapPerfCheck.cpp:
+    complete
+    .text       start:0x02036460 end:0x020368d0
+    .init       start:0x0208bf0c end:0x0208bf1c
+    .ctor       start:0x02092ee0 end:0x02092ee4
+    .data       start:0x02096c30 end:0x02096c64
+    .bss        start:0x020d8800 end:0x020d8b64
+
+src/main/leveldata/ShopData1.cpp:
+    complete
+    .text       start:0x020368d0 end:0x0203691c
+    .data       start:0x02096c64 end:0x02096c90
+    .bss        start:0x020d8b64 end:0x020d8bd0
+
+src/main/leveldata/ShopData2.cpp:
+    complete
+    .text       start:0x0203691c end:0x02036968
+    .data       start:0x02096c90 end:0x02096cbc
+    .bss        start:0x020d8bd0 end:0x020d8c3c
+
+src/main/leveldata/ShopData3.cpp:
+    complete
+    .text       start:0x02036968 end:0x020369b4
+    .data       start:0x02096cbc end:0x02096ce8
+    .bss        start:0x020d8c3c end:0x020d8ca8
+
+src/main/leveldata/ShopIndex1.cpp:
+    complete
+    .text       start:0x020369b4 end:0x02036a14
+    .data       start:0x02096ce8 end:0x02096d14
+    .bss        start:0x020d8ca8 end:0x020d8cd4
+
+src/main/leveldata/EffectColorParam.cpp:
+    complete
+    .text       start:0x02036a14 end:0x02036a78
+    .data       start:0x02096d14 end:0x02096d40
+    .bss        start:0x020d8cd4 end:0x020d9af0
+
+src/main/window/ShopMenuControl.cpp:
+    complete
+    .text       start:0x02036a78 end:0x02036bbc
+    .init       start:0x0208bf1c end:0x0208bf4c
+    .ctor       start:0x02092ee4 end:0x02092ee8
+    .data       start:0x02096d40 end:0x02096d54
+    .bss        start:0x020d9af0 end:0x020d9b08
+
+src/main/btl/encount/BattleEncountTile.cpp:
+    complete
+    .text       start:0x02036bbc end:0x02036d94
+
+src/main/leveldata/HukubikiPrize.cpp:
+    complete
+    .text       start:0x02036d94 end:0x02036de4
+    .data       start:0x02096d54 end:0x02096d80
+    .bss        start:0x020d9b08 end:0x020d9b44
+
+src/main/leveldata/FukuroWeapon.cpp:
+    complete
+    .text       start:0x02036de4 end:0x02036e54
+    .data       start:0x02096d80 end:0x02096dac
+    .bss        start:0x020d9b44 end:0x020d9b60
+
+src/main/leveldata/FukuroArmor.cpp:
+    complete
+    .text       start:0x02036e54 end:0x02036ec4
+    .data       start:0x02096dac end:0x02096dd8
+    .bss        start:0x020d9b60 end:0x020d9b7c
+
+src/main/leveldata/FukuroItem.cpp:
+    complete
+    .text       start:0x02036ec4 end:0x02036f34
+    .data       start:0x02096dd8 end:0x02096e04
+    .bss        start:0x020d9b7c end:0x020d9b98
+
+src/main/leveldata/EncountLayout.cpp:
+    complete
+    .text       start:0x02036f34 end:0x02036f98
+    .data       start:0x02096e04 end:0x02096e30
+    .bss        start:0x020d9b98 end:0x020da014
+
+src/main/btl/encount/BattleEncountScreenOver.cpp:
+    complete
+    .text       start:0x02036f98 end:0x02037080
+
+src/main/leveldata/CharaData.cpp:
+    complete
+    .text       start:0x02037080 end:0x020370d0
+    .data       start:0x02096e30 end:0x02096e58
+    .bss        start:0x020da014 end:0x020da830
+
+src/main/btl/encount/BattleEncountCountDown.cpp:
+    complete
+    .text       start:0x020370d0 end:0x020371bc
+    .data       start:0x02096e58 end:0x02096f18
+
+src/main/leveldata/ShopIndex3.cpp:
+    complete
+    .text       start:0x020371bc end:0x02037208
+    .data       start:0x02096f18 end:0x02096f44
+    .bss        start:0x020da830 end:0x020da874
+
+src/main/leveldata/ShopIndex2.cpp:
+    complete
+    .text       start:0x02037208 end:0x02037254
+    .data       start:0x02096f44 end:0x02096f70
+    .bss        start:0x020da874 end:0x020da8b8
+
+src/main/leveldata/SugorokuData.cpp:
+    complete
+    .text       start:0x02037254 end:0x020372bc
+    .data       start:0x02096f70 end:0x02096f9c
+    .bss        start:0x020da8b8 end:0x020db354
+
+src/main/leveldata/SugorokuSpecialMsg.cpp:
+    complete
+    .text       start:0x020372bc end:0x02037324
+    .data       start:0x02096f9c end:0x02096fcc
+    .bss        start:0x020db354 end:0x020db470
+
+src/main/leveldata/SugorokuChanceCard.cpp:
+    complete
+    .text       start:0x02037324 end:0x0203738c
+    .data       start:0x02096fcc end:0x02096ffc
+    .bss        start:0x020db470 end:0x020db660
+
+src/main/leveldata/SugorokuChangeMsg.cpp:
+    complete
+    .text       start:0x0203738c end:0x020373f0
+    .data       start:0x02096ffc end:0x0209702c
+    .bss        start:0x020db660 end:0x020db6ac
+
+src/main/town/TownCommandEncount.cpp:
+    complete
+    .text       start:0x020373f0 end:0x02037464
+    .data       start:0x0209702c end:0x02097040
+
+src/main/leveldata/SugorokuPanelList.cpp:
+    complete
+    .text       start:0x02037464 end:0x020374b4
+    .data       start:0x02097040 end:0x0209706c
+    .bss        start:0x020db6ac end:0x020db740
+
+src/main/status/BaseHaveAction.cpp:
+    complete
+    .text       start:0x020374b4 end:0x0203755c
+
+src/main/leveldata/ShopIndexSugoroku.cpp:
+    complete
+    .text       start:0x0203755c end:0x020375a8
+    .data       start:0x0209706c end:0x020970a0
+    .bss        start:0x020db740 end:0x020db784
+
+src/main/leveldata/ShopDataSugoroku.cpp:
+    complete
+    .text       start:0x020375a8 end:0x020375f4
+    .data       start:0x020970a0 end:0x020970d0
+    .bss        start:0x020db784 end:0x020db7f0
+
+src/main/leveldata/BattleMap.cpp:
+    complete
+    .text       start:0x020375f4 end:0x02037658
+    .data       start:0x020970d0 end:0x020970f8
+    .bss        start:0x020db7f0 end:0x020dbf14
+
+src/main/status/PartyStatusData.cpp:
+    complete
+    .text       start:0x02037658 end:0x02037cd8
+    .rodata     start:0x0208dc78 end:0x0208dcbc
+
+src/main/leveldata/MonsterAnim.cpp:
+    complete
+    .text       start:0x02037cd8 end:0x02037d28
+    .data       start:0x020970f8 end:0x02097124
+    .bss        start:0x020dbf14 end:0x020dc020
+
+src/main/window/MapControl.cpp:
+    complete
+    .text       start:0x02037d28 end:0x02037e8c
+    .init       start:0x0208bf4c end:0x0208bf7c
+    .ctor       start:0x02092ee8 end:0x02092eec
+    .data       start:0x02097124 end:0x02097138
+    .bss        start:0x020dc020 end:0x020dc03c
+
+src/main/window/ShoplistControl.cpp:
+    complete
+    .text       start:0x02037e8c end:0x020380ac
+    .init       start:0x0208bf7c end:0x0208bf9c
+    .ctor       start:0x02092eec end:0x02092ef0
+    .data       start:0x02097138 end:0x0209714c
+    .bss        start:0x020dc03c end:0x020dc058
+
+src/main/debug/UnkShopMapCheck.cpp:
+    complete
+    .text       start:0x020380ac end:0x0203828c
+    .init       start:0x0208bf9c end:0x0208bfac
+    .ctor       start:0x02092ef0 end:0x02092ef4
+    .data       start:0x0209714c end:0x02097178
+    .bss        start:0x020dc058 end:0x020dc07c
+
+src/main/town/TownSugorokuInfo.cpp:
+    complete
+    .text       start:0x0203828c end:0x02038768
+    .init       start:0x0208bfac end:0x0208bfbc
+    .ctor       start:0x02092ef4 end:0x02092ef8
+    .bss        start:0x020dc07c end:0x020de3c4
+
+src/main/leveldata/VehicleData.cpp:
+    complete
+    .text       start:0x02038768 end:0x020387d0
+    .data       start:0x02097178 end:0x020971a0
+    .bss        start:0x020de3c4 end:0x020de5d0
+
+src/main/leveldata/LevelDataUtility.cpp:
+    complete
+    .text       start:0x020387d0 end:0x02038ea0
+    .init       start:0x0208bfbc end:0x0208bfdc
+    .ctor       start:0x02092ef8 end:0x02092efc
+    .bss        start:0x020de5d0 end:0x020de5e0
+
+src/main/status/StageAttribute.cpp:
+    complete
+    .text       start:0x02038ea0 end:0x020399a8
+    .init       start:0x0208bfdc end:0x0208bffc
+    .ctor       start:0x02092efc end:0x02092f00
+    .data       start:0x020971a0 end:0x02097220
+    .bss        start:0x020de5e0 end:0x020de6a0
+
+src/main/town/SugorokuPanelData.cpp:
+    complete
+    .text       start:0x020399a8 end:0x02039a1c
+
+src/main/leveldata/PartytalkEnding.cpp:
+    complete
+    .text       start:0x02039a1c end:0x02039a78
+    .data       start:0x02097220 end:0x02097250
+    .bss        start:0x020de6a0 end:0x020de6bc
+
+src/main/leveldata/PartytalkSeinen.cpp:
+    complete
+    .text       start:0x02039a78 end:0x02039ad4
+    .data       start:0x02097250 end:0x02097280
+    .bss        start:0x020de6bc end:0x020de6d8
+
+src/main/leveldata/PartytalkSounen.cpp:
+    complete
+    .text       start:0x02039ad4 end:0x02039b30
+    .data       start:0x02097280 end:0x020972b0
+    .bss        start:0x020de6d8 end:0x020de6f4
+
+src/main/leveldata/PartytalkYounen.cpp:
+    complete
+    .text       start:0x02039b30 end:0x02039b8c
+    .data       start:0x020972b0 end:0x020972e0
+    .bss        start:0x020de6f4 end:0x020de710
+
+src/main/status/ActionCheckTarget.cpp:
+    complete
+    .text       start:0x02039b8c end:0x0203a81c
+
+src/main/status/ActionCheckActor.cpp:
+    complete
+    .text       start:0x0203a81c end:0x0203b820
+
+src/main/status/ActionMessage.cpp:
+    complete
+    .text       start:0x0203b820 end:0x0203bacc
+    .bss        start:0x020de710 end:0x020de718
+
+src/main/status/ActionMessageSplit.cpp:
+    complete
+    .text       start:0x0203bacc end:0x0203cdf8
+    .bss        start:0x020de718 end:0x020de728
+
+src/main/leveldata/ActionTypeList.cpp:
+    complete
+    .text       start:0x0203cdf8 end:0x0203ce5c
+    .data       start:0x020972e0 end:0x0209730c
+    .bss        start:0x020de728 end:0x020de8dc
+
+src/main/leveldata/EffectMessage.cpp:
+    complete
+    .text       start:0x0203ce5c end:0x0203cec0
+    .data       start:0x0209730c end:0x02097338
+    .bss        start:0x020de8dc end:0x020df018
+
+src/main/status/UseActionFlag.cpp:
+    complete
+    .text       start:0x0203cec0 end:0x0203cff0
+    .init       start:0x0208bffc end:0x0208c008
+    .ctor       start:0x02092f00 end:0x02092f04
+    .bss        start:0x020df018 end:0x020df424
+
+src/main/status/ActionEffectValue.cpp:
+    complete
+    .text       start:0x0203cff0 end:0x0203dd18
+    .bss        start:0x020df424 end:0x020df428
+
+src/main/status/ActionExecBefore.cpp:
+    complete
+    .text       start:0x0203dd18 end:0x0203df4c
+
+src/main/status/ActionExecAfter.cpp:
+    complete
+    .text       start:0x0203df4c end:0x0203e380
+
+src/main/part/CasinoPart.cpp:
+    complete
+    .text       start:0x0203e380 end:0x0203e450
+    .init       start:0x0208c008 end:0x0208c018
+    .ctor       start:0x02092f04 end:0x02092f08
+    .data       start:0x02097338 end:0x02097370
+    .bss        start:0x020df428 end:0x020df42c
+
+src/main/leveldata/SlotDrum.cpp:
+    complete
+    .text       start:0x0203e450 end:0x0203e4b4
+    .data       start:0x02097370 end:0x02097398
+    .bss        start:0x020df42c end:0x020df6c8
+
+src/main/status/PlayerDataAll.cpp:
+    complete
+    .text       start:0x0203e4b4 end:0x0203eaa4
+    .init       start:0x0208c018 end:0x0208c064
+    .ctor       start:0x02092f08 end:0x02092f0c
+    .bss        start:0x020df6c8 end:0x020ef2c4
+
+src/main/leveldata/PartytalkMonster.cpp:
+    complete
+    .text       start:0x0203eaa4 end:0x0203eb00
+    .data       start:0x02097398 end:0x020973c8
+    .bss        start:0x020ef2c4 end:0x020ef2e0
+
+src/main/text/UserExtractWordHook.cpp:
+    complete
+    .text       start:0x0203eb00 end:0x0203f0ac
+    .init       start:0x0208c064 end:0x0208c07c
+    .ctor       start:0x02092f0c end:0x02092f10
+    .data       start:0x020973c8 end:0x020973d4
+    .bss        start:0x020ef2e0 end:0x020ef2e4
+
+src/main/status/MenuStatus.cpp:
+    complete
+    .text       start:0x0203f0ac end:0x0203f1c4
+    .init       start:0x0208c07c end:0x0208c0a0
+    .ctor       start:0x02092f10 end:0x02092f14
+    .bss        start:0x020ef2e4 end:0x020ef350
+
+src/main/leveldata/FieldSymbol.cpp:
+    complete
+    .text       start:0x0203f1c4 end:0x0203f228
+    .data       start:0x020973d4 end:0x02097400
+    .bss        start:0x020ef350 end:0x020ef7e0
+
+src/main/leveldata/StadiumCard.cpp:
+    complete
+    .text       start:0x0203f228 end:0x0203f28c
+    .data       start:0x02097400 end:0x0209742c
+    .bss        start:0x020ef7e0 end:0x020efb2c
+
+src/main/menu/StadiumData.cpp:
+    complete
+    .text       start:0x0203f28c end:0x0203f2a0
+    .init       start:0x0208c0a0 end:0x0208c0b0
+    .ctor       start:0x02092f14 end:0x02092f18
+    .bss        start:0x020efb2c end:0x020efb48
+
+src/main/global/UnkTownPartCheck.cpp:
+    complete
+    .text       start:0x0203f2a0 end:0x0203f2c4
+    .init       start:0x0208c0b0 end:0x0208c0d0
+    .ctor       start:0x02092f18 end:0x02092f1c
+    .bss        start:0x020efb48 end:0x020efb58
+
+src/main/leveldata/TimeZone.cpp:
+    complete
+    .text       start:0x0203f2c4 end:0x0203f324
+    .data       start:0x0209742c end:0x02097454
+    .bss        start:0x020efb58 end:0x020efb94
+
+src/main/part/BookPart.cpp:
+    complete
+    .text       start:0x0203f324 end:0x0203f3f4
+    .init       start:0x0208c0d0 end:0x0208c0e0
+    .ctor       start:0x02092f1c end:0x02092f20
+    .data       start:0x02097454 end:0x0209748c
+    .bss        start:0x020efb94 end:0x020efb98
+
+src/main/status/ActionExecItem.cpp:
+    complete
+    .text       start:0x0203f3f4 end:0x0203f840
+
+src/main/leveldata/PokerMessage.cpp:
+    complete
+    .text       start:0x0203f840 end:0x0203f88c
+    .data       start:0x0209748c end:0x020974b8
+    .bss        start:0x020efb98 end:0x020efc34
+
+src/main/leveldata/SlotMessage.cpp:
+    complete
+    .text       start:0x0203f88c end:0x0203f8d8
+    .data       start:0x020974b8 end:0x020974e4
+    .bss        start:0x020efc34 end:0x020efca0
+
+src/main/leveldata/StadiumMessage.cpp:
+    complete
+    .text       start:0x0203f8d8 end:0x0203f924
+    .data       start:0x020974e4 end:0x02097514
+    .bss        start:0x020efca0 end:0x020efd0c
+
+src/main/leveldata/BookData.cpp:
+    complete
+    .text       start:0x0203f924 end:0x0203f970
+    .data       start:0x02097514 end:0x0209753c
+    .bss        start:0x020efd0c end:0x020efd58
+
+src/main/profile/Profile.cpp:
+    complete
+    .text       start:0x0203f970 end:0x0203fad4
+
+src/main/profile/ProfileCollect.cpp:
+    complete
+    .text       start:0x0203fad4 end:0x020403e4
+    .data       start:0x0209753c end:0x02097550
+
+src/main/profile/ProfileDeliver.cpp:
+    complete
+    .text       start:0x020403e4 end:0x02040cec
+    .data       start:0x02097550 end:0x02097558
+
+src/main/profile/SaveLoad.cpp:
+    complete
+    .text       start:0x02040cec end:0x0204172c
+    .data       start:0x02097558 end:0x020975d0
+    .bss        start:0x020efd58 end:0x020efe68
+
+src/main/leveldata/MapChurch.cpp:
+    complete
+    .text       start:0x0204172c end:0x02041794
+    .data       start:0x020975d0 end:0x020975f8
+    .bss        start:0x020efe68 end:0x020f0258
+
+src/main/leveldata/CLUTCode.cpp:
+    complete
+    .text       start:0x02041794 end:0x020417f4
+    .data       start:0x020975f8 end:0x02097620
+    .bss        start:0x020f0258 end:0x020f0334
+
+src/main/leveldata/SugorokuStage.cpp:
+    complete
+    .text       start:0x020417f4 end:0x02041864
+    .data       start:0x02097620 end:0x0209764c
+    .bss        start:0x020f0334 end:0x020f0350
+
+src/main/part/GameStartPart.cpp:
+    complete
+    .text       start:0x02041864 end:0x02041954
+    .init       start:0x0208c0e0 end:0x0208c0f0
+    .ctor       start:0x02092f20 end:0x02092f24
+    .data       start:0x0209764c end:0x02097684
+    .bss        start:0x020f0350 end:0x020f0360
+
+src/main/part/CardCheckPart.cpp:
+    complete
+    .text       start:0x02041954 end:0x020419d4
+    .init       start:0x0208c0f0 end:0x0208c100
+    .ctor       start:0x02092f24 end:0x02092f28
+    .data       start:0x02097684 end:0x020976bc
+    .bss        start:0x020f0360 end:0x020f0364
+
+src/main/part/GameEndPart.cpp:
+    complete
+    .text       start:0x020419d4 end:0x02041ae0
+    .init       start:0x0208c100 end:0x0208c110
+    .ctor       start:0x02092f28 end:0x02092f2c
+    .data       start:0x020976bc end:0x020976f4
+    .bss        start:0x020f0364 end:0x020f0374
+
+src/main/town/TownTruckSwitch.cpp:
+    complete
+    .text       start:0x02041ae0 end:0x02041bb8
+
+src/main/status/TaishiBase.cpp:
+    complete
+    .text       start:0x02041bb8 end:0x02041c58
+
+src/main/leveldata/MeisanhinData.cpp:
+    complete
+    .text       start:0x02041c58 end:0x02041cc0
+    .data       start:0x020976f4 end:0x02097720
+    .bss        start:0x020f0374 end:0x020f0908
+
+src/main/leveldata/SurechigaiData.cpp:
+    complete
+    .text       start:0x02041cc0 end:0x02041d14
+    .data       start:0x02097720 end:0x02097750
+    .bss        start:0x020f0908 end:0x020f0b24
+
+src/main/town/TownTruckSeesaw.cpp:
+    complete
+    .text       start:0x02041d14 end:0x02041e24
+
+src/main/town/TownTruckData.cpp:
+    complete
+    .text       start:0x02041e24 end:0x02042098
+    .init       start:0x0208c110 end:0x0208c12c
+    .ctor       start:0x02092f2c end:0x02092f30
+    .bss        start:0x020f0b24 end:0x020f0ec4
+
+src/main/status/MuseumItemStatus.cpp:
+    complete
+    .text       start:0x02042098 end:0x020420e4
+
+src/main/part/SlimeRacePart.cpp:
+    complete
+    .text       start:0x020420e4 end:0x020422e0
+    .init       start:0x0208c12c end:0x0208c13c
+    .rodata     start:0x0208dcbc end:0x0208dcc4
+    .ctor       start:0x02092f30 end:0x02092f34
+    .data       start:0x02097750 end:0x02097788
+    .bss        start:0x020f0ec4 end:0x020f0ecc
+
+src/main/status/MuseumStatus.cpp:
+    complete
+    .text       start:0x020422e0 end:0x02042b88
+    .init       start:0x0208c13c end:0x0208c15c
+    .ctor       start:0x02092f34 end:0x02092f38
+    .data       start:0x02097788 end:0x02097854
+    .bss        start:0x020f0ecc end:0x020f2f08
+
+src/main/leveldata/FurnitureList.cpp:
+    complete
+    .text       start:0x02042b88 end:0x02042bf8
+    .data       start:0x02097854 end:0x02097880
+    .bss        start:0x020f2f08 end:0x020f2f24
+
+src/main/menu/RaceData.cpp:
+    complete
+    .text       start:0x02042bf8 end:0x02042cbc
+    .init       start:0x0208c15c end:0x0208c16c
+    .ctor       start:0x02092f38 end:0x02092f3c
+    .bss        start:0x020f2f24 end:0x020f2f7c
+
+src/main/part/SlimeTouchPart.cpp:
+    complete
+    .text       start:0x02042cbc end:0x02042e48
+    .init       start:0x0208c16c end:0x0208c17c
+    .ctor       start:0x02092f3c end:0x02092f40
+    .data       start:0x02097880 end:0x020978b8
+    .bss        start:0x020f2f7c end:0x020f2f84
+
+src/main/btl/monster/BattleMonsterData.cpp:
+    complete
+    .text       start:0x02042e48 end:0x02042e64
+    .data       start:0x020978b8 end:0x020989b8
+
+src/main/btl/monster/MonsterTaiData.cpp:
+    complete
+    .data       start:0x020989b8 end:0x020995d4
+
+src/main/part/MPExchangePart.cpp:
+    complete
+    .text       start:0x02042e64 end:0x02043430
+    .init       start:0x0208c17c end:0x0208c18c
+    .ctor       start:0x02092f40 end:0x02092f44
+    .data       start:0x020995d4 end:0x02099614
+    .bss        start:0x020f2f84 end:0x020f3258
+
+src/main/debug/UnkDebugPrint.cpp:
+    complete
+    .text       start:0x02043430 end:0x0204358c
+    .bss        start:0x020f3258 end:0x020f3264
+
+src/main/leveldata/KeyDataJK.cpp:
+    complete
+    .text       start:0x0204358c end:0x020435fc
+    .data       start:0x02099614 end:0x0209963c
+    .bss        start:0x020f3264 end:0x020f3280
+
+src/main/leveldata/KeyTableJH.cpp:
+    complete
+    .text       start:0x020435fc end:0x0204366c
+    .data       start:0x0209963c end:0x02099668
+    .bss        start:0x020f3280 end:0x020f329c
+
+src/main/leveldata/KeyTableJK.cpp:
+    complete
+    .text       start:0x0204366c end:0x020436dc
+    .data       start:0x02099668 end:0x02099694
+    .bss        start:0x020f329c end:0x020f32b8
+
+src/main/leveldata/KeyDataJH.cpp:
+    complete
+    .text       start:0x020436dc end:0x0204374c
+    .data       start:0x02099694 end:0x020996bc
+    .bss        start:0x020f32b8 end:0x020f32d4
+
+src/main/leveldata/PartytalkSeinenIndex.cpp:
+    complete
+    .text       start:0x0204374c end:0x020437bc
+    .data       start:0x020996bc end:0x020996f0
+    .bss        start:0x020f32d4 end:0x020f32f0
+
+src/main/leveldata/PartytalkSounenIndex.cpp:
+    complete
+    .text       start:0x020437bc end:0x0204382c
+    .data       start:0x020996f0 end:0x02099724
+    .bss        start:0x020f32f0 end:0x020f330c
+
+src/main/leveldata/PartytalkYounenIndex.cpp:
+    complete
+    .text       start:0x0204382c end:0x0204389c
+    .data       start:0x02099724 end:0x02099758
+    .bss        start:0x020f330c end:0x020f3328
+
+src/main/leveldata/PartytalkEndingIndex.cpp:
+    complete
+    .text       start:0x0204389c end:0x0204390c
+    .data       start:0x02099758 end:0x0209978c
+    .bss        start:0x020f3328 end:0x020f3344
+
+src/main/part/CeremonyPart.cpp:
+    complete
+    .text       start:0x0204390c end:0x02043a30
+    .init       start:0x0208c18c end:0x0208c1a4
+    .ctor       start:0x02092f44 end:0x02092f48
+    .data       start:0x0209978c end:0x020997c4
+    .bss        start:0x020f3344 end:0x020f3348
+
+src/main/status/TouchData.cpp:
+    complete
+    .text       start:0x02043a30 end:0x02043adc
+    .init       start:0x0208c1a4 end:0x0208c1b4
+    .rodata     start:0x0208dcc4 end:0x0208dd08
+    .ctor       start:0x02092f48 end:0x02092f4c
+    .bss        start:0x020f3348 end:0x020f342c
+
+src/main/ceremony/CeremonySetting.cpp:
+    complete
+    .text       start:0x02043adc end:0x02043b38
+    .bss        start:0x020f342c end:0x020f3454
+
+src/main/status/ActionExecRefrection.cpp:
+    complete
+    .text       start:0x02043b38 end:0x02044330
+
+src/main/menu/UnkMenu_02044330.cpp:
+    complete
+    .text       start:0x02044330 end:0x020443c0
+    .data       start:0x020997c4 end:0x020997e0
+
+src/main/cmn/CommandObjectField.cpp:
+    complete
+    .text       start:0x020443c0 end:0x020445b0
+
+src/main/town/CommandObjectTown.cpp:
+    complete
+    .text       start:0x020445b0 end:0x02044ba0
+
+src/main/leveldata/SugorokuDrop.cpp:
+    complete
+    .text       start:0x02044ba0 end:0x02044c04
+    .data       start:0x020997e0 end:0x0209980c
+    .bss        start:0x020f3454 end:0x020f3520
+
+src/main/debug/UnkDebugTurnTask.cpp:
+    complete
+    .text       start:0x02044c04 end:0x02044cb8
+    .init       start:0x0208c1b4 end:0x0208c1c4
+    .ctor       start:0x02092f4c end:0x02092f50
+    .data       start:0x0209980c end:0x02099828
+    .bss        start:0x020f3520 end:0x020f353c
+
+src/main/leveldata/CharacterWidth.cpp:
+    complete
+    .text       start:0x02044cb8 end:0x02044d14
+    .data       start:0x02099828 end:0x02099858
+    .bss        start:0x020f353c end:0x020f3558
+
+src/main/cmn/CommonParticleEmitter.cpp:
+    complete
+    .text       start:0x02044d14 end:0x02045eec
+    .init       start:0x0208c1c4 end:0x0208c448
+    .ctor       start:0x02092f50 end:0x02092f54
+    .data       start:0x02099858 end:0x02099984
+    .bss        start:0x020f3558 end:0x020f3d58
+
+src/main/debug/UnkPerfMonitor.cpp:
+    complete
+    .text       start:0x02045eec end:0x02046388
+    .data       start:0x02099984 end:0x02099988
+
+src/main/leveldata/TruckSwitch.cpp:
+    complete
+    .text       start:0x02046388 end:0x020463f8
+    .data       start:0x02099988 end:0x020999b8
+    .bss        start:0x020f3d58 end:0x020f3d74
+
+src/main/leveldata/TruckGoal.cpp:
+    complete
+    .text       start:0x020463f8 end:0x02046468
+    .data       start:0x020999b8 end:0x020999e0
+    .bss        start:0x020f3d74 end:0x020f3d90
+
+src/main/leveldata/PlayerCarriage.cpp:
+    complete
+    .text       start:0x02046468 end:0x020464c4
+    .data       start:0x020999e0 end:0x02099a10
+    .bss        start:0x020f3d90 end:0x020f3dac
+
+src/main/dss/UnkLanguage.cpp:
+    complete
+    .text       start:0x020464c4 end:0x020465b0
+    .init       start:0x0208c448 end:0x0208c45c
+    .ctor       start:0x02092f54 end:0x02092f58
+    .data       start:0x02099a10 end:0x02099a3c
+    .bss        start:0x020f3dac end:0x020f3db8
+
+src/main/town/GimmickGridGlobalData.cpp:
+    complete
+    .text       start:0x020465b0 end:0x020465e0
+    .init       start:0x0208c45c end:0x0208c488
+    .ctor       start:0x02092f58 end:0x02092f5c
+    .bss        start:0x020f3db8 end:0x020f3e30
+
+src/main/object/UnkModelAnimation.cpp:
+    complete
+    .text       start:0x020465e0 end:0x020466d8
+
+src/main/dss/Camera.cpp:
+    complete
+    .text       start:0x020466d8 end:0x02046ab0
+    .data       start:0x02099a3c end:0x02099b94
+
+src/main/dss/UnkFog.cpp:
+    complete
+    .text       start:0x02046ab0 end:0x02046c2c
+    .init       start:0x0208c488 end:0x0208c4a4
+    .ctor       start:0x02092f5c end:0x02092f60
+    .bss        start:0x020f3e30 end:0x020f3e84
+
+src/main/dss/UnkModelMember.cpp:
+    complete
+    .text       start:0x02046c2c end:0x02046f50
+    .bss        start:0x020f3e84 end:0x020f3e8c
+
+src/main/dss/UnkRenderObject.cpp:
+    complete
+    .text       start:0x02046f50 end:0x02048848
+    .init       start:0x0208c4a4 end:0x0208c590
+    .rodata     start:0x0208dd08 end:0x0208dd68
+    .ctor       start:0x02092f60 end:0x02092f64
+    .data       start:0x02099b94 end:0x02099dc8
+    .bss        start:0x020f3e8c end:0x020f3f04
+
+src/main/dss/Render.cpp:
+    complete
+    .text       start:0x02048848 end:0x02048d08
+    .rodata     start:0x0208dd68 end:0x0208dd74
+    .bss        start:0x020f3f04 end:0x020f3f54
+
+src/main/object/UnkModelObjectBase.cpp:
+    complete
+    .text       start:0x02048d08 end:0x020491f8
+    .data       start:0x02099dc8 end:0x02099de0
+
+src/main/dss/UnkPaletteEffect.cpp:
+    complete
+    .text       start:0x020491f8 end:0x02049e94
+    .init       start:0x0208c590 end:0x0208c5b0
+    .ctor       start:0x02092f64 end:0x02092f68
+    .bss        start:0x020f3f54 end:0x020f4f68
+
+src/main/dss/UnkTextureObject.cpp:
+    complete
+    .text       start:0x02049e94 end:0x0204a3d8
+
+src/main/dss/UnkCharacterPalette.cpp:
+    complete
+    .text       start:0x0204a3d8 end:0x0204a50c
+
+src/main/dss/UnkVramTransfer.cpp:
+    complete
+    .text       start:0x0204a50c end:0x0204a7e4
+    .init       start:0x0208c5b0 end:0x0208c5dc
+    .ctor       start:0x02092f68 end:0x02092f6c
+    .bss        start:0x020f4f68 end:0x020f678c
+
+src/main/dss/UnkUtf8Iterator.cpp:
+    complete
+    .text       start:0x0204a7e4 end:0x0204afd8
+    .data       start:0x02099de0 end:0x0209a238
+    .bss        start:0x020f678c end:0x020f6f9c
+
+src/main/dss/DssCore.cpp:
+    complete
+    .text       start:0x0204afd8 end:0x0204b56c
+    .init       start:0x0208c5dc end:0x0208c5ec
+    .ctor       start:0x02092f6c end:0x02092f70
+    .bss        start:0x020f6f9c end:0x020f6fa0
+
+src/main/dss/UnkOverlaySlot.cpp:
+    complete
+    .text       start:0x0204b56c end:0x0204b640
+    .data       start:0x0209a238 end:0x0209a23c
+
+src/main/dss/Pad.cpp:
+    complete
+    .text       start:0x0204b640 end:0x0204bf48
+    .init       start:0x0208c5ec end:0x0208c600
+    .ctor       start:0x02092f70 end:0x02092f74
+    .data       start:0x0209a23c end:0x0209a288
+    .bss        start:0x020f9834 end:0x020fd15c
+
+src/main/dss/UnkSleep.cpp:
+    complete
+    .text       start:0x0204bf48 end:0x0204c0b4
+    .bss        start:0x020fd15c end:0x020fd180
+
+src/main/dss/UnkArrayWarning.cpp:
+    complete
+    .text       start:0x0204c0b4 end:0x0204c1ac
+    .data       start:0x0209a288 end:0x0209a2a8
+    .bss        start:0x020fd180 end:0x020fd244
+
+src/main/dss/UnkMemory.cpp:
+    complete
+    .text       start:0x0204c1ac end:0x0204c654
+    .data       start:0x0209a2a8 end:0x0209a2d4
+    .bss        start:0x020fd244 end:0x020fd2a4
+
+src/main/dss/UnkHeapLog.cpp:
+    complete
+    .text       start:0x0204c654 end:0x0204c860
+    .data       start:0x0209a2d4 end:0x0209a2e8
+    .bss        start:0x020fd2a4 end:0x020fe6ac
+
+src/main/dss/UnkArchive.cpp:
+    complete
+    .text       start:0x0204c860 end:0x0204c89c
+
+src/main/dss/UnkMessageFind.cpp:
+    complete
+    .text       start:0x0204c89c end:0x0204c95c
+    .data       start:0x0209a2e8 end:0x0209a2f0
+    .bss        start:0x020fe6ac end:0x020fe6b0
+
+src/main/dss/UnkDisplay.cpp:
+    complete
+    .text       start:0x0204c95c end:0x0204d208
+    .init       start:0x0208c600 end:0x0208c610
+    .ctor       start:0x02092f74 end:0x02092f78
+    .bss        start:0x020fe6b0 end:0x021003a0
+
+src/main/dss/UnkDisplayPlugin.cpp:
+    complete
+    .text       start:0x0204d208 end:0x0204db88
+    .init       start:0x0208c610 end:0x0208c640
+    .ctor       start:0x02092f78 end:0x02092f7c
+    .data       start:0x0209a2f0 end:0x0209a354
+    .bss        start:0x021003a0 end:0x021003e8
+
+src/main/dss/UnkVramRequest.cpp:
+    complete
+    .text       start:0x0204db88 end:0x0204dea4
+    .init       start:0x0208c640 end:0x0208c650
+    .ctor       start:0x02092f7c end:0x02092f80
+    .bss        start:0x021003e8 end:0x021011f0
+
+src/main/dss/UnkFont.cpp:
+    complete
+    .text       start:0x0204dea4 end:0x0204df4c
+
+src/main/dss/UnkBgText.cpp:
+    complete
+    .text       start:0x0204df4c end:0x0204e558
+    .init       start:0x0208c650 end:0x0208c67c
+    .ctor       start:0x02092f80 end:0x02092f84
+    .bss        start:0x021011f0 end:0x02101550
+
+src/main/dss/UnkCharBuffer.cpp:
+    complete
+    .text       start:0x0204e558 end:0x0204e654
+
+src/main/dss/UnkSystemText.cpp:
+    complete
+    .text       start:0x0204e654 end:0x0204e83c
+    .rodata     start:0x0208dd74 end:0x0208dd94
+    .bss        start:0x02101550 end:0x02101564
+
+src/main/dss/UnkScreenBuffer.cpp:
+    complete
+    .text       start:0x0204e83c end:0x0204ef24
+
+src/main/dss/DssFix.cpp:
+    complete
+    .text       start:0x0204ef24 end:0x0204f328
+
+src/main/dss/UnkRandom.cpp:
+    complete
+    .text       start:0x0204f328 end:0x0204f3bc
+    .bss        start:0x02101564 end:0x02101570
+
+src/main/dss/UnkDssMath.cpp:
+    complete
+    .text       start:0x0204f3bc end:0x0204f414
+    .init       start:0x0208c67c end:0x0208c6fc
+    .ctor       start:0x02092f84 end:0x02092f88
+    .data       start:0x0209a354 end:0x0209a370
+
+src/main/dss/UnkMatrix43.cpp:
+    complete
+    .text       start:0x0204f414 end:0x0204f55c
+
+src/main/dss/DssVector.cpp:
+    complete
+    .text       start:0x0204f55c end:0x0204fdc4
+
+src/main/sound/UnkNnsSound.cpp:
+    complete
+    .text       start:0x0204fdc4 end:0x02050478
+    .init       start:0x0208c6fc end:0x0208c71c
+    .ctor       start:0x02092f88 end:0x02092f8c
+    .data       start:0x0209a370 end:0x0209a378
+    .bss        start:0x02101570 end:0x02101658
+
+src/main/dss/DssUtils.cpp:
+    complete
+    .text       start:0x02050478 end:0x0205071c
+    .bss        start:0x02101658 end:0x02101a58
+
+src/main/dss/UnkTextureBillboard.cpp:
+    complete
+    .text       start:0x0205071c end:0x02050784
+
+src/main/object/ModelObject.cpp:
+    complete
+    .text       start:0x02050784 end:0x02050ce4
+    .init       start:0x0208c71c end:0x0208c734
+    .ctor       start:0x02092f8c end:0x02092f90
+    .data       start:0x0209a378 end:0x0209a3a8
+    .bss        start:0x02101a58 end:0x02101a5c
+
+src/main/object/ModelObjectWithCamera.cpp:
+    complete
+    .text       start:0x02050ce4 end:0x02051304
+    .init       start:0x0208c734 end:0x0208c764
+    .ctor       start:0x02092f90 end:0x02092f94
+    .data       start:0x0209a3a8 end:0x0209a3c8
+    .bss        start:0x02101a5c end:0x02101a68
+
+src/main/object/UnkPaletteAnimationObject.cpp:
+    complete
+    .text       start:0x02051304 end:0x02051658
+    .bss        start:0x02101a68 end:0x02101c68
+
+src/main/global/UnkApplication.cpp:
+    complete
+    .text       start:0x02051658 end:0x020516b4
+
+src/main/global/UnkGlobalSystem.cpp:
+    complete
+    .text       start:0x020516b4 end:0x020518e8
+    .init       start:0x0208c77c end:0x0208c7bc
+    .ctor       start:0x02092f98 end:0x02092f9c
+    .data       start:0x0209a3c8 end:0x0209a3e4
+    .bss        start:0x02101c6c end:0x02101d08
+
+src/main/global/GlobalGamePartManager.cpp:
+    complete
+    .text       start:0x020518e8 end:0x020519f4
+    .init       start:0x0208c7bc end:0x0208c7e8
+    .ctor       start:0x02092f9c end:0x02092fa0
+    .bss        start:0x02101d08 end:0x02101d34
+
+src/main/dss/UnkMenuSprite.cpp:
+    complete
+    .text       start:0x020519f4 end:0x02051bd4
+
+src/main/dss/UnkDualCamera.cpp:
+    complete
+    .text       start:0x02051bd4 end:0x02051ffc
+    .init       start:0x0208c7e8 end:0x0208c830
+    .ctor       start:0x02092fa0 end:0x02092fa4
+    .data       start:0x0209a3e4 end:0x0209a428
+
+src/main/dss/UnkCamera.cpp:
+    complete
+    .text       start:0x02051ffc end:0x02052118
+    .init       start:0x0208c830 end:0x0208c880
+    .ctor       start:0x02092fa4 end:0x02092fa8
+    .data       start:0x0209a428 end:0x0209a458
+    .bss        start:0x02101d34 end:0x02101da4
+
+src/main/global/UnkBuildDate.cpp:
+    complete
+    .text       start:0x02052118 end:0x02052150
+    .data       start:0x0209a458 end:0x0209a470
+
+src/main/window/UnkMapPoint.cpp:
+    complete
+    .text       start:0x02052150 end:0x020521e0
+    .init       start:0x0208c880 end:0x0208c8b4
+    .ctor       start:0x02092fa8 end:0x02092fac
+    .bss        start:0x02101da4 end:0x021024a8
+
+src/main/dss/CsvData.cpp:
+    complete
+    .text       start:0x020521e0 end:0x0205234c
+
+src/main/object/DSSACharacter.cpp:
+    complete
+    .text       start:0x0205234c end:0x0205318c
+    .init       start:0x0208c8b4 end:0x0208c8fc
+    .ctor       start:0x02092fac end:0x02092fb0
+    .data       start:0x0209a470 end:0x0209a48c
+    .bss        start:0x021024a8 end:0x02102500
+
+src/main/object/DSSAObject.cpp:
+    complete
+    .text       start:0x0205318c end:0x02054760
+    .init       start:0x0208c8fc end:0x0208c930
+    .rodata     start:0x0208dd94 end:0x0208ddc4
+    .ctor       start:0x02092fb0 end:0x02092fb4
+    .data       start:0x0209a48c end:0x0209a4f8
+    .bss        start:0x02102500 end:0x021025c4
+
+src/main/object/DSSAObjectWithCamera.cpp:
+    complete
+    .text       start:0x02054760 end:0x02054f30
+    .init       start:0x0208c930 end:0x0208c960
+    .ctor       start:0x02092fb4 end:0x02092fb8
+    .data       start:0x0209a4f8 end:0x0209a538
+    .bss        start:0x021025c4 end:0x021025d4
+
+src/main/sound/UnkSoundPlayer.cpp:
+    complete
+    .text       start:0x02054f30 end:0x020552c8
+    .init       start:0x0208c960 end:0x0208c980
+    .ctor       start:0x02092fb8 end:0x02092fbc
+    .bss        start:0x021025d4 end:0x021028d0
+
+src/main/dss/GameSystemManager.cpp:
+    complete
+    .text       start:0x020552c8 end:0x020555c4
+    .data       start:0x0209a538 end:0x0209a564
+    .bss        start:0x021028d0 end:0x02102ee0
+
+src/main/object/BillboardCharacter.cpp:
+    complete
+    .text       start:0x020555c4 end:0x02056b1c
+    .init       start:0x0208c980 end:0x0208ce98
+    .ctor       start:0x02092fbc end:0x02092fc0
+    .data       start:0x0209a564 end:0x0209a680
+    .bss        start:0x02102ee0 end:0x021059dc
+
+src/main/object/DisplayCharacter.cpp:
+    complete
+    .text       start:0x02056b1c end:0x02057c78
+    .init       start:0x0208ce98 end:0x0208d00c
+    .ctor       start:0x02092fc0 end:0x02092fc4
+    .data       start:0x0209a680 end:0x0209a6e0
+    .bss        start:0x021059dc end:0x02105a80
+
+src/main/object/GameMonster.cpp:
+    complete
+    .text       start:0x02057c78 end:0x02057d2c
+    .init       start:0x0208d00c end:0x0208d02c
+    .ctor       start:0x02092fc4 end:0x02092fc8
+    .data       start:0x0209a6e0 end:0x0209a6fc
+    .bss        start:0x02105a80 end:0x02105ed8
+
+src/main/object/GameMonsterData.cpp:
+    complete
+    .text       start:0x02057d2c end:0x0205829c
+    .data       start:0x0209a6fc end:0x0209a75c
+    .bss        start:0x02105ed8 end:0x02105edc
+
+src/main/object/SpriteCharacter.cpp:
+    complete
+    .text       start:0x0205829c end:0x020587d8
+    .init       start:0x0208d02c end:0x0208d05c
+    .ctor       start:0x02092fc8 end:0x02092fcc
+    .data       start:0x0209a75c end:0x0209a7b4
+    .bss        start:0x02105edc end:0x02105f00
+
+src/main/fld/Coll.cpp:
+    complete
+    .text       start:0x020587d8 end:0x0205b6c0
+
+src/main/fld/Coll2.cpp:
+    complete
+    .text       start:0x0205b6c0 end:0x0205c6cc
+
+src/main/fld/FLDObject.cpp:
+    complete
+    .text       start:0x0205c6cc end:0x02061a8c
+    .rodata     start:0x0208ddc4 end:0x0208ddd0
+    .data       start:0x0209a7b4 end:0x0209a7b8
+    .bss        start:0x02105f00 end:0x02105f2c
+
+src/main/fld/MapLink.cpp:
+    complete
+    .text       start:0x02061a8c end:0x02061bd0
+
+src/main/menu/UnkMenuBgDraw.cpp:
+    complete
+    .text       start:0x02061bd0 end:0x020624a8
+    .data       start:0x0209a7b8 end:0x0209a84c
+    .bss        start:0x02105f2c end:0x02105f44
+
+src/main/menu/UnkMenuSystem.cpp:
+    complete
+    .text       start:0x020624a8 end:0x020624f4
+
+src/main/menu/UiMsg.cpp:
+    complete
+    .text       start:0x020624f4 end:0x0206297c
+    .data       start:0x0209a84c end:0x0209a854
+    .bss        start:0x02105f44 end:0x02105fc4
+
+src/main/menu/UnkMenuPartsDraw.cpp:
+    complete
+    .text       start:0x0206297c end:0x02063250
+    .bss        start:0x02105fc4 end:0x02105fd0
+
+src/main/menu/UnkMenuIconData.cpp:
+    complete
+    .text       start:0x02063250 end:0x02063414
+    .init       start:0x0208d05c end:0x0208d128
+    .ctor       start:0x02092fcc end:0x02092fd0
+    .data       start:0x0209a854 end:0x0209a940
+    .bss        start:0x02105fd0 end:0x02106178
+
+src/main/menu/UnkMenuBg.cpp:
+    complete
+    .text       start:0x02063414 end:0x02063c00
+    .init       start:0x0208d128 end:0x0208d138
+    .ctor       start:0x02092fd0 end:0x02092fd4
+    .bss        start:0x02106178 end:0x02114dd4
+
+src/main/menu/UnkMenuDisplayManager.cpp:
+    complete
+    .text       start:0x02063c00 end:0x020641dc
+    .init       start:0x0208d138 end:0x0208d1c4
+    .ctor       start:0x02092fd4 end:0x02092fd8
+    .bss        start:0x02114dd4 end:0x0211b148
+
+src/main/menu/UnkMenuFrameDisplay.cpp:
+    complete
+    .text       start:0x020641dc end:0x0206434c
+    .data       start:0x0209a940 end:0x0209a958
+
+src/main/menu/UnkMenuFrameQueue.cpp:
+    complete
+    .text       start:0x0206434c end:0x020646b4
+
+src/main/menu/UnkMenuDisplay.cpp:
+    complete
+    .text       start:0x020646b4 end:0x020647b0
+    .data       start:0x0209a958 end:0x0209a970
+
+src/main/menu/UnkMenuDummyDisplay.cpp:
+    complete
+    .text       start:0x020647b0 end:0x020647e4
+    .data       start:0x0209a970 end:0x0209a988
+
+src/main/menu/UnkMenuArrowDisplay.cpp:
+    complete
+    .text       start:0x020647e4 end:0x020649fc
+    .data       start:0x0209a988 end:0x0209a9f0
+
+src/main/menu/UnkMenuFaceDisplay.cpp:
+    complete
+    .text       start:0x020649fc end:0x02064d20
+    .data       start:0x0209a9f0 end:0x0209aa74
+
+src/main/menu/UnkMenuIconDisplay.cpp:
+    complete
+    .text       start:0x02064d20 end:0x02065098
+    .data       start:0x0209aa74 end:0x0209aa8c
+
+src/main/menu/UnkMenuWindowFrame.cpp:
+    complete
+    .text       start:0x02065098 end:0x020658c8
+    .data       start:0x0209aa8c end:0x0209aaa4
+
+src/main/menu/UnkHoppingNumber.cpp:
+    complete
+    .text       start:0x020658c8 end:0x02065af0
+    .rodata     start:0x0208ddd0 end:0x0208de6c
+    .data       start:0x0209aaa4 end:0x0209aac0
+
+src/main/menu/UnkMenuSpriteDisplay.cpp:
+    complete
+    .text       start:0x02065af0 end:0x02065b70
+    .data       start:0x0209aac0 end:0x0209aad8
+
+src/main/menu/UnkMessageWindow.cpp:
+    complete
+    .text       start:0x02065b70 end:0x02066bf0
+    .data       start:0x0209aad8 end:0x0209ae6c
+
+src/main/menu/UnkMenuTextDisplay.cpp:
+    complete
+    .text       start:0x02066bf0 end:0x02067338
+    .data       start:0x0209ae6c end:0x0209ae84
+
+src/main/menu/UnkMenuYesNoDisplay.cpp:
+    complete
+    .text       start:0x02067338 end:0x020675f4
+    .data       start:0x0209ae84 end:0x0209aea0
+
+src/main/global/GlobalGamePart.cpp:
+    complete
+    .text       start:0x020675f4 end:0x02067c00
+    .init       start:0x0208d1c4 end:0x0208d300
+    .ctor       start:0x02092fd8 end:0x02092fdc
+    .data       start:0x0209aea0 end:0x0209aef0
+    .bss        start:0x0211b148 end:0x0211b300
+
+src/main/menu/MenuBase.cpp:
+    complete
+    .text       start:0x02067c00 end:0x02067ca4
+    .data       start:0x0209aef0 end:0x0209af0c
+
+src/main/menu/MenuItem.cpp:
+    complete
+    .text       start:0x02067ca4 end:0x020684dc
+
+src/main/menu/MenuManager.cpp:
+    complete
+    .text       start:0x020684dc end:0x02068718
+    .bss        start:0x0211b300 end:0x0211b3b8
+
+src/main/menu/MenuSubManager.cpp:
+    complete
+    .text       start:0x02068718 end:0x02068868
+
+src/main/sound/Sound.cpp:
+    complete
+    .text       start:0x02068868 end:0x02068a14
+    .data       start:0x0209af0c end:0x0209af48
+
+src/main/fld/FldCollision.cpp:
+    complete
+    .text       start:0x02068a14 end:0x0206a5b4
+    .data       start:0x0209af48 end:0x0209af50
+    .bss        start:0x0211b3b8 end:0x0211b3c4
+
+src/main/fld/FldStage.cpp:
+    complete
+    .text       start:0x0206a5b4 end:0x0206b6b4
+    .rodata     start:0x0208de6c end:0x0208de78
+    .data       start:0x0209af50 end:0x0209af74
+    .bss        start:0x0211b3c4 end:0x0211b3c8
+
+src/main/text/UnkBadWordList.cpp:
+    complete
+    .text       start:0x0206b6b4 end:0x0206b848
+    .data       start:0x0209af74 end:0x0209af90
+
+src/main/text/MsgData.cpp:
+    complete
+    .text       start:0x0206b848 end:0x0206bcc4
+    .data       start:0x0209af90 end:0x0209afec
+
+src/main/text/MsgVar.cpp:
+    complete
+    .text       start:0x0206bcc4 end:0x0206bedc
+    .data       start:0x0209afec end:0x0209b058
+
+src/main/text/TextEnv.cpp:
+    complete
+    .text       start:0x0206bedc end:0x0206c4e4
+    .data       start:0x0209b058 end:0x0209bacc
+    .bss        start:0x0211b3cc end:0x0211b7cc
+
+src/main/text/TextAPI.cpp:
+    complete
+    .text       start:0x0206c4e4 end:0x0206cb34
+    .data       start:0x0209bacc end:0x0209bb08
+    .bss        start:0x0211b7cc end:0x0211bd60
+
+src/main/text/TextSystem.cpp:
+    complete
+    .text       start:0x0206cb34 end:0x0206cee0
+    .init       start:0x0208d300 end:0x0208d358
+    .ctor       start:0x02092fdc end:0x02092fe0
+    .bss        start:0x0211bd60 end:0x0211d00c
+
+src/main/text/TextExtractor.cpp:
+    complete
+    .text       start:0x0206cee0 end:0x0206d9f4
+    .data       start:0x0209bb08 end:0x0209c194
+
+src/main/btl/UnkBattleMapList.cpp:
+    complete
+    .text       start:0x0206d9f4 end:0x0206dc2c
+
+src/main/menu/UnkIconFile.cpp:
+    complete
+    .text       start:0x0206dc2c end:0x0206de10
+
+src/main/text/MessageMacro.cpp:
+    complete
+    .text       start:0x0206de10 end:0x0206e0f4
+
+src/main/data/DataObject.cpp:
+    complete
+    .text       start:0x0206e0f4 end:0x0206e30c
+    .data       start:0x0209c1a4 end:0x0209c1c4
+    .bss        start:0x0211d00c end:0x0211d010
+
+src/main/data/ExcelBinaryData.cpp:
+    complete
+    .text       start:0x0206e30c end:0x0206e514
+
+src/main/task/BaseTask.cpp:
+    complete
+    .text       start:0x0206e514 end:0x0206e890
+    .data       start:0x0209c1c4 end:0x0209c1f0
+
+src/main/script/sys/PlacementParameter.cpp:
+    complete
+    .text       start:0x0206e890 end:0x0206e904
+    .bss        start:0x0211d090 end:0x0211d094
+
+src/main/script/sys/ScriptEngine.cpp:
+    complete
+    .text       start:0x0206e904 end:0x0206ea2c
+
+src/main/script/sys/ScriptGroup.cpp:
+    complete
+    .text       start:0x0206ea2c end:0x0206ed8c
+    .bss        start:0x0211d094 end:0x0211d09c
+
+src/main/script/sys/ScriptObject.cpp:
+    complete
+    .text       start:0x0206ed8c end:0x0206ef64
+    .bss        start:0x0211d09c end:0x0211d0a0
+
+src/main/script/sys/ScriptParam.cpp:
+    complete
+    .text       start:0x0206ef64 end:0x0206f494
+    .bss        start:0x0211d0a0 end:0x0211d0ac
+
+src/main/script/sys/ScriptTree.cpp:
+    complete
+    .text       start:0x0206f494 end:0x0206f884
+    .data       start:0x0209c1f0 end:0x0209c208
+    .bss        start:0x0211d0ac end:0x0211d0c4
+
+src/main/sound/SoundManager.cpp:
+    complete
+    .text       start:0x0206f884 end:0x0206fc84
+    .data       start:0x0209c208 end:0x0209c20c
+    .bss        start:0x0211d0c4 end:0x0211d0e4
+
+libs/NitroSDK/src/mi/mi_wram.c:
+    complete
+    .text       start:0x0206fc84 end:0x0206fc90
+
+libs/NitroSDK/src/mi/mi_dma.c:
+    complete
+    .text       start:0x0206fc90 end:0x0206ffd0
+
+libs/NitroSDK/src/mi/mi_dma_gxcommand.c:
+    complete
+    .text       start:0x0206ffd0 end:0x020701c8
+    .bss        start:0x0211d0e4 end:0x0211d104
+
+libs/NitroSDK/src/mi/cpumem.c:
+    complete
+    .text       start:0x020701c8 end:0x02070620
+
+libs/NitroSDK/src/mi/mi_uncomp.c:
+    complete
+    .text       start:0x02070620 end:0x02070884
+
+libs/NitroSDK/src/mi/mi_card_dma.c:
+    complete
+    .text       start:0x02070884 end:0x020708d4
+
+libs/NitroSDK/src/mi/mi_uncomp_stream.c:
+    complete
+    .text       start:0x020708d4 end:0x02070a80
+
+libs/NitroSDK/src/mi/mi_init.c:
+    complete
+    .text       start:0x02070a80 end:0x02070a90
+
+libs/NitroSDK/src/card/card_common.c:
+    complete
+    .text       start:0x02070a90 end:0x02070c70
+    .bss        start:0x0211d120 end:0x0211d7c0
+
+libs/NitroSDK/src/card/card_lock.c:
+    complete
+    .text       start:0x02070c70 end:0x02070d24
+
+libs/NitroSDK/src/card/card_backup.c:
+    complete
+    .text       start:0x02070d24 end:0x020712e0
+
+libs/NitroSDK/src/card/card_rom.c:
+    complete
+    .text       start:0x020712e0 end:0x02071808
+    .data       start:0x0209c20c end:0x0209c210
+    .bss        start:0x0211d7c0 end:0x0211da00
+
+libs/NitroSDK/src/card/card_request.c:
+    complete
+    .text       start:0x02071808 end:0x02071948
+
+libs/NitroSDK/src/card/card_pullout.c:
+    complete
+    .text       start:0x02071948 end:0x02071a78
+    .bss        start:0x0211da00 end:0x0211da08
+
+libs/NitroSDK/src/wm/wm_gameinfo.c:
+    complete
+    .text       start:0x02071a78 end:0x02071adc
+
+libs/NitroSDK/src/cp/cp_context.c:
+    complete
+    .text       start:0x02071adc end:0x02071b58
+
+libs/NitroSDK/src/ctrdg/ctrdg_common.c:
+    complete
+    .text       start:0x02071b58 end:0x02071d70
+    .bss        start:0x0211da08 end:0x0211da10
+
+libs/NitroSDK/src/ctrdg/ctrdg_init.c:
+    complete
+    .text       start:0x02071d70 end:0x02071fa8
+    .bss        start:0x0211da20 end:0x0211dbe8
+
+libs/NitroSDK/src/ctrdg/ctrdg_task.c:
+    complete
+    .text       start:0x02071fa8 end:0x020720b0
+    .bss        start:0x0211dbe8 end:0x0211e010
+
+libs/NitroSDK/src/math/math_md5.c:
+    complete
+    .text       start:0x020720b0 end:0x0207251c
+    .data       start:0x0209c210 end:0x0209c3d4
+
+libs/NitroSDK/src/math/math_sha1.c:
+    complete
+    .text       start:0x0207251c end:0x0207275c
+    .data       start:0x0209c3d4 end:0x0209c4f0
+
+libs/NitroSDK/src/math/math_hmac.c:
+    complete
+    .text       start:0x0207275c end:0x020728a4
+    .rodata     start:0x0208de78 end:0x0208decc
+
+libs/NitroSDK/src/math/math_sha1_block.c:
+    complete
+    .text       start:0x020728a4 end:0x02072b38
+
+libs/NitroSDK/src/fs/fs_archive.c:
+    complete
+    .text       start:0x02072b38 end:0x02073850
+    .rodata     start:0x0208decc end:0x0208def0
+    .data       start:0x0209c4f0 end:0x0209c4f4
+    .bss        start:0x0211e010 end:0x0211e020
+
+libs/NitroSDK/src/fs/fs_file.c:
+    complete
+    .text       start:0x02073850 end:0x02073ba0
+    .bss        start:0x0211e020 end:0x0211e024
+
+libs/NitroSDK/src/fs/rom.c:
+    complete
+    .text       start:0x02073ba0 end:0x02073d20
+    .data       start:0x0209c4f4 end:0x0209c4f8
+    .bss        start:0x0211e024 end:0x0211e098
+
+libs/NitroSDK/src/fs/overlay.c:
+    complete
+    .text       start:0x02073d20 end:0x02074104
+    .rodata     start:0x0208def0 end:0x0208df30
+    .data       start:0x0209c4f8 end:0x0209c500
+
+libs/NitroSDK/src/gx/gx.c:
+    complete
+    .text       start:0x02074104 end:0x020743f4
+    .data       start:0x0209c500 end:0x0209c508
+    .bss        start:0x0211e098 end:0x0211e09c
+
+libs/NitroSDK/src/gx/gx_vramcnt.c:
+    complete
+    .text       start:0x020743f4 end:0x02075564
+    .bss        start:0x0211e09c end:0x0211e0b8
+
+libs/NitroSDK/src/gx/gx_bgcnt.c:
+    complete
+    .text       start:0x02075564 end:0x020759d4
+
+libs/NitroSDK/src/gx/g2.c:
+    complete
+    .text       start:0x020759d4 end:0x02075ac8
+
+libs/NitroSDK/src/gx/g3.c:
+    complete
+    .text       start:0x02075ac8 end:0x02075b38
+
+libs/NitroSDK/src/gx/g3x.c:
+    complete
+    .text       start:0x02075b38 end:0x020760b4
+
+libs/NitroSDK/src/gx/g3_util.c:
+    complete
+    .text       start:0x020760b4 end:0x02076218
+
+libs/NitroSDK/src/gx/gx_load2d.c:
+    complete
+    .text       start:0x02076218 end:0x02076e98
+    .bss        start:0x0211e0b8 end:0x0211e0d4
+
+libs/NitroSDK/src/gx/gx_load3d.c:
+    complete
+    .text       start:0x02076e98 end:0x0207730c
+    .rodata     start:0x0208df30 end:0x0208dfa0
+    .bss        start:0x0211e0d4 end:0x0211e0f4
+
+libs/NitroSDK/src/gx/gx_sendfifo.c:
+    complete
+    .text       start:0x0207730c end:0x0207734c
+
+libs/NitroSDK/src/pxi/pxi_init.c:
+    complete
+    .text       start:0x0207734c end:0x02077354
+
+libs/NitroSDK/src/pxi/pxi_fifo.c:
+    complete
+    .text       start:0x02077354 end:0x020775a0
+    .bss        start:0x0211e0f4 end:0x0211e178
+
+libs/NitroSDK/src/rtc/rtc_api.c:
+    complete
+    .text       start:0x020775a0 end:0x020779d4
+    .bss        start:0x0211e178 end:0x0211e1a8
+
+libs/NitroSDK/src/rtc/rtc_internal.c:
+    complete
+    .text       start:0x020779d4 end:0x02077a0c
+
+libs/NitroSDK/src/rtc/rtc_convert.c:
+    complete
+    .text       start:0x02077a0c end:0x02077a6c
+
+libs/NitroSDK/src/snd/snd_interface.c:
+    complete
+    .text       start:0x02077a6c end:0x02077cbc
+
+libs/NitroSDK/src/snd/snd_main.c:
+    complete
+    .text       start:0x02077cbc end:0x02077d04
+    .bss        start:0x0211e1a8 end:0x0211e1c4
+
+libs/NitroSDK/src/snd/snd_command.c:
+    complete
+    .text       start:0x02077d04 end:0x0207819c
+    .bss        start:0x0211e1e0 end:0x0211fcc0
+
+libs/NitroSDK/src/snd/snd_alarm.c:
+    complete
+    .text       start:0x0207819c end:0x02078218
+    .bss        start:0x0211fcc0 end:0x0211fd20
+
+libs/NitroSDK/src/snd/snd_work.c:
+    complete
+    .text       start:0x02078218 end:0x020782b8
+    .bss        start:0x0211fd20 end:0x0211fd24
+
+libs/NitroSDK/src/snd/snd_util.c:
+    complete
+    .text       start:0x020782b8 end:0x0207830c
+    .rodata     start:0x0208dfa0 end:0x0208ea74
+
+libs/NitroSDK/src/snd/snd_bank.c:
+    complete
+    .text       start:0x0207830c end:0x02078564
+
+libs/NitroSDK/src/spi/pm.c:
+    complete
+    .text       start:0x02078b30 end:0x020792cc
+    .bss        start:0x0211fd60 end:0x0211fdcc
+
+libs/NitroSDK/src/std/std_string.c:
+    complete
+    .text       start:0x020792cc end:0x020793a8
+
+libs/NitroSDK/src/spi/tp.c:
+    complete
+    .text       start:0x02078564 end:0x02078b30
+    .bss        start:0x0211fd24 end:0x0211fd60
+
+libs/NitroSDK/src/std/std_sprintf.c:
+    complete
+    .text       start:0x020793a8 end:0x02079af8
+
+libs/NitroSDK/src/wm/wm_system.c:
+    complete
+    .text       start:0x02079af8 end:0x0207a41c
+    .data       start:0x0209c508 end:0x0209c50c
+    .bss        start:0x0211fde0 end:0x02120880
+
+libs/NitroSDK/src/wm/wm_init.c:
+    complete
+    .text       start:0x0207a41c end:0x0207a4b0
+
+libs/NitroSDK/src/wm/wm_ap.c:
+    complete
+    .text       start:0x0207a4b0 end:0x0207a5e0
+
+libs/NitroSDK/src/wm/wm_sta.c:
+    complete
+    .text       start:0x0207a5e0 end:0x0207a79c
+
+libs/NitroSDK/src/wm/wm_mp.c:
+    complete
+    .text       start:0x0207a79c end:0x0207a9ec
+
+libs/NitroSDK/src/wm/wm_ds.c:
+    complete
+    .text       start:0x0207a9ec end:0x0207b228
+
+libs/NitroSDK/src/wm/wm_wep.c:
+    complete
+    .text       start:0x0207b228 end:0x0207b270
+
+libs/NitroSDK/src/wm/wm_etc.c:
+    complete
+    .text       start:0x0207b270 end:0x0207b328
+    .bss        start:0x02120880 end:0x02120900
+
+libs/NitroSystem/src/snd/snd_nns_main.c:
+    complete
+    .text       start:0x0207b328 end:0x0207b3d8
+    .bss        start:0x02120900 end:0x02122d00
+
+libs/NitroSystem/src/snd/snd_resource.c:
+    complete
+    .text       start:0x0207b3d8 end:0x0207b480
+    .bss        start:0x02122d00 end:0x02122d0c
+
+libs/NitroSystem/src/snd/snd_player_init.c:
+    complete
+    .text       start:0x0207b480 end:0x0207b798
+    .bss        start:0x02122d0c end:0x021235e4
+
+libs/NitroSystem/src/snd/snd_player.c:
+    complete
+    .text       start:0x0207b798 end:0x0207bad4
+
+libs/NitroSystem/src/snd/snd_stream.c:
+    complete
+    .text       start:0x0207bad4 end:0x0207be8c
+    .bss        start:0x021235e4 end:0x021236b4
+
+libs/NitroSystem/src/snd/snd_capture.c:
+    complete
+    .text       start:0x0207be8c end:0x0207c0c8
+    .bss        start:0x021236b4 end:0x02123cb0
+
+libs/NitroSystem/src/snd/snd_arc.c:
+    complete
+    .text       start:0x0207c0c8 end:0x0207c5fc
+    .bss        start:0x02123cb0 end:0x02123cb4
+
+libs/NitroSystem/src/snd/snd_heap.c:
+    complete
+    .text       start:0x0207c5fc end:0x0207c844
+
+libs/NitroSystem/src/snd/snd_arcload.c:
+    complete
+    .text       start:0x0207c844 end:0x0207ce50
+    .bss        start:0x02123cb4 end:0x02123cf0
+
+libs/NitroSystem/src/snd/snd_arcplayer.c:
+    complete
+    .text       start:0x0207ce50 end:0x0207d0a0
+
+libs/NitroSystem/src/snd/snd_arcstrm.c:
+    complete
+    .text       start:0x0207d0a0 end:0x0207e200
+    .rodata     start:0x0208ea74 end:0x0208eb38
+    .bss        start:0x02123cf0 end:0x02124b60
+
+libs/NitroSystem/src/snd/snd_seqarc.c:
+    complete
+    .text       start:0x0207e200 end:0x0207e22c
+
+libs/NitroSystem/src/snd/snd_fader.c:
+    complete
+    .text       start:0x0207e22c end:0x0207e290
+
+libs/NitroSystem/src/fnd/fnd_list.c:
+    complete
+    .text       start:0x0207e290 end:0x0207e3a4
+
+libs/NitroSystem/src/fnd/fnd_heapcommon.c:
+    complete
+    .text       start:0x0207e3a4 end:0x0207e46c
+    .bss        start:0x02124b60 end:0x02124b70
+
+libs/NitroSystem/src/fnd/fnd_expheap.c:
+    complete
+    .text       start:0x0207e46c end:0x0207e974
+
+libs/NitroSystem/src/fnd/fnd_frameheap.c:
+    complete
+    .text       start:0x0207e974 end:0x0207eb14
+
+libs/NitroSystem/src/fnd/fnd_unitheap.c:
+    complete
+    .text       start:0x0207eb14 end:0x0207eb5c
+
+libs/NitroSystem/src/fnd/fnd_allocator.c:
+    complete
+    .text       start:0x0207eb5c end:0x0207ebf8
+    .rodata     start:0x0208eb38 end:0x0208eb58
+
+libs/NitroSystem/src/bin/bin_block.c:
+    complete
+    .text       start:0x0207ebf8 end:0x0207ec28
+
+libs/NitroSystem/src/g2d/g2d_softsprite.c:
+    complete
+    .text       start:0x0207ec28 end:0x0207ece4
+    .bss        start:0x02124b70 end:0x02124bb4
+
+libs/NitroSystem/src/g2d/g2d_font.c:
+    complete
+    .text       start:0x0207ece4 end:0x0207edd8
+    .rodata     start:0x0208eb58 end:0x0208eb68
+
+libs/NitroSystem/src/g2d/g2d_charcanvas.c:
+    complete
+    .text       start:0x0207edd8 end:0x0207f79c
+    .rodata     start:0x0208eb68 end:0x0208ebf8
+
+libs/NitroSystem/src/g2d/g2d_fontres.c:
+    complete
+    .text       start:0x0207f79c end:0x0207f904
+
+libs/NitroSystem/src/g2d/g2d_bitreader.c:
+    complete
+    .text       start:0x0207f904 end:0x0207f944
+
+libs/NitroSystem/src/g2d/g2d_splitchar.c:
+    complete
+    .text       start:0x0207f944 end:0x0207f9dc
+
+libs/NitroSystem/src/g3d/g3d_kernel.c:
+    complete
+    .text       start:0x0207f9dc end:0x0207fc2c
+
+libs/NitroSystem/src/g3d/g3d_binres.c:
+    complete
+    .text       start:0x0207fc2c end:0x020801e8
+
+libs/NitroSystem/src/g3d/g3d_glbstate.c:
+    complete
+    .text       start:0x020801e8 end:0x020806e4
+    .bss        start:0x02124bb4 end:0x02124e18
+
+libs/NitroSystem/src/g3d/g3d_anmblend.c:
+    complete
+    .text       start:0x020806e4 end:0x02080bd0
+    .data       start:0x0209c50c end:0x0209c580
+
+libs/NitroSystem/src/g3d/g3d_render.c:
+    complete
+    .text       start:0x02080bd0 end:0x02080e1c
+    .data       start:0x0209c580 end:0x0209c5a8
+    .bss        start:0x02124e18 end:0x02127b1c
+
+libs/NitroSystem/src/g3d/g3d_sbc.c:
+    complete
+    .text       start:0x02080e1c end:0x020825dc
+    .rodata     start:0x0208ebf8 end:0x0208ec3c
+    .data       start:0x0209c5a8 end:0x0209c728
+
+libs/NitroSystem/src/g3d/g3d_gecom.c:
+    complete
+    .text       start:0x020825dc end:0x020827ac
+    .bss        start:0x02127b1c end:0x02127b28
+
+libs/NitroSystem/src/g3d/g3d_util.c:
+    complete
+    .text       start:0x020827ac end:0x02082db0
+
+libs/NitroSystem/src/g3d/g3d_mdl.c:
+    complete
+    .text       start:0x02082db0 end:0x02083064
+
+libs/NitroSystem/src/g3d/g3d_res_struct.c:
+    complete
+    .text       start:0x02083064 end:0x02083370
+
+libs/NitroSystem/src/g3d/g3d_anm_jnt.c:
+    complete
+    .text       start:0x02083370 end:0x02083ce8
+    .rodata     start:0x0208ec3c end:0x0208ec60
+
+libs/NitroSystem/src/g3d/g3d_anm_jnt_rot.c:
+    complete
+    .text       start:0x02083ce8 end:0x02084318
+
+libs/NitroSystem/src/g3d/g3d_anm_mat.c:
+    complete
+    .text       start:0x02084318 end:0x02084624
+
+libs/NitroSystem/src/g3d/g3d_anm_texsrt.c:
+    complete
+    .text       start:0x02084624 end:0x02084934
+
+libs/NitroSystem/src/g3d/g3d_anm_texpat.c:
+    complete
+    .text       start:0x02084934 end:0x02084af0
+
+libs/NitroSystem/src/g3d/g3d_anm_vis.c:
+    complete
+    .text       start:0x02084af0 end:0x02084b4c
+
+libs/NitroSystem/src/g3d/g3d_basic.c:
+    complete
+    .text       start:0x02084b4c end:0x02084bc8
+
+libs/NitroSystem/src/g3d/g3d_maya.c:
+    complete
+    .text       start:0x02084bc8 end:0x02085320
+    .data       start:0x0209c728 end:0x0209c748
+
+libs/NitroSystem/src/g3d/g3d_si3d.c:
+    complete
+    .text       start:0x02085320 end:0x02085834
+
+libs/NitroSystem/src/g3d/g3d_3dsmax.c:
+    complete
+    .text       start:0x02085834 end:0x02085e78
+    .data       start:0x0209c748 end:0x0209c768
+
+libs/NitroSystem/src/g3d/g3d_xsi.c:
+    complete
+    .text       start:0x02085e78 end:0x020864e0
+    .data       start:0x0209c768 end:0x0209c788
+
+libs/NitroSystem/src/gfd/gfd_default.c:
+    complete
+    .text       start:0x020864e0 end:0x020864f8
+    .data       start:0x0209c788 end:0x0209c798
+
+libs/NitroSystem/src/gfd/gfd_vramtransfer.c:
+    complete
+    .text       start:0x020864f8 end:0x02086820
+    .rodata     start:0x0208ec60 end:0x0208ecf0
+    .bss        start:0x02127b28 end:0x02127b3c
+
+libs/NitroSystem/src/gfd/gfd_lnkvram.c:
+    complete
+    .text       start:0x02086820 end:0x02086aa0
+
+libs/NitroSystem/src/gfd/gfd_lnktex.c:
+    complete
+    .text       start:0x02086aa0 end:0x02086cc4
+    .rodata     start:0x0208ecf0 end:0x0208ed20
+    .bss        start:0x02127b3c end:0x02127b58
+
+libs/NitroSystem/src/gfd/gfd_lnkpltt.c:
+    complete
+    .text       start:0x02086cc4 end:0x02086df0
+    .bss        start:0x02127b58 end:0x02127b6c
+
+src/main/global/UnkProtectCheck.cpp:
+    complete
+    .text       start:0x02086df0 end:0x02086e48
+    .data       start:0x0209c798 end:0x0209c79c
+
+libs/NitroSDK/src/os/os_irqwait.c:
+    complete
+    .text       start:0x02086e48 end:0x02086f78
+    .data       start:0x0209c79c end:0x0209c7ac
+
+libs/NitroSDK/src/os/os_interrupt.c:
+    complete
+    .text       start:0x02086f78 end:0x02087158
+    .bss        start:0x02127b6c end:0x02127bcc
+
+libs/NitroSDK/src/os/os_spinlock.c:
+    complete
+    .text       start:0x02087158 end:0x020873c0
+    .bss        start:0x02127bcc end:0x02127bd0
+
+libs/NitroSDK/src/os/os_printf.c:
+    complete
+    .text       start:0x020873c0 end:0x020873e4
+
+libs/NitroSDK/src/os/os_thread.c:
+    complete
+    .text       start:0x020873e4 end:0x020879c4
+    .bss        start:0x02127bd0 end:0x02127e4c
+
+libs/NitroSDK/src/os/os_context.c:
+    complete
+    .text       start:0x020879c4 end:0x02087ad8
+
+libs/NitroSDK/src/os/os_emulator.c:
+    complete
+    .text       start:0x02087ad8 end:0x02087aec
+    .data       start:0x0209c7ac end:0x0209c7b0
+
+libs/NitroSDK/src/os/os_message.c:
+    complete
+    .text       start:0x02087aec end:0x02087c24
+
+libs/NitroSDK/src/os/mutex.c:
+    complete
+    .text       start:0x02087c24 end:0x02087d6c
+
+libs/NitroSDK/src/os/cache.c:
+    complete
+    .text       start:0x02087d6c end:0x02087e8c
+
+libs/NitroSDK/src/os/init.c:
+    complete
+    .text       start:0x02087e8c end:0x02087ef0
+
+libs/NitroSDK/src/os/os_arena.c:
+    complete
+    .text       start:0x02087ef0 end:0x02088178
+    .bss        start:0x02127e4c end:0x02127e54
+
+libs/NitroSDK/src/os/os_alloc.c:
+    complete
+    .text       start:0x02088178 end:0x020882ec
+    .bss        start:0x02127e54 end:0x02127e78
+
+libs/NitroSDK/src/os/os_exception.c:
+    complete
+    .text       start:0x02088344 end:0x02088534
+    .bss        start:0x02127e78 end:0x02127f24
+
+libs/NitroSDK/src/os/os_timer.c:
+    complete
+    .text       start:0x02088534 end:0x02088548
+    .bss        start:0x02127f24 end:0x02127f28
+
+libs/NitroSDK/src/os/os_tick.c:
+    complete
+    .text       start:0x02088548 end:0x02088660
+    .bss        start:0x02127f28 end:0x02127f38
+
+libs/NitroSDK/src/os/os_valarm.c:
+    complete
+    .text       start:0x02088660 end:0x02088688
+    .bss        start:0x02127f38 end:0x02127f4c
+
+libs/NitroSDK/src/os/cpustat.c:
+    complete
+    .text       start:0x02088688 end:0x0208872c
+
+libs/NitroSDK/src/os/os_protection.c:
+    complete
+    .text       start:0x020882ec end:0x02088344
+
+libs/NitroSDK/src/os/os_reset.c:
+    complete
+    .text       start:0x0208872c end:0x020887b4
+    .bss        start:0x02127f4c end:0x02127f50
+
+libs/NitroSDK/src/os/os_ownerinfo.c:
+    complete
+    .text       start:0x020887b4 end:0x02088820
+
+libs/NitroSDK/src/os/os_vramexclusive.c:
+    complete
+    .text       start:0x02088820 end:0x020888a0
+    .bss        start:0x02127f50 end:0x02127f68
+
+libs/NitroSDK/src/os/os_entropy.c:
+    complete
+    .text       start:0x020888a0 end:0x02088940
+
+libs/NitroSDK/src/os/os_terminate.c:
+    complete
+    .text       start:0x02088940 end:0x02088958
+
+libs/NitroSDK/src/fx/fx_mtx22.c:
+    complete
+    .text       start:0x02088958 end:0x02088970
+
+libs/NitroSDK/src/fx/fx_mtx33.c:
+    complete
+    .text       start:0x02088970 end:0x02088d40
+
+libs/NitroSDK/src/fx/fx_mtx43.c:
+    complete
+    .text       start:0x02088d40 end:0x02089630
+
+libs/NitroSDK/src/fx/fx_mtx44.c:
+    complete
+    .text       start:0x02089630 end:0x0208a048
+
+libs/NitroSDK/src/fx/fx_division.c:
+    complete
+    .text       start:0x0208a048 end:0x0208a1a8
+
+libs/NitroSDK/src/fx/fx_vec.c:
+    complete
+    .text       start:0x0208a1a8 end:0x0208a64c
+
+libs/NitroSDK/src/fx/fx_atan.c:
+    complete
+    .text       start:0x0208a64c end:0x0208a8b0
+    .rodata     start:0x02092d20 end:0x02092e24
+
+libs/NitroSDK/src/fx/fx.c:
+    complete
+    .text       start:0x0208a8b0 end:0x0208a8d4
+
+libs/NitroSDK/src/math/math.c:
+    complete
+    .text       start:0x0208a8d4 end:0x0208ac50
+
+src/main/leveldata/KeyDataDire.cpp:
+    complete
+    .text       start:0x0208ac78 end:0x0208ace8
+    .data       start:0x0209c7c4 end:0x0209c7f0
+    .bss        start:0x02127f68 end:0x02127f84
+
+src/main/leveldata/KeyTableArpha.cpp:
+    complete
+    .text       start:0x0208ace8 end:0x0208ad58
+    .data       start:0x0209c7f0 end:0x0209c81c
+    .bss        start:0x02127f84 end:0x02127fa0
+
+src/main/leveldata/KeyTableDire.cpp:
+    complete
+    .text       start:0x0208ad58 end:0x0208adc8
+    .data       start:0x0209c81c end:0x0209c848
+    .bss        start:0x02127fa0 end:0x02127fbc
+
+src/main/leveldata/KeyDataArpha.cpp:
+    complete
+    .text       start:0x0208adc8 end:0x0208ae38
+    .data       start:0x0209c848 end:0x0209c874
+    .bss        start:0x02127fbc end:0x02127fd8
+
+src/main/town/TownCommandPlaySound.cpp:
+    complete
+    .text       start:0x0208ac50 end:0x0208ac78
+    .data       start:0x0209c7b0 end:0x0209c7c4
+
+src/main/ceremony/UnkCeremonyEndingFin.cpp:
+    complete
+    .text       start:0x0208ae38 end:0x0208b00c
+    .data       start:0x0209c874 end:0x0209c8cc
+    .bss        start:0x02127fd8 end:0x02128054

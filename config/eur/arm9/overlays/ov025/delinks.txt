@@ -1,0 +1,34 @@
+    .text       start:0x02186980 end:0x02187c4c kind:code align:32
+    .ctor       start:0x02187c4c end:0x02187c4c kind:rodata align:4
+    .data       start:0x02187c60 end:0x02187d20 kind:data align:32
+    .bss        start:0x02187d20 end:0x02187d20 kind:bss align:32
+
+src/ov025/materielmenu/surechigai/UnkMaterielMenu_02187c60.cpp:
+    complete
+    .text       start:0x02186980 end:0x02186da0
+    .data       start:0x02187c60 end:0x02187c7c
+
+src/ov025/materielmenu/surechigai/UnkMaterielMenu_02187c7c.cpp:
+    complete
+    .text       start:0x02186da0 end:0x02187134
+    .data       start:0x02187c7c end:0x02187c98
+
+src/ov025/materielmenu/surechigai/UnkMaterielMenu_02187c98.cpp:
+    complete
+    .text       start:0x02187134 end:0x021874a0
+    .data       start:0x02187c98 end:0x02187cb4
+
+src/ov025/materielmenu/surechigai/UnkMaterielMenu_02187cb4.cpp:
+    complete
+    .text       start:0x021874a0 end:0x021876f8
+    .data       start:0x02187cb4 end:0x02187cd0
+
+src/ov025/materielmenu/surechigai/UnkMaterielMenu_02187cd0.cpp:
+    complete
+    .text       start:0x021876f8 end:0x02187a28
+    .data       start:0x02187cd0 end:0x02187cec
+
+src/ov025/materielmenu/surechigai/UnkMaterielMenu_02187cec.cpp:
+    complete
+    .text       start:0x02187a28 end:0x02187c4c
+    .data       start:0x02187cec end:0x02187d08

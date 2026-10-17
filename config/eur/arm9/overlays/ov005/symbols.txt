@@ -1,0 +1,888 @@
+_ZN3fld13FieldFairyMapC1Ev kind:function(thumb,size=0x14) addr:0x02128060
+_ZN3fld13FieldFairyMapD1Ev kind:function(thumb,size=0xc) addr:0x02128074
+_ZN3fld13FieldFairyMap5setupEv kind:function(thumb,size=0xf4) addr:0x02128080
+_ZN3fld15FieldCarpetDrawC1Ev kind:function(thumb,size=0x24) addr:0x02128174
+_ZN3fld15FieldCarpetDrawD1Ev kind:function(thumb,size=0x1c) addr:0x02128198
+_ZN3fld15FieldCarpetDraw9setHeightEi kind:function(thumb,size=0x8) addr:0x021281b4
+_ZN3fld15FieldCarpetDraw5setupEv kind:function(thumb,size=0x8c) addr:0x021281bc
+_ZN3fld15FieldCarpetDraw4drawERN3dss7Vector2IiEE kind:function(thumb,size=0x3a) addr:0x02128248
+_ZN3fld15FieldCarpetDraw9setRotateEj kind:function(thumb,size=0x1e) addr:0x02128284
+_ZN3fld15FieldCarpetDraw7cleanupEv kind:function(thumb,size=0x14) addr:0x021282a4
+_ZN3fld15FieldCarpetDraw15setDrawPositionEii kind:function(thumb,size=0x1c) addr:0x021282b8
+_ZN3fld15FieldCarpetDraw8setDepthEi kind:function(thumb,size=0x4) addr:0x021282d4
+_ZN3fld15FieldCarpetDraw11setShadowWHEii kind:function(thumb,size=0x2) addr:0x021282d8
+_ZN3fld15FieldCarpetDraw16setDisplayEnableEi kind:function(thumb,size=0x18) addr:0x021282dc
+_ZN3fld15FieldCarpetDraw15isDisplayEnableEv kind:function(thumb,size=0xc) addr:0x021282f4
+_ZN3fld15FieldCarpetDraw13setShadowStayEi kind:function(thumb,size=0x2) addr:0x02128300
+_ZN3fld15FieldCarpetDraw11setAnimFlagEi kind:function(thumb,size=0x18) addr:0x02128304
+_ZN3fld15FieldCarpetDraw13setShadowFlagEi kind:function(thumb,size=0xc) addr:0x0212831c
+_ZN3fld15FieldCarpetDraw14setShadowDepthEi kind:function(thumb,size=0x8) addr:0x02128328
+_ZN3fld27FieldCommandBookingTownMenu6isExecEv kind:function(thumb,size=0x24) addr:0x02128330
+_ZN3fld27FieldCommandBookingTownMenu4execEv kind:function(thumb,size=0x8) addr:0x02128354
+_ZN3fld27FieldCommandBookingTownMenu5isEndEv kind:function(thumb,size=0x14) addr:0x0212835c
+_ZN3fld15FieldActionRana5setupEv kind:function(thumb,size=0xa) addr:0x02128370
+_ZN3fld15FieldActionRana7executeEv kind:function(thumb,size=0xa) addr:0x0212837c
+_ZN3fld15FieldActionRana6updateEv kind:function(thumb,size=0x4c) addr:0x02128388
+_ZN3fld15FieldActionRana5startEi kind:function(thumb,size=0x54) addr:0x021283d4
+_ZN3fld15FieldActionRana11isEffectEndEv kind:function(thumb,size=0x10) addr:0x02128428
+_ZN3fld15FieldActionRana6searchEv kind:function(arm,size=0x8) addr:0x02128438
+_ZN3fld15FieldActionTabi5setupEv kind:function(thumb,size=0xc) addr:0x02128440
+_ZN3fld15FieldActionTabi7executeEv kind:function(thumb,size=0xa) addr:0x0212844c
+_ZN3fld15FieldActionTabi6updateEv kind:function(thumb,size=0xa4) addr:0x02128458
+_ZN3fld15FieldActionTabi5startEii kind:function(thumb,size=0x38) addr:0x021284fc
+_ZN3fld15FieldActionTabi11isEffectEndEv kind:function(thumb,size=0x10) addr:0x02128534
+_ZN3fld15FieldActionTabi6searchEv kind:function(thumb,size=0x4) addr:0x02128544
+_Z25cmd_field_player_set_shipPv kind:function(thumb,size=0x84) addr:0x02128548
+_Z24cmd_set_field_player_posPv kind:function(thumb,size=0x32) addr:0x021285cc
+_ZN17FieldPlayerMoveTo10initializeEPc kind:function(thumb,size=0x54) addr:0x02128600
+_ZN17FieldPlayerMoveTo5isEndEv kind:function(thumb,size=0x16) addr:0x02128654
+_ZN13FieldMoveLine10initializeEPc kind:function(thumb,size=0x28) addr:0x0212866c
+_ZN13FieldMoveLine5isEndEv kind:function(thumb,size=0x16) addr:0x02128694
+_ZN16FieldGetDownShip10initializeEPc kind:function(thumb,size=0x10) addr:0x021286ac
+_ZN16FieldGetDownShip5isEndEv kind:function(thumb,size=0xc) addr:0x021286bc
+_ZN15FieldSymbolAnim10initializeEPc kind:function(thumb,size=0x10) addr:0x021286c8
+_ZN15FieldSymbolAnim7executeEv kind:function(thumb,size=0x16) addr:0x021286d8
+_ZN15FieldSymbolAnim5isEndEv kind:function(thumb,size=0xe) addr:0x021286f0
+_ZN17FieldGoldOrbEvent10initializeEPc kind:function(thumb,size=0xac) addr:0x02128700
+_ZN17FieldGoldOrbEvent7executeEv kind:function(thumb,size=0x62) addr:0x021287ac
+_ZN17FieldGoldOrbEvent5isEndEv kind:function(thumb,size=0x26) addr:0x02128810
+_Z17cmd_field_trrigerPv kind:function(thumb,size=0xaa) addr:0x02128838
+_Z23cmd_field_set_formationPv kind:function(thumb,size=0x3a) addr:0x021288e4
+_ZN17FieldGoldOrbEvent9terminateEv kind:function(arm,size=0x4) addr:0x02128920
+_ZN15FieldSymbolAnim9terminateEv kind:function(arm,size=0x4) addr:0x02128924
+_ZN13FieldMoveLine9terminateEv kind:function(arm,size=0x4) addr:0x02128928
+_ZN13FieldMoveLine7executeEv kind:function(arm,size=0x4) addr:0x0212892c
+_ZN17FieldPlayerMoveTo9terminateEv kind:function(arm,size=0x4) addr:0x02128930
+_ZN17FieldPlayerMoveTo7executeEv kind:function(arm,size=0x4) addr:0x02128934
+_ZN16FieldGetDownShip9terminateEv kind:function(arm,size=0x4) addr:0x02128938
+_ZN16FieldGetDownShip7executeEv kind:function(arm,size=0x4) addr:0x0212893c
+_ZN17FieldPlayerMoveToD1Ev kind:function(thumb,size=0x2) addr:0x02128940
+_ZN13FieldMoveLineD1Ev kind:function(thumb,size=0x2) addr:0x02128944
+_ZN16FieldGetDownShipD1Ev kind:function(thumb,size=0x2) addr:0x02128948
+_ZN15FieldSymbolAnimD1Ev kind:function(thumb,size=0xe) addr:0x0212894c
+_ZN17FieldGoldOrbEventD1Ev kind:function(thumb,size=0x16) addr:0x0212895c
+_ZN3fld24FieldCommandScreenEffect6isExecEv kind:function(thumb,size=0x14) addr:0x02128974
+_ZN3fld24FieldCommandScreenEffect5isEndEv kind:function(thumb,size=0x20) addr:0x02128988
+_ZN3fld24FieldCommandScreenEffect4execEv kind:function(thumb,size=0x8) addr:0x021289a8
+_ZN3fld23FieldSystemScreenEffectC1Ev kind:function(thumb,size=0x14) addr:0x021289b0
+_ZN3fld23FieldSystemScreenEffectD1Ev kind:function(thumb,size=0xc) addr:0x021289c4
+_ZN3fld23FieldSystemScreenEffect10initializeEv kind:function(thumb,size=0x10) addr:0x021289d0
+_ZN3fld23FieldSystemScreenEffect9terminateEv kind:function(thumb,size=0x10) addr:0x021289e0
+_ZN3fld23FieldSystemScreenEffect7executeEv kind:function(thumb,size=0x10) addr:0x021289f0
+_ZN3fld23FieldSystemScreenEffect4drawEv kind:function(thumb,size=0x48) addr:0x02128a00
+_ZN3fld17FieldCarrirerDrawC2Ev kind:function(thumb,size=0x18) addr:0x02128a48
+_ZN3fld17FieldCarrirerDrawD2Ev kind:function(thumb,size=0x2) addr:0x02128a60
+_ZN3fld17FieldCarrirerDraw11setOffsetXYEii kind:function(thumb,size=0x2) addr:0x02128a64
+_ZN3fld17FieldCarrirerDraw7setHighEi kind:function(thumb,size=0x2) addr:0x02128a68
+_ZN3fld17FieldCarrirerDraw11setPositionERN3dss12Fix32Vector3E kind:function(thumb,size=0xc) addr:0x02128a6c
+_ZN3fld17FieldCarrirerDraw11getPositionEv kind:function(thumb,size=0x4) addr:0x02128a78
+_ZN3fld17FieldCarrirerDraw9setHeightEi kind:function(thumb,size=0x2) addr:0x02128a7c
+_ZN3fld17FieldCarrirerDraw14setShadowAlphaEh kind:function(thumb,size=0x2) addr:0x02128a80
+_ZN3fld19SpriteShipCharacterC1Ev kind:function(thumb,size=0x14) addr:0x02128a84
+_ZN3fld19SpriteShipCharacterD1Ev kind:function(thumb,size=0xc) addr:0x02128a98
+_ZN3fld19SpriteShipCharacter5setupEPKc kind:function(thumb,size=0x2c) addr:0x02128aa4
+_ZN3fld19SpriteShipCharacter7executeEv kind:function(thumb,size=0xe0) addr:0x02128ad0
+_ZN3fld13FieldShipDrawC1Ev kind:function(thumb,size=0x1c) addr:0x02128bb0
+_ZN3fld13FieldShipDrawD1Ev kind:function(thumb,size=0x14) addr:0x02128bcc
+_ZN3fld13FieldShipDraw10initializeEv kind:function(thumb,size=0x2c) addr:0x02128be0
+_ZN3fld13FieldShipDraw9terminateEv kind:function(thumb,size=0x10) addr:0x02128c0c
+_ZN3fld13FieldShipDraw5setupEv kind:function(thumb,size=0x50) addr:0x02128c1c
+_ZN3fld13FieldShipDraw4drawERN3dss7Vector2IiEE kind:function(thumb,size=0xa0) addr:0x02128c6c
+_ZN3fld13FieldShipDraw9setRotateEj kind:function(thumb,size=0x24) addr:0x02128d0c
+_ZN3fld13FieldShipDraw7cleanupEv kind:function(thumb,size=0xc) addr:0x02128d30
+_ZN3fld13FieldShipDraw15setDrawPositionEii kind:function(thumb,size=0xc) addr:0x02128d3c
+_ZN3fld13FieldShipDraw8setDepthEi kind:function(thumb,size=0x4) addr:0x02128d48
+_ZN3fld13FieldShipDraw11setShadowWHEii kind:function(thumb,size=0xc) addr:0x02128d4c
+_ZN3fld13FieldShipDraw16setDisplayEnableEi kind:function(thumb,size=0xc) addr:0x02128d58
+_ZN3fld13FieldShipDraw15isDisplayEnableEv kind:function(thumb,size=0xc) addr:0x02128d64
+_ZN3fld13FieldShipDraw13setShadowStayEi kind:function(thumb,size=0xc) addr:0x02128d70
+_ZN3fld13FieldShipDraw11setAnimFlagEi kind:function(thumb,size=0xc) addr:0x02128d7c
+_ZN3fld13FieldShipDraw13setShadowFlagEi kind:function(thumb,size=0xc) addr:0x02128d88
+_ZN3fld13FieldShipDraw14setShadowDepthEi kind:function(thumb,size=0x6) addr:0x02128d94
+_ZN3fld18FieldFirmamentDrawC1Ev kind:function(thumb,size=0x38) addr:0x02128d9c
+_ZN3fld18FieldFirmamentDrawD1Ev kind:function(thumb,size=0x24) addr:0x02128dd4
+_ZN3fld18FieldFirmamentDraw9setHeightEi kind:function(thumb,size=0x8) addr:0x02128df8
+_ZN3fld18FieldFirmamentDraw5setupEv kind:function(thumb,size=0xc8) addr:0x02128e00
+_ZN3fld18FieldFirmamentDraw9setRotateEj kind:function(thumb,size=0x2) addr:0x02128ec8
+_ZN3fld18FieldFirmamentDraw4drawERN3dss7Vector2IiEE kind:function(thumb,size=0x118) addr:0x02128ecc
+_ZN3fld18FieldFirmamentDraw7cleanupEv kind:function(thumb,size=0x1c) addr:0x02128fe4
+_ZN3fld18FieldFirmamentDraw15setDrawPositionEii kind:function(thumb,size=0x28) addr:0x02129000
+_ZN3fld18FieldFirmamentDraw8setDepthEi kind:function(thumb,size=0x24) addr:0x02129028
+_ZN3fld18FieldFirmamentDraw11setShadowWHEii kind:function(thumb,size=0xc) addr:0x0212904c
+_ZN3fld18FieldFirmamentDraw16setDisplayEnableEi kind:function(thumb,size=0x8) addr:0x02129058
+_ZN3fld18FieldFirmamentDraw15isDisplayEnableEv kind:function(thumb,size=0x8) addr:0x02129060
+_ZN3fld18FieldFirmamentDraw13setShadowStayEi kind:function(thumb,size=0x2) addr:0x02129068
+_ZN3fld18FieldFirmamentDraw11setAnimFlagEi kind:function(thumb,size=0x8) addr:0x0212906c
+_ZN3fld18FieldFirmamentDraw13setShadowFlagEi kind:function(thumb,size=0x18) addr:0x02129074
+_ZN3fld18FieldFirmamentDraw14setShadowDepthEi kind:function(thumb,size=0xc) addr:0x0212908c
+_ZN3fld18FieldFirmamentDraw14setShadowAlphaEh kind:function(thumb,size=0xc) addr:0x02129098
+_ZN3fld15FieldDragonDrawC1Ev kind:function(thumb,size=0x24) addr:0x021290a4
+_ZN3fld15FieldDragonDrawD1Ev kind:function(thumb,size=0x1c) addr:0x021290c8
+_ZN3fld15FieldDragonDraw11setOffsetXYEii kind:function(thumb,size=0xc) addr:0x021290e4
+_ZN3fld15FieldDragonDraw7setHighEi kind:function(thumb,size=0x8) addr:0x021290f0
+_ZN3fld15FieldDragonDraw5setupEv kind:function(thumb,size=0x80) addr:0x021290f8
+_ZN3fld15FieldDragonDraw9setRotateEj kind:function(thumb,size=0x1e) addr:0x02129178
+_ZN3fld15FieldDragonDraw4drawERN3dss7Vector2IiEE kind:function(thumb,size=0xaa) addr:0x02129198
+_ZN3fld15FieldDragonDraw7cleanupEv kind:function(thumb,size=0x14) addr:0x02129244
+_ZN3fld15FieldDragonDraw15setDrawPositionEii kind:function(thumb,size=0x1c) addr:0x02129258
+_ZN3fld15FieldDragonDraw8setDepthEi kind:function(thumb,size=0xc) addr:0x02129274
+_ZN3fld15FieldDragonDraw11setShadowWHEii kind:function(thumb,size=0x10) addr:0x02129280
+_ZN3fld15FieldDragonDraw16setDisplayEnableEi kind:function(thumb,size=0x18) addr:0x02129290
+_ZN3fld15FieldDragonDraw15isDisplayEnableEv kind:function(thumb,size=0xc) addr:0x021292a8
+_ZN3fld15FieldDragonDraw13setShadowStayEi kind:function(thumb,size=0xc) addr:0x021292b4
+_ZN3fld15FieldDragonDraw11setAnimFlagEi kind:function(thumb,size=0x18) addr:0x021292c0
+_ZN3fld15FieldDragonDraw13setShadowFlagEi kind:function(thumb,size=0xc) addr:0x021292d8
+_ZN3fld15FieldDragonDraw14setShadowDepthEi kind:function(thumb,size=0xc) addr:0x021292e4
+_ZN3fld19FieldCommandVehicle6isExecEv kind:function(thumb,size=0x26) addr:0x021292f0
+_ZN3fld19FieldCommandVehicle5isEndEv kind:function(thumb,size=0x4) addr:0x02129318
+_ZN3fld19FieldCommandVehicle4execEv kind:function(thumb,size=0x8) addr:0x0212931c
+_ZN3fld17FieldActionCarpet5setupEv kind:function(thumb,size=0x10) addr:0x02129324
+_ZN3fld17FieldActionCarpet7executeEv kind:function(thumb,size=0x230) addr:0x02129334
+_ZN3fld17FieldActionCarpet6updateEv kind:function(thumb,size=0x98) addr:0x02129564
+_ZN3fld17FieldActionCarpet20isCarpetGetOnOffAttrEv kind:function(thumb,size=0xfc) addr:0x021295fc
+_ZN3fld17FieldActionCarpet8setStartEv kind:function(thumb,size=0x74) addr:0x021296f8
+_ZN3fld17FieldActionCarpet10carpetMoveEv kind:function(thumb,size=0x1d0) addr:0x0212976c
+_ZN3fld17FieldActionCarpet12isGetOffAttrEv kind:function(thumb,size=0x5c) addr:0x0212993c
+_ZN3fld17FieldActionCarpet6searchEv kind:function(thumb,size=0x4) addr:0x02129998
+_ZN3fld17FieldActionCastle5setupEv kind:function(thumb,size=0x12) addr:0x0212999c
+_ZN3fld17FieldActionCastle7executeEv kind:function(thumb,size=0x178) addr:0x021299b0
+_ZN3fld17FieldActionCastle6updateEv kind:function(thumb,size=0x9c) addr:0x02129b28
+_ZN3fld17FieldActionCastle8setStartEv kind:function(thumb,size=0x58) addr:0x02129bc4
+_ZN3fld17FieldActionCastle12isGetOffAttrEv kind:function(thumb,size=0x1dc) addr:0x02129c1c
+_ZN3fld17FieldActionCastle10castleMoveEv kind:function(thumb,size=0x60) addr:0x02129df8
+_ZN3fld17FieldActionCastle6searchEv kind:function(arm,size=0x8) addr:0x02129e58
+_ZN3fld17FieldActionDragon5setupEv kind:function(thumb,size=0x10) addr:0x02129e60
+_ZN3fld17FieldActionDragon7executeEv kind:function(thumb,size=0x564) addr:0x02129e70
+_ZN3fld17FieldActionDragon6updateEv kind:function(thumb,size=0xf4) addr:0x0212a3d4
+_ZN3fld17FieldActionDragon8setStartEv kind:function(thumb,size=0x4c) addr:0x0212a4c8
+_ZN3fld17FieldActionDragon11directStartEv kind:function(thumb,size=0x64) addr:0x0212a514
+_ZN3fld17FieldActionDragon11doragonMoveEs kind:function(thumb,size=0x64) addr:0x0212a578
+_ZN3fld17FieldActionDragon12isGetOffAttrEv kind:function(thumb,size=0x5c) addr:0x0212a5dc
+_ZN3fld17FieldActionDragon6searchEv kind:function(thumb,size=0x4) addr:0x0212a638
+_ZN3fld23FieldCommandBookingMenuC1Ev kind:function(thumb,size=0x18) addr:0x0212a63c
+_ZN3fld23FieldCommandBookingMenu6isExecEv kind:function(thumb,size=0xcc) addr:0x0212a654
+_ZN3fld23FieldCommandBookingMenu4execEv kind:function(thumb,size=0x8) addr:0x0212a720
+_ZN3fld23FieldCommandBookingMenu5isEndEv kind:function(thumb,size=0x14) addr:0x0212a728
+_ZN3fld24FieldCommandButtonSearch6isExecEv kind:function(thumb,size=0x64) addr:0x0212a73c
+_ZN3fld24FieldCommandButtonSearch5isEndEv kind:function(thumb,size=0x4) addr:0x0212a7a0
+_ZN3fld24FieldCommandButtonSearch4execEv kind:function(thumb,size=0x14) addr:0x0212a7a4
+_ZN3fld22FieldCommandMenuSearch6isExecEv kind:function(thumb,size=0xc4) addr:0x0212a7b8
+_ZN3fld22FieldCommandMenuSearch5isEndEv kind:function(thumb,size=0x4) addr:0x0212a87c
+_ZN3fld22FieldCommandMenuSearch4execEv kind:function(thumb,size=0x14) addr:0x0212a880
+_ZN3fld21FieldCommandWalkCount6isExecEv kind:function(thumb,size=0x120) addr:0x0212a894
+_ZN3fld21FieldCommandWalkCount5isEndEv kind:function(thumb,size=0x4) addr:0x0212a9b4
+_ZN3fld21FieldCommandWalkCount4execEv kind:function(thumb,size=0x8) addr:0x0212a9b8
+_ZN3fld19FieldSystemWorldMapC1Ev kind:function(thumb,size=0x1c) addr:0x0212a9c0
+_ZN3fld19FieldSystemWorldMapD1Ev kind:function(thumb,size=0x14) addr:0x0212a9dc
+_ZN3fld19FieldSystemWorldMap10initializeEv kind:function(thumb,size=0x14) addr:0x0212a9f0
+_ZN3fld19FieldSystemWorldMap9terminateEv kind:function(thumb,size=0xc) addr:0x0212aa04
+_ZN3fld19FieldSystemWorldMap7executeEv kind:function(thumb,size=0xc) addr:0x0212aa10
+_ZN3fld19FieldSystemWorldMap4drawEv kind:function(thumb,size=0xc) addr:0x0212aa1c
+_ZN3fld19FieldSystemWorldMap11openAreaMapEv kind:function(thumb,size=0xc) addr:0x0212aa28
+_ZN3fld19FieldSystemWorldMap12closeAreaMapEv kind:function(thumb,size=0xc) addr:0x0212aa34
+_ZN3fld19FieldSystemWorldMap13isAreaMapOpenEv kind:function(thumb,size=0xc) addr:0x0212aa40
+_ZN3fld19FieldSystemWorldMap14isAreaMapCloseEv kind:function(thumb,size=0xc) addr:0x0212aa4c
+_ZN3fld19FieldCommandAreaMap6isExecEv kind:function(thumb,size=0x5c) addr:0x0212aa58
+_ZN3fld19FieldCommandAreaMap5isEndEv kind:function(thumb,size=0x74) addr:0x0212aab4
+_ZN3fld19FieldCommandAreaMap4execEv kind:function(thumb,size=0x8) addr:0x0212ab28
+_ZN3fld23FieldSystemMaterielMenuC1Ev kind:function(thumb,size=0x14) addr:0x0212ab30
+_ZN3fld23FieldSystemMaterielMenuD1Ev kind:function(thumb,size=0xc) addr:0x0212ab44
+_ZN3fld23FieldSystemMaterielMenu10initializeEv kind:function(thumb,size=0x2) addr:0x0212ab50
+_ZN3fld23FieldSystemMaterielMenu9terminateEv kind:function(thumb,size=0x2) addr:0x0212ab54
+_ZN3fld23FieldSystemMaterielMenu7executeEv kind:function(thumb,size=0x10) addr:0x0212ab58
+_ZN3fld23FieldSystemMaterielMenu4drawEv kind:function(thumb,size=0x2) addr:0x0212ab68
+_ZN3fld15FieldSystemMenuC1Ev kind:function(thumb,size=0x14) addr:0x0212ab6c
+_ZN3fld15FieldSystemMenuD1Ev kind:function(thumb,size=0xc) addr:0x0212ab80
+_ZN3fld15FieldSystemMenu10initializeEv kind:function(thumb,size=0x2) addr:0x0212ab8c
+_ZN3fld15FieldSystemMenu9terminateEv kind:function(thumb,size=0x2) addr:0x0212ab90
+_ZN3fld15FieldSystemMenu7executeEv kind:function(thumb,size=0x10) addr:0x0212ab94
+_ZN3fld15FieldSystemMenu4drawEv kind:function(thumb,size=0x2) addr:0x0212aba4
+_ZN3fld18FieldSystemMessageC1Ev kind:function(thumb,size=0x14) addr:0x0212aba8
+_ZN3fld18FieldSystemMessageD1Ev kind:function(thumb,size=0xc) addr:0x0212abbc
+_ZN3fld18FieldSystemMessage10initializeEv kind:function(thumb,size=0x2) addr:0x0212abc8
+_ZN3fld18FieldSystemMessage9terminateEv kind:function(thumb,size=0x2) addr:0x0212abcc
+_ZN3fld18FieldSystemMessage7executeEv kind:function(thumb,size=0x10) addr:0x0212abd0
+_ZN3fld18FieldSystemMessage4drawEv kind:function(thumb,size=0x2) addr:0x0212abe0
+_ZN3fld17FieldSystemPlayerC1Ev kind:function(thumb,size=0x14) addr:0x0212abe4
+_ZN3fld17FieldSystemPlayerD1Ev kind:function(thumb,size=0xc) addr:0x0212abf8
+_ZN3fld17FieldSystemPlayer10initializeEv kind:function(thumb,size=0x14) addr:0x0212ac04
+_ZN3fld17FieldSystemPlayer9terminateEv kind:function(thumb,size=0x14) addr:0x0212ac18
+_ZN3fld17FieldSystemPlayer7executeEv kind:function(thumb,size=0x18) addr:0x0212ac2c
+_ZN3fld17FieldSystemPlayer4drawEv kind:function(thumb,size=0xc) addr:0x0212ac44
+_ZN3fld16FieldSystemStageC1Ev kind:function(thumb,size=0x14) addr:0x0212ac50
+_ZN3fld16FieldSystemStageD1Ev kind:function(thumb,size=0xc) addr:0x0212ac64
+_ZN3fld16FieldSystemStage10initializeEv kind:function(thumb,size=0x28) addr:0x0212ac70
+_ZN3fld16FieldSystemStage9terminateEv kind:function(thumb,size=0x14) addr:0x0212ac98
+_ZN3fld16FieldSystemStage7executeEv kind:function(thumb,size=0xc) addr:0x0212acac
+_ZN3fld16FieldSystemStage4drawEv kind:function(thumb,size=0x14) addr:0x0212acb8
+_ZN3fld17FieldCommandEvent6isExecEv kind:function(thumb,size=0x14) addr:0x0212accc
+_ZN3fld17FieldCommandEvent4execEv kind:function(thumb,size=0x8) addr:0x0212ace0
+_ZN3fld17FieldCommandEvent5isEndEv kind:function(thumb,size=0x4) addr:0x0212ace8
+_ZN3fld24FieldCommandMaterielMenu6isExecEv kind:function(thumb,size=0x1c) addr:0x0212acec
+_ZN3fld24FieldCommandMaterielMenu4execEv kind:function(thumb,size=0x8) addr:0x0212ad08
+_ZN3fld24FieldCommandMaterielMenu5isEndEv kind:function(thumb,size=0x14) addr:0x0212ad10
+_ZN3fld16FieldCommandMenu6isExecEv kind:function(thumb,size=0x38) addr:0x0212ad24
+_ZN3fld16FieldCommandMenu4execEv kind:function(thumb,size=0x8) addr:0x0212ad5c
+_ZN3fld16FieldCommandMenu5isEndEv kind:function(thumb,size=0x14) addr:0x0212ad64
+_ZN3fld19FieldCommandMessage6isExecEv kind:function(thumb,size=0x28) addr:0x0212ad78
+_ZN3fld19FieldCommandMessage4execEv kind:function(thumb,size=0x8) addr:0x0212ada0
+_ZN3fld19FieldCommandMessage5isEndEv kind:function(thumb,size=0x14) addr:0x0212ada8
+_ZN3fld18FieldCommandNormal6isExecEv kind:function(thumb,size=0x10) addr:0x0212adbc
+_ZN3fld18FieldCommandNormal4execEv kind:function(thumb,size=0x8) addr:0x0212adcc
+_ZN3fld18FieldCommandNormal5isEndEv kind:function(thumb,size=0x4) addr:0x0212add4
+_ZN3fld22FieldCommandPartChange6isExecEv kind:function(thumb,size=0xc) addr:0x0212add8
+_ZN3fld22FieldCommandPartChange4execEv kind:function(thumb,size=0x8) addr:0x0212ade4
+_ZN3fld22FieldCommandPartChange5isEndEv kind:function(thumb,size=0x4) addr:0x0212adec
+_ZN3fld21FieldCommandPartyTalk6isExecEv kind:function(thumb,size=0x40) addr:0x0212adf0
+_ZN3fld21FieldCommandPartyTalk4execEv kind:function(thumb,size=0x8) addr:0x0212ae30
+_ZN3fld21FieldCommandPartyTalk5isEndEv kind:function(thumb,size=0x4) addr:0x0212ae38
+_ZN3fld18FieldCommandPlayer6isExecEv kind:function(thumb,size=0x3c) addr:0x0212ae3c
+_ZN3fld18FieldCommandPlayer4execEv kind:function(thumb,size=0x8) addr:0x0212ae78
+_ZN3fld18FieldCommandPlayer5isEndEv kind:function(thumb,size=0x4) addr:0x0212ae80
+_ZN3fld15FieldActionBase10moveNormalEN3dss5Fix32ES2_S2_ kind:function(thumb,size=0x1ac) addr:0x0212ae84
+_ZN3fld15FieldActionBase12searchObjectERN3dss12Fix32Vector3ENS1_5Fix32E kind:function(thumb,size=0x98) addr:0x0212b030
+_ZN3fld15FieldActionBase4collEii kind:function(thumb,size=0x21c) addr:0x0212b0c8
+_ZN3fld15FieldActionBase8walkCollEii kind:function(thumb,size=0x21c) addr:0x0212b2e4
+_ZN3fld15FieldActionBase7setCollEiiii kind:function(thumb,size=0x140) addr:0x0212b500
+_ZN3fld15FieldActionBase11setWalkCollEiiii kind:function(thumb,size=0x19c) addr:0x0212b640
+_ZN3fld15FieldActionBase9isKaigFixEii kind:function(thumb,size=0x138) addr:0x0212b7dc
+_ZN3fld15FieldActionBase11endlessMoveEN3dss5Fix32ES2_s kind:function(thumb,size=0x338) addr:0x0212b914
+_ZN3fld15FieldActionBase11checkGetOutEv kind:function(thumb,size=0x44) addr:0x0212bc4c
+_ZN3fld15FieldActionBase12isGetOffAttrEv kind:function(thumb,size=0x1d4) addr:0x0212bc90
+_ZN3fld15FieldActionRura5setupEv kind:function(thumb,size=0x20) addr:0x0212be64
+_ZN3fld15FieldActionRura7executeEv kind:function(thumb,size=0x150) addr:0x0212be84
+_ZN3fld15FieldActionRura6updateEv kind:function(thumb,size=0xf0) addr:0x0212bfd4
+_ZN3fld15FieldActionRura5startEi kind:function(thumb,size=0x28c) addr:0x0212c0c4
+_ZN3fld15FieldActionRura6searchEv kind:function(thumb,size=0x4) addr:0x0212c350
+_ZN3fld15FieldActionShip5setupEv kind:function(thumb,size=0x6c) addr:0x0212c354
+_ZN3fld15FieldActionShip7executeEv kind:function(thumb,size=0x24) addr:0x0212c3c0
+_ZN3fld15FieldActionShip11startActionEv kind:function(thumb,size=0xb4) addr:0x0212c3e4
+_ZN3fld15FieldActionShip11scriptStartEv kind:function(thumb,size=0x90) addr:0x0212c498
+_ZN3fld15FieldActionShip8shipMoveEv kind:function(thumb,size=0x248) addr:0x0212c528
+_ZN3fld15FieldActionShip6updateEv kind:function(thumb,size=0x18c) addr:0x0212c770
+_ZN3fld15FieldActionShip6searchEv kind:function(thumb,size=0x4) addr:0x0212c8fc
+_ZN3fld15FieldActionShip16checkGetDownShipEiis kind:function(thumb,size=0x2e8) addr:0x0212c900
+_ZN3fld15FieldActionShip14getShipDrawPosEi kind:function(thumb,size=0x68) addr:0x0212cbe8
+_ZN3fld15FieldActionWalk5setupEv kind:function(thumb,size=0x8) addr:0x0212cc50
+_ZN3fld15FieldActionWalk7executeEv kind:function(thumb,size=0xdc) addr:0x0212cc58
+_ZN3fld15FieldActionWalk13walkCollisionEv kind:function(thumb,size=0x6c) addr:0x0212cd34
+_ZN3fld15FieldActionWalk6updateEv kind:function(thumb,size=0x1e) addr:0x0212cda0
+_ZN3fld15FieldActionWalk6searchEv kind:function(thumb,size=0x98) addr:0x0212cdc0
+_ZN3fld15FieldActionWalk15checkShipActionEv kind:function(thumb,size=0x218) addr:0x0212ce58
+_ZN3fld15FieldPlayerDoku12getSingletonEv kind:function(thumb,size=0x24) addr:0x0212d070
+_ZN3fld15FieldPlayerDoku5setupEv kind:function(thumb,size=0x1c) addr:0x0212d094
+_ZN3fld15FieldPlayerDoku12checkBarrierEv kind:function(thumb,size=0x4) addr:0x0212d0b0
+_ZN3fld15FieldPlayerDoku11checkPoisonEv kind:function(thumb,size=0xe) addr:0x0212d0b4
+_ZN3fld15FieldPlayerDoku19setPartyMemberColorEii kind:function(thumb,size=0xa4) addr:0x0212d0c4
+_ZN3fld15FieldPlayerDoku15checkDokuDamageERN3dss12Fix32Vector3ES3_ kind:function(thumb,size=0x8) addr:0x0212d168
+_ZN3fld15FieldPlayerDoku12setBlockAttrEi kind:function(thumb,size=0x4) addr:0x0212d170
+_ZN3fld20FieldActionCalculate13playerFixMoveEPNS_15FieldPlayerInfoEPNS_13FieldCollInfoEiiN3dss5Fix32E kind:function(thumb,size=0x10e) addr:0x0212d174
+_ZN3fld20FieldActionCalculate15playerFixMoveUpEPNS_15FieldPlayerInfoEPNS_13FieldCollInfoEN3dss5Fix32Eb kind:function(thumb,size=0x12a) addr:0x0212d284
+_ZN3fld20FieldActionCalculate18playerFixMoveRightEPNS_15FieldPlayerInfoEPNS_13FieldCollInfoEN3dss5Fix32Eb kind:function(thumb,size=0x130) addr:0x0212d3b0
+_ZN3fld20FieldActionCalculate17playerFixMoveDownEPNS_15FieldPlayerInfoEPNS_13FieldCollInfoEN3dss5Fix32Eb kind:function(thumb,size=0x130) addr:0x0212d4e0
+_ZN3fld20FieldActionCalculate17playerFixMoveLeftEPNS_15FieldPlayerInfoEPNS_13FieldCollInfoEN3dss5Fix32Eb kind:function(thumb,size=0x130) addr:0x0212d610
+_ZN3fld20FieldActionCalculate20playerFixMoveRightUpEPNS_15FieldPlayerInfoEPNS_13FieldCollInfoEiiN3dss5Fix32E kind:function(thumb,size=0x72) addr:0x0212d740
+_ZN3fld20FieldActionCalculate22playerFixMoveRightDownEPNS_15FieldPlayerInfoEPNS_13FieldCollInfoEiiN3dss5Fix32E kind:function(thumb,size=0x72) addr:0x0212d7b4
+_ZN3fld20FieldActionCalculate21playerFixMoveLeftDownEPNS_15FieldPlayerInfoEPNS_13FieldCollInfoEiiN3dss5Fix32E kind:function(thumb,size=0x72) addr:0x0212d828
+_ZN3fld20FieldActionCalculate19playerFixMoveLeftUpEPNS_15FieldPlayerInfoEPNS_13FieldCollInfoEiiN3dss5Fix32E kind:function(thumb,size=0x72) addr:0x0212d89c
+_ZN3fld20FieldActionCalculate11frontHitFixEPNS_15FieldPlayerInfoEPNS_13FieldCollInfoEN3dss5Fix32E kind:function(thumb,size=0x1b6) addr:0x0212d910
+_ZN3fld20FieldActionCalculate13frontBlankFixEPNS_15FieldPlayerInfoEPNS_13FieldCollInfoEN3dss5Fix32E kind:function(thumb,size=0x20e) addr:0x0212dac8
+_ZN3fld20FieldActionCalculate17checkDiagonalLineERN3dss12Fix32Vector3Eiii kind:function(thumb,size=0x18a) addr:0x0212dcd8
+_ZN3fld20FieldActionCalculate16getDir8ByVector3ERN3dss12Fix32Vector3E kind:function(thumb,size=0x148) addr:0x0212de64
+_ZN3fld20FieldActionCalculate13getDir8RotIdxEsi kind:function(thumb,size=0x30) addr:0x0212dfac
+_ZN3fld20FieldActionCalculate16getVector3ByDir8Es kind:function(thumb,size=0xd4) addr:0x0212dfdc
+_ZN3fld20FieldActionCalculate14getIdxByParam4Ei kind:function(thumb,size=0x2e) addr:0x0212e0b0
+_ZN3fld20FieldActionCalculate14isEnableGetOffERN3dss12Fix32Vector3E kind:function(thumb,size=0x22) addr:0x0212e0e0
+_ZN3fld9FieldDataC1Ev kind:function(thumb,size=0xe8) addr:0x0212e104
+_ZN3fld9FieldDataD1Ev kind:function(thumb,size=0x8c) addr:0x0212e1ec
+_ZN3fld9FieldData5setupEii kind:function(thumb,size=0x94) addr:0x0212e278
+_ZN3fld9FieldData10setupBlockEi kind:function(thumb,size=0x25c) addr:0x0212e30c
+_ZN3fld9FieldData11setupSymbolEi kind:function(thumb,size=0x244) addr:0x0212e568
+_ZN3fld9FieldData6reloadEv kind:function(thumb,size=0x3c) addr:0x0212e7ac
+_ZN3fld9FieldData7cleanupEi kind:function(thumb,size=0x108) addr:0x0212e7e8
+_ZN3fld9FieldData15setPlayerCameraEv kind:function(thumb,size=0xbc) addr:0x0212e8f0
+_ZN3fld9FieldData14setFieldCameraEv kind:function(thumb,size=0xd0) addr:0x0212e9ac
+_ZN3fld9FieldData9drawBlockEv kind:function(thumb,size=0x180) addr:0x0212ea7c
+_ZN3fld9FieldData11draw2DFieldEiiiiPh kind:function(thumb,size=0x108) addr:0x0212ebfc
+_ZN3fld9FieldData12drawRuramonnEv kind:function(thumb,size=0x48) addr:0x0212ed04
+_ZN3fld9FieldData12drawRuramoonEN3dss5Fix32ES2_ kind:function(thumb,size=0xa8) addr:0x0212ed4c
+_ZN3fld9FieldData9drawSmokeEN3dss5Fix32ES2_ kind:function(thumb,size=0x120) addr:0x0212edf4
+_ZN3fld9FieldData9drawMagmaEN3dss5Fix32ES2_ kind:function(thumb,size=0x3c) addr:0x0212ef14
+_ZN3fld9FieldData14drawCasinoShipEN3dss5Fix32ES2_ kind:function(thumb,size=0x44) addr:0x0212ef50
+_ZN3fld9FieldData19drawSunkenFirmamentEv kind:function(thumb,size=0x4c) addr:0x0212ef94
+_ZN3fld9FieldData10drawSymbolEv kind:function(thumb,size=0x240) addr:0x0212efe0
+_ZN3fld9FieldData14nextAnimation8Ev kind:function(thumb,size=0x60) addr:0x0212f220
+_ZN3fld9FieldData15nextAnimation24Ev kind:function(thumb,size=0x60) addr:0x0212f280
+_ZN3fld9FieldData4drawEv kind:function(thumb,size=0x5c) addr:0x0212f2e0
+_ZN3fld9FieldData11setPositionERN3dss12Fix32Vector3E kind:function(thumb,size=0x6c) addr:0x0212f33c
+_ZN3fld9FieldData8isEnableEii kind:function(thumb,size=0xf4) addr:0x0212f3a8
+_ZN3fld9FieldData7getAttrEii kind:function(thumb,size=0x80) addr:0x0212f49c
+_ZN3fld9FieldData17getSymbolPositionEi kind:function(thumb,size=0x50) addr:0x0212f51c
+_ZN3fld9FieldData16isSymbolNearAreaERN3dss12Fix32Vector3Eii kind:function(thumb,size=0xbc) addr:0x0212f56c
+_ZN3fld9FieldData12isNearSymbolERN3dss12Fix32Vector3Ei kind:function(thumb,size=0xb0) addr:0x0212f628
+_ZN3fld9FieldData19isSymbolAttachByUidEiRN3dss12Fix32Vector3E kind:function(thumb,size=0xa0) addr:0x0212f6d8
+_ZN3fld9FieldData21getSearchSymbolAttachERN3dss12Fix32Vector3EPi kind:function(thumb,size=0xb0) addr:0x0212f778
+_ZN3fld9FieldData12isCollSymbolEii kind:function(thumb,size=0x74) addr:0x0212f828
+_ZN3fld9FieldData14setPaletteRateEiRN3dss12Fix32Vector3E kind:function(thumb,size=0x130) addr:0x0212f89c
+_ZN3fld9FieldData9getChanumEv kind:function(thumb,size=0xc) addr:0x0212f9cc
+_ZN3fld9FieldData16calcDrawPositionERiS1_ kind:function(thumb,size=0xcc) addr:0x0212f9d8
+_ZN3fld9FieldData9setKanbanEv kind:function(thumb,size=0x80) addr:0x0212faa4
+_ZN3fld9FieldData12searchKanbanEiiPN3dss7Vector2INS1_5Fix32EEE kind:function(thumb,size=0xc0) addr:0x0212fb24
+_ZN3fld9FieldData13setDispSymbolEii kind:function(thumb,size=0x2c) addr:0x0212fbe4
+_ZN9CWorldMapC1Ev kind:function(thumb,size=0x2) addr:0x0212fc10
+_ZN9CWorldMapD1Ev kind:function(thumb,size=0x2) addr:0x0212fc14
+_ZN9CWorldMap5setupEPv kind:function(thumb,size=0xc4) addr:0x0212fc18
+_ZN9CWorldMap7getAttrEii kind:function(thumb,size=0x34) addr:0x0212fcdc
+_ZN9CWorldMap10getWorldNoEii kind:function(thumb,size=0x30) addr:0x0212fd10
+_ZN9CWorldMap11worldChangeEi kind:function(thumb,size=0x8a) addr:0x0212fd40
+_ZN9CWorldMap5getUVEii kind:function(thumb,size=0x34) addr:0x0212fdcc
+_ZN12CWorldSymbol5setupEPv kind:function(thumb,size=0x40) addr:0x0212fe00
+_ZN3fld11FieldPlayerC1Ev kind:function(thumb,size=0xd4) addr:0x0212fe40
+_ZN3fld11FieldPlayerD1Ev kind:function(thumb,size=0xc) addr:0x0212ff14
+_ZN3fld11FieldPlayer5setupEv kind:function(thumb,size=0x54) addr:0x0212ff20
+_ZN3fld11FieldPlayer7cleanupEv kind:function(thumb,size=0x2) addr:0x0212ff74
+_ZN3fld11FieldPlayer7executeEv kind:function(thumb,size=0x12) addr:0x0212ff78
+_ZN3fld11FieldPlayer6updateEv kind:function(thumb,size=0x24) addr:0x0212ff8c
+_ZN3fld11FieldPlayer11setMoveTypeEi kind:function(thumb,size=0x4) addr:0x0212ffb0
+_ZN3fld11FieldPlayer11getMoveTypeEv kind:function(thumb,size=0x4) addr:0x0212ffb4
+_ZN3fld11FieldPlayer13execCollisionEv kind:function(thumb,size=0x2) addr:0x0212ffb8
+_ZN3fld11FieldPlayer8execMoveEv kind:function(thumb,size=0x2) addr:0x0212ffbc
+_ZN3fld10FieldPartyC1Ev kind:function(thumb,size=0x28) addr:0x0212ffc0
+_ZN3fld10FieldPartyD1Ev kind:function(thumb,size=0x2) addr:0x0212ffe8
+_ZN3fld10FieldParty5setupEv kind:function(thumb,size=0xd4) addr:0x0212ffec
+_ZN3fld10FieldParty7cleanupEv kind:function(thumb,size=0x2) addr:0x021300c0
+_ZN3fld10FieldParty7executeEv kind:function(thumb,size=0x12c) addr:0x021300c4
+_ZN3fld10FieldParty15moveBashaUpdateEv kind:function(thumb,size=0x118) addr:0x021301f0
+_ZN3fld10FieldParty14getMemberCountEv kind:function(thumb,size=0x10) addr:0x02130308
+_ZN3fld10FieldParty13setBashaArrayEb kind:function(thumb,size=0x1c) addr:0x02130318
+_ZN3fld10FieldParty10getSidePosEN3dq59TYPE_DIR4ERN3dss12Fix32Vector3EPS4_Ps kind:function(thumb,size=0x178) addr:0x02130334
+_ZN3fld10FieldParty10fixSidePosEN3dq59TYPE_DIR4Ei kind:function(thumb,size=0x84) addr:0x021304ac
+_ZN3fld10FieldParty13collisionSideEN3dq59TYPE_DIR4EPN3dss12Fix32Vector3Es kind:function(thumb,size=0x11c) addr:0x02130530
+_ZN3fld10FieldParty20moveAllPlayerToFirstEv kind:function(thumb,size=0x18) addr:0x0213064c
+_ZN3fld10FieldParty12getMemberPosEi kind:function(thumb,size=0x10) addr:0x02130664
+_ZN3cmn15PartyMoveAction12getMemberPosEi kind:function(thumb,size=0x10) addr:0x02130674 local
+_ZN3fld10FieldParty12setMemberPosEiRN3dss12Fix32Vector3E kind:function(thumb,size=0x18) addr:0x02130684
+_ZN3fld10FieldParty12getMemberDirEi kind:function(thumb,size=0x10) addr:0x0213069c
+_ZN3cmn15PartyMoveAction12getMemberDirEi kind:function(thumb,size=0x10) addr:0x021306ac local
+_ZN3fld10FieldParty12setMemberDirEis kind:function(thumb,size=0x10) addr:0x021306bc
+_ZN3fld10FieldParty19setAllPlayerAtFirstEv kind:function(thumb,size=0x4c) addr:0x021306cc
+_ZN3fld10FieldParty15resetBashaCountEv kind:function(thumb,size=0x40) addr:0x02130718
+_ZN3fld10FieldParty12setFormationERN3dss12Fix32Vector3Es kind:function(thumb,size=0xb4) addr:0x02130758
+_ZN3fld11FieldSystemC1Ev kind:function(thumb,size=0x80) addr:0x0213080c
+_ZN3fld11FieldSystem12getSingletonEv kind:function(thumb,size=0x3c) addr:0x0213088c
+_ZN3fld11FieldSystemD1Ev kind:function(thumb,size=0x78) addr:0x021308c8
+_ZN3fld11FieldSystem10initializeEv kind:function(thumb,size=0x1e4) addr:0x02130940
+_ZN3fld11FieldSystem9terminateEv kind:function(thumb,size=0x104) addr:0x02130b24
+_ZN3fld11FieldSystem7executeEv kind:function(thumb,size=0x9c) addr:0x02130c28
+_ZN3fld11FieldSystem4drawEv kind:function(thumb,size=0x44) addr:0x02130cc4
+_ZN3fld11FieldSystem12setLookAtPosEN3dss12Fix32Vector3E kind:function(thumb,size=0x34) addr:0x02130d08
+_ZN3fld11FieldSystem16getFloorBgmIndexEv kind:function(thumb,size=0x60) addr:0x02130d3c
+_ZN3fld18FieldPlayerManagerC1Ev kind:function(thumb,size=0xb8) addr:0x02130d9c
+_ZN3fld18FieldPlayerManager12getSingletonEv kind:function(thumb,size=0x3c) addr:0x02130e54
+_ZN3fld18FieldPlayerManagerD1Ev kind:function(thumb,size=0x64) addr:0x02130e90
+_ZN3fld18FieldPlayerManager10initializeEv kind:function(thumb,size=0x12c) addr:0x02130ef4
+_ZN3fld18FieldPlayerManager9terminateEv kind:function(thumb,size=0xa8) addr:0x02131020
+_ZN3fld18FieldPlayerManager7executeEv kind:function(thumb,size=0x80) addr:0x021310c8
+_ZN3fld18FieldPlayerManager4drawEv kind:function(thumb,size=0x24c) addr:0x02131148
+_ZN3fld18FieldPlayerManager5setupEv kind:function(thumb,size=0x14c) addr:0x02131394
+_ZN3fld18FieldPlayerManager7cleanupEv kind:function(thumb,size=0x16) addr:0x021314e0
+_ZN3fld18FieldPlayerManager9everyExecEv kind:function(thumb,size=0x2) addr:0x021314f8
+_ZN3fld18FieldPlayerManager10normalExecEv kind:function(thumb,size=0x250) addr:0x021314fc
+_ZN3fld18FieldPlayerManager20isTenkuNearAreaGetOnEv kind:function(thumb,size=0x98) addr:0x0213174c
+_ZN3fld18FieldPlayerManager15isTenkuNearAreaEv kind:function(thumb,size=0xf8) addr:0x021317e4
+_ZN3fld18FieldPlayerManager11execMapLinkEv kind:function(thumb,size=0x1c4) addr:0x021318dc
+_ZN3fld18FieldPlayerManager11setPositionERN3dss12Fix32Vector3E kind:function(thumb,size=0x10) addr:0x02131aa0
+_ZN3fld18FieldPlayerManager8inputPadEi kind:function(thumb,size=0xc) addr:0x02131ab0
+_ZN3fld18FieldPlayerManager10inputClearEv kind:function(thumb,size=0xc) addr:0x02131abc
+_ZN3fld18FieldPlayerManager10resetPartyEv kind:function(thumb,size=0xd4) addr:0x02131ac8
+_ZN3fld18FieldPlayerManager11getLandTypeEv kind:function(thumb,size=0x5c) addr:0x02131b9c
+_ZN3fld18FieldPlayerManager7getAttrEv kind:function(thumb,size=0x28) addr:0x02131bf8
+_ZN3fld18FieldPlayerManager14getCarrierDrawEi kind:function(thumb,size=0x50) addr:0x02131c20
+_ZN3fld18FieldPlayerManager16unkfunc_02131c70Ev kind:function(thumb,size=0x2) addr:0x02131c70
+_ZN3fld18FieldPlayerManager9setRemoteEb kind:function(thumb,size=0x1c) addr:0x02131c74
+_ZN3fld18FieldPlayerManager14getDamageColorEi kind:function(thumb,size=0x30) addr:0x02131c90
+_ZN3fld18FieldPlayerManager13setSimpleMoveEN3dss12Fix32Vector3ENS1_5Fix32Ei kind:function(thumb,size=0x7c) addr:0x02131cc0
+_ZN3fld18FieldPlayerManager16setDirectionMoveEN3dss5Fix32Ei kind:function(thumb,size=0x44) addr:0x02131d3c
+_ZN3fld18FieldPlayerManager20setScriptGetDownShipEi kind:function(thumb,size=0x2) addr:0x02131d80
+_ZN3fld18FieldPlayerManager22isEndScriptGetDownShipEv kind:function(thumb,size=0x14) addr:0x02131d84
+_ZN3fld18FieldPlayerManager23resetLockByEventEncountEv kind:function(thumb,size=0x20) addr:0x02131d98
+_ZN3fld18FieldPlayerManager18setMoveToFirstFlagEv kind:function(thumb,size=0xc) addr:0x02131db8
+_ZN3fld18FieldPlayerManager18getMoveToFirstFlagEv kind:function(thumb,size=0x14) addr:0x02131dc4
+_ZN3fld18FieldPlayerManager19resetDrawPartyCountEv kind:function(thumb,size=0x10) addr:0x02131dd8
+_ZN3fld18FieldPlayerManager15setPartyDrawOneEv kind:function(thumb,size=0x10) addr:0x02131de8
+_ZN3fld18FieldPlayerManager16setDrawPartyNoneEv kind:function(thumb,size=0x10) addr:0x02131df8
+_ZN3fld18FieldPlayerManager17getPartyDrawCountEv kind:function(thumb,size=0xc) addr:0x02131e08
+_ZN3fld18FieldPlayerManager13isEqalNextPosEi kind:function(thumb,size=0x4) addr:0x02131e14
+_ZN3fld18FieldPlayerManager17getPartyDrawAlphaEi kind:function(thumb,size=0x4) addr:0x02131e18
+_ZN3fld18FieldPlayerManager17addPartyDrawAlphaEic kind:function(thumb,size=0x2) addr:0x02131e1c
+_ZN3fld18FieldPlayerManager10scriptCollERN3dss12Fix32Vector3ERs kind:function(thumb,size=0x2) addr:0x02131e20
+_ZN3fld18FieldPlayerManager12setAllShadowEb kind:function(thumb,size=0x70) addr:0x02131e24
+_ZN3fld18FieldPlayerManager15checkMenuActionEi kind:function(thumb,size=0x12c) addr:0x02131e94
+_ZN3fld18FieldPlayerManager17checkScriptSearchEv kind:function(thumb,size=0x42) addr:0x02131fc0
+_ZN3fld18FieldPlayerManager11setDistanceEv kind:function(thumb,size=0x1dc) addr:0x02132004
+_ZN3fld18FieldPlayerManager12setDirectionEs kind:function(thumb,size=0xc) addr:0x021321e0
+_ZN3fld18FieldPlayerManager12getDirectionEv kind:function(thumb,size=0x10) addr:0x021321ec
+_ZN3fld14FieldPartyDrawC1Ev kind:function(thumb,size=0x24) addr:0x021321fc
+_ZN3fld14FieldPartyDrawD1Ev kind:function(thumb,size=0x18) addr:0x02132220
+_ZN3fld14FieldPartyDraw5setupEv kind:function(thumb,size=0x134) addr:0x02132238
+_ZN6status11PartyStatus10isCarriageEv kind:function(thumb,size=0x4) addr:0x0213236c
+_ZN6status15CharacterStatus17getHaveStatusInfoEv kind:function(thumb,size=0x4) addr:0x02132370
+_ZN6status12PlayerStatusaSERS0_ kind:function(thumb,size=0x912) addr:0x02132374
+_ZN3fld14FieldPartyDraw6reloadEv kind:function(thumb,size=0x2c) addr:0x02132c88
+_ZN3fld14FieldPartyDraw10setupCharaEii kind:function(thumb,size=0xd4) addr:0x02132cb4
+_ZN3fld14FieldPartyDraw7cleanupEv kind:function(thumb,size=0x28) addr:0x02132d88
+_ZN3fld14FieldPartyDraw4drawEv kind:function(thumb,size=0x8c) addr:0x02132db0
+_ZN3fld14FieldPartyDraw11setPositionEiN3dss7Vector2IiEE kind:function(thumb,size=0x1a) addr:0x02132e3c
+_ZN3fld14FieldPartyDraw8setDepthEii kind:function(thumb,size=0xc) addr:0x02132e58
+_ZN3fld14FieldPartyDraw9setRotateEij kind:function(thumb,size=0x14) addr:0x02132e64
+_ZN3fld14FieldPartyDraw11setDrawNoneEv kind:function(thumb,size=0x2c) addr:0x02132e78
+_ZN3fld14FieldPartyDraw14resetDrawCountEv kind:function(thumb,size=0x34) addr:0x02132ea4
+_ZN3fld14FieldPartyDraw15setDrawPartyOneEv kind:function(thumb,size=0x2c) addr:0x02132ed8
+_ZN3fld14FieldPartyDraw16changePlayerPoseEii kind:function(thumb,size=0x64) addr:0x02132f04
+_ZN3fld10FieldStageC1Ev kind:function(thumb,size=0xc) addr:0x02132f68
+_ZN3fld10FieldStageD1Ev kind:function(thumb,size=0xc) addr:0x02132f74
+_ZN3fld10FieldStage12getSingletonEv kind:function(thumb,size=0x3c) addr:0x02132f80
+_ZN3fld10FieldStage10initializeEv kind:function(thumb,size=0x78) addr:0x02132fbc
+_ZN3fld10FieldStage9terminateEv kind:function(thumb,size=0x18) addr:0x02133034
+_ZN3fld10FieldStage12getFieldDataEv kind:function(thumb,size=0x2) addr:0x0213304c
+_ZN3fld10FieldStage7executeEv kind:function(thumb,size=0x2) addr:0x02133050
+_ZN3fld10FieldStage4drawEv kind:function(thumb,size=0xf4) addr:0x02133054
+_ZN3fld10FieldStage10drawPlayerEv kind:function(thumb,size=0xca) addr:0x02133148
+_ZN3fld10FieldStage9setOffsetEi kind:function(thumb,size=0xc) addr:0x02133214
+_ZN3fld10FieldStage11setPositionERN3dss12Fix32Vector3E kind:function(thumb,size=0x8) addr:0x02133220
+_ZN3fld10FieldStage12getBlockAttrEii kind:function(thumb,size=0x8) addr:0x02133228
+_ZN3fld10FieldStage13getBlockAttr2Eii kind:function(thumb,size=0x8) addr:0x02133230
+_ZN3fld10FieldStage17getSymbolPositionEi kind:function(thumb,size=0x8) addr:0x02133238
+_ZN3fld10FieldStage21getSearchSymbolAttachEN3dss12Fix32Vector3EPi kind:function(thumb,size=0x8) addr:0x02133240
+_ZN3fld10FieldStage10ChangeTimeEi kind:function(thumb,size=0xc4) addr:0x02133248
+_ZN3fld10FieldStage16calcDrawPositionERN3dss12Fix32Vector3E kind:function(thumb,size=0xf4) addr:0x0213330c
+_ZN3fld10FieldStage13setSymbolFlagEi kind:function(thumb,size=0x54) addr:0x02133400
+_ZN3fld10FieldStage11eraseSymbolEi kind:function(thumb,size=0x24) addr:0x02133454
+_ZN3fld10FieldStage11setChipAttrEiiPi kind:function(thumb,size=0x68) addr:0x02133478
+_ZN3fld10FieldStage11setShipCollEiiRNS_13FieldCollInfoE kind:function(thumb,size=0x68) addr:0x021334e0
+_ZN3fld10FieldStage11getShipCollEii kind:function(thumb,size=0x2a) addr:0x02133548
+_ZN3fld10FieldStage13setCarpetCollEiiRNS_13FieldCollInfoE kind:function(thumb,size=0x68) addr:0x02133574
+_ZN3fld10FieldStage12isCarpetCollEii kind:function(thumb,size=0x8a) addr:0x021335dc
+_ZN3fld10FieldStage11setWalkCollEiiRNS_13FieldCollInfoE kind:function(thumb,size=0x1c2) addr:0x02133668
+_ZN3fld18FieldSymbolManagerC1Ev kind:function(thumb,size=0x2) addr:0x0213382c
+_ZN3fld18FieldSymbolManagerD1Ev kind:function(thumb,size=0x2) addr:0x02133830
+_ZN3fld18FieldSymbolManager12getSingletonEv kind:function(thumb,size=0x3c) addr:0x02133834
+_ZN3fld18FieldSymbolManager10initializeEv kind:function(thumb,size=0x16) addr:0x02133870
+_ZN3fld18FieldSymbolManager9terminateEv kind:function(thumb,size=0x2) addr:0x02133888
+_ZN3fld18FieldSymbolManager11checkSymbolEii kind:function(thumb,size=0xec) addr:0x0213388c
+_ZN3fld20FieldRectCollManager5setupEv kind:function(thumb,size=0x16) addr:0x02133978
+_ZN3fld20FieldRectCollManager12getSingletonEv kind:function(thumb,size=0x40) addr:0x02133990
+ov005_entry kind:function(thumb,size=0x2) addr:0x021339d0
+_ZN3fld13FieldImageMapC1Ev kind:function(thumb,size=0x44) addr:0x021339d4
+_ZN3fld13FieldImageMapD1Ev kind:function(thumb,size=0x32) addr:0x02133a18
+_ZN3fld13FieldImageMap5setupEP6Render kind:function(thumb,size=0x64) addr:0x02133a4c
+_ZN3fld13FieldImageMap7cleanupEv kind:function(thumb,size=0x16) addr:0x02133ab0
+_ZN3fld13FieldImageMap7executeEv kind:function(thumb,size=0x1a0) addr:0x02133ac8
+_ZN3fld13FieldImageMap4drawEv kind:function(thumb,size=0x16) addr:0x02133c68
+_ZN3fld13FieldImageMap6reloadEv kind:function(thumb,size=0x10) addr:0x02133c80
+_ZN3fld13FieldImageMap13closeLargeMapEv kind:function(thumb,size=0xa) addr:0x02133c90
+_ZN3fld13FieldImageMap13closeSmallMapEv kind:function(thumb,size=0xa) addr:0x02133c9c
+_ZN3fld13FieldImageMap4openEv kind:function(thumb,size=0x8) addr:0x02133ca8
+_ZN3fld13FieldImageMap5closeEv kind:function(thumb,size=0x8) addr:0x02133cb0
+_ZN3fld13FieldImageMap6isOpenEv kind:function(thumb,size=0x12) addr:0x02133cb8
+_ZN3fld13FieldImageMap7isCloseEv kind:function(thumb,size=0x12) addr:0x02133ccc
+_ZN3fld13FieldLargeMapC1Ev kind:function(thumb,size=0x16) addr:0x02133ce0
+_ZN3fld13FieldLargeMapD1Ev kind:function(thumb,size=0x14) addr:0x02133cf8
+_ZN3fld13FieldLargeMap16unkfunc_02133d0cEP6Render kind:function(thumb,size=0xc) addr:0x02133d0c
+_ZN3fld13FieldLargeMap16unkfunc_02133d18Ev kind:function(thumb,size=0x20) addr:0x02133d18
+_ZN3fld13FieldLargeMap16unkfunc_02133d38Ev kind:function(thumb,size=0xbc) addr:0x02133d38
+_ZN3fld13FieldLargeMap16unkfunc_02133df4EiiPv kind:function(thumb,size=0x10c) addr:0x02133df4
+_ZN3fld13FieldLargeMap16unkfunc_02133f00Eii kind:function(thumb,size=0x104) addr:0x02133f00
+_ZN3fld13FieldLargeMap16unkfunc_02134004Ev kind:function(thumb,size=0xc4) addr:0x02134004
+_ZN3fld13FieldLargeMap16unkfunc_021340c8Eh kind:function(thumb,size=0x16) addr:0x021340c8
+_ZN3fld13FieldLargeMap16unkfunc_021340e0Ev kind:function(thumb,size=0x28) addr:0x021340e0
+_ZN3fld14FieldRegionMapC2Ev kind:function(thumb,size=0x1c) addr:0x02134108
+_ZN3fld14FieldRegionMapD2Ev kind:function(thumb,size=0x14) addr:0x02134124
+_ZN3fld14FieldRegionMap7cleanupEv kind:function(thumb,size=0x12) addr:0x02134138
+_ZN3fld14FieldRegionMap4drawEv kind:function(thumb,size=0x20) addr:0x0213414c
+_ZN3fld14FieldRegionMap4loadEv kind:function(thumb,size=0x20) addr:0x0213416c
+_ZN3fld14FieldRegionMap5clearEv kind:function(thumb,size=0x14) addr:0x0213418c
+_ZN3fld14FieldRegionMap8setAlphaEh kind:function(thumb,size=0x22) addr:0x021341a0
+_ZN3fld14FieldRegionMap17playerMapPositionEv kind:function(thumb,size=0x54) addr:0x021341c4
+_ZN3fld14FieldRegionMap13convertMapPosEii kind:function(thumb,size=0x34) addr:0x02134218
+_ZN3fld13FieldSmallMapC1Ev kind:function(thumb,size=0x1c) addr:0x0213424c
+_ZN3fld13FieldSmallMapD1Ev kind:function(thumb,size=0x14) addr:0x02134268
+_ZN3fld13FieldSmallMap7cleanupEv kind:function(thumb,size=0x12) addr:0x0213427c
+_ZN3fld13FieldSmallMap5setupEv kind:function(thumb,size=0x88) addr:0x02134290
+_ZN3fld13FieldSmallMap17playerMapPositionEv kind:function(thumb,size=0x48) addr:0x02134318
+_ZN3fld13FieldSmallMap8setAlphaEh kind:function(thumb,size=0x16) addr:0x02134360
+_ZN3fld13FieldSmallMap4drawEv kind:function(thumb,size=0x12) addr:0x02134378
+_ZN3fld13FieldSmallMap4loadEv kind:function(thumb,size=0x1a) addr:0x0213438c
+_ZN3fld13FieldSmallMap5clearEv kind:function(thumb,size=0x12) addr:0x021343a8
+_ZN3fld17FieldWindowSystemC1Ev kind:function(thumb,size=0x2) addr:0x021343bc
+_ZN3fld17FieldWindowSystem12getSingletonEv kind:function(thumb,size=0x28) addr:0x021343c0
+_ZN3fld17FieldWindowSystem10initializeEv kind:function(thumb,size=0x6) addr:0x021343e8
+_ZN3fld17FieldWindowSystem9terminateEv kind:function(thumb,size=0x2) addr:0x021343f0
+_ZN3fld17FieldWindowSystem7executeEv kind:function(thumb,size=0x2) addr:0x021343f4
+_ZN3fld17FieldWindowSystem4drawEv kind:function(thumb,size=0x2) addr:0x021343f8
+_ZN3fld17FieldWindowSystem11openMessageEii kind:function(thumb,size=0x14) addr:0x021343fc
+_ZN3fld17FieldWindowSystem16addCommonMessageEi kind:function(thumb,size=0x10) addr:0x02134410
+_ZN3fld17FieldWindowSystem17openCommonMessageEv kind:function(thumb,size=0x14) addr:0x02134420
+_ZN3fld12FieldYamiMapC1Ev kind:function(thumb,size=0x14) addr:0x02134434
+_ZN3fld12FieldYamiMapD1Ev kind:function(thumb,size=0xc) addr:0x02134448
+_ZN3fld12FieldYamiMap5setupEv kind:function(thumb,size=0xf4) addr:0x02134454
+_ZN3fld18FieldSystemEncountC1Ev kind:function(thumb,size=0x14) addr:0x02134548
+_ZN3fld18FieldSystemEncountD1Ev kind:function(thumb,size=0xc) addr:0x0213455c
+_ZN3fld18FieldSystemEncount10initializeEv kind:function(thumb,size=0x28) addr:0x02134568
+_ZN3fld18FieldSystemEncount9terminateEv kind:function(thumb,size=0x2) addr:0x02134590
+_ZN3fld18FieldSystemEncount7executeEv kind:function(thumb,size=0x164) addr:0x02134594
+_ZN3fld18FieldSystemEncount4drawEv kind:function(thumb,size=0x2) addr:0x021346f8
+_ZN3fld17FieldSystemScriptC1Ev kind:function(thumb,size=0x14) addr:0x021346fc
+_ZN3fld17FieldSystemScriptD1Ev kind:function(thumb,size=0xc) addr:0x02134710
+_ZN3fld17FieldSystemScript10initializeEv kind:function(thumb,size=0x80) addr:0x0213471c
+_ZN3fld17FieldSystemScript9terminateEv kind:function(thumb,size=0xc) addr:0x0213479c
+_ZN3fld17FieldSystemScript7executeEv kind:function(thumb,size=0x12) addr:0x021347a8
+_ZN3fld17FieldSystemScript4drawEv kind:function(thumb,size=0x2) addr:0x021347bc
+_ZN3fld17FieldSystemScript11isEventLockEv kind:function(thumb,size=0xe) addr:0x021347c0
+_ZN3fld17FieldSystemScript12setEventLockEb kind:function(thumb,size=0x12) addr:0x021347d0
+_ZN3fld18FieldSystemCommandC1Ev kind:function(thumb,size=0x178) addr:0x021347e4
+_ZN3fld18FieldSystemCommandD1Ev kind:function(thumb,size=0xc8) addr:0x0213495c
+_ZN3fld18FieldSystemCommand10initializeEv kind:function(thumb,size=0x170) addr:0x02134a24
+_ZN3fld18FieldSystemCommand9terminateEv kind:function(thumb,size=0x2) addr:0x02134b94
+_ZN3fld18FieldSystemCommand7executeEv kind:function(thumb,size=0xc) addr:0x02134b98
+_ZN3fld18FieldSystemCommand4drawEv kind:function(thumb,size=0x2) addr:0x02134ba4
+_ZN3fld19FieldCommandEncount6isExecEv kind:function(thumb,size=0x38) addr:0x02134ba8
+_ZN3fld19FieldCommandEncount5isEndEv kind:function(thumb,size=0x4) addr:0x02134be0
+_ZN3fld19FieldCommandEncount4execEv kind:function(thumb,size=0x50) addr:0x02134be4
+_ZN3fld20FieldSymbolAnimationC1Ev kind:function(thumb,size=0x14) addr:0x02134c34
+_ZN3fld20FieldSymbolAnimationD1Ev kind:function(thumb,size=0xe) addr:0x02134c48
+_ZN3fld20FieldSymbolAnimation5setupEPKc kind:function(thumb,size=0x1a) addr:0x02134c58
+_ZN3fld20FieldSymbolAnimation8calcAnimEP16UnkTextureObject kind:function(thumb,size=0x52) addr:0x02134c74
+_ZN3fld20FieldSymbolAnimation7cleanupEv kind:function(thumb,size=0x10) addr:0x02134cc8
+_ZN3dq55level9LevelData10setupFieldEv kind:function(thumb,size=0x3c) addr:0x02134cd8
+_ZN3dq55level9LevelData12cleanupFieldEv kind:function(thumb,size=0x2) addr:0x02134d14
+_ZN3fld15FieldEffectBaseC2Ev kind:function(thumb,size=0x1c) addr:0x02134d18
+_ZN3fld15FieldEffectBaseD2Ev kind:function(thumb,size=0x2) addr:0x02134d34
+_ZN3fld15FieldEffectBase5setupEi kind:function(thumb,size=0x8) addr:0x02134d38
+_ZN3fld15FieldEffectBase7cleanupEv kind:function(thumb,size=0x6) addr:0x02134d40
+_ZN3fld15FieldEffectBase7executeEv kind:function(thumb,size=0x2) addr:0x02134d48
+_ZN3fld15FieldEffectBase11setPositionEN3dss12Fix32Vector3E kind:function(thumb,size=0xc) addr:0x02134d4c
+_ZN3fld15FieldEffectBase8isFinishEv kind:function(arm,size=0x14) addr:0x02134d58
+_ZN3fld18FieldEffectManagerC1Ev kind:function(thumb,size=0x18) addr:0x02134d6c
+_ZN3fld18FieldEffectManagerD1Ev kind:function(thumb,size=0x1c) addr:0x02134d84
+_ZN3fld18FieldEffectManager12getSingletonEv kind:function(thumb,size=0x3c) addr:0x02134da0
+_ZN3fld18FieldEffectManager10initializeEv kind:function(thumb,size=0x24) addr:0x02134ddc
+_ZN3fld18FieldEffectManager9terminateEv kind:function(thumb,size=0x3c) addr:0x02134e00
+_ZN3fld18FieldEffectManager5setupEiN3dss12Fix32Vector3E kind:function(thumb,size=0x94) addr:0x02134e3c
+_ZN3fld18FieldEffectManager7cleanupEi kind:function(thumb,size=0x48) addr:0x02134ed0
+_ZN3fld18FieldEffectManager4drawEv kind:function(thumb,size=0x50) addr:0x02134f18
+_ZN3fld18FieldEffectManager7executeEv kind:function(thumb,size=0x44) addr:0x02134f68
+_ZN3fld17FieldEffectSpriteC1Ev kind:function(thumb,size=0x1c) addr:0x02134fac
+_ZN3fld17FieldEffectSpriteD1Ev kind:function(thumb,size=0x14) addr:0x02134fc8
+_ZN3fld17FieldEffectSprite5setupEi kind:function(thumb,size=0x14) addr:0x02134fdc
+_ZN3fld17FieldEffectSprite11setResourceEPv kind:function(thumb,size=0xe) addr:0x02134ff0
+_ZN3fld17FieldEffectSprite7executeEv kind:function(thumb,size=0x2) addr:0x02135000
+_ZN3fld17FieldEffectSprite4drawEv kind:function(thumb,size=0x28) addr:0x02135004
+_ZN3fld17FieldEffectSprite7cleanupEv kind:function(thumb,size=0x16) addr:0x0213502c
+_ZN3fld17FieldEffectSprite11setPositionEN3dss12Fix32Vector3E kind:function(thumb,size=0x1a) addr:0x02135044
+_ZN3fld17FieldEffectSprite8isFinishEv kind:function(thumb,size=0x16) addr:0x02135060
+_ZN3fld17FieldEffectSprite7getTypeEv kind:function(arm,size=0x8) addr:0x02135078
+_ZN3fld18FieldEffectStorageC1Ev kind:function(thumb,size=0x24) addr:0x02135080
+_ZN3fld18FieldEffectStorageD1Ev kind:function(thumb,size=0x18) addr:0x021350a4
+_ZN3fld18FieldEffectStorage10initializeEv kind:function(thumb,size=0x16) addr:0x021350bc
+_ZN3fld18FieldEffectStorage9terminateEv kind:function(thumb,size=0x2) addr:0x021350d4
+_ZN3fld18FieldEffectStorage12getContainerEi kind:function(thumb,size=0x2c) addr:0x021350d8
+_ZN3fld18FieldEffectStorage16restoreContainerEi kind:function(thumb,size=0x10) addr:0x02135104
+_ZN3fld11FieldCameraC1Ev kind:function(thumb,size=0xc) addr:0x02135114
+_ZN3fld11FieldCameraD1Ev kind:function(thumb,size=0x2) addr:0x02135120
+_ZN3fld11FieldCamera12getSingletonEv kind:function(thumb,size=0x3c) addr:0x02135124
+_ZN3fld11FieldCamera10initializeEv kind:function(thumb,size=0xe8) addr:0x02135160
+_ZN3fld11FieldCamera9terminateEv kind:function(thumb,size=0x2) addr:0x02135248
+_ZN3fld11FieldCamera7executeEv kind:function(thumb,size=0x2) addr:0x0213524c
+_ZN3fld11FieldCamera4drawEv kind:function(thumb,size=0x54) addr:0x02135250
+@1196 kind:data(any) addr:0x021352a4 local
+@1241 kind:data(any) addr:0x021352b4 local
+@1068 kind:data(any) addr:0x021352c4 local
+ctrl_id$2677 kind:data(any) addr:0x021352cc local
+s_playerCameraTarget kind:data(any) addr:0x021352f4 local
+s_fieldCameraUp kind:data(any) addr:0x02135300 local
+s_playerCameraUp kind:data(any) addr:0x0213530c local
+s_fieldCameraTarget kind:data(any) addr:0x02135318 local
+_ZN3fld14FieldPartyDraw9colorDokuE kind:data(any) addr:0x02135324
+_ZN3fld14FieldPartyDraw12colorBarrierE kind:data(any) addr:0x02135326
+_ZN3dq55level22EncountFairyTile_arrayE kind:data(any) addr:0x02135328
+_ZN3dq55level21EncountDarkTile_arrayE kind:data(any) addr:0x0213533c
+_ZN3dq55level21EncountSeaTile2_arrayE kind:data(any) addr:0x02135350
+_ZN3dq55level18EncountTile3_arrayE kind:data(any) addr:0x02135454
+_ZN3dq55level18EncountTile2_arrayE kind:data(any) addr:0x02135558
+_ZN3dq55level18EncountTile1_arrayE kind:data(any) addr:0x0213565c
+_ZN3dq55level21EncountSeaTile1_arrayE kind:data(any) addr:0x02135760
+_ZN3dq55level12EncountTile17height_E kind:data(any) addr:0x02135864
+_ZN3dq55level12EncountTile16width_E kind:data(any) addr:0x02135868
+_ZN3dq55level12EncountTile13ID_E kind:data(any) addr:0x0213586c
+_ZN3dq55level12EncountTile27height_E kind:data(any) addr:0x02135870
+_ZN3dq55level12EncountTile26width_E kind:data(any) addr:0x02135874
+_ZN3dq55level12EncountTile23ID_E kind:data(any) addr:0x02135878
+_ZN3dq55level12EncountTile37height_E kind:data(any) addr:0x0213587c
+_ZN3dq55level12EncountTile36width_E kind:data(any) addr:0x02135880
+_ZN3dq55level12EncountTile33ID_E kind:data(any) addr:0x02135884
+_ZN3dq55level16EncountFairyTile7height_E kind:data(any) addr:0x02135888
+_ZN3dq55level16EncountFairyTile6width_E kind:data(any) addr:0x0213588c
+_ZN3dq55level16EncountFairyTile3ID_E kind:data(any) addr:0x02135890
+_ZN3dq55level15EncountDarkTile7height_E kind:data(any) addr:0x02135894
+_ZN3dq55level15EncountDarkTile6width_E kind:data(any) addr:0x02135898
+_ZN3dq55level15EncountDarkTile3ID_E kind:data(any) addr:0x0213589c
+_ZN3dq55level15EncountSeaTile17height_E kind:data(any) addr:0x021358a0
+_ZN3dq55level15EncountSeaTile16width_E kind:data(any) addr:0x021358a4
+_ZN3dq55level15EncountSeaTile13ID_E kind:data(any) addr:0x021358a8
+_ZN3dq55level15EncountSeaTile27height_E kind:data(any) addr:0x021358ac
+_ZN3dq55level15EncountSeaTile26width_E kind:data(any) addr:0x021358b0
+_ZN3dq55level15EncountSeaTile23ID_E kind:data(any) addr:0x021358b4
+_ZN3dq520TOWN_CAMERA_DISTANCEE kind:data(any) addr:0x021358b8 local
+__sinit_ScriptCommandField.cpp kind:function(thumb,size=0xe0) addr:0x021358bc local
+__sinit_FieldShipDraw.cpp kind:function(thumb,size=0x20) addr:0x0213599c local
+__sinit_FieldActionDragon.cpp kind:function(thumb,size=0x14) addr:0x021359bc local
+__sinit_FieldActionBase.cpp kind:function(thumb,size=0xdc) addr:0x021359d0 local
+__sinit_FieldLargeMap.cpp kind:function(thumb,size=0xa4) addr:0x02135aac local
+__sinit_EncountTile1.cpp kind:function(arm,size=0x2c) addr:0x02135b50 local
+__sinit_EncountTile2.cpp kind:function(arm,size=0x2c) addr:0x02135b7c local
+__sinit_EncountTile3.cpp kind:function(arm,size=0x2c) addr:0x02135ba8 local
+__sinit_EncountFairyTile.cpp kind:function(arm,size=0x2c) addr:0x02135bd4 local
+__sinit_EncountDarkTile.cpp kind:function(arm,size=0x2c) addr:0x02135c00 local
+__sinit_EncountSeaTile1.cpp kind:function(arm,size=0x2c) addr:0x02135c2c local
+__sinit_EncountSeaTile2.cpp kind:function(arm,size=0x2c) addr:0x02135c58 local
+__sinit_FieldCamera.cpp kind:function(thumb,size=0x50) addr:0x02135c84 local
+.p__sinit_ScriptCommandField.cpp kind:data(word) addr:0x02135cd4 local
+.p__sinit_FieldShipDraw.cpp kind:data(word) addr:0x02135cd8 local
+.p__sinit_FieldActionDragon.cpp kind:data(word) addr:0x02135cdc local
+.p__sinit_FieldActionBase.cpp kind:data(word) addr:0x02135ce0 local
+.p__sinit_FieldLargeMap.cpp kind:data(word) addr:0x02135ce4 local
+.p__sinit_EncountTile1.cpp kind:data(word) addr:0x02135ce8 local
+.p__sinit_EncountTile2.cpp kind:data(word) addr:0x02135cec local
+.p__sinit_EncountTile3.cpp kind:data(word) addr:0x02135cf0 local
+.p__sinit_EncountFairyTile.cpp kind:data(word) addr:0x02135cf4 local
+.p__sinit_EncountDarkTile.cpp kind:data(word) addr:0x02135cf8 local
+.p__sinit_EncountSeaTile1.cpp kind:data(word) addr:0x02135cfc local
+.p__sinit_EncountSeaTile2.cpp kind:data(word) addr:0x02135d00 local
+.p__sinit_FieldCamera.cpp kind:data(word) addr:0x02135d04 local
+_ZTVN3fld13FieldFairyMapE kind:data(any) addr:0x02135d20
+@806 kind:data(any) addr:0x02135d44 local
+@807 kind:data(any) addr:0x02135d60 local
+_ZTVN3fld15FieldCarpetDrawE kind:data(any) addr:0x02135d7c
+@921 kind:data(any) addr:0x02135dc8 local
+@922 kind:data(any) addr:0x02135ddc local
+_ZTVN3fld27FieldCommandBookingTownMenuE kind:data(any) addr:0x02135df0
+_ZTVN3fld15FieldActionRanaE kind:data(any) addr:0x02135e04
+_ZTVN3fld15FieldActionTabiE kind:data(any) addr:0x02135e24
+_ZTV17FieldPlayerMoveTo kind:data(any) addr:0x02135e44
+_ZTV17FieldGoldOrbEvent kind:data(any) addr:0x02135e5c
+_ZTV15FieldSymbolAnim kind:data(any) addr:0x02135e74
+_ZTV13FieldMoveLine kind:data(any) addr:0x02135e8c
+_ZTV16FieldGetDownShip kind:data(any) addr:0x02135ea4
+@1343 kind:data(any) addr:0x02135ebc local
+@1362 kind:data(any) addr:0x02135ee0 local
+@1363 kind:data(any) addr:0x02135efc local
+_ZTVN3fld24FieldCommandScreenEffectE kind:data(any) addr:0x02135f18
+_ZTVN3fld23FieldSystemScreenEffectE kind:data(any) addr:0x02135f2c
+_ZTVN3fld17FieldCarrirerDrawE kind:data(any) addr:0x02135f44
+_ZTVN3fld19SpriteShipCharacterE kind:data(any) addr:0x02135f90
+_ZN3fld27@unnamed@FieldShipDraw_cpp@10shipOffsetE kind:data(any) addr:0x02135fb4 local
+_ZTVN3fld13FieldShipDrawE kind:data(any) addr:0x02135fd0
+@933 kind:data(any) addr:0x0213601c local
+@936 kind:data(any) addr:0x02136030 local
+s_kumoOffset kind:data(any) addr:0x02136044 local
+_ZTVN3fld18FieldFirmamentDrawE kind:data(any) addr:0x0213604c
+@935 kind:data(any) addr:0x02136098 local
+@936 kind:data(any) addr:0x021360ac local
+@937 kind:data(any) addr:0x021360c4 local
+_ZTVN3fld15FieldDragonDrawE kind:data(any) addr:0x021360dc
+@934 kind:data(any) addr:0x02136128 local
+@935 kind:data(any) addr:0x0213613c local
+_ZTVN3fld19FieldCommandVehicleE kind:data(any) addr:0x02136150
+_ZTVN3fld17FieldActionCarpetE kind:data(any) addr:0x02136164
+_ZTVN3fld17FieldActionCastleE kind:data(any) addr:0x02136184
+_ZN3fld17FieldActionDragon3sq2E kind:data(any) addr:0x021361a4
+@998 kind:data(any) addr:0x021361a8 local
+_ZTVN3fld17FieldActionDragonE kind:data(any) addr:0x021361ac
+_ZTVN3fld23FieldCommandBookingMenuE kind:data(any) addr:0x021361cc
+_ZTVN3fld24FieldCommandButtonSearchE kind:data(any) addr:0x021361e0
+_ZTVN3fld22FieldCommandMenuSearchE kind:data(any) addr:0x021361f4
+_ZTVN3fld21FieldCommandWalkCountE kind:data(any) addr:0x02136208
+_ZTVN3fld19FieldSystemWorldMapE kind:data(any) addr:0x0213621c
+_ZTVN3fld19FieldCommandAreaMapE kind:data(any) addr:0x02136234
+_ZTVN3fld23FieldSystemMaterielMenuE kind:data(any) addr:0x02136248
+_ZTVN3fld15FieldSystemMenuE kind:data(any) addr:0x02136260
+_ZTVN3fld18FieldSystemMessageE kind:data(any) addr:0x02136278
+_ZTVN3fld17FieldSystemPlayerE kind:data(any) addr:0x02136290
+_ZTVN3fld16FieldSystemStageE kind:data(any) addr:0x021362a8
+_ZTVN3fld17FieldCommandEventE kind:data(any) addr:0x021362c0
+_ZTVN3fld24FieldCommandMaterielMenuE kind:data(any) addr:0x021362d4
+_ZTVN3fld16FieldCommandMenuE kind:data(any) addr:0x021362e8
+_ZTVN3fld19FieldCommandMessageE kind:data(any) addr:0x021362fc
+_ZTVN3fld18FieldCommandNormalE kind:data(any) addr:0x02136310
+_ZTVN3fld22FieldCommandPartChangeE kind:data(any) addr:0x02136324
+_ZTVN3fld21FieldCommandPartyTalkE kind:data(any) addr:0x02136338
+_ZTVN3fld18FieldCommandPlayerE kind:data(any) addr:0x0213634c
+_ZN3fld15FieldActionBase12shipGetDownRE kind:data(any) addr:0x02136360
+_ZN3fld15FieldActionBase6Speed2E kind:data(any) addr:0x02136364
+_ZN3fld15FieldActionBase6ySpeedE kind:data(any) addr:0x02136368
+_ZN3fld15FieldActionBase6xSpeedE kind:data(any) addr:0x0213636c
+_ZN3fld15FieldActionBase11shipSearchRE kind:data(any) addr:0x02136370
+_ZN3fld15FieldActionBase5SpeedE kind:data(any) addr:0x02136374
+@995 kind:data(any) addr:0x02136378 local
+_ZN3fld15FieldActionBase9balYSpeedE kind:data(any) addr:0x0213637c
+_ZN3fld15FieldActionBase9balXSpeedE kind:data(any) addr:0x02136380
+_ZN3fld15FieldActionBase8balSpeedE kind:data(any) addr:0x02136384
+_ZN3fld15FieldActionBase7ySpeed2E kind:data(any) addr:0x02136388
+_ZN3fld15FieldActionBase7xSpeed2E kind:data(any) addr:0x0213638c
+_ZTVN3fld15FieldActionBaseE kind:data(any) addr:0x02136390
+unk_ruraSpeed$1844 kind:data(any) addr:0x021363b0 local
+_ZTVN3fld15FieldActionRuraE kind:data(any) addr:0x021363b4
+_ZTVN3fld15FieldActionShipE kind:data(any) addr:0x021363d4
+_ZTVN3fld15FieldActionWalkE kind:data(any) addr:0x021363f4
+_ZTVN3fld15FieldPlayerDokuE kind:data(any) addr:0x02136414
+cosPAI_3_8$1400 kind:data(any) addr:0x02136434 local
+@1156 kind:data(any) addr:0x02136438 local
+cosPAI_1_8$1395 kind:data(any) addr:0x0213643c local
+@1151 kind:data(any) addr:0x02136440 local
+retVec$1470 kind:data(any) addr:0x02136444 local
+s_symbolLoad kind:data(any) addr:0x021364a4 local
+@3410 kind:data(any) addr:0x02136530 local
+@3411 kind:data(any) addr:0x0213654c local
+@3412 kind:data(any) addr:0x02136564 local
+@3413 kind:data(any) addr:0x02136580 local
+@3414 kind:data(any) addr:0x02136598 local
+@3415 kind:data(any) addr:0x021365b4 local
+@3416 kind:data(any) addr:0x021365cc local
+@3417 kind:data(any) addr:0x021365e4 local
+@3418 kind:data(any) addr:0x021365f8 local
+@3419 kind:data(any) addr:0x02136618 local
+@3420 kind:data(any) addr:0x02136638 local
+@3421 kind:data(any) addr:0x02136658 local
+@3422 kind:data(any) addr:0x0213667c local
+@3423 kind:data(any) addr:0x0213669c local
+@3424 kind:data(any) addr:0x021366c0 local
+@3425 kind:data(any) addr:0x021366e0 local
+@3472 kind:data(any) addr:0x02136700 local
+@3473 kind:data(any) addr:0x02136720 local
+@3474 kind:data(any) addr:0x02136740 local
+@3475 kind:data(any) addr:0x0213675c local
+@3476 kind:data(any) addr:0x0213677c local
+@3477 kind:data(any) addr:0x02136798 local
+_ZTVN3fld11FieldPlayerE kind:data(any) addr:0x021367b0
+@1640 kind:data(any) addr:0x021367c8 local
+speed$1718 kind:data(any) addr:0x021367cc local
+_ZTVN3fld10FieldPartyE kind:data(any) addr:0x021367d0
+_ZTVN3cmn15PartyMoveActionE kind:data(any) addr:0x021367f0 local
+_ZTVN3fld18FieldPlayerManagerE kind:data(any) addr:0x02136810
+@1562 kind:data(any) addr:0x0213685c local
+@1398 kind:data(any) addr:0x02136870 local
+_ZTVN3fld13FieldImageMapE kind:data(any) addr:0x02136878
+s_markerOffsetY kind:data(any) addr:0x021368a0 local
+s_markerOffsetX kind:data(any) addr:0x021368a4 local
+s_bridgeBlock kind:data(any) addr:0x021368a8 local
+s_castleBlock kind:data(any) addr:0x021368b0 local
+s_magmaBlock kind:data(any) addr:0x021368d0 local
+s_suimonBlock kind:data(any) addr:0x021368f0 local
+@1025 kind:data(any) addr:0x02136920 local
+@1026 kind:data(any) addr:0x02136940 local
+@1090 kind:data(any) addr:0x02136958 local
+@1091 kind:data(any) addr:0x02136974 local
+@1092 kind:data(any) addr:0x02136990 local
+@1093 kind:data(any) addr:0x021369ac local
+@1180 kind:data(any) addr:0x021369c8 local
+_ZTVN3fld14FieldRegionMapE kind:data(any) addr:0x021369e8
+_ZTVN3fld13FieldSmallMapE kind:data(any) addr:0x02136a0c
+@854 kind:data(any) addr:0x02136a30 local
+_ZTVN3fld12FieldYamiMapE kind:data(any) addr:0x02136a4c
+@762 kind:data(any) addr:0x02136a70 local
+@763 kind:data(any) addr:0x02136a8c local
+_ZTVN3fld18FieldSystemEncountE kind:data(any) addr:0x02136aa8
+_ZTVN3fld17FieldSystemScriptE kind:data(any) addr:0x02136ac0
+@924 kind:data(any) addr:0x02136ad8 local
+@925 kind:data(any) addr:0x02136ae0 local
+@926 kind:data(any) addr:0x02136ae8 local
+@927 kind:data(any) addr:0x02136af0 local
+_ZTVN3fld18FieldSystemCommandE kind:data(any) addr:0x02136afc
+_ZTVN3fld19FieldCommandEncountE kind:data(any) addr:0x02136b14
+_ZTVN3fld15FieldEffectBaseE kind:data(any) addr:0x02136b28
+_ZTVN3fld17FieldEffectSpriteE kind:data(any) addr:0x02136b50
+@1329 kind:data(any) addr:0x02136b78 local
+@1328 kind:data(any) addr:0x02136b7a local
+@1330 kind:data(any) addr:0x02136b7c local
+fov kind:data(any) addr:0x02136b7e local
+dir_offset kind:data(any) addr:0x02136b80 local
+position kind:data(any) addr:0x02136b84 local
+data_ov005_02136b90 kind:data(any) addr:0x02136b90
+gFieldGetDownShip kind:bss addr:0x02136ba0
+gFieldPlayerMoveTo kind:bss addr:0x02136ba4
+gFieldMoveLine kind:bss addr:0x02136ba8
+@1181 kind:bss addr:0x02136bac local
+@1167 kind:bss addr:0x02136bb8 local
+@1156 kind:bss addr:0x02136bc4 local
+@1138 kind:bss addr:0x02136bd0 local
+@1246 kind:bss addr:0x02136bdc local
+gFieldSymbolAnim kind:bss addr:0x02136be8
+gFieldGoldOrbEvent kind:bss addr:0x02136c04
+@828 kind:bss addr:0x02136cb8 local
+_ZN3fld13FieldShipDraw5nami_E kind:bss addr:0x02136cc4
+_ZN3fld15FieldActionBase7collSE_E kind:bss addr:0x02136da0
+_ZN3fld15FieldActionBase5move_E kind:bss addr:0x02136da4
+_ZN3fld15FieldActionBase6speed_E kind:bss addr:0x02136da8
+_ZN3fld15FieldActionBase10positionN_E kind:bss addr:0x02136db4
+_ZN3fld15FieldActionBase10blockType_E kind:bss addr:0x02136dc0
+_ZN3fld15FieldActionBase14fieldCollInfo_E kind:bss addr:0x02136de4
+_ZGVunk_ruraSpeed$1844 kind:bss addr:0x02136e28 local
+_ZGVFieldPlayerDoku$1512 kind:bss addr:0x02136e2c local
+FieldPlayerDoku$1512 kind:bss addr:0x02136e30 local
+_ZGVretVec$1470 kind:bss addr:0x02136e4c local
+_ZGVcosPAI_3_8$1400 kind:bss addr:0x02136e50 local
+_ZGVcosPAI_1_8$1395 kind:bss addr:0x02136e54 local
+s_symbolBuffer kind:bss addr:0x02136e58 local
+s_mapBuffer kind:bss addr:0x021401c8 local
+_ZGVspeed$1718 kind:bss addr:0x02169240 local
+_ZGVfieldSystem$2369 kind:bss addr:0x02169244 local
+@2015 kind:bss addr:0x02169248 local
+fieldSystem$2369 kind:bss addr:0x02169254 local
+_ZGVfieldPlayerManager$1545 kind:bss addr:0x02169dfc local
+@1487 kind:bss addr:0x02169e00 local
+fieldPlayerManager$1545 kind:bss addr:0x02169e0c local
+_ZGVfieldStage$1361 kind:bss addr:0x0216ae30 local
+@1381 kind:bss addr:0x0216ae34 local
+fieldStage$1361 kind:bss addr:0x0216ae40 local
+_ZGVinstance$528 kind:bss addr:0x0216d6bc local
+@515 kind:bss addr:0x0216d6c0 local
+instance$528 kind:bss addr:0x0216d6cc local
+_ZGVinstance$426 kind:bss addr:0x0216d85c local
+instance$426 kind:bss addr:0x0216d860 local
+_ZGVtownWindowSystem$30 kind:bss addr:0x0216d8f0 local
+townWindowSystem$30 kind:bss addr:0x0216d8f4 local
+@181 kind:bss addr:0x0216d8f8 local
+_ZN3dq55level12EncountTile15data_E kind:bss addr:0x0216d904
+@181 kind:bss addr:0x0216d914 local
+_ZN3dq55level12EncountTile25data_E kind:bss addr:0x0216d920
+@181 kind:bss addr:0x0216d930 local
+_ZN3dq55level12EncountTile35data_E kind:bss addr:0x0216d93c
+@181 kind:bss addr:0x0216d94c local
+_ZN3dq55level16EncountFairyTile5data_E kind:bss addr:0x0216d958
+@181 kind:bss addr:0x0216d968 local
+_ZN3dq55level15EncountDarkTile5data_E kind:bss addr:0x0216d974
+@181 kind:bss addr:0x0216d984 local
+_ZN3dq55level15EncountSeaTile15data_E kind:bss addr:0x0216d990
+@181 kind:bss addr:0x0216d9a0 local
+_ZN3dq55level15EncountSeaTile25data_E kind:bss addr:0x0216d9ac
+_ZN3fld18FieldEffectManager14riseupCounter_E kind:bss addr:0x0216d9bc
+_ZGVfieldEffectManager$1968 kind:bss addr:0x0216d9c0 local
+@2005 kind:bss addr:0x0216d9c4 local
+fieldEffectManager$1968 kind:bss addr:0x0216d9d0 local
+offset kind:bss addr:0x0216f0c4 local
+_ZGVcamera_$1389 kind:bss addr:0x0216f0c8 local
+distance kind:bss addr:0x0216f0cc local
+default_angle kind:bss addr:0x0216f0d0 local
+@1388 kind:bss addr:0x0216f0d8 local
+camera_$1389 kind:bss addr:0x0216f0e4 local
+data_ov005_0216f1f0 kind:bss addr:0x0216f1f0
+ofs$2602 kind:data(any) addr:0x021352d0 local
+step$2600 kind:data(any) addr:0x021352d4 local
+scale$2604 kind:data(any) addr:0x021352d8 local
+count$2606 kind:data(any) addr:0x021352dc local
+ofsX$2637 kind:data(any) addr:0x021352e0 local
+margin$2675 kind:data(any) addr:0x021352e4 local
+y$2673 kind:data(any) addr:0x021352e8 local
+x$2671 kind:data(any) addr:0x021352ec local
+ofsY$2639 kind:data(any) addr:0x021352f0 local

@@ -1,0 +1,135 @@
+    .text       start:0x02128060 end:0x0212ca90 kind:code align:32
+    .rodata     start:0x0212ca90 end:0x0212cab8 kind:rodata align:4
+    .init       start:0x0212cab8 end:0x0212cccc kind:code align:4
+    .ctor       start:0x0212cccc end:0x0212ccd4 kind:rodata align:4
+    .data       start:0x0212cce0 end:0x0212d020 kind:data align:32
+    .bss        start:0x0212d020 end:0x0212f100 kind:bss align:32
+
+src/ov012/ov012_entry.cpp:
+    complete
+    .text       start:0x02128060 end:0x02128064
+
+src/ov012/casino/CasinoCamera.cpp:
+    complete
+    .text       start:0x02128064 end:0x02128170
+    .rodata     start:0x0212ca90 end:0x0212ca94
+    .init       start:0x0212cab8 end:0x0212cb08
+    .ctor       start:0x0212cccc end:0x0212ccd0
+    .data       start:0x0212cce0 end:0x0212ccf8
+    .bss        start:0x0212d020 end:0x0212d14c
+
+src/ov012/casino/CasinoSystem.cpp:
+    complete
+    .text       start:0x02128170 end:0x02128258
+    .bss        start:0x0212d14c end:0x0212d768
+
+src/ov012/casino/PokerCard.cpp:
+    complete
+    .text       start:0x02128258 end:0x021286c4
+
+src/ov012/casino/PokerDoubleupHighAndLow.cpp:
+    complete
+    .text       start:0x021286c4 end:0x02128864
+
+src/ov012/casino/CasinoPokerDraw.cpp:
+    complete
+    .text       start:0x02128864 end:0x02129378
+    .init       start:0x0212cb08 end:0x0212cccc
+    .ctor       start:0x0212ccd0 end:0x0212ccd4
+    .data       start:0x0212ccf8 end:0x0212ce04
+    .bss        start:0x0212d768 end:0x0212e440
+
+src/ov012/casino/PokerJudgement.cpp:
+    complete
+    .text       start:0x02129378 end:0x0212976c
+    .bss        start:0x0212e440 end:0x0212e454
+
+src/ov012/casino/CasinoPoker.cpp:
+    complete
+    .text       start:0x0212976c end:0x021298a8
+    .data       start:0x0212ce04 end:0x0212ce4c
+    .bss        start:0x0212e454 end:0x0212e4bc
+
+src/ov012/casino/PokerManager.cpp:
+    complete
+    .text       start:0x021298a8 end:0x02129be0
+    .data       start:0x0212ce4c end:0x0212ce74
+    .bss        start:0x0212e4bc end:0x0212e594
+
+src/ov012/casino/PokerAction.cpp:
+    complete
+    .text       start:0x02129be0 end:0x02129ce0
+    .data       start:0x0212ce74 end:0x0212ce84
+    .bss        start:0x0212e594 end:0x0212e654
+
+src/ov012/casino/PokerActionBase.cpp:
+    complete
+    .text       start:0x02129ce0 end:0x02129d7c
+
+src/ov012/casino/PokerActionFade.cpp:
+    complete
+    .text       start:0x02129d7c end:0x02129e04
+    .data       start:0x0212ce84 end:0x0212ce94
+
+src/ov012/casino/PokerActionMove.cpp:
+    complete
+    .text       start:0x02129e04 end:0x02129e90
+    .data       start:0x0212ce94 end:0x0212cea4
+
+src/ov012/casino/PokerActionReverse.cpp:
+    complete
+    .text       start:0x02129e90 end:0x02129f90
+    .data       start:0x0212cea4 end:0x0212ceb4
+
+src/ov012/casino/PokerActionTabulate.cpp:
+    complete
+    .text       start:0x02129f90 end:0x0212a094
+    .data       start:0x0212ceb4 end:0x0212cec4
+
+src/ov012/casino/CasinoStage.cpp:
+    complete
+    .text       start:0x0212a094 end:0x0212a19c
+    .data       start:0x0212cec4 end:0x0212ced4
+    .bss        start:0x0212e654 end:0x0212ef44
+
+src/ov012/casino/Casino_Slot.cpp:
+    complete
+    .text       start:0x0212a19c end:0x0212a524
+    .data       start:0x0212ced4 end:0x0212cee0
+    .bss        start:0x0212ef44 end:0x0212f07c
+
+src/ov012/casino/Casino_SlotMachine.cpp:
+    complete
+    .text       start:0x0212a524 end:0x0212a740
+    .rodata     start:0x0212ca94 end:0x0212cab8
+    .data       start:0x0212cee0 end:0x0212cf58
+
+src/ov012/casino/CasinoSlot.cpp:
+    complete
+    .text       start:0x0212a740 end:0x0212ae40
+    .data       start:0x0212cf58 end:0x0212cfa8
+    .bss        start:0x0212f07c end:0x0212f100
+
+src/ov012/casino/Casino_SlotReel.cpp:
+    complete
+    .text       start:0x0212ae40 end:0x0212b12c
+
+src/ov012/materielmenu/MaterielMenuPokerBetcoin.cpp:
+    complete
+    .text       start:0x0212b12c end:0x0212b3b0
+    .data       start:0x0212cfa8 end:0x0212cfc4
+
+src/ov012/materielmenu/MaterielMenuPokerChangecard.cpp:
+    complete
+    .text       start:0x0212b3b0 end:0x0212bcd4
+    .data       start:0x0212cfc4 end:0x0212cfe0
+
+src/ov012/materielmenu/MaterielMenu_POKER_HIGHANDLOW.cpp:
+    complete
+    .text       start:0x0212bcd4 end:0x0212c548
+    .data       start:0x0212cfe0 end:0x0212cffc
+
+src/ov012/materielmenu/MaterielMenu_SLOT.cpp:
+    complete
+    .text       start:0x0212c548 end:0x0212ca90
+    .data       start:0x0212cffc end:0x0212d020
