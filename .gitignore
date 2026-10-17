@@ -1,7 +1,8 @@
 # ROM / BIOS (copyrighted, never commit)
 *.nds
 *.bin
-extract/
+extract/*
+!extract/.gitkeep
 
 # Build outputs
 build/
