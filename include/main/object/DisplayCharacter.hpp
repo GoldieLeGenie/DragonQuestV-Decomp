@@ -13,11 +13,11 @@ struct DisplayCharacter : BillboardCharacter {
     virtual void removeRender();
 
     Billboard head_;                         // 0x1B0
-    unsigned short unk_264;                     // 0x264 hue change frame count
-    unsigned short unk_266;                     // 0x266 hue change frame
-    unsigned short unk_268[16];                 // 0x268 hue changed palette
-    unsigned short unk_288[16];                 // 0x288 original palette
-    int unk_2a8;                                // 0x2A8 texture index of the hue change
+    unsigned short hueFrames_;                     // 0x264 hue change frame count
+    unsigned short hueFrame_;                     // 0x266 hue change frame
+    unsigned short huePalette_[16];                 // 0x268 hue changed palette
+    unsigned short hueBasePalette_[16];                 // 0x288 original palette
+    int hueTexture_;                                // 0x2A8 texture index of the hue change
 
     static const int FLAG_BOX_TEST_OFF;
     static const int SLEEP_DIRECTION;

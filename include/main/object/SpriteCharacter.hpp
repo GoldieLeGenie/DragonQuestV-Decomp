@@ -33,9 +33,9 @@ struct SpriteCharacter : Sprite2D {
     int unk_40;                                 // 0x40
     DataObject data_;                           // 0x44
     int textureNum_;                            // 0x54
-    TextureObject* unk_58;                   // 0x58 texture shown
+    TextureObject* shownTexture_;                   // 0x58 texture shown
     int unk_5c[7];                              // 0x5C
-    TextureObject* unk_78[8];                // 0x78 textures of the file, one per direction
+    TextureObject* directionTextures_[8];                // 0x78 textures of the file, one per direction
     short direction_;                           // 0x98
     short dispDirection_;                       // 0x9A
     int frameWidth_;                                 // 0x9C width

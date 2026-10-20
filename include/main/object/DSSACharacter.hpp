@@ -8,21 +8,21 @@
 
 // streaming of a DSSA animation split in numbered files, double buffered in the animations 0 and 1
 struct UnkDSSAStream {
-    int unk_00;                                 // 0x00 next file number
-    int unk_04;                                 // 0x04 file count
-    int unk_08;                                 // 0x08 buffer index
+    int nextFile_;                                 // 0x00 next file number
+    int fileCount_;                                 // 0x04 file count
+    int bufferIndex_;                                 // 0x08 buffer index
 };
 
 // character drawn with DSSA animations (main 0x020523b0)
 struct DSSACharacter : Position {
     virtual void setScale(dss::Fix32 scale);    // slot 1
 
-    int unk_034;                                // 0x034
+    int textureLoaded_;                                // 0x034
     int currentAnimationIndex_;                 // 0x038
     int nextAnimationIndex_;                    // 0x03C
     int firstAnimationIndex_;                   // 0x040
     DSSAObjectWithCamera dssaObject_[17];       // 0x044
-    TextureObject* unk_ae4;                  // 0xAE4 texture
+    TextureObject* texture_;                  // 0xAE4 texture
     CharacterPalette palette_;               // 0xAE8
     DataObject* dataObject_;                    // 0xEFC
     dss::Flag flag_;                            // 0xF00

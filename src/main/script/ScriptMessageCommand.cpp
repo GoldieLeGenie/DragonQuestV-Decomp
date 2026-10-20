@@ -923,7 +923,7 @@ void ShakeMessage::initialize(char* scriptParam)
         ctrl = -1;
     }
     cmn::g_talkSound.setMessageSound(1, ctrl);
-    s_draw->unk_9d4 = param->count;
+    s_draw->shakeRequest_ = param->count;
     if (data_02101c88.isCurrentPart(6)) {
         fld::FieldWindowSystem::getSingleton()->openCommonMessage();
         fld::FieldWindowSystem::getSingleton()->addCommonMessage(param->message);
@@ -954,7 +954,7 @@ void DelayMessage::initialize(char* scriptParam)
         ctrl = -1;
     }
     cmn::g_talkSound.setMessageSound(1, ctrl);
-    s_draw->unk_9ec = param->frame;
+    s_draw->printDelayRequest_ = param->frame;
     if (data_02101c88.isCurrentPart(6)) {
         fld::FieldWindowSystem::getSingleton()->openCommonMessage();
         fld::FieldWindowSystem::getSingleton()->addCommonMessage(param->message);

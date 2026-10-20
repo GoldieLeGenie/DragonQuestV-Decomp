@@ -38,11 +38,11 @@ namespace window {
         virtual bool isEnd();
 
         unsigned char alpha_;                   // 0x04
-        dss::Fix32 unk_08;                      // 0x08
-        int unk_0c;                             // 0x0C
-        int unk_10;                             // 0x10
-        int unk_14;                             // 0x14
-        int unk_18;                             // 0x18
+        dss::Fix32 scale_;                      // 0x08
+        int tilesX_;                             // 0x0C
+        int tilesY_;                             // 0x10
+        int frameCount_;                             // 0x14
+        int setupWait_;                             // 0x18
         unsigned char flag_;                    // 0x1C FLAG_xxx
 
         UnkScreenEffect();
@@ -106,7 +106,7 @@ namespace window {
     // battle start effect
     struct ScreenEffectBattle : UnkScreenEffect {
         int counter_;                           // 0x20
-        int unk_24;                             // 0x24
+        int counter1_;                             // 0x24
         int unk_28;                             // 0x28
         int unk_2c;                             // 0x2C
         int angle0_;                             // 0x30

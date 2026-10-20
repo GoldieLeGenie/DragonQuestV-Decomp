@@ -13,10 +13,10 @@ inline bool window::UnkScreenEffect::isActive()
 
 THUMB void window::UnkRiremitoEffect::setup()
 {
-    unk_0c = 1;
-    unk_10 = 1;
+    tilesX_ = 1;
+    tilesY_ = 1;
     alpha_ = 31;
-    unk_08 = dss::Fix32(0x8000);
+    scale_ = dss::Fix32(0x8000);
     unk_20 = 0xffff;
     unk_28 = 0x8000;
     for (int i = 0; i < 8; i++) {

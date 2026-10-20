@@ -6,7 +6,7 @@
 struct UnkSoundPlayer {
     int enable_;                                // 0x000
     int bgm_;                                   // 0x004
-    UnkSoundMember unk_008;                     // 0x008
+    UnkSoundMember strm_;                     // 0x008
     UnkSoundHandle bgmHandle_[3];               // 0x010
     UnkSoundHandle seHandle_[8];                // 0x0C4
     UnkSoundHandle unk_2a4;                     // 0x2A4

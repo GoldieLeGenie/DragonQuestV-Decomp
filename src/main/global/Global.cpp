@@ -471,7 +471,7 @@ THUMB FadeEffector::FadeEffector()
     brightness_ = 0;
     count_ = 0;
     frames_ = 0;
-    unk_14 = 1;
+    applyBrightness_ = 1;
     fadeDisable_ = 0;
 }
 
@@ -501,7 +501,7 @@ THUMB void FadeEffector::draw()
             brightness_ = 16 - brightness_;
             break;
     }
-    if (unk_14) {
+    if (applyBrightness_) {
         setMainBrightness(brightness_);
         setSubBrightness(brightness_);
     }
@@ -518,7 +518,7 @@ THUMB int FadeEffector::isEnd()
 THUMB void FadeEffector::setFadeOutBlack(int frame, bool flag)
 {
     if (!isFadeDisable()) {
-        unk_14 = flag;
+        applyBrightness_ = flag;
         state_ = FADE_OUT_BLACK;
         count_ = 0;
         frames_ = frame;
@@ -530,7 +530,7 @@ THUMB void FadeEffector::setFadeOutBlack(int frame, bool flag)
 THUMB void FadeEffector::setFadeOutWhite(int frame, bool flag)
 {
     if (!isFadeDisable()) {
-        unk_14 = flag;
+        applyBrightness_ = flag;
         state_ = FADE_OUT_WHITE;
         count_ = 0;
         frames_ = frame;

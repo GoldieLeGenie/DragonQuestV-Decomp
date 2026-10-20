@@ -67,7 +67,7 @@ struct UnkStaticModelObject : UnkModelObjectBase {
     virtual void vf04();
 
     DataObject modelData_;                  /* 0x1BC */
-    UnkModelMember unk_1cc;                 /* 0x1CC */
+    UnkModelMember model_;                 /* 0x1CC */
 
     void setup(const char* name, int loadSwitch);
 };

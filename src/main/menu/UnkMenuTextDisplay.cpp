@@ -15,7 +15,7 @@ THUMB void UnkMenuTextDisplay::setup(int id)
     enable_ = 0;
     xlu_ = 1;
     timer_ = 0;
-    unk_330[0] = 0;
+    text_[0] = 0;
     unk_394 = 0;
     setType(2);
 }
@@ -162,12 +162,12 @@ THUMB void UnkMenuTextDisplay::unkfunc_02066fe4(int font, const char* text, int 
     fillCharBuffer(&char_, 0);
     drawBgText(&char_, x + offset, y, 1, text);
     count_ = getBgTextCharWidths(charWidths_, 0x100);
-    getBgTextCharCodes(unk_130, 0x200);
+    getBgTextCharCodes(charCodes_, 0x200);
     width_ = getBgTextWidth();
     visibleCount_ = 0;
     visibleWidth_ = 0;
     setVisibleCount(0);
-    unk_398 = offset;
+    centerOffset_ = offset;
     width_ += offset;
     requestVramCopy(0x13, id_ << 5, charData_, 0x800);
     palette_ = 15;
@@ -213,7 +213,7 @@ THUMB void UnkMenuTextDisplay::setVisibleCount(int count)
     for (int i = 0; i < count; i++) {
         width += charWidths_[i];
     }
-    visibleWidth_ = width + unk_398;
+    visibleWidth_ = width + centerOffset_;
 }
 
 THUMB void UnkMenuTextDisplay::setVisibleWidth(int width)
@@ -289,5 +289,5 @@ THUMB void UnkMenuTextDisplay::drawFrameSprite8(UnkOamBuffer* oam, int x, int y,
 
 THUMB void UnkMenuTextDisplay::storeText(const char* text)
 {
-    dss::strcpy_s(unk_330, 0x62, text);
+    dss::strcpy_s(text_, 0x62, text);
 }

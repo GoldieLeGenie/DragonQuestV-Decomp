@@ -31,7 +31,7 @@ struct UnkGlobalSystem {
     int prevPartId_;                            // 0x68
     int nextPartId_;                            // 0x6C
     int unk_70;                                 // 0x70
-    int unk_74;                                 // 0x74  call the task change hook once
+    int callChangeHook_;                                 // 0x74  call the task change hook once
     int unk_78;                                 // 0x78
     int frameCount_;                            // 0x7C  frames of the current task
 

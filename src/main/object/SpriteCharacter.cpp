@@ -28,11 +28,11 @@ void SpriteCharacter::unkfunc_0205833c(int width, int height)
 {
     textureNum_ = getArchiveFileCount(data_.getAddr());
     for (int i = 0; i < textureNum_; i++) {
-        unk_78[i] = (TextureObject*)getArchiveFile(data_.getAddr(), i);
+        directionTextures_[i] = (TextureObject*)getArchiveFile(data_.getAddr(), i);
     }
-    unk_58 = unk_78[0];
-    unk_58->loadToVram(1);
-    texture_ = unk_58;
+    shownTexture_ = directionTextures_[0];
+    shownTexture_->loadToVram(1);
+    texture_ = shownTexture_;
     unkfunc_02047e88(0, 0);
     anmIndex_ = 0;
     direction_ = -1;
@@ -46,7 +46,7 @@ void SpriteCharacter::unkfunc_0205833c(int width, int height)
 
 void SpriteCharacter::cleanup()
 {
-    unk_58->freeVram();
+    shownTexture_->freeVram();
     data_.cleanup();
     shadow_.unkfunc_020587b4();
 }
@@ -108,7 +108,7 @@ void SpriteCharacter::unkfunc_0205853c(int dir)
     if (dispDirection_ == dir && !flag_.check(FLAG_RELOAD)) {
         return;
     }
-    unk_58->transferFrom(unk_78[dir], 0);
+    shownTexture_->transferFrom(directionTextures_[dir], 0);
     dispDirection_ = dir;
 }
 

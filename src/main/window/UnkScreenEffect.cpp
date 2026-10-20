@@ -60,12 +60,12 @@ short unusedScreenEffectY;      // not linked: unreferenced, only takes part in 
 THUMB window::UnkScreenEffect::UnkScreenEffect()
 {
     flag_ = 0;
-    unk_08.value = 0x8000;
-    unk_0c = 32;
-    unk_10 = 24;
+    scale_.value = 0x8000;
+    tilesX_ = 32;
+    tilesY_ = 24;
     alpha_ = 30;
-    unk_18 = 0;
-    unk_14 = 0;
+    setupWait_ = 0;
+    frameCount_ = 0;
     data_020c32a0 = NULL;
 }
 
@@ -86,37 +86,37 @@ THUMB void window::UnkScreenEffect::setup()
     s_texCoord.v[1] = s_texRightBottom;
     s_texCoord.v[2] = s_texRightTop;
     s_texCoord.v[3] = s_texLeftTop;
-    unk_14 = 0;
+    frameCount_ = 0;
 }
 
 THUMB bool window::UnkScreenEffect::setupTiles()
 {
-    if (unk_18 < 3) {
-        unk_18++;
+    if (setupWait_ < 3) {
+        setupWait_++;
         return false;
     }
     if (data_020c32a0 == NULL) {
         loadWindowOverlay(3);
         data_020c32a0 = (UnkScreenEffectPanel*)ov020_entry();
     }
-    unk_18 = 0;
+    setupWait_ = 0;
     requestScreenCapture();
-    for (int i = 0; i < unk_0c; i++) {
-        for (int j = 0; j < unk_10; j++) {
-            int index = j + i * unk_10;
+    for (int i = 0; i < tilesX_; i++) {
+        for (int j = 0; j < tilesY_; j++) {
+            int index = j + i * tilesY_;
             for (int k = 0; k < 4; k++) {
-                data_020c32a0[index].vertex[k][0] = s_vertex.v[k].vx.value / unk_0c + 1;
-                data_020c32a0[index].vertex[k][1] = s_vertex.v[k].vy.value / unk_10 + 1;
+                data_020c32a0[index].vertex[k][0] = s_vertex.v[k].vx.value / tilesX_ + 1;
+                data_020c32a0[index].vertex[k][1] = s_vertex.v[k].vy.value / tilesY_ + 1;
                 data_020c32a0[index].vertex[k][2] = s_vertex.v[k].vz.value;
             }
-            data_020c32a0[index].texCoord[3][0] = (i * 256 << 12) / unk_0c;
-            data_020c32a0[index].texCoord[3][1] = (j * 192 << 12) / unk_10;
-            data_020c32a0[index].texCoord[2][0] = ((i + 1) * 256 << 12) / unk_0c + 0x1000;
-            data_020c32a0[index].texCoord[2][1] = (j * 192 << 12) / unk_10;
-            data_020c32a0[index].texCoord[1][0] = ((i + 1) * 256 << 12) / unk_0c + 0x1000;
-            data_020c32a0[index].texCoord[1][1] = ((j * 192 + 192) << 12) / unk_10 + 0x1000;
-            data_020c32a0[index].texCoord[0][0] = (i * 256 << 12) / unk_0c;
-            data_020c32a0[index].texCoord[0][1] = ((j * 192 + 192) << 12) / unk_10 + 0x1000;
+            data_020c32a0[index].texCoord[3][0] = (i * 256 << 12) / tilesX_;
+            data_020c32a0[index].texCoord[3][1] = (j * 192 << 12) / tilesY_;
+            data_020c32a0[index].texCoord[2][0] = ((i + 1) * 256 << 12) / tilesX_ + 0x1000;
+            data_020c32a0[index].texCoord[2][1] = (j * 192 << 12) / tilesY_;
+            data_020c32a0[index].texCoord[1][0] = ((i + 1) * 256 << 12) / tilesX_ + 0x1000;
+            data_020c32a0[index].texCoord[1][1] = ((j * 192 + 192) << 12) / tilesY_ + 0x1000;
+            data_020c32a0[index].texCoord[0][0] = (i * 256 << 12) / tilesX_;
+            data_020c32a0[index].texCoord[0][1] = ((j * 192 + 192) << 12) / tilesY_ + 0x1000;
             if (data_020c32a0[index].texCoord[2][0] >= 0x100000) {
                 data_020c32a0[index].texCoord[2][0] = 0x100000;
                 data_020c32a0[index].texCoord[1][0] = 0x100000;
@@ -125,8 +125,8 @@ THUMB bool window::UnkScreenEffect::setupTiles()
                 data_020c32a0[index].texCoord[1][1] = 0xc0000;
                 data_020c32a0[index].texCoord[0][1] = 0xc0000;
             }
-            data_020c32a0[index].x = i * 0x1000 / unk_0c - 0x800 + 0x1000 / (unk_0c * 2);
-            data_020c32a0[index].y = 0x600 - j * 0xc00 / unk_10 - 0xc00 / (unk_10 * 2);
+            data_020c32a0[index].x = i * 0x1000 / tilesX_ - 0x800 + 0x1000 / (tilesX_ * 2);
+            data_020c32a0[index].y = 0x600 - j * 0xc00 / tilesY_ - 0xc00 / (tilesY_ * 2);
             data_020c32a0[index].z = 0;
         }
     }
@@ -155,11 +155,11 @@ THUMB void window::UnkScreenEffect::execute()
     }
     if (isScreenCaptureDone()) {
         if (isReady() == false) {
-            if (unk_14 >= 2) {
+            if (frameCount_ >= 2) {
                 flag_ |= FLAG_READY;
-                unk_14 = 0;
+                frameCount_ = 0;
             } else {
-                unk_14++;
+                frameCount_++;
             }
         } else if (!(flag_ & FLAG_ACTIVE)) {
             flag_ |= FLAG_ACTIVE;
@@ -185,11 +185,11 @@ THUMB void window::UnkScreenEffect::draw()
     UnkScreenEffectCamera::getSingleton()->draw();
     func_020802dc();
     func_02082604();
-    for (int i = 0; i < unk_0c; i++) {
-        for (int j = 0; j < unk_10; j++) {
+    for (int i = 0; i < tilesX_; i++) {
+        for (int j = 0; j < tilesY_; j++) {
             G3_PushMtx();
-            int index = j + i * unk_10;
-            G3_Scale(unk_08.value, unk_08.value, unk_08.value);
+            int index = j + i * tilesY_;
+            G3_Scale(scale_.value, scale_.value, scale_.value);
             G3_Translate(data_020c32a0[index].x, data_020c32a0[index].y, data_020c32a0[index].z);
             setPolygonParams(24);
             G3_Begin(1);
@@ -202,12 +202,12 @@ THUMB void window::UnkScreenEffect::draw()
             G3_PopMtx(1);
         }
     }
-    unk_14++;
+    frameCount_++;
 }
 
 ARM bool window::UnkScreenEffect::isEnd()
 {
-    return unk_14 > 60;
+    return frameCount_ > 60;
 }
 
 #pragma thumb on                // the static initializer is Thumb

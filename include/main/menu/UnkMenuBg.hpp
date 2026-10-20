@@ -19,7 +19,7 @@ struct UnkMenuIconSlot {
     unsigned int key_;                          // 0x00  icon type | index, -1: none
     int offset_;                                // 0x04  first character
     int state_;                                 // 0x08  0: free, 1: used this frame, 2: cached
-    int unk_0c;                                 // 0x0C
+    int age_;                                 // 0x0C
 
     void init(int offset);
     void setKey(unsigned int key);

@@ -189,9 +189,9 @@ dss::Fix32Vector3 twn::TownModelDraw::getPosition()
 
 void twn::TownModelDraw::setPaletteRate(dss::Fix32 r, dss::Fix32 g, dss::Fix32 b)
 {
-    setPaletteEffectTexture(model_.unk_1cc.texture_);
+    setPaletteEffectTexture(model_.model_.texture_);
     dss::Fix32Vector3 rate(r, g, b);
-    applyModelPaletteRgbRate(model_.unk_1cc.texture_, rate);
+    applyModelPaletteRgbRate(model_.model_.texture_, rate);
 }
 
 void twn::TownModelDraw::setPaletteRate(unsigned char r, unsigned char g, unsigned char b, dss::Fix32 rate)
@@ -200,7 +200,7 @@ void twn::TownModelDraw::setPaletteRate(unsigned char r, unsigned char g, unsign
     int gg = dss::clamp<unsigned int>(0, g, 0x1f);
     int bb = dss::clamp<unsigned int>(0, b, 0x1f);
     rate.value = dss::clamp<int>(0, rate.value, basePalletRate_.value);
-    blendModelPaletteToColor(model_.unk_1cc.texture_, rr, gg, bb, rate);
+    blendModelPaletteToColor(model_.model_.texture_, rr, gg, bb, rate);
 }
 
 void twn::TownModelDraw::setMotion(int motion, bool flag)

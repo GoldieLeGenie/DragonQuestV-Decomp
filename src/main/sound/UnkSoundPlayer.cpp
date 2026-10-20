@@ -17,7 +17,7 @@ THUMB UnkSoundPlayer::~UnkSoundPlayer()
 THUMB void UnkSoundPlayer::init()
 {
     enable_ = 1;
-    unk_008.init();
+    strm_.init();
     for (int i = 0; i < 3; i++) {
         bgmHandle_[i].init(-1);
     }
@@ -174,20 +174,20 @@ THUMB void UnkSoundPlayer::stopAllSe(int fade)
 THUMB void UnkSoundPlayer::playStrm(int no)
 {
     if (enable_) {
-        unk_008.play(no);
+        strm_.play(no);
     }
 }
 
 THUMB void UnkSoundPlayer::stopStrm(int value)
 {
     if (enable_) {
-        unk_008.stop(value);
+        strm_.stop(value);
     }
 }
 
 THUMB int UnkSoundPlayer::isStrmPlaying()
 {
-    return unk_008.isPlaying();
+    return strm_.isPlaying();
 }
 
 THUMB void UnkSoundPlayer::updateSe()

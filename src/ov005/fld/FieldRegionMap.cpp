@@ -13,12 +13,12 @@ THUMB fld::FieldRegionMap::~FieldRegionMap()
 THUMB void fld::FieldRegionMap::cleanup()
 {
     unk_a8.unload();
-    unk_04.unload();
+    mapSprite_.unload();
 }
 
 THUMB void fld::FieldRegionMap::draw()
 {
-    unk_04.draw();
+    mapSprite_.draw();
     symbolDraw(unk_f8);
     unk_a8.draw();
 }
@@ -27,21 +27,21 @@ THUMB void fld::FieldRegionMap::load()
 {
     unk_a8.allocVram();
     unk_a8.transferToVram();
-    unk_04.allocVram();
-    unk_04.transferToVram();
+    mapSprite_.allocVram();
+    mapSprite_.transferToVram();
 }
 
 THUMB void fld::FieldRegionMap::clear()
 {
-    unk_04.freeVram();
+    mapSprite_.freeVram();
     unk_a8.freeVram();
 }
 
 THUMB void fld::FieldRegionMap::setAlpha(unsigned char alpha)
 {
-    unk_04.setAlpha(alpha);
+    mapSprite_.setAlpha(alpha);
     unk_a8.setAlpha(alpha);
-    unk_54.setAlpha(alpha);
+    symbolSprite_.setAlpha(alpha);
 }
 
 THUMB void fld::FieldRegionMap::playerMapPosition()

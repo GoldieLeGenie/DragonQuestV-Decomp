@@ -133,7 +133,7 @@ void twn::TownMonsterDraw::setPosition(dss::Fix32Vector3& pos)
 
 void twn::TownMonsterDraw::setPaletteRate(dss::Fix32 r, dss::Fix32 g, dss::Fix32 b)
 {
-    TextureObject* texture = monster_.unk_ae4;
+    TextureObject* texture = monster_.texture_;
     dss::Fix32Vector3 rate(r, g, b);
     applyTexturePaletteRgbRate(texture, rate);
 }

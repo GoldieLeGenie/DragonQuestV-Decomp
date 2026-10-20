@@ -97,7 +97,7 @@ THUMB void TownMenu_PARTY_TALK::menuSetup()
             }
         }
         if (talk.getPartyTalkMessageType() == cmn::PartyTalk::TYPE_SHAKE) {
-            s_draw->unk_9d4 = 2;
+            s_draw->shakeRequest_ = 2;
         }
         if (talk.getPartyTalkFirstMessage(0) == 0xc4292) {
             int charaIndex = MenuStatusInfo::getPlayerCharaIndex(playerList[playerActor]);

@@ -6,7 +6,7 @@ namespace window {
     /* vtable 0x020942c4 */
     class GlobalMap : public WorldMap {
     public:
-        UnkMenuSprite unk_a8;                       // 0xA8 veil sprite
+        UnkMenuSprite veilSprite_;                       // 0xA8 veil sprite
 
         GlobalMap();
         ~GlobalMap();

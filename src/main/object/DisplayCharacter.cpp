@@ -100,7 +100,7 @@ ARM void DisplayCharacter::setup(const char* name, dss::File::LoadSwitch loadSwi
     boxTestParam_.width = FX32_ONE;
     boxTestParam_.height = FX32_ONE;
     boxTestParam_.depth = FX32_ONE;
-    unk_264 = 0;
+    hueFrames_ = 0;
 }
 
 ARM void DisplayCharacter::cleanup()
@@ -310,7 +310,7 @@ ARM void DisplayCharacter::setSleep(int flag)
 
 ARM bool DisplayCharacter::isHueChange()
 {
-    return unk_264 != 0;
+    return hueFrames_ != 0;
 }
 
 ARM void DisplayCharacter::setHueChange(int type, int frame)
@@ -329,30 +329,30 @@ ARM void DisplayCharacter::setHueChange(int type, int frame)
         if (i != textureIndex_) {
             applyPaletteTone(palette, texture->getPlttSize(), type);
         } else {
-            dss::memcpy(unk_288, palette, texture->getPlttSize());
-            dss::memcpy(unk_268, palette, texture->getPlttSize());
-            applyPaletteTone(unk_268, texture->getPlttSize(), type);
+            dss::memcpy(hueBasePalette_, palette, texture->getPlttSize());
+            dss::memcpy(huePalette_, palette, texture->getPlttSize());
+            applyPaletteTone(huePalette_, texture->getPlttSize(), type);
         }
     }
-    unk_2a8 = textureIndex_;
-    unk_264 = frame;
-    unk_266 = 0;
+    hueTexture_ = textureIndex_;
+    hueFrames_ = frame;
+    hueFrame_ = 0;
 }
 
 ARM void DisplayCharacter::execHueChange()
 {
-    if (unk_264 == 0) {
+    if (hueFrames_ == 0) {
         return;
     }
-    if (unk_266 > unk_264) {
-        unk_264 = 0;
+    if (hueFrame_ > hueFrames_) {
+        hueFrames_ = 0;
         return;
     }
-    if (unk_2a8 == -1) {
-        unk_264 = 0;
+    if (hueTexture_ == -1) {
+        hueFrames_ = 0;
         return;
     }
-    TextureObject* texture = (TextureObject*)getTexture(unk_2a8);
+    TextureObject* texture = (TextureObject*)getTexture(hueTexture_);
     unsigned short* palette;
     if (texture->flags_ & 1) {
         palette = (unsigned short*)texture->getPlttData();
@@ -361,11 +361,11 @@ ARM void DisplayCharacter::execHueChange()
     }
     dss::Fix32 rate;
     dss::Fix32 inv;
-    rate.value = (unk_266 << 12) / unk_264;
+    rate.value = (hueFrame_ << 12) / hueFrames_;
     inv.value = 0x1000 - rate.value;
     for (int i = 0; i < 16; i++) {
-        unsigned short src = unk_288[i];
-        unsigned short dst = unk_268[i];
+        unsigned short src = hueBasePalette_[i];
+        unsigned short dst = huePalette_[i];
         int r = (rate.value * (dst & 0x1f) + inv.value * (src & 0x1f)) / 0x1000;
         int g = (rate.value * ((dst & 0x3e0) >> 5) + inv.value * ((src & 0x3e0) >> 5)) / 0x1000;
         int b = (rate.value * ((dst & 0x7c00) >> 10) + inv.value * ((src & 0x7c00) >> 10)) / 0x1000;
@@ -373,7 +373,7 @@ ARM void DisplayCharacter::execHueChange()
     }
     DC_CleanAll();
     data_020f4f74.transferToVram(1, palette, ((TextureObject*)getTexture(0))->getPlttAddr(), ((TextureObject*)getTexture(0))->getPlttSize(), 0);
-    unk_266++;
+    hueFrame_++;
 }
 
 // not in the ROM (dummy function)

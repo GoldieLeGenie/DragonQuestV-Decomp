@@ -6,9 +6,9 @@ namespace window {
     /* vtable 0x02094350 */
     class WorldMap {
     public:
-        UnkMenuSprite unk_04;                       // 0x04
-        UnkMenuSprite unk_54;                       // 0x54 symbol sprite
-        int unk_a4;                                 // 0xA4 symbol blink counter
+        UnkMenuSprite mapSprite_;                       // 0x04
+        UnkMenuSprite symbolSprite_;                       // 0x54 symbol sprite
+        int blinkCount_;                                 // 0xA4 symbol blink counter
 
         WorldMap();
         ~WorldMap();

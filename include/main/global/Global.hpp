@@ -129,7 +129,7 @@ struct FadeEffector : UnkGlobalPart {
     int brightness_;                            // 0x08
     int count_;                                 // 0x0C
     int frames_;                                // 0x10
-    int unk_14;                                 // 0x14 write the brightness to the screens
+    int applyBrightness_;                                 // 0x14 write the brightness to the screens
     int fadeDisable_;                           // 0x18 skips the next fade
 
     FadeEffector();

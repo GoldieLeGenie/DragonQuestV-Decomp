@@ -14,12 +14,12 @@ inline bool window::UnkScreenEffect::isActive()
 THUMB void window::ScreenEffectBattle::setup()
 {
     UnkScreenEffect::setup();
-    unk_0c = 0x20;
-    unk_10 = 0x18;
+    tilesX_ = 0x20;
+    tilesY_ = 0x18;
     alpha_ = 0x1f;
-    unk_08 = dss::Fix32(0x8000);
+    scale_ = dss::Fix32(0x8000);
     counter_ = 0;
-    unk_24 = 0;
+    counter1_ = 0;
     angle0_ = 0xffff;
     angle1_ = 0xffff;
     unk_2c = 0xffff;
@@ -29,7 +29,7 @@ THUMB void window::ScreenEffectBattle::updatePanel(short x, short y, short index
 {
     const int unused[1] = {2};  // unreferenced, only its .rodata copy remains
     int rnd = UnkDssRand::rand(2);
-    int count = rnd ? counter_ : unk_24;
+    int count = rnd ? counter_ : counter1_;
     int angle = rnd ? angle0_ : angle1_;
     int x2 = x * 2;
     if (count > x2) {
@@ -90,7 +90,7 @@ THUMB void window::ScreenEffectBattle::draw()
     }
     counter_ += 2;
     if (counter_ > 0x14) {
-        unk_24 += 2;
+        counter1_ += 2;
         if (angle1_ > 0xc000) {
             angle1_ -= 0xf0;
         } else {

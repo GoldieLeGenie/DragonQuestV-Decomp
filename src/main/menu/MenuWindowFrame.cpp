@@ -11,7 +11,7 @@ THUMB void MenuWindowFrame::setup(int id)
     id_ = id;
     cursor_ = 0;
     arrow_ = 0;
-    unk_38 = 0;
+    cornerIcon_ = 0;
     arrowX_ = 256;
     arrowY_ = 192;
     setType(2);
@@ -50,7 +50,7 @@ THUMB void MenuWindowFrame::draw(UnkOamBuffer* main, UnkOamBuffer* sub)
             G2_SetOBJAttr(sub->allocEntry(), arrowX_ - 8, arrowY_ - 8, 0, GX_OAM_MODE_NORMAL, 0, GX_OAM_EFFECT_NONE,
                           GX_OAM_SHAPE_16x16, GX_OAM_COLORMODE_16, chr, 15, 0);
         }
-        if (unk_38) {
+        if (cornerIcon_) {
             G2_SetOBJAttr(sub->allocEntry(), x_ + w_ - 24, y + bottom + 8, 0, GX_OAM_MODE_NORMAL, 0,
                           GX_OAM_EFFECT_NONE, GX_OAM_SHAPE_16x16, GX_OAM_COLORMODE_16, 0x152, 15, 0);
         }

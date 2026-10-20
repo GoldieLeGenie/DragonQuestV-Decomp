@@ -198,9 +198,9 @@ ARM void BillboardCharacter::initialize()
     preDirection_ = 5;
     setScale(s_scale);
     dss::Fix32Vector3 scale = UnkCharacterShadow::getShadowScale();
-    unk_108.vx.value = scale.vx.value * width_ / 32;
-    unk_108.vy.value = scale.vy.value * width_ / 32;
-    unk_108.vz.value = scale.vz.value * width_ / 32;
+    shadowScale_.vx.value = scale.vx.value * width_ / 32;
+    shadowScale_.vy.value = scale.vy.value * width_ / 32;
+    shadowScale_.vz.value = scale.vz.value * width_ / 32;
     shadow_.unkfunc_020567b0(0);
 }
 
@@ -228,7 +228,7 @@ ARM void BillboardCharacter::draw()
     }
     execute();
     if (flag_ & FLAG_SHADOW) {
-        shadow_.setScale(unk_108);
+        shadow_.setScale(shadowScale_);
         shadow_.draw();
     }
     if (!(flag_ & FLAG_SHADOW_ONLY)) {

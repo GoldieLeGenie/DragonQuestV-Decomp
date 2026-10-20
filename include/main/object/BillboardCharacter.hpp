@@ -74,7 +74,7 @@ struct BillboardCharacter : TextureBillboard {
     DataObject data_;                           // 0x0CC
     void* textures_[8];                         // 0x0DC
     dss::Fix32Vector3 paletteRgbRate_;                  // 0x0FC palette rgb rate
-    dss::Fix32Vector3 unk_108;                  // 0x108 shadow scale
+    dss::Fix32Vector3 shadowScale_;                  // 0x108 shadow scale
     short textureIndex_;                        // 0x114
     dss::Vector2<dss::Fix32> uvOffset;          // 0x118
     int anmIndex_;                              // 0x120

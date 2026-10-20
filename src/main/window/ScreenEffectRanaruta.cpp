@@ -52,10 +52,10 @@ THUMB void window::UnkScreenEffectCamera::draw()
 
 THUMB void window::ScreenEffectRanaruta::setup()
 {
-    unk_0c = 32;
-    unk_10 = 24;
+    tilesX_ = 32;
+    tilesY_ = 24;
     alpha_ = 31;
-    unk_08 = dss::Fix32(0x8000);
+    scale_ = dss::Fix32(0x8000);
     for (int i = 0; i < 10; i++) {
         wavePanel_[i] = i * 2 + 0x180;
     }

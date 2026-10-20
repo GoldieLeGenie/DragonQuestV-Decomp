@@ -248,7 +248,7 @@ THUMB UnkNnsSound::~UnkNnsSound()
 
 THUMB void UnkNnsSound::init(void* file, void* memory, int size, int group)
 {
-    unk_b4 = 0;
+    subBgmLoaded_ = 0;
     bgm_ = 0;
     subBgm_ = -1;
     file_ = file;
@@ -303,14 +303,14 @@ THUMB void UnkNnsSound::loadBgm(int bgm, int sub)
     }
     if (sub == 0) {
         if (bgm != bgm_) {
-            unk_b4 = 0;
+            subBgmLoaded_ = 0;
         }
-        if (unk_b4 != 0) {
+        if (subBgmLoaded_ != 0) {
             func_0207c740(heap_[0], state_);
             func_0207c740(heap_[2], heapState_[2]);
             loadBank(bgm, heap_[0]);
             loadWaveArc(bgm, heap_[2]);
-            unk_b4 = 0;
+            subBgmLoaded_ = 0;
             bgm_ = bgm;
             return;
         }
@@ -322,7 +322,7 @@ THUMB void UnkNnsSound::loadBgm(int bgm, int sub)
             loadBank(bgm, heap_[0]);
             state_ = func_0207c70c(heap_[0]);
             loadWaveArc(bgm, heap_[2]);
-            unk_b4 = 0;
+            subBgmLoaded_ = 0;
             bgm_ = bgm;
             return;
         }
@@ -338,7 +338,7 @@ THUMB void UnkNnsSound::loadBgm(int bgm, int sub)
     loadBank(bgm, heap_[1]);
     state_ = func_0207c70c(heap_[1]);
     loadWaveArc(bgm, heap_[2]);
-    unk_b4 = 1;
+    subBgmLoaded_ = 1;
     subBgm_ = -1;
 }
 

@@ -7,7 +7,7 @@
 struct MenuWindowFrame : MenuDisplay {
     int cursor_;                                // 0x30  key cursor shown
     int arrow_;                                 // 0x34  arrow shown
-    int unk_38;                                 // 0x38
+    int cornerIcon_;                                 // 0x38
     int arrowX_;                                // 0x3C
     int arrowY_;                                // 0x40
     int nameWidth_;                             // 0x44  name tab width, <= 16: no tab

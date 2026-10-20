@@ -10,7 +10,7 @@
 struct DSSACharacter : Position {
     virtual void setScale(dss::Fix32 scale);    // slot 1
 
-    int unk_034;                                // 0x034
+    int textureLoaded_;                                // 0x034
     int currentAnimationIndex_;                 // 0x038
     int nextAnimationIndex_;                    // 0x03C
     int firstAnimationIndex_;                   // 0x040

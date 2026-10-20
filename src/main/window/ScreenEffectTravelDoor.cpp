@@ -13,10 +13,10 @@ inline bool window::UnkScreenEffect::isActive()
 
 THUMB void window::ScreenEffectTravelDoor::setup()
 {
-    unk_0c = 0x20;
-    unk_10 = 0x18;
+    tilesX_ = 0x20;
+    tilesY_ = 0x18;
     alpha_ = 0x1f;
-    unk_08 = dss::Fix32(0x8000);
+    scale_ = dss::Fix32(0x8000);
     counter_ = 0;
     angle_ = 0xffff;
     speed_ = 100;

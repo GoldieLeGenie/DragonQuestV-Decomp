@@ -28,7 +28,7 @@ THUMB void MessageWindow::setup(int id)
     reset();
     setType(2);
     state_ = 0;
-    unk_9d4 = 0;
+    shakeRequest_ = 0;
     shake_ = 0;
     shakeCount_ = 0;
     shakeRepeat_ = 0;
@@ -36,9 +36,9 @@ THUMB void MessageWindow::setup(int id)
     shakeY_ = 0;
     keyWait_ = 0;
     keySound_ = 0;
-    unk_9ec = 0;
-    unk_9f0 = 0;
-    unk_9f4 = 0;
+    printDelayRequest_ = 0;
+    printDelayCount_ = 0;
+    printDelay_ = 0;
 }
 
 THUMB void MessageWindow::update(UnkOamBuffer* main, UnkOamBuffer* sub)
@@ -271,7 +271,7 @@ THUMB void MessageWindow::startWindow()
     frame_->setCursor(0);
     width_ = config_->width_;
     int height = config_->margin_ * 2 - config_->lineSpace_ + lineHeight_ * lineCount_;
-    height += config_->unk_24;
+    height += config_->extraHeight_;
     height_ = height;
     frame_->setSize(width_, height_);
     waitLine_ = NULL;
@@ -287,28 +287,28 @@ THUMB void MessageWindow::startWindow()
     shakeCount_ = 0;
     shakeX_ = 0;
     shakeY_ = 0;
-    int repeat = unk_9d4;
+    int repeat = shakeRequest_;
     if (repeat) {
         shake_ = 1;
         shakeCount_ = 0;
         shakeRepeat_ = repeat;
-        unk_9d4 = 0;
+        shakeRequest_ = 0;
     }
-    unk_9f0 = 0;
-    unk_9f4 = 0;
-    if (unk_9ec) {
-        unk_9f0 = unk_9ec;
-        unk_9f4 = unk_9ec;
+    printDelayCount_ = 0;
+    printDelay_ = 0;
+    if (printDelayRequest_) {
+        printDelayCount_ = printDelayRequest_;
+        printDelay_ = printDelayRequest_;
     }
     keyWait_ = 0;
     keySound_ = 0;
-    unk_9d0 = 0;
+    waitProg_ = 0;
     if (config_->sound_ == 0) {
         sound_ = -1;
     } else {
         sound_ = 0;
     }
-    unk_038 = config_->unk_54;
+    centerText_ = config_->centerText_;
 }
 
 THUMB void MessageWindow::updateNameFrame()
@@ -338,7 +338,7 @@ THUMB void MessageWindow::updateNameFrame()
     frame_->setCursor(0);
     width_ = config_->width_;
     int height = config_->margin_ * 2 - config_->lineSpace_ + lineHeight_ * lineCount_;
-    height += config_->unk_24;
+    height += config_->extraHeight_;
     height_ = height;
     frame_->setSize(width_, height_);
     setPosition(config_->x_, config_->y_);
@@ -383,7 +383,7 @@ THUMB void MessageWindow::stateNextLine()
     int c = getIterator()->getChar();
     if (isEndChar(c)) {
         state_ = 4;
-        unk_9c4 = -1;
+        keyTimer_ = -1;
         return;
     }
     if (c == 0x1b) {
@@ -411,7 +411,7 @@ THUMB void MessageWindow::stateNextLine()
     }
     if (c == 0x328a) {
         state_ = 4;
-        unk_9c4 = -1;
+        keyTimer_ = -1;
         getIterator()->nextChar();
         if (getIterator()->getChar()) {
             getIterator()->prevChar();
@@ -439,13 +439,13 @@ THUMB void MessageWindow::stateNextLine()
         unsigned char* p = (unsigned char*)iterator_.buf_ + iterator_.pos_;
         if (p[0] == '%') {
             if (p[1] == '3') {
-                unk_038 = 1;
+                centerText_ = 1;
                 getIterator()->nextChar();
                 getIterator()->nextChar();
                 continue;
             }
             if (p[1] == '4') {
-                unk_038 = 2;
+                centerText_ = 2;
                 getIterator()->nextChar();
                 getIterator()->nextChar();
                 continue;
@@ -461,9 +461,9 @@ THUMB void MessageWindow::stateNextLine()
         getIterator()->nextChar();
         writer.putChar(c);
     }
-    line->unkfunc_02066fe4(config_->font_, buf, 0, 0, 0, unk_038);
-    if (unk_038 == 2) {
-        unk_038 = 0;
+    line->unkfunc_02066fe4(config_->font_, buf, 0, 0, 0, centerText_);
+    if (centerText_ == 2) {
+        centerText_ = 0;
     }
     soundTimer_ = 100;
     state_ = 2;
@@ -473,20 +473,20 @@ THUMB void MessageWindow::statePrint()
 {
     UnkMenuTextDisplay* line = getLastLine();
     if (line->getVisibleCount() != line->getCharCount()) {
-        if (unk_9f0 != 0) {
+        if (printDelayCount_ != 0) {
             int limit = line->unk_394;
             if (line->getVisibleCount() < limit) {
-                unk_9f0 = 0;
+                printDelayCount_ = 0;
             }
         }
-        if (unk_9f0 == 0) {
+        if (printDelayCount_ == 0) {
             line->setVisibleCount(config_->printSpeed_ + line->getVisibleCount());
             int extra = 0;
-            if (line->unk_130[line->visibleCount_] == 0x3222) {
+            if (line->charCodes_[line->visibleCount_] == 0x3222) {
                 extra = 10;
             }
             wait_ = config_->wait_;
-            waitProgFlag_ = config_->unk_4c;
+            waitProgFlag_ = config_->waitProgFrames_;
             if (sound_ != 0 && sound_ != -1) {
                 if (soundTimer_ > 100) {
                     Sound::sePlay(sound_);
@@ -494,9 +494,9 @@ THUMB void MessageWindow::statePrint()
                 }
                 soundTimer_ += soundSpeed_;
             }
-            unk_9f0 = unk_9f4 + extra;
+            printDelayCount_ = printDelay_ + extra;
         } else {
-            unk_9f0--;
+            printDelayCount_--;
         }
         return;
     }
@@ -541,7 +541,7 @@ THUMB void MessageWindow::stateWaitKey()
         state_ = 6;
         return;
     }
-    if (unk_9c4 == 0) {
+    if (keyTimer_ == 0) {
         getIterator()->nextChar();
         skipNewlines(getIterator());
         frame_->setCursor(0);
@@ -554,12 +554,12 @@ THUMB void MessageWindow::stateWaitKey()
     if (intervalCursor_) {
         frame_->setCursor(1);
     }
-    if (unk_9c4 != -1) {
-        unk_9c4--;
+    if (keyTimer_ != -1) {
+        keyTimer_--;
     }
     if (keyWait_ == 1) {
         keyWait_ = 0;
-        unk_9c4 = 0;
+        keyTimer_ = 0;
         if (keySound_ == 1) {
             Sound::sePlay(300);
         }
@@ -573,7 +573,7 @@ THUMB void MessageWindow::stateWaitProg()
         waitProgFlag_--;
         return;
     }
-    if (unk_9d0 != 1) {
+    if (waitProg_ != 1) {
         state_ = 1;
     }
 }
@@ -858,5 +858,5 @@ THUMB void MessageWindow::clearWaitTriggerNoSE()
 
 THUMB void MessageWindow::setWaitProg(int flag)
 {
-    unk_9d0 = flag;
+    waitProg_ = flag;
 }

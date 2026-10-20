@@ -49,8 +49,8 @@ ARM void UnkGlobalSystem::run(int partId)
         prevPartId_ = part_id_;
         part_id_ = nextPartId_;
         nextPartId_ = -1;
-        if (unk_74 != 0) {
-            unk_74 = 0;
+        if (callChangeHook_ != 0) {
+            callChangeHook_ = 0;
             if (s_hook.unk_04 != 0) {
                 s_hook.unk_04();
             }

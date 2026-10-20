@@ -43,7 +43,7 @@ struct UnkNnsSound {
     int unk_a8;                                 // 0xA8
     void* file_;                                // 0xAC sound archive file
     int group_;                                 // 0xB0 load the group 20
-    int unk_b4;                                 // 0xB4
+    int subBgmLoaded_;                                 // 0xB4
     int bgm_;                                   // 0xB8
     int subBgm_;                                // 0xBC
     int state_;                                 // 0xC0

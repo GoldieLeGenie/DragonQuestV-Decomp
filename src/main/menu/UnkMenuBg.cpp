@@ -127,7 +127,7 @@ THUMB void UnkMenuIconSlot::init(int offset)
     offset_ = offset;
     key_ = -1;
     state_ = 0;
-    unk_0c = 0;
+    age_ = 0;
 }
 
 THUMB void UnkMenuIconSlot::setKey(unsigned int key)
@@ -277,9 +277,9 @@ THUMB int UnkMenuIconBg::findReusableSlot()
     int max = 0;
     int result = -1;
     for (int i = 0; i < 28; i++) {
-        if (slots_[i].getState() == 2 && max <= slots_[i].unk_0c) {
+        if (slots_[i].getState() == 2 && max <= slots_[i].age_) {
             result = i;
-            max = slots_[i].unk_0c;
+            max = slots_[i].age_;
         }
     }
     return result;

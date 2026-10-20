@@ -21,14 +21,14 @@ ARM void DSSACharacter::setupFromData(DataObject* texture, DataObject* animation
 {
     TextureObject* textureObject = (TextureObject*)texture->getAddr();
     textureObject->loadToVram(1);
-    unk_034 = 1;
+    textureLoaded_ = 1;
     unkfunc_020524c8(textureObject, animation);
 }
 
 ARM void DSSACharacter::unkfunc_020524c8(TextureObject* texture, DataObject* animation)
 {
     flag_.clear();
-    unk_ae4 = texture;
+    texture_ = texture;
     palette_.loadFromTexture(texture, 0);
     dataObject_ = animation;
     currentAnimationIndex_ = -1;
@@ -39,7 +39,7 @@ ARM void DSSACharacter::unkfunc_020524c8(TextureObject* texture, DataObject* ani
                 firstAnimationIndex_ = i;
             }
             dssaObject_[i].setup(getArchiveFile(dataObject_->getAddr(), i));
-            dssaObject_[i].setTexture(unk_ae4);
+            dssaObject_[i].setTexture(texture_);
             dssaObject_[i].setPalette(&palette_);
         }
     }
@@ -49,23 +49,23 @@ ARM void DSSACharacter::setupStream(TextureObject* texture, const char* format, 
 {
     char filename[0x20];
     flag_.clear();
-    unk_ae4 = texture;
+    texture_ = texture;
     palette_.loadFromTexture(texture, 0);
     flag_.set(0x40);
     dss::strcpy(s_format, format);
     sprintf(filename, s_format, 0);
     s_dataObject[0].setup(filename, 0, 0);
     dssaObject_[0].setup(s_dataObject[0].getAddr());
-    dssaObject_[0].setTexture(unk_ae4);
+    dssaObject_[0].setTexture(texture_);
     dssaObject_[0].setPalette(&palette_);
     sprintf(filename, s_format, 1);
     s_dataObject[1].setup(filename, 0, 0);
     dssaObject_[1].setup(s_dataObject[1].getAddr());
-    dssaObject_[1].setTexture(unk_ae4);
+    dssaObject_[1].setTexture(texture_);
     dssaObject_[1].setPalette(&palette_);
-    s_stream.unk_08 = 0;
-    s_stream.unk_00 = 2;
-    s_stream.unk_04 = count;
+    s_stream.bufferIndex_ = 0;
+    s_stream.nextFile_ = 2;
+    s_stream.fileCount_ = count;
     currentAnimationIndex_ = 0;
     firstAnimationIndex_ = 0;
     nextAnimationIndex_ = -1;
@@ -74,8 +74,8 @@ ARM void DSSACharacter::setupStream(TextureObject* texture, const char* format, 
 ARM void DSSACharacter::cleanup()
 {
     palette_.freeVram();
-    if (unk_034 != 0) {
-        unk_ae4->freeVram();
+    if (textureLoaded_ != 0) {
+        texture_->freeVram();
     }
     for (int i = 0; i < 17; i++) {
         if (dssaObject_[i].isEnable()) {
@@ -87,7 +87,7 @@ ARM void DSSACharacter::cleanup()
         s_dataObject[0].cleanup();
         s_dataObject[1].cleanup();
     }
-    unk_034 = 0;
+    textureLoaded_ = 0;
     dataObject_ = 0;
 }
 
@@ -97,23 +97,23 @@ ARM void DSSACharacter::updateStream()
     if (!flag_.check(0x40)) {
         return;
     }
-    if (s_stream.unk_00 > s_stream.unk_04) {
+    if (s_stream.nextFile_ > s_stream.fileCount_) {
         return;
     }
-    if (!dssaObject_[s_stream.unk_08].isEnd()) {
+    if (!dssaObject_[s_stream.bufferIndex_].isEnd()) {
         return;
     }
-    if (s_stream.unk_00 < s_stream.unk_04) {
-        sprintf(filename, s_format, s_stream.unk_00);
-        s_dataObject[s_stream.unk_08].cleanup();
-        s_dataObject[s_stream.unk_08].setup(filename, 0, 0);
+    if (s_stream.nextFile_ < s_stream.fileCount_) {
+        sprintf(filename, s_format, s_stream.nextFile_);
+        s_dataObject[s_stream.bufferIndex_].cleanup();
+        s_dataObject[s_stream.bufferIndex_].setup(filename, 0, 0);
     }
-    currentAnimationIndex_ = s_stream.unk_08 = s_stream.unk_08 == 0 ? 1 : 0;
-    dssaObject_[s_stream.unk_08].cleanup();
-    dssaObject_[s_stream.unk_08].setup(s_dataObject[s_stream.unk_08].getAddr());
-    dssaObject_[s_stream.unk_08].setTexture(unk_ae4);
-    dssaObject_[s_stream.unk_08].setPalette(&palette_);
-    s_stream.unk_00++;
+    currentAnimationIndex_ = s_stream.bufferIndex_ = s_stream.bufferIndex_ == 0 ? 1 : 0;
+    dssaObject_[s_stream.bufferIndex_].cleanup();
+    dssaObject_[s_stream.bufferIndex_].setup(s_dataObject[s_stream.bufferIndex_].getAddr());
+    dssaObject_[s_stream.bufferIndex_].setTexture(texture_);
+    dssaObject_[s_stream.bufferIndex_].setPalette(&palette_);
+    s_stream.nextFile_++;
 }
 
 ARM void DSSACharacter::draw()

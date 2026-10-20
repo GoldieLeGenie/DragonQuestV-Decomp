@@ -47,13 +47,13 @@ THUMB void window::WorldMap::symbolDraw(int world)
             status::g_StageInfo.getSymbolFlag(i)) {
             int y = dq5::level::FieldSymbol::getRecord(i)->getPosY();
             int x = dq5::level::FieldSymbol::getRecord(i)->getPosX();
-            unk_54.setPosition(x - 1, y - 3);
-            unk_54.setColor(0x1f, dss::abs(unk_a4 / 4), 0);
-            unk_54.draw();
+            symbolSprite_.setPosition(x - 1, y - 3);
+            symbolSprite_.setColor(0x1f, dss::abs(blinkCount_ / 4), 0);
+            symbolSprite_.draw();
         }
     }
-    unk_a4++;
-    if (unk_a4 >= 0x80) {
-        unk_a4 = -0x7f;
+    blinkCount_++;
+    if (blinkCount_ >= 0x80) {
+        blinkCount_ = -0x7f;
     }
 }

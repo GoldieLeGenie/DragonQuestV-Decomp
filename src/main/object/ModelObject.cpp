@@ -12,8 +12,8 @@ dss::Fix32 ModelObject::defaultScale(FX32_ONE * 6);
 ARM void UnkStaticModelObject::setup(const char* name, int loadSwitch)
 {
     modelData_.setup(name, loadSwitch, 0);
-    unk_1cc.setModelFile(modelData_.getAddr());
-    setupModel(&unk_1cc);
+    model_.setModelFile(modelData_.getAddr());
+    setupModel(&model_);
     vf00();
 }
 
@@ -26,14 +26,14 @@ ARM void UnkStaticModelObject::vf04()
 {
     UnkModelObjectBase::vf04();
     modelData_.cleanup();
-    unk_1cc.release();
+    model_.release();
 }
 
 ARM void ModelObject::setup(const char* name, const char* animName, int loadSwitch)
 {
     modelData_.setup(name, loadSwitch, 0);
-    unk_1cc.setModelFile(modelData_.getAddr());
-    setupModel(&unk_1cc);
+    model_.setModelFile(modelData_.getAddr());
+    setupModel(&model_);
 }
 
 ARM void ModelObject::setup(void* model, int flag)
@@ -42,8 +42,8 @@ ARM void ModelObject::setup(void* model, int flag)
     if (flag == 0) {
         data_020f3e88 = 1;
     }
-    unk_1cc.setModelFile(modelData_.getAddr());
-    setupModel(&unk_1cc);
+    model_.setModelFile(modelData_.getAddr());
+    setupModel(&model_);
     vf00();
 }
 
@@ -60,7 +60,7 @@ ARM void ModelObject::loadAnimation(const char* name, int index, int loadSwitch)
     if (data.getAddr() == 0) {
         return;
     }
-    animation_[index].setup(data.getAddr(), unk_1cc.getModel());
+    animation_[index].setup(data.getAddr(), model_.getModel());
     addAnimation(animation_[index].obj_);
     if (index == 0) {
         animation_[index].obj_->ratio = FX32_ONE;
@@ -76,7 +76,7 @@ ARM void ModelObject::setAnimation(void* animation, int index)
     if (data.getAddr() == 0) {
         return;
     }
-    animation_[index].setup(data.getAddr(), unk_1cc.getModel());
+    animation_[index].setup(data.getAddr(), model_.getModel());
     addAnimation(animation_[index].obj_);
 }
 
@@ -94,7 +94,7 @@ ARM void ModelObject::cleanup(int flag)
         animData_[i].cleanup();
     }
     if (flag) {
-        unk_1cc.release();
+        model_.release();
     }
 }
 

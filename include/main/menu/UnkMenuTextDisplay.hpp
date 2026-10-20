@@ -6,10 +6,10 @@
 // One line of text drawn as sprites (data_02114dd4.texts_: message window lines and name plate)
 struct UnkMenuTextDisplay : MenuDisplay {
     unsigned char charWidths_[0x100];           // 0x030
-    unsigned short unk_130[0x100];              // 0x130 char codes of the text
-    char unk_330[0x62];                         // 0x330 copy of the text
+    unsigned short charCodes_[0x100];              // 0x130 char codes of the text
+    char text_[0x62];                         // 0x330 copy of the text
     int unk_394;                                // 0x394
-    int unk_398;                                // 0x398
+    int centerOffset_;                                // 0x398
     int visibleWidth_;                          // 0x39C
     int visibleCount_;                          // 0x3A0
     int width_;                                 // 0x3A4

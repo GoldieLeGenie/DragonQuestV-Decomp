@@ -17,7 +17,7 @@ struct UnkMessageWindowConfig {
     int nameX_;                                 // 0x18
     int nameY_;                                 // 0x1C
     int lineCount_;                             // 0x20
-    int unk_24;                                 // 0x24
+    int extraHeight_;                                 // 0x24
     int intervalCursor_;                        // 0x28
     int lastCursor_;                            // 0x2C
     int font_;                                  // 0x30
@@ -27,16 +27,16 @@ struct UnkMessageWindowConfig {
     int frameType_;                             // 0x40
     int printSpeed_;                            // 0x44
     int wait_;                                  // 0x48
-    int unk_4c;                                 // 0x4C
+    int waitProgFrames_;                                 // 0x4C
     int sound_;                                 // 0x50
-    int unk_54;                                 // 0x54
+    int centerText_;                                 // 0x54
 };
 
 // Message window drawn on the sub screen (data_02114dd4.message_)
 struct MessageWindow : MenuDisplay {
     int windowType_;                            // 0x030
     UnkMessageWindowConfig* config_;               // 0x034
-    int unk_038;                                // 0x038
+    int centerText_;                                // 0x038
     int lineCount_;                             // 0x03C
     int lineHeight_;                            // 0x040
     int scrollSpeed_;                           // 0x044
@@ -58,19 +58,19 @@ struct MessageWindow : MenuDisplay {
     int scroll_;                                // 0x9B8
     int keyWait_;                               // 0x9BC
     int keySound_;                              // 0x9C0
-    int unk_9c4;                                // 0x9C4
+    int keyTimer_;                                // 0x9C4
     int wait_;                                  // 0x9C8
     int waitProgFlag_;                                // 0x9CC
-    int unk_9d0;                                // 0x9D0
-    int unk_9d4;                                // 0x9D4
+    int waitProg_;                                // 0x9D0
+    int shakeRequest_;                                // 0x9D4
     int shake_;                                 // 0x9D8
     int shakeCount_;                            // 0x9DC
     int shakeRepeat_;                           // 0x9E0
     int shakeX_;                                // 0x9E4
     int shakeY_;                                // 0x9E8
-    int unk_9ec;                                // 0x9EC
-    int unk_9f0;                                // 0x9F0
-    int unk_9f4;                                // 0x9F4
+    int printDelayRequest_;                                // 0x9EC
+    int printDelayCount_;                                // 0x9F0
+    int printDelay_;                                // 0x9F4
     int sound_;                                 // 0x9F8
     int soundTimer_;                            // 0x9FC
     int soundSpeed_;                            // 0xA00
