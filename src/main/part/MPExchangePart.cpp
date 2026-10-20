@@ -78,13 +78,13 @@ THUMB void MPExchangePart::onExecutePart()
             }
             break;
         case 4: {
-            exchange_.unkfunc_0212a310();
+            exchange_.start();
             status::TaishiBase taishi = status::g_MuseumStatus.playerTaishi_;
             data = (status::TAISHI_DATA*)&taishi;
             convertUtf8ToSjisWork(data->taishiName_);
             convertUtf8ToSjisWork(data->producer_);
             convertUtf8ToSjisWork(data->message_);
-            exchange_.unkfunc_0212a2b8(data);
+            exchange_.setSendData(data);
             setState(2);
             break;
         }
@@ -128,7 +128,7 @@ THUMB void MPExchangePart::onExecutePart()
                 gTownMenu_MESSAGE.openMessageForMENU();
                 gTownMenu_MESSAGE.addMessage(0xcc620);
                 message_ = 0;
-                exchange_.unkfunc_0212acdc();
+                exchange_.abort();
             }
             if (counter_ > 60 && gTownMenu_MESSAGE.stat_ == menu::MenuBase::MENUBASE_STAT_OK) {
                 setState(13);
@@ -143,14 +143,14 @@ THUMB void MPExchangePart::onExecutePart()
                 gTownMenu_MESSAGE.openMessageForMENU();
                 gTownMenu_MESSAGE.addMessage(0xcc620);
                 message_ = 0;
-                exchange_.unkfunc_0212acdc();
+                exchange_.abort();
             }
             if (counter_ > 60 && gTownMenu_MESSAGE.stat_ == menu::MenuBase::MENUBASE_STAT_OK) {
                 setState(13);
             }
             break;
         case 9: {
-            data = exchange_.unkfunc_0212a2fc();
+            data = exchange_.getReceivedData();
             if (exchange_.receiveCount_ <= 4) {
                 setState(7);
                 break;
@@ -233,7 +233,7 @@ THUMB void MPExchangePart::onExecutePart()
             }
             break;
     }
-    exchange_.unkfunc_0212a424();
+    exchange_.update();
     updateState();
 }
 

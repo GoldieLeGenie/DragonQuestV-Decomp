@@ -22,11 +22,11 @@ namespace twn {
         UnkTownSpotlightLight();
         ~UnkTownSpotlightLight();
         void unkfunc_0212e6b0(int index, dss::Fix32Vector3* pos);
-        void unkfunc_0212e6c0();
-        static void unkfunc_0212e6c8();
-        static void unkfunc_0212e73c();
-        void unkfunc_0212e758(int screen);
-        void unkfunc_0212e7c0();
+        void deactivate();
+        static void loadSprites();
+        static void releaseSprites();
+        void draw(int screen);
+        void update();
     };
 
     // darkness over the screens with light circles around the map points
@@ -41,14 +41,14 @@ namespace twn {
 
         UnkTownSpotlight();
         ~UnkTownSpotlight();
-        void unkfunc_0212e850();
-        void unkfunc_0212e8b4(int index, dss::Fix32Vector3* pos);
-        void unkfunc_0212e8c4(int index);
-        void unkfunc_0212e8d4();
-        void unkfunc_0212e900();
-        void unkfunc_0212e920();
-        void unkfunc_0212e95c(int enable);
+        void setup();
+        void setLight(int index, dss::Fix32Vector3* pos);
+        void clearLight(int index);
+        void cleanup();
+        void update();
+        void draw();
+        void setEnable(int enable);
         void setBlindAlpha(unsigned char alpha);
-        void unkfunc_0212e974(int r, int g, int b);
+        void setBlindColor(int r, int g, int b);
     };
 }

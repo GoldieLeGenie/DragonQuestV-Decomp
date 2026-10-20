@@ -110,8 +110,8 @@ void twn::TownRiseupExhibit::draw()
         }
         item_->setPosition(pos);
         item_->setScale(size);
-        item_->unkfunc_0214e8a0(&xy_);
-        item_->unkfunc_0214e8a8(&uv_);
+        item_->setItemVertex(&xy_);
+        item_->setItemTexCoord(&uv_);
         item_->setAlpha(alpha_);
         item_->draw();
         item_->setScale(scale);

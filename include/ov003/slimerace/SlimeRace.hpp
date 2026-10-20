@@ -369,8 +369,8 @@ namespace race {
 extern void* g_mgWork;
 extern unsigned int g_mgWorkSize;
 
-UnkMiniGameHeap* unkfunc_02128060();
-void unkfunc_021280a4();
+UnkMiniGameHeap* getMgHeap();
+void initTouchPanel();
 void unkfunc_021280a8(int mode, GXRgb col, fx32 frames);
 void unkfunc_021280d8(fx32 passFrame);
 BOOL unkfunc_02128150();
@@ -426,7 +426,7 @@ void unkfunc_02129b54(UnkG2dPaletteData* data);
 int unkfunc_02129b64(void* file, UnkG2dPaletteData** out);
 void SlimeRace_init_BG(int no);
 SPRITE* SlimeRace_init_Chara(int id, int keep);
-void unkfunc_02129d18(fx32 x, int opt);
+void setupRaceCamera(fx32 x, int opt);
 ST_SLIME_RACE* get_pSlimeRace(int id);
 int get_id_pSlimeRace(ST_SLIME_RACE* pSlimeRace);
 void gameStart_init();
@@ -441,7 +441,7 @@ ACTION slimeRace_get_action_afterAction(ST_SLIME_RACE* pSlimeRace);
 int slimeRace_get_action_repeat(ST_SLIME_RACE* pSlimeRace, RACE_STAGE raceStage, ACTION action);
 int slimeRace_chk_ashitome(ST_SLIME_RACE* pSlimeRace);
 ACTION slimeRace_upDate_action_raceStage(ST_SLIME_RACE* pSlimeRace, RACE_STAGE raceStage, int* pRepeat);
-RACE_STAGE unkfunc_0212a6a8(STATE state);
+RACE_STAGE getRaceStage(STATE state);
 void slimeRace_upDate_sutamina(ST_SLIME_RACE* pSlimeRace, ACTION action);
 void slimeRace_upDate_action_change(ST_SLIME_RACE* pSlimeRace);
 void slimeRace_upDate_action(ST_SLIME_RACE* pSlimeRace);
@@ -479,7 +479,7 @@ void SlimeRaceDraw();
 void SlimeRaceExec();
 void SlimeRaceTerm();
 int SlimeRaceResult(ST_ARG_SL_RACE* arg);
-int unkfunc_02130860();                         // race state
-void unkfunc_0213086c(int state);
-int* unkfunc_02130878();                        // odds of the pairs
-int* unkfunc_02130884();                        // bets of the pairs
+int getRaceJoutai();                         // race state
+void setRaceJoutai(int state);
+int* getRaceOdds();                        // odds of the pairs
+int* getRaceBets();                        // bets of the pairs

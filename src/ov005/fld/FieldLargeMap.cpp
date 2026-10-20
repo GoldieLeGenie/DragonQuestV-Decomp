@@ -34,13 +34,13 @@ THUMB fld::FieldLargeMap::~FieldLargeMap()
 {
 }
 
-THUMB void fld::FieldLargeMap::unkfunc_02133d0c(Render* render)
+THUMB void fld::FieldLargeMap::setup(Render* render)
 {
     render_ = render;
-    unkfunc_02133d38();
+    setupSprites();
 }
 
-THUMB void fld::FieldLargeMap::unkfunc_02133d18()
+THUMB void fld::FieldLargeMap::cleanup()
 {
     unk_54.detachRender();
     unk_04.detachRender();
@@ -48,7 +48,7 @@ THUMB void fld::FieldLargeMap::unkfunc_02133d18()
     unk_04.unload();
 }
 
-THUMB void fld::FieldLargeMap::unkfunc_02133d38()
+THUMB void fld::FieldLargeMap::setupSprites()
 {
     char path[0x80];
     unk_04.setTexCoords(0, 0, 0x20, 0x20);
@@ -69,10 +69,10 @@ THUMB void fld::FieldLargeMap::unkfunc_02133d38()
     unk_04.setEnabled(1);
     unk_04.freeVram();
     unk_54.freeVram();
-    unkfunc_02134004();
+    buildPlayerMap();
 }
 
-THUMB int fld::FieldLargeMap::unkfunc_02133df4(int x, int y, void* buffer)
+THUMB int fld::FieldLargeMap::loadEventBlock(int x, int y, void* buffer)
 {
     if (g_AreaFlag.check(0x82)) {
         for (int i = 0; i < 4; i++) {
@@ -111,7 +111,7 @@ THUMB int fld::FieldLargeMap::unkfunc_02133df4(int x, int y, void* buffer)
     return 0;
 }
 
-THUMB void fld::FieldLargeMap::unkfunc_02133f00(int x, int y)
+THUMB void fld::FieldLargeMap::buildMapTexture(int x, int y)
 {
     char* src[8];
     void* buffer[8];
@@ -138,7 +138,7 @@ THUMB void fld::FieldLargeMap::unkfunc_02133f00(int x, int y)
                 bx -= 0x20;
             }
             dss::g_File.readSize_ = 0x400;
-            if (unkfunc_02133df4(bx, by, buffer[i]) == 0) {
+            if (loadEventBlock(bx, by, buffer[i]) == 0) {
                 dss::g_File.readOffset_ = (bx << 10) + (by << 15);
                 dss::g_File.loadToBuffer("data/field/large/largemap.bin", buffer[i], 0);
             }
@@ -158,12 +158,12 @@ THUMB void fld::FieldLargeMap::unkfunc_02133f00(int x, int y)
     }
 }
 
-THUMB void fld::FieldLargeMap::unkfunc_02134004()
+THUMB void fld::FieldLargeMap::buildPlayerMap()
 {
     dss::Fix32Vector3 pos = FieldPlayerManager::getSingleton().getPosition();
     int x = (pos.vx.value + 0x40000) / 0x80000 - 4;
     int y = (pos.vy.value + 0x40000) / 0x80000 - 3;
-    unkfunc_02133f00(x, y);
+    buildMapTexture(x, y);
     OS_Wait();
     unk_54.allocVram();
     unk_54.transferToVram();
@@ -179,13 +179,13 @@ THUMB void fld::FieldLargeMap::unkfunc_02134004()
     unk_a8 = py;
 }
 
-THUMB void fld::FieldLargeMap::unkfunc_021340c8(unsigned char alpha)
+THUMB void fld::FieldLargeMap::setAlpha(unsigned char alpha)
 {
     unk_54.setAlpha(alpha);
     unk_04.setAlpha(alpha);
 }
 
-THUMB void fld::FieldLargeMap::unkfunc_021340e0()
+THUMB void fld::FieldLargeMap::updatePlayerMarker()
 {
     unk_04.setPosition(unk_a4 + s_markerOffsetX, s_markerOffsetY + (unk_a8 - 0x20));
 }

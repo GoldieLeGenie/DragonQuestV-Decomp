@@ -412,7 +412,7 @@ inline u16 rand16(u16 max)
 // ---------------------------------------------------------------------------
 // system
 
-void** unkfunc_02128060()
+void** getMgHeap()
 {
     if (s_expHeapCreated == 0) {
         s_expHeapCreated = 1;
@@ -421,7 +421,7 @@ void** unkfunc_02128060()
     return &s_expHeap;
 }
 
-void unkfunc_021280a4()
+void initTouchPanel()
 {
     TPCalibrateParam calibrate;
     func_020786d4();
@@ -436,7 +436,7 @@ void unkfunc_021280a4()
     s_touchPos2.y = s_touch2InitY;
 }
 
-void unkfunc_02128108()
+void readTouchPanel()
 {
     int touch = 0;
     s_touchValid = 0;
@@ -568,7 +568,7 @@ ST_MG_ARG* get_pMGArg()
     return pMiniGameArg;
 }
 
-int unkfunc_021284a4()
+int getPlayerSprite()
 {
     return s_playerSprite[get_pMGArg()->slTouch.player];
 }
@@ -626,7 +626,7 @@ void bg_manage(BG_MANAGE bgManage)
 static void MiniGame2_init()
 {
     unkfunc_02128c0c();
-    unkfunc_021280a4();
+    initTouchPanel();
     unkfunc_0212d458();
     unkfunc_02128d7c();
     unkfunc_0212e168();
@@ -675,7 +675,7 @@ int unkfunc_021287f4()
 BOOL chk_touchPad(int* x, int* y)
 {
     if (!MG_IsUpScreen()) {
-        unkfunc_02128108();
+        readTouchPanel();
         if (s_touchTrg) {
             *x = s_touchPos.x;
             *y = s_touchPos.y;
@@ -808,13 +808,13 @@ int unkfunc_02128c04()
 
 void unkfunc_02128c0c()
 {
-    void* heap = *unkfunc_02128060();
+    void* heap = *getMgHeap();
     func_0207ebe4(&s_allocator, (int)heap, 32);
     s_pAllocator = &s_allocator;
     func_0207e968(heap, 1);
 }
 
-NNSFndAllocator* unkfunc_02128c4c()
+NNSFndAllocator* getMgAllocator()
 {
     return s_pAllocator;
 }
@@ -853,7 +853,7 @@ void* MG_LoadFile(const char* _path, u32* size)
     return data;
 }
 
-void unkfunc_02128d2c(const char* path, void** pFile, NNSG3dResMdl** pMdl)
+void mgLoadModel(const char* path, void** pFile, NNSG3dResMdl** pMdl)
 {
     void* file = MG_LoadFile(path, NULL);
     if (pFile) {
@@ -1002,7 +1002,7 @@ void sideInfo_init()
     static int s_sideInfoInit;
     if (s_sideInfoInit == 0) {
         s_sideInfoInit = 1;
-        unkfunc_0212b42c();
+        loadSlimeCgFiles();
         slime_sprite_init();
     }
     ST_SIDE_INFO* pSideInfo = get_pSideInfo(0);
@@ -1202,7 +1202,7 @@ void sideInfo_draw(MG2_STATE mg2State)
     }
 }
 
-void unkfunc_021295f4(const char* str, int slime)
+void pushScoreMessage(const char* str, int slime)
 {
     int i;
     for (i = 7; i >= 1; i--) {
@@ -2156,9 +2156,9 @@ static void slime_del(int side, ST_SLIME* pSlime)
         static char bonusStr[32];
         int id = get_id_pSlime(pSlime);
         sprintf(bonusStr, "bounus %d", bonusPoint);
-        unkfunc_021295f4(bonusStr, -(id + 1));
+        pushScoreMessage(bonusStr, -(id + 1));
     }
-    unkfunc_021295f4(str, get_id_pSlime(pSlime));
+    pushScoreMessage(str, get_id_pSlime(pSlime));
 }
 
 static fx32 hosei_passFrame(fx32 passFrame, ST_SLIME* pSlime, int side)
@@ -2321,7 +2321,7 @@ void slime_update_ex(int side, fx32 arg_passFrame, int start, int end)
     }
 }
 
-static void unkfunc_0212b0fc(ST_SLIME* pSlime, MtxFx33* rot, VecFx32* scale)
+static void renderSlimeModel(ST_SLIME* pSlime, MtxFx33* rot, VecFx32* scale)
 {
     func_0208032c(scale);
     NNS_G3dGlbSetBaseRot(rot);
@@ -2337,7 +2337,7 @@ static void unkfunc_0212b0fc(ST_SLIME* pSlime, MtxFx33* rot, VecFx32* scale)
     }
 }
 
-static fx32 unkfunc_0212b188(int id)
+static fx32 getSlimeScale(int id)
 {
     fx32 scale = FX32_ONE;
     if (id >= 0 && id < 8) {
@@ -2383,11 +2383,11 @@ void slime_draw(int side, MtxFx33* rot, int start, int end)
         if (pSlime->sprite) {
             slime_sprite_draw(pSlime);
         } else {
-            fx32 s = unkfunc_0212b188(i);
+            fx32 s = getSlimeScale(i);
             scale.x = s;
             scale.y = s;
             scale.z = s;
-            unkfunc_0212b0fc(pSlime, rot, &scale);
+            renderSlimeModel(pSlime, rot, &scale);
         }
         slime_tp_draw(pSlime);
     }
@@ -2429,7 +2429,7 @@ int get_bonusPointIwa(int side)
 // ---------------------------------------------------------------------------
 // slime_cg
 
-void unkfunc_0212b42c()
+void loadSlimeCgFiles()
 {
     int i;
     for (i = 0; i < 9; i++) {
@@ -2444,10 +2444,10 @@ void unkfunc_0212b42c()
             switch (n) {
             case 1:
             case 2:
-                unkfunc_02128d2c(s_slimeCgModel[n].path, &s_slimeCgModel[n].file, NULL);
+                mgLoadModel(s_slimeCgModel[n].path, &s_slimeCgModel[n].file, NULL);
                 break;
             default:
-                unkfunc_02128d2c(s_slimeCgModel[n].path, &s_slimeCgModel[n].file, &s_slimeCgModel[n].mdl);
+                mgLoadModel(s_slimeCgModel[n].path, &s_slimeCgModel[n].file, &s_slimeCgModel[n].mdl);
                 break;
             }
         }
@@ -2477,14 +2477,14 @@ void slime_cg_Release_all()
 static int slime_cg_set_sub(ST_SLIME* pSlime, KIND kind, int anmNum)
 {
     int ret = 0;
-    NNSFndAllocator* allocator = unkfunc_02128c4c();
+    NNSFndAllocator* allocator = getMgAllocator();
     if (allocator) {
         int slime_cg = get_kind_data(kind, 7);
         NNSG3dResMdl* mdl = s_slimeCgModel[slime_cg].mdl;
         if (mdl == NULL) {
             void* file = s_slimeCgModel[slime_cg].file;
             if (file) {
-                unkfunc_0212d83c(file);
+                setupG3dRes(file);
                 mdl = unkGetMdl(func_02083268(file));
                 s_slimeCgModel[slime_cg].mdl = mdl;
             }
@@ -2548,11 +2548,11 @@ void slime_sprite_init()
     int data_id = sprite_kind_data[5].data_id;
     if (data_id != -1) {
         if (spr_id) {
-            unkfunc_0212bdb4(spr_id);
+            freeSpriteData(spr_id);
         }
         sprite_kind_data[5].data_id = -1;
     }
-    sprite_kind_data[5].spr_id = unkfunc_021284a4();
+    sprite_kind_data[5].spr_id = getPlayerSprite();
     for (u32 i = 0; i < sizeof(sprite_kind_data) / sizeof(sprite_kind_data[0]); i++) {
         spr_id = sprite_kind_data[i].spr_id;
         data_id = sprite_kind_data[i].data_id;
@@ -2682,7 +2682,7 @@ int sprite_data_load_sub(int spr_id, int pal_id, int keep)
     file = MG_LoadFile(path, &size);
     if (file) {
         NNSG2dPaletteData* pltt;
-        unkfunc_0212dcfc(file, &pltt);
+        getUnpackedPaletteData(file, &pltt);
         data->plttKey = unkfunc_0212d5f4(pltt->szByte);
         data->texFile = NULL;
         unkfunc_0212d564(data->plttKey, pltt->pRawData, 0);
@@ -2702,7 +2702,7 @@ int sprite_data_load(int spr_id, int keep)
     return ret;
 }
 
-void unkfunc_0212bd30(int spr_id)
+void freeSpriteDataSub(int spr_id)
 {
     for (int i = 0; i < 48; i++) {
         SPRITE_DATA* data = &g_sprite_data[i];
@@ -2722,13 +2722,13 @@ void unkfunc_0212bd30(int spr_id)
     }
 }
 
-void unkfunc_0212bdb4(int spr_id)
+void freeSpriteData(int spr_id)
 {
-    unkfunc_0212bd30(spr_id);
+    freeSpriteDataSub(spr_id);
     if (spr_id >= 5 && spr_id < 73) {
-        unkfunc_0212bd30(spr_id + 1);
-        unkfunc_0212bd30(spr_id + 2);
-        unkfunc_0212bd30(spr_id + 3);
+        freeSpriteDataSub(spr_id + 1);
+        freeSpriteDataSub(spr_id + 2);
+        freeSpriteDataSub(spr_id + 3);
     }
 }
 
@@ -3431,13 +3431,13 @@ u32 unkfunc_0212d6b4(void* data, u32 size, int load)
 // ---------------------------------------------------------------------------
 // model resources
 
-void unkfunc_0212d754(NNSG3dResTex* tex, int exec)
+void loadResPltt(NNSG3dResTex* tex, int exec)
 {
     func_020867d0(1, (tex->plttInfo.vramKey & 0xffff) << 3, (u8*)tex + tex->plttInfo.ofsPlttData, tex->plttInfo.sizePltt << 3);
     tex->plttInfo.flag |= 1;
 }
 
-void unkfunc_0212d790(NNSG3dResTex* tex, int exec)
+void loadResTex(NNSG3dResTex* tex, int exec)
 {
     u32 size = tex->texInfo.sizeTex << 3;
     if (size) {
@@ -3454,7 +3454,7 @@ void unkfunc_0212d790(NNSG3dResTex* tex, int exec)
     }
 }
 
-BOOL unkfunc_0212d83c(void* pResData)
+BOOL setupG3dRes(void* pResData)
 {
     switch (*(u32*)pResData) {
     case 0x30444d42:
@@ -3512,8 +3512,8 @@ BOOL unkfunc_0212d83c(void* pResData)
 
             func_0207fc4c(tex, keyTex, keyTex4x4);
             func_0207fd18(tex, keyPltt);
-            unkfunc_0212d790(tex, TRUE);
-            unkfunc_0212d754(tex, TRUE);
+            loadResTex(tex, TRUE);
+            loadResPltt(tex, TRUE);
         }
 
         if (*(u32*)pResData == 0x30444d42) {
@@ -3622,7 +3622,7 @@ void unkfunc_0212dcec(NNSG2dPaletteData* pltt)
     pltt->pRawData = (u8*)pltt->pRawData + (u32)pltt;
 }
 
-BOOL unkfunc_0212dcfc(void* file, NNSG2dPaletteData** ppPltt)
+BOOL getUnpackedPaletteData(void* file, NNSG2dPaletteData** ppPltt)
 {
     NNSG2dBinaryBlockHeader* block = func_0207ebf8(file, 0x504c5454);
     if (block) {

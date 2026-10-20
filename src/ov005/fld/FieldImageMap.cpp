@@ -60,29 +60,29 @@ THUMB void fld::FieldImageMap::execute()
             return;
         }
         map2d_ = 5;
-        largeMap_.unkfunc_02133d0c(render_);
+        largeMap_.setup(render_);
         break;
     case 5:
         if (++frame_ >= 0x1f) {
             map2d_ = 7;
             frame_ = 0x1f;
         }
-        largeMap_.unkfunc_021340c8(frame_);
+        largeMap_.setAlpha(frame_);
         break;
     case 6:
         break;
     case 7:
         frame_ = 0x1f;
-        largeMap_.unkfunc_021340c8(frame_);
-        largeMap_.unkfunc_021340e0();
+        largeMap_.setAlpha(frame_);
+        largeMap_.updatePlayerMarker();
         break;
     case 8:
         if (--frame_ < 0) {
-            largeMap_.unkfunc_02133d18();
+            largeMap_.cleanup();
             map2d_ = 0;
             frame_ = 0;
         }
-        largeMap_.unkfunc_021340c8(frame_);
+        largeMap_.setAlpha(frame_);
         break;
     case 0:
         if (getDisplayFrame() & 1) {

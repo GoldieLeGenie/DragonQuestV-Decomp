@@ -73,8 +73,8 @@ struct FLDObject
     void unkfunc_0212f5dc(unsigned short* src, unsigned short* dst, int num);
     void unkfunc_0212f67c();
     void unkfunc_0212f738();
-    void* unkfunc_0212f780(int size);           // allocate from the work memory
-    void unkfunc_0212f7a8(void* p);             // free (nothing to do)
+    void* allocWork(int size);           // allocate from the work memory
+    void freeWork(void* p);             // free (nothing to do)
 };
 
 }  // namespace race

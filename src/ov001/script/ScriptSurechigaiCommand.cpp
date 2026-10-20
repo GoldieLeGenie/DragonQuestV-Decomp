@@ -126,14 +126,14 @@ int SurechigaiRoot::isEnd()
 {
     if (window::gShopMenuControl.isMenuEnd()) {
         if (MaterielMenu_WINDOW_MANAGER::getSingleton()->getSurechigaiFlag() == true) {
-            unkfunc_021288f8(connectFlag_, connectIndex_, true);
+            setFlagByType(connectFlag_, connectIndex_, true);
         } else {
-            unkfunc_021288f8(connectFlag_, connectIndex_, false);
+            setFlagByType(connectFlag_, connectIndex_, false);
         }
         if (MaterielMenu_WINDOW_MANAGER::getSingleton()->getChangeTaishiFlag() == true) {
-            unkfunc_021288f8(makeFlag_, makeIndex_, true);
+            setFlagByType(makeFlag_, makeIndex_, true);
         } else {
-            unkfunc_021288f8(makeFlag_, makeIndex_, false);
+            setFlagByType(makeFlag_, makeIndex_, false);
         }
         MaterielMenu_WINDOW_MANAGER::getSingleton()->setSurechigaiFlag(false);
         MaterielMenu_WINDOW_MANAGER::getSingleton()->setChangeTaishiFlag(false);
@@ -181,7 +181,7 @@ int SurechigaiTaishiMessage::isEnd()
 
 SurechigaiTaishiMessage gSurechigaiTaishiMessage;
 
-void unkfunc_021288f8(unsigned int type, unsigned int index, bool flag)
+void setFlagByType(unsigned int type, unsigned int index, bool flag)
 {
     switch (type) {
     case 0:

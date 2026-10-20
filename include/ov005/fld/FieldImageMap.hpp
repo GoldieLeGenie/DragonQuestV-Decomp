@@ -16,14 +16,14 @@ namespace fld
 
         FieldLargeMap();
         ~FieldLargeMap();
-        void unkfunc_02133d0c(Render* render);  // load
-        void unkfunc_02133d18();                // cleanup
-        void unkfunc_02133d38();                // setup the sprites
-        int unkfunc_02133df4(int x, int y, void* buffer);   // load the map piece changed by the story
-        void unkfunc_02133f00(int x, int y);    // build the map texture around the block x, y
-        void unkfunc_02134004();                // build the map around the player
-        void unkfunc_021340c8(unsigned char alpha);
-        void unkfunc_021340e0();                // update the player marker
+        void setup(Render* render);  // load
+        void cleanup();                // cleanup
+        void setupSprites();                // setup the sprites
+        int loadEventBlock(int x, int y, void* buffer);   // load the map piece changed by the story
+        void buildMapTexture(int x, int y);    // build the map texture around the block x, y
+        void buildPlayerMap();                // build the map around the player
+        void setAlpha(unsigned char alpha);
+        void updatePlayerMarker();                // update the player marker
     };
 
     struct FieldImageMap : window::ImageMap {

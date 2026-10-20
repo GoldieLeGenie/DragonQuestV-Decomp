@@ -88,35 +88,35 @@ struct MPExchange {
     virtual void updateSelectRole();            // SYSMODE_SELECT_ROLE
     virtual void updateSelectScan();            // SYSMODE_SELECT_SCAN
     virtual void updateSelectNext();            // SYSMODE_SELECT_NEXT
-    virtual void unkfunc_02129a30();            // SYSMODE_PARENT_LOBBY
-    virtual void unkfunc_02129dd0();            // SYSMODE_PARENT_EXEC
+    virtual void updateParentLobby();            // SYSMODE_PARENT_LOBBY
+    virtual void updateParentExec();            // SYSMODE_PARENT_EXEC
     virtual void updateChildScan();            // SYSMODE_CHILD_SCAN
     virtual void updateChildConnect();            // SYSMODE_CHILD_CONNECT
     virtual void unkfunc_02129b64();            // SYSMODE_CHILD_READY
-    virtual void unkfunc_02129ec4();            // SYSMODE_CHILD_EXEC
+    virtual void updateChildExec();            // SYSMODE_CHILD_EXEC
     virtual void updateFinishReady();            // SYSMODE_FINISH_READY
-    virtual void unkfunc_02129f84();            // receive
-    virtual void unkfunc_0212a10c();            // send
+    virtual void receivePackets();            // receive
+    virtual void sendPacket();            // send
 
-    void unkfunc_0212a1b4();                    // print the children
-    void unkfunc_0212a2b8(status::TAISHI_DATA* data);    // data to send
-    status::TAISHI_DATA* unkfunc_0212a2fc();    // received data
-    void unkfunc_0212a310();                    // start
+    void printChildren();                    // print the children
+    void setSendData(status::TAISHI_DATA* data);    // data to send
+    status::TAISHI_DATA* getReceivedData();    // received data
+    void start();                    // start
     void startRoleSelection();
-    void unkfunc_0212a424();                    // update
+    void update();                    // update
     void updateDataSharing();                    // debug print
     void setMode(int mode);            // set the mode
     const char* getModeName(int mode);     // mode name
     void unkfunc_0212a950();
     void updateGameInfo(int entry);           // set the game info
-    static void unkfunc_0212a9c0(void* arg);    // game info callback
+    static void onSetGameInfoCallback(void* arg);    // game info callback
     static void onIndicationCallback(void* arg);    // indication callback
-    static void unkfunc_0212a9e0(WMBssDesc* desc);  // scan callback
+    static void onScanCallback(WMBssDesc* desc);  // scan callback
     void startParent(u16 channel, int beaconPeriod);   // start as parent
     void startScan(int channel);         // start the scan
     void finish();
-    void unkfunc_0212acdc();
-    void unkfunc_0212acf8();                    // SYSMODE_STOP_toREADY00
+    void abort();
+    void updateStopToReady0();                    // SYSMODE_STOP_toREADY00
     void updateStopToReady1();                    // SYSMODE_STOP_toREADY01
     void updateLightErrorInit();                    // SYSMODE_LIGHT_ERRORINIT
     void updateLightErrorWait();                    // SYSMODE_LIGHT_ERRORWAIT

@@ -50,7 +50,7 @@ THUMB void MaterielMenu_RaceOdds::menuSetup()
         menuItemY_ = 8;
         uniqueItem_ = 5;
     }
-    int* odds = unkfunc_02130878();
+    int* odds = getRaceOdds();
     for (int i = 0; i < maxToken_; i++) {
         if (*odds == 0) {
             odds++;
@@ -103,7 +103,7 @@ THUMB void MaterielMenu_RaceOdds::menuUpdate()
         commandUpdate();
     }
     if (mode_ == MODE_READY) {
-        if (unkfunc_02130860() == 3) {
+        if (getRaceJoutai() == 3) {
             mode_ = MODE_START;
             redraw_ = 1;
         }
@@ -136,10 +136,10 @@ THUMB void MaterielMenu_RaceOdds::commandUpdate()
                 return;
             }
             for (int i = 0; i < maxToken_; i++) {
-                int* bets = unkfunc_02130884();
+                int* bets = getRaceBets();
                 bets[i] = g_RaceData.oddsData_[i].coin;
             }
-            unkfunc_0213086c(1);
+            setRaceJoutai(1);
             mode_ = MODE_READY;
         } else if (betCoin()) {
             unk_28 = 1;

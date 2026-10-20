@@ -56,7 +56,7 @@ BillboardItem::~BillboardItem()
 {
 }
 
-void BillboardItem::unkfunc_0214e840(const char* filename)
+void BillboardItem::loadIconTexture(const char* filename)
 {
     data_.setup(filename, 0, 0);
     OS_Wait();
@@ -66,17 +66,17 @@ void BillboardItem::unkfunc_0214e840(const char* filename)
     setAlpha(0x1f);
 }
 
-void BillboardItem::unkfunc_0214e8a0(const UnkBillboardVertex* vertex)
+void BillboardItem::setItemVertex(const UnkBillboardVertex* vertex)
 {
     unkfunc_02047a20(vertex);
 }
 
-void BillboardItem::unkfunc_0214e8a8(const UnkBillboardTexCoord* texCoord)
+void BillboardItem::setItemTexCoord(const UnkBillboardTexCoord* texCoord)
 {
     unkfunc_02047a94(texCoord);
 }
 
-void BillboardItem::unkfunc_0214e8b0(const char* filename, int index)
+void BillboardItem::loadSheetIcon(const char* filename, int index)
 {
     unsigned char buf[0x400];
     data_.setup(filename, 0, 0);

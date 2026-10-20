@@ -49,10 +49,10 @@ static VecFx32 s_cameraPos;
 static VecFx32 s_plane0;
 static VecFx32 s_plane1;
 
-static int unkfunc_0212c53c(void* a, void* b);
+static int compareRaceObjPriority(void* a, void* b);
 
 // NNS_G3dResDefaultSetup with one VRAM block per texture
-ARM static int unkfunc_0212b5a0(void* file)
+ARM static int setupRaceFldRes(void* file)
 {
     unsigned int szTex;
     unsigned int szPltt;
@@ -132,8 +132,8 @@ ARM static int unkfunc_0212b5a0(void* file)
     }
 }
 
-// NNS_G3dResDefaultRelease for the textures set up by unkfunc_0212b5a0
-ARM static void unkfunc_0212b894(void* file, NNSG3dResTex* tex)
+// NNS_G3dResDefaultRelease for the textures set up by setupRaceFldRes
+ARM static void releaseRaceFldRes(void* file, NNSG3dResTex* tex)
 {
     int texKey;
     int tex4x4Key;
@@ -171,7 +171,7 @@ ARM static void unkfunc_0212b894(void* file, NNSG3dResTex* tex)
 }
 
 // blends two 15-bit colors
-ARM static unsigned int unkfunc_0212b9e8(unsigned int c0, unsigned int c1, fx32 rate)
+ARM static unsigned int blendRgb15(unsigned int c0, unsigned int c1, fx32 rate)
 {
     short x0;
     short x1;
@@ -196,24 +196,24 @@ ARM static unsigned int unkfunc_0212b9e8(unsigned int c0, unsigned int c1, fx32 
     col |= (x0 & 0x1f) << 10;
     return col;
 }
-static void unkfunc_0212c60c(FLD_MAP_OBJ* obj, VecFx32* ofs);
-static int unkfunc_0212c958(UnkFldAnim* anim, FLD_ANIM_FUNC func, void* work);
-static int unkfunc_0212cb10(void* key0, void* key1, fx32 rate, void* work);
-static int unkfunc_0212cd54(void* key0, void* key1, fx32 rate, void* work);
-static int unkfunc_0212d038(void* key0, void* key1, fx32 rate, void* work);
-static int unkfunc_0212d448(void* key0, void* key1, fx32 rate, void* work);
-static int unkfunc_0212d468(void* key0, void* key1, fx32 rate, void* work);
-static int unkfunc_0212d764(void* key0, void* key1, fx32 rate, void* work);
-static void unkfunc_0212d8d4(fx32 rate, unsigned int size, unsigned int* dld, unsigned int* dl0, unsigned int* dl1);
-static void unkfunc_0212d994(fx32 rate, unsigned int size, unsigned int* dld, unsigned int* dl0, unsigned int* dl1);
-static void unkfunc_0212da6c(fx32 rate, unsigned int size, unsigned int* dld, unsigned int* dl0, unsigned int* dl1);
-static void unkfunc_0212dbac(fx32 rate, unsigned int size, unsigned int* dld, unsigned int* dl0, unsigned int* dl1);
-static int unkfunc_0212e180(void* key0, void* key1, fx32 rate, void* work);
-static int unkfunc_0212e454(UnkFldRender* render, fx32 far);
-static int unkfunc_0212e554(VecFx32* pos, VecFx32* rot, VecFx32* scale, VecFx32* box, fx32 rate);
-static void unkfunc_0212e68c(NNSG3dRS* rs, unsigned int opt);
+static void calcRaceMapObjRender(FLD_MAP_OBJ* obj, VecFx32* ofs);
+static int updateRaceFldAnim(UnkFldAnim* anim, FLD_ANIM_FUNC func, void* work);
+static int applyRaceCameraKey(void* key0, void* key1, fx32 rate, void* work);
+static int applyRaceObjKey(void* key0, void* key1, fx32 rate, void* work);
+static int applyRaceObjKeyRotOffset(void* key0, void* key1, fx32 rate, void* work);
+static int storeRaceSeqKeys(void* key0, void* key1, fx32 rate, void* work);
+static int applyRaceSeqKey(void* key0, void* key1, fx32 rate, void* work);
+static int applyRaceShapeMorph(void* key0, void* key1, fx32 rate, void* work);
+static void morphDlTexCoords(fx32 rate, unsigned int size, unsigned int* dld, unsigned int* dl0, unsigned int* dl1);
+static void morphDlVertices(fx32 rate, unsigned int size, unsigned int* dld, unsigned int* dl0, unsigned int* dl1);
+static void morphDlTexCoordsVertices(fx32 rate, unsigned int size, unsigned int* dld, unsigned int* dl0, unsigned int* dl1);
+static void morphDlAll(fx32 rate, unsigned int size, unsigned int* dld, unsigned int* dl0, unsigned int* dl1);
+static int applyRaceLightKey(void* key0, void* key1, fx32 rate, void* work);
+static int isRaceMapObjInView(UnkFldRender* render, fx32 far);
+static int boxTestRaceMapObj(VecFx32* pos, VecFx32* rot, VecFx32* scale, VecFx32* box, fx32 rate);
+static void skipRaceSbcBillboard(NNSG3dRS* rs, unsigned int opt);
 static int unkfunc_0212e6b0(FLD_MAP_OBJ* obj, UnkFldModel* model);
-static void unkfunc_0212e74c(NNSG3dResMdl* mdl, int alpha, unsigned char* base);
+static void setRaceMdlMatAlpha(NNSG3dResMdl* mdl, int alpha, unsigned char* base);
 
 ARM FLDObject::FLDObject()
 {
@@ -269,7 +269,7 @@ ARM int FLDObject::Setup(void* mdl, void* data, void* coll, int heap)
     if (m_flag & 1) {
         Final();
     }
-    unkfunc_0212b5a0(mdl);
+    setupRaceFldRes(mdl);
     func_0207ebe4(&m_allocator, heap, 4);
     m_chunk = (UnkFldChunk*)((unsigned char*)data + 0x10);
     m_mdl = mdl;
@@ -360,7 +360,7 @@ ARM int FLDObject::Setup(void* mdl, void* data, void* coll, int heap)
 
     UnkFldModelTbl* model = m_model;
     FLD_MAP* map = m_map;
-    m_mat_alpha = (unsigned char**)unkfunc_0212f780(model->num * sizeof(unsigned char*));
+    m_mat_alpha = (unsigned char**)allocWork(model->num * sizeof(unsigned char*));
     memset(m_mat_alpha, 0, model->num * sizeof(unsigned char*));
     for (int i = 0; i < model->num; i++) {
         UnkFldModel* info = &model->model[i];
@@ -376,7 +376,7 @@ ARM int FLDObject::Setup(void* mdl, void* data, void* coll, int heap)
             info->unk_1c = (unsigned char*)data + (int)info->unk_1c;
         }
         if (info->mdl->info.numMat != 0) {
-            m_mat_alpha[i] = (unsigned char*)unkfunc_0212f780(info->mdl->info.numMat);
+            m_mat_alpha[i] = (unsigned char*)allocWork(info->mdl->info.numMat);
             for (unsigned int j = 0; j < info->mdl->info.numMat; j++) {
                 m_mat_alpha[i][j] = func_02083018(info->mdl, j);
             }
@@ -387,7 +387,7 @@ ARM int FLDObject::Setup(void* mdl, void* data, void* coll, int heap)
         FLD_MAP_OBJ* obj = &map->obj[i];
         UnkFldModel* info = &model->model[obj->model];
         obj->model_info = info;
-        obj->render = (UnkFldRender*)unkfunc_0212f780(sizeof(UnkFldRender));
+        obj->render = (UnkFldRender*)allocWork(sizeof(UnkFldRender));
         if (obj->render == NULL) {
             Final();
             return 0;
@@ -422,7 +422,7 @@ ARM int FLDObject::Setup(void* mdl, void* data, void* coll, int heap)
         }
         obj->priority <<= 4;
         obj->render->flag = 7;
-        unkfunc_0212c60c(obj, NULL);
+        calcRaceMapObjRender(obj, NULL);
     }
 
     unkfunc_0212c54c();
@@ -434,7 +434,7 @@ ARM int FLDObject::Setup(void* mdl, void* data, void* coll, int heap)
     if (light != NULL) {
         NNSG3dResMdlSet* mdlSet = func_02083268(m_mdl);
         mdlNum = mdlSet->dict.numEntry;
-        UnkFldMatList* list = (UnkFldMatList*)unkfunc_0212f780(mdlNum * 8 + 4);
+        UnkFldMatList* list = (UnkFldMatList*)allocWork(mdlNum * 8 + 4);
         if (list == NULL) {
             for (i = 0; i < light->num; i++) {
                 ((UnkFldLight*)light->res[i])->mat_list = NULL;
@@ -460,7 +460,7 @@ ARM int FLDObject::Setup(void* mdl, void* data, void* coll, int heap)
                 }
             }
             if (list->num != 0) {
-                l->mat_list = (UnkFldMatList*)unkfunc_0212f780(list->num * 8 + 4);
+                l->mat_list = (UnkFldMatList*)allocWork(list->num * 8 + 4);
                 if (l->mat_list == NULL) {
                     Final();
                     break;
@@ -472,10 +472,10 @@ ARM int FLDObject::Setup(void* mdl, void* data, void* coll, int heap)
             for (; i < light->num; i++) {
                 ((UnkFldLight*)light->res[i])->mat_list = NULL;
             }
-            unkfunc_0212f7a8(list);
+            freeWork(list);
             return 0;
         }
-        unkfunc_0212f7a8(list);
+        freeWork(list);
     }
 
     m_coll = (COLL_HEADER*)coll;
@@ -488,7 +488,7 @@ ARM int FLDObject::Setup(void* mdl, void* data, void* coll, int heap)
     return 1;
 }
 
-ARM static int unkfunc_0212c53c(void* a, void* b)
+ARM static int compareRaceObjPriority(void* a, void* b)
 {
     return ((FLD_OBJ_UID*)a)->uid - ((FLD_OBJ_UID*)b)->uid;
 }
@@ -502,13 +502,13 @@ ARM void FLDObject::unkfunc_0212c54c()
         uid[i].uid = m_map->obj[i].priority;
         uid[i].obj_id = i;
     }
-    func_0208a960(uid, m_map->obj_num, sizeof(FLD_OBJ_UID), unkfunc_0212c53c, stack);
+    func_0208a960(uid, m_map->obj_num, sizeof(FLD_OBJ_UID), compareRaceObjPriority, stack);
     for (i = 0; i < m_map->obj_num; i++) {
         m_map->order[i] = &m_map->index[uid[i].obj_id];
     }
 }
 
-ARM static void unkfunc_0212c60c(FLD_MAP_OBJ* obj, VecFx32* ofs)
+ARM static void calcRaceMapObjRender(FLD_MAP_OBJ* obj, VecFx32* ofs)
 {
     UnkFldRender* render = obj->render;
     if (render->flag & 8) {
@@ -575,7 +575,7 @@ ARM static void unkfunc_0212c60c(FLD_MAP_OBJ* obj, VecFx32* ofs)
     render->flag = 0;
 }
 
-ARM static int unkfunc_0212c958(UnkFldAnim* anim, FLD_ANIM_FUNC func, void* work)
+ARM static int updateRaceFldAnim(UnkFldAnim* anim, FLD_ANIM_FUNC func, void* work)
 {
     unsigned char* keys = (unsigned char*)anim->key;
     if (anim->flag & 4) {
@@ -644,7 +644,7 @@ ARM static int unkfunc_0212c958(UnkFldAnim* anim, FLD_ANIM_FUNC func, void* work
     return ret;
 }
 
-ARM static int unkfunc_0212cb10(void* key0, void* key1, fx32 rate, void* work)
+ARM static int applyRaceCameraKey(void* key0, void* key1, fx32 rate, void* work)
 {
     UnkFldCameraKey* k0 = (UnkFldCameraKey*)key0;
     UnkFldCameraKey* k1 = (UnkFldCameraKey*)key1;
@@ -689,10 +689,10 @@ ARM void FLDObject::unkfunc_0212cd00(int screen)
     }
     UnkFldAnim* anim = (UnkFldAnim*)camera->res[no - 1];
     s_cameraNo = screen;
-    unkfunc_0212c958(anim, unkfunc_0212cb10, this);
+    updateRaceFldAnim(anim, applyRaceCameraKey, this);
 }
 
-ARM static int unkfunc_0212cd54(void* key0, void* key1, fx32 rate, void* work)
+ARM static int applyRaceObjKey(void* key0, void* key1, fx32 rate, void* work)
 {
     UnkFldObjKey* k0 = (UnkFldObjKey*)key0;
     UnkFldObjKey* k1 = (UnkFldObjKey*)key1;
@@ -719,11 +719,11 @@ ARM static int unkfunc_0212cd54(void* key0, void* key1, fx32 rate, void* work)
         obj->render->scale.z = FX_Mul(obj->scale.z, FLD_LERP_NR(k0->scale.z, k1->scale.z, rate));
     }
     obj->render->flag = 0;
-    unkfunc_0212c60c(obj, NULL);
+    calcRaceMapObjRender(obj, NULL);
     return 0;
 }
 
-ARM static int unkfunc_0212d038(void* key0, void* key1, fx32 rate, void* work)
+ARM static int applyRaceObjKeyRotOffset(void* key0, void* key1, fx32 rate, void* work)
 {
     UnkFldObjKey* k0 = (UnkFldObjKey*)key0;
     UnkFldObjKey* k1 = (UnkFldObjKey*)key1;
@@ -757,7 +757,7 @@ ARM static int unkfunc_0212d038(void* key0, void* key1, fx32 rate, void* work)
         obj->render->scale.z = FX_Mul(obj->scale.z, FLD_LERP_NR(k0->scale.z, k1->scale.z, rate));
     }
     obj->render->flag = 0;
-    unkfunc_0212c60c(obj, &ofs);
+    calcRaceMapObjRender(obj, &ofs);
     return 0;
 }
 
@@ -781,15 +781,15 @@ ARM void FLDObject::unkfunc_0212d328(int no)
     if (obj->flag & 0x400000) {
         anim->flag |= 2;
         if (anim->flag & 4) {
-            unkfunc_0212c958(anim, unkfunc_0212d038, obj);
+            updateRaceFldAnim(anim, applyRaceObjKeyRotOffset, obj);
         } else {
-            unkfunc_0212c958(anim, unkfunc_0212cd54, obj);
+            updateRaceFldAnim(anim, applyRaceObjKey, obj);
         }
         anim->flag &= ~2;
     } else if (anim->flag & 4) {
-        unkfunc_0212c958(anim, unkfunc_0212d038, obj);
+        updateRaceFldAnim(anim, applyRaceObjKeyRotOffset, obj);
     } else {
-        unkfunc_0212c958(anim, unkfunc_0212cd54, obj);
+        updateRaceFldAnim(anim, applyRaceObjKey, obj);
     }
 }
 
@@ -804,7 +804,7 @@ ARM void FLDObject::unkfunc_0212d400()
     }
 }
 
-ARM static int unkfunc_0212d448(void* key0, void* key1, fx32 rate, void* work)
+ARM static int storeRaceSeqKeys(void* key0, void* key1, fx32 rate, void* work)
 {
     FLD_MAP_OBJ* obj = (FLD_MAP_OBJ*)work;
     obj->render->key0 = key0;
@@ -813,7 +813,7 @@ ARM static int unkfunc_0212d448(void* key0, void* key1, fx32 rate, void* work)
     return 0;
 }
 
-ARM static int unkfunc_0212d468(void* key0, void* key1, fx32 rate, void* work)
+ARM static int applyRaceSeqKey(void* key0, void* key1, fx32 rate, void* work)
 {
     UnkFldSeqKey* k0 = (UnkFldSeqKey*)key0;
     UnkFldSeqKey* k1 = (UnkFldSeqKey*)key1;
@@ -843,11 +843,11 @@ ARM static int unkfunc_0212d468(void* key0, void* key1, fx32 rate, void* work)
         obj->render->scale.z = FX_Mul(obj->scale.z, FLD_LERP_NR(k0->scale.z, k1->scale.z, rate));
     }
     obj->render->flag = 0;
-    unkfunc_0212c60c(obj, NULL);
+    calcRaceMapObjRender(obj, NULL);
     return 0;
 }
 
-ARM static int unkfunc_0212d764(void* key0, void* key1, fx32 rate, void* work)
+ARM static int applyRaceShapeMorph(void* key0, void* key1, fx32 rate, void* work)
 {
     UnkFldSeqKey* k0;
     UnkFldSeqKey* k1;
@@ -883,16 +883,16 @@ ARM static int unkfunc_0212d764(void* key0, void* key1, fx32 rate, void* work)
         size = sd->sizeDL / 4;
         switch (obj->flag & 0x70000000) {
         case 0x20000000:
-            unkfunc_0212d994(rate, size, dld, dl0, dl1);
+            morphDlVertices(rate, size, dld, dl0, dl1);
             break;
         case 0x40000000:
-            unkfunc_0212d8d4(rate, size, dld, dl0, dl1);
+            morphDlTexCoords(rate, size, dld, dl0, dl1);
             break;
         case 0x60000000:
-            unkfunc_0212da6c(rate, size, dld, dl0, dl1);
+            morphDlTexCoordsVertices(rate, size, dld, dl0, dl1);
             break;
         default:
-            unkfunc_0212dbac(rate, size, dld, dl0, dl1);
+            morphDlAll(rate, size, dld, dl0, dl1);
             break;
         }
     }
@@ -909,7 +909,7 @@ ARM static int unkfunc_0212d764(void* key0, void* key1, fx32 rate, void* work)
     }
 
 // texture coordinates only
-ARM static void unkfunc_0212d8d4(fx32 rate, unsigned int size, unsigned int* dld, unsigned int* dl0, unsigned int* dl1)
+ARM static void morphDlTexCoords(fx32 rate, unsigned int size, unsigned int* dld, unsigned int* dl0, unsigned int* dl1)
 {
     unsigned int pos;
     unsigned int cmd;
@@ -943,7 +943,7 @@ ARM static void unkfunc_0212d8d4(fx32 rate, unsigned int size, unsigned int* dld
 }
 
 // vertex positions only
-ARM static void unkfunc_0212d994(fx32 rate, unsigned int size, unsigned int* dld, unsigned int* dl0, unsigned int* dl1)
+ARM static void morphDlVertices(fx32 rate, unsigned int size, unsigned int* dld, unsigned int* dl0, unsigned int* dl1)
 {
     unsigned int pos;
     unsigned int cmd;
@@ -976,7 +976,7 @@ ARM static void unkfunc_0212d994(fx32 rate, unsigned int size, unsigned int* dld
 }
 
 // texture coordinates and vertex positions
-ARM static void unkfunc_0212da6c(fx32 rate, unsigned int size, unsigned int* dld, unsigned int* dl0, unsigned int* dl1)
+ARM static void morphDlTexCoordsVertices(fx32 rate, unsigned int size, unsigned int* dld, unsigned int* dl0, unsigned int* dl1)
 {
     unsigned int pos;
     unsigned int cmd;
@@ -1019,7 +1019,7 @@ ARM static void unkfunc_0212da6c(fx32 rate, unsigned int size, unsigned int* dld
 }
 
 // colors, texture coordinates and vertex positions
-ARM static void unkfunc_0212dbac(fx32 rate, unsigned int size, unsigned int* dld, unsigned int* dl0, unsigned int* dl1)
+ARM static void morphDlAll(fx32 rate, unsigned int size, unsigned int* dld, unsigned int* dl0, unsigned int* dl1)
 {
     unsigned int pos;
     unsigned int cmd;
@@ -1043,7 +1043,7 @@ ARM static void unkfunc_0212dbac(fx32 rate, unsigned int size, unsigned int* dld
                 if (c0 == dl1[pos]) {
                     dld[pos] = c0;
                 } else {
-                    dld[pos] = unkfunc_0212b9e8(c0, dl1[pos], rate);
+                    dld[pos] = blendRgb15(c0, dl1[pos], rate);
                 }
                 pos++;
                 break;
@@ -1125,13 +1125,13 @@ ARM void FLDObject::unkfunc_0212dd2c(FLD_MAP_OBJ* obj)
     } else {
         anim->key_num = num - 1;
     }
-    FLD_ANIM_FUNC func = (anim->flag & 8) ? unkfunc_0212d468 : unkfunc_0212d448;
+    FLD_ANIM_FUNC func = (anim->flag & 8) ? applyRaceSeqKey : storeRaceSeqKeys;
     if (obj->flag & 0x400000) {
         anim->flag |= 2;
-        unkfunc_0212c958(anim, func, obj);
+        updateRaceFldAnim(anim, func, obj);
         anim->flag &= ~2;
     } else {
-        unkfunc_0212c958(anim, func, obj);
+        updateRaceFldAnim(anim, func, obj);
     }
     seq->wait = anim->wait;
     seq->wait_init = anim->wait_init;
@@ -1152,7 +1152,7 @@ ARM void FLDObject::unkfunc_0212df34(FLD_MAP_OBJ* obj)
     if (m_seq->seq[obj->seq].data < 0) {
         return;
     }
-    unkfunc_0212d764(obj->render->key0, obj->render->key1, obj->render->rate, obj);
+    applyRaceShapeMorph(obj->render->key0, obj->render->key1, obj->render->rate, obj);
 }
 
 ARM void FLDObject::unkfunc_0212df80()
@@ -1226,7 +1226,7 @@ ARM void FLDObject::unkfunc_0212e10c(UnkFldPlttEntry* entry, UnkFldPlttSet* set,
     }
 }
 
-ARM static int unkfunc_0212e180(void* key0, void* key1, fx32 rate, void* work)
+ARM static int applyRaceLightKey(void* key0, void* key1, fx32 rate, void* work)
 {
     UnkFldLightKey* k0 = (UnkFldLightKey*)key0;
     UnkFldLightKey* k1 = (UnkFldLightKey*)key1;
@@ -1248,22 +1248,22 @@ ARM static int unkfunc_0212e180(void* key0, void* key1, fx32 rate, void* work)
         unsigned int c0, c1, x0, x1;
         c0 = k0->amb;
         if (c0 != k1->amb) {
-            c0 = unkfunc_0212b9e8(c0, k1->amb, rate);
+            c0 = blendRgb15(c0, k1->amb, rate);
         }
         amb = c0;
         c0 = k0->spec;
         if (c0 != k1->spec) {
-            c0 = unkfunc_0212b9e8(c0, k1->spec, rate);
+            c0 = blendRgb15(c0, k1->spec, rate);
         }
         spec = c0;
         c0 = k0->emi;
         if (c0 != k1->emi) {
-            c0 = unkfunc_0212b9e8(c0, k1->emi, rate);
+            c0 = blendRgb15(c0, k1->emi, rate);
         }
         emi = c0;
         c0 = k0->diff;
         if (c0 != k1->diff) {
-            c0 = unkfunc_0212b9e8(c0, k1->diff, rate);
+            c0 = blendRgb15(c0, k1->diff, rate);
         }
         diff = c0;
         c0 = k0->alpha;
@@ -1301,7 +1301,7 @@ ARM void FLDObject::unkfunc_0212e304()
     }
     for (int i = 0; i < light->num; i++) {
         UnkFldLight* l = (UnkFldLight*)light->res[i];
-        unkfunc_0212c958(&l->anim, unkfunc_0212e180, l);
+        updateRaceFldAnim(&l->anim, applyRaceLightKey, l);
     }
 }
 
@@ -1347,7 +1347,7 @@ ARM void FLDObject::unkfunc_0212e354()
     }
 }
 
-ARM static int unkfunc_0212e454(UnkFldRender* render, fx32 far)
+ARM static int isRaceMapObjInView(UnkFldRender* render, fx32 far)
 {
     fx32 dx = render->center.x - s_cameraPos.x;
     fx32 dz = render->center.z - s_cameraPos.z;
@@ -1366,7 +1366,7 @@ ARM static int unkfunc_0212e454(UnkFldRender* render, fx32 far)
     return func_0208a210(&dir, &s_plane1) >= 0;
 }
 
-ARM static int unkfunc_0212e554(VecFx32* pos, VecFx32* rot, VecFx32* scale, VecFx32* box, fx32 rate)
+ARM static int boxTestRaceMapObj(VecFx32* pos, VecFx32* rot, VecFx32* scale, VecFx32* box, fx32 rate)
 {
     int result;
     G3_PushMtx();
@@ -1385,7 +1385,7 @@ ARM static int unkfunc_0212e554(VecFx32* pos, VecFx32* rot, VecFx32* scale, VecF
     return result;
 }
 
-ARM static void unkfunc_0212e68c(NNSG3dRS* rs, unsigned int opt)
+ARM static void skipRaceSbcBillboard(NNSG3dRS* rs, unsigned int opt)
 {
     int len = 2;
     if (opt & 0x40) {
@@ -1422,7 +1422,7 @@ ARM static int unkfunc_0212e6b0(FLD_MAP_OBJ* obj, UnkFldModel* model)
     return alpha;
 }
 
-ARM static void unkfunc_0212e74c(NNSG3dResMdl* mdl, int alpha, unsigned char* base)
+ARM static void setRaceMdlMatAlpha(NNSG3dResMdl* mdl, int alpha, unsigned char* base)
 {
     for (unsigned int i = 0; i < mdl->info.numMat; i++) {
         func_02082fc8(mdl, i, alpha * base[i] / 31);
@@ -1432,7 +1432,7 @@ ARM static void unkfunc_0212e74c(NNSG3dResMdl* mdl, int alpha, unsigned char* ba
 #define FLD_DRAW_OBJ(obj)                                                                               \
     if ((model->flag & 0x1f) != obj->render->alpha) {                                                   \
         model->flag = (model->flag & ~0x1f) | obj->render->alpha;                                       \
-        unkfunc_0212e74c(obj->render->render_obj->resMdl, obj->render->alpha, m_mat_alpha[obj->model]); \
+        setRaceMdlMatAlpha(obj->render->render_obj->resMdl, obj->render->alpha, m_mat_alpha[obj->model]); \
     }                                                                                                   \
     func_020826d0(0x17, &data_02124bb4.cameraMtx, 12);                                                  \
     func_020826d0(0x1c, &obj->render->trans, 3);                                                        \
@@ -1472,8 +1472,8 @@ ARM void FLDObject::unkfunc_0212e7ac()
     work = (FLD_MAP_OBJ**)(((unsigned int)OS_GetITCMArenaLo() + 3) & ~3);
     cam = &data_02124bb4.cameraMtx;
     end = map->order + map->obj_num;
-    data_0209c6a8[7] = unkfunc_0212e68c;
-    data_0209c6a8[8] = unkfunc_0212e68c;
+    data_0209c6a8[7] = skipRaceSbcBillboard;
+    data_0209c6a8[8] = skipRaceSbcBillboard;
     saved = *cam;
     func_02088d9c(&saved, cam, m_scale.x, m_scale.y, m_scale.z);
     {
@@ -1540,7 +1540,7 @@ ARM void FLDObject::unkfunc_0212e7ac()
                 continue;
             }
             if (obj->render->flag != 0) {
-                unkfunc_0212c60c(obj, NULL);
+                calcRaceMapObjRender(obj, NULL);
             }
             if (!(m_flag & 4)) {
                 unkfunc_0212dd2c(obj);
@@ -1548,7 +1548,7 @@ ARM void FLDObject::unkfunc_0212e7ac()
             if (flag & 0x2000000) {
                 continue;
             }
-            if (unkfunc_0212e454(obj->render, far2)) {
+            if (isRaceMapObjInView(obj->render, far2)) {
                 if (!(m_flag & 4)) {
                     unkfunc_0212df34(obj);
                 }
@@ -1572,7 +1572,7 @@ ARM void FLDObject::unkfunc_0212e7ac()
                 continue;
             }
             if (obj->render->flag != 0) {
-                unkfunc_0212c60c(obj, NULL);
+                calcRaceMapObjRender(obj, NULL);
             }
             if (!(m_flag & 4)) {
                 unkfunc_0212dd2c(obj);
@@ -1580,7 +1580,7 @@ ARM void FLDObject::unkfunc_0212e7ac()
             if (flag & 0x2000000) {
                 continue;
             }
-            if (unkfunc_0212e554(&obj->render->trans, &obj->render->rot, &obj->render->scale, (VecFx32*)&obj->render->box_x, obj->render->box_scale)) {
+            if (boxTestRaceMapObj(&obj->render->trans, &obj->render->rot, &obj->render->scale, (VecFx32*)&obj->render->box_x, obj->render->box_scale)) {
                 if (!(m_flag & 4)) {
                     unkfunc_0212df34(obj);
                 }
@@ -1630,7 +1630,7 @@ ARM void FLDObject::Final()
     for (i = 0; i < map->obj_num; i++) {
         if (map->obj[i].render != NULL) {
             func_02082d88(&m_allocator, map->obj[i].render->render_obj);
-            unkfunc_0212f7a8(map->obj[i].render);
+            freeWork(map->obj[i].render);
             map->obj[i].render = NULL;
         }
     }
@@ -1639,23 +1639,23 @@ ARM void FLDObject::Final()
         for (i = 0; i < light->num; i++) {
             l = (UnkFldLight*)light->res[i];
             if (l->mat_list != NULL) {
-                unkfunc_0212f7a8(l->mat_list);
+                freeWork(l->mat_list);
             }
         }
     }
     func_020825f0();
-    unkfunc_0212b894(m_mdl, m_tex);
+    releaseRaceFldRes(m_mdl, m_tex);
     if (m_coll != NULL && m_coll->ext_data != NULL) {
         func_0207ebd8(&m_allocator, m_coll->ext_data);
     }
-    unkfunc_0212f7a8(m_tex);
+    freeWork(m_tex);
     if (m_mat_alpha != NULL) {
         for (i = 0; i < m_model->num; i++) {
             if (*(unsigned char**)((unsigned char*)m_mat_alpha + i * (int)sizeof(unsigned char*)) != NULL) {
-                unkfunc_0212f7a8(*(unsigned char**)((unsigned char*)m_mat_alpha + i * (int)sizeof(unsigned char*)));
+                freeWork(*(unsigned char**)((unsigned char*)m_mat_alpha + i * (int)sizeof(unsigned char*)));
             }
         }
-        unkfunc_0212f7a8(m_mat_alpha);
+        freeWork(m_mat_alpha);
     }
     m_flag &= ~1;
     init();
@@ -1719,7 +1719,7 @@ ARM int FLDObject::unkfunc_0212f050(int id)
                     l->anim.loop = l->anim.loop_start;
                     l->anim.wait = l->anim.wait_start;
                     l->anim.frame = 0;
-                    unkfunc_0212c958(&l->anim, unkfunc_0212e180, l);
+                    updateRaceFldAnim(&l->anim, applyRaceLightKey, l);
                 }
             }
         }
@@ -1810,7 +1810,7 @@ ARM NNSG3dResTex* FLDObject::unkfunc_0212f428()
     }
     plttNum = tex->plttInfo.sizePltt;
     plttSize = plttNum * 8;
-    buf = (NNSG3dResTex*)unkfunc_0212f780(tex->header.size - tex->texInfo.sizeTex * 8 - tex->tex4x4Info.sizeTex * 8 + plttNum * 8);
+    buf = (NNSG3dResTex*)allocWork(tex->header.size - tex->texInfo.sizeTex * 8 - tex->tex4x4Info.sizeTex * 8 + plttNum * 8);
     buf->header.kind = tex->header.kind;
     buf->header.size = tex->header.size;
     buf->texInfo.vramKey = tex->texInfo.vramKey;
@@ -1926,7 +1926,7 @@ ARM void FLDObject::unkfunc_0212f738()
     m_flag &= ~0x80;
 }
 
-ARM void* FLDObject::unkfunc_0212f780(int size)
+ARM void* FLDObject::allocWork(int size)
 {
     void* p = m_pool;
     size = (size + 3) & ~3;
@@ -1935,7 +1935,7 @@ ARM void* FLDObject::unkfunc_0212f780(int size)
     return p;
 }
 
-ARM void FLDObject::unkfunc_0212f7a8(void* p)
+ARM void FLDObject::freeWork(void* p)
 {
 }
 

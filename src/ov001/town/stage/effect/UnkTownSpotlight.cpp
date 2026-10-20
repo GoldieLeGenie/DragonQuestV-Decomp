@@ -22,13 +22,13 @@ void twn::UnkTownSpotlightLight::unkfunc_0212e6b0(int index, dss::Fix32Vector3* 
     alpha_ = 1;
 }
 
-void twn::UnkTownSpotlightLight::unkfunc_0212e6c0()
+void twn::UnkTownSpotlightLight::deactivate()
 {
     enable_ = false;
     pos_ = 0;
 }
 
-void twn::UnkTownSpotlightLight::unkfunc_0212e6c8()
+void twn::UnkTownSpotlightLight::loadSprites()
 {
     sprite_[0].loadFile("data/mask/en02.tex", 0);
     sprite_[1].loadFile("data/mask/en01.tex", 0);
@@ -43,14 +43,14 @@ void twn::UnkTownSpotlightLight::unkfunc_0212e6c8()
     }
 }
 
-void twn::UnkTownSpotlightLight::unkfunc_0212e73c()
+void twn::UnkTownSpotlightLight::releaseSprites()
 {
     for (int i = 0; i < 2; i++) {
         sprite_[i].unload();
     }
 }
 
-void twn::UnkTownSpotlightLight::unkfunc_0212e758(int screen)
+void twn::UnkTownSpotlightLight::draw(int screen)
 {
     if (enable_ && x_ >= 0 && y_ >= 0) {
         sprite_[screen].setPosition(x_ / 2, y_ * 2 / 3);
@@ -61,7 +61,7 @@ void twn::UnkTownSpotlightLight::unkfunc_0212e758(int screen)
     }
 }
 
-void twn::UnkTownSpotlightLight::unkfunc_0212e7c0()
+void twn::UnkTownSpotlightLight::update()
 {
     if (enable_) {
         setProjectedPointPos(index_, *pos_);
@@ -79,9 +79,9 @@ twn::UnkTownSpotlight::~UnkTownSpotlight()
 {
 }
 
-void twn::UnkTownSpotlight::unkfunc_0212e850()
+void twn::UnkTownSpotlight::setup()
 {
-    unkfunc_0212e8d4();
+    cleanup();
     blind_.screens_ = 3;
     blind_.setPolygonID(0x3e);
     blind_.depth_ = 0;
@@ -90,55 +90,55 @@ void twn::UnkTownSpotlight::unkfunc_0212e850()
     blind_.setSize(0x80, 0x80);
     blind_.setColor(0, 0, 0);
     blind_.setPolygonID(0x3c);
-    UnkTownSpotlightLight::unkfunc_0212e6c8();
+    UnkTownSpotlightLight::loadSprites();
     setup_ = true;
 }
 
-void twn::UnkTownSpotlight::unkfunc_0212e8b4(int index, dss::Fix32Vector3* pos)
+void twn::UnkTownSpotlight::setLight(int index, dss::Fix32Vector3* pos)
 {
     light_[index].unkfunc_0212e6b0(index + 8, pos);
 }
 
-void twn::UnkTownSpotlight::unkfunc_0212e8c4(int index)
+void twn::UnkTownSpotlight::clearLight(int index)
 {
-    light_[index].unkfunc_0212e6c0();
+    light_[index].deactivate();
 }
 
-void twn::UnkTownSpotlight::unkfunc_0212e8d4()
+void twn::UnkTownSpotlight::cleanup()
 {
     if (setup_) {
-        UnkTownSpotlightLight::unkfunc_0212e73c();
+        UnkTownSpotlightLight::releaseSprites();
         setup_ = false;
-        unkfunc_0212e95c(false);
+        setEnable(false);
         for (int i = 0; i < LIGHT_MAX; i++) {
-            unkfunc_0212e8c4(i);
+            clearLight(i);
         }
     }
 }
 
-void twn::UnkTownSpotlight::unkfunc_0212e900()
+void twn::UnkTownSpotlight::update()
 {
     if (enable_) {
         for (int i = 0; i < LIGHT_MAX; i++) {
-            light_[i].unkfunc_0212e7c0();
+            light_[i].update();
         }
     }
 }
 
-void twn::UnkTownSpotlight::unkfunc_0212e920()
+void twn::UnkTownSpotlight::draw()
 {
     if (enable_) {
         setupOrtho2DFine();
         for (int screen = 0; screen < 2; screen++) {
             for (int i = 0; i < LIGHT_MAX; i++) {
-                light_[i].unkfunc_0212e758(screen);
+                light_[i].draw(screen);
             }
         }
         blind_.draw();
     }
 }
 
-void twn::UnkTownSpotlight::unkfunc_0212e95c(int enable)
+void twn::UnkTownSpotlight::setEnable(int enable)
 {
     data_02101da4 = enable;
     enable_ = enable;
@@ -149,7 +149,7 @@ void twn::UnkTownSpotlight::setBlindAlpha(unsigned char alpha)
     blind_.setAlpha(alpha);
 }
 
-void twn::UnkTownSpotlight::unkfunc_0212e974(int r, int g, int b)
+void twn::UnkTownSpotlight::setBlindColor(int r, int g, int b)
 {
     blind_.setColor(r, g, b);
 }

@@ -365,9 +365,9 @@ int unkfunc_0212e168();
 // system
 extern void* g_mgWorkAddr;
 extern unsigned int g_mgWorkSize;
-void** unkfunc_02128060();
-void unkfunc_021280a4();
-void unkfunc_02128108();
+void** getMgHeap();
+void initTouchPanel();
+void readTouchPanel();
 void unkfunc_02128268();
 void unkfunc_0212826c(int mode, GXRgb col, fx32 frames);
 void unkfunc_0212829c(fx32 passFrame);
@@ -378,7 +378,7 @@ void unkfunc_02128394(int upScreen);
 // miniGame0
 void set_pMGArg(ST_MG_ARG* pMGArg);
 ST_MG_ARG* get_pMGArg();
-int unkfunc_021284a4();
+int getPlayerSprite();
 
 // miniGame2
 void bg_manage(BG_MANAGE bgManage);
@@ -390,11 +390,11 @@ bool MiniGame2(MG2_STATE* pMG2State);
 // miniGameSystem
 int unkfunc_02128c04();
 void unkfunc_02128c0c();
-NNSFndAllocator* unkfunc_02128c4c();
+NNSFndAllocator* getMgAllocator();
 void* unkfunc_02128c5c(u32 size);
 void unkfunc_02128c78(void* memBlock);
 void* MG_LoadFile(const char* _path, u32* size);
-void unkfunc_02128d2c(const char* path, void** pFile, NNSG3dResMdl** pMdl);
+void mgLoadModel(const char* path, void** pFile, NNSG3dResMdl** pMdl);
 u64 unkfunc_02128d7c();
 u32 rand32_min_max(u32 min, u32 max);
 int randSel_intTable(int* pProbability, int num);
@@ -413,7 +413,7 @@ int get_id_pSlime(ST_SLIME* pSlime);
 void sideInfo_init();
 void sideInfo_update(fx32 passFrame);
 void sideInfo_draw(MG2_STATE mg2State);
-void unkfunc_021295f4(const char* str, int slime);
+void pushScoreMessage(const char* str, int slime);
 int sideInfo_stage_add_ex(int side, int val, int opt);
 int sideInfo_taoshita_inc(int side, KIND kind, int* pBonusPoint, int* pAddScore);
 int sideInfo_nigashita_inc(int side, KIND kind);
@@ -438,7 +438,7 @@ bool bakudanIwa_bakuhatsu(int side, fx32 passFrame);
 int get_bonusPointIwa(int side);
 
 // slime_cg
-void unkfunc_0212b42c();
+void loadSlimeCgFiles();
 void slime_cg_Release(ST_SLIME* pSlime);
 void slime_cg_Release_all();
 int slime_cg_set(ST_SLIME* pSlime, KIND kind, int anmNum);
@@ -451,8 +451,8 @@ int slime_sprite_set(ST_SLIME* pSlime, KIND kind, int anmNum);
 // sprite
 int sprite_data_load_sub(int spr_id, int pal_id, int keep);
 int sprite_data_load(int spr_id, int keep);
-void unkfunc_0212bd30(int spr_id);
-void unkfunc_0212bdb4(int spr_id);
+void freeSpriteDataSub(int spr_id);
+void freeSpriteData(int spr_id);
 SPRITE* sprite_create(int data_id);
 void sprite_term(SPRITE* spr);
 void sprite_set_anim(SPRITE* spr, int ssa_id, int frame);
@@ -496,12 +496,12 @@ u32 unkfunc_0212d5f4(u32 size);
 int unkfunc_0212d608(u32 key);
 u32 unkfunc_0212d614(void* data, u32 size, int load);
 u32 unkfunc_0212d6b4(void* data, u32 size, int load);
-void unkfunc_0212d754(NNSG3dResTex* tex, int exec);
-void unkfunc_0212d790(NNSG3dResTex* tex, int exec);
-BOOL unkfunc_0212d83c(void* pResData);
+void loadResPltt(NNSG3dResTex* tex, int exec);
+void loadResTex(NNSG3dResTex* tex, int exec);
+BOOL setupG3dRes(void* pResData);
 void unkfunc_0212da5c();
 int unkfunc_0212dac0(VecFx32* pos, fx32* px, fx32* py, fx32* pz);
 void unkfunc_0212dca0(NNSG2dCharacterData* chr);
 BOOL unkfunc_0212dcb0(void* file, NNSG2dCharacterData** ppChr);
 void unkfunc_0212dcec(NNSG2dPaletteData* pltt);
-BOOL unkfunc_0212dcfc(void* file, NNSG2dPaletteData** ppPltt);
+BOOL getUnpackedPaletteData(void* file, NNSG2dPaletteData** ppPltt);

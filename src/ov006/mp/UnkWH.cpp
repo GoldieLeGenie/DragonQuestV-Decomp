@@ -100,7 +100,7 @@ ARM BOOL setWhParentWepKey()
 {
     changeWhSysState(WH_SYSSTATE_BUSY);
     u16 wepMode = s_parentWepKeyGenerator(s_wepKey, &s_parentParam);
-    WMErrCode result = func_0207b228(unkfunc_02121220, wepMode, s_wepKey);
+    WMErrCode result = func_0207b228(onSetParentWepKeyCallback, wepMode, s_wepKey);
     if (result == WM_ERRCODE_OPERATING) {
         return TRUE;
     }
@@ -109,7 +109,7 @@ ARM BOOL setWhParentWepKey()
     return FALSE;
 }
 
-ARM void unkfunc_02121220(void* arg)
+ARM void onSetParentWepKeyCallback(void* arg)
 {
     WMCallback* cb = (WMCallback*)arg;
     if (cb->errcode != WM_ERRCODE_SUCCESS) {
@@ -127,7 +127,7 @@ ARM BOOL startWhParent()
     if (s_sysState == WH_SYSSTATE_CONNECTED || s_sysState == WH_SYSSTATE_DATASHARING || s_sysState == WH_SYSSTATE_KEYSHARING) {
         return TRUE;
     }
-    WMErrCode result = func_0207a5ac(unkfunc_021212b0);
+    WMErrCode result = func_0207a5ac(onStartParentCallback);
     if (result != WM_ERRCODE_OPERATING) {
         setWhError(result);
         return FALSE;
@@ -137,7 +137,7 @@ ARM BOOL startWhParent()
     return TRUE;
 }
 
-ARM void unkfunc_021212b0(void* arg)
+ARM void onStartParentCallback(void* arg)
 {
     WMStartParentCallback* cb = (WMStartParentCallback*)arg;
     u16 bit = (u16)(1 << cb->aid);
@@ -167,20 +167,20 @@ ARM void unkfunc_021212b0(void* arg)
     case 0x1a:
         break;
     case WM_STATECODE_PARENT_START:
-        if (!unkfunc_021213cc()) {
+        if (!startWhParentMP()) {
             changeWhSysState(WH_SYSSTATE_ERROR);
         }
         break;
     }
 }
 
-ARM BOOL unkfunc_021213cc()
+ARM BOOL startWhParentMP()
 {
     if (s_sysState == WH_SYSSTATE_CONNECTED || s_sysState == WH_SYSSTATE_KEYSHARING || s_sysState == WH_SYSSTATE_DATASHARING) {
         return TRUE;
     }
     changeWhSysState(WH_SYSSTATE_CONNECTED);
-    WMErrCode result = func_0207a89c(unkfunc_02121460, (u16*)s_recvBuf, s_recvSize, (u16*)s_sendBuf, s_sendSize, 1);
+    WMErrCode result = func_0207a89c(onStartParentMPCallback, (u16*)s_recvBuf, s_recvSize, (u16*)s_sendBuf, s_sendSize, 1);
     if (result == WM_ERRCODE_OPERATING) {
         return TRUE;
     }
@@ -188,7 +188,7 @@ ARM BOOL unkfunc_021213cc()
     return FALSE;
 }
 
-ARM void unkfunc_02121460(void* arg)
+ARM void onStartParentMPCallback(void* arg)
 {
     WMStartMPCallback* cb = (WMStartMPCallback*)arg;
     if (cb->errcode != WM_ERRCODE_SUCCESS) {
@@ -200,7 +200,7 @@ ARM void unkfunc_02121460(void* arg)
     case WM_STATECODE_MP_START:
         if (s_connectMode == WH_CONNECTMODE_KS_PARENT) {
             if (s_sysState == WH_SYSSTATE_CONNECTED) {
-                if (!unkfunc_02121544()) {
+                if (!startWhParentKeySharing()) {
                     changeWhSysState(WH_SYSSTATE_ERROR);
                 }
                 return;
@@ -228,7 +228,7 @@ ARM void unkfunc_02121460(void* arg)
     }
 }
 
-ARM BOOL unkfunc_02121544()
+ARM BOOL startWhParentKeySharing()
 {
     changeWhSysState(WH_SYSSTATE_KEYSHARING);
     WMErrCode result = func_0207b20c(&s_keySetBuf, 13);
@@ -279,7 +279,7 @@ ARM void onEndParentMPCallback(void* arg)
 
 ARM BOOL endWhParent()
 {
-    WMErrCode result = func_0207a5b8(unkfunc_02121640);
+    WMErrCode result = func_0207a5b8(onEndParentCallback);
     if (result == WM_ERRCODE_OPERATING) {
         return TRUE;
     }
@@ -287,7 +287,7 @@ ARM BOOL endWhParent()
     return FALSE;
 }
 
-ARM void unkfunc_02121640(void* arg)
+ARM void onEndParentCallback(void* arg)
 {
     WMCallback* cb = (WMCallback*)arg;
     if (cb->errcode != WM_ERRCODE_SUCCESS) {
@@ -340,7 +340,7 @@ ARM BOOL scanWhNextChannel()
     }
     s_scanParam.maxChannelTime = func_0207a38c();
     s_scanParam.scanBuf = &s_scanBuf;
-    WMErrCode result = func_0207a5e0(unkfunc_02121798, &s_scanParam);
+    WMErrCode result = func_0207a5e0(onStartScanCallback, &s_scanParam);
     if (result == WM_ERRCODE_OPERATING) {
         return TRUE;
     }
@@ -348,7 +348,7 @@ ARM BOOL scanWhNextChannel()
     return FALSE;
 }
 
-ARM void unkfunc_02121798(void* arg)
+ARM void onStartScanCallback(void* arg)
 {
     WMStartScanCallback* cb = (WMStartScanCallback*)arg;
     if (cb->errcode != WM_ERRCODE_SUCCESS) {
@@ -358,7 +358,7 @@ ARM void unkfunc_02121798(void* arg)
     }
     if (s_sysState != WH_SYSSTATE_SCANNING) {
         s_autoConnect = 0;
-        if (!unkfunc_02121928()) {
+        if (!stopWhScan()) {
             changeWhSysState(WH_SYSSTATE_ERROR);
         }
         return;
@@ -383,7 +383,7 @@ ARM void unkfunc_02121798(void* arg)
                     s_scanCallback(&s_scanBuf);
                 }
                 if (s_autoConnect != 0) {
-                    if (!unkfunc_02121928()) {
+                    if (!stopWhScan()) {
                         changeWhSysState(WH_SYSSTATE_ERROR);
                     }
                     return;
@@ -408,7 +408,7 @@ ARM BOOL endWhScan()
     return TRUE;
 }
 
-ARM BOOL unkfunc_02121928()
+ARM BOOL stopWhScan()
 {
     WMErrCode result = func_0207a664(onEndScanCallback);
     if (result == WM_ERRCODE_OPERATING) {
@@ -444,7 +444,7 @@ ARM BOOL setWhChildWepKey()
 {
     changeWhSysState(WH_SYSSTATE_BUSY);
     u16 wepMode = s_childWepKeyGenerator(s_wepKey, &s_scanBuf);
-    WMErrCode result = func_0207b228(unkfunc_02121a20, wepMode, s_wepKey);
+    WMErrCode result = func_0207b228(onSetChildWepKeyCallback, wepMode, s_wepKey);
     if (result == WM_ERRCODE_OPERATING) {
         return TRUE;
     }
@@ -453,7 +453,7 @@ ARM BOOL setWhChildWepKey()
     return FALSE;
 }
 
-ARM void unkfunc_02121a20(void* arg)
+ARM void onSetChildWepKeyCallback(void* arg)
 {
     WMCallback* cb = (WMCallback*)arg;
     if (cb->errcode != WM_ERRCODE_SUCCESS) {
@@ -516,7 +516,7 @@ ARM void onStartConnectCallback(void* arg)
 
 ARM BOOL startWhChildMP()
 {
-    WMErrCode result = func_0207a89c(unkfunc_02121c2c, (u16*)s_recvBuf, s_recvSize, (u16*)s_sendBuf, s_sendSize, 1);
+    WMErrCode result = func_0207a89c(onStartChildMPCallback, (u16*)s_recvBuf, s_recvSize, (u16*)s_sendBuf, s_sendSize, 1);
     if (result == WM_ERRCODE_OPERATING) {
         return TRUE;
     }
@@ -524,7 +524,7 @@ ARM BOOL startWhChildMP()
     return FALSE;
 }
 
-ARM void unkfunc_02121c2c(void* arg)
+ARM void onStartChildMPCallback(void* arg)
 {
     WMStartMPCallback* cb = (WMStartMPCallback*)arg;
     if (cb->errcode != WM_ERRCODE_SUCCESS) {
@@ -542,7 +542,7 @@ ARM void unkfunc_02121c2c(void* arg)
                 break;
             }
             if (s_sysState == WH_SYSSTATE_CONNECTED) {
-                if (!unkfunc_02121d14()) {
+                if (!startWhChildKeySharing()) {
                     finalizeWh();
                 }
                 break;
@@ -567,7 +567,7 @@ ARM void unkfunc_02121c2c(void* arg)
     }
 }
 
-ARM BOOL unkfunc_02121d14()
+ARM BOOL startWhChildKeySharing()
 {
     if (s_sysState == WH_SYSSTATE_KEYSHARING) {
         return TRUE;
@@ -628,7 +628,7 @@ ARM void onEndChildMPCallback(void* arg)
 ARM BOOL disconnectWhChild()
 {
     changeWhSysState(WH_SYSSTATE_BUSY);
-    WMErrCode result = func_0207a710(unkfunc_02121e60, 0);
+    WMErrCode result = func_0207a710(onEndChildCallback, 0);
     if (result == WM_ERRCODE_OPERATING) {
         return TRUE;
     }
@@ -637,7 +637,7 @@ ARM BOOL disconnectWhChild()
     return FALSE;
 }
 
-ARM void unkfunc_02121e60(void* arg)
+ARM void onEndChildCallback(void* arg)
 {
     WMCallback* cb = (WMCallback*)arg;
     if (cb->errcode != WM_ERRCODE_SUCCESS) {
@@ -679,7 +679,7 @@ ARM void onWhEndCallback(void* arg)
     changeWhSysState(WH_SYSSTATE_STOP);
 }
 
-ARM void unkfunc_02121f10(u32 ggid)
+ARM void setWhGgid(u32 ggid)
 {
     s_parentParam.ggid = ggid;
 }
@@ -909,7 +909,7 @@ ARM void onWhIndicateCallback(void* arg)
 ARM BOOL initWhWM()
 {
     changeWhSysState(WH_SYSSTATE_BUSY);
-    WMErrCode result = func_0207a41c(s_wmBuf, unkfunc_0212261c, 0);
+    WMErrCode result = func_0207a41c(s_wmBuf, onWhInitializeCallback, 0);
     if (result == WM_ERRCODE_OPERATING) {
         return TRUE;
     }
@@ -918,7 +918,7 @@ ARM BOOL initWhWM()
     return FALSE;
 }
 
-ARM void unkfunc_0212261c(void* arg)
+ARM void onWhInitializeCallback(void* arg)
 {
     WMCallback* cb = (WMCallback*)arg;
     if (s_forceError == 1) {
@@ -993,7 +993,7 @@ ARM u16* getWhSharedData(u16 aid)
     return func_0207b1b0(&s_dsInfo, &s_dsSet, aid);
 }
 
-ARM BOOL unkfunc_021227ec(const void* data)
+ARM BOOL stepWhDataSharing(const void* data)
 {
     WMErrCode result = func_0207abe8(&s_dsInfo, (const u16*)data, &s_dsSet);
     if (result == 7) {
@@ -1086,17 +1086,17 @@ ARM BOOL endWh()
     return TRUE;
 }
 
-ARM void unkfunc_021229e0(void (*callback)(void* arg))
+ARM void setWhIndicateCallback(void (*callback)(void* arg))
 {
     s_indCallback = callback;
 }
 
-ARM int unkfunc_021229f0()
+ARM int getWhBeaconCount()
 {
     return s_beaconCount;
 }
 
-ARM void unkfunc_02122a00(int value)
+ARM void setWhForceError(int value)
 {
     s_forceError = value;
 }

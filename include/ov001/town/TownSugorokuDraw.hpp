@@ -17,8 +17,8 @@ namespace twn {
 
         TownSugorokuDraw();
         ~TownSugorokuDraw();
-        void unkfunc_0214d3ac(const UnkPolygonVertex* xy);              // load the panel texture
-        void unkfunc_0214d568(int type, dss::Fix32Vector3& pos);        // draw one panel
+        void setup(const UnkPolygonVertex* xy);              // load the panel texture
+        void drawPanel(int type, dss::Fix32Vector3& pos);        // draw one panel
         void cleanup();
     };
 

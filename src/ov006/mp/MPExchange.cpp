@@ -21,7 +21,7 @@ u8 MPExchange::sendBuffer_[0x1e0] ATTRIBUTE_ALIGN(32);
 u8 MPExchange::recvBuffer_[0x1e0] ATTRIBUTE_ALIGN(32);
 WMBssDesc MPExchange::bssDesc_[4];
 
-ARM void MPExchange::unkfunc_0212a1b4()
+ARM void MPExchange::printChildren()
 {
     char buf[0x20];
     char line[0x20];
@@ -39,7 +39,7 @@ ARM void MPExchange::unkfunc_0212a1b4()
     }
 }
 
-ARM void MPExchange::unkfunc_0212a2b8(status::TAISHI_DATA* data)
+ARM void MPExchange::setSendData(status::TAISHI_DATA* data)
 {
     receiveCount_ = 0;
     dss::memset(sendData_, 0, 0xdc);
@@ -47,7 +47,7 @@ ARM void MPExchange::unkfunc_0212a2b8(status::TAISHI_DATA* data)
     dss::memcpy(sendData_, data, 0xdc);
 }
 
-ARM status::TAISHI_DATA* MPExchange::unkfunc_0212a2fc()
+ARM status::TAISHI_DATA* MPExchange::getReceivedData()
 {
     if (receiveCount_ == 0) {
         return NULL;
@@ -55,13 +55,13 @@ ARM status::TAISHI_DATA* MPExchange::unkfunc_0212a2fc()
     return (status::TAISHI_DATA*)receiveData_;
 }
 
-ARM void MPExchange::unkfunc_0212a310()
+ARM void MPExchange::start()
 {
     OSOwnerInfo info;
     unk_38 = data_020f325c;
     role_.mode_ = data_020f3258;
     forceError_ = data_020f3260;
-    unkfunc_02122a00(forceError_);
+    setWhForceError(forceError_);
     func_020887c8(&info);
     nickNameLength_ = info.nickNameLength;
     dss::memcpy(nickName_, info.nickName, info.nickNameLength);
@@ -86,7 +86,7 @@ ARM void MPExchange::startRoleSelection()
     setMode(SYSMODE_SELECT_ROLE);
 }
 
-ARM void MPExchange::unkfunc_0212a424()
+ARM void MPExchange::update()
 {
     prevMode_ = mode_;
     switch (getWhSysState()) {
@@ -109,7 +109,7 @@ ARM void MPExchange::unkfunc_0212a424()
     case SYSMODE_STOP:
         break;
     case SYSMODE_STOP_toREADY00:
-        unkfunc_0212acf8();
+        updateStopToReady0();
         break;
     case SYSMODE_STOP_toREADY01:
         updateStopToReady1();
@@ -126,10 +126,10 @@ ARM void MPExchange::unkfunc_0212a424()
         updateSelectNext();
         break;
     case SYSMODE_PARENT_LOBBY:
-        unkfunc_02129a30();
+        updateParentLobby();
         break;
     case SYSMODE_PARENT_EXEC:
-        unkfunc_02129dd0();
+        updateParentExec();
         break;
     case SYSMODE_CHILD_SCAN:
         updateChildScan();
@@ -141,7 +141,7 @@ ARM void MPExchange::unkfunc_0212a424()
         unkfunc_02129b64();
         break;
     case SYSMODE_CHILD_EXEC:
-        unkfunc_02129ec4();
+        updateChildExec();
         break;
     case SYSMODE_FINISH_READY:
         updateFinishReady();
@@ -165,8 +165,8 @@ ARM void MPExchange::unkfunc_0212a424()
 ARM void MPExchange::updateDataSharing()
 {
     if (getWhSysState() != WH_SYSSTATE_STOP) {
-        unkfunc_02129f84();
-        unkfunc_0212a10c();
+        receivePackets();
+        sendPacket();
         int state = getWhSysState();
         debugConsolePrintfIfEnabled(0, 23, "%02d %02d %s", state, unk_0212e0c0, getWhSysStateName());
         if (++unk_0212e0c0 == 100) {
@@ -240,10 +240,10 @@ ARM void MPExchange::updateGameInfo(int entry)
     unk_1a++;
     childCount_ = func_0208a8dc(getWhConnectBitmap()) - 1;
     u32 ggid = getGgid();
-    func_0207b270(unkfunc_0212a9c0, nickName_, 0x18, ggid, tgid_, entry ? 1 : 0);
+    func_0207b270(onSetGameInfoCallback, nickName_, 0x18, ggid, tgid_, entry ? 1 : 0);
 }
 
-ARM void MPExchange::unkfunc_0212a9c0(void* arg)
+ARM void MPExchange::onSetGameInfoCallback(void* arg)
 {
 }
 
@@ -254,7 +254,7 @@ ARM void MPExchange::onIndicationCallback(void* arg)
     }
 }
 
-ARM void MPExchange::unkfunc_0212a9e0(WMBssDesc* desc)
+ARM void MPExchange::onScanCallback(WMBssDesc* desc)
 {
     char line[0x20];
     char name[0x15];
@@ -300,7 +300,7 @@ ARM void MPExchange::startParent(u16 channel, int beaconPeriod)
 
 ARM void MPExchange::startScan(int channel)
 {
-    startWhScan(unkfunc_0212a9e0, s_anyBssid, channel);
+    startWhScan(onScanCallback, s_anyBssid, channel);
     setMode(SYSMODE_CHILD_SCAN);
 }
 
@@ -310,18 +310,18 @@ ARM void MPExchange::finish()
     setMode(SYSMODE_FINISH_READY);
 }
 
-ARM void MPExchange::unkfunc_0212acdc()
+ARM void MPExchange::abort()
 {
     resetWh();
     setMode(SYSMODE_FINISH_READY);
 }
 
-ARM void MPExchange::unkfunc_0212acf8()
+ARM void MPExchange::updateStopToReady0()
 {
-    unkfunc_021229e0(onIndicationCallback);
+    setWhIndicateCallback(onIndicationCallback);
     if (initWh()) {
         setWhJudgeAcceptFunc(NULL);
-        unkfunc_02121f10(getGgid());
+        setWhGgid(getGgid());
         setMode(SYSMODE_STOP_toREADY01);
     } else {
         setMode(SYSMODE_FATAL_ERROR);

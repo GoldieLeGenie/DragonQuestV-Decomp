@@ -17,9 +17,9 @@ struct BillboardItem : TextureBillboard {
     BillboardItem();
     ~BillboardItem();
     virtual void draw();
-    void unkfunc_0214e840(const char* filename);                   // load a single icon texture
-    void unkfunc_0214e8a0(const UnkBillboardVertex* vertex);       // setVertex
-    void unkfunc_0214e8a8(const UnkBillboardTexCoord* texCoord);   // setTexCoord
-    void unkfunc_0214e8b0(const char* filename, int index);        // load the icon `index` of an icon sheet
+    void loadIconTexture(const char* filename);                   // load a single icon texture
+    void setItemVertex(const UnkBillboardVertex* vertex);       // setVertex
+    void setItemTexCoord(const UnkBillboardTexCoord* texCoord);   // setTexCoord
+    void loadSheetIcon(const char* filename, int index);        // load the icon `index` of an icon sheet
     void cleanup();
 };

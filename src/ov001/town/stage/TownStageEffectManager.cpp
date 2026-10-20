@@ -100,14 +100,14 @@ void twn::TownStageEffectManager::terminate()
     tinct_.cleanup();
     wrap_.cleanup();
     lightning_.cleanup();
-    spotlight_.unkfunc_0212e8d4();
+    spotlight_.cleanup();
     puzzle_.cleanup();
     wire_.cleanup();
 }
 
 void twn::TownStageEffectManager::execute()
 {
-    spotlight_.unkfunc_0212e900();
+    spotlight_.update();
     lightning_.execute();
     puzzle_.execute();
     wire_.execute();
@@ -115,7 +115,7 @@ void twn::TownStageEffectManager::execute()
 
 void twn::TownStageEffectManager::draw()
 {
-    spotlight_.unkfunc_0212e920();
+    spotlight_.draw();
 }
 
 void twn::TownStageEffectManager::loadStage()
@@ -145,14 +145,14 @@ void twn::TownStageEffectManager::setStopLightning(bool stop)
 
 void twn::TownStageEffectManager::setTorchlight()
 {
-    spotlight_.unkfunc_0212e850();
+    spotlight_.setup();
     spotlight_.setBlindAlpha(0x12);
-    spotlight_.unkfunc_0212e974(1, 1, 8);
+    spotlight_.setBlindColor(1, 1, 8);
     int add = 0x20;
     int size = 0x20;
-    spotlight_.unkfunc_0212e95c(true);
+    spotlight_.setEnable(true);
     for (int i = 0; i < MAX_TORCH; i++) {
-        spotlight_.unkfunc_0212e8b4(i, &TownPlayerManager::getSingleton().getPosition());
+        spotlight_.setLight(i, &TownPlayerManager::getSingleton().getPosition());
         spotlight_.light_[i].alpha_ = i * 4 + 1;
         size += add / 2;
         spotlight_.light_[i].size_ = size;
@@ -164,14 +164,14 @@ void twn::TownStageEffectManager::setTorchlight()
 
 void twn::TownStageEffectManager::setSpotlight(dss::Fix32Vector3* pos)
 {
-    spotlight_.unkfunc_0212e850();
+    spotlight_.setup();
     spotlight_.setBlindAlpha(0);
-    spotlight_.unkfunc_0212e974(0, 0, 0);
+    spotlight_.setBlindColor(0, 0, 0);
     int add = 0;
     int size = 0x40;
-    spotlight_.unkfunc_0212e95c(true);
+    spotlight_.setEnable(true);
     for (int i = 0; i < MAX_TORCH; i++) {
-        spotlight_.unkfunc_0212e8b4(i, pos);
+        spotlight_.setLight(i, pos);
         spotlight_.light_[i].alpha_ = i * 4 + 1;
         size += add / 2;
         spotlight_.light_[i].size_ = size;
@@ -183,9 +183,9 @@ void twn::TownStageEffectManager::setSpotlight(dss::Fix32Vector3* pos)
 void twn::TownStageEffectManager::clearTorchlight()
 {
     for (int i = 0; i < MAX_TORCH; i++) {
-        spotlight_.unkfunc_0212e8c4(i);
+        spotlight_.clearLight(i);
     }
-    spotlight_.unkfunc_0212e95c(false);
+    spotlight_.setEnable(false);
 }
 
 void twn::TownStageEffectManager::setLightSize(int size)

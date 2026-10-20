@@ -248,7 +248,7 @@ THUMB void TownCamera::viewMove()
             dss::Fix32Vector3 target = camera_.unk_004.getTarget();
             dss::Vector3<short>& now = camera_.unk_004.getAngle();
             dss::Vector3<short> angle(now.vx, now.vy, now.vz);
-            unkfunc_021403a0(angle, povPos, target);
+            calcPositionFromAngle(angle, povPos, target);
             povPos += povOffset_;
             break;
         }
@@ -633,7 +633,7 @@ THUMB void TownCamera::setPovMove(dss::Fix32Vector3 target, int frame, int flag)
     povLock_ = 1;
 }
 
-THUMB void TownCamera::unkfunc_021403a0(dss::Vector3<short>& angle, dss::Fix32Vector3& pos, dss::Fix32Vector3& target)
+THUMB void TownCamera::calcPositionFromAngle(dss::Vector3<short>& angle, dss::Fix32Vector3& pos, dss::Fix32Vector3& target)
 {
     dss::UnkMatrix43 rotX;
     dss::UnkMatrix43 rotY;

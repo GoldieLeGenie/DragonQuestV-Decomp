@@ -31,7 +31,7 @@ struct SurechigaiTaishiInfo : ScriptCommand {
     virtual int isEnd();
 };
 
-void unkfunc_021288f8(unsigned int type, unsigned int index, bool flag);
+void setFlagByType(unsigned int type, unsigned int index, bool flag);
 bool cmdRedrawSurechigaiTaishi(void* param);
 bool cmdSetMacroSpecialty(void* param);
 

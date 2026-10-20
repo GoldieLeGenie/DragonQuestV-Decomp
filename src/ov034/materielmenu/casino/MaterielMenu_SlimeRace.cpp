@@ -55,12 +55,12 @@ THUMB void MaterielMenu_SlimeRace::menuDraw()
 THUMB void MaterielMenu_SlimeRace::menuUpdate()
 {
     if (gMaterielMenu_RaceOdds.mode_ == MaterielMenu_RaceOdds::MODE_START) {
-        if (unkfunc_02130860() == 5) {
+        if (getRaceJoutai() == 5) {
             dataUpdate();
         }
     }
     if (gMaterielMenu_RaceOdds.mode_ == MaterielMenu_RaceOdds::MODE_ESCAPE) {
-        unkfunc_0213086c(7);
+        setRaceJoutai(7);
         status::g_Menu.setBooking(menu::BOOKING_SLIMERACE);
         gMaterielMenu_RaceOdds.close();
         close();

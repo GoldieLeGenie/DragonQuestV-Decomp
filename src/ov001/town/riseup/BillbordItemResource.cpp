@@ -29,23 +29,23 @@ THUMB int twn::BillbordItemResource::loadResource(int id)
 {
     int area = getEmptyArea();
     if (id < 1000) {
-        m_item[area].unkfunc_0214e8b0("data/RISE/item.tex", id);
+        m_item[area].loadSheetIcon("data/RISE/item.tex", id);
     } else {
         switch (id) {
         case 1000:
-            m_item[area].unkfunc_0214e840("data/rise/gold.tex");
+            m_item[area].loadIconTexture("data/rise/gold.tex");
             break;
         case 1001:
-            m_item[area].unkfunc_0214e840("data/rise/exclamation.tex");
+            m_item[area].loadIconTexture("data/rise/exclamation.tex");
             break;
         case 1002:
-            m_item[area].unkfunc_0214e840("data/rise/question.tex");
+            m_item[area].loadIconTexture("data/rise/question.tex");
             break;
         case 9999:
-            m_item[area].unkfunc_0214e840("data/rise/number.tex");
+            m_item[area].loadIconTexture("data/rise/number.tex");
             break;
         case 2000:
-            m_item[area].unkfunc_0214e840("data/rise/exhibit.tex");
+            m_item[area].loadIconTexture("data/rise/exhibit.tex");
             break;
         }
     }

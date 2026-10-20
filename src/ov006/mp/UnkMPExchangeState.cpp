@@ -34,16 +34,16 @@ ARM void MPExchange::updateSelectRole()
     }
 }
 
-ARM void MPExchange::unkfunc_02129a30()
+ARM void MPExchange::updateParentLobby()
 {
     updateGameInfo(1);
-    debugConsolePrintfIfEnabled(2, 1, "BEACON CNT %d", unkfunc_021229f0());
+    debugConsolePrintfIfEnabled(2, 1, "BEACON CNT %d", getWhBeaconCount());
     role_.printTable();
-    if (unkfunc_021229f0() > 1 && cancelRequest_ != 0) {
+    if (getWhBeaconCount() > 1 && cancelRequest_ != 0) {
         finish();
         return;
     }
-    if (unkfunc_021229f0() > 60) {
+    if (getWhBeaconCount() > 60) {
         SEND_PACKET->state_ = 0;
         finalizeWh();
         setMode(SYSMODE_SELECT_NEXT);
@@ -156,9 +156,9 @@ ARM void MPExchange::updateChildConnect()
     }
 }
 
-ARM void MPExchange::unkfunc_02129dd0()
+ARM void MPExchange::updateParentExec()
 {
-    unkfunc_0212a1b4();
+    printChildren();
     dss::memcpy(&SEND_PACKET->data_, sendData_, 0xdc);
     if (getWhConnectBitmap() == 1) {
         finish();
@@ -192,9 +192,9 @@ ARM void MPExchange::unkfunc_02129dd0()
     }
 }
 
-ARM void MPExchange::unkfunc_02129ec4()
+ARM void MPExchange::updateChildExec()
 {
-    unkfunc_0212a1b4();
+    printChildren();
     dss::memcpy(&SEND_PACKET->data_, sendData_, 0xdc);
     if (forceError_ == 5) {
         finish();
@@ -223,10 +223,10 @@ ARM void MPExchange::updateSelectNext()
     }
 }
 
-ARM void MPExchange::unkfunc_02129f84()
+ARM void MPExchange::receivePackets()
 {
     if (getWhSysState() == WH_SYSSTATE_DATASHARING) {
-        if (unkfunc_021227ec(sendBuffer_)) {
+        if (stepWhDataSharing(sendBuffer_)) {
             int i;
             for (i = 0; i < 2; i++) {
                 void* data = getWhSharedData(i);
@@ -270,7 +270,7 @@ ARM void MPExchange::unkfunc_02129f84()
     }
 }
 
-ARM void MPExchange::unkfunc_0212a10c()
+ARM void MPExchange::sendPacket()
 {
     if (dataSharingFailed_ != 0) {
         return;

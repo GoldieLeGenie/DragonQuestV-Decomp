@@ -412,7 +412,7 @@ void twn::TownSugorokuManager::draw()
     if (flag_.check(STAGE_INIT) == true) {
         int num = g_SugorokuInfo.getPanelNum();
         for (int i = 0; i < num; i++) {
-            sugorokuDraw_.unkfunc_0214d568(g_SugorokuInfo.getPanelIDByIndex(i), g_SugorokuInfo.getPanelPosByIndex(i));
+            sugorokuDraw_.drawPanel(g_SugorokuInfo.getPanelIDByIndex(i), g_SugorokuInfo.getPanelPosByIndex(i));
         }
     }
 }
@@ -453,7 +453,7 @@ void twn::TownSugorokuManager::stageSetup()
     xy.v[1] = p2;
     xy.v[2] = p3;
     xy.v[3] = p4;
-    sugorokuDraw_.unkfunc_0214d3ac(&xy);
+    sugorokuDraw_.setup(&xy);
     p1 = p1 / 2;
     p2 = p2 / 2;
     p3 = p3 / 2;

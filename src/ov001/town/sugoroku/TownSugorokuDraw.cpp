@@ -33,7 +33,7 @@ twn::TownSugorokuDraw::~TownSugorokuDraw()
 {
 }
 
-void twn::TownSugorokuDraw::unkfunc_0214d3ac(const UnkPolygonVertex* xy)
+void twn::TownSugorokuDraw::setup(const UnkPolygonVertex* xy)
 {
     data_.setup("data/sugoroku/sgpall.tex", 0, 0);
     texture_ = data_.getAddr();
@@ -61,7 +61,7 @@ void twn::TownSugorokuDraw::unkfunc_0214d3ac(const UnkPolygonVertex* xy)
     polygon_.setVertex(&xy_);
 }
 
-void twn::TownSugorokuDraw::unkfunc_0214d568(int type, dss::Fix32Vector3& pos)
+void twn::TownSugorokuDraw::drawPanel(int type, dss::Fix32Vector3& pos)
 {
     polygon_.setTexCoord(&uv_[type]);
     polygon_.setPosition(pos);

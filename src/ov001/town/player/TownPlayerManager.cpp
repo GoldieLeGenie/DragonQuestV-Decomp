@@ -271,7 +271,7 @@ THUMB void twn::TownPlayerManager::setup()
         dss::Fix32Vector3 target(TownCamera::getSingleton()->camera_.unk_004.getTarget());
         dss::Vector3<short>& now = TownCamera::getSingleton()->camera_.unk_004.getAngle();
         dss::Vector3<short> angle(now.vx, now.vy, now.vz);
-        TownCamera::getSingleton()->unkfunc_021403a0(angle, povPos, target);
+        TownCamera::getSingleton()->calcPositionFromAngle(angle, povPos, target);
         TownCamera::getSingleton()->camera_.unk_004.setPosition(povPos);
     }
 }

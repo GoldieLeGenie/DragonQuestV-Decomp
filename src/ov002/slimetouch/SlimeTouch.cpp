@@ -35,7 +35,7 @@ void SlimeTouchTerm()
     unkfunc_0212d470();
     slime_cg_Release_all();
     sprite_all_free();
-    func_0207e7cc(*unkfunc_02128060());
+    func_0207e7cc(*getMgHeap());
 }
 
 int SlimeTouchResult(ST_ARG_SL_TOUCH* arg)

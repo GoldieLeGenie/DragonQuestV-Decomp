@@ -83,7 +83,7 @@ struct TownCamera {
     void resetDistance(int frame);
     bool isEndChangeDistance();
     void setPovMove(dss::Fix32Vector3 target, int frame, int flag);
-    void unkfunc_021403a0(dss::Vector3<short>& angle, dss::Fix32Vector3& pos, dss::Fix32Vector3& target);
+    void calcPositionFromAngle(dss::Vector3<short>& angle, dss::Fix32Vector3& pos, dss::Fix32Vector3& target);
     void setTargetPlayer(int flag);
     void setMoveTargetPlayer(int frame);
     void setMoveTragetChara(int index);

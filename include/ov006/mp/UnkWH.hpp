@@ -70,39 +70,39 @@ void setWhError(int code);                                // set the error code
 BOOL setWhParentParam();                                        // set the parent parameter
 void onSetParentParamCallback(void* arg);
 BOOL setWhParentWepKey();                                        // set the parent WEP key
-void unkfunc_02121220(void* arg);
+void onSetParentWepKeyCallback(void* arg);
 BOOL startWhParent();                                        // start the parent
-void unkfunc_021212b0(void* arg);
-BOOL unkfunc_021213cc();                                        // start MP (parent)
-void unkfunc_02121460(void* arg);
-BOOL unkfunc_02121544();                                        // start key sharing (parent)
+void onStartParentCallback(void* arg);
+BOOL startWhParentMP();                                        // start MP (parent)
+void onStartParentMPCallback(void* arg);
+BOOL startWhParentKeySharing();                                        // start key sharing (parent)
 BOOL endWhParentKeySharing();                                        // end key sharing (parent)
 BOOL endWhParentMP();                                        // end MP (parent)
 void onEndParentMPCallback(void* arg);
 BOOL endWhParent();                                        // end the parent
-void unkfunc_02121640(void* arg);
+void onEndParentCallback(void* arg);
 BOOL startWhScan(void (*callback)(WMBssDesc*), const u8* bssid, u16 channel);  // start the scan
 BOOL scanWhNextChannel();                                        // scan the next channel
-void unkfunc_02121798(void* arg);
+void onStartScanCallback(void* arg);
 BOOL endWhScan();                                        // end the scan
-BOOL unkfunc_02121928();                                        // end the scan (WM)
+BOOL stopWhScan();                                        // end the scan (WM)
 void onEndScanCallback(void* arg);
 BOOL setWhChildWepKey();                                        // set the child WEP key
-void unkfunc_02121a20(void* arg);
+void onSetChildWepKeyCallback(void* arg);
 BOOL startWhChildConnect();                                        // start the connection
 void onStartConnectCallback(void* arg);
 BOOL startWhChildMP();                                        // start MP (child)
-void unkfunc_02121c2c(void* arg);
-BOOL unkfunc_02121d14();                                        // start key sharing (child)
+void onStartChildMPCallback(void* arg);
+BOOL startWhChildKeySharing();                                        // start key sharing (child)
 BOOL endWhChildKeySharing();                                        // end key sharing (child)
 BOOL endWhChildMP();                                        // end MP (child)
 void onEndChildMPCallback(void* arg);
 BOOL disconnectWhChild();                                        // disconnect (child)
-void unkfunc_02121e60(void* arg);
+void onEndChildCallback(void* arg);
 BOOL requestWhReset();                                        // reset
 void onResetCallback(void* arg);
 void onWhEndCallback(void* arg);
-void unkfunc_02121f10(u32 ggid);
+void setWhGgid(u32 ggid);
 void setWhJudgeAcceptFunc(BOOL (*judge)(void* arg));
 u16 getWhConnectBitmap();                                         // connected bitmap
 int getWhSysState();                                         // system state
@@ -117,14 +117,14 @@ s16 selectWhRandomChannel(u16 bitmap);                               // pick a c
 BOOL initWh();                                        // initialize
 void onWhIndicateCallback(void* arg);
 BOOL initWhWM();
-void unkfunc_0212261c(void* arg);
+void onWhInitializeCallback(void* arg);
 BOOL connectWhParent(int mode, u16 tgid, u16 channel, u16 beaconPeriod);   // parent connect
 BOOL connectWhChild(int mode, WMBssDesc* desc);               // child connect
 u16* getWhSharedData(u16 aid);                                 // shared data of a child
-BOOL unkfunc_021227ec(const void* data);                        // data sharing step
+BOOL stepWhDataSharing(const void* data);                        // data sharing step
 void resetWh();                                        // reset
 void finalizeWh();                                        // finalize
 BOOL endWh();                                        // end
-void unkfunc_021229e0(void (*callback)(void* arg));             // indication callback
-int unkfunc_021229f0();                                         // beacon count
-void unkfunc_02122a00(int value);
+void setWhIndicateCallback(void (*callback)(void* arg));             // indication callback
+int getWhBeaconCount();                                         // beacon count
+void setWhForceError(int value);

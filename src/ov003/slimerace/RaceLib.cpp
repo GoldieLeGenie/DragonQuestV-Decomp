@@ -38,31 +38,31 @@ void SlimeRaceTerm()
     unkfunc_021295e0();
     slimeRace_Final();
     sprite_all_free();
-    func_0207e7cc(unkfunc_02128060()->handle);
+    func_0207e7cc(getMgHeap()->handle);
 }
 
 int SlimeRaceResult(ST_ARG_SL_RACE* arg)
 {
     memcpy(arg, &g_arg.slRace, sizeof(ST_ARG_SL_RACE));
-    return unkfunc_02130860() == 5;
+    return getRaceJoutai() == 5;
 }
 
-int unkfunc_02130860()
+int getRaceJoutai()
 {
     return get_slimeRaceJoutai();
 }
 
-void unkfunc_0213086c(int state)
+void setRaceJoutai(int state)
 {
     set_slimeRaceJoutai(state);
 }
 
-int* unkfunc_02130878()
+int* getRaceOdds()
 {
     return get_pSlimeRaceOdds();
 }
 
-int* unkfunc_02130884()
+int* getRaceBets()
 {
     return get_pSlimeRaceBets();
 }

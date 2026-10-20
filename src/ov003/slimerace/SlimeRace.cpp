@@ -307,7 +307,7 @@ inline u32 rand32(u32 max)
     return MATH_Rand32(&s_rand32, max);
 }
 
-UnkMiniGameHeap* unkfunc_02128060()
+UnkMiniGameHeap* getMgHeap()
 {
     if (s_heapCreated == 0) {
         s_heapCreated = 1;
@@ -316,7 +316,7 @@ UnkMiniGameHeap* unkfunc_02128060()
     return &s_heap;
 }
 
-void unkfunc_021280a4()
+void initTouchPanel()
 {
 }
 
@@ -408,7 +408,7 @@ static void MiniGame3_init()
     unkfunc_0212855c();
     slimeRace_init();
     unkfunc_02128748();
-    unkfunc_021280a4();
+    initTouchPanel();
     unkfunc_021280a8(0, 0, 0x3c000);
 }
 
@@ -467,7 +467,7 @@ int MiniGame3(MG3_STATE* pMG3State)
 
 void unkfunc_0212844c()
 {
-    void* heap = unkfunc_02128060()->handle;
+    void* heap = getMgHeap()->handle;
     func_0207ebe4(&s_allocator, (int)heap, 0x20);
     s_pAllocator = &s_allocator;
     func_0207e968(heap, 1);
@@ -1217,14 +1217,14 @@ void SlimeRace_init_BG(int no)
     s_mdlFile = MG_LoadFile(fname, &size);
     sprintf(fname, "SlimeRace/map/ev%02d.col", no);
     s_collFile = MG_LoadFile(fname, &size);
-    s_fld.Setup(s_mdlFile, s_mapFile, s_collFile, (int)unkfunc_02128060()->handle);
+    s_fld.Setup(s_mdlFile, s_mapFile, s_collFile, (int)getMgHeap()->handle);
     s_fld.m_box_test = 1;
     no = (no & 1) ? 1 : 2;
     sprintf(fname, "SlimeRace/map/gate%02d.map", no);
     s_gateMapFile = MG_LoadFile(fname, &size);
     sprintf(fname, "SlimeRace/map/gate%02d.nsbmd", no);
     s_gateMdlFile = MG_LoadFile(fname, &size);
-    s_fldGate.Setup(s_gateMdlFile, s_gateMapFile, NULL, (int)unkfunc_02128060()->handle);
+    s_fldGate.Setup(s_gateMdlFile, s_gateMapFile, NULL, (int)getMgHeap()->handle);
     s_fldGate.m_box_test = 1;
 }
 
@@ -1233,7 +1233,7 @@ SPRITE* SlimeRace_init_Chara(int id, int keep)
     return sprite_create(sprite_data_load_sub(0x191, id + 0x191, keep));
 }
 
-void unkfunc_02129d18(fx32 x, int opt)
+void setupRaceCamera(fx32 x, int opt)
 {
     fx32 camZ;
     fx32 tgtZ;
@@ -1544,7 +1544,7 @@ ACTION slimeRace_upDate_action_raceStage(ST_SLIME_RACE* pSlimeRace, RACE_STAGE r
     return action;
 }
 
-RACE_STAGE unkfunc_0212a6a8(STATE state)
+RACE_STAGE getRaceStage(STATE state)
 {
     switch (state) {
     case STATE_stage0:
@@ -1618,7 +1618,7 @@ void slimeRace_upDate_action_change(ST_SLIME_RACE* pSlimeRace)
             }
             break;
         default: {
-            RACE_STAGE raceStage = unkfunc_0212a6a8(pSlimeRace->state);
+            RACE_STAGE raceStage = getRaceStage(pSlimeRace->state);
             if (raceStage != RACE_STAGE_null) {
                 action = slimeRace_upDate_action_raceStage(pSlimeRace, raceStage, &repeat);
                 if (raceStage != RACE_STAGE_0) {
@@ -1999,7 +1999,7 @@ void slimeRace_draw()
         }
         z0 = pSlimeRace0->trans.z;
     }
-    unkfunc_02129d18(z0, 0);
+    setupRaceCamera(z0, 0);
     if (s_bgDisp) {
         NNS_G3dGlbPerspectiveW(s_fovySin, s_fovyCos, 0x1555, 0x14000, 0xc8000, FX32_ONE);
         s_fldGate.unkfunc_0212e7ac();
