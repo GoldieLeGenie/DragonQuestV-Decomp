@@ -25,7 +25,7 @@ namespace casino {
         int m_effect_frame;                     // 0x224
         int m_shine_scroll_speed;                            // 0x228 effect scroll speed
         int m_effect_enable;                    // 0x22C
-        UnkBillboardTexCoord unk_230;           // 0x230 effect texture coordinates
+        UnkBillboardTexCoord m_shine_tex_coord;           // 0x230 effect texture coordinates
 
         PokerCard();
         ~PokerCard();

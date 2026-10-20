@@ -36,7 +36,7 @@ THUMB void BattleMenu_MAGIC2ENEMY::menuUpdate()
         MenuStatusInfo::getHaveBattleStatus(chara).setSelectCommand(status::HaveBattleStatus::UseAction, -1);
         gBattleMenu_MAGIC.open();
         gBattleMenu_MAGIC.setActiveMagicPos(activeMagicPos_);
-        gBattleMenu_ATTACK.unk_f4 = 1;
+        gBattleMenu_ATTACK.isDecided_ = 1;
         close();
         return;
     }

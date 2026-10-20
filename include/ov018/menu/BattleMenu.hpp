@@ -65,14 +65,14 @@ struct BattleMenu_FRIEND_ENTRANCE : menu::MenuBase {
 
 // selection of the friend monster that leaves the party
 struct UnkBattleMenuFriendSelect : menu::MenuBase {
-    int unk_1c;                                 // 0x1C
-    int unk_20;                                 // 0x20
-    int unk_24;                                 // 0x24
-    int unk_28;                                 // 0x28
+    int monster_;                                 // 0x1C
+    int monsterParty_;                                 // 0x20
+    int nextFriend_;                                 // 0x24
+    int memberCount_;                                 // 0x28
     int unk_2c[8];                              // 0x2C
-    int unk_4c;                                 // 0x4C
-    int unk_50;                                 // 0x50
-    int unk_54;                                 // 0x54
+    int select_;                                 // 0x4C
+    int isCancel_;                                 // 0x50
+    int isDecide_;                                 // 0x54
     int unk_58;                                 // 0x58
     menu::MenuItem menuItem_;                   // 0x5C
     CursorMoveGridLoop navigator_;           // 0xC0
@@ -126,7 +126,7 @@ struct BattleMenu_ACTIONMENU : menu::MenuBase {
     menu::MenuItem pageItem_;                   // 0x80
     menu::MenuItem cancelItem_;                 // 0xE4
     int activeCharacter_;                       // 0x148
-    int unk_14c;                                // 0x14C
+    int activePage_;                                // 0x14C
     CursorMoveGridLoop navigator_;           // 0x150
 
     virtual void menuSetup();
@@ -146,9 +146,9 @@ struct BattleMenu_ATTACK : menu::MenuBase {
     menu::MenuItem cancelItem_;                 // 0x80
     int enemyMaxNum_;                           // 0xE4
     int monsterMask_;                                 // 0xE8
-    int unk_ec;                                 // 0xEC
-    int unk_f0;                                 // 0xF0
-    int unk_f4;                                 // 0xF4
+    int prevActive_;                                 // 0xEC
+    int isSelecting_;                                 // 0xF0
+    int isDecided_;                                 // 0xF4
     menu::TOUCHRECT touchRect_[12];             // 0xF8
 
     virtual void menuSetup();
@@ -197,7 +197,7 @@ struct BattleMenu_ITEMUSEEQUIP : menu::MenuBase {
     int activeChara_;                                // 0x148
     int activeItem_;                                // 0x14C
     int equipEnable_;                                // 0x150
-    int unk_154;                                // 0x154
+    int isSoundPlayed_;                                // 0x154
 
     virtual void menuSetup();
     virtual void menuExecute();
@@ -219,7 +219,7 @@ struct BattleMenu_ITEMUSE2ENEMY : menu::MenuBase {
     int oldGroup_;                                // 0x154
     int oldActive_;                                // 0x158
     int monsterMask_;                                // 0x15C
-    int unk_160;                                // 0x160
+    int isEnd_;                                // 0x160
 
     virtual void menuSetup();
     virtual void menuExecute();
@@ -314,9 +314,9 @@ struct BattleMenu_ARRAYMENU : menu::MenuBase {
 };
 
 struct BattleMenu_ARRAY_ALL : menu::MenuBase {
-    int unk_1c[4];                              // 0x1C
-    int unk_2c;                                 // 0x2C
-    int unk_30;                                 // 0x30
+    int order_[4];                              // 0x1C
+    int orderCount_;                                 // 0x2C
+    int npcCount_;                                 // 0x30
     int unk_34[25];                             // 0x34
     menu::MenuItem menuItem_;                   // 0x98
     menu::MenuItem cancelItem_;                 // 0xFC

@@ -6,7 +6,7 @@
 struct MaterielMenu_PICTUREBOOK_ROOT : menu::MenuBase {
     menu::MenuItem menuItem_;                   // 0x1C
     CursorMoveGridLoop navigator_;           // 0x80
-    char unk_8c;                                // 0x8C book entries
+    char m_bookCount;                                // 0x8C book entries
     char m_activeMonster;                       // 0x8D
     char m_nowPage;                             // 0x8E
 

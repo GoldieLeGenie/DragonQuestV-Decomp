@@ -75,32 +75,32 @@ THUMB void MaterielMenu_JISAN_CHANGE_NAME::menuSetup()
     MenuStatusInfo::setMode(MenuStatusInfo::BATTLE_AND_CARRIAGE_MODE);
     status::g_Menu.drawFlag_ = 1;
     for (int i = 0; i < 0x51; i++) {
-        unk_90[i] = 0;
+        charaList_[i] = 0;
     }
-    unk_90[0] = -1;
+    charaList_[0] = -1;
     short count = 1;
     int partyCount = MenuStatusInfo::getPartyCount(MenuStatusInfo::COUNT_ALL);
     for (short i = 0; i < partyCount; i++) {
         int index = MenuStatusInfo::getPlayerData(i).getKindIndex();
         if (index != 0x10 && index != 0x11 && index != 0x3b && index != 0x3a && index != 0x52) {
-            unk_90[count] = i;
+            charaList_[count] = i;
             count++;
         }
     }
-    unk_1c = count;
+    charaCount_ = count;
     menuItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD_CANCEL, menu::MenuItem::CURSORTYPE_ACTIVE);
     menuItem_.active_ = menu::MaterielMenuPlayerControl::getSingleton()->activeItem_;
     navigator_.setupBase();
-    navigator_.setup(6, 2, unk_1c);
+    navigator_.setup(6, 2, charaCount_);
     navigator_.setPageNo(menu::MaterielMenuPlayerControl::getSingleton()->activeItemPage_);
-    menu::MaterielMenuPlayerControl::getSingleton()->setActiveChara(unk_90[navigator_.getIndex(menuItem_.active_)]);
+    menu::MaterielMenuPlayerControl::getSingleton()->setActiveChara(charaList_[navigator_.getIndex(menuItem_.active_)]);
     cmn::g_cmnSoundManager.initialize();
     mode_ = MODE_SELECT;
 }
 
 THUMB void MaterielMenu_JISAN_CHANGE_NAME::menuExecute()
 {
-    int count = unk_1c - navigator_.getPageNo() * 12;
+    int count = charaCount_ - navigator_.getPageNo() * 12;
     menu::MenuTemplate_materiel::surechigaiSelectObject(&menuItem_, menuItem_.active_, dss::clamp<int>(1, count, 12));
 }
 
@@ -120,7 +120,7 @@ THUMB void MaterielMenu_JISAN_CHANGE_NAME::menuDraw()
     }
     int page = navigator_.getPageNo();
     int pageMax = navigator_.getPageMaxCount() - 1;
-    drawChangeNameScreen(open, page, pageMax, 4, unk_90, unk_1c);
+    drawChangeNameScreen(open, page, pageMax, 4, charaList_, charaCount_);
 }
 
 THUMB void MaterielMenu_JISAN_CHANGE_NAME::menuUpdate()
@@ -150,11 +150,11 @@ THUMB void MaterielMenu_JISAN_CHANGE_NAME::menuUpdate()
         gTownMenu_MESSAGE.setYesNo();
         return;
     }
-    navigator_.setup(6, 2, unk_1c);
+    navigator_.setup(6, 2, charaCount_);
     int result = MenuUpdate_Assist::menuSelect(menuItem_, navigator_);
     if (result != 0) {
         int active = navigator_.getIndex(menuItem_.active_);
-        menu::MaterielMenuPlayerControl::getSingleton()->setActiveChara(unk_90[active]);
+        menu::MaterielMenuPlayerControl::getSingleton()->setActiveChara(charaList_[active]);
         menu::MaterielMenuPlayerControl::getSingleton()->setActiveItem(menuItem_.active_);
         menu::MaterielMenuPlayerControl::getSingleton()->setActiveItemPage(navigator_.getPageNo());
         if (result == 3) {
@@ -174,12 +174,12 @@ THUMB void MaterielMenu_JISAN_CHANGE_NAME::menuUpdate()
                     mode_ = MODE_NEXT;
                 }
             }
-            else if (MenuStatusInfo::getPlayerData(unk_90[active]).cursedName_ == 1) {
+            else if (MenuStatusInfo::getPlayerData(charaList_[active]).cursedName_ == 1) {
                 mode_ = MODE_CURSE;
                 cmn::g_cmnSoundManager.setPlaySound(1, false);
             }
             else {
-                TextAPI::setMACRO0(0x12, 0x50000000, MenuStatusInfo::getPlayerIndex(unk_90[active]));
+                TextAPI::setMACRO0(0x12, 0x50000000, MenuStatusInfo::getPlayerIndex(charaList_[active]));
                 gTownMenu_MESSAGE.openMessageForTALK();
                 gTownMenu_MESSAGE.addMessage(getMessageNo(0x34));
                 mode_ = MODE_NEXT;
@@ -217,8 +217,8 @@ THUMB void MaterielMenu_JISAN_CHANGE_NAME::selectYes()
                 MenuStatusInfo::getHaveItemSack().setCursedName(0);
             }
             else {
-                TextAPI::setMACRO0(0x12, 0x50000000, MenuStatusInfo::getPlayerIndex(unk_90[active]));
-                MenuStatusInfo::getPlayerData(unk_90[active]).setCursedName(0);
+                TextAPI::setMACRO0(0x12, 0x50000000, MenuStatusInfo::getPlayerIndex(charaList_[active]));
+                MenuStatusInfo::getPlayerData(charaList_[active]).setCursedName(0);
             }
             gTownMenu_MESSAGE.openMessageForTALK();
             gTownMenu_MESSAGE.addMessage(getMessageNo(0x31), getMessageNo(0x32));

@@ -23,26 +23,26 @@ inline status::HaveStatus& status::HaveStatusInfo::getHaveStatus() { return have
 THUMB void UnkBattleMenuFriendSelect::menuSetup()
 {
     MenuStatusInfo::setMode(MenuStatusInfo::BATTLE_AND_CARRIAGE_MODE);
-    unk_28 = 1;
+    memberCount_ = 1;
     int count = status::g_Party.getCarriageOutCount() + status::g_Party.getCarriageCount();
     for (int i = 0; i < count; i++) {
         if (status::g_Party.getPlayerStatus(i).getHaveStatusInfo().getHaveStatus().playerType_ == status::HaveStatus::TYPE_FRIENDMONSTER) {
-            unk_28++;
+            memberCount_++;
         }
     }
-    unk_4c = 0;
-    unk_50 = 0;
-    unk_54 = 0;
+    select_ = 0;
+    isCancel_ = 0;
+    isDecide_ = 0;
     for (int i = 0; i < 8; i++) {
         unk_2c[i] = -1;
     }
-    unk_1c = status::g_Monster.getPartyMonster();
-    unk_20 = dq5::level::MonsterData::getRecord(unk_1c)->getParty();
-    unk_24 = status::PlayerDataAll::getNextAddFriendMonster(unk_20);
+    monster_ = status::g_Monster.getPartyMonster();
+    monsterParty_ = dq5::level::MonsterData::getRecord(monster_)->getParty();
+    nextFriend_ = status::PlayerDataAll::getNextAddFriendMonster(monsterParty_);
     menuItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD_CANCEL, menu::MenuItem::CURSORTYPE_ACTIVE);
     menuItem_.active_ = 0;
     navigator_.setupBase();
-    navigator_.setup(5, 1, unk_28);
+    navigator_.setup(5, 1, memberCount_);
     unk_58 = 0;
     BattleMenuPlayerControl::getSingleton()->activeChara_ = 0;
 }
@@ -57,7 +57,7 @@ THUMB void UnkBattleMenuFriendSelect::menuDraw()
     if (gTownMenu_MESSAGE.isOpen() != true) {
         int page = navigator_.getPageNo();
         int max = navigator_.getPageMaxCount() - 1;
-        drawFriendSelectMenu(page, max, unk_24);
+        drawFriendSelectMenu(page, max, nextFriend_);
         menuItem_.drawActive();
     }
 }
@@ -69,18 +69,18 @@ THUMB void UnkBattleMenuFriendSelect::menuUpdate()
 
 THUMB void UnkBattleMenuFriendSelect::unkfunc_021713c4()
 {
-    navigator_.setup(5, 1, unk_28);
+    navigator_.setup(5, 1, memberCount_);
     int result = MenuUpdate_Assist::menuSelect(menuItem_, navigator_);
     if (result != 0) {
         int active = menuItem_.active_;
-        unk_4c = active + navigator_.getPageNo() * 5;
+        select_ = active + navigator_.getPageNo() * 5;
         if (result == 3) {
-            unk_50 = 1;
+            isCancel_ = 1;
         }
         if (result == 2) {
-            unk_54 = 1;
+            isDecide_ = 1;
         }
-        int chara = unk_4c;
+        int chara = select_;
         BattleMenuPlayerControl::getSingleton()->activeChara_ = chara;
         redraw_ = 1;
     }

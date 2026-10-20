@@ -59,8 +59,8 @@ THUMB void MaterielMenu_RaceOdds::menuSetup()
         odds++;
     }
     navigator_.setup(2, menuItemY_, maxToken_ + 1);
-    unk_28 = 0;
-    unk_2c = 0;
+    holdButton_ = 0;
+    holdCount_ = 0;
     unk_a4 = 0;
     mode_ = MODE_STANDBY;
     if (g_RaceData.isLookOnly()) {
@@ -121,8 +121,8 @@ THUMB void MaterielMenu_RaceOdds::commandUpdate()
     if (updateHeldButton()) {
         return;
     }
-    unk_28 = 0;
-    unk_2c = 0;
+    holdButton_ = 0;
+    holdCount_ = 0;
     int active = menuItem_.active_;
     int result = MenuUpdate_Assist::menuSelect(menuItem_, navigator_);
     if (result == 0) {
@@ -142,14 +142,14 @@ THUMB void MaterielMenu_RaceOdds::commandUpdate()
             setRaceJoutai(1);
             mode_ = MODE_READY;
         } else if (betCoin()) {
-            unk_28 = 1;
+            holdButton_ = 1;
         }
         redraw_ = 1;
     }
     if (result == 3) {
         if (!isStartSelected()) {
             if (backCoin()) {
-                unk_28 = 2;
+                holdButton_ = 2;
             }
             redraw_ = 1;
         }
@@ -177,31 +177,31 @@ THUMB void MaterielMenu_RaceOdds::adjustCursor(int active, int result)
 THUMB bool MaterielMenu_RaceOdds::updateHeldButton()
 {
     unsigned int coin = status::g_Party.getCasinoCoin();
-    switch (unk_28) {
+    switch (holdButton_) {
         case 1:
             if (dss::g_Pad.pad() == 1) {
-                if (unk_2c >= 30) {
+                if (holdCount_ >= 30) {
                     if (coin == 0 || !betCoin()) {
                         break;
                     }
-                    unk_2c--;
+                    holdCount_--;
                     redraw_ = 1;
                 } else {
-                    unk_2c++;
+                    holdCount_++;
                 }
                 return true;
             }
             break;
         case 2:
             if (dss::g_Pad.pad() == 2) {
-                if (unk_2c >= 30) {
+                if (holdCount_ >= 30) {
                     if (!backCoin()) {
                         break;
                     }
-                    unk_2c--;
+                    holdCount_--;
                     redraw_ = 1;
                 } else {
-                    unk_2c++;
+                    holdCount_++;
                 }
                 return true;
             }

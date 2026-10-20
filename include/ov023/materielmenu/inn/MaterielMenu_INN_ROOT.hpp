@@ -22,7 +22,7 @@ struct MaterielMenu_INN_ROOT : menu::MenuBase {
     };
 
     INN_TYPE innType_;                          // 0x1C  message column
-    int unk_20;                                 // 0x20  draws the gold window
+    int isDrawMoney_;                                 // 0x20  draws the gold window
     short innCharge_;                           // 0x24
     char mode_;                                 // 0x26  INN_MODE
     char fadeMode_;                             // 0x27  FADE_MODE

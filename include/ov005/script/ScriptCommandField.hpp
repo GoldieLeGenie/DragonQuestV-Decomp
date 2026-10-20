@@ -82,8 +82,8 @@ struct FieldGoldOrbEvent : ScriptCommand {
     dss::Fix32 orbPosY_;                // 0x08
     dss::Fix32 orbSpeed_;               // 0x0C
     int orbEndPosY_;                    // 0x10
-    UnkMenuSprite unk_14;               // 0x14 orb
-    UnkMenuSprite unk_64;               // 0x64 orb glow
+    UnkMenuSprite orbSprite_;               // 0x14 orb
+    UnkMenuSprite orbGlowSprite_;               // 0x64 orb glow
 
     virtual void initialize(char* scriptParam);
     virtual void execute();

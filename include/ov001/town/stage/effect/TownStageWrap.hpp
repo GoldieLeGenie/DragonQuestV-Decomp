@@ -12,7 +12,7 @@ namespace twn {
         };
 
         UnkMenuSprite sprite_;                      // 0x00
-        UnkMenuSprite unk_50;                       // 0x50
+        UnkMenuSprite subSprite_;                       // 0x50
         int isData_;                                // 0xA0
         EFFECT_TYPE effectType_;                    // 0xA4
         int isDisplay_;                             // 0xA8

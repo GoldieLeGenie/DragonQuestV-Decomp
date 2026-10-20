@@ -45,20 +45,20 @@ THUMB void btl::BattleCamera::initialize()
     reset();
     normalCamera_.applyCamera();
     setCameraAnimation(0x9b, 0, 0);
-    unk_070.setup();
-    unk_070.setPosition(position);
-    unk_070.setFOV(0x6c3, 0xe80);
-    unk_070.setFar(0x400000);
-    unk_070.setFOV2(0x32);
-    unk_070.m_noUpdate = 1;
-    unk_070.setScaleW(scaleW);
+    iniCamera_.setup();
+    iniCamera_.setPosition(position);
+    iniCamera_.setFOV(0x6c3, 0xe80);
+    iniCamera_.setFar(0x400000);
+    iniCamera_.setFOV2(0x32);
+    iniCamera_.m_noUpdate = 1;
+    iniCamera_.setScaleW(scaleW);
     dss::Vector3<short> angle;
     dss::Fix32Vector3 position2;
     livecamera[0].readCameraData("inicamera", false);
     livecamera[0].moveCamera(position2, angle);
-    unk_070.setPosition(position2);
-    unk_070.setAngle(angle);
-    unk_070.applyCamera();
+    iniCamera_.setPosition(position2);
+    iniCamera_.setAngle(angle);
+    iniCamera_.applyCamera();
 }
 
 THUMB void btl::BattleCamera::terminate()

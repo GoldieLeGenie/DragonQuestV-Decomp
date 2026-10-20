@@ -4,11 +4,11 @@
 
 // passing communication: envoy production and price
 struct UnkMaterielMenu_02187c7c : menu::MenuBase {
-    short unk_1c;                               // 0x1C  envoy icon
+    short icon_;                               // 0x1C  envoy icon
     signed char mode_;                          // 0x1E
-    int unk_20;                                 // 0x20  price
-    int unk_24;                                 // 0x24
-    int unk_28;                                 // 0x28  screen offset set
+    int price_;                                 // 0x20  price
+    int isCancelEnable_;                                 // 0x24
+    int isCaptureOffset_;                                 // 0x28  screen offset set
     menu::MenuItem menuItem_;                   // 0x2C
     CursorMoveGridLoop navigator_;           // 0x90
 

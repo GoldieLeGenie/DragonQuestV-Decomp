@@ -23,8 +23,8 @@ THUMB void UnkMaterielMenu_02187cb4::menuSetup()
     navigator_.setupBase();
     navigator_.setup(6, 2, 0x40);
     mode_ = 0;
-    unk_20 = 1;
-    unk_24 = 0;
+    isFirstMessage_ = 1;
+    isCancelEnable_ = 0;
     status::g_MuseumStatus.saveTaishi();
 }
 
@@ -55,9 +55,9 @@ THUMB void UnkMaterielMenu_02187cb4::menuUpdate()
     MenuStatusInfo::setMode(MenuStatusInfo::PLAYER_MODE);
     if (gTownMenu_MESSAGE.isOpen()) {
         if (gTownMenu_MESSAGE.isMessageWAITPROG()) {
-            if (unk_20 == 1) {
+            if (isFirstMessage_ == 1) {
                 redraw_ = 1;
-                unk_20 = 0;
+                isFirstMessage_ = 0;
                 return;
             }
             navigator_.setup(6, 2, 0x40);
@@ -76,7 +76,7 @@ THUMB void UnkMaterielMenu_02187cb4::menuUpdate()
                     mode_ = 1;
                 }
             }
-            if (result == 3 && unk_24 == 1) {
+            if (result == 3 && isCancelEnable_ == 1) {
                 gTownMenu_MESSAGE.close();
                 gTownMenu_MESSAGE.openMessageForTALK();
                 gTownMenu_MESSAGE.addMessage(0xcc631);
@@ -96,17 +96,17 @@ THUMB void UnkMaterielMenu_02187cb4::menuUpdate()
                 status::g_MuseumStatus.resetSaveTaishi();
                 return;
             }
-            if (unk_20 == 0) {
+            if (isFirstMessage_ == 0) {
                 close();
-                data_ov019_0218616c.unk_af = 0;
+                data_ov019_0218616c.editMode_ = 0;
                 data_ov019_0218616c.open();
             }
         }
         return;
     }
-    if (unk_20 == 1) {
+    if (isFirstMessage_ == 1) {
         gTownMenu_MESSAGE.openMessageForTALK();
-        if (unk_24 == 1) {
+        if (isCancelEnable_ == 1) {
             gTownMenu_MESSAGE.addMessage(0xcc63c);
         } else {
             gTownMenu_MESSAGE.addMessage(0xcc5a3, 0xcc5a4);

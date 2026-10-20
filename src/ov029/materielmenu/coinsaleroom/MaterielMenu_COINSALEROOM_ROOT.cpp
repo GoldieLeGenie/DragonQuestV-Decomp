@@ -32,8 +32,8 @@ THUMB void MaterielMenu_COINSALEROOM_ROOT::menuSetup()
     menuItem_.active_ = 5;
     navigator_.setupBase();
     mode_ = MODE_FIRST;
-    unk_8c = 0;
-    unk_94 = 0;
+    blink_ = 0;
+    blinkCount_ = 0;
     coin_ = 0;
 }
 
@@ -47,16 +47,16 @@ THUMB void MaterielMenu_COINSALEROOM_ROOT::menuDraw()
     if (gTownMenu_MESSAGE.isMessageWAITPROG()) {
         MenuStatusInfo::setMode(MenuStatusInfo::PLAYER_MODE);
         drawCoinSaleroomScreen(coin_, 1);
-        if (unk_8c) {
-            if (unk_94 > 15) {
+        if (blink_) {
+            if (blinkCount_ > 15) {
                 menuItem_.drawActive();
             }
-            if (unk_94 == 0 || unk_94 == 16) {
+            if (blinkCount_ == 0 || blinkCount_ == 16) {
                 redraw_ = 1;
             }
-            unk_94++;
-            if (unk_94 > 30) {
-                unk_94 = 0;
+            blinkCount_++;
+            if (blinkCount_ > 30) {
+                blinkCount_ = 0;
             }
         }
         else {
@@ -97,7 +97,7 @@ THUMB bool MaterielMenu_COINSALEROOM_ROOT::messageUpdata()
                 showMessage(1, 4, 5);
                 gTownMenu_MESSAGE.setMessageLastCursor(true);
                 gTownMenu_MESSAGE.addMessageWAITKEY();
-                unk_8c = 1;
+                blink_ = 1;
             }
             break;
         case MODE_BACK:
@@ -105,7 +105,7 @@ THUMB bool MaterielMenu_COINSALEROOM_ROOT::messageUpdata()
             showMessage(4, 5, 0);
             gTownMenu_MESSAGE.setMessageLastCursor(true);
             gTownMenu_MESSAGE.addMessageWAITKEY();
-            unk_8c = 1;
+            blink_ = 1;
             break;
         case MODE_END:
             MaterielMenu_WINDOW_MANAGER::getSingleton()->closeMaterielWindow();

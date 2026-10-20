@@ -47,6 +47,6 @@ THUMB void UnkBattleMenuAttackCancel::decideAttack()
     BattleMenuJudge::getSingleton()->setNextPlayer();
     btl::BattleMonsterMask::getSingleton()->select(-1);
     redraw_ = 1;
-    gBattleMenu_ATTACK.unk_f4 = 1;
+    gBattleMenu_ATTACK.isDecided_ = 1;
     close();
 }

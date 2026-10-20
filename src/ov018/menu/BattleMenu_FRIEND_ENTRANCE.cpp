@@ -238,9 +238,9 @@ THUMB void BattleMenu_FRIEND_ENTRANCE::unkfunc_02171178()
     if (!gUnkBattleMenuFriendSelect.isOpen()) {
         gUnkBattleMenuFriendSelect.open();
     }
-    if (gUnkBattleMenuFriendSelect.unk_54) {
+    if (gUnkBattleMenuFriendSelect.isDecide_) {
         gUnkBattleMenuFriendSelect.close();
-        monster_ = gUnkBattleMenuFriendSelect.unk_4c;
+        monster_ = gUnkBattleMenuFriendSelect.select_;
         if (monster_ == 0) {
             monster_ = status::PlayerDataAll::playerData_[friendCtrl_].index_;
         } else {
@@ -250,7 +250,7 @@ THUMB void BattleMenu_FRIEND_ENTRANCE::unkfunc_02171178()
         }
         mode_ = MODE_IS_LAST;
     }
-    if (gUnkBattleMenuFriendSelect.unk_50) {
+    if (gUnkBattleMenuFriendSelect.isCancel_) {
         gUnkBattleMenuFriendSelect.close();
         mode_ = MODE_IS_CANCEL;
     }

@@ -6,7 +6,7 @@
 // town item menu: selection of the character (or the bag) whose items are listed
 struct UnkTownMenuItemCharaSelect : menu::MenuBase {
     int fromMateriel_;                          // 0x1C  1: opened by a materiel menu window
-    int unk_20;                                 // 0x20  close the town menu after the message
+    int isCloseMenu_;                                 // 0x20  close the town menu after the message
     unsigned char charaCount_;                  // 0x24
     menu::MenuItem menuItem_;                   // 0x28
     CursorMoveGridLoop navigator_;           // 0x8C

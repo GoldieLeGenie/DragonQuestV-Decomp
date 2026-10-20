@@ -90,8 +90,8 @@ namespace twn {
         TownCommandButtonSearch townCommandButtonSearch_;       // 0x13C
         TownCommandPartChange townCommandPartChange_;           // 0x14C
         TownCommandInitWait townCommandInitWait_;               // 0x150
-        UnkTownCommandMenuTalk unk_15c;                         // 0x15C
-        UnkTownCommandMenuSearch unk_160;                       // 0x160
+        UnkTownCommandMenuTalk townCommandMenuTalk_;                         // 0x15C
+        UnkTownCommandMenuSearch townCommandMenuSearch_;                       // 0x160
         TownCommandEvent townCommandEvent_;                     // 0x170
         TownCommandPartyTalk townCommandPartyTalk_;             // 0x174
         TownCommandWalkCount townCommandWalkCount_;             // 0x178

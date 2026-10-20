@@ -16,8 +16,8 @@ namespace twn {
         int light_;                                 // 0x10
         int dark_;                                  // 0x14
         int enable_;                                // 0x18
-        DataObject unk_1c;                          // 0x1C
-        DataObject unk_2c;                          // 0x2C
+        DataObject lightData_;                          // 0x1C
+        DataObject lightData2_;                          // 0x2C
 
         TownStageLightning();
         ~TownStageLightning();

@@ -67,14 +67,14 @@ THUMB void casino::PokerCard::setShineTexCoord(const UnkBillboardTexCoord* texCo
 {
     m_shine_polygon.setTexCoord(texCoord);
     m_shine_polygon.setAlpha(12);
-    unk_230.v[0].vx = texCoord->v[0].vx;
-    unk_230.v[0].vy = texCoord->v[0].vy;
-    unk_230.v[1].vx = texCoord->v[1].vx;
-    unk_230.v[1].vy = texCoord->v[1].vy;
-    unk_230.v[2].vx = texCoord->v[2].vx;
-    unk_230.v[2].vy = texCoord->v[2].vy;
-    unk_230.v[3].vx = texCoord->v[3].vx;
-    unk_230.v[3].vy = texCoord->v[3].vy;
+    m_shine_tex_coord.v[0].vx = texCoord->v[0].vx;
+    m_shine_tex_coord.v[0].vy = texCoord->v[0].vy;
+    m_shine_tex_coord.v[1].vx = texCoord->v[1].vx;
+    m_shine_tex_coord.v[1].vy = texCoord->v[1].vy;
+    m_shine_tex_coord.v[2].vx = texCoord->v[2].vx;
+    m_shine_tex_coord.v[2].vy = texCoord->v[2].vy;
+    m_shine_tex_coord.v[3].vx = texCoord->v[3].vx;
+    m_shine_tex_coord.v[3].vy = texCoord->v[3].vy;
 }
 
 THUMB void casino::PokerCard::setGlowTexCoord(const UnkBillboardTexCoord* texCoord)
@@ -113,14 +113,14 @@ THUMB void casino::PokerCard::draw()
     m_glow_polygon.draw();
     if (m_effect_enable) {
         UnkBillboardTexCoord texCoord;
-        texCoord.v[0] = unk_230.v[0];
-        texCoord.v[1] = unk_230.v[1];
-        texCoord.v[2] = unk_230.v[2];
-        texCoord.v[3] = unk_230.v[3];
-        texCoord.v[0].vy.value = unk_230.v[0].vy.value + m_shine_scroll_speed * m_effect_frame;
-        texCoord.v[1].vy.value = unk_230.v[1].vy.value + m_shine_scroll_speed * m_effect_frame;
-        texCoord.v[2].vy.value = unk_230.v[2].vy.value + m_shine_scroll_speed * m_effect_frame;
-        texCoord.v[3].vy.value = unk_230.v[3].vy.value + m_shine_scroll_speed * m_effect_frame;
+        texCoord.v[0] = m_shine_tex_coord.v[0];
+        texCoord.v[1] = m_shine_tex_coord.v[1];
+        texCoord.v[2] = m_shine_tex_coord.v[2];
+        texCoord.v[3] = m_shine_tex_coord.v[3];
+        texCoord.v[0].vy.value = m_shine_tex_coord.v[0].vy.value + m_shine_scroll_speed * m_effect_frame;
+        texCoord.v[1].vy.value = m_shine_tex_coord.v[1].vy.value + m_shine_scroll_speed * m_effect_frame;
+        texCoord.v[2].vy.value = m_shine_tex_coord.v[2].vy.value + m_shine_scroll_speed * m_effect_frame;
+        texCoord.v[3].vy.value = m_shine_tex_coord.v[3].vy.value + m_shine_scroll_speed * m_effect_frame;
         m_shine_polygon.setTexCoord(&texCoord);
         m_shine_polygon.draw();
         m_effect_frame++;

@@ -6,8 +6,8 @@ namespace fld
 {
     // map of the regions outside the overworld (fairy world, dark world)
     struct FieldRegionMap : window::WorldMap {
-        UnkMenuSprite unk_a8;                   // 0xA8 player marker
-        int unk_f8;                             // 0xF8 world passed to symbolDraw
+        UnkMenuSprite playerMarker_;                   // 0xA8 player marker
+        int world_;                             // 0xF8 world passed to symbolDraw
 
         FieldRegionMap();
         ~FieldRegionMap();

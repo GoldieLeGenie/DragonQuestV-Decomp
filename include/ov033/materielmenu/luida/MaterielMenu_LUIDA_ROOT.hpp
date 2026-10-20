@@ -14,7 +14,7 @@ struct MaterielMenu_LUIDA_ROOT : menu::MenuBase {
         MODE_END = 6,
     };
 
-    int unk_1c;                                 // 0x1C  submenu opens when the message is closed
+    int isOpenSubmenu_;                                 // 0x1C  submenu opens when the message is closed
     char mode_;                                 // 0x20
     char active_;                           // 0x21
     menu::MenuItem menuItem_;                   // 0x24

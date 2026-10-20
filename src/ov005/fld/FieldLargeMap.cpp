@@ -42,33 +42,33 @@ THUMB void fld::FieldLargeMap::setup(Render* render)
 
 THUMB void fld::FieldLargeMap::cleanup()
 {
-    unk_54.detachRender();
-    unk_04.detachRender();
-    unk_54.unload();
-    unk_04.unload();
+    map_.detachRender();
+    playerMarker_.detachRender();
+    map_.unload();
+    playerMarker_.unload();
 }
 
 THUMB void fld::FieldLargeMap::setupSprites()
 {
     char path[0x80];
-    unk_04.setTexCoords(0, 0, 0x20, 0x20);
+    playerMarker_.setTexCoords(0, 0, 0x20, 0x20);
     dss::sprintf_s(path, sizeof(path), "data/field/large/largemap.tex");
-    unk_54.loadFile(path, 0);
-    unk_54.attachRender(render_);
-    unk_54.setSubScreen();
-    unk_54.setPolygonID(0x3e);
-    unk_54.setDepth(0x10);
-    unk_54.setAlpha(0);
+    map_.loadFile(path, 0);
+    map_.attachRender(render_);
+    map_.setSubScreen();
+    map_.setPolygonID(0x3e);
+    map_.setDepth(0x10);
+    map_.setAlpha(0);
     dss::sprintf_s(path, sizeof(path), "data/field/2d/point.tex");
-    unk_04.loadFile(path, 0);
-    unk_04.attachRender(render_);
-    unk_04.setSubScreen();
-    unk_04.setPolygonID(0x34);
-    unk_04.setDepth(0x18);
-    unk_04.setAlpha(0);
-    unk_04.setEnabled(1);
-    unk_04.freeVram();
-    unk_54.freeVram();
+    playerMarker_.loadFile(path, 0);
+    playerMarker_.attachRender(render_);
+    playerMarker_.setSubScreen();
+    playerMarker_.setPolygonID(0x34);
+    playerMarker_.setDepth(0x18);
+    playerMarker_.setAlpha(0);
+    playerMarker_.setEnabled(1);
+    playerMarker_.freeVram();
+    map_.freeVram();
     buildPlayerMap();
 }
 
@@ -115,7 +115,7 @@ THUMB void fld::FieldLargeMap::buildMapTexture(int x, int y)
 {
     char* src[8];
     void* buffer[8];
-    char* dst = (char*)unk_54.getTextureData();
+    char* dst = (char*)map_.getTextureData();
     for (int i = 0; i < 8; i++) {
         buffer[i] = dssAlloc(&data_020fd24c, 0x400, 0x20);
     }
@@ -165,27 +165,27 @@ THUMB void fld::FieldLargeMap::buildPlayerMap()
     int y = (pos.vy.value + 0x40000) / 0x80000 - 3;
     buildMapTexture(x, y);
     OS_Wait();
-    unk_54.allocVram();
-    unk_54.transferToVram();
+    map_.allocVram();
+    map_.transferToVram();
     int px = pos.vx.value - (x << 19);
     int py = pos.vy.value - (y << 19);
     px /= 0x4000;
     py /= 0x4000;
-    unk_04.allocVram();
-    unk_04.transferToVram();
-    unk_04.setSize(0x20, 0x20);
-    unk_04.setPosition(px + s_markerOffsetX, s_markerOffsetY + (py - 0x20));
-    unk_a4 = px;
-    unk_a8 = py;
+    playerMarker_.allocVram();
+    playerMarker_.transferToVram();
+    playerMarker_.setSize(0x20, 0x20);
+    playerMarker_.setPosition(px + s_markerOffsetX, s_markerOffsetY + (py - 0x20));
+    markerX_ = px;
+    markerY_ = py;
 }
 
 THUMB void fld::FieldLargeMap::setAlpha(unsigned char alpha)
 {
-    unk_54.setAlpha(alpha);
-    unk_04.setAlpha(alpha);
+    map_.setAlpha(alpha);
+    playerMarker_.setAlpha(alpha);
 }
 
 THUMB void fld::FieldLargeMap::updatePlayerMarker()
 {
-    unk_04.setPosition(unk_a4 + s_markerOffsetX, s_markerOffsetY + (unk_a8 - 0x20));
+    playerMarker_.setPosition(markerX_ + s_markerOffsetX, s_markerOffsetY + (markerY_ - 0x20));
 }

@@ -88,7 +88,7 @@ THUMB void MaterielMenu_FIGHT_STADIUM::menuSetup()
         g_StadiumData.result_ = RESULT_NONE;
         g_StadiumData.stadiumFlag_ = 0;
     }
-    unk_104 = 0;
+    isMonsterList_ = 0;
     m_bDispCoin = 0;
     blink_ = 0;
     blinkCount_ = 0;
@@ -108,10 +108,10 @@ THUMB void MaterielMenu_FIGHT_STADIUM::menuDraw()
     if (m_bDispCoin != 0
         || (status_ == FIGHT_STADIUM_RESULT && result_ < RESULT_DRAW)
         || (status_ == FIGHT_STADIUM_RETRY && messageCount_ != 0)
-        || (unk_104 != 0 && g_StadiumData.doubleUp_ != 0)) {
+        || (isMonsterList_ != 0 && g_StadiumData.doubleUp_ != 0)) {
         show = 1;
         drawFightStadiumBetDigits(g_StadiumData.betCoin_, 0, 0x18, show);
-        drawFightStadiumPanels(status_ == FIGHT_STADIUM_BET || unk_104 != 0);
+        drawFightStadiumPanels(status_ == FIGHT_STADIUM_BET || isMonsterList_ != 0);
         if (m_bDispCoin != 0) {
             if (blink_ != 0) {
                 if (blinkCount_ > 15) {
@@ -139,7 +139,7 @@ THUMB void MaterielMenu_FIGHT_STADIUM::menuDraw()
     else {
         drawMenuFrame(0xb8, 0, 0x48, 0x28, -1);
     }
-    if (unk_104 != 0) {
+    if (isMonsterList_ != 0) {
         int count = FightStadiumManager::getSingleton().getMonsterCount();
         monsterItem_.drawActive();
         for (int i = 0; i < count; i++) {
@@ -337,7 +337,7 @@ THUMB void MaterielMenu_FIGHT_STADIUM::monsterListUpdate()
         int active = monsterItem_.active_;
         monsterItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD_CANCEL, menu::MenuItem::CURSORTYPE_ACTIVE);
         monsterItem_.active_ = active;
-        unk_104 = 1;
+        isMonsterList_ = 1;
         redraw_ = 1;
     }
     monsterItem_.execInput();
@@ -346,7 +346,7 @@ THUMB void MaterielMenu_FIGHT_STADIUM::monsterListUpdate()
         case menu::MenuItem::MENUITEM_RESULT_SUPERCANCEL:
             gTownMenu_MESSAGE.close();
             monsterItem_.resetResult();
-            unk_104 = 0;
+            isMonsterList_ = 0;
             if (g_StadiumData.doubleUp_) {
                 showMessage(0xc8f13);
                 gTownMenu_MESSAGE.addMessageWAITKEY();
@@ -429,7 +429,7 @@ THUMB void MaterielMenu_FIGHT_STADIUM::coinUpdate()
             setMenuStatus(FIGHT_STADIUM_START);
             messageCount_ = 0;
             m_bDispCoin = 0;
-            unk_104 = 0;
+            isMonsterList_ = 0;
             redraw_ = 1;
             return;
         case menu::MenuItem::MENUITEM_RESULT_OK:
@@ -442,7 +442,7 @@ THUMB void MaterielMenu_FIGHT_STADIUM::coinUpdate()
                 setMenuStatus(FIGHT_STADIUM_START);
                 messageCount_ = 0;
                 m_bDispCoin = 0;
-                unk_104 = 0;
+                isMonsterList_ = 0;
                 redraw_ = 1;
             }
             else {
@@ -450,7 +450,7 @@ THUMB void MaterielMenu_FIGHT_STADIUM::coinUpdate()
                 TextAPI::setMACRO0(0x47, 0xf0000000, g_StadiumData.betCoin_);
                 showMessage(0xc8ee9);
                 setMenuStatus(FIGHT_STADIUM_BATTLE);
-                unk_104 = 0;
+                isMonsterList_ = 0;
                 m_bDispCoin = 0;
                 status::g_Party.setCasinoCoin(haveCoin_);
             }

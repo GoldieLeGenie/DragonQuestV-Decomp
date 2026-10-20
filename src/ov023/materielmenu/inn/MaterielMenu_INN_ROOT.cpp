@@ -48,7 +48,7 @@ THUMB void MaterielMenu_INN_ROOT::menuSetup()
     mode_ = INN_CHECKMONEY;
     fadeMode_ = FADE_OUT;
     innCharge_ = 0;
-    unk_20 = 0;
+    isDrawMoney_ = 0;
     int count = MenuStatusInfo::getPartyCount(MenuStatusInfo::COUNT_ALL);
     int stayCount = 0;
     for (char i = 0; i < count; i++) {
@@ -69,7 +69,7 @@ THUMB void MaterielMenu_INN_ROOT::menuSetup()
 
 THUMB void MaterielMenu_INN_ROOT::menuDraw()
 {
-    if (unk_20 != 0) {
+    if (isDrawMoney_ != 0) {
         MenuStatusInfo::setMode(MenuStatusInfo::BATTLE_MODE);
         drawMoneyWindow(-1, -1, 0);
         drawPartyStatusWindows();
@@ -118,13 +118,13 @@ THUMB void MaterielMenu_INN_ROOT::menuUpdate()
         yesno = 1;
         mes1 = 2;
         mes2 = 3;
-        unk_20 = 1;
+        isDrawMoney_ = 1;
     }
     else {
         TextAPI::setMACRO0(0x33, 0xf0000000, innCharge_);
         mes1 = 1;
         mes2 = 3;
-        unk_20 = 1;
+        isDrawMoney_ = 1;
         yesno = 1;
     }
     showMessage(mes1, mes2);

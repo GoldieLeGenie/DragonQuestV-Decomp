@@ -36,7 +36,7 @@ THUMB void MaterielMenu_LUIDA_ROOT::menuSetup()
     menuItem_.active_ = active_;
     navigator_.setupBase();
     mode_ = MODE_START;
-    unk_1c = 0;
+    isOpenSubmenu_ = 0;
     if (status::g_Menu.returnMenuType_ == 4) {
         close();
         gMaterielMenu_LUIDA_ADD_PLAYER.open();
@@ -114,7 +114,7 @@ THUMB void MaterielMenu_LUIDA_ROOT::menuUpdate()
                 mode_ = MODE_OPEN_DRAW;
                 return;
             }
-            if (unk_1c == 1) {
+            if (isOpenSubmenu_ == 1) {
                 close();
                 switch (menuItem_.active_) {
                     case 0:
@@ -158,7 +158,7 @@ THUMB void MaterielMenu_LUIDA_ROOT::selectKuwaeru()
     }
     else {
         openMessage(7, 0);
-        unk_1c = 1;
+        isOpenSubmenu_ = 1;
     }
     MenuStatusInfo::setMode(MenuStatusInfo::PLAYER_MODE);
 }
@@ -171,7 +171,7 @@ THUMB void MaterielMenu_LUIDA_ROOT::selectAzuke()
     }
     else {
         openMessage(14, 0);
-        unk_1c = 1;
+        isOpenSubmenu_ = 1;
     }
 }
 
@@ -183,7 +183,7 @@ THUMB void MaterielMenu_LUIDA_ROOT::selectList()
     }
     else {
         openMessage(26, 0);
-        unk_1c = 1;
+        isOpenSubmenu_ = 1;
     }
 }
 

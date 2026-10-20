@@ -9,10 +9,10 @@ namespace fld
 {
     struct FieldLargeMap {
         Render* render_;                        // 0x00
-        UnkMenuSprite unk_04;                   // 0x04
-        UnkMenuSprite unk_54;                   // 0x54
-        int unk_a4;                             // 0xA4 player marker x
-        int unk_a8;                             // 0xA8 player marker y
+        UnkMenuSprite playerMarker_;                   // 0x04
+        UnkMenuSprite map_;                   // 0x54
+        int markerX_;                             // 0xA4 player marker x
+        int markerY_;                             // 0xA8 player marker y
 
         FieldLargeMap();
         ~FieldLargeMap();

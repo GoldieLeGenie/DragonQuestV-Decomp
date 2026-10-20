@@ -139,8 +139,8 @@ THUMB void TownMenu_ITEM_USE::menuSetup()
     navigator_.setup(2, 2, MenuStatusInfo::getPartyCount(MenuStatusInfo::COUNT_ALL));
     updateHP_ = 0;
     updateMP_ = 0;
-    unk_28 = 0;
-    unk_20 = 0;
+    isHealMessage_ = 0;
+    isItemEmpty_ = 0;
     activeFukuro_ = TownMenuPlayerControl::getSingleton()->activeFukuro_;
     for (int i = 0; i < 4; i++) {
         resultMes_[i] = 0;
@@ -194,7 +194,7 @@ THUMB void TownMenu_ITEM_USE::menuUpdate()
                 status::PartyStatusUtility::resetForceReorderMember();
                 return;
             }
-            if (unk_20 == 1) {
+            if (isItemEmpty_ == 1) {
                 data_ov019_02183524.fromMateriel_ = 0;
                 data_ov019_02183524.open();
                 return;
@@ -278,7 +278,7 @@ THUMB void TownMenu_ITEM_USE::itemUse()
         isResult_ = MenuStatusInfo::useFukuroItem(useActionParam, activeItem_, target);
         TownMenuPlayerControl::getSingleton()->setFukuroActiveItemByChangeMax();
         if (MenuStatusInfo::getFukuroItemCount() == 0) {
-            unk_20 = 1;
+            isItemEmpty_ = 1;
         }
     } else {
         TextAPI::setMACRO0(1, 0x50000000, MenuStatusInfo::getPlayerIndex(activeChara_));
@@ -289,7 +289,7 @@ THUMB void TownMenu_ITEM_USE::itemUse()
         TownMenuPlayerControl::getSingleton()->setPlayerActiveItemByChangeMax();
         MenuStatusInfo::setMode(MenuStatusInfo::BATTLE_MODE);
         if (MenuStatusInfo::getPlayerItemCount(activeChara_) == 0) {
-            unk_20 = 1;
+            isItemEmpty_ = 1;
         }
     }
     status::g_Menu.setActorIndex(useActionParam.getActorCharacterStatus()->getHaveStatusInfo().getPlayerIndex());
@@ -322,7 +322,7 @@ THUMB void TownMenu_ITEM_USE::itemUse()
     status::UseActionMacro::setResultMacro(useActionParam.getActorCharacterStatus(), useActionParam.getTargetCharacterStatus(0), useActionParam.getActionIndex());
     MenuStatusInfo::getHaveStatusInfo(target);
     TextAPI::setMACRO0(10, 0x40000000, itemID_);
-    unk_28 = 1;
+    isHealMessage_ = 1;
     if (itemID_ == 0xb9 && isResult_ == 1) {
         gTownMenu_MESSAGE.addMessage(useMes[0]);
         resultMes[0] = useMes[0] + 1;
@@ -406,7 +406,7 @@ THUMB void TownMenu_ITEM_USE::openHealMessage()
         MenuStatusInfo::resetPlayerCondition(target, MenuStatusInfo::CONDITION_POISON);
         MenuStatusInfo::resetPlayerCondition(target, MenuStatusInfo::CONDITION_VENOM);
     }
-    unk_28 = 0;
+    isHealMessage_ = 0;
     redraw_ = 1;
 }
 

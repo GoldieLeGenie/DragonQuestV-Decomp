@@ -5,7 +5,7 @@
 // passing communication: root menu
 struct UnkMaterielMenu_02187c98 : menu::MenuBase {
     signed char mode_;                          // 0x1C
-    int unk_20;                                 // 0x20  first message
+    int isFirstMessage_;                                 // 0x20  first message
     menu::MenuItem menuItem_;                   // 0x24
     CursorMoveGridLoop navigator_;           // 0x88
 

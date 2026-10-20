@@ -6,7 +6,7 @@
 // town spell menu: selection of the target of a spell
 struct TownMenu_MAGIC_CHARSELECT : menu::MenuBase {
     int isResult_;                              // 0x1C
-    int unk_20;                                 // 0x20  heal message pending
+    int isHealMessage_;                                 // 0x20  heal message pending
     int resultMes_[4];                          // 0x24
     short magicID_;                             // 0x34
     short updateHP_;                            // 0x36

@@ -26,7 +26,7 @@ namespace twn {
         int characterCount_;                    // 0x0000
         int monsterCount_;                      // 0x0004
         int modelCount_;                        // 0x0008
-        int unk_000c;                           // 0x000C motionless count
+        int motionlessCount_;                           // 0x000C motionless count
         int spriteCount_;                       // 0x0010
         int funitureCount_;                     // 0x0014
         TownCharacterDraw normal_[CHARACTER_MAX];       // 0x0018

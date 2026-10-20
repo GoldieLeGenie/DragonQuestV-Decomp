@@ -32,9 +32,9 @@ void twn::TownStageLightning::setup()
     TownStageManager::getSingleton()->setObjectDraw(0x204, 1, 1);
     char path[128];
     dss::sprintf_s(path, sizeof(path), "data/light/light.dat");
-    unk_1c.setup(path, 0, 0);
+    lightData_.setup(path, 0, 0);
     dss::sprintf_s(path, sizeof(path), "data/light/light2.dat");
-    unk_2c.setup(path, 0, 0);
+    lightData2_.setup(path, 0, 0);
 }
 
 void twn::TownStageLightning::start(int first)
@@ -46,8 +46,8 @@ void twn::TownStageLightning::start(int first)
 
 void twn::TownStageLightning::cleanup()
 {
-    unk_1c.cleanup();
-    unk_2c.cleanup();
+    lightData_.cleanup();
+    lightData2_.cleanup();
     enable_ = false;
     phase_ = false;
 }
@@ -66,7 +66,7 @@ void twn::TownStageLightning::execute()
         tex = getLastModelTexture();
         size = tex->plttInfo.sizePltt << 3;
         address = (tex->plttInfo.vramKey & 0xffff) << 3;
-        data = (char*)unk_1c.getAddr();
+        data = (char*)lightData_.getAddr();
         data += size * 39;
         data_020f4f74.transferToVram(1, data, address, size, 0);
         TownCharacterManager::getSingleton()->setSpecCharaAlpha(0x4d, 0);
@@ -75,9 +75,9 @@ void twn::TownStageLightning::execute()
         size = tex->plttInfo.sizePltt << 3;
         address = (tex->plttInfo.vramKey & 0xffff) << 3;
         if (frame_ == 0x28) {
-            data = (char*)unk_1c.getAddr();
+            data = (char*)lightData_.getAddr();
         } else {
-            data = (char*)unk_2c.getAddr();
+            data = (char*)lightData2_.getAddr();
         }
         data += size * lightCounter_;
         data_020f4f74.transferToVram(1, data, address, size, 0);

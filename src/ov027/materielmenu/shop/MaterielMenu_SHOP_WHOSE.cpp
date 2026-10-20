@@ -32,7 +32,7 @@ THUMB void MaterielMenu_SHOP_WHOSE::menuSetup()
     menuItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD_CANCEL, menu::MenuItem::CURSORTYPE_ACTIVE);
     menuItem_.active_ = menu::MaterielMenuPlayerControl::getSingleton()->activeChara_;
     mode_ = 0;
-    unk_80 = 0;
+    endMessage_ = 0;
     activeItem_ = menu::MaterielMenuPlayerControl::getSingleton()->activeItem_;
     navigator_.setupBase();
 }
@@ -103,7 +103,7 @@ THUMB void MaterielMenu_SHOP_WHOSE::haveMaxCheck()
         if (MenuStatusInfo::getGold() < MaterielMenu_SHOP_MANAGER::getSingleton()->getMinimumPrice()) {
             MaterielMenu_SHOP_MESSAGE_MANAGER::getSingleton()->buyToSack(false, mes);
             showMessage(mes[0], portSelmi);
-            unk_80 = mes[1];
+            endMessage_ = mes[1];
             mode_ = 8;
             return;
         }
@@ -168,7 +168,7 @@ THUMB void MaterielMenu_SHOP_WHOSE::selectYes()
             break;
         case 8:
             gTownMenu_MESSAGE.openMessageForTALK();
-            gTownMenu_MESSAGE.addMessageNOWAIT(unk_80);
+            gTownMenu_MESSAGE.addMessageNOWAIT(endMessage_);
             gTownMenu_MESSAGE.addMessageWAITKEY();
             close();
             gMaterielMenu_SHOP_ROOT.open();

@@ -32,8 +32,8 @@ inline void menu::MaterielMenuPlayerControl::setActiveItemPage(int active)
 THUMB void MaterielMenu_SHOP_VALUE::menuSetup()
 {
     MenuStatusInfo::setMode(MenuStatusInfo::PLAYER_MODE);
-    unk_24 = 0;
-    unk_20 = 0;
+    endMessage_ = 0;
+    isEndMessage_ = 0;
     activeChara_ = menu::MaterielMenuPlayerControl::getSingleton()->activeChara_;
     activeItem_ = menu::MaterielMenuPlayerControl::getSingleton()->activeItem_;
     page_ = menu::MaterielMenuPlayerControl::getSingleton()->activeItemPage_;
@@ -73,8 +73,8 @@ THUMB void MaterielMenu_SHOP_VALUE::menuSetup()
             if (MaterielMenu_SHOP_MANAGER::getSingleton()->sellOK() == false) {
                 MaterielMenu_SHOP_MESSAGE_MANAGER::getSingleton()->sellNG(true, mes);
                 showMessage(mes[0], mes[1], 0);
-                unk_24 = mes[2];
-                unk_20 = 1;
+                endMessage_ = mes[2];
+                isEndMessage_ = 1;
                 return;
             }
             MaterielMenu_SHOP_MESSAGE_MANAGER::getSingleton()->sellNG(false, mes);
@@ -114,11 +114,11 @@ THUMB void MaterielMenu_SHOP_VALUE::menuUpdate()
 
 THUMB void MaterielMenu_SHOP_VALUE::selectYes()
 {
-    if (unk_20 == 1) {
+    if (isEndMessage_ == 1) {
         menu::MaterielMenuPlayerControl::getSingleton()->activeItem_ = 0;
         menu::MaterielMenuPlayerControl::getSingleton()->activeItemPage_ = 0;
         gTownMenu_MESSAGE.openMessageForTALK();
-        gTownMenu_MESSAGE.addMessageNOWAIT(unk_24);
+        gTownMenu_MESSAGE.addMessageNOWAIT(endMessage_);
         gTownMenu_MESSAGE.addMessageWAITKEY();
         close();
         gMaterielMenu_SHOP_ROOT.open();
@@ -170,8 +170,8 @@ THUMB void MaterielMenu_SHOP_VALUE::selectNo()
             if (MaterielMenu_SHOP_MANAGER::getSingleton()->sellOK() == false) {
                 MaterielMenu_SHOP_MESSAGE_MANAGER::getSingleton()->celectNo(true, mes);
                 showMessage(mes[0], 0, 0);
-                unk_24 = mes[1];
-                unk_20 = 1;
+                endMessage_ = mes[1];
+                isEndMessage_ = 1;
                 return;
             }
             MaterielMenu_SHOP_MESSAGE_MANAGER::getSingleton()->celectNo(false, mes);
@@ -209,8 +209,8 @@ THUMB void MaterielMenu_SHOP_VALUE::checkHaveMoney()
         if (MaterielMenu_SHOP_MANAGER::getSingleton()->sellOK() == false) {
             MaterielMenu_SHOP_MESSAGE_MANAGER::getSingleton()->sellEnd(true, mes);
             showMessage(mes[0], 0, 0);
-            unk_24 = mes[1];
-            unk_20 = 1;
+            endMessage_ = mes[1];
+            isEndMessage_ = 1;
         }
         else {
             MaterielMenu_SHOP_MESSAGE_MANAGER::getSingleton()->sellEnd(false, mes);
@@ -241,8 +241,8 @@ THUMB void MaterielMenu_SHOP_VALUE::checkHaveMoney()
         TextAPI::setMACRO0(0x12, 0x50000000, index);
         MaterielMenu_SHOP_MESSAGE_MANAGER::getSingleton()->overMoney(mes);
         showMessage(mes[0], mes[1], 0);
-        unk_24 = mes[2];
-        unk_20 = 1;
+        endMessage_ = mes[2];
+        isEndMessage_ = 1;
     }
     int index = activeItem_ + page_ * 6;
     bool over = false;

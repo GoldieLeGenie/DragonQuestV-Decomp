@@ -42,7 +42,7 @@ THUMB void MaterielMenuPokerChangecard::menuSetup()
     gameMode_ = 0;
     animation_ = 1;
     combination_ = -1;
-    unk_20 = 0;
+    isWin_ = 0;
     isPlaySound_ = 0;
     reverse_ = 0;
     betCoin_ = casino::PokerManager::getSingleton()->betCoin_;
@@ -98,10 +98,10 @@ THUMB void MaterielMenuPokerChangecard::menuDraw()
         }
     }
     int coin = betCoin_;
-    if (unk_20 == 1) {
+    if (isWin_ == 1) {
         coin = getCoin_;
     }
-    drawPokerChangeCardScreen(draw, haveCoin_, coin, change_, unk_20);
+    drawPokerChangeCardScreen(draw, haveCoin_, coin, change_, isWin_);
 }
 
 THUMB void MaterielMenuPokerChangecard::menuUpdate()
@@ -112,7 +112,7 @@ THUMB void MaterielMenuPokerChangecard::menuUpdate()
         return;
     }
     isPlaySound_ = 0;
-    if (unk_20 == 1 && animation_ == 0) {
+    if (isWin_ == 1 && animation_ == 0) {
         updateWinningCardEffect();
     }
     if (animation_ == 1 || animation_ == 2) {
@@ -149,7 +149,7 @@ THUMB bool MaterielMenuPokerChangecard::messageUpdata()
         combination_ = casino::PokerManager::getSingleton()->judgementCombination();
         if (combination_ == 0) {
             combination_ = -1;
-            unk_20 = 0;
+            isWin_ = 0;
             showMessage(0xc92f0, 0xc92f4);
             gTownMenu_MESSAGE.setYesNo();
             gameMode_ = 4;
@@ -157,7 +157,7 @@ THUMB bool MaterielMenuPokerChangecard::messageUpdata()
             casino::PokerManager::getSingleton()->setBetCoin(betCoin_);
             getCoin_ = 0;
         } else {
-            unk_20 = 1;
+            isWin_ = 1;
             getCoin_ = casino::PokerManager::getSingleton()->getMultiple() * betCoin_;
             if (haveCoin_ + getCoin_ > 9999999) {
                 getCoin_ = 9999999 - haveCoin_;
@@ -255,7 +255,7 @@ THUMB void MaterielMenuPokerChangecard::pokerDealCard()
                 getCoin_ = casino::PokerManager::getSingleton()->getMultiple() * betCoin_;
                 cmn::g_cmnSoundManager.setPlaySound(8, false);
                 isPlaySound_ = 1;
-                unk_20 = 1;
+                isWin_ = 1;
             }
         }
     }
@@ -406,7 +406,7 @@ THUMB void MaterielMenuPokerChangecard::unkfunc_0212bb74()
         gTownMenu_MESSAGE.setYesNo();
         betCoin_ = 0;
         getCoin_ = 0;
-        unk_20 = 0;
+        isWin_ = 0;
         casino::PokerManager::getSingleton()->winningCombination_ = 0;
         gameMode_ = 4;
         redraw_ = 1;

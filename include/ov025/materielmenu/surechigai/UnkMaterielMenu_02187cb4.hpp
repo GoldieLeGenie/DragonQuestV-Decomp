@@ -5,8 +5,8 @@
 // passing communication: envoy object choice
 struct UnkMaterielMenu_02187cb4 : menu::MenuBase {
     signed char mode_;                          // 0x1C
-    int unk_20;                                 // 0x20  first message
-    int unk_24;                                 // 0x24  cancel allowed
+    int isFirstMessage_;                                 // 0x20  first message
+    int isCancelEnable_;                                 // 0x24  cancel allowed
     menu::MenuItem menuItem_;                   // 0x28
     CursorMoveGridLoop navigator_;           // 0x8C
 

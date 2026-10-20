@@ -655,8 +655,8 @@ int sprite_data_load_sub(int spr_id, int pal_id, int keep)
             }
             data->p.texFmt = c->pixelFmt;
             data->p.unk_10 = 0;
-            data->p.unk_14 = 1;
-            data->p.unk_18 = c->mapingType;
+            data->p.plttColor0 = 1;
+            data->p.mappingType = c->mapingType;
             data->width = 8 << data->p.sizeS;
             data->height = 8 << data->p.sizeT;
             data->texKey = mgAllocTexVram(chr->szByte);
@@ -735,7 +735,7 @@ void sprite_activate(int data_id)
     if (data->plttFile != NULL) {
         plttAddr = NNS_GFD_GET_PLTT_KEY_ADDR(allocCachedPlttVram(data->plttFile, NNS_GFD_GET_PLTT_KEY_SIZE(data->plttKey), 1));
     }
-    G3_TexImageParam((GXTexFmt)data->p.texFmt, GX_TEXGEN_TEXCOORD, (GXTexSizeS)data->p.sizeS, (GXTexSizeT)data->p.sizeT, GX_TEXREPEAT_NONE, GX_TEXFLIP_NONE, (GXTexPlttColor0)data->p.unk_14, texAddr);
+    G3_TexImageParam((GXTexFmt)data->p.texFmt, GX_TEXGEN_TEXCOORD, (GXTexSizeS)data->p.sizeS, (GXTexSizeT)data->p.sizeT, GX_TEXREPEAT_NONE, GX_TEXFLIP_NONE, (GXTexPlttColor0)data->p.plttColor0, texAddr);
     G3_TexPlttBase(plttAddr, data->p.texFmt);
 }
 

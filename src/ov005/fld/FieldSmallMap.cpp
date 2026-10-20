@@ -12,7 +12,7 @@ THUMB fld::FieldSmallMap::~FieldSmallMap()
 
 THUMB void fld::FieldSmallMap::cleanup()
 {
-    unk_f8.unload();
+    playerMarker_.unload();
     GlobalMap::cleanup();
 }
 
@@ -21,15 +21,15 @@ THUMB void fld::FieldSmallMap::setup()
     char path[0x80];
 
     dss::sprintf_s(path, sizeof(path), "data/field/2d/point_s.tex");
-    unk_f8.loadFile(path, 0);
-    unk_f8.setSubScreen();
-    unk_f8.setPolygonID(0x34);
-    unk_f8.setDepth(0xa);
-    unk_f8.setAlpha(0);
-    unk_f8.setEnabled(1);
-    unk_f8.setTexCoords(0, 0, 0x10, 0x10);
-    unk_f8.setSize(0x10, 0x10);
-    unk_f8.freeVram();
+    playerMarker_.loadFile(path, 0);
+    playerMarker_.setSubScreen();
+    playerMarker_.setPolygonID(0x34);
+    playerMarker_.setDepth(0xa);
+    playerMarker_.setAlpha(0);
+    playerMarker_.setEnabled(1);
+    playerMarker_.setTexCoords(0, 0, 0x10, 0x10);
+    playerMarker_.setSize(0x10, 0x10);
+    playerMarker_.freeVram();
     GlobalMap::setup();
     load();
 }
@@ -38,30 +38,30 @@ THUMB void fld::FieldSmallMap::playerMapPosition()
 {
     dss::Fix32Vector3 playerPos = FieldPlayerManager::getSingleton().getPosition();
     dss::Vector2<int> pos = convertMapPos(playerPos.vx.value, playerPos.vy.value);
-    unk_f8.setPosition(pos.vx, pos.vy - 0xe);
+    playerMarker_.setPosition(pos.vx, pos.vy - 0xe);
 }
 
 THUMB void fld::FieldSmallMap::setAlpha(unsigned char alpha)
 {
-    unk_f8.setAlpha(alpha);
+    playerMarker_.setAlpha(alpha);
     GlobalMap::setAlpha(alpha);
 }
 
 THUMB void fld::FieldSmallMap::draw()
 {
     GlobalMap::draw();
-    unk_f8.draw();
+    playerMarker_.draw();
 }
 
 THUMB void fld::FieldSmallMap::load()
 {
-    unk_f8.allocVram();
-    unk_f8.transferToVram();
+    playerMarker_.allocVram();
+    playerMarker_.transferToVram();
     GlobalMap::load();
 }
 
 THUMB void fld::FieldSmallMap::clear()
 {
     GlobalMap::clear();
-    unk_f8.freeVram();
+    playerMarker_.freeVram();
 }

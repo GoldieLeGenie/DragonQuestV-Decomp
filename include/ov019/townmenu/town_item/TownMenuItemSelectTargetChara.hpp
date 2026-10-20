@@ -5,7 +5,7 @@
 
 // town item menu: selection of the character an item is given to
 struct TownMenuItemSelectTargetChara : menu::MenuBase {
-    unsigned char unk_1c;                       // 0x1C  number of selectable characters (bag included)
+    unsigned char charaCount_;                       // 0x1C  number of selectable characters (bag included)
     menu::MenuItem menuItem_;                   // 0x20
     CursorMoveGridLoop navigator_;           // 0x84
 

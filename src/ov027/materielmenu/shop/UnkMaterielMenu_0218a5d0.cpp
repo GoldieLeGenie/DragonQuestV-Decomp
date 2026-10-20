@@ -19,7 +19,7 @@ THUMB void UnkMaterielMenu_0218a5d0::menuSetup()
     menuItem_.active_ = 0;
     navigator_.setupBase();
     quantity_ = 1;
-    unk_1c = 0;
+    isMessageShown_ = 0;
     int active = menu::MaterielMenuPlayerControl::getSingleton()->activeItem_;
     TextAPI::setMACRO0(10, 0x40000000, MenuStatusInfo::getFukuroItemID(active, menu::MaterielMenuPlayerControl::getSingleton()->activeItemPage_));
     gTownMenu_MESSAGE.openMessageForTALK();
@@ -46,9 +46,9 @@ THUMB void UnkMaterielMenu_0218a5d0::menuUpdate()
     MenuStatusInfo::setMode(MenuStatusInfo::PLAYER_MODE);
     if (gTownMenu_MESSAGE.isOpen() == true) {
         if (gTownMenu_MESSAGE.isMessageWAITPROG() == true) {
-            if (unk_1c == 0) {
+            if (isMessageShown_ == 0) {
                 redraw_ = 1;
-                unk_1c = 1;
+                isMessageShown_ = 1;
                 return;
             }
             navigator_.setup(1, 1, 1);

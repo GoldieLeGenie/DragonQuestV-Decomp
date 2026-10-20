@@ -13,9 +13,9 @@ struct MaterielMenu_COINSALEROOM_ROOT : menu::MenuBase {
 
     menu::MenuItem menuItem_;                   // 0x1C
     CursorMoveGridLoop navigator_;           // 0x80
-    int unk_8c;                                 // 0x8C  blinks the cursor
+    int blink_;                                 // 0x8C  blinks the cursor
     int coin_;                                  // 0x90
-    unsigned char unk_94;                       // 0x94  blink frame counter
+    unsigned char blinkCount_;                       // 0x94  blink frame counter
     unsigned char mode_;                        // 0x95  BUY_COIN_MODE
 
     virtual void menuSetup();

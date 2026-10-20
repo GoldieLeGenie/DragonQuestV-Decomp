@@ -95,8 +95,8 @@ namespace fld
         UnkMenuSprite kumo_;                    // 0x010
         UnkMenuSprite firmament_;               // 0x060
         UnkMenuSprite shadow_;                  // 0x0B0
-        int unk_100;                            // 0x100 display enable
-        int unk_104;                            // 0x104 anim flag
+        int displayEnable_;                            // 0x100 display enable
+        int animFlag_;                            // 0x104 anim flag
         int frame_;                             // 0x108
         int high_;                              // 0x10C
 

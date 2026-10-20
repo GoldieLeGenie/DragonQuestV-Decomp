@@ -4,8 +4,8 @@
 
 // shop: choose whose items (or the sack) to sell
 struct MaterielMenu_SHOP_WHO_SELL : menu::MenuBase {
-    int unk_1c;                             // 0x1C
-    char unk_20;                            // 0x20
+    int endMessage_;                             // 0x1C
+    char charaCount_;                            // 0x20
     menu::MenuItem menuItem_;               // 0x24
     CursorMoveGridLoop navigator_;       // 0x88
 

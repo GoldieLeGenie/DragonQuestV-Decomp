@@ -66,7 +66,7 @@ struct MPExchange {
     u16 nickName_[10];                          // 0x04 user game info
     u8 nickNameLength_;                         // 0x18
     u8 childCount_;                             // 0x19
-    u16 unk_1a;                                 // 0x1A
+    u16 gameInfoUpdateCount_;                                 // 0x1A
     int cancelRequest_;                                 // 0x1C cancel
     int mode_;                                  // 0x20 SYSMODE_*
     int counter_;                               // 0x24 frames in the mode
@@ -75,7 +75,7 @@ struct MPExchange {
     u16 tgid_;                                  // 0x30
     u16 channel_;                               // 0x32
     int dataSharingFailed_;                                 // 0x34
-    int unk_38;                                 // 0x38
+    int printEnable_;                                 // 0x38
     int forceError_;                                 // 0x3C
     int scanChannel_;                                 // 0x40 scanned channel
     MPExchangeRole role_;                    // 0x44

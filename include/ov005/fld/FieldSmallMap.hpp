@@ -5,7 +5,7 @@
 namespace fld
 {
     struct FieldSmallMap : window::GlobalMap {
-        UnkMenuSprite unk_f8;                   // 0xF8 player marker
+        UnkMenuSprite playerMarker_;                   // 0xF8 player marker
 
         FieldSmallMap();
         ~FieldSmallMap();

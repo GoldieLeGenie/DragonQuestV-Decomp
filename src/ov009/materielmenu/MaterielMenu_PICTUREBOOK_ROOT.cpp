@@ -20,7 +20,7 @@ inline unsigned int dq5::level::BookData::getArraySize() { return binary_.getRec
 THUMB void MaterielMenu_PICTUREBOOK_ROOT::menuSetup()
 {
     menu::MenuStatusInfo::setMode(menu::MenuStatusInfo::PLAYER_MODE);
-    unk_8c = dq5::level::BookData::getArraySize();
+    m_bookCount = dq5::level::BookData::getArraySize();
     m_activeMonster = menu::MaterielMenuPlayerControl::getSingleton()->activeItem_;
     m_nowPage = menu::MaterielMenuPlayerControl::getSingleton()->activeItemPage_;
     menuItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD_CANCEL, menu::MenuItem::CURSORTYPE_ACTIVE);

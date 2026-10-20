@@ -6,7 +6,7 @@
 // poker: card change menu (overlay 12)
 struct MaterielMenuPokerChangecard : menu::MenuBase {
     int reverse_;                               // 0x1C
-    int unk_20;                                 // 0x20 won: draw the won coins
+    int isWin_;                                 // 0x20 won: draw the won coins
     int change_[5];                             // 0x24 held cards
     int isPlaySound_;                           // 0x38
     int betCoin_;                               // 0x3C

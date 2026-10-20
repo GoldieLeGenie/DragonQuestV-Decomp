@@ -141,11 +141,11 @@ THUMB void TownMenuItemSelectCommand::menuUpdate()
         }
         if (result == 2) {
             unsigned char activeCommand = TownMenuPlayerControl::getSingleton()->activeCommand_;
-            if (activeCommand != TownMenuPlayerControl::getSingleton()->unk_26) {
+            if (activeCommand != TownMenuPlayerControl::getSingleton()->prevCommand_) {
                 TownMenuPlayerControl::getSingleton()->targetChara_ = 0;
                 TownMenuPlayerControl::getSingleton()->targetCharaPage_ = 0;
             }
-            TownMenuPlayerControl::getSingleton()->unk_26 = activeCommand;
+            TownMenuPlayerControl::getSingleton()->prevCommand_ = activeCommand;
             if (activeCommand != 5 && checkSeinenStart() == true) {
                 return;
             }

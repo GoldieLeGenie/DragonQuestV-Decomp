@@ -137,7 +137,7 @@ struct UnkSpriteTexParam {
     GXTexFmt texFmt;                            // 0x08
     int unk_0C;                                 // 0x0C
     GXTexPlttColor0 plttColor0;                 // 0x10
-    int unk_14;                                 // 0x14
+    int mappingType;                                 // 0x14
 };
 
 struct SPRITE_DATA {

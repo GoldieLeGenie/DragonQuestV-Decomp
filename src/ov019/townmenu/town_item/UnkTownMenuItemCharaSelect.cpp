@@ -54,7 +54,7 @@ THUMB void UnkTownMenuItemCharaSelect::menuSetup()
     charaCount_ = TownMenuPlayerControl::getSingleton()->getDrawCharaCount(menu::TOWN_MENU_ITEM);
     navigator_.setupBase();
     navigator_.setup(5, 2, charaCount_);
-    unk_20 = 0;
+    isCloseMenu_ = 0;
 }
 
 THUMB void UnkTownMenuItemCharaSelect::menuExecute()
@@ -83,7 +83,7 @@ THUMB void UnkTownMenuItemCharaSelect::menuUpdate()
     if (gTownMenu_MESSAGE.isOpen() == true) {
         if (gTownMenu_MESSAGE.stat_ == MENUBASE_STAT_OK) {
             gTownMenu_MESSAGE.close();
-            if (unk_20 == 1) {
+            if (isCloseMenu_ == 1) {
                 close();
                 gTownMenu_ROOT.stat_ = MENUBASE_STAT_OK;
                 return;

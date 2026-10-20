@@ -30,19 +30,19 @@ THUMB void BattleMenu_ARRAY_ALL::menuSetup()
     gBattleMenuSub_HISTORY.close();
     menuItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD, menu::MenuItem::CURSORTYPE_ACTIVE);
     cancelItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_CANCEL, menu::MenuItem::CURSORTYPE_NONE);
-    unk_2c = 0;
-    unk_30 = 0;
-    unk_1c[0] = -1;
-    unk_1c[1] = -1;
-    unk_1c[2] = -1;
-    unk_1c[3] = -1;
+    orderCount_ = 0;
+    npcCount_ = 0;
+    order_[0] = -1;
+    order_[1] = -1;
+    order_[2] = -1;
+    order_[3] = -1;
     navigator_.setupBase();
     int count = MenuStatusInfo::getPartyCount(MenuStatusInfo::COUNT_CARRIAGE_OUT);
     for (int i = 0; i < count; i++) {
         if (MenuStatusInfo::getHaveStatusInfo(i).getHaveStatus().isBattleNpc()) {
-            unk_1c[i] = i;
-            unk_2c++;
-            unk_30++;
+            order_[i] = i;
+            orderCount_++;
+            npcCount_++;
         }
     }
 }
@@ -50,9 +50,9 @@ THUMB void BattleMenu_ARRAY_ALL::menuSetup()
 THUMB void BattleMenu_ARRAY_ALL::menuExecute()
 {
     MenuStatusInfo::setMode(MenuStatusInfo::SHIFT_MEMBER_MODE);
-    int num = unk_2c;
+    int num = orderCount_;
     int count = getMemberCount() - num;
-    if (num - unk_30 > 0 && isCarriageUsable()) {
+    if (num - npcCount_ > 0 && isCarriageUsable()) {
         count++;
     }
     navigator_.setup(5, 2, count);
@@ -81,7 +81,7 @@ THUMB void BattleMenu_ARRAY_ALL::drawMemberList()
     for (int i = 0; i < count; i++) {
         int free = 1;
         for (int j = 0; j < 4; j++) {
-            if (i == unk_1c[j]) {
+            if (i == order_[j]) {
                 free = 0;
             }
         }
@@ -93,14 +93,14 @@ THUMB void BattleMenu_ARRAY_ALL::drawMemberList()
             num++;
         }
     }
-    if (unk_2c - unk_30 > 0 && isCarriageUsable()) {
+    if (orderCount_ - npcCount_ > 0 && isCarriageUsable()) {
         if (num == menuItem_.active_) {
             BattleMenuPlayerControl::getSingleton()->targetChara_ = count;
         }
         list[num] = -1;
         num++;
     }
-    drawFormationAllMenu(list, num, unk_1c, unk_2c);
+    drawFormationAllMenu(list, num, order_, orderCount_);
     menuItem_.drawActive();
     cancelItem_.drawActive();
 }
@@ -140,7 +140,7 @@ THUMB void BattleMenu_ARRAY_ALL::menuUpdate()
     if (MenuUpdate_Assist::isCancel(cancelItem_)) {
         cancelItem_.result_ = 0;
         cancelItem_.lastresult_ = 0;
-        if (unk_2c - unk_30 == 0) {
+        if (orderCount_ - npcCount_ == 0) {
             close();
             gBattleMenu_ARRAYMENU.open();
             gBattleMenu_ARRAYMENU.cursorPos_ = 1;
@@ -170,7 +170,7 @@ THUMB void BattleMenu_ARRAY_ALL::menuUpdate()
     int count = getMemberCount();
     for (int i = 0; i < count; i++) {
         for (int j = 0; j < 4; j++) {
-            if (i == unk_1c[j]) {
+            if (i == order_[j]) {
                 used = 1;
             }
         }
@@ -183,7 +183,7 @@ THUMB void BattleMenu_ARRAY_ALL::menuUpdate()
     if (num - 1 == active) {
         menuItem_.active_ = active - 1;
     }
-    if (active == count - unk_2c && unk_2c - unk_30 != 0) {
+    if (active == count - orderCount_ && orderCount_ - npcCount_ != 0) {
         decideOrder();
         return;
     }
@@ -192,14 +192,14 @@ THUMB void BattleMenu_ARRAY_ALL::menuUpdate()
     if (max > 4) {
         max = 4;
     }
-    if (unk_2c == max) {
+    if (orderCount_ == max) {
         decideOrder();
     }
 }
 
 THUMB void BattleMenu_ARRAY_ALL::changeParty()
 {
-    MenuStatusInfo::reorder(unk_1c[0], unk_1c[1], unk_1c[2], unk_1c[3]);
+    MenuStatusInfo::reorder(order_[0], order_[1], order_[2], order_[3]);
     BattleMenuPlayerControl::getSingleton()->resetTargetGroup();
 }
 
@@ -225,9 +225,9 @@ THUMB int BattleMenu_ARRAY_ALL::getMemberCount()
 THUMB void BattleMenu_ARRAY_ALL::addOrder(int index)
 {
     for (int i = 0; i < 4; i++) {
-        if (unk_1c[i] == -1) {
-            unk_1c[i] = index;
-            unk_2c++;
+        if (order_[i] == -1) {
+            order_[i] = index;
+            orderCount_++;
             return;
         }
     }
@@ -237,9 +237,9 @@ THUMB void BattleMenu_ARRAY_ALL::removeOrder()
 {
     for (int i = 0; i < 4; i++) {
         int index = 3 - i;
-        if (unk_1c[index] != -1 && !MenuStatusInfo::getHaveStatusInfo(unk_1c[index]).getHaveStatus().isBattleNpc()) {
-            unk_1c[index] = -1;
-            unk_2c--;
+        if (order_[index] != -1 && !MenuStatusInfo::getHaveStatusInfo(order_[index]).getHaveStatus().isBattleNpc()) {
+            order_[index] = -1;
+            orderCount_--;
             return;
         }
     }
@@ -264,7 +264,7 @@ THUMB int BattleMenu_ARRAY_ALL::isOrderValid()
 {
     int result = 0;
     for (int i = 0; i < 4; i++) {
-        int chara = unk_1c[i];
+        int chara = order_[i];
         if (chara != -1 && !MenuStatusInfo::getHaveStatusInfo(chara).isDeath()
             && MenuStatusInfo::getHaveStatusInfo(chara).getHaveStatus().isPlayer()
             && !MenuStatusInfo::getHaveStatusInfo(chara).getStatusChange().isEnable(dq5::level::ActionParam::ACTIONTYPE_MAHI)) {

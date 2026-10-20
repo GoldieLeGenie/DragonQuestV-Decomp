@@ -5,8 +5,8 @@
 // shop: sale price of the chosen item and confirmation
 struct MaterielMenu_SHOP_VALUE : menu::MenuBase {
     int fukuro_;                            // 0x1C
-    int unk_20;                             // 0x20
-    int unk_24;                             // 0x24
+    int isEndMessage_;                             // 0x20
+    int endMessage_;                             // 0x24
     short activeItem_;                      // 0x28
     char activeChara_;                      // 0x2A
     char sellType_;                         // 0x2B

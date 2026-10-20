@@ -22,8 +22,8 @@ void twn::TownStageWrap::setup(EFFECT_TYPE type)
             sprite_.setMainScreen();
             sprite_.setAlpha(0x1e);
             sprite_.setPolygonID(0x3c);
-            unk_50.setSubScreen();
-            unk_50.setPolygonID(0x3d);
+            subSprite_.setSubScreen();
+            subSprite_.setPolygonID(0x3d);
             break;
         case EFFECT_TYPE_DREAM2:
             dss::sprintf_s(filename, sizeof(filename), "data/mask/siro1a2.tex");
@@ -31,9 +31,9 @@ void twn::TownStageWrap::setup(EFFECT_TYPE type)
             sprite_.setMainScreen();
             sprite_.setAlpha(0x1e);
             sprite_.setPolygonID(0x3c);
-            unk_50.setupTexture();
-            unk_50.setSubScreen();
-            unk_50.setPolygonID(0x3d);
+            subSprite_.setupTexture();
+            subSprite_.setSubScreen();
+            subSprite_.setPolygonID(0x3d);
             break;
         case EFFECT_TYPE_DEATHPISARO:
             dss::sprintf_s(filename, sizeof(filename), "data/mask/pisaro.tex");

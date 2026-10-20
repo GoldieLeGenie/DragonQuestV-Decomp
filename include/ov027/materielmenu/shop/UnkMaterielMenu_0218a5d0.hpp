@@ -4,7 +4,7 @@
 
 // shop: choose how many of a sack item to sell
 struct UnkMaterielMenu_0218a5d0 : menu::MenuBase {
-    int unk_1c;                             // 0x1C
+    int isMessageShown_;                             // 0x1C
     char quantity_;                         // 0x20
     menu::MenuItem menuItem_;               // 0x24
     CursorMoveGridLoop navigator_;       // 0x88

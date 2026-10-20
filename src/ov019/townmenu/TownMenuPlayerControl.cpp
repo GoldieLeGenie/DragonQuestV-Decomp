@@ -30,7 +30,7 @@ THUMB void menu::TownMenuPlayerControl::initialize()
     targetCharaPage_ = 0;
     unk_24 = 0;
     unk_25 = 0;
-    unk_26 = 0;
+    prevCommand_ = 0;
 }
 
 THUMB short menu::TownMenuPlayerControl::getActiveItemIndexToAll()

@@ -24,7 +24,7 @@ void twn::TownCharacterStorage::initialize()
     characterCount_ = 0;
     monsterCount_ = 0;
     modelCount_ = 0;
-    unk_000c = 0;
+    motionlessCount_ = 0;
     funitureCount_ = 0;
 }
 
@@ -60,7 +60,7 @@ twn::TownCharacterBase* twn::TownCharacterStorage::getContainer(int type)
         }
         break;
     case STORAGE_CHARACTER_MOTIONLESS:
-        unk_000c++;
+        motionlessCount_++;
         for (int i = 0; i < MOTIONLESS_MAX; i++) {
             if (motionless_[i].data_.enable == false) {
                 return &motionless_[i];
@@ -92,7 +92,7 @@ void twn::TownCharacterStorage::restoreContainer(int type)
         modelCount_--;
         break;
     case STORAGE_CHARACTER_MOTIONLESS:
-        unk_000c--;
+        motionlessCount_--;
         break;
     case STORAGE_CHARACTER_FURNITURE:
         funitureCount_--;

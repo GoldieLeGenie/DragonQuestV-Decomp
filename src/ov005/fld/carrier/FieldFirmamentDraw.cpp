@@ -5,8 +5,8 @@ static int s_kumoOffset[2] = { 1, 0x12 };
 
 THUMB fld::FieldFirmamentDraw::FieldFirmamentDraw()
 {
-    unk_100 = 0;
-    unk_104 = 0;
+    displayEnable_ = 0;
+    animFlag_ = 0;
 }
 
 THUMB fld::FieldFirmamentDraw::~FieldFirmamentDraw()
@@ -99,12 +99,12 @@ THUMB void fld::FieldFirmamentDraw::setShadowWH(int w, int h)
 
 THUMB void fld::FieldFirmamentDraw::setDisplayEnable(int flag)
 {
-    unk_100 = flag;
+    displayEnable_ = flag;
 }
 
 THUMB int fld::FieldFirmamentDraw::isDisplayEnable()
 {
-    return unk_100;
+    return displayEnable_;
 }
 
 THUMB void fld::FieldFirmamentDraw::setShadowStay(int flag)
@@ -113,7 +113,7 @@ THUMB void fld::FieldFirmamentDraw::setShadowStay(int flag)
 
 THUMB void fld::FieldFirmamentDraw::setAnimFlag(int flag)
 {
-    unk_104 = flag;
+    animFlag_ = flag;
 }
 
 THUMB void fld::FieldFirmamentDraw::setShadowFlag(int flag)

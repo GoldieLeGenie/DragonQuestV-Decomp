@@ -29,16 +29,16 @@ THUMB void TownMenuItemSelectTargetChara::menuSetup()
     menuItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD_CANCEL, menu::MenuItem::CURSORTYPE_ACTIVE);
     menuItem_.active_ = TownMenuPlayerControl::getSingleton()->targetChara_;
     navigator_.setupBase();
-    unk_1c = TownMenuPlayerControl::getSingleton()->getDrawCharaCount(menu::TOWN_MENU_ITEM);
+    charaCount_ = TownMenuPlayerControl::getSingleton()->getDrawCharaCount(menu::TOWN_MENU_ITEM);
 }
 
 THUMB void TownMenuItemSelectTargetChara::menuExecute()
 {
     MenuStatusInfo::setMode(MenuStatusInfo::PLAYER_MODE);
-    if (unk_1c <= 5) {
-        townMenuItemSelectHalfChara(&menuItem_, unk_1c, menuItem_.active_);
+    if (charaCount_ <= 5) {
+        townMenuItemSelectHalfChara(&menuItem_, charaCount_, menuItem_.active_);
     } else {
-        townMenuItemSelectChara(&menuItem_, unk_1c, menuItem_.active_);
+        townMenuItemSelectChara(&menuItem_, charaCount_, menuItem_.active_);
     }
 }
 
@@ -55,7 +55,7 @@ THUMB void TownMenuItemSelectTargetChara::menuDraw()
 THUMB void TownMenuItemSelectTargetChara::menuUpdate()
 {
     MenuStatusInfo::setMode(MenuStatusInfo::PLAYER_MODE);
-    navigator_.setup(5, 2, unk_1c);
+    navigator_.setup(5, 2, charaCount_);
     int result = MenuUpdate_Assist::menuSelect(menuItem_, navigator_);
     if (result == 0) {
         return;

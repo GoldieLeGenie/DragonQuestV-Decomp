@@ -132,7 +132,7 @@ inline void unkSetTexParam(UnkSpriteTexParam* param, NNSG2dCharacterData* chr)
     param->texFmt = (GXTexFmt)chr->pixelFmt;
     param->unk_0C = 0;
     param->plttColor0 = GX_TEXPLTTCOLOR0_TRNS;
-    param->unk_14 = chr->mapingType;
+    param->mappingType = chr->mapingType;
 }
 
 inline fx32 FX_Mul32x64c(fx32 v32, fx64 v64c)

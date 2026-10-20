@@ -29,7 +29,7 @@ THUMB void BattleMenu_ITEMUSEEQUIP::menuSetup()
     btl::BattleMonsterMask::getSingleton()->select(-1);
     activeItem_ = BattleMenuPlayerControl::getSingleton()->activeItem_;
     activeChara_ = BattleMenuPlayerControl::getSingleton()->activeChara_;
-    unk_154 = 0;
+    isSoundPlayed_ = 0;
 }
 
 THUMB void BattleMenu_ITEMUSEEQUIP::menuExecute()
@@ -67,8 +67,8 @@ THUMB void BattleMenu_ITEMUSEEQUIP::menuUpdate()
     MenuStatusInfo::setMode(MenuStatusInfo::BATTLE_MODE);
     if (cmn::g_cmnSoundManager.isPlaySound() == 1) {
         cmn::g_cmnSoundManager.execSound();
-        unk_154 = 1;
-    } else if (unk_154 == 1) {
+        isSoundPlayed_ = 1;
+    } else if (isSoundPlayed_ == 1) {
         close();
         gBattleMenu_ITEM.open();
         gBattleMenuSub_HISTORY.update_ = 1;
@@ -113,7 +113,7 @@ THUMB void BattleMenu_ITEMUSEEQUIP::unkfunc_02172d78()
         }
         selectEquip();
         redraw_ = 1;
-        if (unk_154 == 0) {
+        if (isSoundPlayed_ == 0) {
             close();
             gBattleMenu_ITEM.open();
         }

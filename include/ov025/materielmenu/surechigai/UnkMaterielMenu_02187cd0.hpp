@@ -4,12 +4,12 @@
 
 // passing communication: received envoys list
 struct UnkMaterielMenu_02187cd0 : menu::MenuBase {
-    int unk_1c;                                 // 0x1C  envoy shown
-    unsigned char unk_20;                       // 0x20  envoy count
+    int isShowDetail_;                                 // 0x1C  envoy shown
+    unsigned char taishiCount_;                       // 0x20  envoy count
     menu::MenuItem menuItem_;                   // 0x24
     CursorMoveGridLoop navigator_;           // 0x88
-    int unk_94;                                 // 0x94  delete mode
-    int unk_98;                                 // 0x98
+    int isDeleteMode_;                                 // 0x94  delete mode
+    int deleteStep_;                                 // 0x98
 
     virtual void menuSetup();
     virtual void menuExecute();

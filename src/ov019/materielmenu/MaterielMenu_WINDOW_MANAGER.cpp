@@ -217,7 +217,7 @@ THUMB void MaterielMenu_WINDOW_MANAGER::openMaterielWindow(int menuType)
             loadMaterielMenuOverlay(6);
             dq5::level::SurechigaiData::setup();
             dq5::level::MeisanhinData::setup();
-            data_ov019_0218616c.unk_af = 1;
+            data_ov019_0218616c.editMode_ = 1;
             data_ov019_0218616c.open();
             break;
         case MENU_MONSTAR_JISAN:

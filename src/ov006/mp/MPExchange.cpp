@@ -58,7 +58,7 @@ ARM status::TAISHI_DATA* MPExchange::getReceivedData()
 ARM void MPExchange::start()
 {
     OSOwnerInfo info;
-    unk_38 = data_020f325c;
+    printEnable_ = data_020f325c;
     role_.mode_ = data_020f3258;
     forceError_ = data_020f3260;
     setWhForceError(forceError_);
@@ -237,7 +237,7 @@ ARM void MPExchange::unkfunc_0212a950()
 
 ARM void MPExchange::updateGameInfo(int entry)
 {
-    unk_1a++;
+    gameInfoUpdateCount_++;
     childCount_ = func_0208a8dc(getWhConnectBitmap()) - 1;
     u32 ggid = getGgid();
     func_0207b270(onSetGameInfoCallback, nickName_, 0x18, ggid, tgid_, entry ? 1 : 0);

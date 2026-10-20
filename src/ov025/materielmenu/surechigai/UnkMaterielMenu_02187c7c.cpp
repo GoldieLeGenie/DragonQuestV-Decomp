@@ -28,10 +28,10 @@ THUMB void UnkMaterielMenu_02187c7c::menuSetup()
     navigator_.setupBase();
     navigator_.setup(2, 4, 0x14);
     mode_ = 0;
-    unk_20 = 0;
-    unk_28 = 0;
-    unk_1c = status::g_MuseumStatus.playerTaishi_.objectId_;
-    unk_1c = dq5::level::SurechigaiData::getRecord(unk_1c)->cgicon;
+    price_ = 0;
+    isCaptureOffset_ = 0;
+    icon_ = status::g_MuseumStatus.playerTaishi_.objectId_;
+    icon_ = dq5::level::SurechigaiData::getRecord(icon_)->cgicon;
     TextAPI::setUserString(0, status::g_MuseumStatus.playerTaishi_.taishiName_);
 }
 
@@ -52,7 +52,7 @@ THUMB void UnkMaterielMenu_02187c7c::menuExecute()
 THUMB void UnkMaterielMenu_02187c7c::menuDraw()
 {
     MenuStatusInfo::setMode(MenuStatusInfo::PLAYER_MODE);
-    drawTagModeEditScreen(mode_, unk_1c, navigator_.getPageNo(), unk_20);
+    drawTagModeEditScreen(mode_, icon_, navigator_.getPageNo(), price_);
     if (mode_ <= 1) {
         menuItem_.drawActive();
     }
@@ -61,9 +61,9 @@ THUMB void UnkMaterielMenu_02187c7c::menuDraw()
 THUMB void UnkMaterielMenu_02187c7c::menuUpdate()
 {
     MenuStatusInfo::setMode(MenuStatusInfo::PLAYER_MODE);
-    if (unk_28 == 1) {
+    if (isCaptureOffset_ == 1) {
         setCaptureOffset(-4, 0);
-        unk_28 = 0;
+        isCaptureOffset_ = 0;
     }
     if (gTownMenu_MESSAGE.isOpen()) {
         int stat = gTownMenu_MESSAGE.stat_;
@@ -78,7 +78,7 @@ THUMB void UnkMaterielMenu_02187c7c::menuUpdate()
                     break;
                 case 3:
                     close();
-                    data_ov019_0218616c.unk_af = 1;
+                    data_ov019_0218616c.editMode_ = 1;
                     data_ov019_0218616c.open();
                     resetCaptureOffset();
                     break;
@@ -86,8 +86,8 @@ THUMB void UnkMaterielMenu_02187c7c::menuUpdate()
                     status::g_MuseumStatus.recoveryTaishi();
                     close();
                     data_ov019_021854d4.open();
-                    if (unk_24 == 1) {
-                        data_ov019_021854d4.unk_24 = 1;
+                    if (isCancelEnable_ == 1) {
+                        data_ov019_021854d4.isCancelEnable_ = 1;
                     }
                     resetCaptureOffset();
                     break;
@@ -149,7 +149,7 @@ THUMB void UnkMaterielMenu_02187c7c::menuUpdate()
         mode_--;
         if (mode_ < 0) {
             close();
-            data_ov019_0218616c.unk_af = 0;
+            data_ov019_0218616c.editMode_ = 0;
             data_ov019_0218616c.open();
         }
         if (mode_ == 0) {
@@ -166,12 +166,12 @@ THUMB void UnkMaterielMenu_02187c7c::menuUpdate()
     }
     if (mode_ == 1) {
         if (result == 4) {
-            unk_20 += step;
+            price_ += step;
         }
         if (result == 5) {
-            unk_20 -= step;
+            price_ -= step;
         }
-        unk_20 = dss::clamp<int>(0, unk_20, 999999);
+        price_ = dss::clamp<int>(0, price_, 999999);
     }
     redraw_ = 1;
 }
@@ -187,14 +187,14 @@ THUMB void UnkMaterielMenu_02187c7c::decideSelection()
             break;
         case 1:
             status::g_MuseumStatus.playerTaishi_.setTaishiProducer(status::PlayerDataAll::playerData_[1].name_);
-            status::g_MuseumStatus.playerTaishi_.price_ = unk_20;
+            status::g_MuseumStatus.playerTaishi_.price_ = price_;
             status::g_MuseumStatus.playerTaishi_.uniqueId_ = status::g_Game.getUniqueID();
             menuItem_.active_ = 0;
             gTownMenu_MESSAGE.openMessageForTALK();
             gTownMenu_MESSAGE.addMessage(0xcc5ad);
             gTownMenu_MESSAGE.setYesNo();
             mode_ = 2;
-            unk_28 = 1;
+            isCaptureOffset_ = 1;
             break;
     }
 }

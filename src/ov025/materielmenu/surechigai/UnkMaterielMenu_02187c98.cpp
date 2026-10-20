@@ -27,7 +27,7 @@ THUMB void UnkMaterielMenu_02187c98::menuSetup()
     menuItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD_CANCEL, menu::MenuItem::CURSORTYPE_ACTIVE);
     menuItem_.active_ = 0;
     navigator_.setupBase();
-    unk_20 = 1;
+    isFirstMessage_ = 1;
     mode_ = 5;
     MaterielMenu_WINDOW_MANAGER::getSingleton()->surechigaiStart_ = 0;
     status::g_Menu.clearBooking();
@@ -52,9 +52,9 @@ THUMB void UnkMaterielMenu_02187c98::menuUpdate()
     MenuStatusInfo::setMode(MenuStatusInfo::PLAYER_MODE);
     if (gTownMenu_MESSAGE.isOpen()) {
         if (gTownMenu_MESSAGE.isMessageWAITPROG()) {
-            if (unk_20 == 1) {
+            if (isFirstMessage_ == 1) {
                 redraw_ = 1;
-                unk_20 = 0;
+                isFirstMessage_ = 0;
                 return;
             }
             navigator_.setup(1, 5, 5);
@@ -88,7 +88,7 @@ THUMB void UnkMaterielMenu_02187c98::menuUpdate()
         }
         return;
     }
-    if (unk_20 == 1) {
+    if (isFirstMessage_ == 1) {
         gTownMenu_MESSAGE.openMessageForTALK();
         gTownMenu_MESSAGE.addMessageNOWAIT(0xcc5d3);
         gTownMenu_MESSAGE.addMessageWAITKEY();
@@ -99,7 +99,7 @@ THUMB void UnkMaterielMenu_02187c98::unkfunc_02187278()
 {
     switch (mode_) {
         case 1:
-            if (unk_20 == 1) {
+            if (isFirstMessage_ == 1) {
                 gTownMenu_MESSAGE.openMessageForTALK();
                 gTownMenu_MESSAGE.addMessageNOWAIT(0xcc635);
                 gTownMenu_MESSAGE.addMessageWAITKEY();
@@ -109,13 +109,13 @@ THUMB void UnkMaterielMenu_02187c98::unkfunc_02187278()
             status::g_Menu.surechigaiMode_ = 2;
             close();
             data_ov019_021854d4.open();
-            data_ov019_021854d4.unk_24 = 1;
+            data_ov019_021854d4.isCancelEnable_ = 1;
             break;
         case 3:
             status::g_Menu.surechigaiMode_ = 4;
             close();
             data_ov019_02185864.open();
-            data_ov019_02185864.unk_94 = 1;
+            data_ov019_02185864.isDeleteMode_ = 1;
             mode_ = 5;
             break;
         case 4:
@@ -133,7 +133,7 @@ THUMB void UnkMaterielMenu_02187c98::unkfunc_02187310()
         case 1:
             gTownMenu_MESSAGE.openMessageForTALK();
             gTownMenu_MESSAGE.addMessage(0xcc631);
-            unk_20 = 1;
+            isFirstMessage_ = 1;
             break;
         case 4:
             MaterielMenu_WINDOW_MANAGER::getSingleton()->closeMaterielWindow();
@@ -157,7 +157,7 @@ THUMB void UnkMaterielMenu_02187c98::selectCommand()
                 gTownMenu_MESSAGE.openMessageForTALK();
                 gTownMenu_MESSAGE.addMessage(0xcc61c, 0xcc61d);
                 mode_ = 1;
-                unk_20 = 1;
+                isFirstMessage_ = 1;
                 return;
             }
             status::g_Menu.surechigaiMode_ = 1;
@@ -176,12 +176,12 @@ THUMB void UnkMaterielMenu_02187c98::selectCommand()
                 gTownMenu_MESSAGE.openMessageForTALK();
                 gTownMenu_MESSAGE.addMessage(0xcc645);
                 mode_ = 1;
-                unk_20 = 1;
+                isFirstMessage_ = 1;
                 return;
             }
             status::g_Menu.surechigaiMode_ = 3;
             close();
-            data_ov019_02185864.unk_94 = 0;
+            data_ov019_02185864.isDeleteMode_ = 0;
             data_ov019_02185864.open();
             break;
         case 3:
@@ -190,7 +190,7 @@ THUMB void UnkMaterielMenu_02187c98::selectCommand()
                 gTownMenu_MESSAGE.openMessageForTALK();
                 gTownMenu_MESSAGE.addMessage(0xcc648);
                 mode_ = 1;
-                unk_20 = 1;
+                isFirstMessage_ = 1;
                 return;
             }
             gTownMenu_MESSAGE.openMessageForTALK();

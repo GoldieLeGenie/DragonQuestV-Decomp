@@ -112,8 +112,8 @@ void twn::TownSystemCommand::initialize()
     commandObjectManager_.enRegister(townCommandButtonSearch_, 25);
     commandObjectManager_.enRegister(townCommandPartChange_, 0);
     commandObjectManager_.enRegister(townCommandInitWait_, 20);
-    commandObjectManager_.enRegister(unk_160, 13);
-    commandObjectManager_.enRegister(unk_15c, 12);
+    commandObjectManager_.enRegister(townCommandMenuSearch_, 13);
+    commandObjectManager_.enRegister(townCommandMenuTalk_, 12);
     commandObjectManager_.enRegister(townCommandEvent_, 19);
     commandObjectManager_.enRegister(townCommandPartyTalk_, 29);
     commandObjectManager_.enRegister(townCommandWalkCount_, 22);

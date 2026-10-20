@@ -27,7 +27,7 @@ THUMB void BattleMenu_ACTIONMENU::menuSetup()
     activeCharacter_ = BattleMenuPlayerControl::getSingleton()->activeChara_;
     gBattleMenuSub_HISTORY.commandChara_ = activeCharacter_;
     MenuStatusInfo::getHaveBattleStatus(activeCharacter_).setSelectCommand(status::HaveBattleStatus::NoSelect, 0);
-    unk_14c = -1;
+    activePage_ = -1;
     navigator_.setupBase();
 }
 
@@ -70,13 +70,13 @@ THUMB void BattleMenu_ACTIONMENU::menuUpdate()
         return;
     }
     if (result == 1) {
-        if (unk_14c == -1) {
+        if (activePage_ == -1) {
             gBattleMenuSub_HISTORY.select_ = BattleMenuJudge::getSingleton()->getPlayerIndex();
         }
-        unk_14c = pageItem_.active_;
+        activePage_ = pageItem_.active_;
     }
     if (result == 2) {
-        if (unk_14c == -1) {
+        if (activePage_ == -1) {
             gBattleMenuSub_HISTORY.select_ = BattleMenuJudge::getSingleton()->getPlayerIndex();
         }
         pageItem_.result_ = 0;

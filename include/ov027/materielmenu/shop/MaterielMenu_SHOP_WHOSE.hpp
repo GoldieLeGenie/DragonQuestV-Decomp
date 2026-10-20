@@ -5,7 +5,7 @@
 // shop: choose who gets the bought item
 struct MaterielMenu_SHOP_WHOSE : menu::MenuBase {
     menu::MenuItem menuItem_;                   // 0x1C
-    int unk_80;                                 // 0x80  message shown when returning to the shop menu
+    int endMessage_;                                 // 0x80  message shown when returning to the shop menu
     char activeItem_;                           // 0x84
     char mode_;                                 // 0x85
     CursorMoveGridLoop navigator_;           // 0x88

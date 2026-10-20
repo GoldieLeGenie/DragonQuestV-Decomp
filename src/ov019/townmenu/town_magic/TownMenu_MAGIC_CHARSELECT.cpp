@@ -110,7 +110,7 @@ THUMB void TownMenu_MAGIC_CHARSELECT::menuSetup()
     navigator_.setPageNo(page);
     magicID_ = MenuStatusInfo::getPlayerActionID(activeChara, activeMagic, MenuStatusInfo::USE_TOWN);
     isResult_ = 0;
-    unk_20 = 0;
+    isHealMessage_ = 0;
     updateHP_ = 0;
     for (int i = 0; i < 4; i++) {
         resultMes_[i] = 0;
@@ -159,7 +159,7 @@ THUMB void TownMenu_MAGIC_CHARSELECT::menuUpdate()
             if (isResult_ == 1) {
                 SoundManager::playSe(0x1f5, 0);
             }
-            unk_20 = 0;
+            isHealMessage_ = 0;
             redraw_ = 1;
             return;
         }
@@ -237,7 +237,7 @@ THUMB void TownMenu_MAGIC_CHARSELECT::useMagic()
         gTownMenu_MESSAGE.addMessage(useActionMessage.getExecMessage(0));
         gTownMenu_MESSAGE.addMessageWAITKEY();
     }
-    unk_20 = 1;
+    isHealMessage_ = 1;
     if (isResult_ != 0 || useActionMessage.getResultMessage(0) != 0xc40d3) {
         for (int count = 0; useActionMessage.getResultMessage(count) != 0; count++) {
             resultMes_[count] = useActionMessage.getResultMessage(count);

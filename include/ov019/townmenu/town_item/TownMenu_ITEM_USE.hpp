@@ -10,9 +10,9 @@ namespace status {
 // town item menu: selection of the target of an item
 struct TownMenu_ITEM_USE : menu::MenuBase {
     int activeFukuro_;                          // 0x1C
-    int unk_20;                                 // 0x20  the item list became empty
+    int isItemEmpty_;                                 // 0x20  the item list became empty
     int isResult_;                              // 0x24
-    int unk_28;                                 // 0x28  heal message pending
+    int isHealMessage_;                                 // 0x28  heal message pending
     int resultMes_[4];                          // 0x2C
     short itemID_;                              // 0x3C
     short activeItem_;                          // 0x3E

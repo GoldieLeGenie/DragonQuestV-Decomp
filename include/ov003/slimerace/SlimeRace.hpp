@@ -109,8 +109,8 @@ struct UnkSpriteTexParam {
     int sizeT;                                  // 0x04
     int texFmt;                                 // 0x08
     int unk_10;                                 // 0x0C
-    int unk_14;                                 // 0x10 color 0 transparent
-    int unk_18;                                 // 0x14 mapping type
+    int plttColor0;                                 // 0x10 color 0 transparent
+    int mappingType;                                 // 0x14 mapping type
 };
 
 // loaded sprite texture (NCBR) and palette (NCLR)

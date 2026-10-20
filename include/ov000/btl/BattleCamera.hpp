@@ -8,7 +8,7 @@ namespace btl {
         static const int CAMERA_NAME_SIZE = 16;
 
         UnkCamera normalCamera_;                    // 0x000
-        UnkCamera unk_070;                          // 0x070
+        UnkCamera iniCamera_;                          // 0x070
         dss::Fix32Vector3 initposition_;            // 0x0E0
         int enable_;                                // 0x0EC
         int unk_0f0;                                // 0x0F0

@@ -27,7 +27,7 @@ struct TownMenuPlayerControl : MenuPlayerControl {
     unsigned char activeTactics_;               // 0x23
     unsigned char unk_24;                       // 0x24
     unsigned char unk_25;                       // 0x25
-    char unk_26;                                // 0x26  previous active command
+    char prevCommand_;                                // 0x26  previous active command
 
     static TownMenuPlayerControl* getSingleton();
     void setActiveItem(short item);

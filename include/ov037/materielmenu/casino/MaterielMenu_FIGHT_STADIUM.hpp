@@ -33,7 +33,7 @@ struct MaterielMenu_FIGHT_STADIUM : menu::MenuBase {
     int blink_;                                 // 0xF8  blinks the bet cursor
     int waitProg_;                                 // 0xFC  message waiting for the menu (last frame)
     int m_bDispCoin;                            // 0x100
-    int unk_104;                                // 0x104 monster list shown
+    int isMonsterList_;                                // 0x104 monster list shown
 
     virtual void menuSetup();
     virtual void menuExecute();
