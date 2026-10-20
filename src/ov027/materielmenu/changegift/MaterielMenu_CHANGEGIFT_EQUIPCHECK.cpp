@@ -36,7 +36,7 @@ THUMB void MaterielMenu_CHANGEGIFT_EQUIPCHECK::menuSetup()
 
 THUMB void MaterielMenu_CHANGEGIFT_EQUIPCHECK::menuDraw()
 {
-    unkfunc_0217bfe8();
+    drawChangeGiftScreen();
 }
 
 THUMB void MaterielMenu_CHANGEGIFT_EQUIPCHECK::menuUpdate()

@@ -120,7 +120,7 @@ THUMB void MaterielMenu_JISAN_CHANGE_NAME::menuDraw()
     }
     int page = navigator_.getPageNo();
     int pageMax = navigator_.getPageMaxCount() - 1;
-    unkfunc_0217c424(open, page, pageMax, 4, unk_90, unk_1c);
+    drawChangeNameScreen(open, page, pageMax, 4, unk_90, unk_1c);
 }
 
 THUMB void MaterielMenu_JISAN_CHANGE_NAME::menuUpdate()

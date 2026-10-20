@@ -72,7 +72,7 @@ THUMB void MaterielMenu_LUIDA_ADD_PLAYER::menuDraw()
         MenuStatusInfo::setMode(MenuStatusInfo::PLAYER_MODE);
         int page = navigator_.getPageNo();
         int pageMax = navigator_.getPageMaxCount() - 1;
-        unkfunc_0217c3dc(page, pageMax, 6, 0);
+        drawMemberChangeScreen(page, pageMax, 6, 0);
         menuItem_.drawActive();
     }
 }

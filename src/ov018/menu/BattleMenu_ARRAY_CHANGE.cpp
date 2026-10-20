@@ -33,7 +33,7 @@ THUMB void BattleMenu_ARRAY_CHANGE::menuExecute()
     if (phase_ == 0) {
         int count = MenuStatusInfo::getPartyCount(MenuStatusInfo::COUNT_CARRIAGE_OUT);
         memberNavigator_.setup(4, 1, count);
-        unkfunc_02175b34(&menuItem_, BattleMenuPlayerControl::getSingleton()->activeChara_, count);
+        setupBattleArrayChange4x1(&menuItem_, BattleMenuPlayerControl::getSingleton()->activeChara_, count);
     } else {
         int count = MenuStatusInfo::getPartyCount(MenuStatusInfo::COUNT_ALL) - MenuStatusInfo::getPartyCount(MenuStatusInfo::COUNT_CARRIAGE_OUT);
         targetNavigator_.setup(4, 1, count);
@@ -44,11 +44,11 @@ THUMB void BattleMenu_ARRAY_CHANGE::menuExecute()
         if (page != last) {
             num = targetNavigator_.getMaxCountInPage();
         }
-        unkfunc_02175b50(&targetItem_, targetPos_, num);
+        setupBattleArrayChangeTo4x1(&targetItem_, targetPos_, num);
         int max = targetNavigator_.getPageMaxCount() - 1;
-        unkfunc_02175c0c(&pageItem_, pageItem_.active_, max, 0xc4, 0x88);
+        setupBattlePageArrow(&pageItem_, pageItem_.active_, max, 0xc4, 0x88);
     }
-    unkfunc_02175a5c(&cancelItem_);
+    setupBattleCancel(&cancelItem_);
 }
 
 THUMB void BattleMenu_ARRAY_CHANGE::menuDraw()
@@ -58,7 +58,7 @@ THUMB void BattleMenu_ARRAY_CHANGE::menuDraw()
         return;
     }
     if (phase_ == 0) {
-        unkfunc_02170364();
+        drawFormationChangeMemberMenu();
     } else {
         int list[8] = {-1};
         for (int i = 0; i < 8; i++) list[i] = -1;
@@ -70,7 +70,7 @@ THUMB void BattleMenu_ARRAY_CHANGE::menuDraw()
         }
         int target = out + targetNavigator_.getIndex(targetPos_);
         BattleMenuPlayerControl::getSingleton()->targetChara_ = target;
-        unkfunc_021703dc(list, num, targetNavigator_.getPageNo());
+        drawFormationChangeTargetMenu(list, num, targetNavigator_.getPageNo());
     }
     int chara = BattleMenuPlayerControl::getSingleton()->activeChara_;
     if (phase_ != 0) {
@@ -87,7 +87,7 @@ THUMB void BattleMenu_ARRAY_CHANGE::menuDraw()
             num++;
         }
     }
-    unkfunc_02170c78(actions, num, chara);
+    drawCharaBattleSpellList(actions, num, chara);
     menuItem_.drawActive();
     targetItem_.drawActive();
 }
@@ -100,11 +100,11 @@ THUMB void BattleMenu_ARRAY_CHANGE::menuUpdate()
         }
         return;
     }
-    if (!unkfunc_0217262c()) {
+    if (!cancelUpdate()) {
         if (phase_ == 0) {
-            unkfunc_02172454();
+            memberUpdate();
         } else {
-            unkfunc_0217249c();
+            targetUpdate();
         }
     }
     if (prevPhase_ != phase_) {
@@ -123,7 +123,7 @@ THUMB void BattleMenu_ARRAY_CHANGE::menuUpdate()
     }
 }
 
-THUMB int BattleMenu_ARRAY_CHANGE::unkfunc_02172454()
+THUMB int BattleMenu_ARRAY_CHANGE::memberUpdate()
 {
     int result = MenuUpdate_Assist::menuSelect(menuItem_, memberNavigator_);
     if (result != 0) {
@@ -145,7 +145,7 @@ THUMB int BattleMenu_ARRAY_CHANGE::unkfunc_02172454()
     return 0;
 }
 
-THUMB int BattleMenu_ARRAY_CHANGE::unkfunc_0217249c()
+THUMB int BattleMenu_ARRAY_CHANGE::targetUpdate()
 {
     int result = MenuUpdate_Assist::menuSelect(targetItem_, targetNavigator_);
     if (result != 0) {
@@ -204,7 +204,7 @@ THUMB int BattleMenu_ARRAY_CHANGE::unkfunc_0217249c()
     return 0;
 }
 
-THUMB int BattleMenu_ARRAY_CHANGE::unkfunc_0217262c()
+THUMB int BattleMenu_ARRAY_CHANGE::cancelUpdate()
 {
     if (MenuUpdate_Assist::isCancel(cancelItem_)) {
         if (phase_ == 0) {

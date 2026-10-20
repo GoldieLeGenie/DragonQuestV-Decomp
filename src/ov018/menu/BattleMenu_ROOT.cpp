@@ -53,14 +53,14 @@ THUMB void BattleMenu_ROOT::menuExecute()
         return;
     }
     navigator_.setup(2, 2, 4);
-    unkfunc_02175a84(&menuItem_, 4, menuItem_.active_);
-    unkfunc_02175be0(&cancelItem_);
+    setupBattleMenuIcon2x2(&menuItem_, 4, menuItem_.active_);
+    setupBattleEnemyRect(&cancelItem_);
 }
 
 THUMB void BattleMenu_ROOT::menuDraw()
 {
     if (isCancelWait_ == 0) {
-        unkfunc_0216ff70();
+        drawBattleRootMenu();
         menuItem_.drawActive();
     }
 }

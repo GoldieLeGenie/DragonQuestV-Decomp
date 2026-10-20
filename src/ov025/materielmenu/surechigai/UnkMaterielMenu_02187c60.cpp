@@ -54,7 +54,7 @@ THUMB void UnkMaterielMenu_02187c60::menuDraw()
 {
     MenuStatusInfo::setMode(MenuStatusInfo::PLAYER_MODE);
     if (unk_20 == 0) {
-        unkfunc_0217c4e4(gTownMenu_MESSAGE.isOpen(), unk_af, unk_24);
+        drawTagModeNameEditScreen(gTownMenu_MESSAGE.isOpen(), unk_af, unk_24);
     }
 }
 

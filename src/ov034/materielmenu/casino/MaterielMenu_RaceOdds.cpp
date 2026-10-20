@@ -72,9 +72,9 @@ THUMB void MaterielMenu_RaceOdds::menuExecute()
 {
     if (mode_ == MODE_STANDBY) {
         if (g_RaceData.getPaddock() == 5) {
-            menu::MenuTemplate_materiel::unkfunc_0217d5a8(&menuItem_, maxToken_ + 1);
+            menu::MenuTemplate_materiel::MATERIEL_RACE_ODDS_2x6(&menuItem_, maxToken_ + 1);
         } else {
-            menu::MenuTemplate_materiel::unkfunc_0217d60c(&menuItem_, maxToken_ + 1);
+            menu::MenuTemplate_materiel::MATERIEL_RACE_ODDS_2x8(&menuItem_, maxToken_ + 1);
         }
     }
 }
@@ -83,15 +83,15 @@ THUMB void MaterielMenu_RaceOdds::menuDraw()
 {
     switch (mode_) {
         case MODE_STANDBY:
-            unkfunc_0217c1e0(g_RaceData.getPaddock(), 0);
+            drawRaceOddsScreen(g_RaceData.getPaddock(), 0);
             menuItem_.drawActive();
             break;
         case MODE_START:
-            unkfunc_0217c1e0(g_RaceData.getPaddock(), 1);
+            drawRaceOddsScreen(g_RaceData.getPaddock(), 1);
             break;
         case MODE_RESULT:
             unkfunc_0217c2a4();
-            unkfunc_0217c1e0(g_RaceData.getPaddock(), 1);
+            drawRaceOddsScreen(g_RaceData.getPaddock(), 1);
             break;
     }
 }

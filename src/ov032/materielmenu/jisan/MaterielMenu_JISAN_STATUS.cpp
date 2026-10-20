@@ -53,7 +53,7 @@ THUMB void MaterielMenu_JISAN_STATUS::menuDraw()
     if (gTownMenu_MESSAGE.isOpen() != true) {
         MenuStatusInfo::setMode(MenuStatusInfo::BATTLE_AND_CARRIAGE_MODE);
         int pageMax = navigator_.getPageMaxCount() - 1;
-        unkfunc_0217c380(mode_, navigator_.getPageNo(), pageMax, 2);
+        drawMemberStatusScreen(mode_, navigator_.getPageNo(), pageMax, 2);
         menuItem_.drawActive();
     }
 }

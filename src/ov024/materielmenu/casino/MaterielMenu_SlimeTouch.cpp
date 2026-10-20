@@ -27,17 +27,17 @@ THUMB void MaterielMenu_SlimeTouch::menuSetup()
 
 THUMB void MaterielMenu_SlimeTouch::menuExecute()
 {
-    menu::MenuTemplate_materiel::unkfunc_0217d660(&menuItem_);
+    menu::MenuTemplate_materiel::MATERIEL_SLIME_TOUCH(&menuItem_);
 }
 
 THUMB void MaterielMenu_SlimeTouch::menuDraw()
 {
     if (mode_ == MODE_SELECT) {
-        unkfunc_0217c2cc();
+        drawSlimeTouchCommands();
         menuItem_.drawActive();
     }
     if (mode_ == MODE_RANKING) {
-        unkfunc_0217c2f4();
+        drawSlimeTouchRanking();
     }
 }
 

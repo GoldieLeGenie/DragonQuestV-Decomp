@@ -59,7 +59,7 @@ THUMB void MaterielMenu_JISAN_LEAVE_SCRIPT::menuDraw()
         MenuStatusInfo::setMode(MenuStatusInfo::BATTLE_AND_CARRIAGE_MODE);
         int page = navigator_.getPageNo();
         int pageMax = navigator_.getPageMaxCount() - 1;
-        unkfunc_0217c3dc(page, pageMax, 10, addMonster_);
+        drawMemberChangeScreen(page, pageMax, 10, addMonster_);
         menuItem_.drawActive();
     }
 }

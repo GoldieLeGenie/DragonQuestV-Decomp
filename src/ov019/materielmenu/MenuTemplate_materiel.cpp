@@ -221,7 +221,7 @@ THUMB void MenuTemplate_materiel::MATERIEL_DIARY_LOAD(menu::MenuItem* menuitem)
     menuitem->setMenuItem(menu, 1, 3, 3);
 }
 
-THUMB void MenuTemplate_materiel::unkfunc_0217d0b8(menu::MenuItem* menuitem)
+THUMB void MenuTemplate_materiel::MATERIEL_DIARY_RESUME(menu::MenuItem* menuitem)
 {
     static MENUITEM_DATA menu[2] = {
         {1, 2, 0, 0, 0x100, 0xc0},
@@ -386,7 +386,7 @@ THUMB void MenuTemplate_materiel::MATERIEL_KEYBOARD_JAP_MESSAGE(menu::MenuItem* 
     menuitem->setMenuItem(menu, 11, 6, 66);
 }
 
-THUMB void MenuTemplate_materiel::unkfunc_0217d53c(menu::MenuItem* menuitem)
+THUMB void MenuTemplate_materiel::MATERIEL_RACE_ENTRANCE(menu::MenuItem* menuitem)
 {
     static MENUITEM_DATA menu[5] = {
         {1, 2, 0, 0, 0x100, 0xc0},
@@ -420,7 +420,7 @@ THUMB void MenuTemplate_materiel::MATERIEL_SEXUALITY(menu::MenuItem* menuitem)
     menuitem->setMenuItem(menu, 1, 2, 2);
 }
 
-THUMB void MenuTemplate_materiel::unkfunc_0217d574(menu::MenuItem* menuitem, int max)
+THUMB void MenuTemplate_materiel::MATERIEL_CHOICE_SLIME(menu::MenuItem* menuitem, int max)
 {
     static MENUITEM_DATA menu[5] = {
         {1, 2, 0, 0, 0x100, 0xc0},
@@ -438,7 +438,7 @@ THUMB void MenuTemplate_materiel::unkfunc_0217d574(menu::MenuItem* menuitem, int
     menuitem->setMenuItem(menu, 4, 1, max);
 }
 
-THUMB void MenuTemplate_materiel::unkfunc_0217d5a8(menu::MenuItem* menuitem, int max)
+THUMB void MenuTemplate_materiel::MATERIEL_RACE_ODDS_2x6(menu::MenuItem* menuitem, int max)
 {
     static MENUITEM_DATA menu[13] = {
         {1, 2, 0, 0, 0x100, 0xc0},
@@ -467,7 +467,7 @@ THUMB void MenuTemplate_materiel::unkfunc_0217d5a8(menu::MenuItem* menuitem, int
     menuitem->setMenuItem(menu, 2, 6, max);
 }
 
-THUMB void MenuTemplate_materiel::unkfunc_0217d60c(menu::MenuItem* menuitem, int max)
+THUMB void MenuTemplate_materiel::MATERIEL_RACE_ODDS_2x8(menu::MenuItem* menuitem, int max)
 {
     static MENUITEM_DATA menu[17] = {
         {1, 2, 0, 0, 0x100, 0xc0},
@@ -499,7 +499,7 @@ THUMB void MenuTemplate_materiel::unkfunc_0217d60c(menu::MenuItem* menuitem, int
     menuitem->setMenuItem(menu, 2, 8, max);
 }
 
-THUMB void MenuTemplate_materiel::unkfunc_0217d660(menu::MenuItem* menuitem)
+THUMB void MenuTemplate_materiel::MATERIEL_SLIME_TOUCH(menu::MenuItem* menuitem)
 {
     static MENUITEM_DATA menu[5] = {
         {1, 2, 0, 0, 0x100, 0xc0},
@@ -708,7 +708,7 @@ THUMB void MenuTemplate_materiel::surechigaiSelectObject(menu::MenuItem* menuite
     menuitem->active_ = active;
 }
 
-THUMB void MenuTemplate_materiel::unkfunc_0217d790(menu::MenuItem* menuitem, int active, int max)
+THUMB void MenuTemplate_materiel::surechigaiSelectList(menu::MenuItem* menuitem, int active, int max)
 {
     const int LX = 20;
     const int RX = 140;
@@ -731,7 +731,7 @@ THUMB void MenuTemplate_materiel::unkfunc_0217d790(menu::MenuItem* menuitem, int
     menuitem->active_ = active;
 }
 
-THUMB void MenuTemplate_materiel::unkfunc_0217d7ac(menu::MenuItem* menuitem, int active)
+THUMB void MenuTemplate_materiel::surechigaiSelectPrice(menu::MenuItem* menuitem, int active)
 {
     static MENUITEM_DATA menu[7] = {
         {1, 2, 0x60, 0x58, 0xa, 0xe},
@@ -746,7 +746,7 @@ THUMB void MenuTemplate_materiel::unkfunc_0217d7ac(menu::MenuItem* menuitem, int
     menuitem->active_ = active;
 }
 
-THUMB void MenuTemplate_materiel::unkfunc_0217d7c8(menu::MenuItem* menuitem, int active)
+THUMB void MenuTemplate_materiel::MATERIEL_SUGOROKU_ROOT(menu::MenuItem* menuitem, int active)
 {
     static MENUITEM_DATA menu[5] = {
         {1, 2, 0xc, 0x20, 0x54, 0x10},
@@ -759,7 +759,7 @@ THUMB void MenuTemplate_materiel::unkfunc_0217d7c8(menu::MenuItem* menuitem, int
     menuitem->active_ = active;
 }
 
-THUMB void MenuTemplate_materiel::unkfunc_0217d7e4(menu::MenuItem* menuitem, int active)
+THUMB void MenuTemplate_materiel::MATERIEL_LUIDA_ROOT(menu::MenuItem* menuitem, int active)
 {
     static MENUITEM_DATA menu[5] = {
         {1, 2, 0x9a, 0xa, 0x58, 0x10},

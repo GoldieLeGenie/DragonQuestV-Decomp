@@ -24,7 +24,7 @@ THUMB void BattleMenuSub_HISTORY::menuDraw()
 {
     if (history_ != 0) {
         MenuStatusInfo::setMode(MenuStatusInfo::BATTLE_MODE);
-        unkfunc_02170bcc(commandChara_);
+        drawBattleHistory(commandChara_);
     }
 }
 

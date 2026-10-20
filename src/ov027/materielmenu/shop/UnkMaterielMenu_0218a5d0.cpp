@@ -36,7 +36,7 @@ THUMB void UnkMaterielMenu_0218a5d0::menuDraw()
 {
     if (gTownMenu_MESSAGE.isMessageWAITPROG() == true) {
         MenuStatusInfo::setMode(MenuStatusInfo::PLAYER_MODE);
-        unkfunc_0217bf44(quantity_);
+        drawShopSellQuantityScreen(quantity_);
         menuItem_.drawActive();
     }
 }

@@ -37,7 +37,7 @@ THUMB void MaterielMenu_COINSALEROOM_BUY::menuSetup()
 THUMB void MaterielMenu_COINSALEROOM_BUY::menuDraw()
 {
     MenuStatusInfo::setMode(MenuStatusInfo::PLAYER_MODE);
-    unkfunc_0217c034(coin_, 0);
+    drawCoinSaleroomScreen(coin_, 0);
 }
 
 THUMB void MaterielMenu_COINSALEROOM_BUY::menuUpdate()

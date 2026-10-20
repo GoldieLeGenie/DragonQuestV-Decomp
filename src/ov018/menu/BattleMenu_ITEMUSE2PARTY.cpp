@@ -15,7 +15,7 @@ THUMB void BattleMenu_ITEMUSE2PARTY::menuSetup()
     activeChara_ = BattleMenuPlayerControl::getSingleton()->activeChara_;
     activeItem_ = BattleMenuPlayerControl::getSingleton()->activeItem_;
     partyMax_ = MenuStatusInfo::getPartyCount(MenuStatusInfo::COUNT_CARRIAGE_OUT);
-    if (unkfunc_02173308(MenuStatusInfo::getPlayerItemID(activeChara_, activeItem_))) {
+    if (isReviveItem(MenuStatusInfo::getPlayerItemID(activeChara_, activeItem_))) {
         for (int i = 0; i < partyMax_; i++) {
             if (MenuStatusInfo::getHaveStatusInfo(i).isDeath()) {
                 menuItem_.active_ = i;
@@ -29,14 +29,14 @@ THUMB void BattleMenu_ITEMUSE2PARTY::menuExecute()
 {
     MenuStatusInfo::setMode(MenuStatusInfo::BATTLE_MODE);
     navigator_.setup(2, 2, partyMax_);
-    unkfunc_02175ae8(&menuItem_, partyMax_);
-    unkfunc_02175a5c(&cancelItem_);
+    setupBattleParty2x2(&menuItem_, partyMax_);
+    setupBattleCancel(&cancelItem_);
 }
 
 THUMB void BattleMenu_ITEMUSE2PARTY::menuDraw()
 {
     MenuStatusInfo::setMode(MenuStatusInfo::BATTLE_MODE);
-    unkfunc_02170078();
+    drawItemUseOnPartyMenu();
     menuItem_.drawActive();
 }
 
@@ -71,7 +71,7 @@ THUMB void BattleMenu_ITEMUSE2PARTY::menuUpdate()
     BattleMenuPlayerControl::getSingleton()->targetChara_ = target;
 }
 
-THUMB bool BattleMenu_ITEMUSE2PARTY::unkfunc_02173308(int item)
+THUMB bool BattleMenu_ITEMUSE2PARTY::isReviveItem(int item)
 {
     if (item == 0x27) {
         return true;

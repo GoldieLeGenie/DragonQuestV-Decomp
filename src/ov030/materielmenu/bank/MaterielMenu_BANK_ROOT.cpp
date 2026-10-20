@@ -41,7 +41,7 @@ THUMB void MaterielMenu_BANK_ROOT::menuDraw()
 {
     if (gTownMenu_MESSAGE.isMessageWAITPROG()) {
         MenuStatusInfo::setMode(MenuStatusInfo::PLAYER_MODE);
-        unkfunc_0217bff0();
+        drawBankRootScreen();
         menuItem_.drawActive();
     }
 }

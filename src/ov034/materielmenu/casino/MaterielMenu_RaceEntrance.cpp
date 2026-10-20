@@ -59,7 +59,7 @@ THUMB void MaterielMenu_RaceEntrance::menuSetup()
 THUMB void MaterielMenu_RaceEntrance::menuExecute()
 {
     if (mode_ == MODE_SELECT) {
-        menu::MenuTemplate_materiel::unkfunc_0217d53c(&menuItem_);
+        menu::MenuTemplate_materiel::MATERIEL_RACE_ENTRANCE(&menuItem_);
     }
 }
 
@@ -67,9 +67,9 @@ THUMB void MaterielMenu_RaceEntrance::menuDraw()
 {
     if (mode_ == MODE_SELECT) {
         menuItem_.drawActive();
-        unkfunc_0217c12c();
+        drawRaceEntranceCommands();
     }
-    unkfunc_0217c0e8(status::g_Party.getCasinoCoin(), status::g_Party.getGold());
+    drawCoinsAndGold(status::g_Party.getCasinoCoin(), status::g_Party.getGold());
 }
 
 THUMB void MaterielMenu_RaceEntrance::menuUpdate()

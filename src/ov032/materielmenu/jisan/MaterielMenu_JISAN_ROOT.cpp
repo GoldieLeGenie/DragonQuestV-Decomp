@@ -64,7 +64,7 @@ THUMB void MaterielMenu_JISAN_ROOT::menuDraw()
 {
     if (gTownMenu_MESSAGE.isMessageWAITPROG() == true) {
         MenuStatusInfo::setMode(MenuStatusInfo::PLAYER_MODE);
-        unkfunc_0217c378();
+        drawJisanRootScreen();
         menuItem_.drawActive();
     }
 }

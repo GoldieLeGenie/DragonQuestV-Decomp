@@ -74,7 +74,7 @@ THUMB void MaterielMenu_POKER_HIGHANDLOW::menuDraw()
         return;
     }
     menu::MenuStatusInfo::setMode(menu::MenuStatusInfo::PLAYER_MODE);
-    unkfunc_0217c07c(m_mode, m_haveCoin, m_getCoin, m_win);
+    drawPokerHighLowScreen(m_mode, m_haveCoin, m_getCoin, m_win);
     if (m_mode == 1) {
         menuItem_.drawActive();
     }

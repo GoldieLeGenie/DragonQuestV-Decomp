@@ -42,8 +42,8 @@ THUMB void BattleMenu_ARRAYMENU::menuSetup()
 
 THUMB void BattleMenu_ARRAYMENU::menuExecute()
 {
-    unkfunc_02175afc(&menuItem_, cursorPos_);
-    unkfunc_02175a5c(&cancelItem_);
+    setupBattleArrayMenu2x1(&menuItem_, cursorPos_);
+    setupBattleCancel(&cancelItem_);
 }
 
 THUMB void BattleMenu_ARRAYMENU::menuDraw()

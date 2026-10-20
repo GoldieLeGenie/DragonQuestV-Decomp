@@ -40,11 +40,11 @@ THUMB void UnkMaterielMenu_02187c7c::menuExecute()
     switch (mode_) {
         case 0: {
             int active = menuItem_.active_;
-            menu::MenuTemplate_materiel::unkfunc_0217d790(&menuItem_, active, navigator_.getCountInPage());
+            menu::MenuTemplate_materiel::surechigaiSelectList(&menuItem_, active, navigator_.getCountInPage());
             break;
         }
         case 1:
-            menu::MenuTemplate_materiel::unkfunc_0217d7ac(&menuItem_, menuItem_.active_);
+            menu::MenuTemplate_materiel::surechigaiSelectPrice(&menuItem_, menuItem_.active_);
             break;
     }
 }
@@ -52,7 +52,7 @@ THUMB void UnkMaterielMenu_02187c7c::menuExecute()
 THUMB void UnkMaterielMenu_02187c7c::menuDraw()
 {
     MenuStatusInfo::setMode(MenuStatusInfo::PLAYER_MODE);
-    unkfunc_0217c4a4(mode_, unk_1c, navigator_.getPageNo(), unk_20);
+    drawTagModeEditScreen(mode_, unk_1c, navigator_.getPageNo(), unk_20);
     if (mode_ <= 1) {
         menuItem_.drawActive();
     }

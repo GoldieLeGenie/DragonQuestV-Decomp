@@ -38,7 +38,7 @@ THUMB void MaterielMenu_MEDALKING_SELECTCHARA::menuDraw()
 {
     MenuStatusInfo::setMode(MenuStatusInfo::PLAYER_MODE);
     if (gTownMenu_MESSAGE.isOpen() == false) {
-        unkfunc_0217be90(2, 0);
+        drawShopWhoseScreen(2, 0);
         menuItem_.drawActive();
     }
 }

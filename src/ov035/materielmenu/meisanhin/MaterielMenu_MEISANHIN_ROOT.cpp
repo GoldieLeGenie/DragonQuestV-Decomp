@@ -80,7 +80,7 @@ THUMB void MaterielMenu_MEISANHIN_ROOT::menuDraw()
 {
     if (!gTownMenu_MESSAGE.isOpen()) {
         MenuStatusInfo::setMode(MenuStatusInfo::PLAYER_MODE);
-        unkfunc_0217b360(daizaNo_);
+        drawMuseumItemDetail(daizaNo_);
     }
 }
 

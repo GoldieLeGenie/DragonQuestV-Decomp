@@ -51,7 +51,7 @@ THUMB void MaterielMenu_LOAD::menuExecute()
         MenuTemplate_materiel::MATERIEL_DIARY_MENU(&rootItem_, ROOT_COUNT);
     }
     MenuTemplate_materiel::MATERIEL_DIARY_LOAD(&dataItem_);
-    MenuTemplate_materiel::unkfunc_0217d0b8(&resumeItem_);
+    MenuTemplate_materiel::MATERIEL_DIARY_RESUME(&resumeItem_);
 }
 
 THUMB void MaterielMenu_LOAD::menuDraw()

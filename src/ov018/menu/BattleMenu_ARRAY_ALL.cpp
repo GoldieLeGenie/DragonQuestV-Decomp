@@ -51,32 +51,32 @@ THUMB void BattleMenu_ARRAY_ALL::menuExecute()
 {
     MenuStatusInfo::setMode(MenuStatusInfo::SHIFT_MEMBER_MODE);
     int num = unk_2c;
-    int count = unkfunc_02171fec() - num;
-    if (num - unk_30 > 0 && unkfunc_02171fb8()) {
+    int count = getMemberCount() - num;
+    if (num - unk_30 > 0 && isCarriageUsable()) {
         count++;
     }
     navigator_.setup(5, 2, count);
-    unkfunc_02175b6c(&menuItem_, menuItem_.active_, count);
-    unkfunc_02175a5c(&cancelItem_);
+    setupBattleArrayAll5x2(&menuItem_, menuItem_.active_, count);
+    setupBattleCancel(&cancelItem_);
 }
 
 THUMB void BattleMenu_ARRAY_ALL::menuDraw()
 {
     if (gTownMenu_MESSAGE.isOpen()) {
-        unkfunc_02171d9c();
+        drawTargetSpellList();
         return;
     }
-    unkfunc_02171cc0();
-    unkfunc_02171d9c();
+    drawMemberList();
+    drawTargetSpellList();
 }
 
-THUMB void BattleMenu_ARRAY_ALL::unkfunc_02171cc0()
+THUMB void BattleMenu_ARRAY_ALL::drawMemberList()
 {
     int list[8] = {-1};
     for (int i = 0; i < 8; i++) list[i] = -1;
     MenuStatusInfo::setMode(MenuStatusInfo::SHIFT_MEMBER_MODE);
     MenuStatusInfo::getPartyCount(MenuStatusInfo::COUNT_CARRIAGE_OUT);
-    int count = unkfunc_02171fec();
+    int count = getMemberCount();
     int num = 0;
     for (int i = 0; i < count; i++) {
         int free = 1;
@@ -93,24 +93,24 @@ THUMB void BattleMenu_ARRAY_ALL::unkfunc_02171cc0()
             num++;
         }
     }
-    if (unk_2c - unk_30 > 0 && unkfunc_02171fb8()) {
+    if (unk_2c - unk_30 > 0 && isCarriageUsable()) {
         if (num == menuItem_.active_) {
             BattleMenuPlayerControl::getSingleton()->targetChara_ = count;
         }
         list[num] = -1;
         num++;
     }
-    unkfunc_0217043c(list, num, unk_1c, unk_2c);
+    drawFormationAllMenu(list, num, unk_1c, unk_2c);
     menuItem_.drawActive();
     cancelItem_.drawActive();
 }
 
-THUMB void BattleMenu_ARRAY_ALL::unkfunc_02171d9c()
+THUMB void BattleMenu_ARRAY_ALL::drawTargetSpellList()
 {
     MenuStatusInfo::setMode(MenuStatusInfo::SHIFT_MEMBER_MODE);
     MenuStatusInfo::getPartyCount(MenuStatusInfo::COUNT_CARRIAGE_OUT);
     int actionCount;
-    int count = unkfunc_02171fec();
+    int count = getMemberCount();
     int chara = BattleMenuPlayerControl::getSingleton()->targetChara_;
     if (chara != count) {
         status::HaveStatusInfo& info = MenuStatusInfo::getHaveStatusInfo(chara);
@@ -124,7 +124,7 @@ THUMB void BattleMenu_ARRAY_ALL::unkfunc_02171d9c()
                 actionNum++;
             }
         }
-        unkfunc_02170c78(actions, actionNum, chara);
+        drawCharaBattleSpellList(actions, actionNum, chara);
     }
 }
 
@@ -145,7 +145,7 @@ THUMB void BattleMenu_ARRAY_ALL::menuUpdate()
             gBattleMenu_ARRAYMENU.open();
             gBattleMenu_ARRAYMENU.cursorPos_ = 1;
         } else {
-            unkfunc_02172034();
+            removeOrder();
         }
         menuItem_.result_ = 0;
         menuItem_.lastresult_ = 0;
@@ -167,7 +167,7 @@ THUMB void BattleMenu_ARRAY_ALL::menuUpdate()
     for (int i = 0; i < 10; i++) list[i] = 0;
     int num = 0;
     int active = menuItem_.active_;
-    int count = unkfunc_02171fec();
+    int count = getMemberCount();
     for (int i = 0; i < count; i++) {
         for (int j = 0; j < 4; j++) {
             if (i == unk_1c[j]) {
@@ -184,26 +184,26 @@ THUMB void BattleMenu_ARRAY_ALL::menuUpdate()
         menuItem_.active_ = active - 1;
     }
     if (active == count - unk_2c && unk_2c - unk_30 != 0) {
-        unkfunc_0217206c();
+        decideOrder();
         return;
     }
-    unkfunc_02172008(list[active]);
-    int max = unkfunc_02171fec();
+    addOrder(list[active]);
+    int max = getMemberCount();
     if (max > 4) {
         max = 4;
     }
     if (unk_2c == max) {
-        unkfunc_0217206c();
+        decideOrder();
     }
 }
 
-THUMB void BattleMenu_ARRAY_ALL::unkfunc_02171f9c()
+THUMB void BattleMenu_ARRAY_ALL::changeParty()
 {
     MenuStatusInfo::reorder(unk_1c[0], unk_1c[1], unk_1c[2], unk_1c[3]);
     BattleMenuPlayerControl::getSingleton()->resetTargetGroup();
 }
 
-THUMB bool BattleMenu_ARRAY_ALL::unkfunc_02171fb8()
+THUMB bool BattleMenu_ARRAY_ALL::isCarriageUsable()
 {
     if (!MenuStatusInfo::isCarriageEnable()) {
         return false;
@@ -214,15 +214,15 @@ THUMB bool BattleMenu_ARRAY_ALL::unkfunc_02171fb8()
     return true;
 }
 
-THUMB int BattleMenu_ARRAY_ALL::unkfunc_02171fec()
+THUMB int BattleMenu_ARRAY_ALL::getMemberCount()
 {
-    if (unkfunc_02171fb8()) {
+    if (isCarriageUsable()) {
         return MenuStatusInfo::getPartyCount(MenuStatusInfo::COUNT_ALL);
     }
     return MenuStatusInfo::getPartyCount(MenuStatusInfo::COUNT_CARRIAGE_OUT);
 }
 
-THUMB void BattleMenu_ARRAY_ALL::unkfunc_02172008(int index)
+THUMB void BattleMenu_ARRAY_ALL::addOrder(int index)
 {
     for (int i = 0; i < 4; i++) {
         if (unk_1c[i] == -1) {
@@ -233,7 +233,7 @@ THUMB void BattleMenu_ARRAY_ALL::unkfunc_02172008(int index)
     }
 }
 
-THUMB void BattleMenu_ARRAY_ALL::unkfunc_02172034()
+THUMB void BattleMenu_ARRAY_ALL::removeOrder()
 {
     for (int i = 0; i < 4; i++) {
         int index = 3 - i;
@@ -245,10 +245,10 @@ THUMB void BattleMenu_ARRAY_ALL::unkfunc_02172034()
     }
 }
 
-THUMB void BattleMenu_ARRAY_ALL::unkfunc_0217206c()
+THUMB void BattleMenu_ARRAY_ALL::decideOrder()
 {
-    if (unkfunc_021720bc()) {
-        unkfunc_02171f9c();
+    if (isOrderValid()) {
+        changeParty();
         close();
         gBattleMenu_ROOT.open();
         gBattleMenu_ROOT.menuItem_.active_ = 0;
@@ -257,10 +257,10 @@ THUMB void BattleMenu_ARRAY_ALL::unkfunc_0217206c()
     gTownMenu_MESSAGE.openMessageForBATTLE();
     gTownMenu_MESSAGE.addMessage(0xc3d50);
     gTownMenu_MESSAGE.setMessageLastCursor(false);
-    unkfunc_02172034();
+    removeOrder();
 }
 
-THUMB int BattleMenu_ARRAY_ALL::unkfunc_021720bc()
+THUMB int BattleMenu_ARRAY_ALL::isOrderValid()
 {
     int result = 0;
     for (int i = 0; i < 4; i++) {

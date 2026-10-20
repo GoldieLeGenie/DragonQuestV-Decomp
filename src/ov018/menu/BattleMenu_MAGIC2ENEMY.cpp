@@ -17,13 +17,13 @@ THUMB void BattleMenu_MAGIC2ENEMY::menuSetup()
 
 THUMB void BattleMenu_MAGIC2ENEMY::menuExecute()
 {
-    unkfunc_02175a70(&menuItem_);
+    setupBattleFightCancel(&menuItem_);
 }
 
 THUMB void BattleMenu_MAGIC2ENEMY::menuDraw()
 {
     MenuStatusInfo::setMode(MenuStatusInfo::BATTLE_MODE);
-    unkfunc_02170148();
+    drawMagicOnEnemyMenu();
 }
 
 THUMB void BattleMenu_MAGIC2ENEMY::menuUpdate()

@@ -38,11 +38,11 @@ THUMB void MaterielMenu_SHOP_BUYMENU::menuDraw()
 {
     MenuStatusInfo::setMode(MenuStatusInfo::PLAYER_MODE);
     if (gTownMenu_MESSAGE.isOpen() == true && mode_ != MODE_RETURN) {
-        unkfunc_0217bf68();
+        drawShopScreen();
         return;
     }
     if (mode_ != MODE_RETURN) {
-        unkfunc_0217be4c(0);
+        drawShopBuyScreen(0);
         menuItem_.drawActive();
     }
 }

@@ -99,7 +99,7 @@ THUMB void MaterielMenu_JISAN_CHECK_NAME::menuDraw()
 {
     if (gTownMenu_MESSAGE.isOpen() != true) {
         MenuStatusInfo::setMode(MenuStatusInfo::BATTLE_AND_CARRIAGE_MODE);
-        unkfunc_0217a464(menu::MaterielMenuPlayerControl::getSingleton()->activeChara_, 0);
+        drawCharaIconFrame(menu::MaterielMenuPlayerControl::getSingleton()->activeChara_, 0);
     }
 }
 

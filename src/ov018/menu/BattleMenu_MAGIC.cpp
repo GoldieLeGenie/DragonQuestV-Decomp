@@ -29,7 +29,7 @@ THUMB void BattleMenu_MAGIC::menuSetup()
         haveAction_[i] = -1;
         haveActionIndex_[i] = -1;
     }
-    unkfunc_02173bd8();
+    setupActionList();
     navigator_.setupBase();
     navigator_.setup(2, 3, count_);
     int pos = BattleMenuPlayerControl::getSingleton()->getMagicPosition();
@@ -52,17 +52,17 @@ THUMB void BattleMenu_MAGIC::setActiveMagicPos(int pos)
 THUMB void BattleMenu_MAGIC::menuExecute()
 {
     navigator_.setup(2, 3, count_);
-    unkfunc_02175ab8(&menuItem_, navigator_.getCountInPage());
-    unkfunc_02175a5c(&cancelItem_);
+    setupBattleMagic2x3(&menuItem_, navigator_.getCountInPage());
+    setupBattleCancel(&cancelItem_);
     int max = navigator_.getPageMaxCount() - 1;
-    unkfunc_02175c0c(&pageItem_, navigator_.getIndex(pageItem_.active_), max, 0xd8, 0x78);
+    setupBattlePageArrow(&pageItem_, navigator_.getIndex(pageItem_.active_), max, 0xd8, 0x78);
 }
 
 THUMB void BattleMenu_MAGIC::menuDraw()
 {
     MenuStatusInfo::setMode(MenuStatusInfo::BATTLE_MODE);
     if (!gTownMenu_MESSAGE.isOpen()) {
-        unkfunc_02170094(haveAction_, count_, navigator_.getPageNo());
+        drawMagicMenu(haveAction_, count_, navigator_.getPageNo());
         menuItem_.drawActive();
         cancelItem_.drawActive();
     }
@@ -117,7 +117,7 @@ THUMB void BattleMenu_MAGIC::menuUpdate()
             BattleMenuPlayerControl::getSingleton()->setMagicPosition(pos);
             switch (status::UseAction::getUseType(action)) {
             case status::UseAction::Enemy:
-                unkfunc_02173adc(action, magic);
+                setMagicTargetEnemy(action, magic);
                 break;
             case status::UseAction::Friend:
                 if (status::UseAction::getUseArea(action) == status::UseAction::One) {
@@ -145,7 +145,7 @@ THUMB void BattleMenu_MAGIC::menuUpdate()
     BattleMenuPlayerControl::getSingleton()->activeMagic_ = magic;
 }
 
-THUMB void BattleMenu_MAGIC::unkfunc_02173adc(int action, int magic)
+THUMB void BattleMenu_MAGIC::setMagicTargetEnemy(int action, int magic)
 {
     if (status::UseAction::getUseArea(action) == status::UseAction::Group || status::UseAction::getUseArea(action) == status::UseAction::One) {
         if (status::g_Monster.getGroupCount() > 1) {
@@ -180,7 +180,7 @@ THUMB void BattleMenu_MAGIC::unkfunc_02173adc(int action, int magic)
     setMagicTargetFree(magic);
 }
 
-THUMB void BattleMenu_MAGIC::unkfunc_02173bd8()
+THUMB void BattleMenu_MAGIC::setupActionList()
 {
     status::HaveStatusInfo& info = MenuStatusInfo::getHaveStatusInfo(BattleMenuPlayerControl::getSingleton()->activeChara_);
     int count = info.haveAction_.getCount();

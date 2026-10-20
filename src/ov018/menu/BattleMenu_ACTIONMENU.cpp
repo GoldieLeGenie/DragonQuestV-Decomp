@@ -34,9 +34,9 @@ THUMB void BattleMenu_ACTIONMENU::menuSetup()
 THUMB void BattleMenu_ACTIONMENU::menuExecute()
 {
     navigator_.setup(2, 2, 4);
-    unkfunc_02175be0(&menuItem_);
-    unkfunc_02175a84(&pageItem_, 4, pageItem_.active_);
-    unkfunc_02175a5c(&cancelItem_);
+    setupBattleEnemyRect(&menuItem_);
+    setupBattleMenuIcon2x2(&pageItem_, 4, pageItem_.active_);
+    setupBattleCancel(&cancelItem_);
 }
 
 THUMB void BattleMenu_ACTIONMENU::menuDraw()
@@ -47,7 +47,7 @@ THUMB void BattleMenu_ACTIONMENU::menuDraw()
     if (BattleMenuPlayerControl::getSingleton()->historyData_[chara].special) {
         x += 0xe0;
     }
-    unkfunc_0216ff80(x);
+    drawBattleActionMenu(x);
     pageItem_.drawActive();
 }
 

@@ -1,13 +1,13 @@
 #include "ov019/commonmenu/UnkMenuDrawText.hpp"
 #include "main/status/GameFlag.hpp"
 
-THUMB int unkfunc_02178c28(int index)
+THUMB int getItemCommandText(int index)
 {
     int table[6] = {(int)0xe00000a1, (int)0xe00000a2, (int)0xe00000a3, (int)0xe00000a4, (int)0xe00000a5, (int)0xe00000a6};
     return table[index];
 }
 
-THUMB int unkfunc_02178c50(int type, int index)
+THUMB int getMenuCommandText(int type, int index)
 {
     int text = 0;
     switch (type) {
@@ -74,7 +74,7 @@ THUMB int unkfunc_02178c50(int type, int index)
     return text;
 }
 
-THUMB void unkfunc_02178d10(int* text, int flag)
+THUMB void getHighLowCommandText(int* text, int flag)
 {
     if (flag) {
         text[0] = 0xe00000aa;
@@ -85,7 +85,7 @@ THUMB void unkfunc_02178d10(int* text, int flag)
     }
 }
 
-THUMB void unkfunc_02178d30(int* text, int flag)
+THUMB void getChurchCommandText(int* text, int flag)
 {
     if (flag) {
         text[0] = 0xe0000259;
@@ -103,13 +103,13 @@ THUMB void unkfunc_02178d30(int* text, int flag)
     }
 }
 
-THUMB int unkfunc_02178d6c(int index)
+THUMB int getTagModeRootText(int index)
 {
     int table[5] = {(int)0xe00003b6, (int)0xe00003b7, (int)0xe00003b8, (int)0xe00003b9, (int)0xe0000214};
     return table[index];
 }
 
-THUMB char unkfunc_02178d94(int index)
+THUMB char getMeisanhinRecordIndex(int index)
 {
     char table[28] = {3, 6, 9, 2, 12, 13, 7, 10, 28, 14, 11, 18, 17, 19, 20, 29, 21, 22, 32, 30, 23, 1, 5, 26, 24, 27, 31, 34};
     char count = table[index];

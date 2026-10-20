@@ -39,7 +39,7 @@ THUMB void MaterielMenu_SHOP_WHO_SELL::menuDraw()
 {
     if (gTownMenu_MESSAGE.isOpen() == false) {
         MenuStatusInfo::setMode(MenuStatusInfo::PLAYER_MODE);
-        unkfunc_0217beb8();
+        drawShopWhoSellScreen();
         menuItem_.drawActive();
     }
 }

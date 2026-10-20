@@ -50,14 +50,14 @@ THUMB void MaterielMenu_LUIDA_ROOT::menuSetup()
 
 THUMB void MaterielMenu_LUIDA_ROOT::menuExecute()
 {
-    menu::MenuTemplate_materiel::unkfunc_0217d7e4(&menuItem_, menuItem_.active_);
+    menu::MenuTemplate_materiel::MATERIEL_LUIDA_ROOT(&menuItem_, menuItem_.active_);
 }
 
 THUMB void MaterielMenu_LUIDA_ROOT::menuDraw()
 {
     if (gTownMenu_MESSAGE.isMessageWAITPROG() == true) {
         MenuStatusInfo::setMode(MenuStatusInfo::PLAYER_MODE);
-        unkfunc_0217bdec();
+        drawLuidaRootCommands();
         menuItem_.drawActive();
     }
 }

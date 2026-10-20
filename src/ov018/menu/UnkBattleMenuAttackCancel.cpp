@@ -13,13 +13,13 @@ THUMB void UnkBattleMenuAttackCancel::menuSetup()
 
 THUMB void UnkBattleMenuAttackCancel::menuExecute()
 {
-    unkfunc_02175a70(&menuItem_);
+    setupBattleFightCancel(&menuItem_);
 }
 
 THUMB void UnkBattleMenuAttackCancel::menuDraw()
 {
     MenuStatusInfo::setMode(MenuStatusInfo::BATTLE_MODE);
-    unkfunc_0216fff0();
+    drawAttackCancelMenu();
 }
 
 THUMB void UnkBattleMenuAttackCancel::menuUpdate()
@@ -37,11 +37,11 @@ THUMB void UnkBattleMenuAttackCancel::menuUpdate()
     if (result == menu::MenuItem::MENUITEM_RESULT_OK) {
         menuItem_.result_ = 0;
         menuItem_.lastresult_ = 0;
-        unkfunc_021726f0();
+        decideAttack();
     }
 }
 
-THUMB void UnkBattleMenuAttackCancel::unkfunc_021726f0()
+THUMB void UnkBattleMenuAttackCancel::decideAttack()
 {
     BattleMenuJudge::getSingleton()->setAttack(gBattleMenu_ATTACK.touchRect_[gBattleMenu_ATTACK.menuItem_.active_].group);
     BattleMenuJudge::getSingleton()->setNextPlayer();

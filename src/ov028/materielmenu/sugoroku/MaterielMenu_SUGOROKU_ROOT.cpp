@@ -27,14 +27,14 @@ THUMB void MaterielMenu_SUGOROKU_ROOT::menuSetup()
 
 THUMB void MaterielMenu_SUGOROKU_ROOT::menuExecute()
 {
-    menu::MenuTemplate_materiel::unkfunc_0217d7c8(&menuItem_, menuItem_.active_);
+    menu::MenuTemplate_materiel::MATERIEL_SUGOROKU_ROOT(&menuItem_, menuItem_.active_);
 }
 
 THUMB void MaterielMenu_SUGOROKU_ROOT::menuDraw()
 {
     if (gTownMenu_MESSAGE.isOpen() == false) {
         MenuStatusInfo::setMode(MenuStatusInfo::PLAYER_MODE);
-        unkfunc_0217c518();
+        drawSugorokuRootScreen();
         menuItem_.drawActive();
     }
 }

@@ -36,7 +36,7 @@ THUMB void MaterielMenu_CHANGEGIFT_ROOT::menuSetup()
 THUMB void MaterielMenu_CHANGEGIFT_ROOT::menuDraw()
 {
     MenuStatusInfo::setMode(MenuStatusInfo::PLAYER_MODE);
-    unkfunc_0217bfe8();
+    drawChangeGiftScreen();
 }
 
 THUMB void MaterielMenu_CHANGEGIFT_ROOT::menuUpdate()

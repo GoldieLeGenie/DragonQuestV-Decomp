@@ -53,20 +53,20 @@ THUMB void BattleMenu_TACTICSMENU::menuExecute()
     tacticsNavigator_.setup(3, 2, 6);
     memberNavigator_.setup(5, 1, memberNum_);
     if (phase_ == 0) {
-        unkfunc_02175b18(&menuItem_, memberPos_, memberNum_);
+        setupBattleTacticsChange5x1(&menuItem_, memberPos_, memberNum_);
     } else {
-        unkfunc_02175acc(&tacticsItem_, tacticsPos_);
+        setupBattleTactics3x2(&tacticsItem_, tacticsPos_);
     }
-    unkfunc_02175a5c(&cancelItem_);
+    setupBattleCancel(&cancelItem_);
 }
 
 THUMB void BattleMenu_TACTICSMENU::menuDraw()
 {
     MenuStatusInfo::setMode(MenuStatusInfo::BATTLE_MODE);
     if (phase_ == 0) {
-        unkfunc_0217015c();
+        drawTacticsMemberMenu();
     } else {
-        unkfunc_02170210();
+        drawTacticsSelectMenu();
     }
     menuItem_.drawActive();
     tacticsItem_.drawActive();
@@ -76,7 +76,7 @@ THUMB void BattleMenu_TACTICSMENU::menuUpdate()
 {
     MenuStatusInfo::setMode(MenuStatusInfo::BATTLE_MODE);
     if (!unkfunc_0217503c() && !unkfunc_02174f78()) {
-        unkfunc_02174fd4();
+        tacticsUpdate();
     }
     memberPos_ = memberNavigator_.getIndex(menuItem_.active_);
     tacticsPos_ = tacticsNavigator_.getIndex(tacticsItem_.active_);
@@ -114,7 +114,7 @@ THUMB int BattleMenu_TACTICSMENU::unkfunc_02174f78()
     return 0;
 }
 
-THUMB void BattleMenu_TACTICSMENU::unkfunc_02174fd4()
+THUMB void BattleMenu_TACTICSMENU::tacticsUpdate()
 {
     int result = MenuUpdate_Assist::menuSelect(tacticsItem_, tacticsNavigator_);
     if (result == 0) {
@@ -129,7 +129,7 @@ THUMB void BattleMenu_TACTICSMENU::unkfunc_02174fd4()
         if (phase_ == 0) {
             phase_ = 1;
         } else if (phase_ == 1) {
-            unkfunc_021750cc();
+            setTactics();
             phase_ = 0;
         }
         close();
@@ -173,7 +173,7 @@ THUMB void BattleMenu_TACTICSMENU::unkfunc_02175088()
     }
 }
 
-THUMB void BattleMenu_TACTICSMENU::unkfunc_021750cc()
+THUMB void BattleMenu_TACTICSMENU::setTactics()
 {
     CommandType command[6] = {
         COMMAND_GANGANIKOUZE,

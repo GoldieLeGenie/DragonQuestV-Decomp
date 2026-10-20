@@ -33,12 +33,12 @@ THUMB void MaterielMenu_SHOP_ROOT::menuDraw()
 {
     MenuStatusInfo::setMode(MenuStatusInfo::PLAYER_MODE);
     if (gTownMenu_MESSAGE.isMessageWAITPROG() == true) {
-        unkfunc_0217be3c();
+        drawShopRootScreen();
         menuItem_.drawActive();
         return;
     }
     if (gTownMenu_MESSAGE.isOpen() == true && mode_ != SHOP_MESWAIT) {
-        unkfunc_0217bf68();
+        drawShopScreen();
     }
 }
 

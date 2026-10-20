@@ -56,7 +56,7 @@ THUMB void MaterielMenu_LUIDA_STATUS::menuDraw()
     if (gTownMenu_MESSAGE.isOpen() != true) {
         MenuStatusInfo::setMode(MenuStatusInfo::PLAYER_MODE);
         int pageMax = navigator_.getPageMaxCount() - 1;
-        unkfunc_0217c380(mode_, navigator_.getPageNo(), pageMax, 8);
+        drawMemberStatusScreen(mode_, navigator_.getPageNo(), pageMax, 8);
         menuItem_.drawActive();
     }
 }

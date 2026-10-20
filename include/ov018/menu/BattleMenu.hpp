@@ -59,8 +59,8 @@ struct BattleMenu_FRIEND_ENTRANCE : menu::MenuBase {
     bool messageUpdate();
     void commandUpdate();
     void unkfunc_02171178();
-    int unkfunc_021711ec(int num);
-    int unkfunc_02171244(int num);
+    int getFriendPlayerIndex(int num);
+    int getFriendPartyIndex(int num);
 };
 
 // selection of the friend monster that leaves the party
@@ -155,8 +155,8 @@ struct BattleMenu_ATTACK : menu::MenuBase {
     virtual void menuExecute();
     virtual void menuDraw();
     virtual void menuUpdate();
-    void unkfunc_02175df0(int index);
-    void unkfunc_02175e34(int index);
+    void selectNextGroup(int index);
+    void selectPrevGroup(int index);
     void unkfunc_02175e7c();
     bool unkfunc_02175f50();
 };
@@ -171,7 +171,7 @@ struct UnkBattleMenuAttackCancel : menu::MenuBase {
     virtual void menuExecute();
     virtual void menuDraw();
     virtual void menuUpdate();
-    void unkfunc_021726f0();
+    void decideAttack();
 };
 
 struct BattleMenu_ITEM : menu::MenuBase {
@@ -187,7 +187,7 @@ struct BattleMenu_ITEM : menu::MenuBase {
     virtual void menuDraw();
     virtual void menuUpdate();
     void selectUseItem();
-    bool unkfunc_02172ba8();
+    bool isSelectEquipEnable();
 };
 
 struct BattleMenu_ITEMUSEEQUIP : menu::MenuBase {
@@ -206,8 +206,8 @@ struct BattleMenu_ITEMUSEEQUIP : menu::MenuBase {
     int unkfunc_02172d4c();
     void unkfunc_02172d78();
     void selectUseItem();
-    void unkfunc_02172fc8();
-    void unkfunc_0217300c();
+    void selectEquip();
+    void updateEquipEnable();
 };
 
 struct BattleMenu_ITEMUSE2ENEMY : menu::MenuBase {
@@ -225,10 +225,10 @@ struct BattleMenu_ITEMUSE2ENEMY : menu::MenuBase {
     virtual void menuExecute();
     virtual void menuDraw();
     virtual void menuUpdate();
-    void unkfunc_021730b8();
+    void decideTarget();
     void unkfunc_0217310c();
     int unkfunc_02173134();
-    void unkfunc_0217316c(int chara, int item);
+    void setItem(int chara, int item);
 };
 
 struct BattleMenu_ITEMUSE2PARTY : menu::MenuBase {
@@ -243,7 +243,7 @@ struct BattleMenu_ITEMUSE2PARTY : menu::MenuBase {
     virtual void menuExecute();
     virtual void menuDraw();
     virtual void menuUpdate();
-    bool unkfunc_02173308(int item);
+    bool isReviveItem(int item);
 };
 
 struct BattleMenu_MAGIC : menu::MenuBase {
@@ -260,8 +260,8 @@ struct BattleMenu_MAGIC : menu::MenuBase {
     virtual void menuDraw();
     virtual void menuUpdate();
     void setActiveMagicPos(int pos);
-    void unkfunc_02173adc(int action, int magic);
-    void unkfunc_02173bd8();
+    void setMagicTargetEnemy(int action, int magic);
+    void setupActionList();
     void setMagicTargetFree(int magic);
 };
 
@@ -290,7 +290,7 @@ struct BattleMenu_MAGIC2PARTY : menu::MenuBase {
     virtual void menuExecute();
     virtual void menuDraw();
     virtual void menuUpdate();
-    bool unkfunc_02173ed4(int action);
+    bool isReviveMagic(int action);
 };
 
 struct BattleMenu_ARRAYMENU : menu::MenuBase {
@@ -326,15 +326,15 @@ struct BattleMenu_ARRAY_ALL : menu::MenuBase {
     virtual void menuExecute();
     virtual void menuDraw();
     virtual void menuUpdate();
-    void unkfunc_02171cc0();
-    void unkfunc_02171d9c();
-    void unkfunc_02171f9c();
-    bool unkfunc_02171fb8();
-    int unkfunc_02171fec();
-    void unkfunc_02172008(int index);
-    void unkfunc_02172034();
-    void unkfunc_0217206c();
-    int unkfunc_021720bc();
+    void drawMemberList();
+    void drawTargetSpellList();
+    void changeParty();
+    bool isCarriageUsable();
+    int getMemberCount();
+    void addOrder(int index);
+    void removeOrder();
+    void decideOrder();
+    int isOrderValid();
 };
 
 struct BattleMenu_ARRAY_CHANGE : menu::MenuBase {
@@ -352,9 +352,9 @@ struct BattleMenu_ARRAY_CHANGE : menu::MenuBase {
     virtual void menuExecute();
     virtual void menuDraw();
     virtual void menuUpdate();
-    int unkfunc_02172454();
-    int unkfunc_0217249c();
-    int unkfunc_0217262c();
+    int memberUpdate();
+    int targetUpdate();
+    int cancelUpdate();
 };
 
 struct BattleMenu_TACTICSMENU : menu::MenuBase {
@@ -376,10 +376,10 @@ struct BattleMenu_TACTICSMENU : menu::MenuBase {
     virtual void menuDraw();
     virtual void menuUpdate();
     int unkfunc_02174f78();
-    void unkfunc_02174fd4();
+    void tacticsUpdate();
     int unkfunc_0217503c();
     void unkfunc_02175088();
-    void unkfunc_021750cc();
+    void setTactics();
 };
 
 // test menu with one item

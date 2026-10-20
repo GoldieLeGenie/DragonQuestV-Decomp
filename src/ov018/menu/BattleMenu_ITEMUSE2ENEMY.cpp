@@ -17,13 +17,13 @@ THUMB void BattleMenu_ITEMUSE2ENEMY::menuSetup()
 THUMB void BattleMenu_ITEMUSE2ENEMY::menuExecute()
 {
     MenuStatusInfo::setMode(MenuStatusInfo::BATTLE_MODE);
-    unkfunc_02175a70(&menuItem_);
+    setupBattleFightCancel(&menuItem_);
 }
 
 THUMB void BattleMenu_ITEMUSE2ENEMY::menuDraw()
 {
     MenuStatusInfo::setMode(MenuStatusInfo::BATTLE_MODE);
-    unkfunc_02170084();
+    drawItemUseOnEnemyMenu();
 }
 
 THUMB void BattleMenu_ITEMUSE2ENEMY::menuUpdate()
@@ -35,7 +35,7 @@ THUMB void BattleMenu_ITEMUSE2ENEMY::menuUpdate()
     }
 }
 
-THUMB void BattleMenu_ITEMUSE2ENEMY::unkfunc_021730b8()
+THUMB void BattleMenu_ITEMUSE2ENEMY::decideTarget()
 {
     monsterMask_ = 0;
     BattleMenuJudge::getSingleton()->setItemEnemy(activeItem_, gBattleMenu_ATTACK.touchRect_[gBattleMenu_ATTACK.menuItem_.active_].group);
@@ -53,7 +53,7 @@ THUMB void BattleMenu_ITEMUSE2ENEMY::unkfunc_0217310c()
         menuItem_.result_ = 0;
         menuItem_.lastresult_ = 0;
         redraw_ = 1;
-        unkfunc_021730b8();
+        decideTarget();
     }
 }
 
@@ -71,7 +71,7 @@ THUMB int BattleMenu_ITEMUSE2ENEMY::unkfunc_02173134()
     return 1;
 }
 
-THUMB void BattleMenu_ITEMUSE2ENEMY::unkfunc_0217316c(int chara, int item)
+THUMB void BattleMenu_ITEMUSE2ENEMY::setItem(int chara, int item)
 {
     activeChara_ = chara;
     activeItem_ = item;

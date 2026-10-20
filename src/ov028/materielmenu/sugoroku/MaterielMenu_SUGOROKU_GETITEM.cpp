@@ -83,7 +83,7 @@ THUMB void MaterielMenu_SUGOROKU_GETITEM::menuDraw()
 {
     if (gTownMenu_MESSAGE.isOpen() == false) {
         MenuStatusInfo::setMode(MenuStatusInfo::PLAYER_MODE);
-        unkfunc_0217bed8(1);
+        drawShopSellItemScreen(1);
         menuItem_.drawActive();
     }
 }

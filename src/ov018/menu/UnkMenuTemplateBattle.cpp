@@ -4,7 +4,7 @@
 
 // touch areas of the battle menus
 
-THUMB void unkfunc_02175a5c(menu::MenuItem* menuItem)
+THUMB void setupBattleCancel(menu::MenuItem* menuItem)
 {
     static MENUITEM_DATA menu[] = {
         {2, 0xff, 0xde, 0x9e, 0x1c, 0x1c},
@@ -13,7 +13,7 @@ THUMB void unkfunc_02175a5c(menu::MenuItem* menuItem)
     menuItem->setMenuItem(menu, 1, 1, 1);
 }
 
-THUMB void unkfunc_02175a70(menu::MenuItem* menuItem)
+THUMB void setupBattleFightCancel(menu::MenuItem* menuItem)
 {
     static MENUITEM_DATA menu[] = {
         {1, 2, 0xde, 0x86, 0x1c, 0x1c},
@@ -22,7 +22,7 @@ THUMB void unkfunc_02175a70(menu::MenuItem* menuItem)
     menuItem->setMenuItem(menu, 1, 1, 1);
 }
 
-THUMB void unkfunc_02175a84(menu::MenuItem* menuItem, int max, int active)
+THUMB void setupBattleMenuIcon2x2(menu::MenuItem* menuItem, int max, int active)
 {
     static MENUITEM_DATA menuA[] = {
         {1, 2, 0x40, 0x80, 0x48, 0x20},
@@ -44,7 +44,7 @@ THUMB void unkfunc_02175a84(menu::MenuItem* menuItem, int max, int active)
     menuItem->active_ = active;
 }
 
-THUMB void unkfunc_02175ab8(menu::MenuItem* menuItem, int max)
+THUMB void setupBattleMagic2x3(menu::MenuItem* menuItem, int max)
 {
     static MENUITEM_DATA menu[] = {
         {1, 2, 0x14, 0x0c, 0x68, 0x18},
@@ -58,7 +58,7 @@ THUMB void unkfunc_02175ab8(menu::MenuItem* menuItem, int max)
     menuItem->setMenuItem(menu, 2, 3, max);
 }
 
-THUMB void unkfunc_02175acc(menu::MenuItem* menuItem, int active)
+THUMB void setupBattleTactics3x2(menu::MenuItem* menuItem, int active)
 {
     static MENUITEM_DATA menu[] = {
         {1, 2, 0x24, 0x60, 0x36, 0x18},
@@ -73,7 +73,7 @@ THUMB void unkfunc_02175acc(menu::MenuItem* menuItem, int active)
     menuItem->active_ = active;
 }
 
-THUMB void unkfunc_02175ae8(menu::MenuItem* menuItem, int max)
+THUMB void setupBattleParty2x2(menu::MenuItem* menuItem, int max)
 {
     static MENUITEM_DATA menu[] = {
         {1, 2, 0x0c, 0x14, 0x70, 0x38},
@@ -85,7 +85,7 @@ THUMB void unkfunc_02175ae8(menu::MenuItem* menuItem, int max)
     menuItem->setMenuItem(menu, 2, 2, max);
 }
 
-THUMB void unkfunc_02175afc(menu::MenuItem* menuItem, int active)
+THUMB void setupBattleArrayMenu2x1(menu::MenuItem* menuItem, int active)
 {
     static MENUITEM_DATA menu[] = {
         {1, 2, 0x26, 0x86, 0x4e, 0x0e},
@@ -96,7 +96,7 @@ THUMB void unkfunc_02175afc(menu::MenuItem* menuItem, int active)
     menuItem->active_ = active;
 }
 
-THUMB void unkfunc_02175b18(menu::MenuItem* menuItem, int active, int max)
+THUMB void setupBattleTacticsChange5x1(menu::MenuItem* menuItem, int active, int max)
 {
     static MENUITEM_DATA menu[] = {
         {1, 2, 0x26, 0x76, 0x1c, 0x1c},
@@ -117,7 +117,7 @@ THUMB int unkfunc_unused_02175b34(int index)
     return table[index];
 }
 
-THUMB void unkfunc_02175b34(menu::MenuItem* menuItem, int active, int max)
+THUMB void setupBattleArrayChange4x1(menu::MenuItem* menuItem, int active, int max)
 {
     static MENUITEM_DATA menu[] = {
         {1, 2, 0x36, 0x76, 0x1c, 0x1c},
@@ -130,7 +130,7 @@ THUMB void unkfunc_02175b34(menu::MenuItem* menuItem, int active, int max)
     menuItem->active_ = active;
 }
 
-THUMB void unkfunc_02175b50(menu::MenuItem* menuItem, int active, int max)
+THUMB void setupBattleArrayChangeTo4x1(menu::MenuItem* menuItem, int active, int max)
 {
     static MENUITEM_DATA menu[] = {
         {1, 2, 0x16, 0x76, 0x1c, 0x1c},
@@ -143,7 +143,7 @@ THUMB void unkfunc_02175b50(menu::MenuItem* menuItem, int active, int max)
     menuItem->active_ = active;
 }
 
-THUMB void unkfunc_02175b6c(menu::MenuItem* menuItem, int active, int max)
+THUMB void setupBattleArrayAll5x2(menu::MenuItem* menuItem, int active, int max)
 {
     static MENUITEM_DATA menu[] = {
         {1, 2, 0x16, 0x6e, 0x1c, 0x1c},
@@ -162,7 +162,7 @@ THUMB void unkfunc_02175b6c(menu::MenuItem* menuItem, int active, int max)
     menuItem->active_ = active;
 }
 
-THUMB void unkfunc_02175b88(menu::MenuItem* menuItem, int active, menu::TOUCHRECT* rect, int count)
+THUMB void setupBattleEnemyIcons(menu::MenuItem* menuItem, int active, menu::TOUCHRECT* rect, int count)
 {
     static MENUITEM_DATA menu[] = {
         {1, 2, 0, 0, 0, 0},
@@ -191,7 +191,7 @@ THUMB void unkfunc_02175b88(menu::MenuItem* menuItem, int active, menu::TOUCHREC
     menuItem->active_ = active;
 }
 
-THUMB void unkfunc_02175be0(menu::MenuItem* menuItem)
+THUMB void setupBattleEnemyRect(menu::MenuItem* menuItem)
 {
     static MENUITEM_DATA menu[] = {
         {1, 2, 0, 0, 0, 0},
@@ -204,7 +204,7 @@ THUMB void unkfunc_02175be0(menu::MenuItem* menuItem)
     menuItem->setMenuItem(menu, 1, 1, 1);
 }
 
-THUMB void unkfunc_02175c0c(menu::MenuItem* menuItem, int active, int max, int x, int y)
+THUMB void setupBattlePageArrow(menu::MenuItem* menuItem, int active, int max, int x, int y)
 {
     static MENUITEM_DATA menu[] = {
         {1, 2, 6, 6, 0x1c, 0x1c},

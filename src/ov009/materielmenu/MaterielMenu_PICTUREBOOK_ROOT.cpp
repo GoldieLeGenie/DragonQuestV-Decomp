@@ -54,7 +54,7 @@ THUMB void MaterielMenu_PICTUREBOOK_ROOT::menuDraw()
 {
     if (status::g_BattleResult.getMonsterEncountCount() != 0) {
         menu::MenuStatusInfo::setMode(menu::MenuStatusInfo::PLAYER_MODE);
-        unkfunc_0217c368();
+        drawMonsterBookScreen();
         menuItem_.drawActive();
     }
 }

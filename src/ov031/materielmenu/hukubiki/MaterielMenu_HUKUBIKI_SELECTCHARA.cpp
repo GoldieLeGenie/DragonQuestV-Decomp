@@ -53,7 +53,7 @@ THUMB void MaterielMenu_HUKUBIKI_SELECTCHARA::menuDraw()
 {
     if (!gTownMenu_MESSAGE.isOpen()) {
         MenuStatusInfo::setMode(MenuStatusInfo::PLAYER_MODE);
-        unkfunc_0217be90(0, prize_);
+        drawShopWhoseScreen(0, prize_);
         menuItem_.drawActive();
     }
 }

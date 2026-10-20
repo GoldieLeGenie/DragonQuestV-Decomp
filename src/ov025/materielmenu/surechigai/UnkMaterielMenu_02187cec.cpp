@@ -50,10 +50,10 @@ THUMB void UnkMaterielMenu_02187cec::menuDraw()
     MenuStatusInfo::setMode(MenuStatusInfo::PLAYER_MODE);
     if (unk_24 != 0) {
         if (unk_20 == 0x27c) {
-            unkfunc_0217ad28(unk_1c, 1, 1);
+            drawTagModeTenantDetail(unk_1c, 1, 1);
             return;
         }
-        unkfunc_0217ad28(unk_1c - 0x1b, 0, 1);
+        drawTagModeTenantDetail(unk_1c - 0x1b, 0, 1);
     }
 }
 
@@ -94,7 +94,7 @@ THUMB void UnkMaterielMenu_02187cec::setTaishiMessageMacros(int index)
     } else {
         taishi = &status::g_MuseumStatus.othersTaishi_[index];
     }
-    unkfunc_0217b858(line1, line2, line3, taishi->message_);
+    splitCommentLines(line1, line2, line3, taishi->message_);
     TextAPI::setUserString(0, line1);
     TextAPI::setUserString(1, line2);
     TextAPI::setUserString(2, line3);

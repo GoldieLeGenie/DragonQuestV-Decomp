@@ -244,8 +244,8 @@ THUMB void BattleMenu_FRIEND_ENTRANCE::unkfunc_02171178()
         if (monster_ == 0) {
             monster_ = status::PlayerDataAll::playerData_[friendCtrl_].index_;
         } else {
-            monsterArray_ = unkfunc_02171244(monster_);
-            monster_ = unkfunc_021711ec(monster_);
+            monsterArray_ = getFriendPartyIndex(monster_);
+            monster_ = getFriendPlayerIndex(monster_);
             monsterCtrl_ = status::PlayerDataAll::getFriendMonsterCtrl(monster_);
         }
         mode_ = MODE_IS_LAST;
@@ -256,7 +256,7 @@ THUMB void BattleMenu_FRIEND_ENTRANCE::unkfunc_02171178()
     }
 }
 
-THUMB int BattleMenu_FRIEND_ENTRANCE::unkfunc_021711ec(int num)
+THUMB int BattleMenu_FRIEND_ENTRANCE::getFriendPlayerIndex(int num)
 {
     status::g_Party.setBattleModeAndCarriage();
     int count = status::g_Party.getCarriageOutCount() + status::g_Party.getCarriageCount();
@@ -272,7 +272,7 @@ THUMB int BattleMenu_FRIEND_ENTRANCE::unkfunc_021711ec(int num)
     return monster_;
 }
 
-THUMB int BattleMenu_FRIEND_ENTRANCE::unkfunc_02171244(int num)
+THUMB int BattleMenu_FRIEND_ENTRANCE::getFriendPartyIndex(int num)
 {
     status::g_Party.setBattleModeAndCarriage();
     int count = status::g_Party.getCarriageOutCount() + status::g_Party.getCarriageCount();

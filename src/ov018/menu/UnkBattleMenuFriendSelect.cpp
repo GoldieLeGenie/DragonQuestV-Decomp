@@ -57,7 +57,7 @@ THUMB void UnkBattleMenuFriendSelect::menuDraw()
     if (gTownMenu_MESSAGE.isOpen() != true) {
         int page = navigator_.getPageNo();
         int max = navigator_.getPageMaxCount() - 1;
-        unkfunc_021705c0(page, max, unk_24);
+        drawFriendSelectMenu(page, max, unk_24);
         menuItem_.drawActive();
     }
 }

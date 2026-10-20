@@ -96,7 +96,7 @@ static UnkMenuParts s_parts_021812d0[] = {
     PARTS_END,
 };
 
-THUMB int unkfunc_02178f7c(int index)
+THUMB int getPokerHandText(int index)
 {
     int text = 0;
     switch (index) {
@@ -134,7 +134,7 @@ THUMB int unkfunc_02178f7c(int index)
     return text;
 }
 
-THUMB void unkfunc_02178ff8(int type, int flag)
+THUMB void drawShopRootCommands(int type, int flag)
 {
     int param = 0;
     int color = 0;
@@ -142,13 +142,13 @@ THUMB void unkfunc_02178ff8(int type, int flag)
         color = 3;
     }
     for (int i = 0; i < 3; i++) {
-        param = unkfunc_02178c50(type, i);
+        param = getMenuCommandText(type, i);
         drawMenuParts(s_parts_02180508, &param, 0xa4, i * 16 + 8 + i * 8, data_02094dd4[color]);
     }
     drawMenuFrame(0x98, 0, 0x68, 0x50, -1);
 }
 
-THUMB void unkfunc_02179054()
+THUMB void drawShopEquipCompare()
 {
     setMenuDrawOffset(0, 0);
     int param[4] = {0, 0, 0, 0};
@@ -158,7 +158,7 @@ THUMB void unkfunc_02179054()
     UnkMenuParts* parts = 0;
     int count = MenuStatusInfo::getPartyCount(MenuStatusInfo::COUNT_ALL);
     for (int i = 0; i < count; i++) {
-        switch (unkfunc_0217b4d8(i, param, -1)) {
+        switch (getShopEquipCompare(i, param, -1)) {
             case 0:
                 parts = s_parts_02180a1e;
                 break;
@@ -171,12 +171,12 @@ THUMB void unkfunc_02179054()
         }
         drawMenuParts(parts, param, (i % 2) << 7, ((i / 2) << 4) + 0x28, data_02094dd4[0]);
     }
-    unkfunc_0217b45c(-1);
+    drawShopItemHeader(-1);
     drawMenuFrame(0, 0, 0x100, 0x90, 0x20);
     drawMenuFrame(0, 0x90, 0x100, 0x30, -1);
 }
 
-THUMB void unkfunc_02179114()
+THUMB void drawShopHeldCounts()
 {
     setMenuDrawOffset(0, 0);
     int param[3] = {0, 0, 0};
@@ -185,19 +185,19 @@ THUMB void unkfunc_02179114()
     }
     for (int i = 0; i < MenuStatusInfo::getPartyCount(MenuStatusInfo::COUNT_ALL); i++) {
         UnkMenuParts* parts;
-        if (unkfunc_0217b6a8(i, param, -1)) {
+        if (getShopHeldCount(i, param, -1)) {
             parts = s_parts_02180dba;
         } else {
             parts = s_parts_02180ac6;
         }
         drawMenuParts(parts, param, (i % 2) << 7, ((i / 2) << 4) + 0x28, data_02094dd4[0]);
     }
-    unkfunc_0217b45c(-1);
+    drawShopItemHeader(-1);
     drawMenuFrame(0, 0, 0x100, 0x90, 0x20);
     drawMenuFrame(0, 0x90, 0x100, 0x30, -1);
 }
 
-THUMB void unkfunc_021791c0(int itemID)
+THUMB void drawShopSackCount(int itemID)
 {
     setMenuDrawOffset(0, 0);
     UnkMenuParts* parts = s_parts_02180df2;
@@ -210,7 +210,7 @@ THUMB void unkfunc_021791c0(int itemID)
     drawMenuPartsColored(parts, param, data_02094dd4[0]);
 }
 
-THUMB void unkfunc_02179214()
+THUMB void drawShopItemKind()
 {
     MaterielMenuPlayerControl* control = MaterielMenuPlayerControl::getSingleton();
     int itemID = MaterielMenu_SHOP_MANAGER::getSingleton()->getItem(control->activeItem_);
@@ -229,7 +229,7 @@ static UnkMenuParts s_parts_02180976[] = {
     PARTS_END,
 };
 
-THUMB void unkfunc_0217927c(int flag)
+THUMB void drawShopBuyList(int flag)
 {
     UnkMenuParts partsA[] = {
         {0x0d, 0x08, (short)0xf000, 0, 0x0a, 0x02, 0x80, 0x0c},
@@ -428,7 +428,7 @@ static UnkMenuParts s_parts_02180f0a[] = {
     PARTS_END,
 };
 
-THUMB void unkfunc_02179378()
+THUMB void drawCharaItemNames()
 {
     int count;
     int partyCount;
@@ -563,7 +563,7 @@ static UnkMenuParts s_parts_02180444[] = {
     PARTS_END,
 };
 
-THUMB void unkfunc_021794a0(int itemID)
+THUMB void drawShopGiveCompare(int itemID)
 {
     UnkMenuParts* parts = 0;
     int param[8] = {-1};
@@ -589,7 +589,7 @@ THUMB void unkfunc_021794a0(int itemID)
     }
     if (status::UseItem::getEquipItemType(itemID) <= ITEM_ACCESSORY && chara != partyCount) {
         param[3] = MenuDataCommon::getItemTypeMessageNo(itemID);
-        switch (unkfunc_0217b4d8(chara, values, -1)) {
+        switch (getShopEquipCompare(chara, values, -1)) {
             case 0:
                 parts = s_parts_021813cc;
                 param[3] = values[1];
@@ -699,7 +699,7 @@ THUMB void drawPartyIcons(int y, int flag)
     drawMenuFrame(0, 0x48 - y, 0xe0, 0x58, -1);
 }
 
-THUMB void unkfunc_02179774()
+THUMB void drawSellPriceList()
 {
     setMenuDrawOffset(0, 0);
     int chara = MaterielMenuPlayerControl::getSingleton()->activeChara_;
@@ -714,7 +714,7 @@ THUMB void unkfunc_02179774()
         }
         for (int i = 0; i < count; i++) {
             UnkMenuParts* parts;
-            if (unkfunc_0217b724(param, chara, i) == 0) {
+            if (getSellListRow(param, chara, i) == 0) {
                 parts = s_parts_02180b44;
             } else {
                 parts = s_parts_02181420;
@@ -725,7 +725,7 @@ THUMB void unkfunc_02179774()
         int count = MenuStatusInfo::getPlayerItemCount(chara);
         for (int i = 0; i < count; i++) {
             UnkMenuParts* parts;
-            if (unkfunc_0217b724(param, chara, i) == 0) {
+            if (getSellListRow(param, chara, i) == 0) {
                 parts = s_parts_02180b44;
             } else {
                 parts = s_parts_02180e9a;
@@ -740,7 +740,7 @@ THUMB void unkfunc_02179774()
     drawMenuFrame(0, 0, 0x100, 0xc0, -1);
 }
 
-THUMB void unkfunc_02179878(int fukuro)
+THUMB void drawItemPage(int fukuro)
 {
     int page = MaterielMenuPlayerControl::getSingleton()->activeItemPage_;
     int param[2] = {0, 0};
@@ -794,7 +794,7 @@ THUMB void unkfunc_02179878(int fukuro)
     drawMenuFrame(0, 0, 0x100, 0xa0, 0x70);
 }
 
-THUMB void unkfunc_021799e4(int fukuro)
+THUMB void drawSellPrice(int fukuro)
 {
     int param[4] = {0, 0, 0, 0};
     for (int i = 0; i < 4; i++) {
@@ -834,7 +834,7 @@ THUMB void unkfunc_021799e4(int fukuro)
     drawMenuPartsColored(parts, param, data_02094dd4[0]);
 }
 
-THUMB void unkfunc_02179aac(int fukuro)
+THUMB void drawItemPageNumber(int fukuro)
 {
     UnkMenuParts* parts = s_parts_02181474;
     int param[5] = {MaterielMenuPlayerControl::getSingleton()->activeItemPage_ + 1, (int)"\xff\xfe\xa7\x24", (MenuStatusInfo::getFukuroItemCount() - 1) / 6 + 1, 0xc, 0xd};
@@ -956,7 +956,7 @@ static UnkMenuParts s_parts_02180d12[] = {
     PARTS_END,
 };
 
-THUMB void unkfunc_02179b3c(int itemID, int flag)
+THUMB void drawItemDetail(int itemID, int flag)
 {
     UnkMenuParts* parts = s_parts_021807fc;
     setMenuDrawOffset(0, 0);
@@ -982,7 +982,7 @@ THUMB void unkfunc_02179b3c(int itemID, int flag)
                 values[i] = -1;
             }
             itemID = MenuStatusInfo::getPlayerItemID(activeChara, item + base);
-            switch (unkfunc_0217b4d8(activeChara, values, itemID)) {
+            switch (getShopEquipCompare(activeChara, values, itemID)) {
                 case 0:
                     parts = s_parts_02180fb2;
                     param[2] = values[1];
@@ -1041,7 +1041,7 @@ static UnkMenuParts s_parts_021808ce[] = {
     PARTS_END,
 };
 
-THUMB void unkfunc_02179ce4(int value)
+THUMB void drawSellQuantity(int value)
 {
     int param[2] = {(int)"\xff\xfe\xa9\x24", 0};
     param[1] = value;
@@ -1130,7 +1130,7 @@ static UnkMenuParts s_parts_02180658[] = {
     PARTS_END,
 };
 
-THUMB void unkfunc_02179d24()
+THUMB void drawPokerPayoutTable()
 {
     setMenuDrawOffset(0, 0);
     int rate[10] = {1, 1, 2, 4, 5, 10, 20, 50, 100, 500};
@@ -1156,7 +1156,7 @@ THUMB void unkfunc_02179d24()
     drawMenuFrame(0, 0, 0x100, 0xc0, -1);
 }
 
-THUMB void unkfunc_02179de8(int coin, int bet, int flag, int type)
+THUMB void drawPokerCoinsAndBet(int coin, int bet, int flag, int type)
 {
     int param[2] = {(int)0xe0000140, 0};
     int color = 0;
@@ -1178,13 +1178,13 @@ static UnkMenuParts s_parts_0218071c[] = {
     PARTS_END,
 };
 
-THUMB void unkfunc_02179e68(int flag)
+THUMB void drawHighLowCommands(int flag)
 {
     int param[2] = {-1};
     for (int i = 0; i < 2; i++) {
         param[i] = -1;
     }
-    unkfunc_02178d10(param, flag);
+    getHighLowCommandText(param, flag);
     drawMenuPartsColored(s_parts_02181030, param, data_02094dd4[0]);
 }
 
@@ -1200,7 +1200,7 @@ UnkMenuParts s_parts_02180700[] = {
     PARTS_END,
 };
 
-THUMB void unkfunc_02179ea8(int* flags)
+THUMB void drawPokerHoldLabels(int* flags)
 {
     int x[5] = {0, 0x30, 0x60, 0x90, 0xc0};
     int param = 0;
@@ -1225,7 +1225,7 @@ UnkMenuParts s_parts_02180578[] = {
     PARTS_END,
 };
 
-THUMB void unkfunc_02179f28()
+THUMB void drawMonsterBookPage()
 {
     int param[2] = {-1};
     for (int i = 0; i < 2; i++) {
@@ -1264,7 +1264,7 @@ static UnkMenuParts s_parts_02180f42[] = {
     PARTS_END,
 };
 
-THUMB void unkfunc_0217a018(int index)
+THUMB void drawMonsterBookDetail(int index)
 {
     int count = status::g_BattleResult.result_[index].monsterCount_;
     int item = status::g_BattleResult.getMonsterItemIndex(index);
@@ -1306,7 +1306,7 @@ THUMB void drawChurchCommands()
     if (count != 6) {
         flag = 1;
     }
-    unkfunc_02178d30(text, flag);
+    getChurchCommandText(text, flag);
     for (int i = 0; i < count; i++) {
         drawMenuParts(s_parts_021803f0, &text[i], (i % 2) * 0x60 + 0x44, (i / 2) * 0x18 + 0xc, data_02094dd4[0]);
     }
@@ -1370,18 +1370,18 @@ THUMB void drawActiveCharaHp(int flag)
     drawMenuPartsColored(parts, param, data_02094dd4[getActorConditionColor(chara)]);
 }
 
-THUMB void unkfunc_0217a334(int type, int monster)
+THUMB void drawMemberCommandHeader(int type, int monster)
 {
     int param[2] = {0, 0};
     for (int i = 0; i < 2; i++) {
         param[i] = 0;
     }
     if (type == 10) {
-        param[0] = unkfunc_02178c50(2, 6);
+        param[0] = getMenuCommandText(2, 6);
     } else if (type < 6) {
-        param[0] = unkfunc_02178c50(2, type);
+        param[0] = getMenuCommandText(2, type);
     } else {
-        param[0] = unkfunc_02178c50(3, type - 6);
+        param[0] = getMenuCommandText(3, type - 6);
     }
     drawMenuPartsPlain(s_parts_021804b4, param);
     drawMenuFrame(0x18, 0xa0, 0x70, 0x20, -1);
@@ -1417,7 +1417,7 @@ THUMB void drawCommandCursor(int x, int y)
     drawMenuPartsAt(s_parts_0218055c, 0, x, y);
 }
 
-THUMB void unkfunc_0217a464(int chara, int y)
+THUMB void drawCharaIconFrame(int chara, int y)
 {
     int icon = 0x5d;
     if (chara != -1) {
@@ -1434,7 +1434,7 @@ THUMB void drawNameEditIcon(int icon, int y)
     drawMenuFrame(0, y, 0x38, 0x30, -1);
 }
 
-THUMB void unkfunc_0217a4d0(int chara, int x, int y)
+THUMB void drawCharaHpPercent(int chara, int x, int y)
 {
     MenuStatusInfo::setMode(MenuStatusInfo::PLAYER_MODE);
     status::HaveStatusInfo& info = MenuStatusInfo::getHaveStatusInfo(chara);
@@ -1461,7 +1461,7 @@ THUMB void unkfunc_0217a578(int icon, int x, int y)
     drawMenuPartsAt(s_parts_021809ca, &icon, x, y);
 }
 
-THUMB void unkfunc_0217a598(int chara, int x, int y)
+THUMB void drawCharaConditionMarks(int chara, int x, int y)
 {
     MenuStatusInfo::setMode(MenuStatusInfo::PLAYER_MODE);
     status::HaveStatusInfo& info = MenuStatusInfo::getHaveStatusInfo(chara);
@@ -1504,7 +1504,7 @@ static UnkMenuParts s_parts_021803d4[] = {
     PARTS_END,
 };
 
-THUMB void unkfunc_0217a67c(int chara, int x, int y)
+THUMB void drawCharaStatusPanel(int chara, int x, int y)
 {
     MenuStatusInfo::setMode(MenuStatusInfo::PLAYER_MODE);
     status::HaveStatusInfo& info = MenuStatusInfo::getHaveStatusInfo(chara);
@@ -1544,7 +1544,7 @@ static UnkMenuParts s_parts_0218182c[] = {
     PARTS_END,
 };
 
-THUMB void unkfunc_0217a778(int first, int second, int value, int count, int x, int y, int flag)
+THUMB void drawRaceOddsEntry(int first, int second, int value, int count, int x, int y, int flag)
 {
     int param[6] = {(int)"@\x81\\", 0, (int)"@\x81" "D", 0, (int)"\xff\xfe\xa9\x24", 0};
     param[1] = value / 10;
@@ -1555,9 +1555,9 @@ THUMB void unkfunc_0217a778(int first, int second, int value, int count, int x, 
     } else {
         drawMenuParts(s_parts_0218157e, param, x, y, data_02094dd4[0]);
     }
-    unkfunc_0217a800(first, x, y, flag);
+    drawRaceSlimeNumber(first, x, y, flag);
     x += 0x16;
-    unkfunc_0217a800(second, x, y, flag);
+    drawRaceSlimeNumber(second, x, y, flag);
 }
 
 static UnkMenuParts s_parts_02181768[] = {
@@ -1614,7 +1614,7 @@ UnkMenuParts s_parts_02180df2[] = {
     PARTS_END,
 };
 
-THUMB void unkfunc_0217a800(int value, int x, int y, int flag)
+THUMB void drawRaceSlimeNumber(int value, int x, int y, int flag)
 {
     if (flag) {
         drawMenuParts(s_parts_0218047c, &value, x, y, 0xb);
@@ -1642,7 +1642,7 @@ THUMB void unkfunc_0217a800(int value, int x, int y, int flag)
     }
 }
 
-THUMB void unkfunc_0217a8d8(int mode, int x, int y, int flag)
+THUMB void drawRaceOddsTable(int mode, int x, int y, int flag)
 {
     UnkMenuParts* parts = s_parts_02180754;
     if (mode == 6) {
@@ -1667,7 +1667,7 @@ THUMB void unkfunc_0217a8d8(int mode, int x, int y, int flag)
             } else {
                 selected = 0;
             }
-            unkfunc_0217a778(i, j, g_RaceData.oddsData_[index].odds, g_RaceData.oddsData_[index].coin, offsetX + x, offsetY + y, selected);
+            drawRaceOddsEntry(i, j, g_RaceData.oddsData_[index].odds, g_RaceData.oddsData_[index].coin, offsetX + x, offsetY + y, selected);
             index++;
             offsetY += 10;
             if (index == column) {
@@ -1684,7 +1684,7 @@ THUMB void unkfunc_0217a8d8(int mode, int x, int y, int flag)
     }
 }
 
-THUMB void unkfunc_0217a9c8(int value, int x, int y)
+THUMB void drawRaceCoinValue(int value, int x, int y)
 {
     int param[2] = {(int)0xe0000352, 0};
     param[1] = value;
@@ -1730,17 +1730,17 @@ UnkMenuParts s_parts_02180922[] = {
     PARTS_END,
 };
 
-THUMB void unkfunc_0217a9f8(int first, int second, int third, int x, int y)
+THUMB void drawSlimeTouchRankEntry(int first, int second, int third, int x, int y)
 {
     int param[3] = {first, third, second};
     drawMenuParts(s_parts_02180bc2, param, x, y, 1);
 }
 
-THUMB void unkfunc_0217aa1c()
+THUMB void drawTagModeRootMenu()
 {
     drawMenuPartsColored(s_parts_021802f4, 0, data_02094dd4[0]);
     for (int i = 0; i < 5; i++) {
-        int text = unkfunc_02178d6c(i);
+        int text = getTagModeRootText(i);
         drawMenuParts(s_parts_021805cc, &text, 0, i * 16 + 0xc + i * 4, data_02094dd4[0]);
     }
     drawMenuFrame(0, 0, 0x90, 0x78, -1);
@@ -1776,7 +1776,7 @@ static UnkMenuParts s_parts_0218078c[] = {
     PARTS_END,
 };
 
-THUMB void unkfunc_0217ab94(int page, int value, int flag)
+THUMB void drawTagModeTenantList(int page, int value, int flag)
 {
     int rest = status::g_MuseumStatus.getTaishiCount() - page * 8;
     int count = dss::clamp<int>(0, rest, 8);
@@ -1804,7 +1804,7 @@ UnkMenuParts s_parts_021807c4[] = {
     PARTS_END,
 };
 
-THUMB void unkfunc_0217ac98(int index, int mode)
+THUMB void drawTagModeProfile(int index, int mode)
 {
     if (mode == 0 && status::g_MuseumStatus.getTaishiCount() == 0) {
         return;
@@ -1834,7 +1834,7 @@ UnkMenuParts s_parts_02180af0[] = {
     PARTS_END,
 };
 
-THUMB void unkfunc_0217ad28(int index, int mode, int flag)
+THUMB void drawTagModeTenantDetail(int index, int mode, int flag)
 {
     int x = 0;
     if (flag == 1) {
@@ -1860,9 +1860,9 @@ THUMB void unkfunc_0217ad28(int index, int mode, int flag)
     drawMenuFrame(x, 0, 0xa8, 0x78, 0x28);
 }
 
-THUMB void unkfunc_0217add4(int page)
+THUMB void drawTagModeProductionList(int page)
 {
-    unkfunc_0217b7dc((int)status::g_MuseumStatus.getPlayerTaishi().getTaishiName(), 1);
+    drawTagModeName((int)status::g_MuseumStatus.getPlayerTaishi().getTaishiName(), 1);
     int count = 0x40 - page * 8;
     count = dss::clamp<int>(0, count, 8);
     for (int i = 0; i < count; i++) {
@@ -1877,12 +1877,12 @@ THUMB void unkfunc_0217add4(int page)
     drawMenuFrame(0, 0x30, 0x100, 0x90, 0x50);
 }
 
-THUMB void unkfunc_0217ae9c(int value)
+THUMB void drawTagModePriceInput(int value)
 {
     int param[3] = {(int)0xe00003c6, (int)"\xff\xfe\xa8\x24", 0};
     param[2] = status::g_MuseumStatus.getPlayerTaishi().production_ + (int)0xc0000320;
     drawMenuPartsColored(s_parts_02180e62, param, data_02094dd4[0]);
-    unkfunc_0217b7dc((int)status::g_MuseumStatus.getPlayerTaishi().getTaishiName(), 0);
+    drawTagModeName((int)status::g_MuseumStatus.getPlayerTaishi().getTaishiName(), 0);
     int div = 100000;
     for (int i = 0; i < 6; i++) {
         param[0] = value / div;
@@ -1902,12 +1902,12 @@ UnkMenuParts s_parts_0218055c[] = {
     PARTS_END,
 };
 
-THUMB void unkfunc_0217af70()
+THUMB void drawTagModeComment()
 {
     char line1[0x40];
     char line2[0x40];
     char line3[0x40];
-    unkfunc_0217b858(line1, line2, line3, status::g_MuseumStatus.getPlayerTaishi().getTaishiMessage());
+    splitCommentLines(line1, line2, line3, status::g_MuseumStatus.getPlayerTaishi().getTaishiMessage());
     int param[3] = {(int)line1, (int)line2, (int)line3};
     drawMenuPartsColored(s_parts_02180f42, param, data_02094dd4[0]);
     param[0] = (int)0xe00003c9;
@@ -1915,7 +1915,7 @@ THUMB void unkfunc_0217af70()
     drawMenuFrame(0, 8, 0xc0, 0x70, 0x20);
 }
 
-THUMB void unkfunc_0217afd0(int mode)
+THUMB void drawMeisanhinList(int mode)
 {
     int param[5] = {0, 0, 0, 0, 0};
     for (int i = 0; i < 5; i++) {
@@ -1925,7 +1925,7 @@ THUMB void unkfunc_0217afd0(int mode)
     int count = 0x1c - page * 16;
     count = dss::clamp<int>(1, count, 16);
     for (int i = 0; i < count; i++) {
-        dq5::level::MeisanhinData* data = dq5::level::MeisanhinData::getRecord(unkfunc_02178d94(i + page * 16));
+        dq5::level::MeisanhinData* data = dq5::level::MeisanhinData::getRecord(getMeisanhinRecordIndex(i + page * 16));
         int item = data->itemid;
         param[0] = item + 0x40000000;
         if ((mode == 0 && data->getPoint1() == 1) || (mode == 1 && data->getPoint2() == 1)) {
@@ -1950,9 +1950,9 @@ THUMB void unkfunc_0217afd0(int mode)
     drawMenuFrame(0, 0, 0x100, 0xc0, -1);
 }
 
-THUMB void unkfunc_0217b144()
+THUMB void drawMeisanhinDetail()
 {
-    dq5::level::MeisanhinData* data = dq5::level::MeisanhinData::getRecord(unkfunc_02178d94(MaterielMenuPlayerControl::getSingleton()->activeItem_));
+    dq5::level::MeisanhinData* data = dq5::level::MeisanhinData::getRecord(getMeisanhinRecordIndex(MaterielMenuPlayerControl::getSingleton()->activeItem_));
     int level = data->point3;
     int point4 = data->point4;
     int point5 = data->point5;
@@ -2009,7 +2009,7 @@ THUMB void unkfunc_0217b144()
     drawMenuFrame(0, 0, 0x100, 0xc0, 0x20);
 }
 
-THUMB void unkfunc_0217b360(int index)
+THUMB void drawMuseumItemDetail(int index)
 {
     dq5::level::MeisanhinData* data = status::g_MuseumStatus.getMuseumItemStatus(index).getMeisanhinData();
     int param[14] = {
@@ -2037,7 +2037,7 @@ THUMB void unkfunc_0217b360(int index)
     drawMenuFrame(0, 0, 0x100, 0xc0, 0x20);
 }
 
-THUMB void unkfunc_0217b45c(int itemID)
+THUMB void drawShopItemHeader(int itemID)
 {
     setMenuDrawOffset(0, 0);
     int param = 0;
@@ -2055,7 +2055,7 @@ THUMB void unkfunc_0217b45c(int itemID)
     drawMenuPartsColored(s_parts_02180594, &param, data_02094dd4[0]);
 }
 
-THUMB int unkfunc_0217b4d8(int chara, int* values, int itemID)
+THUMB int getShopEquipCompare(int chara, int* values, int itemID)
 {
     int result = 1;
     values[0] = MenuStatusInfo::getPlayerIndex(chara) + 0x50000000;
@@ -2135,7 +2135,7 @@ THUMB int unkfunc_0217b4d8(int chara, int* values, int itemID)
     return result;
 }
 
-THUMB int unkfunc_0217b6a8(int chara, int* values, int itemID)
+THUMB int getShopHeldCount(int chara, int* values, int itemID)
 {
     values[0] = MenuStatusInfo::getPlayerIndex(chara) + 0x50000000;
     int count = 0;
@@ -2157,7 +2157,7 @@ THUMB int unkfunc_0217b6a8(int chara, int* values, int itemID)
     return 0;
 }
 
-THUMB int unkfunc_0217b724(int* param, int chara, int index)
+THUMB int getSellListRow(int* param, int chara, int index)
 {
     int result = 1;
     if (chara == MenuStatusInfo::getPartyCount(MenuStatusInfo::COUNT_ALL)) {
@@ -2187,7 +2187,7 @@ THUMB int unkfunc_0217b724(int* param, int chara, int index)
     return result;
 }
 
-THUMB void unkfunc_0217b7dc(int value, int flag)
+THUMB void drawTagModeName(int value, int flag)
 {
     if (flag == 1) {
         int name = value;
@@ -2235,7 +2235,7 @@ UnkMenuParts s_parts_021805b0[] = {
     PARTS_END,
 };
 
-THUMB void unkfunc_0217b858(char* line1, char* line2, char* line3, char* message)
+THUMB void splitCommentLines(char* line1, char* line2, char* line3, char* message)
 {
     UnkUtf8Iterator src;
     src.setText(message);
@@ -2280,7 +2280,7 @@ THUMB void unkfunc_0217b858(char* line1, char* line2, char* line3, char* message
     }
 }
 
-THUMB void unkfunc_0217b924()
+THUMB void drawSugorokuRootMenu()
 {
     int param[3] = {(int)0xe0000375, 0, (int)0xe0000376};
     param[1] = twn::g_SugorokuInfo.diceCount_;
@@ -2349,17 +2349,17 @@ THUMB void unkfunc_0217b9c4()
     drawMenuPartsColored(s_parts_0218040c, &message, data_02094dd4[0]);
 }
 
-THUMB void unkfunc_0217ba00()
+THUMB void drawJisanRootCommands()
 {
     MaterielMenuPlayerControl::getSingleton();
     for (int i = 0; i < 6; i++) {
-        int text = unkfunc_02178c50(2, i);
+        int text = getMenuCommandText(2, i);
         drawMenuParts(s_parts_02180524, &text, (i % 2) * 0x60 + 0x44, (i / 2) * 0x18 + 0xc, data_02094dd4[0]);
     }
     drawMenuFrame(0x30, 0, 0xd0, 0x58, -1);
 }
 
-THUMB void unkfunc_0217ba68(int page, int maxPage, int monster)
+THUMB void drawMemberIconList(int page, int maxPage, int monster)
 {
     int total;
     int script = MaterielMenu_WINDOW_MANAGER::getSingleton()->editMessageForScript_;
@@ -2427,7 +2427,7 @@ THUMB void unkfunc_0217ba68(int page, int maxPage, int monster)
     drawMenuFrame(0, 0x70, 0x100, 0x30, -1);
 }
 
-THUMB void unkfunc_0217bc54(int page, int maxPage, short* list, int total)
+THUMB void drawMemberIconGrid(int page, int maxPage, short* list, int total)
 {
     int count = total - page * 12;
     count = dss::clamp<int>(0, count, 12);
@@ -2465,7 +2465,7 @@ UnkMenuParts s_parts_0218157e[] = {
     PARTS_END,
 };
 
-THUMB void unkfunc_0217bd14()
+THUMB void drawActiveCharaProfile()
 {
     int chara = MaterielMenuPlayerControl::getSingleton()->activeChara_;
     if (chara == -1) {
@@ -2530,11 +2530,11 @@ UnkMenuParts s_parts_0218151c[] = {
     PARTS_END,
 };
 
-THUMB void unkfunc_0217bdec()
+THUMB void drawLuidaRootCommands()
 {
     int text = 0;
     for (int i = 0; i < 4; i++) {
-        text = unkfunc_02178c50(3, i);
+        text = getMenuCommandText(3, i);
         drawMenuParts(s_parts_021806ac, &text, 0, i * 16 + 8 + i * 8, data_02094dd4[0]);
     }
     drawMenuFrame(0x90, 0, 0x70, 0x70, -1);

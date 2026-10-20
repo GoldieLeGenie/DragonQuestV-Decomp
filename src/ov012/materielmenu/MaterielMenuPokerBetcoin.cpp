@@ -34,7 +34,7 @@ THUMB void MaterielMenuPokerBetcoin::menuDraw()
     if (coin < bet) {
         bet = coin;
     }
-    unkfunc_0217c048(coin - bet, bet, blink_);
+    drawPokerBetCoinScreen(coin - bet, bet, blink_);
 }
 
 THUMB void MaterielMenuPokerBetcoin::menuUpdate()

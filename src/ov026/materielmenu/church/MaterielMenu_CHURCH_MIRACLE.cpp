@@ -110,7 +110,7 @@ THUMB void MaterielMenu_CHURCH_MIRACLE::menuDraw()
     if (gTownMenu_MESSAGE.isMessageWAITPROG() && miracleStatus_ != MIRACLE_ISEND && miracleStatus_ != MIRACLE_SOUND && miracleStatus_ != MIRACLE_SOUNDEND) {
         status::g_Party.setBattleMode();
         status::g_Party.getCount();
-        unkfunc_0217bfbc();
+        drawChurchMiracleScreen();
         menuItem_.drawActive();
         return;
     }

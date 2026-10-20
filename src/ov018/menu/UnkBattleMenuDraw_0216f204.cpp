@@ -299,7 +299,7 @@ THUMB void drawBattleMemberHpPercent(int x, int y, int hp, status::HaveStatusInf
     if (hp == 0) {
         param[1] = 0;
     }
-    drawMenuParts(s_parts_02176e12, param, x, y, data_02094dd4[unkfunc_0216ff50(info->getHpMax(), hp)]);
+    drawMenuParts(s_parts_02176e12, param, x, y, data_02094dd4[getBattleHpColorIndexByHp(info->getHpMax(), hp)]);
 }
 
 THUMB void drawBattleActiveMember(status::HaveStatusInfo* info, int hp, int flag)
@@ -308,7 +308,7 @@ THUMB void drawBattleActiveMember(status::HaveStatusInfo* info, int hp, int flag
     drawBattleMemberFace(8, 0x72, info, flag);
 }
 
-THUMB void unkfunc_0216f2ec(int group)
+THUMB void drawMonsterNamePlates(int group)
 {
     int plateGroup;
     int count = BattleMonsterNamePlate::getSingleton().addCount_;
@@ -409,13 +409,13 @@ THUMB void drawBattleItemEntry(int x, int y, int item, int flag)
     drawMenuParts(s_parts_02176ee4, param, x, y, data_02094dd4[0]);
 }
 
-THUMB void unkfunc_0216f570(int x, int y, int action)
+THUMB void drawBattleActionName(int x, int y, int action)
 {
     int param = MenuStatusInfo::getWordDBIndex(action) + 0x70000000;
     drawMenuParts(s_parts_02176b10, &param, x, y, data_02094dd4[0]);
 }
 
-THUMB void unkfunc_0216f5a4(status::HaveStatusInfo* info, int index)
+THUMB void drawBattleMemberStatusPanel(status::HaveStatusInfo* info, int index)
 {
     int playerIndex = info->haveStatus_.playerIndex_;
     int param[14];
@@ -443,7 +443,7 @@ THUMB void unkfunc_0216f5a4(status::HaveStatusInfo* info, int index)
     }
 }
 
-THUMB void unkfunc_0216f694(int x, int y, status::HaveStatusInfo* info)
+THUMB void drawBattleCharaStatus(int x, int y, status::HaveStatusInfo* info)
 {
     MenuStatusInfo::getPlayerSortIndex(info->haveStatus_.playerIndex_);
     int color = BattleDrawParts_getStatusColor(*info);
@@ -464,7 +464,7 @@ THUMB void unkfunc_0216f694(int x, int y, status::HaveStatusInfo* info)
     drawMenuParts(s_parts_02176fd2, power, x, y, data_02094dd4[color]);
 }
 
-THUMB void unkfunc_0216f78c(int* list, int count, int page)
+THUMB void drawBattleMemberSelectList(int* list, int count, int page)
 {
     drawMenuPartsPlain(s_parts_02176b80, 0);
     int pageMax = (count - 1) / 4;
@@ -476,7 +476,7 @@ THUMB void unkfunc_0216f78c(int* list, int count, int page)
         int x = i * 40 + 16;
         status::HaveStatusInfo& info = MenuStatusInfo::getHaveStatusInfo(list[page * 4 + i]);
         drawBattleMemberIcon(x, 0x70, info.getIconIndex());
-        unkfunc_0216f82c(&info, x, 0x70);
+        drawBattleMemberConditionMarks(&info, x, 0x70);
     }
     int param = 0xd;
     if (pageMax > 0) {
@@ -484,7 +484,7 @@ THUMB void unkfunc_0216f78c(int* list, int count, int page)
     }
 }
 
-THUMB void unkfunc_0216f82c(status::HaveStatusInfo* info, int x, int y)
+THUMB void drawBattleMemberConditionMarks(status::HaveStatusInfo* info, int x, int y)
 {
     int param[3] = { (int)" ", (int)" ", (int)" " };
     MenuStatusInfo::getPlayerSortIndex(info->haveStatus_.playerIndex_);
@@ -514,7 +514,7 @@ THUMB void drawBattleCancelButton()
     drawMenuPartsPlain(s_parts_021769a4, &param);
 }
 
-THUMB void unkfunc_0216f91c(status::HaveStatusInfo* info, int a, int b, int c, int index)
+THUMB void drawBattleTopStatusWindow(status::HaveStatusInfo* info, int a, int b, int c, int index)
 {
     setMenuDrawOffset(0, 0);
     int x = index * 64;
@@ -578,7 +578,7 @@ THUMB void drawBattleMpCost(int mp, int useMp)
     drawMenuParts(s_parts_02176f2a, param, 0x88, 0xa0, data_02094dd4[0]);
 }
 
-THUMB void unkfunc_0216fb38(int page, int max)
+THUMB void drawFriendSelectPageFrame(int page, int max)
 {
     int param[5] = { 0, (int)"\xff\xfe\xa7\x24", 0, 0xd, 0 };
     param[0] = page + 1;
@@ -589,7 +589,7 @@ THUMB void unkfunc_0216fb38(int page, int max)
     drawMenuFrame(0, 0x70, 0x100, 0x30, -1);
 }
 
-THUMB void unkfunc_0216fb94(int hp, int mp, int hpMax, int mpMax, int sex, int level, int ctrl, int monster)
+THUMB void drawFriendStatusProfile(int hp, int mp, int hpMax, int mpMax, int sex, int level, int ctrl, int monster)
 {
     status::PlayerData& data = status::PlayerDataAll::playerData_[ctrl];
     int param[18];
@@ -629,13 +629,13 @@ THUMB void unkfunc_0216fb94(int hp, int mp, int hpMax, int mpMax, int sex, int l
     }
     int icon = data.getIconIndex();
     int lv = level;
-    drawMenuPartsColored(s_parts_02177192, param, data_02094dd4[unkfunc_0216ff50(hpMax, hp)]);
+    drawMenuPartsColored(s_parts_02177192, param, data_02094dd4[getBattleHpColorIndexByHp(hpMax, hp)]);
     drawMenuPartsAt(s_parts_02176a14, &icon, 6, 0x28);
-    drawMenuPartsColored(s_parts_02176a68, &lv, data_02094dd4[unkfunc_0216ff50(hpMax, hp)]);
+    drawMenuPartsColored(s_parts_02176a68, &lv, data_02094dd4[getBattleHpColorIndexByHp(hpMax, hp)]);
     drawMenuFrame(0, 0, 0x98, 0x70, 0x18);
 }
 
-THUMB void unkfunc_0216fcb8(short hp, unsigned short hpMax, unsigned short strength, unsigned short agility, unsigned short protection, unsigned short wisdom, unsigned short luck, unsigned short attack, unsigned short defence)
+THUMB void drawFriendStatusAbilities(short hp, unsigned short hpMax, unsigned short strength, unsigned short agility, unsigned short protection, unsigned short wisdom, unsigned short luck, unsigned short attack, unsigned short defence)
 {
     int kind[7] = { 2, 3, 4, 5, 6, 0, 1 };
     unsigned short value[7] = { strength, agility, protection, wisdom, luck, attack, defence };
@@ -643,7 +643,7 @@ THUMB void unkfunc_0216fcb8(short hp, unsigned short hpMax, unsigned short stren
         int param[3] = { 0, (int)"\xff\xfe\xa8\x24", 0 };
         param[0] = menu::MenuDataCommon::getAbilityKind((menu::MenuDataCommon::STATUS_INDEX)kind[i]);
         param[2] = value[i];
-        drawMenuParts(s_parts_02176dda, param, 0, i * 14, data_02094dd4[unkfunc_0216ff50(hpMax, hp)]);
+        drawMenuParts(s_parts_02176dda, param, 0, i * 14, data_02094dd4[getBattleHpColorIndexByHp(hpMax, hp)]);
     }
     drawMenuFrame(0x98, 0, 0x68, 0x70, -1);
 }
@@ -653,7 +653,7 @@ THUMB void drawBattleMemberIcon(int x, int y, int icon)
     drawMenuPartsAt(s_parts_02176bc6, &icon, x, y);
 }
 
-THUMB void unkfunc_0216fd88(status::BaseHaveItem* items, int hp, int hpMax)
+THUMB void drawFriendStatusItems(status::BaseHaveItem* items, int hp, int hpMax)
 {
     setMenuDrawOffset(0, 0);
     int x;
@@ -666,21 +666,21 @@ THUMB void unkfunc_0216fd88(status::BaseHaveItem* items, int hp, int hpMax)
         y = (i / 2) * 16;
         if (items->isEquipment(i) == true) {
             int equip = 0xe000003c;
-            drawMenuParts(s_parts_021769dc, &equip, x, y, data_02094dd4[unkfunc_0216ff50(hpMax, hp)]);
+            drawMenuParts(s_parts_021769dc, &equip, x, y, data_02094dd4[getBattleHpColorIndexByHp(hpMax, hp)]);
         }
-        drawMenuParts(s_parts_02176a4c, &item, x, y, data_02094dd4[unkfunc_0216ff50(hpMax, hp)]);
+        drawMenuParts(s_parts_02176a4c, &item, x, y, data_02094dd4[getBattleHpColorIndexByHp(hpMax, hp)]);
     }
     drawMenuFrame(0, 0, 0xf0, 0x60, -1);
 }
 
-THUMB void unkfunc_0216fe48(status::HaveAction* actions, int hp, int hpMax)
+THUMB void drawFriendStatusSpells(status::HaveAction* actions, int hp, int hpMax)
 {
     setMenuDrawOffset(0, 0);
     int action = 0;
     int count = actions->getCount();
     for (int i = 0; i < count; i++) {
         action = actions->getAction(i) + 0x70000000;
-        int color = unkfunc_0216ff50(hpMax, hp);
+        int color = getBattleHpColorIndexByHp(hpMax, hp);
         drawMenuParts(s_parts_02176b48, &action, (i % 3) * 80, (i / 3) * 12, data_02094dd4[color]);
     }
     drawMenuFrame(0, 0x60, 0x100, 0x60, -1);
@@ -710,7 +710,7 @@ THUMB int BattleDrawParts_getStatusColor(status::HaveStatusInfo& statusInfo)
     return 0;
 }
 
-THUMB int unkfunc_0216ff50(int hpMax, int hp)
+THUMB int getBattleHpColorIndexByHp(int hpMax, int hp)
 {
     if (hp == 0) {
         return 2;
@@ -721,12 +721,12 @@ THUMB int unkfunc_0216ff50(int hpMax, int hp)
     return 0;
 }
 
-THUMB void unkfunc_0216ff70()
+THUMB void drawBattleRootMenu()
 {
     drawBattleCommandIcons(1, 2, 4, 8);
 }
 
-THUMB void unkfunc_0216ff80(int flag)
+THUMB void drawBattleActionMenu(int flag)
 {
     int chara = BattleMenuPlayerControl::getSingleton()->activeChara_;
     status::HaveStatusInfo& info = MenuStatusInfo::getHaveStatusInfo(chara);
@@ -739,7 +739,7 @@ THUMB void unkfunc_0216ff80(int flag)
     int command2 = (flag & 0x40) ? 0x40 : 0;
     int command3 = (flag & 0x80) ? 0x80 : 0;
     drawBattleCommandIcons(command0, command1, command2, command3);
-    unkfunc_0216f2ec(-1);
+    drawMonsterNamePlates(-1);
     drawBattleCancelButton();
 }
 

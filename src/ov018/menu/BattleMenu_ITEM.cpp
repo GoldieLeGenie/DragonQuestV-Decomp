@@ -57,9 +57,9 @@ THUMB void BattleMenu_ITEM::menuExecute()
         num = 6;
     }
     setupItemIcon32Layout2x3(&menuItem_, num, menuItem_.active_);
-    unkfunc_02175a5c(&cancelItem_);
+    setupBattleCancel(&cancelItem_);
     int max = navigator_.getPageMaxCount() - 1;
-    unkfunc_02175c0c(&pageItem_, pageItem_.active_, max, 0xd8, 0x78);
+    setupBattlePageArrow(&pageItem_, pageItem_.active_, max, 0xd8, 0x78);
 }
 
 THUMB void BattleMenu_ITEM::menuDraw()
@@ -96,7 +96,7 @@ THUMB void BattleMenu_ITEM::menuUpdate()
     if (result != 0) {
         redraw_ = 1;
         if (result == 2) {
-            if (unkfunc_02172ba8()) {
+            if (isSelectEquipEnable()) {
                 close();
                 gUnkBattleMenuEquipItem.open();
             } else {
@@ -162,7 +162,7 @@ THUMB void BattleMenu_ITEM::selectUseItem()
                 BattleMenuPlayerControl::getSingleton()->targetChara_ = target;
                 gBattleMenu_ITEMUSE2ENEMY.open();
                 gBattleMenu_ATTACK.open();
-                gBattleMenu_ITEMUSE2ENEMY.unkfunc_0217316c(activeChara_, index);
+                gBattleMenu_ITEMUSE2ENEMY.setItem(activeChara_, index);
             }
             close();
             return;
@@ -181,7 +181,7 @@ THUMB void BattleMenu_ITEM::selectUseItem()
     }
 }
 
-THUMB bool BattleMenu_ITEM::unkfunc_02172ba8()
+THUMB bool BattleMenu_ITEM::isSelectEquipEnable()
 {
     return MenuStatusInfo::isPlayerEquipEnable(activeChara_, MenuStatusInfo::getPlayerItemID(activeChara_, BattleMenuPlayerControl::getSingleton()->activeItem_));
 }

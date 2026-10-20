@@ -46,7 +46,7 @@ THUMB void MaterielMenu_COINSALEROOM_ROOT::menuDraw()
 {
     if (gTownMenu_MESSAGE.isMessageWAITPROG()) {
         MenuStatusInfo::setMode(MenuStatusInfo::PLAYER_MODE);
-        unkfunc_0217c034(coin_, 1);
+        drawCoinSaleroomScreen(coin_, 1);
         if (unk_8c) {
             if (unk_94 > 15) {
                 menuItem_.drawActive();

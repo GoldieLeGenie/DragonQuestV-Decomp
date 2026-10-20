@@ -77,7 +77,7 @@ THUMB void MaterielMenu_ChoiceSlime::menuExecute()
 {
     if (mode_ == MODE_SELECT) {
         MenuStatusInfo::setMode(MenuStatusInfo::PLAYER_MODE);
-        menu::MenuTemplate_materiel::unkfunc_0217d574(&menuItem_, MenuStatusInfo::getPartyCount(MenuStatusInfo::COUNT_CARRIAGE_OUT));
+        menu::MenuTemplate_materiel::MATERIEL_CHOICE_SLIME(&menuItem_, MenuStatusInfo::getPartyCount(MenuStatusInfo::COUNT_CARRIAGE_OUT));
     }
 }
 
@@ -85,9 +85,9 @@ THUMB void MaterielMenu_ChoiceSlime::menuDraw()
 {
     if (mode_ == MODE_SELECT) {
         menuItem_.drawActive();
-        unkfunc_0217c15c(charaNum_);
+        drawChoiceSlimeScreen(charaNum_);
     }
-    unkfunc_0217c0e8(status::g_Party.getCasinoCoin(), status::g_Party.getGold());
+    drawCoinsAndGold(status::g_Party.getCasinoCoin(), status::g_Party.getGold());
 }
 
 THUMB void MaterielMenu_ChoiceSlime::menuUpdate()

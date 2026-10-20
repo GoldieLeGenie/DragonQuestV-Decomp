@@ -31,7 +31,7 @@ THUMB void MaterielMenu_SUGOROKU_STATUS::menuExecute()
 THUMB void MaterielMenu_SUGOROKU_STATUS::menuDraw()
 {
     MenuStatusInfo::setMode(MenuStatusInfo::PLAYER_MODE);
-    unkfunc_0217c520(mode_);
+    drawSugorokuStatusScreen(mode_);
     menuItem_.drawActive();
 }
 

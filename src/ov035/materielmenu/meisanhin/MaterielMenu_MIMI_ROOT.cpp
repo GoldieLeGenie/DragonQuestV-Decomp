@@ -50,7 +50,7 @@ THUMB void MaterielMenu_MIMI_ROOT::menuDraw()
 {
     if (gTownMenu_MESSAGE.isOpen() != true) {
         MenuStatusInfo::setMode(MenuStatusInfo::PLAYER_MODE);
-        unkfunc_0217afd0(mode_);
+        drawMeisanhinList(mode_);
         menuItem_.drawActive();
     }
 }
@@ -181,7 +181,7 @@ THUMB bool MaterielMenu_MIMI_ROOT::checkHaveMeisan(int active)
 THUMB void MaterielMenu_MIMI_ROOT::openMimiMessage()
 {
     int active = navigator_.getIndex(menuItem_.active_);
-    int record = unkfunc_02178d94(active);
+    int record = getMeisanhinRecordIndex(active);
     int message;
     if (checkHaveMeisan(active) == true) {
         message = dq5::level::MeisanhinData::getRecord(record)->message4;

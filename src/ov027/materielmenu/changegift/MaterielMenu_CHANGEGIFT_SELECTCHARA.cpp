@@ -31,7 +31,7 @@ THUMB void MaterielMenu_CHANGEGIFT_SELECTCHARA::menuExecute()
 THUMB void MaterielMenu_CHANGEGIFT_SELECTCHARA::menuDraw()
 {
     MenuStatusInfo::setMode(MenuStatusInfo::PLAYER_MODE);
-    unkfunc_0217be90(1, 0);
+    drawShopWhoseScreen(1, 0);
     menuItem_.drawActive();
 }
 

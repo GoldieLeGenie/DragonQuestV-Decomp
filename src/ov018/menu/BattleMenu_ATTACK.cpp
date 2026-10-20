@@ -39,8 +39,8 @@ THUMB void BattleMenu_ATTACK::menuExecute()
     if (unk_f4 == 0) {
         btl::BattleMonsterMask::getSingleton()->execute();
         enemyMaxNum_ = BattleMenuJudge::getSingleton()->getMonsterTouchRect(touchRect_);
-        unkfunc_02175b88(&menuItem_, menuItem_.active_, touchRect_, enemyMaxNum_);
-        unkfunc_02175a5c(&cancelItem_);
+        setupBattleEnemyIcons(&menuItem_, menuItem_.active_, touchRect_, enemyMaxNum_);
+        setupBattleCancel(&cancelItem_);
         if (unk_f0 == 1) {
             btl::BattleMonsterMask::getSingleton()->select(touchRect_[menuItem_.active_].group);
         } else {
@@ -53,7 +53,7 @@ THUMB void BattleMenu_ATTACK::menuDraw()
 {
     if (unk_f4 == 0) {
         MenuStatusInfo::setMode(MenuStatusInfo::BATTLE_MODE);
-        unkfunc_0217008c(touchRect_[menuItem_.active_].group);
+        drawAttackTargetMenu(touchRect_[menuItem_.active_].group);
     }
 }
 
@@ -71,7 +71,7 @@ THUMB void BattleMenu_ATTACK::menuUpdate()
     }
 }
 
-THUMB void BattleMenu_ATTACK::unkfunc_02175df0(int index)
+THUMB void BattleMenu_ATTACK::selectNextGroup(int index)
 {
     while (index != unk_ec) {
         if (index == enemyMaxNum_) {
@@ -86,7 +86,7 @@ THUMB void BattleMenu_ATTACK::unkfunc_02175df0(int index)
     }
 }
 
-THUMB void BattleMenu_ATTACK::unkfunc_02175e34(int index)
+THUMB void BattleMenu_ATTACK::selectPrevGroup(int index)
 {
     while (index != unk_ec) {
         if (index == -1) {
@@ -109,9 +109,9 @@ THUMB void BattleMenu_ATTACK::unkfunc_02175e7c()
         redraw_ = 1;
         if (monsterMask_ == touchRect_[menuItem_.active_].group) {
             if (unk_ec < menuItem_.active_) {
-                unkfunc_02175df0(menuItem_.active_);
+                selectNextGroup(menuItem_.active_);
             } else {
-                unkfunc_02175e34(menuItem_.active_);
+                selectPrevGroup(menuItem_.active_);
             }
         }
         break;
@@ -121,12 +121,12 @@ THUMB void BattleMenu_ATTACK::unkfunc_02175e7c()
     case menu::MenuItem::MENUITEM_RESULT_UP:
     case menu::MenuItem::MENUITEM_RESULT_LEFT:
         redraw_ = 1;
-        unkfunc_02175e34(enemyMaxNum_ - 1);
+        selectPrevGroup(enemyMaxNum_ - 1);
         break;
     case menu::MenuItem::MENUITEM_RESULT_DOWN:
     case menu::MenuItem::MENUITEM_RESULT_RIGHT:
         redraw_ = 1;
-        unkfunc_02175df0(0);
+        selectNextGroup(0);
         break;
     }
     menuItem_.result_ = 0;

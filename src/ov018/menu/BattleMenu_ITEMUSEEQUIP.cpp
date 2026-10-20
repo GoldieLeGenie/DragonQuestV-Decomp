@@ -41,9 +41,9 @@ THUMB void BattleMenu_ITEMUSEEQUIP::menuExecute()
     };
     MenuStatusInfo::setMode(MenuStatusInfo::BATTLE_MODE);
     setupItemIcon32Layout2x3(&menuItem_, 6, (activeItem_ - 1) % 6 + 1);
-    unkfunc_0217300c();
+    updateEquipEnable();
     useEquipItem_.setMenuItem(menu, 2, 1, 2);
-    unkfunc_02175a5c(&cancelItem_);
+    setupBattleCancel(&cancelItem_);
 }
 
 THUMB void BattleMenu_ITEMUSEEQUIP::menuDraw()
@@ -57,7 +57,7 @@ THUMB void BattleMenu_ITEMUSEEQUIP::menuDraw()
         for (int i = 0; i < count; i++) {
             items[i] = info.haveItem_.getItem(i);
         }
-        unkfunc_02170010(items, count, BattleMenuPlayerControl::getSingleton()->activeItem_ / 6);
+        drawItemUseEquipMenu(items, count, BattleMenuPlayerControl::getSingleton()->activeItem_ / 6);
         useEquipItem_.drawActive();
     }
 }
@@ -76,7 +76,7 @@ THUMB void BattleMenu_ITEMUSEEQUIP::menuUpdate()
     if (unkfunc_02172d4c() == 0) {
         unkfunc_02172d78();
     }
-    unkfunc_0217300c();
+    updateEquipEnable();
 }
 
 THUMB int BattleMenu_ITEMUSEEQUIP::unkfunc_02172d4c()
@@ -111,7 +111,7 @@ THUMB void BattleMenu_ITEMUSEEQUIP::unkfunc_02172d78()
             selectUseItem();
             return;
         }
-        unkfunc_02172fc8();
+        selectEquip();
         redraw_ = 1;
         if (unk_154 == 0) {
             close();
@@ -171,7 +171,7 @@ THUMB void BattleMenu_ITEMUSEEQUIP::selectUseItem()
                 BattleMenuPlayerControl::getSingleton()->targetChara_ = target;
                 gBattleMenu_ITEMUSE2ENEMY.open();
                 gBattleMenu_ATTACK.open();
-                gBattleMenu_ITEMUSE2ENEMY.unkfunc_0217316c(activeChara_, activeItem_);
+                gBattleMenu_ITEMUSE2ENEMY.setItem(activeChara_, activeItem_);
             }
             close();
             return;
@@ -189,7 +189,7 @@ THUMB void BattleMenu_ITEMUSEEQUIP::selectUseItem()
     }
 }
 
-THUMB void BattleMenu_ITEMUSEEQUIP::unkfunc_02172fc8()
+THUMB void BattleMenu_ITEMUSEEQUIP::selectEquip()
 {
     MenuStatusInfo::getHaveStatusInfo(activeChara_);
     if (!MenuStatusInfo::isPlayerEquipItem(activeChara_, MenuStatusInfo::getPlayerItemID(activeChara_, activeItem_))) {
@@ -197,7 +197,7 @@ THUMB void BattleMenu_ITEMUSEEQUIP::unkfunc_02172fc8()
     }
 }
 
-THUMB void BattleMenu_ITEMUSEEQUIP::unkfunc_0217300c()
+THUMB void BattleMenu_ITEMUSEEQUIP::updateEquipEnable()
 {
     equipEnable_ = MenuStatusInfo::isPlayerEquipEnable(activeChara_, MenuStatusInfo::getPlayerItemID(activeChara_, BattleMenuPlayerControl::getSingleton()->activeItem_));
 }

@@ -101,7 +101,7 @@ THUMB void MaterielMenuPokerChangecard::menuDraw()
     if (unk_20 == 1) {
         coin = getCoin_;
     }
-    unkfunc_0217c058(draw, haveCoin_, coin, change_, unk_20);
+    drawPokerChangeCardScreen(draw, haveCoin_, coin, change_, unk_20);
 }
 
 THUMB void MaterielMenuPokerChangecard::menuUpdate()
@@ -167,7 +167,7 @@ THUMB bool MaterielMenuPokerChangecard::messageUpdata()
             } else {
                 TextAPI::setMACRO0(0x45, 0xf0000000, getCoin_ * 2);
             }
-            TextAPI::setMACRO0(0x84, 0xe0000000, unkfunc_02178f7c(combination_) + 0x20000000);
+            TextAPI::setMACRO0(0x84, 0xe0000000, getPokerHandText(combination_) + 0x20000000);
             TextAPI::setMACRO0(0x48, 0xf0000000, getCoin_);
             TextAPI::setMACRO0(0x2e, 0xf0000000, 1);
             showMessage(0xc92d7, 0xc92d9);

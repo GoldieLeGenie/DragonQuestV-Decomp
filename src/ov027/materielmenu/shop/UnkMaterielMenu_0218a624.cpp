@@ -61,10 +61,10 @@ THUMB void UnkMaterielMenu_0218a624::menuDraw()
 {
     MenuStatusInfo::setMode(MenuStatusInfo::PLAYER_MODE);
     if (gTownMenu_MESSAGE.isOpen()) {
-        unkfunc_0217bf68();
+        drawShopScreen();
         return;
     }
-    unkfunc_0217bed8(0);
+    drawShopSellItemScreen(0);
     menuItem_.drawActive();
 }
 

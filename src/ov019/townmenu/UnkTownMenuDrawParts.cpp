@@ -680,31 +680,31 @@ THUMB void drawItemUseCommands(int commandFlag)
     int count = 6;
     switch (commandFlag) {
         case 0:
-            text[0] = unkfunc_02178c28(0);
-            text[1] = unkfunc_02178c28(1);
-            text[2] = unkfunc_02178c28(2);
-            text[3] = unkfunc_02178c28(5);
+            text[0] = getItemCommandText(0);
+            text[1] = getItemCommandText(1);
+            text[2] = getItemCommandText(2);
+            text[3] = getItemCommandText(5);
             count = 4;
             break;
         case 1:
-            text[0] = unkfunc_02178c28(0);
-            text[1] = unkfunc_02178c28(1);
-            text[2] = unkfunc_02178c28(2);
-            text[3] = unkfunc_02178c28(3);
-            text[4] = unkfunc_02178c28(5);
+            text[0] = getItemCommandText(0);
+            text[1] = getItemCommandText(1);
+            text[2] = getItemCommandText(2);
+            text[3] = getItemCommandText(3);
+            text[4] = getItemCommandText(5);
             count = 5;
             break;
         case 2:
-            text[0] = unkfunc_02178c28(0);
-            text[1] = unkfunc_02178c28(1);
-            text[2] = unkfunc_02178c28(2);
-            text[3] = unkfunc_02178c28(4);
-            text[4] = unkfunc_02178c28(5);
+            text[0] = getItemCommandText(0);
+            text[1] = getItemCommandText(1);
+            text[2] = getItemCommandText(2);
+            text[3] = getItemCommandText(4);
+            text[4] = getItemCommandText(5);
             count = 5;
             break;
         case 3:
             for (int i = 0; i < 6; i++) {
-                text[i] = unkfunc_02178c28(i);
+                text[i] = getItemCommandText(i);
             }
             break;
     }

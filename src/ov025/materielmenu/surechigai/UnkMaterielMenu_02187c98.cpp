@@ -42,7 +42,7 @@ THUMB void UnkMaterielMenu_02187c98::menuDraw()
 {
     if (gTownMenu_MESSAGE.isMessageWAITPROG()) {
         MenuStatusInfo::setMode(MenuStatusInfo::PLAYER_MODE);
-        unkfunc_0217c458();
+        drawTagModeRootScreen();
         menuItem_.drawActive();
     }
 }

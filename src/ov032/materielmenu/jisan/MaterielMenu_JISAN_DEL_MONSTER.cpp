@@ -66,7 +66,7 @@ THUMB void MaterielMenu_JISAN_DEL_MONSTER::menuDraw()
         MenuStatusInfo::setMode(MenuStatusInfo::BATTLE_AND_CARRIAGE_MODE);
         int page = navigator_.getPageNo();
         int pageMax = navigator_.getPageMaxCount() - 1;
-        unkfunc_0217c3dc(page, pageMax, 3, 0);
+        drawMemberChangeScreen(page, pageMax, 3, 0);
         menuItem_.drawActive();
     }
 }

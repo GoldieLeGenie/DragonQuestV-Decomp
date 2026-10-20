@@ -32,7 +32,7 @@ THUMB void MaterielMenu_PICTUREBOOK_DETAIL::menuExecute()
 THUMB void MaterielMenu_PICTUREBOOK_DETAIL::menuDraw()
 {
     menu::MenuStatusInfo::setMode(menu::MenuStatusInfo::PLAYER_MODE);
-    unkfunc_0217c370(activeMonster_);
+    drawMonsterBookDetailScreen(activeMonster_);
     menuItem_.drawActive();
 }
 

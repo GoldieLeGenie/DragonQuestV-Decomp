@@ -48,7 +48,7 @@ THUMB void UnkMaterielMenu_02187cd0::menuSetup()
 THUMB void UnkMaterielMenu_02187cd0::menuExecute()
 {
     int count = unk_20 - navigator_.getPageNo() * 8;
-    menu::MenuTemplate_materiel::unkfunc_0217d790(&menuItem_, menuItem_.active_, dss::clamp<int>(0, count, 8));
+    menu::MenuTemplate_materiel::surechigaiSelectList(&menuItem_, menuItem_.active_, dss::clamp<int>(0, count, 8));
 }
 
 THUMB void UnkMaterielMenu_02187cd0::menuDraw()
@@ -56,7 +56,7 @@ THUMB void UnkMaterielMenu_02187cd0::menuDraw()
     MenuStatusInfo::setMode(MenuStatusInfo::PLAYER_MODE);
     int index = navigator_.getIndex(menuItem_.active_);
     if (unk_1c == 1) {
-        unkfunc_0217ad28(index, 0, 0);
+        drawTagModeTenantDetail(index, 0, 0);
         return;
     }
     if (gTownMenu_MESSAGE.isOpen() == true) {
@@ -70,7 +70,7 @@ THUMB void UnkMaterielMenu_02187cd0::menuDraw()
         icon = dq5::level::SurechigaiData::getRecord(icon)->cgicon;
     }
     int page = navigator_.getPageNo();
-    unkfunc_0217c47c(page, navigator_.getPageMaxCount(), index, icon, unk_94);
+    drawTagModeTenantScreen(page, navigator_.getPageMaxCount(), index, icon, unk_94);
 }
 
 THUMB void UnkMaterielMenu_02187cd0::menuUpdate()

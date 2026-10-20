@@ -90,7 +90,7 @@ THUMB void MaterielMenu_RaceResult::menuExecute()
 
 THUMB void MaterielMenu_RaceResult::menuDraw()
 {
-    unkfunc_0217c0e8(status::g_Party.getCasinoCoin(), status::g_Party.getGold());
+    drawCoinsAndGold(status::g_Party.getCasinoCoin(), status::g_Party.getGold());
 }
 
 THUMB void MaterielMenu_RaceResult::menuUpdate()

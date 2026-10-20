@@ -66,7 +66,7 @@ THUMB void MaterielMenu_SLOT::menuExecute()
 
 THUMB void MaterielMenu_SLOT::menuDraw()
 {
-    unkfunc_0217c0a0(haveCoin_, 0);
+    drawSlotCoins(haveCoin_, 0);
 }
 
 THUMB void MaterielMenu_SLOT::menuUpdate()
