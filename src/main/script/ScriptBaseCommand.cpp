@@ -71,7 +71,7 @@ THUMB int StartFunction(void* startParam)
 {
     Param param = *(Param*)startParam;
     int ctrl = 0;
-    if (data_020efb48.unkfunc_0203f2a8()) {
+    if (data_020efb48.isTownPart()) {
         TOWN_CHARACTER chara;
         chara.charaIndex = param.index_;
         chara.dir = param.dir_ << 14;

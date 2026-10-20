@@ -12,13 +12,13 @@ struct UnkBattleMapList : CsvData {
     UnkBattleMapList();
     ~UnkBattleMapList();
     void unkfunc_0206da18(const char* filename);    // load
-    int unkfunc_0206da30();                         // loaded
-    char* unkfunc_0206da34();                       // group name
-    void unkfunc_0206da44();                        // next group
-    void unkfunc_0206dac4();                        // previous group
-    char* unkfunc_0206db60();                       // map name
-    void unkfunc_0206db74();                        // next map
-    void unkfunc_0206dbdc();                        // previous map
+    int isLoaded();                         // loaded
+    char* getGroupName();                       // group name
+    void nextGroup();                        // next group
+    void prevGroup();                        // previous group
+    char* getMapName();                       // map name
+    void nextMap();                        // next map
+    void prevMap();                        // previous map
 };
 
 extern UnkBattleMapList data_0209ce6c;

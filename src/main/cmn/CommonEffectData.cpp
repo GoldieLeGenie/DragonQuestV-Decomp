@@ -75,7 +75,7 @@ THUMB void* cmn::CommonEffectData::getPaletteAnimData()
 
 THUMB int cmn::CommonEffectData::isPamEnable()
 {
-    return unkfunc_0204c860(effectData_.getAddr()) > 3;
+    return getArchiveFileCount(effectData_.getAddr()) > 3;
 }
 
 THUMB void* cmn::CommonEffectData::getModelData()
@@ -85,7 +85,7 @@ THUMB void* cmn::CommonEffectData::getModelData()
 
 THUMB void* cmn::CommonEffectData::getAnimData(int index)
 {
-    if (unkfunc_0204c860(effectData_.getAddr()) > index + 2) {
+    if (getArchiveFileCount(effectData_.getAddr()) > index + 2) {
         return getArchiveFile(effectData_.getAddr(), index + 2);
     }
     return 0;

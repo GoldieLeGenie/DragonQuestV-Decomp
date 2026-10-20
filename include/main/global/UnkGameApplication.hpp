@@ -27,11 +27,11 @@ struct UnkGameApplication : DssApplication {
     DataObject objPltt_;                        // 0xA4 data/G2D/SYSTEM/obj.bgp
 
     ~UnkGameApplication();
-    void unkfunc_02008d5c();                    // init the global managers
-    static void unkfunc_02008e54();             // reset the game: init Global and the characters
-    static void unkfunc_02008e6c();             // per-frame: count the play time
-    static void unkfunc_02008e84();             // clear Global::partChangeFlag_
-    static void unkfunc_02008e98();             // update the sound manager
+    void initGameManagers();                    // init the global managers
+    static void resetGame();             // reset the game: init Global and the characters
+    static void countPlayTime();             // per-frame: count the play time
+    static void clearPartChangeFlag();             // clear Global::partChangeFlag_
+    static void updateSound();             // update the sound manager
 };
 
 // Build date/time of the game (__DATE__ / __TIME__)

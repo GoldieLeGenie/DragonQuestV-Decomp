@@ -427,10 +427,10 @@ THUMB void cmn::ExtraMapLink::setRuraLink()
 
 THUMB void cmn::ExtraMapLink::setRanaLink()
 {
-    if (data_02101c88.unkfunc_02051818(4)) {
+    if (data_02101c88.isCurrentPart(4)) {
         setExtraExitTown(status::g_StageInfo.lastRanaStageNameId_, status::g_StageInfo.lastFldSurface_);
         TownCamera::getSingleton()->endCameraReset_ = 1;
-    } else if (data_02101c88.unkfunc_02051818(6)) {
+    } else if (data_02101c88.isCurrentPart(6)) {
         g_cmnPartyInfo.prevLocation_ = 1;
         dss::Fix32Vector3 pos = fld::FieldPlayerManager::getSingleton().getPosition();
         setExtraLinkFieldAbsPos(g_Global.getFieldType(), pos, 4);
@@ -451,7 +451,7 @@ THUMB void cmn::ExtraMapLink::setData(int index, int nowId, int nextId, LINK_TYP
     if (nextMapNameId != 0) {
         mapLinkData_[index].nextMapNameId = nextMapNameId;
     }
-    if (data_02101c88.unkfunc_02051818(4)) {
+    if (data_02101c88.isCurrentPart(4)) {
         eraseSurface(nowId, type, nowMapNameId);
     }
 }

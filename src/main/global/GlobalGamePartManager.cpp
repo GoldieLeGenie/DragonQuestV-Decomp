@@ -13,7 +13,7 @@ ARM GlobalGamePartManager::~GlobalGamePartManager()
 {
 }
 
-ARM void GlobalGamePartManager::unkfunc_02051908()
+ARM void GlobalGamePartManager::updateParts()
 {
     for (int i = 0; i < 8; i++) {
         if (part_[i] != 0) {
@@ -25,7 +25,7 @@ ARM void GlobalGamePartManager::unkfunc_02051908()
     }
 }
 
-ARM void GlobalGamePartManager::unkfunc_02051958()
+ARM void GlobalGamePartManager::drawParts()
 {
     for (int i = 0; i < 8; i++) {
         if (part_[i] != 0) {
@@ -37,7 +37,7 @@ ARM void GlobalGamePartManager::unkfunc_02051958()
     }
 }
 
-ARM void GlobalGamePartManager::unkfunc_020519a8(UnkGlobalPart* part)
+ARM void GlobalGamePartManager::addPart(UnkGlobalPart* part)
 {
     for (int i = 0; i < 8; i++) {
         if (part_[i] == 0) {
@@ -47,7 +47,7 @@ ARM void GlobalGamePartManager::unkfunc_020519a8(UnkGlobalPart* part)
     }
 }
 
-ARM void GlobalGamePartManager::unkfunc_020519cc(UnkGlobalPart* part)
+ARM void GlobalGamePartManager::removePart(UnkGlobalPart* part)
 {
     for (int i = 0; i < 8; i++) {
         if (part_[i] == part) {

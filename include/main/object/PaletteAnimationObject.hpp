@@ -42,12 +42,12 @@ struct PaletteAnimationObject {
     int wait_;                          /* 0x1C */
 
     PaletteAnimationObject();
-    void unkfunc_020513c0();                            // start
-    void unkfunc_02051440();                            // execute
-    void unkfunc_0205150c(int address, int size);       // start
-    void unkfunc_02051580(int address, int size);       // execute
-    int unkfunc_02051628();                             // isEnd
-    void unkfunc_02051648();                            // cleanup
+    void start();                            // start
+    void execute();                            // execute
+    void startAt(int address, int size);       // start
+    void executeOnceAt(int address, int size);       // execute
+    int isEnd();                             // isEnd
+    void cleanup();                            // cleanup
 };
 
 extern unsigned short data_02101a68[256];               // palette work

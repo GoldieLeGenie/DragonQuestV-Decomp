@@ -36,14 +36,14 @@ struct UnkModelObjectBase : UnkModelInterface {
 
     dss::Fix32Vector3& getPosition();
     dss::Fix32Vector3& getScale();
-    void unkfunc_02048d08(UnkModelMember* member);          // setup
-    void unkfunc_02049020(int light, unsigned short color);            // light color
-    void unkfunc_02049080(int light, dss::Vector3<dss::Fix16> vector);    // light vector
-    void unkfunc_02049104(NNSG3dAnmObj* obj);               // add animation
-    void unkfunc_02049114(NNSG3dAnmObj* obj);               // remove animation
-    void unkfunc_02049124(dss::Fix32Vector3 scale);
-    void unkfunc_02049134(dss::Fix32Vector3 position);
-    void unkfunc_02049144(dss::Vector3<short> rotation);
+    void setupModel(UnkModelMember* member);          // setup
+    void setLightColor(int light, unsigned short color);            // light color
+    void setLightVector(int light, dss::Vector3<dss::Fix16> vector);    // light vector
+    void addAnimation(NNSG3dAnmObj* obj);               // add animation
+    void removeAnimation(NNSG3dAnmObj* obj);               // remove animation
+    void setModelScale(dss::Fix32Vector3 scale);
+    void setModelPosition(dss::Fix32Vector3 position);
+    void setModelRotation(dss::Vector3<short> rotation);
 };
 
 struct ModelAnimation {
@@ -53,11 +53,11 @@ struct ModelAnimation {
     NNSG3dAnmObj* obj_;                     /* 0x0C */
     NNSFndAllocator allocator_;             /* 0x10 */
 
-    void unkfunc_020465e0(void* resource, void* model);
-    void unkfunc_02046644();
-    void unkfunc_02046658(int loop);
-    void unkfunc_0204667c();
-    int unkfunc_020466c4();
+    void setup(void* resource, void* model);
+    void cleanup();
+    void start(int loop);
+    void execute();
+    int isEnd();
     bool checkFlag(int bit) const;
 };
 
@@ -87,8 +87,8 @@ struct ModelObject : UnkStaticModelObject {
 
     void setup(const char* name, const char* animName, int loadSwitch);
     void setup(void* model, int flag);
-    void unkfunc_020508b8(const char* name, int index, int loadSwitch);    // set animation (file)
-    void unkfunc_02050954(void* animation, int index);     // set animation
+    void loadAnimation(const char* name, int index, int loadSwitch);    // set animation (file)
+    void setAnimation(void* animation, int index);     // set animation
     void start(int loop);
     void startAnimation(int index, int loop);
     void setScale(dss::Fix32 scale);

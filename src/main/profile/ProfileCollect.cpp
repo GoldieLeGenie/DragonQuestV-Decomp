@@ -67,7 +67,7 @@ THUMB bool profile::Profile::collectProfile(int no, int type)
     collect_PROFILE_ASSETS();
     collect_PROFILE_PLAYER();
     collect_PROFILE_LOCATION();
-    unkfunc_0203fb84();
+    collect_PROFILE_TAISHI();
     collect_PROFILE_MONSTER();
     if (type != SAVETYPE_NEW && g_Global.checkSave2()) {
         dss::strcpy_s((char*)pLOCATION->RESTART, 16, "cdf3b");
@@ -92,7 +92,7 @@ THUMB void profile::Profile::collect_PROFILE_MONSTER()
     }
 }
 
-THUMB void profile::Profile::unkfunc_0203fb84()
+THUMB void profile::Profile::collect_PROFILE_TAISHI()
 {
     UnkProfileTaishi* pt = pTAISHI;
     status::TaishiBase* tb = status::g_MuseumStatus.othersTaishi_;

@@ -325,21 +325,21 @@ struct FLDObject
     void init();
     int SetCameraNo(int no, int screen);
     int Setup(void* mdl, void* data, void* coll, int heap);
-    void unkfunc_0205d3e0();
+    void sortMapObjOrder();
     void SetCameraPos(fx32 x, fx32 y, fx32 z, int screen);
     void SetCameraCent(fx32 x, fx32 y, fx32 z, int screen);
     void SetCameraUp(fx32 x, fx32 y, fx32 z, int screen);
-    void unkfunc_0205db94(int screen);
-    void unkfunc_0205e1bc(int obj);
-    void unkfunc_0205e294();
-    void unkfunc_0205ec7c(FLD_MAP_OBJ* obj);
-    void unkfunc_0205ee84(FLD_MAP_OBJ* obj);
-    void unkfunc_0205eed0();
-    void unkfunc_0205f05c(UnkFldPlttEntry* entry, UnkFldPlttSet* set, int index);
+    void updateCameraAnim(int screen);
+    void updateMapObjAnim(int obj);
+    void updateMapObjAnims();
+    void updateMapObjSeq(FLD_MAP_OBJ* obj);
+    void applyMapObjShapeMorph(FLD_MAP_OBJ* obj);
+    void updatePlttAnims();
+    void copyPlttAnimFrame(UnkFldPlttEntry* entry, UnkFldPlttSet* set, int index);
     void applyRgbRateToPlttAnims();
-    void unkfunc_0205f398();
-    void unkfunc_0205f404();                                    // calc
-    void unkfunc_0205f85c();                                    // draw
+    void updateLightAnims();
+    void calc();                                    // calc
+    void draw();                                    // draw
     void Final();
     void SetMapObjAlpha(int obj, int alpha, int flag);
     void SetMapObjOnOff(int obj, int flag);
@@ -361,12 +361,12 @@ struct FLDObject
     void CollResetMapUid(int uid);
     void CollAddPolyPosByMapUid(int uid, VecFx32* pos);
     void CollAddPolyPosByMapObj(int obj, VecFx32* pos);
-    int unkfunc_0206092c(int id);                               // event animation
-    void unkfunc_02060bf4(short obj, short index);
+    int setEventAnimation(int id);                               // event animation
+    void setMapObjIndex(short obj, short index);
     int SetCommonAnimation(int obj, int no);
     int GetCommonAnimationNum(int obj);
     int IsCommonAnimationEnd(int obj);
-    void unkfunc_0206106c(int obj);
+    void resetMapObjAnim(int obj);
     FLD_MAP_OBJ* GetMapObjPtr(int obj);
     int GetMapObjUid(int obj);
     int CollGetObjId(int poly_no);
@@ -377,15 +377,15 @@ struct FLDObject
     int GetMapObjCommonId(int obj);
     void SetSepia();
     void SetRGBRate(VecFx32* rate, int real_time);
-    NNSG3dResTex* unkfunc_02061358();
-    void unkfunc_02061520(unsigned short* src, unsigned short* dst, int num);
-    void unkfunc_020615c0();
+    NNSG3dResTex* createPlttTexCopy();
+    void applyRgbRate(unsigned short* src, unsigned short* dst, int num);
+    void applyRgbRateToPltt();
     void transferPltt();
     void setScale(fx32 x, fx32 y, fx32 z);              // scale
-    void* unkfunc_0206176c(int size);           // allocate from the work memory
-    void unkfunc_02061794(void* p);             // free (nothing to do)
-    void unkfunc_02061798(unsigned int color);  // sets the vertex colors of all the shapes
-    int unkfunc_02061950(UnkFldRender* render);
+    void* allocPool(int size);           // allocate from the work memory
+    void freePool(void* p);             // free (nothing to do)
+    void setShapeColor(unsigned int color);  // sets the vertex colors of all the shapes
+    int isMapObjInTownView(UnkFldRender* render);
     int GetMapObjAlpha(int obj);
     int CollCrossCheck(VecFx32* pos0, VecFx32* pos1, int start, fx32* len);
     int CollGetPoly(int poly_no, COLL_POLY* poly);

@@ -37,10 +37,10 @@ THUMB void window::MenuControl::openSetup()
 
 THUMB void window::MenuControl::setup()
 {
-    if (data_02101c88.unkfunc_02051818(4)) {
+    if (data_02101c88.isCurrentPart(4)) {
         twn::TownStageManager::getSingleton()->pause(1);
         BillboardCharacter::setAllCharaAnim(false);
-    } else if (data_02101c88.unkfunc_02051818(6)) {
+    } else if (data_02101c88.isCurrentPart(6)) {
         fld::FieldStage::getSingleton()->fieldData.pause_ = 1;
         cmn::CommonParticleEmitter::getSingleton()->stop_ = 1;
         SpriteCharacter::setAllCharaAnim(false);
@@ -83,7 +83,7 @@ THUMB void window::MenuControl::execute()
             }
             break;
         case RELEASE_WAIT:
-            if (data_02101c88.unkfunc_02051818(4)) {
+            if (data_02101c88.isCurrentPart(4)) {
                 twn::TownStageManager::getSingleton()->pause(0);
                 BillboardCharacter::setAllCharaAnim(true);
             } else {
@@ -128,12 +128,12 @@ THUMB void window::MenuControl::openMenu()
             open = 1;
             break;
         default:
-            if (data_02101c88.unkfunc_02051818(4) || data_02101c88.unkfunc_02051818(6)) {
+            if (data_02101c88.isCurrentPart(4) || data_02101c88.isCurrentPart(6)) {
                 SoundManager::playSe(0x12c, 0);
             }
             break;
     }
-    if (data_02101c88.unkfunc_02051818(6) && open == 1) {
+    if (data_02101c88.isCurrentPart(6) && open == 1) {
         SoundManager::fieldPlay(fld::FieldSystem::getFloorBgmIndex());
     }
     menu_ = 0;

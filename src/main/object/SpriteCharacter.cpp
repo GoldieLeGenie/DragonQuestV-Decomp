@@ -26,7 +26,7 @@ void SpriteCharacter::setup(const char* name, int width, int height, int flag)
 
 void SpriteCharacter::unkfunc_0205833c(int width, int height)
 {
-    textureNum_ = unkfunc_0204c860(data_.getAddr());
+    textureNum_ = getArchiveFileCount(data_.getAddr());
     for (int i = 0; i < textureNum_; i++) {
         unk_78[i] = (TextureObject*)getArchiveFile(data_.getAddr(), i);
     }
@@ -39,7 +39,7 @@ void SpriteCharacter::unkfunc_0205833c(int width, int height)
     dispDirection_ = 0;
     frameWidth_ = width;
     frameHeight_ = height;
-    unkfunc_020583ec();
+    resetFrame();
     shadow_.unkfunc_0205876c();
     flag_.flag_ |= FLAG_DEFAULT;
 }
@@ -51,7 +51,7 @@ void SpriteCharacter::cleanup()
     shadow_.unkfunc_020587b4();
 }
 
-void SpriteCharacter::unkfunc_020583ec()
+void SpriteCharacter::resetFrame()
 {
     setSize(frameWidth_, frameHeight_);
     unkfunc_02047ecc(0, 0, frameWidth_, frameHeight_);

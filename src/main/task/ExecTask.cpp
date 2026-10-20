@@ -55,7 +55,7 @@ THUMB void ExecTask::cleanup()
 
 THUMB bool ExecTask::isEnd()
 {
-    if (data_02101c88.unkfunc_02051810() == 5) {
+    if (data_02101c88.getCurrentPart() == 5) {
         if (BattleAutoFeed::isEndMessageSend()) {
             return true;
         }
@@ -67,7 +67,7 @@ THUMB bool ExecTask::isEnd()
 
 THUMB void ExecTaskManager::initialize()
 {
-    unkfunc_0202392c();
+    clear();
 }
 
 THUMB void ExecTaskManager::terminate()
@@ -100,7 +100,7 @@ THUMB bool ExecTaskManager::execute()
     return true;
 }
 
-THUMB void ExecTaskManager::unkfunc_0202392c()
+THUMB void ExecTaskManager::clear()
 {
     currentId_ = 0;
     for (int i = 0; i < 16; i++) {
@@ -149,7 +149,7 @@ THUMB void ExecTask2::exec()
 
 THUMB bool ExecTask2::isEnd()
 {
-    if (data_02101c88.unkfunc_02051810() == 5) {
+    if (data_02101c88.getCurrentPart() == 5) {
         if (autoMessage_) {
             if (BattleAutoFeed::isEndMessage()) {
                 return true;

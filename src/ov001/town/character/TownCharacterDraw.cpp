@@ -140,7 +140,7 @@ THUMB void twn::TownCharacterDraw::changePose(int set)
         dss::sprintf_s(name, sizeof(name), "data/chr/h%03d.pack", set);
         OS_Wait();
         dataObject_.setup(name, dq5::level::CharaData::loadSwitch_, 0);
-        character_.unkfunc_02056b80(dataObject_.getAddr());
+        character_.setTextureWithHead(dataObject_.getAddr());
         data_.charaIndex = set;
     }
 }
@@ -152,15 +152,15 @@ THUMB void twn::TownCharacterDraw::restorePose()
         if (dataObject_.getAddr()) {
             dataObject_.cleanup();
         }
-        character_.unkfunc_02056b98();
+        character_.resetTextureWithHead();
     }
 }
 
 THUMB void twn::TownCharacterDraw::setPaletteRate(dss::Fix32 r, dss::Fix32 g, dss::Fix32 b)
 {
     setRGB.set(r, g, b);
-    character_.unkfunc_020562e0(1);
-    character_.unkfunc_020562d0(&setRGB);
+    character_.setAnimPalletFlag(1);
+    character_.setPaletteRgbRate(&setRGB);
 }
 
 THUMB bool twn::TownCharacterDraw::isEndPalletRate()
@@ -168,9 +168,9 @@ THUMB bool twn::TownCharacterDraw::isEndPalletRate()
     if (rgbFrame_ == 0) {
         dss::Fix32Vector3 rate;
         rate.vx.value = rate.vy.value = rate.vz.value = 0x1000;
-        character_.unkfunc_020562d0(&rate);
+        character_.setPaletteRgbRate(&rate);
     } else if (rgbFrame_ == -1) {
-        character_.unkfunc_020562e0(0);
+        character_.setAnimPalletFlag(0);
         return true;
     }
     return false;

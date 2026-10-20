@@ -830,7 +830,7 @@ THUMB int status::ActionMessageSplit::getMessageNoSpace(int splitIndex)
     getSplitRecord(splitIndex);
     if (splitMessage_->getStrait()) {
         if (actionIndex_ == 0x120 || actionIndex_ == 0x126) {
-            if (data_02101c88.unkfunc_02051818(dq5::FIELD_PART) == true && g_Global.getFieldType() == 0
+            if (data_02101c88.isCurrentPart(dq5::FIELD_PART) == true && g_Global.getFieldType() == 0
                 && !fld::FieldPlayerManager::getSingleton().player_.fieldActionCarpet_.isCarpetGetOnOffAttr()) {
                 mess = splitMessage_->getStrait();
             }
@@ -851,7 +851,7 @@ THUMB int status::ActionMessageSplit::getMessageNoUse(CharacterStatus* actor, in
             }
         }
         if (actionIndex_ == 0x82) {
-            if (!data_02101c88.unkfunc_02051818(dq5::TOWN_PART)) {
+            if (!data_02101c88.isCurrentPart(dq5::TOWN_PART)) {
                 mess = splitMessage_->getWastePlace();
                 splitFlag_ = false;
             }
@@ -869,7 +869,7 @@ THUMB int status::ActionMessageSplit::getMessageNoUse(CharacterStatus* actor, in
                 mess = splitMessage_->getWastePlace();
                 splitFlag_ = false;
             }
-            if (data_02101c88.unkfunc_02051818(dq5::TOWN_PART) == true) {
+            if (data_02101c88.isCurrentPart(dq5::TOWN_PART) == true) {
                 if (g_StageInfo.getRanaMapSurfaceId() == -1) {
                     mess = splitMessage_->getWastePlace();
                     splitFlag_ = false;
@@ -881,7 +881,7 @@ THUMB int status::ActionMessageSplit::getMessageNoUse(CharacterStatus* actor, in
             }
         }
         if (actionIndex_ == 0x120 || actionIndex_ == 0x126) {
-            if (data_02101c88.unkfunc_02051818(dq5::FIELD_PART) == true) {
+            if (data_02101c88.isCurrentPart(dq5::FIELD_PART) == true) {
                 if (g_Global.getFieldType() != 0) {
                     mess = splitMessage_->getWastePlace();
                     splitFlag_ = false;
@@ -961,7 +961,7 @@ THUMB int status::ActionMessageSplit::getMessageItemInBox(int splitIndex)
         return mess;
     }
     getSplitRecord(splitIndex);
-    if (splitMessage_->getCofferItem() && data_02101c88.unkfunc_02051818(dq5::TOWN_PART) == true) {
+    if (splitMessage_->getCofferItem() && data_02101c88.isCurrentPart(dq5::TOWN_PART) == true) {
         int uid = twn::TownPlayerManager::getSingleton().getInpasMapObj();
         if (twn::TownFurnitureManager::getSingleton()->getCofferType(uid) == 0x44 && twn::TownFurnitureManager::getSingleton()->checkCoffer(uid) == 3) {
             mess = splitMessage_->getCofferItem();
@@ -978,7 +978,7 @@ THUMB int status::ActionMessageSplit::getMessageMonsterInBox(int splitIndex)
         return mess;
     }
     getSplitRecord(splitIndex);
-    if (splitMessage_->getCofferMonster() && data_02101c88.unkfunc_02051818(dq5::TOWN_PART) == true) {
+    if (splitMessage_->getCofferMonster() && data_02101c88.isCurrentPart(dq5::TOWN_PART) == true) {
         int uid = twn::TownPlayerManager::getSingleton().getInpasMapObj();
         if (twn::TownFurnitureManager::getSingleton()->getCofferType(uid) == 0x44 && twn::TownFurnitureManager::getSingleton()->checkCoffer(uid) == 5) {
             mess = splitMessage_->getCofferMonster();
@@ -995,7 +995,7 @@ THUMB int status::ActionMessageSplit::getMessageGoldInBox(int splitIndex)
         return mess;
     }
     getSplitRecord(splitIndex);
-    if (splitMessage_->getCofferGold() && data_02101c88.unkfunc_02051818(dq5::TOWN_PART) == true) {
+    if (splitMessage_->getCofferGold() && data_02101c88.isCurrentPart(dq5::TOWN_PART) == true) {
         int uid = twn::TownPlayerManager::getSingleton().getInpasMapObj();
         if (twn::TownFurnitureManager::getSingleton()->getCofferType(uid) == 0x44 && twn::TownFurnitureManager::getSingleton()->checkCoffer(uid) == 4) {
             mess = splitMessage_->getCofferGold();
@@ -1012,7 +1012,7 @@ THUMB int status::ActionMessageSplit::getMessageZeroInBox(int splitIndex)
         return mess;
     }
     getSplitRecord(splitIndex);
-    if (splitMessage_->getCofferNothing() && data_02101c88.unkfunc_02051818(dq5::TOWN_PART) == true) {
+    if (splitMessage_->getCofferNothing() && data_02101c88.isCurrentPart(dq5::TOWN_PART) == true) {
         int uid = twn::TownPlayerManager::getSingleton().getInpasMapObj();
         if (twn::TownFurnitureManager::getSingleton()->getCofferType(uid) == 0x44
             && (twn::TownFurnitureManager::getSingleton()->checkCoffer(uid) == 1 || twn::TownFurnitureManager::getSingleton()->checkCoffer(uid) == 2)) {
@@ -1030,7 +1030,7 @@ THUMB int status::ActionMessageSplit::getMessageItemInPot(int splitIndex)
         return mess;
     }
     getSplitRecord(splitIndex);
-    if (splitMessage_->getTuboItem() && data_02101c88.unkfunc_02051818(dq5::TOWN_PART) == true) {
+    if (splitMessage_->getTuboItem() && data_02101c88.isCurrentPart(dq5::TOWN_PART) == true) {
         int uid = twn::TownPlayerManager::getSingleton().getInpasMapObj();
         if (twn::TownFurnitureManager::getSingleton()->getCofferType(uid) == 0x33 && twn::TownFurnitureManager::getSingleton()->checkCoffer(uid) == 3) {
             mess = splitMessage_->getTuboItem();
@@ -1047,7 +1047,7 @@ THUMB int status::ActionMessageSplit::getMessageMonsterInPot(int splitIndex)
         return mess;
     }
     getSplitRecord(splitIndex);
-    if (splitMessage_->getTuboMonster() && data_02101c88.unkfunc_02051818(dq5::TOWN_PART) == true) {
+    if (splitMessage_->getTuboMonster() && data_02101c88.isCurrentPart(dq5::TOWN_PART) == true) {
         int uid = twn::TownPlayerManager::getSingleton().getInpasMapObj();
         if (twn::TownFurnitureManager::getSingleton()->getCofferType(uid) == 0x33 && twn::TownFurnitureManager::getSingleton()->checkCoffer(uid) == 5) {
             mess = splitMessage_->getTuboMonster();
@@ -1064,7 +1064,7 @@ THUMB int status::ActionMessageSplit::getMessageGoldInPot(int splitIndex)
         return mess;
     }
     getSplitRecord(splitIndex);
-    if (splitMessage_->getTuboGold() && data_02101c88.unkfunc_02051818(dq5::TOWN_PART) == true) {
+    if (splitMessage_->getTuboGold() && data_02101c88.isCurrentPart(dq5::TOWN_PART) == true) {
         int uid = twn::TownPlayerManager::getSingleton().getInpasMapObj();
         if (twn::TownFurnitureManager::getSingleton()->getCofferType(uid) == 0x33 && twn::TownFurnitureManager::getSingleton()->checkCoffer(uid) == 4) {
             mess = splitMessage_->getTuboGold();
@@ -1081,7 +1081,7 @@ THUMB int status::ActionMessageSplit::getMessageZeroInPot(int splitIndex)
         return mess;
     }
     getSplitRecord(splitIndex);
-    if (splitMessage_->getTuboNothing() && data_02101c88.unkfunc_02051818(dq5::TOWN_PART) == true) {
+    if (splitMessage_->getTuboNothing() && data_02101c88.isCurrentPart(dq5::TOWN_PART) == true) {
         int uid = twn::TownPlayerManager::getSingleton().getInpasMapObj();
         if (twn::TownFurnitureManager::getSingleton()->getCofferType(uid) == 0x33
             && (twn::TownFurnitureManager::getSingleton()->checkCoffer(uid) == 1 || twn::TownFurnitureManager::getSingleton()->checkCoffer(uid) == 2)) {

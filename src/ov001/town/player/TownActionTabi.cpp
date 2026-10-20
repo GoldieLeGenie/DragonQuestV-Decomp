@@ -54,7 +54,7 @@ int twn::TownActionTabi::update()
             TownPlayerManager::getSingleton().resetMapLink(RESET_EXIT_LOCK_TABI);
             TownPlayerManager::getSingleton().partyDraw_.requestCharacterReload();
             TownCharacterManager::getSingleton()->requestCharacterReload();
-            BillboardCharacter::unkfunc_0205646c();
+            BillboardCharacter::reloadShadowTexture();
             TownStageManager::getSingleton()->stage_.resettingTexture();
             args::GameSystemManager::getSingleton().setExclusion(8, true);
             args::GameSystemManager::getSingleton().setDrawExclusion(2, true);

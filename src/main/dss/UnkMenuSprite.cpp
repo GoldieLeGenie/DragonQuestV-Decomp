@@ -66,7 +66,7 @@ THUMB void UnkMenuSprite::detachRender()
     render_ = 0;
 }
 
-THUMB int UnkMenuSprite::unkfunc_02051b04()
+THUMB int UnkMenuSprite::isLoaded()
 {
     if (texture_) {
         return 1;

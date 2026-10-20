@@ -21,7 +21,7 @@ ARM void ScriptGroup::setup(void* addr)
 ARM void ScriptGroup::setup()
 {
     mainScriptObject_.setup(getArchiveFile(dataObject_.getAddr(), 0));
-    scriptObjectCount_ = unkfunc_0204c860(dataObject_.getAddr()) - 1;
+    scriptObjectCount_ = getArchiveFileCount(dataObject_.getAddr()) - 1;
     for (int i = 0; i < scriptObjectCount_; i++) {
         scriptObject_[i].setup(getArchiveFile(dataObject_.getAddr(), i + 1));
     }

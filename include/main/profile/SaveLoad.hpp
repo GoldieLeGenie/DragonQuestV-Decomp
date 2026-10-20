@@ -32,7 +32,7 @@ namespace profile {
         static int catalogRecent_;
         static CatalogView catalogView_[3];
 
-        static int unkfunc_02040cec(int bank);
+        static int checkbank(int bank);
         static CatalogView* getCatalogView();
         static int getCatalogRecent();
         static bool loadbank(int bank);
@@ -41,7 +41,7 @@ namespace profile {
         static int savebankAsyncWait();
         static int savebankAsyncResult();
         static bool killbank(int bank);
-        static bool unkfunc_02041078(int bank);
+        static bool verifybank(int bank);
         static bool memorysave(unsigned int seek, void* buff, unsigned int size);
         static void memorysaveAsync(unsigned int seek, void* buff, unsigned int size);
         static int memorysaveAsyncWait();

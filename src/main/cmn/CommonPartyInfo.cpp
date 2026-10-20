@@ -107,7 +107,7 @@ THUMB void cmn::CommonPartyInfo::callCarriage()
     status::g_StageAttribute.setCarriageEnable(true);
     status::g_StageAttribute.setCarriageEnter(true);
     barron_ = 1;
-    if (data_02101c88.unkfunc_02051818(6)) {
+    if (data_02101c88.isCurrentPart(6)) {
         fld::FieldPlayerManager::getSingleton().resetParty();
     } else {
         twn::TownPlayerManager::getSingleton().resetParty();
@@ -132,10 +132,10 @@ THUMB void cmn::CommonPartyInfo::setKeep(int flag, int map, bool reset)
 
 THUMB int cmn::CommonPartyInfo::isAbortSaveTown()
 {
-    if (data_02101c88.unkfunc_02051818(6) == 1) {
+    if (data_02101c88.isCurrentPart(6) == 1) {
         return 1;
     }
-    if (data_02101c88.unkfunc_02051818(4) == 1) {
+    if (data_02101c88.isCurrentPart(4) == 1) {
         if (twn::TownPlayerManager::getSingleton().isSaveAndBattleOK() == false) {
             return 0;
         }
@@ -145,11 +145,11 @@ THUMB int cmn::CommonPartyInfo::isAbortSaveTown()
 
 THUMB int cmn::CommonPartyInfo::isAbortSaveDungeon()
 {
-    if (data_02101c88.unkfunc_02051818(6) == 1) {
+    if (data_02101c88.isCurrentPart(6) == 1) {
         return 1;
     }
     if (g_Global.areaNo_ >= 0x1e && g_Global.areaNo_ <= 0x2c) {
-        if (data_02101c88.unkfunc_02051818(4) == 1) {
+        if (data_02101c88.isCurrentPart(4) == 1) {
             if (twn::TownPlayerManager::getSingleton().isSaveAndBattleOK() == false) {
                 return 0;
             }

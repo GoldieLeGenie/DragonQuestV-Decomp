@@ -43,16 +43,16 @@ void twn::TownModelDraw::setup(TOWN_CHARACTER& chara)
     readData();
     switch (data_.charaIndex) {
     case 0x201:
-        model_.unkfunc_02049020(1, 0x739f);
-        model_.unkfunc_02049080(1, buon);
+        model_.setLightColor(1, 0x739f);
+        model_.setLightVector(1, buon);
         break;
     case 0x206:
-        model_.unkfunc_02049020(2, 0x7fff);
-        model_.unkfunc_02049080(2, estrk);
+        model_.setLightColor(2, 0x7fff);
+        model_.setLightVector(2, estrk);
         break;
     case 0x5f:
-        model_.unkfunc_02049020(1, 0x739f);
-        model_.unkfunc_02049080(1, master);
+        model_.setLightColor(1, 0x739f);
+        model_.setLightVector(1, master);
         break;
     }
     model_.start(1);
@@ -83,19 +83,19 @@ void twn::TownModelDraw::readData()
         dss::sprintf_s(path, 0x80, "data/chr/h%03d_%02d.nsbma", data_.charaIndex, i);
         if (dss::g_File.isExist(path, dq5::level::CharaData::loadSwitch_)) {
             found = true;
-            model_.unkfunc_020508b8(path, index, dq5::level::CharaData::loadSwitch_);
+            model_.loadAnimation(path, index, dq5::level::CharaData::loadSwitch_);
             index++;
         }
         dss::sprintf_s(path, 0x80, "data/chr/h%03d_%02d.nsbta", data_.charaIndex, i);
         if (dss::g_File.isExist(path, dq5::level::CharaData::loadSwitch_)) {
             found = true;
-            model_.unkfunc_020508b8(path, index, dq5::level::CharaData::loadSwitch_);
+            model_.loadAnimation(path, index, dq5::level::CharaData::loadSwitch_);
             index++;
         }
         dss::sprintf_s(path, 0x80, "data/chr/h%03d_%02d.nsbca", data_.charaIndex, i);
         if (dss::g_File.isExist(path, dq5::level::CharaData::loadSwitch_)) {
             found = true;
-            model_.unkfunc_020508b8(path, index, dq5::level::CharaData::loadSwitch_);
+            model_.loadAnimation(path, index, dq5::level::CharaData::loadSwitch_);
             index++;
         }
         i++;

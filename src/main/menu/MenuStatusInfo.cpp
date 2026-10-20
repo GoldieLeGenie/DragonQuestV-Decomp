@@ -160,7 +160,7 @@ THUMB bool menu::MenuStatusInfo::ableToShow()
 THUMB void menu::MenuStatusInfo::reorder(int index0, int index1, int index2, int index3)
 {
     status::g_Party.reorder(index0, index1, index2, index3);
-    if (!data_02101c88.unkfunc_02051818(5)) {
+    if (!data_02101c88.isCurrentPart(5)) {
         unsigned int mode = getMode();
         cmn::GameManager::getSingleton().resetParty();
         setMode(mode);

@@ -9,7 +9,7 @@ THUMB void twn::TownTruckSwitch::setupSwitch(int rootIndex, int switchUid, int s
     switchAnim_ = switchAnim;
     railUid_ = railUid;
     railAnim_ = railAnim;
-    if (data_02101c88.unkfunc_02051818(TOWN_PART)) {
+    if (data_02101c88.isCurrentPart(TOWN_PART)) {
         TownStageManager::getSingleton()->setObjectDraw(switchUid_, switchAnim_, 1);
         TownStageManager::getSingleton()->setObjectDraw(railUid_, railAnim_, 1);
     }

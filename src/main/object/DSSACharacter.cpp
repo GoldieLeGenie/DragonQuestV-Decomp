@@ -17,7 +17,7 @@ ARM DSSACharacter::~DSSACharacter()
 {
 }
 
-ARM void DSSACharacter::unkfunc_0205248c(DataObject* texture, DataObject* animation)
+ARM void DSSACharacter::setupFromData(DataObject* texture, DataObject* animation)
 {
     TextureObject* textureObject = (TextureObject*)texture->getAddr();
     textureObject->loadToVram(1);
@@ -32,7 +32,7 @@ ARM void DSSACharacter::unkfunc_020524c8(TextureObject* texture, DataObject* ani
     palette_.loadFromTexture(texture, 0);
     dataObject_ = animation;
     currentAnimationIndex_ = -1;
-    for (int i = 0; i < unkfunc_0204c860(dataObject_->getAddr()); i++) {
+    for (int i = 0; i < getArchiveFileCount(dataObject_->getAddr()); i++) {
         if (isEnable(i)) {
             if (currentAnimationIndex_ == -1) {
                 currentAnimationIndex_ = i;
@@ -45,7 +45,7 @@ ARM void DSSACharacter::unkfunc_020524c8(TextureObject* texture, DataObject* ani
     }
 }
 
-ARM void DSSACharacter::unkfunc_02052594(TextureObject* texture, const char* format, int count)
+ARM void DSSACharacter::setupStream(TextureObject* texture, const char* format, int count)
 {
     char filename[0x20];
     flag_.clear();
@@ -91,7 +91,7 @@ ARM void DSSACharacter::cleanup()
     dataObject_ = 0;
 }
 
-ARM void DSSACharacter::unkfunc_02052754()
+ARM void DSSACharacter::updateStream()
 {
     char filename[0x20];
     if (!flag_.check(0x40)) {
@@ -121,7 +121,7 @@ ARM void DSSACharacter::draw()
     dssaObject_[currentAnimationIndex_].setPosition(position_);
     dssaObject_[currentAnimationIndex_].draw();
     dssaObject_[currentAnimationIndex_].execute();
-    unkfunc_02052754();
+    updateStream();
     if (nextAnimationIndex_ != -1 && dssaObject_[currentAnimationIndex_].isEnd()) {
         start(nextAnimationIndex_, 0);
         if (flag_.check(0x20)) {

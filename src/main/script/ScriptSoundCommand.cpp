@@ -35,7 +35,7 @@ bool cmd_cut_se(void* scriptParam)
 bool cmd_set_sound_in_setup(void* scriptParam)
 {
     PARAM_SET_SOUND_IN_SETUP* param = (PARAM_SET_SOUND_IN_SETUP*)scriptParam;
-    if (data_02101c88.unkfunc_02051818(4)) {
+    if (data_02101c88.isCurrentPart(4)) {
         if (param->no == 0) {
             SoundManager::stop(5);
         } else {

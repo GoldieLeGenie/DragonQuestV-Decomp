@@ -187,7 +187,7 @@ inline void GlobalSpriteFade::flashWhite(int r, int g, int b, int frames)
     frames_ = frames;
     sprite_[0].setColor(r, g, b);
     sprite_[1].setColor(r, g, b);
-    data_02101d14.unkfunc_020519a8(this);
+    data_02101d14.addPart(this);
 }
 
 inline void LocationEffect::terminate()

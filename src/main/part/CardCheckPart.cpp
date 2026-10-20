@@ -8,10 +8,10 @@ THUMB void CardCheckPart::initialize()
 {
     switch (profile::SaveLoad::checkBackup()) {
     case 1:
-        data_02101c88.unkfunc_02051800(MENU_PART);
+        data_02101c88.setNextPart(MENU_PART);
         break;
     case -1:
-        data_02101c88.unkfunc_02051800(MENU_PART);
+        data_02101c88.setNextPart(MENU_PART);
         break;
     case -2:
         g_GameEndPart.startWithNextPart(5, MENU_PART);

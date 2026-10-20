@@ -45,7 +45,7 @@ THUMB void MPExchangePart::initialize()
     }
     data_0211b27c.count_ = 0;
     data_0211b27c.frames_ = 30;
-    data_02101d14.unkfunc_020519a8(&data_0211b27c);
+    data_02101d14.addPart(&data_0211b27c);
     setSleepEnabled(0);
     setState(0);
 }

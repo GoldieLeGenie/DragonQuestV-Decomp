@@ -149,9 +149,9 @@ THUMB void window::ScreenEffectManager::effectStart(PLAY_BACK_EFFECT mode)
             effect_->setup();
             break;
     }
-    if (data_02101c88.unkfunc_02051818(4)) {
+    if (data_02101c88.isCurrentPart(4)) {
         BillboardCharacter::setAllCharaAnim(false);
-    } else if (data_02101c88.unkfunc_02051818(6)) {
+    } else if (data_02101c88.isCurrentPart(6)) {
         SpriteCharacter::setAllCharaAnim(0);
     }
     setupFlag_ = 1;
@@ -181,10 +181,10 @@ THUMB bool window::ScreenEffectManager::isEnd()
     }
     result = effect_->isEnd();
     if (result) {
-        if (data_02101c88.unkfunc_02051818(4)) {
+        if (data_02101c88.isCurrentPart(4)) {
             twn::TownStageManager::getSingleton()->pause(0);
             BillboardCharacter::setAllCharaAnim(true);
-        } else if (data_02101c88.unkfunc_02051818(6)) {
+        } else if (data_02101c88.isCurrentPart(6)) {
             fld::FieldStage::getSingleton()->pause(0);
             SpriteCharacter::setAllCharaAnim(1);
         }
@@ -200,7 +200,7 @@ THUMB void window::ScreenEffectManager::cureFloorSetup()
     data_0211b27c.frames_ = 30;
     data_0211b27c.sprite_[0].setColor(31, 31, 31);
     data_0211b27c.sprite_[1].setColor(31, 31, 31);
-    data_02101d14.unkfunc_020519a8(&data_0211b27c);
+    data_02101d14.addPart(&data_0211b27c);
     twn::TownPlayerManager::getSingleton().setLock(true);
     SoundManager::playSe(0x469, 0);
 }
@@ -222,7 +222,7 @@ THUMB void window::ScreenEffectManager::cureFloorUpdate()
             }
             data_0211b27c.count_ = 0;
             data_0211b27c.frames_ = 30;
-            data_02101d14.unkfunc_020519a8(&data_0211b27c);
+            data_02101d14.addPart(&data_0211b27c);
             fade_ = 1;
             return;
         }

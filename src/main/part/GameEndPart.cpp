@@ -31,7 +31,7 @@ THUMB void GameEndPart::onExecutePart()
         return;
     }
     if (gTownMenu_MESSAGE.stat_ == menu::MenuBase::MENUBASE_STAT_OK) {
-        data_02101c88.unkfunc_02051800(nextPart_);
+        data_02101c88.setNextPart(nextPart_);
         type_ = 0;
     }
 }
@@ -85,11 +85,11 @@ THUMB void GameEndPart::setTypeAndNextPart(int type, int nextPart)
 THUMB void GameEndPart::start(int type)
 {
     setType(type);
-    data_02101c88.unkfunc_02051800(GAME_END_PART);
+    data_02101c88.setNextPart(GAME_END_PART);
 }
 
 THUMB void GameEndPart::startWithNextPart(int type, int nextPart)
 {
     setTypeAndNextPart(type, nextPart);
-    data_02101c88.unkfunc_02051800(GAME_END_PART);
+    data_02101c88.setNextPart(GAME_END_PART);
 }

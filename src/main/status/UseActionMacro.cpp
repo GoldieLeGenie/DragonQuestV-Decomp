@@ -174,7 +174,7 @@ THUMB void status::UseActionMacro::setResultMacro(CharacterStatus* actor, Charac
         TextAPI::setMACRO0(0x17, 0xe0000000, 0x3de);
         TextAPI::setMACRO0(0x51, 0xf0000000, targetEffectValue);
     }
-    if (actionIndex == 0x8a && data_02101c88.unkfunc_02051818(4) == 1) {
+    if (actionIndex == 0x8a && data_02101c88.isCurrentPart(4) == 1) {
         TextAPI::setMACRO0(0x3d, 0xf0000000, twn::TownFurnitureManager::getSingleton()->searchFloorItem());
     }
     if (actionIndex == 0x88 || actionIndex == 0x176) {

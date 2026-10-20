@@ -37,18 +37,18 @@ struct UnkGlobalSystem {
 
     UnkGlobalSystem();
     ~UnkGlobalSystem();
-    void unkfunc_020516e4(int partId);                      // run (never returns)
-    void unkfunc_020517c0(int partId, UnkGameTask* task);   // register task
-    void unkfunc_02051800(int partId);                      // set next task
-    int unkfunc_02051808();                                 // next task
-    int unkfunc_02051810();                                 // current task (13 = battle auto feed)
-    int unkfunc_02051818(int partId);                       // part_id_ == partId
-    static void unkfunc_0205182c(void (*func)());
-    static void unkfunc_0205183c(void (*func)());
-    static void unkfunc_0205184c(void (*func)());
-    static void unkfunc_0205185c(UnkGameTask* task);
-    static void unkfunc_02051870(UnkGameTask* task);
-    static void unkfunc_0205189c(UnkGameTask* task);
+    void run(int partId);                      // run (never returns)
+    void registerTask(int partId, UnkGameTask* task);   // register task
+    void setNextPart(int partId);                      // set next task
+    int getNextPart();                                 // next task
+    int getCurrentPart();                                 // current task (13 = battle auto feed)
+    int isCurrentPart(int partId);                       // part_id_ == partId
+    static void setFrameHook(void (*func)());
+    static void setTaskChangeHook(void (*func)());
+    static void setTaskEndHook(void (*func)());
+    static void startTask(UnkGameTask* task);
+    static void endTask(UnkGameTask* task);
+    static void executeTask(UnkGameTask* task);
 };
 
 extern UnkGlobalSystem data_02101c88;

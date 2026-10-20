@@ -25,9 +25,9 @@ window::MapControl window::gMapControl;
 THUMB void window::MapControl::setup()
 {
     state_ = TOWNMAP_WAIT_MOVE;
-    if (data_02101c88.unkfunc_02051818(4)) {
+    if (data_02101c88.isCurrentPart(4)) {
         BillboardCharacter::setAllCharaAnim(false);
-    } else if (data_02101c88.unkfunc_02051818(6)) {
+    } else if (data_02101c88.isCurrentPart(6)) {
         SpriteCharacter::setAllCharaAnim(false);
     }
     playerLock(true);
@@ -52,7 +52,7 @@ THUMB void window::MapControl::execute()
             break;
         case TOWMMAP_WAIT_CLOSE:
             if (imageMap_->isClose()) {
-                if (data_02101c88.unkfunc_02051818(4)) {
+                if (data_02101c88.isCurrentPart(4)) {
                     BillboardCharacter::setAllCharaAnim(true);
                 } else {
                     SpriteCharacter::setAllCharaAnim(true);

@@ -224,14 +224,14 @@ bool cmd_set_player_ride_on(void* scriptParam)
     switch (param->flag) {
     case 0:
         ride = cmn::RIDE_ON_NONE;
-        if (data_02101c88.unkfunc_02051818(6)) {
+        if (data_02101c88.isCurrentPart(6)) {
             fld::FieldPlayerManager::getSingleton().getPlayerAction().setMoveType(ride);
         }
         cmn::g_cmnPartyInfo.setMenuAction(cmn::MENU_ACTION_NONE);
         break;
     case 1:
         ride = cmn::RIDE_ON_SHIP_IKADA;
-        if (data_02101c88.unkfunc_02051818(6)) {
+        if (data_02101c88.isCurrentPart(6)) {
             fld::FieldPlayerManager::getSingleton().getPlayerAction().getActionShip().scriptStart();
         }
         break;
@@ -421,7 +421,7 @@ bool cmd_set_player_recovery(void* scriptParam)
     } else {
         statusInfo.rebirth();
         status::g_Party.getPlayerStatusForPlayerIndex(param->player).setBestCondition();
-        if (data_02101c88.unkfunc_02051818(5) == false) {
+        if (data_02101c88.isCurrentPart(5) == false) {
             statusInfo.getStatusChange().clear();
             cmn::GameManager::getSingleton().getPlayerManager()->resetParty();
         }
@@ -602,7 +602,7 @@ bool cmdSetPantherName(void* scriptParam)
 bool cmdChangePlayerDraw(void* scriptParam)
 {
     PARAM_CHANGE_PLAYER_DRAW* param = (PARAM_CHANGE_PLAYER_DRAW*)scriptParam;
-    if (data_02101c88.unkfunc_02051818(6) == true) {
+    if (data_02101c88.isCurrentPart(6) == true) {
         fld::FieldPlayerManager::getSingleton().changePlayerPose(param->id, param->charaId);
     } else {
         twn::TownPlayerManager::getSingleton().changePlayerPose(param->id, param->charaId);
@@ -637,7 +637,7 @@ bool cmdSetVehicle(void* scriptParam)
 bool cmdSearchMapObject(void* scriptParam)
 {
     PARAM_SEARCH_MAP_OBJECT* param = (PARAM_SEARCH_MAP_OBJECT*)scriptParam;
-    if (data_02101c88.unkfunc_02051818(4)) {
+    if (data_02101c88.isCurrentPart(4)) {
         twn::TownPlayerManager::getSingleton().setScriptSearchObject(param->target);
         if (twn::TownSystem::getSingleton().townSystemScript_.scriptSearch_) {
             if (param->target == twn::TownPlayerManager::getSingleton().getSearchMapUid()) {
@@ -704,7 +704,7 @@ bool cmdIsPlayerName(void* scriptParam)
 bool cmd_party_display(void* scriptParam)
 {
     PARAM_PARTY_DISPLAY* param = (PARAM_PARTY_DISPLAY*)scriptParam;
-    if (data_02101c88.unkfunc_02051818(4)) {
+    if (data_02101c88.isCurrentPart(4)) {
         if (param->flag == 1) {
             twn::TownPlayerManager::getSingleton().resetDrawPartyCount();
             twn::TownPlayerManager::getSingleton().resetAlpha();
@@ -722,7 +722,7 @@ bool cmd_party_display(void* scriptParam)
 bool cmd_party_display2(void* scriptParam)
 {
     PARAM_PARTY_DISPLAY2* param = (PARAM_PARTY_DISPLAY2*)scriptParam;
-    if (data_02101c88.unkfunc_02051818(4)) {
+    if (data_02101c88.isCurrentPart(4)) {
         if (param->flag == 0) {
             twn::TownPlayerManager::getSingleton().setPartyDrawOne();
         } else {
@@ -743,7 +743,7 @@ bool cmd_party_display2(void* scriptParam)
 
 bool cmd_party_redisplay(void* scriptParam)
 {
-    if (data_02101c88.unkfunc_02051818(4)) {
+    if (data_02101c88.isCurrentPart(4)) {
         twn::TownPlayerManager::getSingleton().resetDrawPartyCount();
         twn::TownPlayerManager::getSingleton().resetAlpha();
     } else {
@@ -759,7 +759,7 @@ bool cmdSetPartyDirectionByPlayerNo(void* scriptParam)
     status::g_Party.setDisplayMode();
     int index = status::g_Party.getSortIndex(param->playerNO);
     if (index != -1) {
-        if (data_02101c88.unkfunc_02051818(4)) {
+        if (data_02101c88.isCurrentPart(4)) {
             direction = cmn::CommonCalculate::getIdxByParam(param->direction);
             twn::TownPlayerManager::getSingleton().getPartyAction().setMemberState(index, 1);
             twn::TownPlayerManager::getSingleton().getPartyAction().setMemberDir(index, direction);
@@ -778,7 +778,7 @@ bool cmdResetPartyDirectionByPlayerNo(void* scriptParam)
     status::g_Party.setDisplayMode();
     int index = status::g_Party.getSortIndex(param->playerNO);
     if (index != -1) {
-        if (data_02101c88.unkfunc_02051818(4)) {
+        if (data_02101c88.isCurrentPart(4)) {
             twn::TownPlayerManager::getSingleton().getPartyAction().removeMemberState(index, 1);
         } else {
             fld::FieldPlayerManager::getSingleton().party_.removeMemberState(index, 1);

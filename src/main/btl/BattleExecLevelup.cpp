@@ -72,7 +72,7 @@ btl::BattleExecLevelup btl::g_BattleExecLevelup;
 
 THUMB void btl::setMessage(int mes0, int mes1, int mes2, int mes3)
 {
-    if (data_02101c88.unkfunc_02051810() == 5) {
+    if (data_02101c88.getCurrentPart() == 5) {
         BattleMessage::setMessage(mes0, mes1, mes2, mes3);
         return;
     }

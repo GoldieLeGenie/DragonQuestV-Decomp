@@ -16,14 +16,14 @@ THUMB cmn::CommonChapterTitle::~CommonChapterTitle()
 
 THUMB void cmn::CommonChapterTitle::cleanup()
 {
-    if (sprite_.unkfunc_02051b04()) {
+    if (sprite_.isLoaded()) {
         sprite_.unload();
     }
 }
 
 THUMB void cmn::CommonChapterTitle::draw()
 {
-    if (sprite_.unkfunc_02051b04()) {
+    if (sprite_.isLoaded()) {
         sprite_.draw();
     }
 }

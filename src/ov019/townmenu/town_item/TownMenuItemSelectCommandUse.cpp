@@ -310,9 +310,9 @@ THUMB void TownMenuItemSelectCommandUse::useItemNoTarget()
         } else {
             status::g_Menu.setMenuEventFlag(true);
             gTownMenu_ROOT.stat_ = MENUBASE_STAT_OK;
-            if (data_02101c88.unkfunc_02051818(4)) {
+            if (data_02101c88.isCurrentPart(4)) {
                 twn::TownPlayerManager::getSingleton().setLock(true);
-            } else if (data_02101c88.unkfunc_02051818(6)) {
+            } else if (data_02101c88.isCurrentPart(6)) {
                 fld::FieldPlayerManager::getSingleton().setLock(true);
             }
         }
@@ -570,12 +570,12 @@ THUMB void TownMenuItemSelectCommandUse::openUseItemMessage()
         cmn::g_talkSound.setMessageSound(2, -1);
         gTownMenu_MESSAGE.openMessageForTALK();
         gTownMenu_MESSAGE.addMessage(m_resultMes[0]);
-        if (data_02101c88.unkfunc_02051818(6) == 1 && g_Global.getFieldType() == 0) {
+        if (data_02101c88.isCurrentPart(6) == 1 && g_Global.getFieldType() == 0) {
             gTownMenu_MESSAGE.addMessage(m_resultMes[0] + 1);
         }
         return;
     }
-    if (m_itemID == 0xc2 && data_02101c88.unkfunc_02051818(6) == 0
+    if (m_itemID == 0xc2 && data_02101c88.isCurrentPart(6) == 0
         && twn::TownStageEffectManager::getSingleton()->spotlight_.enable_ == 0
         && status::g_Story.getChapter() == 1 && g_Global.getMapNameId() == 10 && !g_AreaFlag.check(0x51)) {
         m_isResult = 1;

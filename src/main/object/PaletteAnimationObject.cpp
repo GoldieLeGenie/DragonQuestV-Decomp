@@ -49,7 +49,7 @@ ARM int PaletteAnimation::getFrameCount()
     return header_.frameCount_;
 }
 
-ARM void PaletteAnimationObject::unkfunc_020513c0()
+ARM void PaletteAnimationObject::start()
 {
     wait_ = 0;
     frame_ = 0;
@@ -57,7 +57,7 @@ ARM void PaletteAnimationObject::unkfunc_020513c0()
     data_020f4f74.transferToVram(1, data_02101a68, texture_->getPlttAddr(), texture_->getPlttSize(), 0);
 }
 
-ARM void PaletteAnimationObject::unkfunc_02051440()
+ARM void PaletteAnimationObject::execute()
 {
     wait_++;
     if (wait_ < anim_.getWait(frame_)) {
@@ -72,7 +72,7 @@ ARM void PaletteAnimationObject::unkfunc_02051440()
     data_020f4f74.transferToVram(1, data_02101a68, texture_->getPlttAddr(), texture_->getPlttSize(), 0);
 }
 
-ARM void PaletteAnimationObject::unkfunc_0205150c(int address, int size)
+ARM void PaletteAnimationObject::startAt(int address, int size)
 {
     wait_ = 0;
     frame_ = 0;
@@ -80,7 +80,7 @@ ARM void PaletteAnimationObject::unkfunc_0205150c(int address, int size)
     data_020f4f74.transferToVram(1, data_02101a68, address, size, 0);
 }
 
-ARM void PaletteAnimationObject::unkfunc_02051580(int address, int size)
+ARM void PaletteAnimationObject::executeOnceAt(int address, int size)
 {
     wait_++;
     if (wait_ < anim_.getWait(frame_)) {
@@ -92,12 +92,12 @@ ARM void PaletteAnimationObject::unkfunc_02051580(int address, int size)
     frame_++;
 }
 
-ARM int PaletteAnimationObject::unkfunc_02051628()
+ARM int PaletteAnimationObject::isEnd()
 {
     return frame_ >= anim_.getFrameCount();
 }
 
-ARM void PaletteAnimationObject::unkfunc_02051648()
+ARM void PaletteAnimationObject::cleanup()
 {
     colorCount_ = 0;
     texture_ = 0;

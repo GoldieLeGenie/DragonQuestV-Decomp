@@ -74,7 +74,7 @@ THUMB void TownMenu_ROOT::unkfunc_02174c3c()
 {
     switch (menuItem_.active_) {
         case ROOT_TALK:
-            if (data_02101c88.unkfunc_02051818(4) == 1 && twn::TownPlayerManager::getSingleton().checkTalkToCharacter() == true) {
+            if (data_02101c88.isCurrentPart(4) == 1 && twn::TownPlayerManager::getSingleton().checkTalkToCharacter() == true) {
                 stat_ = MENUBASE_STAT_CANCEL;
                 redraw_ = 1;
                 cmn::g_cmnPartyInfo.setMenuAction(cmn::MENU_TALK);

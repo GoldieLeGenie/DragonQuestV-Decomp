@@ -35,7 +35,7 @@ THUMB void MaterielMenu_LOAD::menuSetup()
     makeResult_ = 0;
     wait_ = 0;
     resumeExist_ = 0;
-    if (profile::SaveLoad::unkfunc_02040cec(3) == 1) {
+    if (profile::SaveLoad::checkbank(3) == 1) {
         resumeExist_ = 1;
     }
     frame_ = 0;

@@ -88,7 +88,7 @@ THUMB void ceremony::CeremonyEndingFin::terminate()
     endSprite_[0].unload();
     endSprite_[1].unload();
     pamData_.cleanup();
-    pam_.unkfunc_02051648();
+    pam_.cleanup();
     penTexture_->freeVram();
     penTextureData_.cleanup();
     penDssa_.cleanup();

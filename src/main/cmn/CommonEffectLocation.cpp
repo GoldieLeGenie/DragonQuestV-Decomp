@@ -120,13 +120,13 @@ THUMB bool cmn::CommonEffectLocation::calcPaletteRate()
     one.value = 0x1000;
     rate.value = (counter_ << 12) / frame_;
     rgb = prev_ * (one - rate) + next_ * rate;
-    if (data_02101c88.unkfunc_02051818(4)) {
+    if (data_02101c88.isCurrentPart(4)) {
         twn::TownStageEffectManager::getSingleton()->setRGBRate(rgb, 0);
     }
-    if (data_02101c88.unkfunc_02051818(5)) {
+    if (data_02101c88.isCurrentPart(5)) {
         btl::BattleStage::getSingleton()->stage_.m_fld.SetRGBRate((VecFx32*)&rgb, 0);
     }
-    if (data_02101c88.unkfunc_02051818(11)) {
+    if (data_02101c88.isCurrentPart(11)) {
         ceremony::CeremonyStage::getSingleton()->stage_.m_fld.SetRGBRate((VecFx32*)&rgb, 0);
     }
     counter_++;

@@ -3,7 +3,7 @@
 // Check value: 0x28cc + 0x1b once func_02007e74 has reported success
 int data_0209c798 = 0x28cc;
 
-int unkfunc_02086df0() {
+int runProtectCheck() {
     if (func_02007e74(0x190) == 0) {
         return 1;
     }
@@ -11,6 +11,6 @@ int unkfunc_02086df0() {
     return 0;
 }
 
-int unkfunc_02086e24() {
+int isProtectCheckTriggered() {
     return data_0209c798 == 0x28e7;
 }

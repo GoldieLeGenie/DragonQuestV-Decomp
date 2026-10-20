@@ -16,8 +16,8 @@ struct DataObject {
     void cleanup();
     void* getAddr();
     long getSize();
-    int unkfunc_0206e1fc(const char* filename, int a);     // load the file again into the same buffer
-    void unkfunc_0206e2c4(const char* filename, dss::File::LoadSwitch sw);  // load an LZ-compressed file
+    int reload(const char* filename, int a);     // load the file again into the same buffer
+    void loadCompressed(const char* filename, dss::File::LoadSwitch sw);  // load an LZ-compressed file
 };
 
 struct UnkLZDataObject : DataObject {
@@ -26,7 +26,7 @@ struct UnkLZDataObject : DataObject {
     virtual void setup(void* addr);
 };
 
-// data object whose setup loads the file with DataObject::unkfunc_0206e2c4 (vtable 0x0209c194)
+// data object whose setup loads the file with DataObject::loadCompressed (vtable 0x0209c194)
 struct UnkFileDataObject : DataObject {
     UnkFileDataObject();
     ~UnkFileDataObject();

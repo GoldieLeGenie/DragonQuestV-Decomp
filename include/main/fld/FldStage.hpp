@@ -12,7 +12,7 @@ struct FldStage;
 struct FldCollision;
 
 int unkfunc_020484ec(VecFx32* pos, VecFx32* rot, VecFx32* scale, VecFx32* box, dss::Fix32* rate);
-int unkfunc_0206b048(dss::Fix32Vector3* pos, dss::Fix32Vector3* rot, dss::Fix32Vector3* scale, GXBoxTestParam* box, dss::Fix32* rate);    // box test
+int fldBoxTest(dss::Fix32Vector3* pos, dss::Fix32Vector3* rot, dss::Fix32Vector3* scale, GXBoxTestParam* box, dss::Fix32* rate);    // box test
 
 struct FldStage : UnkRenderModel {
     int flag_;                                  // 0x008
@@ -88,7 +88,7 @@ struct FldStage : UnkRenderModel {
     int getPolyNoBySurfaceId(int surface, int index);
     void addMovePosByObjNo(int obj, dss::Fix32Vector3& move);
     int getCrossPolygonOtherSurface(dss::Fix32Vector3& start, dss::Fix32Vector3& end, int* surface, int count, int& poly, dss::Fix32* dist, int all);
-    void unkfunc_0206a898();                    // drops the textures from the loaded model file
+    void dropModelTexture();                    // drops the textures from the loaded model file
     void setSepiarExecute();
 };
 

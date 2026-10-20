@@ -25,8 +25,8 @@ struct DataCache {
     DataCache();
     ~DataCache();
     virtual void* getAddr();
-    virtual void unkfunc_02057f24(int index);   // called after a file is loaded
-    virtual void unkfunc_02057f44(int index);   // called before a file is released
+    virtual void afterLoad(int index);   // called after a file is loaded
+    virtual void beforeRelease(int index);   // called before a file is released
     void clear();
     void setup(int index);
     void cleanup(int index);
@@ -40,8 +40,8 @@ struct UnkTextureDataCache : DataCache {
     TextureObject texture_[4];               // 0xE8
 
     virtual void* getAddr();
-    virtual void unkfunc_02057f24(int index);   // copies the texture and loads it in VRAM
-    virtual void unkfunc_02057f44(int index);   // frees the VRAM of the texture
+    virtual void afterLoad(int index);   // copies the texture and loads it in VRAM
+    virtual void beforeRelease(int index);   // frees the VRAM of the texture
 };
 
 struct GameMonsterData {
@@ -57,7 +57,7 @@ struct GameMonsterData {
 
     GameMonsterData();
     ~GameMonsterData();
-    static void unkfunc_02058098(short (*linkList)[2]);    // sets the monster texture/animation file table
+    static void setLinkList(short (*linkList)[2]);    // sets the monster texture/animation file table
     void clear();
     DSSACharacterData* setup(int index);
     void cleanup(int index);

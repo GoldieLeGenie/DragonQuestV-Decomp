@@ -412,7 +412,7 @@ bool cmdPlayerLock(void* scriptParam)
     PARAM_PLAYER_LOCK* param = (PARAM_PLAYER_LOCK*)scriptParam;
     if (param->flag) {
         lockNum++;
-        if (data_02101c88.unkfunc_02051818(4)) {
+        if (data_02101c88.isCurrentPart(4)) {
             twn::TownPlayerManager::getSingleton().setLock(true);
             twn::TownPlayerManager::getSingleton().setTownCharaColl(false);
             twn::TownSystem::getSingleton().getScriptSystem().setEventLock(true);
@@ -423,7 +423,7 @@ bool cmdPlayerLock(void* scriptParam)
         cmn::PartyTalk::getSingleton().resetPartyTalk();
     } else {
         lockNum--;
-        if (data_02101c88.unkfunc_02051818(4)) {
+        if (data_02101c88.isCurrentPart(4)) {
             twn::TownPlayerManager::getSingleton().setLock(false);
             if (!cmn::PlayerManager::isLock()) {
                 twn::TownPlayerManager::getSingleton().setTownCharaColl(true);
@@ -748,7 +748,7 @@ bool cmd_set_basha_go_into(void* scriptParam)
 {
     PARAM_SET_BASHA_GO_INTO* param = (PARAM_SET_BASHA_GO_INTO*)scriptParam;
     status::g_StageAttribute.setCarriageEnter(param->flag == 0);
-    if (data_02101c88.unkfunc_02051818(4)) {
+    if (data_02101c88.isCurrentPart(4)) {
         twn::TownPlayerManager::getSingleton().resetParty();
     }
     return true;
@@ -838,7 +838,7 @@ bool cmdSetTimezone(void* scriptParam)
 {
     PARAM_SET_TIMEZONE* param = (PARAM_SET_TIMEZONE*)scriptParam;
     status::g_StageInfo.setTimeZone((TIME_ZONE)(param->timezone + 1));
-    if (data_02101c88.unkfunc_02051818(6) == true) {
+    if (data_02101c88.isCurrentPart(6) == true) {
         fld::FieldStage::getSingleton()->ChangeTime(1);
     } else {
         twn::TownStageEffectManager::getSingleton()->loadStage();
@@ -1069,7 +1069,7 @@ bool cmd_check_event_item(void* scriptParam)
 {
     PARAM_CHECK_EVENT_ITEM* param = (PARAM_CHECK_EVENT_ITEM*)scriptParam;
     if (status::g_Menu.getMenuEventFlag() == true) {
-        if (data_02101c88.unkfunc_02051818(4)) {
+        if (data_02101c88.isCurrentPart(4)) {
             twn::TownPlayerManager::getSingleton().setLock(false);
         } else {
             fld::FieldPlayerManager::getSingleton().setLock(false);

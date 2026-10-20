@@ -206,7 +206,7 @@ namespace profile {
         void deliverFx32Vector3(dss::Fix32Vector3* vec, int* prof);
         bool collectProfile(int no, int type);
         void collect_PROFILE_MONSTER();
-        void unkfunc_0203fb84();
+        void collect_PROFILE_TAISHI();
         void collect_PROFILE_SYSTEM(int no, int type);
         void collect_PROFILE_PARTY();
         void collect_PROFILE_ASSETS();
@@ -214,7 +214,7 @@ namespace profile {
         void collect_PROFILE_LOCATION();
         bool deliverProfile(int no);
         void deliver_PROFILE_MONSTER();
-        void unkfunc_0204058c();
+        void deliver_PROFILE_TAISHI();
         void deliverRESTART_MAP(dss::Fix32Vector3& pos, short dir);
         void deliver_PROFILE_SYSTEM();
         void deliver_PROFILE_PARTY();

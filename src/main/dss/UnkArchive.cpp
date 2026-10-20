@@ -1,6 +1,6 @@
 #include "main/dss/UnkArchive.hpp"
 
-ARM int unkfunc_0204c860(void* archive)
+ARM int getArchiveFileCount(void* archive)
 {
     return ((int*)archive)[4];
 }

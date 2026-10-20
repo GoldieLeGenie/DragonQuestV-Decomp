@@ -84,19 +84,19 @@ THUMB void fld::FieldData::setupBlock(int map)
     dataObject_.setup(s_mapBuffer);
     switch (map) {
     case 0:
-        dataObject_.unkfunc_0206e1fc("data/field/bin/field.bin", 1);
+        dataObject_.reload("data/field/bin/field.bin", 1);
         blockData_.setup("data/field/field.tex", 1, 0);
         break;
     case 1:
-        dataObject_.unkfunc_0206e1fc("data/field/bin/fairyA.bin", 1);
+        dataObject_.reload("data/field/bin/fairyA.bin", 1);
         blockData_.setup("data/field/fairyA.tex", 1, 0);
         break;
     case 2:
-        dataObject_.unkfunc_0206e1fc("data/field/bin/fairyB.bin", 1);
+        dataObject_.reload("data/field/bin/fairyB.bin", 1);
         blockData_.setup("data/field/fairyB.tex", 1, 0);
         break;
     case 3:
-        dataObject_.unkfunc_0206e1fc("data/field/bin/evil.bin", 1);
+        dataObject_.reload("data/field/bin/evil.bin", 1);
         blockData_.setup("data/field/evil.tex", 1, 0);
         break;
     }
@@ -141,7 +141,7 @@ THUMB void fld::FieldData::setupSymbol(int flag)
     char path[0x80];
     symbolPack_.setup(s_symbolBuffer);
     dss::sprintf_s(path, sizeof(path), "data/field/symbol/symbol.pack", 1);
-    symbolPack_.unkfunc_0206e1fc(path, 0);
+    symbolPack_.reload(path, 0);
     for (int i = 0; i < SYMBOL_TEXTURE_NUM; i++) {
         if (flag == 0 && s_symbolLoad[i] == 0) {
             symbolTexture_[i] = NULL;
@@ -227,19 +227,19 @@ THUMB void fld::FieldData::cleanup(int map)
         blockData_.cleanup();
     }
     dataObject_.cleanup();
-    if (ruramoon_.unkfunc_02051b04()) {
+    if (ruramoon_.isLoaded()) {
         ruramoon_.unload();
     }
-    if (smoke_.unkfunc_02051b04()) {
+    if (smoke_.isLoaded()) {
         smoke_.unload();
     }
-    if (magma_.unkfunc_02051b04()) {
+    if (magma_.isLoaded()) {
         magma_.unload();
     }
-    if (casinoShip_.unkfunc_02051b04()) {
+    if (casinoShip_.isLoaded()) {
         casinoShip_.unload();
     }
-    if (sunkenFirmament_.unkfunc_02051b04()) {
+    if (sunkenFirmament_.isLoaded()) {
         sunkenFirmament_.unload();
     }
 }
@@ -362,14 +362,14 @@ THUMB void fld::FieldData::draw2DField(int x, int y, int u, int v, unsigned char
 
 THUMB void fld::FieldData::drawRuramonn()
 {
-    if (ruramoon_.unkfunc_02051b04() && status::g_StageInfo.getTimeZone() == 4 && !g_AreaFlag.check(0xc7) && g_AreaFlag.check(0xc6)) {
+    if (ruramoon_.isLoaded() && status::g_StageInfo.getTimeZone() == 4 && !g_AreaFlag.check(0xc7) && g_AreaFlag.check(0xc6)) {
         ruramoon_.draw();
     }
 }
 
 THUMB void fld::FieldData::drawRuramoon(dss::Fix32 x, dss::Fix32 y)
 {
-    if (ruramoon_.unkfunc_02051b04() && status::g_StageInfo.getTimeZone() == 4 && !g_AreaFlag.check(0xc7) && g_AreaFlag.check(0xc6) && pause_ == 0) {
+    if (ruramoon_.isLoaded() && status::g_StageInfo.getTimeZone() == 4 && !g_AreaFlag.check(0xc7) && g_AreaFlag.check(0xc6) && pause_ == 0) {
         unsigned int fcount = frame_;
         unsigned char alpha;
         if (fcount % 0xf8 < 0x7c) {
@@ -395,7 +395,7 @@ THUMB void fld::FieldData::drawSmoke(dss::Fix32 x, dss::Fix32 y)
     int rest;
     int size;
     int w;
-    if (smoke_.unkfunc_02051b04() && pause_ == 0) {
+    if (smoke_.isLoaded() && pause_ == 0) {
         rand = UnkDssRand::rand(1);
         if (((frame_ + 1) & 3) == 0) {
             for (j = 0; j < 3; j++) {
@@ -432,7 +432,7 @@ THUMB void fld::FieldData::drawMagma(dss::Fix32 x, dss::Fix32 y)
 
 THUMB void fld::FieldData::drawCasinoShip(dss::Fix32 x, dss::Fix32 y)
 {
-    if (casinoShip_.unkfunc_02051b04()) {
+    if (casinoShip_.isLoaded()) {
         casinoShip_.setPositionFix32(x, y);
         casinoShip_.draw();
     }
@@ -444,7 +444,7 @@ THUMB void fld::FieldData::drawSunkenFirmament()
     const int y = 0x73a;
     const int margin = 0x1000;
     const int ctrl_id = 0x1f04;
-    if (status::g_Story.isVehicleEnable(3) == false && sunkenFirmament_.unkfunc_02051b04()) {
+    if (status::g_Story.isVehicleEnable(3) == false && sunkenFirmament_.isLoaded()) {
         sunkenFirmament_.setPosition(x - 0x20, y - 0x34);
         sunkenFirmament_.setAlpha(0x10);
         sunkenFirmament_.draw();

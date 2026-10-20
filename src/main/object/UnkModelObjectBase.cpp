@@ -2,7 +2,7 @@
 #include "main/object/DSSAObject.hpp"
 #include "nnsys/g3d.hpp"
 
-ARM void UnkModelObjectBase::unkfunc_02048d08(UnkModelMember* member)
+ARM void UnkModelObjectBase::setupModel(UnkModelMember* member)
 {
     member_ = member;
     NNSG3dResMdlSet* mdlSet = func_02083268(member->getModelFile());
@@ -60,7 +60,7 @@ ARM void UnkModelObjectBase::draw()
     func_02082604();
 }
 
-ARM void UnkModelObjectBase::unkfunc_02049020(int light, unsigned short color)
+ARM void UnkModelObjectBase::setLightColor(int light, unsigned short color)
 {
     switch (light) {
     case 0:
@@ -78,7 +78,7 @@ ARM void UnkModelObjectBase::unkfunc_02049020(int light, unsigned short color)
     }
 }
 
-ARM void UnkModelObjectBase::unkfunc_02049080(int light, dss::Vector3<dss::Fix16> vector)
+ARM void UnkModelObjectBase::setLightVector(int light, dss::Vector3<dss::Fix16> vector)
 {
     switch (light) {
     case 0:
@@ -96,27 +96,27 @@ ARM void UnkModelObjectBase::unkfunc_02049080(int light, dss::Vector3<dss::Fix16
     }
 }
 
-ARM void UnkModelObjectBase::unkfunc_02049104(NNSG3dAnmObj* obj)
+ARM void UnkModelObjectBase::addAnimation(NNSG3dAnmObj* obj)
 {
     func_0207fb5c(renderObj_, obj);
 }
 
-ARM void UnkModelObjectBase::unkfunc_02049114(NNSG3dAnmObj* obj)
+ARM void UnkModelObjectBase::removeAnimation(NNSG3dAnmObj* obj)
 {
     func_0207fbf4(renderObj_, obj);
 }
 
-ARM void UnkModelObjectBase::unkfunc_02049124(dss::Fix32Vector3 scale)
+ARM void UnkModelObjectBase::setModelScale(dss::Fix32Vector3 scale)
 {
     m_scl = scale;
 }
 
-ARM void UnkModelObjectBase::unkfunc_02049134(dss::Fix32Vector3 position)
+ARM void UnkModelObjectBase::setModelPosition(dss::Fix32Vector3 position)
 {
     m_pos = position;
 }
 
-ARM void UnkModelObjectBase::unkfunc_02049144(dss::Vector3<short> rotation)
+ARM void UnkModelObjectBase::setModelRotation(dss::Vector3<short> rotation)
 {
     dss::UnkMatrix43 rotX;
     dss::UnkMatrix43 rotY;

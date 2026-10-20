@@ -37,9 +37,9 @@ THUMB window::ShoplistControl::ShoplistControl()
 THUMB void window::ShoplistControl::setup()
 {
     state_ = TOWNMAP_WAIT_OPEN;
-    if (data_02101c88.unkfunc_02051818(4)) {
+    if (data_02101c88.isCurrentPart(4)) {
         BillboardCharacter::setAllCharaAnim(false);
-    } else if (data_02101c88.unkfunc_02051818(6)) {
+    } else if (data_02101c88.isCurrentPart(6)) {
         SpriteCharacter::setAllCharaAnim(false);
     }
     openList();
@@ -76,9 +76,9 @@ THUMB void window::ShoplistControl::execute()
             }
             break;
         case TOWMMAP_CLOSE:
-            if (data_02101c88.unkfunc_02051818(4)) {
+            if (data_02101c88.isCurrentPart(4)) {
                 BillboardCharacter::setAllCharaAnim(true);
-            } else if (data_02101c88.unkfunc_02051818(6)) {
+            } else if (data_02101c88.isCurrentPart(6)) {
                 SpriteCharacter::setAllCharaAnim(true);
             }
             playerLock(false);

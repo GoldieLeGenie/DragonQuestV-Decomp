@@ -3,7 +3,7 @@
 #include "main/dss/UnkRandom.hpp"
 #include "main/dss/UnkSleep.hpp"
 
-ARM void DssApplication::unkfunc_02051658(int arg)
+ARM void DssApplication::initialize(int arg)
 {
     initSystem(arg);
     clearVram();
@@ -14,7 +14,7 @@ ARM void DssApplication::unkfunc_02051658(int arg)
     vf00();
 }
 
-ARM void DssApplication::unkfunc_02051690()
+ARM void DssApplication::run()
 {
-    data_02101c88.unkfunc_020516e4(vf10());
+    data_02101c88.run(vf10());
 }

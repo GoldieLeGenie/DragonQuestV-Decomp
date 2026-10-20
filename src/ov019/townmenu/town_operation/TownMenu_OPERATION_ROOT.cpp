@@ -203,7 +203,7 @@ THUMB void TownMenu_OPERATION_ROOT::menuUpdate()
                 data_0211b27c.frames_ = 60;
                 data_0211b27c.sprite_[0].setColor(0, 0, 0);
                 data_0211b27c.sprite_[1].setColor(0, 0, 0);
-                data_02101d14.unkfunc_020519a8(&data_0211b27c);
+                data_02101d14.addPart(&data_0211b27c);
                 SoundManager::stopBgm(60);
                 abortMode_ = 3;
             }

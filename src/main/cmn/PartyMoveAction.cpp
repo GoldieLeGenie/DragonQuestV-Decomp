@@ -257,7 +257,7 @@ THUMB void cmn::PartyMoveAction::setDistance(int index)
     if (index != 0) {
         partyData_[index].orgDist = partyData_[index - 1].back + partyData_[index].front;
         partyData_[index].maxDist = partyData_[index].orgDist;
-        if (data_02101c88.unkfunc_02051818(6) == 1 && index == 6) {
+        if (data_02101c88.isCurrentPart(6) == 1 && index == 6) {
             partyData_[index].orgDist = partyData_[3].back + partyData_[index].front;
             partyData_[index].maxDist = partyData_[index].orgDist;
         }

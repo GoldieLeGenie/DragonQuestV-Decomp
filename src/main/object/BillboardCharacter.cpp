@@ -128,7 +128,7 @@ ARM void DisplayCharacter::setCharacterSize(int width, int height)
 
 ARM void BillboardCharacter::unkfunc_0205568c(void* data)
 {
-    textureNum_ = unkfunc_0204c860(data);
+    textureNum_ = getArchiveFileCount(data);
     for (int i = 0; i < textureNum_; i++) {
         textures_[i] = getArchiveFile(data, i);
     }
@@ -162,7 +162,7 @@ static dss::Vector3<dss::Fix16> s_shadowVertexRightBottom(1.0f, 0.0f, -1.0f);
 static dss::Vector3<dss::Fix16> s_shadowVertexLeftBottom(-1.0f, 0.0f, -1.0f);
 static dss::Vector3<dss::Fix16> s_shadowVertexLeftTop(-1.0f, 0.0f, 1.0f);
 
-ARM void BillboardCharacter::unkfunc_02055a34()
+ARM void BillboardCharacter::resetTexture()
 {
     unkfunc_0205568c(data_.getAddr());
     textureIndex_ = -1;
@@ -173,7 +173,7 @@ ARM void DisplayCharacter::unkfunc_02055a60()
     ((TextureObject*)RenderObject::texture_)->freeVram();
 }
 
-ARM void* BillboardCharacter::unkfunc_02055a70(int index)
+ARM void* BillboardCharacter::getTexture(int index)
 {
     if (index >= textureNum_) {
         return NULL;
@@ -181,13 +181,13 @@ ARM void* BillboardCharacter::unkfunc_02055a70(int index)
     return textures_[index];
 }
 
-ARM void BillboardCharacter::unkfunc_02055a88(const char* name, dss::File::LoadSwitch loadSwitch)
+ARM void BillboardCharacter::load(const char* name, dss::File::LoadSwitch loadSwitch)
 {
     data_.setup(name, loadSwitch, 0);
-    unkfunc_02055ab0();
+    initialize();
 }
 
-ARM void BillboardCharacter::unkfunc_02055ab0()
+ARM void BillboardCharacter::initialize()
 {
     enable_ = 1;
     flag_ |= FLAG_DEFAULT;
@@ -197,7 +197,7 @@ ARM void BillboardCharacter::unkfunc_02055ab0()
     textureIndex_ = -1;
     preDirection_ = 5;
     setScale(s_scale);
-    dss::Fix32Vector3 scale = UnkCharacterShadow::unkfunc_02056920();
+    dss::Fix32Vector3 scale = UnkCharacterShadow::getShadowScale();
     unk_108.vx.value = scale.vx.value * width_ / 32;
     unk_108.vy.value = scale.vy.value * width_ / 32;
     unk_108.vz.value = scale.vz.value * width_ / 32;
@@ -221,7 +221,7 @@ ARM void BillboardCharacter::draw()
         return;
     }
     setScale(s_scale);
-    unkfunc_020561d0(s_scale);
+    scaleByCameraDistance(s_scale);
     setCameraDirection(&baseCamera_->getDirection());
     if (flag_ & FLAG_ANIM_PALLET) {
         applyTexturePaletteRgbRate((TextureObject*)texture_, paletteRgbRate_);
@@ -282,7 +282,7 @@ ARM unsigned short BillboardCharacter::getRotate()
     return direction_;
 }
 
-ARM void BillboardCharacter::unkfunc_02055db8(int index)
+ARM void BillboardCharacter::selectDirectionTexture(int index)
 {
     if (textureIndex_ == index && !(flag_ & FLAG_RELOAD)) {
         return;
@@ -324,10 +324,10 @@ ARM void BillboardCharacter::setCameraDirection(const dss::Fix32Vector3* directi
                     if (i == 0) {
                         i = 2;
                     }
-                    unkfunc_02055db8(i);
+                    selectDirectionTexture(i);
                     reverse_ = i % 2;
                 } else {
-                    unkfunc_02055db8(i);
+                    selectDirectionTexture(i);
                 }
                 break;
             }
@@ -337,7 +337,7 @@ ARM void BillboardCharacter::setCameraDirection(const dss::Fix32Vector3* directi
         for (int i = 0; i < 8; i++) {
             int area = i * 0x2000 + 0x2000;
             if (area > dispDirection_) {
-                unkfunc_02055db8(i);
+                selectDirectionTexture(i);
                 break;
             }
         }
@@ -349,13 +349,13 @@ ARM void BillboardCharacter::setCameraDirection(const dss::Fix32Vector3* directi
                 if (i == 0) {
                     i = 2;
                 }
-                unkfunc_02055db8(i * 2);
+                selectDirectionTexture(i * 2);
                 reverse_ = i % 2;
                 break;
             }
         }
     }
-    if (!UnkCharacterShadow::unkfunc_02056910()) {
+    if (!UnkCharacterShadow::isShadowEnable()) {
         return;
     }
     dss::Vector3<unsigned short> rotation;
@@ -403,7 +403,7 @@ ARM void BillboardCharacter::setDisplayEnable(int flag)
     }
 }
 
-ARM void BillboardCharacter::unkfunc_0205608c(int flag)
+ARM void BillboardCharacter::setVisibleFlag(int flag)
 {
     if (flag) {
         flag_ |= FLAG_VISIBLE;
@@ -412,7 +412,7 @@ ARM void BillboardCharacter::unkfunc_0205608c(int flag)
     }
 }
 
-ARM int BillboardCharacter::unkfunc_020560a4()
+ARM int BillboardCharacter::isVisible()
 {
     return (flag_ & FLAG_VISIBLE) ? 1 : 0;
 }
@@ -492,7 +492,7 @@ ARM void BillboardCharacter::setWriggleFlag(int flag)
     }
 }
 
-ARM void BillboardCharacter::unkfunc_020561d0(dss::Fix32 scale)
+ARM void BillboardCharacter::scaleByCameraDistance(dss::Fix32 scale)
 {
     dss::Fix32Vector3& cameraPosition = baseCamera_->getPosition();
     fx32 rate = FX_Sqrt(FX_Divide(cameraPosition.lengthsq(*getPosition()).value, baseCamera_->getDistanceSq().value));
@@ -504,7 +504,7 @@ ARM void BillboardCharacter::setCamera(dss::Camera* camera)
     baseCamera_ = camera;
 }
 
-ARM dss::Camera* BillboardCharacter::unkfunc_02056274()
+ARM dss::Camera* BillboardCharacter::getBaseCamera()
 {
     return baseCamera_;
 }
@@ -523,12 +523,12 @@ ARM bool BillboardCharacter::isAllAnimation()
     return allFlag_.check(FLAG_ANIM);
 }
 
-ARM void DisplayCharacter::unkfunc_020562d0(const dss::Fix32Vector3* rate)
+ARM void DisplayCharacter::setPaletteRgbRate(const dss::Fix32Vector3* rate)
 {
     paletteRgbRate_ = *rate;
 }
 
-ARM void DisplayCharacter::unkfunc_020562e0(int flag)
+ARM void DisplayCharacter::setAnimPalletFlag(int flag)
 {
     if (flag) {
         flag_ |= FLAG_ANIM_PALLET;
@@ -552,13 +552,13 @@ ARM UnkCharacterShadow::~UnkCharacterShadow()
 {
 }
 
-ARM void BillboardCharacter::unkfunc_0205646c()
+ARM void BillboardCharacter::reloadShadowTexture()
 {
-    unkfunc_0205678c();
-    unkfunc_0205647c();
+    releaseShadowTexture();
+    loadShadowTexture();
 }
 
-ARM void BillboardCharacter::unkfunc_0205647c()
+ARM void BillboardCharacter::loadShadowTexture()
 {
     s_shadowData.setup("data/common.tex", 0, 0);
     s_shadowTexture = (TextureObject*)s_shadowData.getAddr();
@@ -599,7 +599,7 @@ ARM void BillboardCharacter::unkfunc_0205647c()
     }
 }
 
-ARM void BillboardCharacter::unkfunc_0205678c()
+ARM void BillboardCharacter::releaseShadowTexture()
 {
     s_shadowTexture->freeVram();
     s_shadowData.cleanup();
@@ -647,12 +647,12 @@ ARM void UnkCharacterShadow::unkfunc_02056900(int type)
     s_shadowType = type;
 }
 
-ARM int UnkCharacterShadow::unkfunc_02056910()
+ARM int UnkCharacterShadow::isShadowEnable()
 {
     return s_shadowEnable;
 }
 
-ARM dss::Fix32Vector3 UnkCharacterShadow::unkfunc_02056920()
+ARM dss::Fix32Vector3 UnkCharacterShadow::getShadowScale()
 {
     return s_shadowScale;
 }

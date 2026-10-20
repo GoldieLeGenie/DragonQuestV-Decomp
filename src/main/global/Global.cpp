@@ -77,7 +77,7 @@ THUMB void Global::initialize()
 THUMB void Global::startGame()
 {
     data_0209d690.setNextPart(GAME_START_PART);
-    data_02101d14.unkfunc_020519a8(&data_0209d690);
+    data_02101d14.addPart(&data_0209d690);
     fadeOutBlack(30, true);
 }
 
@@ -85,7 +85,7 @@ THUMB void Global::startFirstTown()
 {
     setMapNameId(s_firstTownMapNameId);
     data_0209d690.setNextPart(TOWN_PART);
-    data_02101d14.unkfunc_020519a8(&data_0209d690);
+    data_02101d14.addPart(&data_0209d690);
     fadeOutBlack(30, true);
 }
 
@@ -93,7 +93,7 @@ THUMB void Global::startDebugTown()
 {
     setMapNameId(s_debugTownMapNameId);
     data_0209d690.setNextPart(TOWN_PART);
-    data_02101d14.unkfunc_020519a8(&data_0209d690);
+    data_02101d14.addPart(&data_0209d690);
     fadeOutBlack(30, true);
 }
 
@@ -101,7 +101,7 @@ THUMB void Global::startTown(int mapNameId)
 {
     setMapNameId(mapNameId);
     data_0209d690.setNextPart(TOWN_PART);
-    data_02101d14.unkfunc_020519a8(&data_0209d690);
+    data_02101d14.addPart(&data_0209d690);
     fadeOutBlack(30, true);
     partChangeFlag_ = true;
     checkFlag();
@@ -116,7 +116,7 @@ THUMB void Global::startCasino()
 {
     setMapNameId(0);
     data_0209d690.setNextPart(CASINO_PART);
-    data_02101d14.unkfunc_020519a8(&data_0209d690);
+    data_02101d14.addPart(&data_0209d690);
     fadeOutBlack(30, true);
     partChangeFlag_ = true;
 }
@@ -125,7 +125,7 @@ THUMB void Global::startSlimeRace()
 {
     setMapNameId(0);
     data_0209d690.setNextPart(SLIME_RACE_PART);
-    data_02101d14.unkfunc_020519a8(&data_0209d690);
+    data_02101d14.addPart(&data_0209d690);
     fadeOutBlack(30, true);
     partChangeFlag_ = true;
     prevPartTown_ = true;
@@ -136,7 +136,7 @@ THUMB void Global::startSlimeTouch()
 {
     setMapNameId(0);
     data_0209d690.setNextPart(SLIME_TOUCH_PART);
-    data_02101d14.unkfunc_020519a8(&data_0209d690);
+    data_02101d14.addPart(&data_0209d690);
     fadeOutBlack(30, true);
     partChangeFlag_ = true;
     prevPartTown_ = true;
@@ -147,7 +147,7 @@ THUMB void Global::startBook()
 {
     setMapNameId(0);
     data_0209d690.setNextPart(BOOK_PART);
-    data_02101d14.unkfunc_020519a8(&data_0209d690);
+    data_02101d14.addPart(&data_0209d690);
     fadeOutBlack(30, true);
     partChangeFlag_ = true;
 }
@@ -156,7 +156,7 @@ THUMB void Global::startSurechigai()
 {
     setMapNameId(0);
     data_0209d690.setNextPart(MPEXCHANGE_PART);
-    data_02101d14.unkfunc_020519a8(&data_0209d690);
+    data_02101d14.addPart(&data_0209d690);
     cmn::g_cmnPartyInfo.prevLocation_ = true;
     fadeOutBlack(30, true);
 }
@@ -245,7 +245,7 @@ THUMB void Global::startField()
 {
     setMapNameId(s_fieldMapNameId);
     data_0209d690.setNextPart(FIELD_PART);
-    data_02101d14.unkfunc_020519a8(&data_0209d690);
+    data_02101d14.addPart(&data_0209d690);
     fadeOutBlack(30, true);
     partChangeFlag_ = true;
 }
@@ -254,9 +254,9 @@ THUMB void Global::startBattle()
 {
     SoundManager::battlePlay(btl::Encount::getSingleton()->encountData_.sound_);
     cmn::PlayerManager::setLock(true);
-    currentGamePart_ = data_02101c88.unkfunc_02051810();
+    currentGamePart_ = data_02101c88.getCurrentPart();
     data_0209d690.setNextPart(BATTLE_PART);
-    data_02101d14.unkfunc_020519a8(&data_0209d690);
+    data_02101d14.addPart(&data_0209d690);
     partChangeFlag_ = true;
     SoundManager::stopSeWithIndex(0x44c, 10);
     window::gScreenEffect.effectStart(window::ScreenEffectManager::PLAY_BACK_BATTLE);
@@ -267,9 +267,9 @@ THUMB void Global::directStartBattle()
 {
     cmn::PlayerManager::setLock(true);
     SoundManager::battlePlay(10);
-    currentGamePart_ = data_02101c88.unkfunc_02051810();
+    currentGamePart_ = data_02101c88.getCurrentPart();
     data_0209d690.setNextPart(BATTLE_PART);
-    data_02101d14.unkfunc_020519a8(&data_0209d690);
+    data_02101d14.addPart(&data_0209d690);
     partChangeFlag_ = true;
     fadeOutBlack(15, true);
 }
@@ -285,7 +285,7 @@ THUMB void Global::endBattle(bool demolition)
         status::g_StageInfo.initDoorOpenFlag();
     } else if (!demolition) {
         data_0209d690.setNextPart(currentGamePart_);
-        data_02101d14.unkfunc_020519a8(&data_0209d690);
+        data_02101d14.addPart(&data_0209d690);
     } else {
         status::g_BattleResult.setDisableChurchMessage(false);
         g_GlobalFlag.clear();
@@ -318,7 +318,7 @@ THUMB void Global::startTitle()
     setMapNameId(0x2cd);
     status::g_Story.setChapter((dq5::CHAPTER_NO)4);
     data_0209d690.setNextPart(CEREMONY_PART);
-    data_02101d14.unkfunc_020519a8(&data_0209d690);
+    data_02101d14.addPart(&data_0209d690);
     fadeOutBlack(30, true);
     Sound::seStopAll(10);
     partChangeFlag_ = true;
@@ -330,7 +330,7 @@ THUMB void Global::startOpeningStaff()
     setMapNameId(0);
     status::g_Story.setChapter((dq5::CHAPTER_NO)4);
     data_0209d690.setNextPart(CEREMONY_PART);
-    data_02101d14.unkfunc_020519a8(&data_0209d690);
+    data_02101d14.addPart(&data_0209d690);
     fadeOutBlack(30, true);
     Sound::seStopAll(10);
     partChangeFlag_ = true;
@@ -342,7 +342,7 @@ THUMB void Global::startStaffroll()
     setMapNameId(0);
     status::g_Story.setChapter((dq5::CHAPTER_NO)5);
     data_0209d690.setNextPart(CEREMONY_PART);
-    data_02101d14.unkfunc_020519a8(&data_0209d690);
+    data_02101d14.addPart(&data_0209d690);
     fadeOutBlack(30, true);
     Sound::seStopAll(10);
     partChangeFlag_ = true;
@@ -354,7 +354,7 @@ THUMB void Global::startFin()
     setMapNameId(0);
     status::g_Story.setChapter((dq5::CHAPTER_NO)5);
     data_0209d690.setNextPart(CEREMONY_PART);
-    data_02101d14.unkfunc_020519a8(&data_0209d690);
+    data_02101d14.addPart(&data_0209d690);
     fadeOutBlack(30, true);
     Sound::seStopAll(10);
     partChangeFlag_ = true;
@@ -364,13 +364,13 @@ THUMB void Global::startFin()
 THUMB void Global::startLogo()
 {
     data_0209d690.setNextPart(MENU_PART);
-    data_02101d14.unkfunc_020519a8(&data_0209d690);
+    data_02101d14.addPart(&data_0209d690);
     fadeOutBlack(30, true);
 }
 
 THUMB bool Global::isNextPart(int part)
 {
-    if (part == data_02101c88.unkfunc_02051808()) {
+    if (part == data_02101c88.getNextPart()) {
         return true;
     }
     return false;
@@ -380,10 +380,10 @@ THUMB void Global::fadeOutBlack(int frame, bool flag)
 {
     if (!fadeEffector.isFadeOutBlack() && !fadeEffector.isFadeOutWhite()) {
         if (fadeEffector.isFadeInBlack()) {
-            data_02101d14.unkfunc_020519cc(&fadeEffector);
+            data_02101d14.removePart(&fadeEffector);
         }
         fadeEffector.setFadeOutBlack(frame, flag);
-        data_02101d14.unkfunc_020519a8(&fadeEffector);
+        data_02101d14.addPart(&fadeEffector);
     }
 }
 
@@ -391,26 +391,26 @@ THUMB void Global::fadeOutWhite(int frame, bool flag)
 {
     if (!fadeEffector.isFadeOutWhite()) {
         fadeEffector.setFadeOutWhite(frame, flag);
-        data_02101d14.unkfunc_020519a8(&fadeEffector);
+        data_02101d14.addPart(&fadeEffector);
     }
 }
 
 THUMB void Global::fadeInBlack(int frame)
 {
     fadeEffector.setFadeInBlack(frame);
-    data_02101d14.unkfunc_020519a8(&fadeEffector);
+    data_02101d14.addPart(&fadeEffector);
 }
 
 THUMB void Global::fadeInWhite(int frame)
 {
     fadeEffector.setFadeInWhite(frame);
-    data_02101d14.unkfunc_020519a8(&fadeEffector);
+    data_02101d14.addPart(&fadeEffector);
 }
 
 THUMB void Global::fadeIn(int frame)
 {
     fadeEffector.setFadeIn(frame);
-    data_02101d14.unkfunc_020519a8(&fadeEffector);
+    data_02101d14.addPart(&fadeEffector);
 }
 
 THUMB void Global::updateArea()
@@ -421,7 +421,7 @@ THUMB void Global::updateArea()
 
 THUMB void Global::checkFlag()
 {
-    if (unkfunc_02086e24()) {
+    if (isProtectCheckTriggered()) {
         g_LocalFlag.remove(5);
         g_AreaFlag.remove(0x70);
         g_AreaFlag.remove(0x3d);
@@ -430,14 +430,14 @@ THUMB void Global::checkFlag()
 
 THUMB void Global::checkSave1()
 {
-    if (unkfunc_02086e24()) {
+    if (isProtectCheckTriggered()) {
         g_AreaFlag.clear();
     }
 }
 
 THUMB bool Global::checkSave2()
 {
-    if (unkfunc_02086e24()) {
+    if (isProtectCheckTriggered()) {
         setPadLock(1);
         return true;
     }
@@ -447,7 +447,7 @@ THUMB bool Global::checkSave2()
 THUMB void GlobalChangePart::update()
 {
     if (fadeEffector.isFadeEnd()) {
-        data_02101c88.unkfunc_02051800(nextPart_);
+        data_02101c88.setNextPart(nextPart_);
         nextPart_ = NONE_PART;
     }
 }

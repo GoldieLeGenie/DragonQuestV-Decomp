@@ -156,7 +156,7 @@ int twn::TownCommandCoercionSort::isExec()
         data_0211b27c.frames_ = 1;
         data_0211b27c.sprite_[0].setColor(0, 0, 0);
         data_0211b27c.sprite_[1].setColor(0, 0, 0);
-        data_02101d14.unkfunc_020519a8(&data_0211b27c);
+        data_02101d14.addPart(&data_0211b27c);
         cmn::g_cmnSoundManager.setPlaySound(0x13, true);
         return true;
     }

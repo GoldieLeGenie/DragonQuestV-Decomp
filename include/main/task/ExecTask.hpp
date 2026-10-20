@@ -42,7 +42,7 @@ struct ExecTaskManager {
     virtual void initialize();
     void terminate();
     bool execute();
-    void unkfunc_0202392c();
+    void clear();
     void resister(int id, ExecTask* task);
 };
 

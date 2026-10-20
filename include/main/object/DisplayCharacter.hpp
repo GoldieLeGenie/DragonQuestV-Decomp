@@ -37,7 +37,7 @@ struct DisplayCharacter : BillboardCharacter {
     static dss::Fix32Vector3 sleepOffset_[8];
 
     int box_testx1();
-    bool unkfunc_02057098();                    // camera far from the character
+    bool isOutOfView();                    // camera far from the character
     void drawSleepCharacter();
     void drawSleep(dss::Fix32Vector3& position, UnkBillboardVertex& vertex, UnkBillboardTexCoord& texCoord);
     void execHueChange();
@@ -52,10 +52,10 @@ struct DisplayCharacter : BillboardCharacter {
     void setup(const char* name, dss::File::LoadSwitch loadSwitch);
     void cleanup();
     void unkfunc_02055a60();                    // releases the texture VRAM
-    void unkfunc_02056b80(void* data);          // sets the texture from a loaded pack
-    void unkfunc_02056b98();                    // restores the default texture
-    void unkfunc_020562e0(int flag);            // palette rgb rate on/off
-    void unkfunc_020562d0(const dss::Fix32Vector3* rate);   // palette rgb rate
+    void setTextureWithHead(void* data);          // sets the texture from a loaded pack
+    void resetTextureWithHead();                    // restores the default texture
+    void setAnimPalletFlag(int flag);            // palette rgb rate on/off
+    void setPaletteRgbRate(const dss::Fix32Vector3* rate);   // palette rgb rate
     void setShadowPos(dss::Fix32Vector3& pos);
     void setShadowAlpha(int alpha);
     void setShadowStay(int flag);

@@ -84,7 +84,7 @@ THUMB void updateDebugDisplay()
 
 THUMB int getDebugDisplaySlot()
 {
-    switch (data_02101c88.unkfunc_02051810()) {
+    switch (data_02101c88.getCurrentPart()) {
     case 4:
         return 2;
     case 6:

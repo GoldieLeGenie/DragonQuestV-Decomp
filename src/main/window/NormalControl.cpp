@@ -33,7 +33,7 @@ THUMB void window::NormalControl::execute()
 {
     if (g_Global.partChangeFlag_ == 0) {
         if (isPlayerLock()) {
-            if (data_02101c88.unkfunc_02051818(6)) {
+            if (data_02101c88.isCurrentPart(6)) {
                 fld::FieldPlayerManager::getSingleton().inputClear();
             } else {
                 twn::TownPlayerManager::getSingleton().inputClear();
@@ -47,13 +47,13 @@ THUMB void window::NormalControl::execute()
 
 THUMB void window::NormalControl::executePlayer()
 {
-    if (data_02101c88.unkfunc_02051818(6)) {
+    if (data_02101c88.isCurrentPart(6)) {
         fld::FieldPlayerManager::getSingleton().inputClear();
         if (dss::g_Pad.pad() & 0xf0) {
             fld::FieldPlayerManager::getSingleton().inputPad(dss::g_Pad.padDir());
         }
     }
-    if (data_02101c88.unkfunc_02051818(4)) {
+    if (data_02101c88.isCurrentPart(4)) {
         twn::TownPlayerManager::getSingleton().inputClear();
         if (dss::g_Pad.pad() & 0xf0) {
             twn::TownPlayerManager::getSingleton().inputPad(dss::g_Pad.padDir());
@@ -63,7 +63,7 @@ THUMB void window::NormalControl::executePlayer()
 
 THUMB void window::NormalControl::checkCamera()
 {
-    if (data_02101c88.unkfunc_02051818(4)) {
+    if (data_02101c88.isCurrentPart(4)) {
         switch ((dss::g_Pad.pad() & 0x100) | (dss::g_Pad.pad() & 0x200)) {
             case 0x300:
                 if (TownCamera::getSingleton()->isLimitRotate() != true) {

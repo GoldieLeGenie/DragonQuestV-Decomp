@@ -21,7 +21,7 @@ ARM UnkGlobalSystem::~UnkGlobalSystem()
 {
 }
 
-ARM void UnkGlobalSystem::unkfunc_020516e4(int partId)
+ARM void UnkGlobalSystem::run(int partId)
 {
     part_id_ = partId;
     markHeapBlocks(&data_020fd24c);
@@ -34,9 +34,9 @@ ARM void UnkGlobalSystem::unkfunc_020516e4(int partId)
             reportArrayError(id, 24);
         }
         currentTask_ = task_[id];
-        unkfunc_0205185c(currentTask_);
+        startTask(currentTask_);
         while (true) {
-            unkfunc_0205189c(currentTask_);
+            executeTask(currentTask_);
             if (s_hook.unk_08 != 0) {
                 s_hook.unk_08();
             }
@@ -45,7 +45,7 @@ ARM void UnkGlobalSystem::unkfunc_020516e4(int partId)
             }
             frameCount_++;
         }
-        unkfunc_02051870(currentTask_);
+        endTask(currentTask_);
         prevPartId_ = part_id_;
         part_id_ = nextPartId_;
         nextPartId_ = -1;
@@ -58,7 +58,7 @@ ARM void UnkGlobalSystem::unkfunc_020516e4(int partId)
     }
 }
 
-ARM void UnkGlobalSystem::unkfunc_020517c0(int partId, UnkGameTask* task)
+ARM void UnkGlobalSystem::registerTask(int partId, UnkGameTask* task)
 {
     if (partId >= 24) {
         reportArrayError(partId, 24);
@@ -69,47 +69,47 @@ ARM void UnkGlobalSystem::unkfunc_020517c0(int partId, UnkGameTask* task)
     task_[partId] = task;
 }
 
-ARM void UnkGlobalSystem::unkfunc_02051800(int partId)
+ARM void UnkGlobalSystem::setNextPart(int partId)
 {
     nextPartId_ = partId;
 }
 
-ARM int UnkGlobalSystem::unkfunc_02051808()
+ARM int UnkGlobalSystem::getNextPart()
 {
     return nextPartId_;
 }
 
-ARM int UnkGlobalSystem::unkfunc_02051810()
+ARM int UnkGlobalSystem::getCurrentPart()
 {
     return part_id_;
 }
 
-ARM int UnkGlobalSystem::unkfunc_02051818(int partId)
+ARM int UnkGlobalSystem::isCurrentPart(int partId)
 {
     return part_id_ == partId;
 }
 
-ARM void UnkGlobalSystem::unkfunc_0205182c(void (*func)())
+ARM void UnkGlobalSystem::setFrameHook(void (*func)())
 {
     s_hook.unk_08 = func;
 }
 
-ARM void UnkGlobalSystem::unkfunc_0205183c(void (*func)())
+ARM void UnkGlobalSystem::setTaskChangeHook(void (*func)())
 {
     s_hook.unk_04 = func;
 }
 
-ARM void UnkGlobalSystem::unkfunc_0205184c(void (*func)())
+ARM void UnkGlobalSystem::setTaskEndHook(void (*func)())
 {
     s_endHook = func;
 }
 
-ARM void UnkGlobalSystem::unkfunc_0205185c(UnkGameTask* task)
+ARM void UnkGlobalSystem::startTask(UnkGameTask* task)
 {
     task->vf00();
 }
 
-ARM void UnkGlobalSystem::unkfunc_02051870(UnkGameTask* task)
+ARM void UnkGlobalSystem::endTask(UnkGameTask* task)
 {
     task->vf04();
     if (s_endHook != 0) {
@@ -117,7 +117,7 @@ ARM void UnkGlobalSystem::unkfunc_02051870(UnkGameTask* task)
     }
 }
 
-ARM void UnkGlobalSystem::unkfunc_0205189c(UnkGameTask* task)
+ARM void UnkGlobalSystem::executeTask(UnkGameTask* task)
 {
     task->vf08();
     task->vf0c();

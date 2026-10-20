@@ -50,7 +50,7 @@ namespace args {
         virtual void onDebugPart();
         virtual void onSwapBuffersPart();
 
-        int unkfunc_02067ac0();                 // execute the part (no extra menu)
+        int canExecutePart();                 // execute the part (no extra menu)
     };
 }
 
@@ -66,16 +66,16 @@ struct GlobalGamePartManager {
 
     GlobalGamePartManager();
     ~GlobalGamePartManager();
-    void unkfunc_02051908();                    //
-    void unkfunc_02051958();                    //
-    void unkfunc_020519a8(UnkGlobalPart* part);    // add
-    void unkfunc_020519cc(UnkGlobalPart* part);    // remove
+    void updateParts();                    //
+    void drawParts();                    //
+    void addPart(UnkGlobalPart* part);    // add
+    void removePart(UnkGlobalPart* part);    // remove
 };
 
 extern GlobalGamePartManager data_02101d14;
 extern int data_0209aea0;
 
-void unkfunc_02067b00(void (*callback)());       // set the per-frame callback
+void setFrameCallback(void (*callback)());       // set the per-frame callback
 
 extern "C" {
     void ov000_entry(void);                     // called by the parts right after loading the overlay

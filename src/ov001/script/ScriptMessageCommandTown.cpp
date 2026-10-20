@@ -173,7 +173,7 @@ void Speak_to_player_self_closing::initialize(char* scriptParam)
     int ctrl = getPlacementCtrlId();
     TownCharacterManager::getSingleton()->setPlayerDirection(ctrl);
     if (getObjectCount() > ctrl) {
-        if (data_02101c88.unkfunc_02051818(4)) {
+        if (data_02101c88.isCurrentPart(4)) {
             cmn::g_talkSound.setVoice(TownCharacterManager::getSingleton()->getCharaIndex(ctrl));
         }
     } else {
@@ -315,7 +315,7 @@ void MenuShop::initialize(char* scriptParam)
     PARAM_MENU_SHOP* param = (PARAM_MENU_SHOP*)scriptParam;
     type_ = param->shop - 1;
     int ctrl = -1;
-    if (data_02101c88.unkfunc_02051818(4)) {
+    if (data_02101c88.isCurrentPart(4)) {
         ctrl = getPlacementCtrlId();
         TownCharacterManager::getSingleton()->setPlayerDirection(ctrl);
     }

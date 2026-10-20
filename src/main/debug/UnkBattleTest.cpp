@@ -160,13 +160,13 @@ THUMB void UnkBattleTest::update()
         }
         break;
     case 2:
-        if (data_02101c88.unkfunc_02051810() == 5) {
+        if (data_02101c88.getCurrentPart() == 5) {
             state_ = 3;
             counter_ = -1;
         }
         break;
     case 3:
-        if (data_02101c88.unkfunc_02051810() != 5) {
+        if (data_02101c88.getCurrentPart() != 5) {
             state_ = 4;
             counter_ = -1;
             dss::g_Pad.stopPlay();

@@ -331,7 +331,7 @@ THUMB int status::BaseActionStatus::actionTypeRebirth(CharacterStatus* target)
         target->setRebirthAnimation();
         ret = 1;
         if (target->characterType_ == MONSTER) {
-            if (data_02101c88.unkfunc_02051818(5)) {
+            if (data_02101c88.isCurrentPart(5)) {
                 for (int i = 0; i < g_Monster.getCount(); i++) {
                     if (&g_Monster.getMonsterStatus(i) == target) {
                         int deathLog = btl::BattleActorManager::getSingleton()->getDeathLog();
@@ -1390,9 +1390,9 @@ THUMB int status::BaseActionStatus::actionTypeNone(CharacterStatus* actor, Chara
         }
     }
     if (actionIndex_ == 0x86) {
-        if (data_02101c88.unkfunc_02051818(4)) {
+        if (data_02101c88.isCurrentPart(4)) {
             ret = isExecLanaruta();
-        } else if (data_02101c88.unkfunc_02051818(6)) {
+        } else if (data_02101c88.isCurrentPart(6)) {
             if (!g_StageAttribute.isLanaruta() || g_StageAttribute.isLanarutaDisable() || g_StageAttribute.timestop_ != 0) {
                 ret = 0;
             } else {
@@ -1406,11 +1406,11 @@ THUMB int status::BaseActionStatus::actionTypeNone(CharacterStatus* actor, Chara
     if (actionIndex_ == 0x14b) {
         ret = 0;
         if (g_StageInfo.getTimeZone() != 4) {
-            if (data_02101c88.unkfunc_02051818(4)) {
+            if (data_02101c88.isCurrentPart(4)) {
                 if (isExecLanaruta() && g_StageAttribute.getYami()) {
                     ret = 1;
                 }
-            } else if (data_02101c88.unkfunc_02051818(6)) {
+            } else if (data_02101c88.isCurrentPart(6)) {
                 if (!g_StageAttribute.isLanaruta() || g_StageAttribute.isLanarutaDisable() || g_StageAttribute.timestop_ != 0 ||
                     !g_StageAttribute.getYami()) {
                     ret = 0;
@@ -1435,7 +1435,7 @@ THUMB int status::BaseActionStatus::actionTypeNone(CharacterStatus* actor, Chara
     }
     if (actionIndex_ == 0x120 || actionIndex_ == 0x126) {
         ret = 0;
-        if (data_02101c88.unkfunc_02051818(6) == 1 && g_Global.getFieldType() == 0) {
+        if (data_02101c88.isCurrentPart(6) == 1 && g_Global.getFieldType() == 0) {
             ret = fld::FieldPlayerManager::getSingleton().player_.fieldActionCarpet_.isCarpetGetOnOffAttr();
         }
     }
@@ -1443,7 +1443,7 @@ THUMB int status::BaseActionStatus::actionTypeNone(CharacterStatus* actor, Chara
         ret = isExecFloomi();
     }
     if (actionIndex_ == 0x8a) {
-        if (!data_02101c88.unkfunc_02051818(4)) {
+        if (!data_02101c88.isCurrentPart(4)) {
             ret = 0;
         } else if (!twn::TownFurnitureManager::getSingleton()->searchFloorItem()) {
             ret = 0;
@@ -1451,7 +1451,7 @@ THUMB int status::BaseActionStatus::actionTypeNone(CharacterStatus* actor, Chara
     }
     if (actionIndex_ == 0x8b) {
         if (g_StageAttribute.isEncount() && btl::Encount::getSingleton()->enable_) {
-            if (data_02101c88.unkfunc_02051818(4)) {
+            if (data_02101c88.isCurrentPart(4)) {
                 if (!twn::TownPlayerManager::getSingleton().isSaveAndBattleOK()) {
                     ret = 0;
                 } else {

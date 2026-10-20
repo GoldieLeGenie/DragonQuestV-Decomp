@@ -27,10 +27,10 @@ window::ShopMenuControl window::gShopMenuControl;
 
 THUMB void window::ShopMenuControl::setup()
 {
-    if (data_02101c88.unkfunc_02051818(4)) {
+    if (data_02101c88.isCurrentPart(4)) {
         BillboardCharacter::setAllCharaAnim(false);
         twn::TownStageManager::getSingleton()->pause(1);
-    } else if (data_02101c88.unkfunc_02051818(6)) {
+    } else if (data_02101c88.isCurrentPart(6)) {
         fld::FieldStage::getSingleton()->fieldData.pause_ = 1;
         cmn::CommonParticleEmitter::getSingleton()->stop_ = 1;
         SpriteCharacter::setAllCharaAnim(false);
@@ -72,7 +72,7 @@ THUMB void window::ShopMenuControl::execute()
             }
             break;
         case RELEASE_WAIT:
-            if (data_02101c88.unkfunc_02051818(4)) {
+            if (data_02101c88.isCurrentPart(4)) {
                 twn::TownStageManager::getSingleton()->pause(0);
                 BillboardCharacter::setAllCharaAnim(true);
             } else {

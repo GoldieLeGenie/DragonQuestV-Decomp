@@ -70,7 +70,7 @@ THUMB void CsvData::load(const char* filename, int a)
     rowCount_ = row;
 }
 
-THUMB char* CsvData::unkfunc_02052314(int row, int column)
+THUMB char* CsvData::getText(int row, int column)
 {
     if (rowCount_ <= row) {
         return 0;

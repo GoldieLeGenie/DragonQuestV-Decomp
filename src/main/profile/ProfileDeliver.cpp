@@ -82,7 +82,7 @@ THUMB bool profile::Profile::deliverProfile(int no)
     deliver_PROFILE_ASSETS();
     deliver_PROFILE_PLAYER();
     deliver_PROFILE_LOCATION();
-    unkfunc_0204058c();
+    deliver_PROFILE_TAISHI();
     deliver_PROFILE_MONSTER();
     {
         status::PartyStatusData& partystatusdata = status::g_Party.partyStatusData_;
@@ -133,7 +133,7 @@ THUMB void profile::Profile::deliver_PROFILE_MONSTER()
     }
 }
 
-THUMB void profile::Profile::unkfunc_0204058c()
+THUMB void profile::Profile::deliver_PROFILE_TAISHI()
 {
     UnkProfileTaishi* pt = pTAISHI;
     status::TaishiBase* tb = status::g_MuseumStatus.othersTaishi_;

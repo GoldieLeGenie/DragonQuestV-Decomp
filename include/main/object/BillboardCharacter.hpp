@@ -32,8 +32,8 @@ struct UnkCharacterShadow : PolygonObject {
     void unkfunc_020567b0(int type);            // setup
     void unkfunc_02056824();
     static void unkfunc_02056900(int type);     // shadow type
-    static int unkfunc_02056910();              // shadow enable
-    static dss::Fix32Vector3 unkfunc_02056920();    // shadow scale
+    static int isShadowEnable();              // shadow enable
+    static dss::Fix32Vector3 getShadowScale();    // shadow scale
 };
 
 // one frame of the character animation
@@ -85,30 +85,30 @@ struct BillboardCharacter : TextureBillboard {
 
     BillboardCharacter();
     void unkfunc_0205568c(void* data);          // sets the texture from a loaded pack
-    void unkfunc_02055a34();                    // restores the default texture
-    void* unkfunc_02055a70(int index);          // texture of a direction
-    void unkfunc_02055a88(const char* name, dss::File::LoadSwitch loadSwitch);  // load
-    void unkfunc_02055ab0();                    // initialize after the data is loaded
+    void resetTexture();                    // restores the default texture
+    void* getTexture(int index);          // texture of a direction
+    void load(const char* name, dss::File::LoadSwitch loadSwitch);  // load
+    void initialize();                    // initialize after the data is loaded
     void cleanup();
     void startAnimation(int index);
-    void unkfunc_02055db8(int index);           // selects the direction texture
+    void selectDirectionTexture(int index);           // selects the direction texture
     void setCameraDirection(const dss::Fix32Vector3* direction);
-    int unkfunc_020560a4();
-    void unkfunc_020561d0(dss::Fix32 scale);    // scale by the camera distance
-    static dss::Camera* unkfunc_02056274();     // camera
+    int isVisible();
+    void scaleByCameraDistance(dss::Fix32 scale);    // scale by the camera distance
+    static dss::Camera* getBaseCamera();     // camera
 
     static void setAllCharaAnim(bool flag);
     static void setAllAnimLock(bool flag);
     static void setCamera(dss::UnkDualCameraBase* camera);
     static void setCamera(dss::Camera* camera);
     static void setChangeCameraAngle(bool flag);
-    static void unkfunc_0205647c();             // loads the character shadow texture
-    static void unkfunc_0205678c();             // releases the character shadow texture
-    static void unkfunc_0205646c();             // reloads the character shadow texture
+    static void loadShadowTexture();             // loads the character shadow texture
+    static void releaseShadowTexture();             // releases the character shadow texture
+    static void reloadShadowTexture();             // reloads the character shadow texture
     void setRotate(unsigned short direction);
     unsigned short getRotate();
     void execute();
-    void unkfunc_0205608c(int flag);            // sets or clears FLAG_ANIM
+    void setVisibleFlag(int flag);            // sets or clears FLAG_ANIM
     static bool isAllAnimation();
     void setDisplayEnable(int flag);
     bool isDisplayEnable();

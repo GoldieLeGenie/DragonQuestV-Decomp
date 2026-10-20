@@ -26,11 +26,11 @@ inline void DSSACharacterData::cleanup()
     textureData_.cleanup();
 }
 
-inline void DataCache::unkfunc_02057f24(int index)
+inline void DataCache::afterLoad(int index)
 {
 }
 
-inline void DataCache::unkfunc_02057f44(int index)
+inline void DataCache::beforeRelease(int index)
 {
 }
 
@@ -115,16 +115,16 @@ void DataCache::setup()
     char path[0x80];
     dss::sprintf(path, filePath_, indexArray_[index_]);
     data_[index_].setup(path, 1, 1);
-    unkfunc_02057f24(index_);
+    afterLoad(index_);
 }
 
 void DataCache::cleanup()
 {
-    unkfunc_02057f44(index_);
+    beforeRelease(index_);
     data_[index_].cleanup();
 }
 
-void UnkTextureDataCache::unkfunc_02057f24(int index)
+void UnkTextureDataCache::afterLoad(int index)
 {
     TextureObject* texture = (TextureObject*)data_[index].getAddr();
     texture->loadToVram(1);
@@ -132,7 +132,7 @@ void UnkTextureDataCache::unkfunc_02057f24(int index)
     data_[index_].cleanup();
 }
 
-void UnkTextureDataCache::unkfunc_02057f44(int index)
+void UnkTextureDataCache::beforeRelease(int index)
 {
     texture_[index].freeVram();
 }
@@ -151,7 +151,7 @@ GameMonsterData::~GameMonsterData()
 {
 }
 
-void GameMonsterData::unkfunc_02058098(short (*linkList)[2])
+void GameMonsterData::setLinkList(short (*linkList)[2])
 {
     s_linkList = linkList;
 }

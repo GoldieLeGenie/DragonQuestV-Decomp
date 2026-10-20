@@ -81,7 +81,7 @@ THUMB void twn::TownGlobalMap::draw()
 
 THUMB void twn::TownGlobalMap::setupPoint(int x, int y, int kind)
 {
-    if (point_[kind].unkfunc_02051b04()) {
+    if (point_[kind].isLoaded()) {
         point_[kind].unload();
     }
     point_[kind].setEnabled(true);
@@ -102,10 +102,10 @@ THUMB void twn::TownGlobalMap::setupPoint(int x, int y, int kind)
 
 THUMB void twn::TownGlobalMap::cleanupPoint()
 {
-    if (point_[0].unkfunc_02051b04()) {
+    if (point_[0].isLoaded()) {
         point_[0].unload();
     }
-    if (point_[1].unkfunc_02051b04()) {
+    if (point_[1].isLoaded()) {
         point_[1].unload();
     }
 }

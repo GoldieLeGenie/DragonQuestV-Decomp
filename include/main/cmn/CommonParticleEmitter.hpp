@@ -18,10 +18,10 @@ namespace cmn
         void unkfunc_0204500c();                // texture coordinates, vertex, texture, fade in
         void unkfunc_020451f8();                // random animation start
         void execute();
-        void unkfunc_02045278();                // animation
-        void unkfunc_020452f4();                // alpha (fade in/out)
+        void updateAnimation();                // animation
+        void updateAlpha();                // alpha (fade in/out)
         void loopBack(dss::Camera* camera);
-        bool unkfunc_0204556c(dss::Camera* camera);    // in the camera view
+        bool isInView(dss::Camera* camera);    // in the camera view
         void unkfunc_020455ec();
         bool isDelete();
     };

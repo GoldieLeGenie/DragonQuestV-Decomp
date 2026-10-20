@@ -145,9 +145,9 @@ THUMB void window::UnkScreenEffect::execute()
         if (setupTiles()) {
             flag_ |= FLAG_SETUP;
         } else {
-            if (data_02101c88.unkfunc_02051818(4)) {
+            if (data_02101c88.isCurrentPart(4)) {
                 twn::TownStageManager::getSingleton()->pause(1);
-            } else if (data_02101c88.unkfunc_02051818(6)) {
+            } else if (data_02101c88.isCurrentPart(6)) {
                 fld::FieldStage::getSingleton()->pause(1);
             }
             return;

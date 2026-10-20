@@ -80,7 +80,7 @@ THUMB void cmn::CommonEffectFlat::cleanup(int flag)
     if (!isEnable()) {
         return;
     }
-    paletteAnim_.unkfunc_02051648();
+    paletteAnim_.cleanup();
     dssaEffect_.cleanup();
     effectData_ = 0;
 }
@@ -90,7 +90,7 @@ THUMB void cmn::CommonEffectFlat::draw()
     dssaEffect_.draw();
     dssaEffect_.execute();
     if (effectData_->isPamEnable()) {
-        paletteAnim_.unkfunc_02051440();
+        paletteAnim_.execute();
     }
 }
 
@@ -115,7 +115,7 @@ THUMB void cmn::CommonEffectFlat::start()
 {
     dssaEffect_.start(0);
     if (effectData_->isPamEnable()) {
-        paletteAnim_.unkfunc_020513c0();
+        paletteAnim_.start();
     }
 }
 
@@ -139,7 +139,7 @@ THUMB void cmn::CommonEffectCubic::setup(CommonEffectData* data, int flag)
     model_.setup(data->getModelData(), flag);
     for (int i = 0; i < 4; i++) {
         if (effectData_->getAnimData(count)) {
-            model_.unkfunc_02050954(effectData_->getAnimData(count), count);
+            model_.setAnimation(effectData_->getAnimData(count), count);
             count++;
         }
     }
@@ -213,7 +213,7 @@ THUMB void cmn::CommonEffectOrtho::cleanup(int flag)
     if (!isEnable()) {
         return;
     }
-    paletteAnim_.unkfunc_02051648();
+    paletteAnim_.cleanup();
     dssaEffect_.cleanup();
     effectData_ = 0;
 }
@@ -223,7 +223,7 @@ THUMB void cmn::CommonEffectOrtho::draw()
     dssaEffect_.draw();
     dssaEffect_.execute();
     if (effectData_->isPamEnable()) {
-        paletteAnim_.unkfunc_02051440();
+        paletteAnim_.execute();
     }
 }
 
@@ -247,7 +247,7 @@ THUMB void cmn::CommonEffectOrtho::start()
 {
     dssaEffect_.start(0);
     if (effectData_->isPamEnable()) {
-        paletteAnim_.unkfunc_020513c0();
+        paletteAnim_.start();
     }
 }
 

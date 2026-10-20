@@ -140,7 +140,7 @@ THUMB void twn::TownSystem::initialize()
     BillboardCharacter::setAllAnimLock(false);
     g_Global.updateArea();
     dq5::level::levelData.setupTown();
-    BillboardCharacter::unkfunc_0205647c();
+    BillboardCharacter::loadShadowTexture();
     cmn::g_cmnSoundManager.initialize();
     args::GameSystemManager::getSingleton().clear();
     args::GameSystemManager::getSingleton().enRegister(townSystemRender_, 2, 7, true);
@@ -234,7 +234,7 @@ THUMB void twn::TownSystem::terminate()
     }
     status::g_StageInfo.setReliveCheckFlag(true);
     args::GameSystemManager::getSingleton().terminate();
-    BillboardCharacter::unkfunc_0205678c();
+    BillboardCharacter::releaseShadowTexture();
     status::Status::setFlagShopExec();
     dq5::level::levelData.cleanupTown();
     g_Global.setPartChangeFlag(false);

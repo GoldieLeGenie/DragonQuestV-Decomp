@@ -21,7 +21,7 @@ int profile::SaveLoad::asyncResult_;
 int profile::SaveLoad::asyncBank_;
 profile::CatalogView profile::SaveLoad::catalogView_[3];
 
-THUMB int profile::SaveLoad::unkfunc_02040cec(int bank)
+THUMB int profile::SaveLoad::checkbank(int bank)
 {
     unsigned char buff[0x200];
     PROFILE_SYSTEM* system = (PROFILE_SYSTEM*)buff;
@@ -183,7 +183,7 @@ THUMB bool profile::SaveLoad::killbank(int bank)
     return result;
 }
 
-THUMB bool profile::SaveLoad::unkfunc_02041078(int bank)
+THUMB bool profile::SaveLoad::verifybank(int bank)
 {
     if (!isCardOK()) {
         return false;
@@ -413,7 +413,7 @@ THUMB int profile::SaveLoad::checkBackup()
         }
     } else {
         for (int i = 0; i < 4; i++) {
-            if (!unkfunc_02041078(i)) {
+            if (!verifybank(i)) {
                 result = -2;
                 if (!killbank(i)) {
                     return -5;

@@ -32,11 +32,11 @@ struct DSSACharacter : Position {
 
     DSSACharacter();
     ~DSSACharacter();
-    void unkfunc_0205248c(DataObject* texture, DataObject* animation);
+    void setupFromData(DataObject* texture, DataObject* animation);
     void unkfunc_020524c8(TextureObject* texture, DataObject* animation);
-    void unkfunc_02052594(TextureObject* texture, const char* format, int count);
+    void setupStream(TextureObject* texture, const char* format, int count);
     void cleanup();
-    void unkfunc_02052754();
+    void updateStream();
     void draw();
     bool start(int index, int flag);
     void setAlpha(int alpha);

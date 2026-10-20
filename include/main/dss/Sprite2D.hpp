@@ -53,7 +53,7 @@ struct UnkMenuSprite {
     void unload();
     void attachRender(Render* render);
     void detachRender();                    // remove from the render
-    int unkfunc_02051b04();
+    int isLoaded();
     void setSize(int w, int h);
     void setTexCoords(int u0, int v0, int u1, int v1);
     void setPositionFix32(dss::Fix32 x, dss::Fix32 y);

@@ -28,9 +28,9 @@ THUMB void window::MessageControl::startMessage()
 
 THUMB void window::MessageControl::setup()
 {
-    if (data_02101c88.unkfunc_02051818(4)) {
+    if (data_02101c88.isCurrentPart(4)) {
         BillboardCharacter::allAnimLock = 1;
-    } else if (data_02101c88.unkfunc_02051818(6)) {
+    } else if (data_02101c88.isCurrentPart(6)) {
         back_ = SpriteCharacter::getAllCharaAnim();
         SpriteCharacter::setAllCharaAnim(false);
     }
@@ -49,7 +49,7 @@ THUMB void window::MessageControl::execute()
         case CLOSE_WAIT:
             if (MenuAPI::isMenuModeNormal()) {
                 setupIcon();
-                if (data_02101c88.unkfunc_02051818(4)) {
+                if (data_02101c88.isCurrentPart(4)) {
                     BillboardCharacter::allAnimLock = 0;
                 } else {
                     SpriteCharacter::setAllCharaAnim(back_);

@@ -298,9 +298,9 @@ THUMB void TownMenu_ITEM_USE::itemUse()
         status::g_Menu.setMenuEventFlag(true);
         close();
         gTownMenu_ROOT.stat_ = MENUBASE_STAT_OK;
-        if (data_02101c88.unkfunc_02051818(4)) {
+        if (data_02101c88.isCurrentPart(4)) {
             twn::TownPlayerManager::getSingleton().setLock(true);
-        } else if (data_02101c88.unkfunc_02051818(6)) {
+        } else if (data_02101c88.isCurrentPart(6)) {
             fld::FieldPlayerManager::getSingleton().setLock(true);
         }
         return;

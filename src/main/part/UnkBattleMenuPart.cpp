@@ -80,7 +80,7 @@ THUMB void UnkBattleMenuPart::initialize()
     cursor_ = 0;
     mode_ = 0;
     isStart_ = 0;
-    if (data_0209ce6c.unkfunc_0206da30() == 0) {
+    if (data_0209ce6c.isLoaded() == 0) {
         data_0209ce6c.unkfunc_0206da18("data/btlmap/_list.txt");
     }
     g_Global.fadeIn(30);
@@ -124,7 +124,7 @@ THUMB void UnkBattleMenuPart::onExecutePart()
         return;
     }
     isStart_ = 1;
-    dss::sprintf_s(path, sizeof(path), "data/btlmap/%s.lz", data_0209ce6c.unkfunc_0206db60());
+    dss::sprintf_s(path, sizeof(path), "data/btlmap/%s.lz", data_0209ce6c.getMapName());
     if (!dss::g_File.isExist(path, dss::File::None)) {
         return;
     }
@@ -137,7 +137,7 @@ THUMB void UnkBattleMenuPart::onExecutePart()
             btl::Encount::getSingleton()->setMonsterCount(i, count_[i]);
         }
     }
-    status::g_StageAttribute.setBtlMapName(data_0209ce6c.unkfunc_0206db60());
+    status::g_StageAttribute.setBtlMapName(data_0209ce6c.getMapName());
     g_Global.directStartBattle();
 }
 
@@ -187,18 +187,18 @@ THUMB void UnkBattleMenuPart::updateEncountMode()
         break;
     case 3:
         if (dss::g_Pad.repeat() & 0x10) {
-            data_0209ce6c.unkfunc_0206da44();
+            data_0209ce6c.nextGroup();
         }
         if (dss::g_Pad.repeat() & 0x20) {
-            data_0209ce6c.unkfunc_0206dac4();
+            data_0209ce6c.prevGroup();
         }
         break;
     case 4:
         if (dss::g_Pad.repeat() & 0x10) {
-            data_0209ce6c.unkfunc_0206db74();
+            data_0209ce6c.nextMap();
         }
         if (dss::g_Pad.repeat() & 0x20) {
-            data_0209ce6c.unkfunc_0206dbdc();
+            data_0209ce6c.prevMap();
         }
         break;
     }
@@ -247,18 +247,18 @@ THUMB void UnkBattleMenuPart::updateSelectMode()
         break;
     case 4:
         if (dss::g_Pad.repeat() & 0x10) {
-            data_0209ce6c.unkfunc_0206da44();
+            data_0209ce6c.nextGroup();
         }
         if (dss::g_Pad.repeat() & 0x20) {
-            data_0209ce6c.unkfunc_0206dac4();
+            data_0209ce6c.prevGroup();
         }
         break;
     case 5:
         if (dss::g_Pad.repeat() & 0x10) {
-            data_0209ce6c.unkfunc_0206db74();
+            data_0209ce6c.nextMap();
         }
         if (dss::g_Pad.repeat() & 0x20) {
-            data_0209ce6c.unkfunc_0206dbdc();
+            data_0209ce6c.prevMap();
         }
         break;
     }
@@ -269,8 +269,8 @@ THUMB void UnkBattleMenuPart::drawEncountMode()
     data_020f6f9c.printf(x_ + 1, y_ + 1, "2.Encount Tile : %3d", tileId_);
     char timeZone[3][8] = { "None", "Day", "Night" };
     data_020f6f9c.printf(x_ + 1, y_ + 2, "3.Time Zone    : %s", timeZone[timeZone_]);
-    data_020f6f9c.printf(x_ + 1, y_ + 3, "4.Group        : %s", data_0209ce6c.unkfunc_0206da34());
-    data_020f6f9c.printf(x_ + 1, y_ + 4, "5.Map          : %s", data_0209ce6c.unkfunc_0206db60());
+    data_020f6f9c.printf(x_ + 1, y_ + 3, "4.Group        : %s", data_0209ce6c.getGroupName());
+    data_020f6f9c.printf(x_ + 1, y_ + 4, "5.Map          : %s", data_0209ce6c.getMapName());
 }
 
 THUMB void UnkBattleMenuPart::drawSelectMode()
@@ -278,8 +278,8 @@ THUMB void UnkBattleMenuPart::drawSelectMode()
     data_020f6f9c.printf(x_ + 1, y_ + 1, "2.GROUP   : %d", group_ + 1);
     data_020f6f9c.printf(x_ + 1, y_ + 2, "3.MONSTER : m%03d", monster_[group_]);
     data_020f6f9c.printf(x_ + 1, y_ + 3, "4.COUNT   : %d", count_[group_]);
-    data_020f6f9c.printf(x_ + 1, y_ + 4, "5.Group   : %s", data_0209ce6c.unkfunc_0206da34());
-    data_020f6f9c.printf(x_ + 1, y_ + 5, "6.Map     : %s", data_0209ce6c.unkfunc_0206db60());
+    data_020f6f9c.printf(x_ + 1, y_ + 4, "5.Group   : %s", data_0209ce6c.getGroupName());
+    data_020f6f9c.printf(x_ + 1, y_ + 5, "6.Map     : %s", data_0209ce6c.getMapName());
     data_020f6f9c.printf(x_ + 0x18, y_ + 1, "m%03d(%d)", monster_[0], count_[0]);
     data_020f6f9c.printf(x_ + 0x18, y_ + 2, "m%03d(%d)", monster_[1], count_[1]);
     data_020f6f9c.printf(x_ + 0x18, y_ + 3, "m%03d(%d)", monster_[2], count_[2]);

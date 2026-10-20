@@ -5,7 +5,7 @@
 struct UnkTownPartCheck {
     UnkTownPartCheck();
     ~UnkTownPartCheck();
-    bool unkfunc_0203f2a8();
+    bool isTownPart();
 };
 
 extern UnkTownPartCheck data_020efb48;

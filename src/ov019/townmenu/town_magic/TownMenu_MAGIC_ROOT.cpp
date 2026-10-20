@@ -193,9 +193,9 @@ THUMB void TownMenu_MAGIC_ROOT::useMagic()
             status::g_Menu.setMenuEventFlag(true);
             close();
             gTownMenu_ROOT.stat_ = MENUBASE_STAT_OK;
-            if (data_02101c88.unkfunc_02051818(4)) {
+            if (data_02101c88.isCurrentPart(4)) {
                 twn::TownPlayerManager::getSingleton().setLock(true);
-            } else if (data_02101c88.unkfunc_02051818(6)) {
+            } else if (data_02101c88.isCurrentPart(6)) {
                 fld::FieldPlayerManager::getSingleton().setLock(true);
             }
             return;
@@ -213,9 +213,9 @@ THUMB void TownMenu_MAGIC_ROOT::useMagic()
         status::g_Menu.setMenuEventFlag(true);
         close();
         gTownMenu_ROOT.stat_ = MENUBASE_STAT_OK;
-        if (data_02101c88.unkfunc_02051818(4)) {
+        if (data_02101c88.isCurrentPart(4)) {
             twn::TownPlayerManager::getSingleton().setLock(true);
-        } else if (data_02101c88.unkfunc_02051818(6)) {
+        } else if (data_02101c88.isCurrentPart(6)) {
             fld::FieldPlayerManager::getSingleton().setLock(true);
         }
         return;
@@ -296,7 +296,7 @@ THUMB void TownMenu_MAGIC_ROOT::useMagicNoTarget()
     }
     for (int i = 0; i < targetCount_; i++) {
         status::UseActionMacro::setResultMacro(useActionParam.getActorCharacterStatus(), useActionParam.getTargetCharacterStatus(i), useActionParam.getActionIndex());
-        if (magicID_ == 0x8a && data_02101c88.unkfunc_02051818(6) == true) {
+        if (magicID_ == 0x8a && data_02101c88.isCurrentPart(6) == true) {
             gTownMenu_MESSAGE.addMessage(0xc424c);
             break;
         }

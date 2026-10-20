@@ -427,12 +427,12 @@ THUMB void twn::TownPartyDraw::execute()
     }
     if (getDisplayFrame() & 1) {
         for (int i = 0; i < PARTY_MAX; i++) {
-            partyCharacter_[i].unkfunc_0205608c(1);
+            partyCharacter_[i].setVisibleFlag(1);
             partyCharacter_[i].setBoxTestOff(true);
         }
     } else {
         for (int i = 0; i < PARTY_MAX; i++) {
-            partyCharacter_[i].unkfunc_0205608c(0);
+            partyCharacter_[i].setVisibleFlag(0);
             partyCharacter_[i].execute();
         }
     }
@@ -443,7 +443,7 @@ THUMB void twn::TownPartyDraw::setExcute(bool flag)
     exe_ = flag;
     if (exe_ == 0) {
         for (int i = 0; i < PARTY_MAX; i++) {
-            partyCharacter_[i].unkfunc_0205608c(1);
+            partyCharacter_[i].setVisibleFlag(1);
             partyCharacter_[i].setBoxTestOff(true);
         }
     }
@@ -468,7 +468,7 @@ THUMB void twn::TownPartyDraw::changePose(int playerIndex, int set)
         dss::sprintf_s(path, sizeof(path), "data/chr/h%03d.pack", set);
         OS_Wait();
         dataObject_[ctrl].setup(path, dq5::level::CharaData::loadSwitch_, 0);
-        partyCharacter_[ctrl].unkfunc_02056b80(dataObject_[ctrl].getAddr());
+        partyCharacter_[ctrl].setTextureWithHead(dataObject_[ctrl].getAddr());
         setPlayerSize(ctrl, set);
     }
 }

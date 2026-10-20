@@ -56,21 +56,21 @@ ARM DisplayCharacter::~DisplayCharacter()
 {
 }
 
-ARM void DisplayCharacter::unkfunc_02056b80(void* data)
+ARM void DisplayCharacter::setTextureWithHead(void* data)
 {
     unkfunc_0205568c(data);
     head_.texture_ = RenderObject::texture_;
 }
 
-ARM void DisplayCharacter::unkfunc_02056b98()
+ARM void DisplayCharacter::resetTextureWithHead()
 {
-    unkfunc_02055a34();
+    resetTexture();
     head_.texture_ = RenderObject::texture_;
 }
 
 ARM void DisplayCharacter::setup(const char* name, dss::File::LoadSwitch loadSwitch)
 {
-    unkfunc_02055a88(name, loadSwitch);
+    load(name, loadSwitch);
 
     UnkBillboardVertex vertex = *getVertex();
     UnkBillboardTexCoord texCoord = *getTexCoord();
@@ -129,14 +129,14 @@ ARM int DisplayCharacter::box_testx1()
 {
     dss::Fix32Vector3 position = *getPosition();
     position.vx.value -= 0x800;
-    unkfunc_0206b048(&position, &boxTestRotate_, &boxTestScale_, &boxTestParam_, &boxTestRate_);
+    fldBoxTest(&position, &boxTestRotate_, &boxTestScale_, &boxTestParam_, &boxTestRate_);
     int result;
     while (func_02075ff4(&result)) {
     }
     return result == 0;
 }
 
-ARM bool DisplayCharacter::unkfunc_02057098()
+ARM bool DisplayCharacter::isOutOfView()
 {
     dss::Fix32Vector3& cameraPosition = getCamera()->getPosition();
     VecFx32 vec;
@@ -149,13 +149,13 @@ ARM bool DisplayCharacter::unkfunc_02057098()
 
 ARM void DisplayCharacter::draw()
 {
-    if (!isDisplayEnable() || !unkfunc_020560a4() || !enable_ || !alpha_) {
+    if (!isDisplayEnable() || !isVisible() || !enable_ || !alpha_) {
         flag_ |= FLAG_DRAW_RESET;
         return;
     }
     execHueChange();
     if (!(flag_ & FLAG_BOX_TEST_OFF)) {
-        if (unkfunc_02057098()) {
+        if (isOutOfView()) {
             if (!((flag_ & FLAG_SLEEP) ? 1 : 0)) {
                 execute();
             }
@@ -191,8 +191,8 @@ ARM void DisplayCharacter::drawSleepCharacter()
         return;
     }
     setScale(data_02102ee4);
-    unkfunc_020561d0(data_02102ee4);
-    setCameraDirection(&unkfunc_02056274()->getDirection());
+    scaleByCameraDistance(data_02102ee4);
+    setCameraDirection(&getBaseCamera()->getDirection());
     for (int i = 0; i < SLEEP_DIRECTION; i++) {
         sleepOffset_[i].vy = sleepHeight_;
     }
@@ -257,7 +257,7 @@ ARM void DisplayCharacter::drawSleep(dss::Fix32Vector3& position, UnkBillboardVe
 
 ARM void DisplayCharacter::exec()
 {
-    dss::Fix32Vector3& cameraPosition = unkfunc_02056274()->getPosition();
+    dss::Fix32Vector3& cameraPosition = getBaseCamera()->getPosition();
     VecFx32 vec;
     vec.x = cameraPosition.vx.value - position_.vx.value;
     vec.y = cameraPosition.vy.value - position_.vy.value;
@@ -316,7 +316,7 @@ ARM bool DisplayCharacter::isHueChange()
 ARM void DisplayCharacter::setHueChange(int type, int frame)
 {
     for (int i = 0; i < 8; i++) {
-        TextureObject* texture = (TextureObject*)unkfunc_02055a70(i);
+        TextureObject* texture = (TextureObject*)getTexture(i);
         if (texture == NULL) {
             break;
         }
@@ -352,7 +352,7 @@ ARM void DisplayCharacter::execHueChange()
         unk_264 = 0;
         return;
     }
-    TextureObject* texture = (TextureObject*)unkfunc_02055a70(unk_2a8);
+    TextureObject* texture = (TextureObject*)getTexture(unk_2a8);
     unsigned short* palette;
     if (texture->flags_ & 1) {
         palette = (unsigned short*)texture->getPlttData();
@@ -372,7 +372,7 @@ ARM void DisplayCharacter::execHueChange()
         palette[i] = r + (g << 5) + (b << 10);
     }
     DC_CleanAll();
-    data_020f4f74.transferToVram(1, palette, ((TextureObject*)unkfunc_02055a70(0))->getPlttAddr(), ((TextureObject*)unkfunc_02055a70(0))->getPlttSize(), 0);
+    data_020f4f74.transferToVram(1, palette, ((TextureObject*)getTexture(0))->getPlttAddr(), ((TextureObject*)getTexture(0))->getPlttSize(), 0);
     unk_266++;
 }
 

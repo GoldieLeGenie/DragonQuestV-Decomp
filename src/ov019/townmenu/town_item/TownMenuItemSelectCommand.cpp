@@ -202,7 +202,7 @@ THUMB void TownMenuItemSelectCommand::judgeUseItem()
         return;
     }
     if (itemID_ == 0xfe) {
-        if (data_02101c88.unkfunc_02051818(6) == 1) {
+        if (data_02101c88.isCurrentPart(6) == 1) {
             close();
             cmn::g_cmnPartyInfo.prevLocation_ = 1;
             g_Global.prevPartTown_ = 0;

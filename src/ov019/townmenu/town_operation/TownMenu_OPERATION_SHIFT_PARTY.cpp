@@ -198,7 +198,7 @@ THUMB void TownMenu_OPERATION_SHIFT_PARTY::chengeChara()
     MenuStatusInfo::reorder(selectCharaAllocation_[0], selectCharaAllocation_[1], selectCharaAllocation_[2], selectCharaAllocation_[3]);
     close();
     gTownMenu_ROOT.stat_ = MENUBASE_STAT_OK;
-    if (data_02101c88.unkfunc_02051818(6) == true) {
+    if (data_02101c88.isCurrentPart(6) == true) {
         SoundManager::fieldPlay(fld::FieldSystem::getFloorBgmIndex());
     }
     status::PartyStatusUtility::resetForceReorderMember();

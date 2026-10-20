@@ -132,7 +132,7 @@ THUMB void FadeIn2::initialize(char* scriptParam)
     }
     data_0211b27c.count_ = 0;
     data_0211b27c.frames_ = frame;
-    data_02101d14.unkfunc_020519a8(&data_0211b27c);
+    data_02101d14.addPart(&data_0211b27c);
     count_ = 0;
     countFrame_ = param->frame;
 }
@@ -162,7 +162,7 @@ THUMB void FadeOut2::initialize(char* scriptParam)
         data_0211b27c.frames_ = frame;
         data_0211b27c.sprite_[0].setColor(0, 0, 0);
         data_0211b27c.sprite_[1].setColor(0, 0, 0);
-        data_02101d14.unkfunc_020519a8(&data_0211b27c);
+        data_02101d14.addPart(&data_0211b27c);
     } else {
         int frame = param->frame;
         data_0211b27c.state_ = FadeEffector::FADE_IN_BLACK;
@@ -170,7 +170,7 @@ THUMB void FadeOut2::initialize(char* scriptParam)
         data_0211b27c.frames_ = frame;
         data_0211b27c.sprite_[0].setColor(0x1F, 0x1F, 0x1F);
         data_0211b27c.sprite_[1].setColor(0x1F, 0x1F, 0x1F);
-        data_02101d14.unkfunc_020519a8(&data_0211b27c);
+        data_02101d14.addPart(&data_0211b27c);
     }
     count_ = 0;
     countFrame_ = param->frame;
@@ -229,9 +229,9 @@ THUMB bool cmd_music_pause(void* scriptParam)
 
 THUMB bool cmd_play_music_now_map(void* scriptParam)
 {
-    if (data_02101c88.unkfunc_02051818(4) == 1) {
+    if (data_02101c88.isCurrentPart(4) == 1) {
         SoundManager::townPlay(twn::TownSystem::getFloorBgmIndex());
-    } else if (data_02101c88.unkfunc_02051818(6) == 1) {
+    } else if (data_02101c88.isCurrentPart(6) == 1) {
         SoundManager::fieldPlay(7);
     }
     return true;
@@ -296,9 +296,9 @@ THUMB void PlayMusic::execute()
         soundCount_++;
     } else if (soundCount_ > playTime_) {
         if (!flag_) {
-            if (data_02101c88.unkfunc_02051818(4) == 1) {
+            if (data_02101c88.isCurrentPart(4) == 1) {
                 SoundManager::townPlay(twn::TownSystem::getFloorBgmIndex());
-            } else if (data_02101c88.unkfunc_02051818(6) == 1) {
+            } else if (data_02101c88.isCurrentPart(6) == 1) {
                 SoundManager::fieldPlay(7);
             }
         }

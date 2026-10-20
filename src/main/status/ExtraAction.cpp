@@ -272,7 +272,7 @@ THUMB bool status::isExecRiremito()
     if (g_StageInfo.riremitMap_ == 0) {
         return false;
     }
-    if (data_02101c88.unkfunc_02051818(4)) {
+    if (data_02101c88.isCurrentPart(4)) {
         return true;
     }
     return false;
@@ -280,7 +280,7 @@ THUMB bool status::isExecRiremito()
 
 THUMB bool status::isExecImpas()
 {
-    if (data_02101c88.unkfunc_02051818(4) == 1) {
+    if (data_02101c88.isCurrentPart(4) == 1) {
         int uid = twn::TownPlayerManager::getSingleton().getInpasMapObj();
         int coffer = twn::TownFurnitureManager::getSingleton()->checkCoffer(uid);
         if (uid == 0 || coffer == 0) {
@@ -305,7 +305,7 @@ THUMB bool status::isExecLanaruta()
     if (g_StageAttribute.timestop_) {
         return false;
     }
-    if (data_02101c88.unkfunc_02051818(4)) {
+    if (data_02101c88.isCurrentPart(4)) {
         if (g_StageInfo.lastFldSurface_ == -1) {
             return false;
         }
@@ -318,13 +318,13 @@ THUMB bool status::isExecLanaruta()
 
 THUMB bool status::isExecFloomi()
 {
-    if (data_02101c88.unkfunc_02051818(5)) {
+    if (data_02101c88.isCurrentPart(5)) {
         return false;
     }
-    if (data_02101c88.unkfunc_02051818(6)) {
+    if (data_02101c88.isCurrentPart(6)) {
         return false;
     }
-    data_02101c88.unkfunc_02051818(4);
+    data_02101c88.isCurrentPart(4);
     return true;
 }
 

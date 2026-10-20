@@ -58,7 +58,7 @@ void twn::TownMonsterDraw::setup(TOWN_CHARACTER& chara)
         animData_.setup(path, dq5::level::CharaData::loadSwitch_, 1);
         monster_.unkfunc_020524c8(&texture_, &animData_);
     } else {
-        monster_.unkfunc_02052594(&texture_, "data/chr/mild_c_%02d.dssa", 0x10);
+        monster_.setupStream(&texture_, "data/chr/mild_c_%02d.dssa", 0x10);
     }
     monster_.setPosition(data_.position);
     monster_.setCameraType(DSSAObjectWithCamera::Standard);
@@ -161,7 +161,7 @@ void twn::TownMonsterDraw::changePose(int pose)
 {
     monster_.cleanup();
     data_.charaIndex = pose;
-    monster_.unkfunc_0205248c(&textureData_, &animData_);
+    monster_.setupFromData(&textureData_, &animData_);
     monster_.setPosition(data_.position);
     monster_.setCameraType(DSSAObjectWithCamera::Standard);
     display_ = true;
@@ -172,7 +172,7 @@ void twn::TownMonsterDraw::restorePose()
 {
     monster_.cleanup();
     data_.charaIndex = defaultIndex_;
-    monster_.unkfunc_0205248c(&textureData_, &animData_);
+    monster_.setupFromData(&textureData_, &animData_);
     monster_.setPosition(data_.position);
     monster_.setCameraType(DSSAObjectWithCamera::Standard);
     monster_.pause(false);
@@ -182,7 +182,7 @@ void twn::TownMonsterDraw::requestReload()
 {
     int animation = monster_.getAnimation();
     monster_.cleanup();
-    monster_.unkfunc_0205248c(&textureData_, &animData_);
+    monster_.setupFromData(&textureData_, &animData_);
     monster_.setPosition(data_.position);
     monster_.setCameraType(DSSAObjectWithCamera::Standard);
     monster_.pause(false);

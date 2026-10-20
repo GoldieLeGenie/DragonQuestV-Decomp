@@ -47,7 +47,7 @@ ARM long DataObject::getSize()
     return m_size;
 }
 
-ARM int DataObject::unkfunc_0206e1fc(const char* filename, int a)
+ARM int DataObject::reload(const char* filename, int a)
 {
     return dss::g_File.loadToBuffer(filename, m_addr, a);
 }
@@ -72,7 +72,7 @@ ARM void UnkLZDataObject::setup(void* addr)
     m_addr = addr;
 }
 
-ARM void DataObject::unkfunc_0206e2c4(const char* filename, dss::File::LoadSwitch sw)
+ARM void DataObject::loadCompressed(const char* filename, dss::File::LoadSwitch sw)
 {
     m_flag |= 1;
     m_addr = dss::g_File.loadCompressed(filename, sw);

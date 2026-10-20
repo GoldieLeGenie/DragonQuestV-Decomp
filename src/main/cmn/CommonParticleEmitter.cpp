@@ -90,7 +90,7 @@ namespace cmn
     }
 } // namespace cmn
 
-static void unkfunc_02044e08(int type)
+static void loadParticleTexture(int type)
 {
     switch (type) {
         case 0:
@@ -129,7 +129,7 @@ static void unkfunc_02044e08(int type)
     }
 }
 
-static void unkfunc_02044fb0()
+static void releaseParticleTexture()
 {
     for (int i = 0; i < s_maxPattern + 1; i++) {
         unk_020f3590[i]->freeVram();
@@ -176,11 +176,11 @@ void cmn::CommonParticle::execute()
     position_.vx.value += velocity.vx.value;
     position_.vy.value += velocity.vy.value;
     position_.vz.value += velocity.vz.value;
-    unkfunc_02045278();
-    unkfunc_020452f4();
+    updateAnimation();
+    updateAlpha();
 }
 
-void cmn::CommonParticle::unkfunc_02045278()
+void cmn::CommonParticle::updateAnimation()
 {
     int maxAnim = s_maxAnim[pattern];
     if (maxAnim == 0) {
@@ -194,7 +194,7 @@ void cmn::CommonParticle::unkfunc_02045278()
     frame++;
 }
 
-void cmn::CommonParticle::unkfunc_020452f4()
+void cmn::CommonParticle::updateAlpha()
 {
     switch (phase) {
         case 0:
@@ -273,7 +273,7 @@ void cmn::CommonParticle::loopBack(dss::Camera* camera)
     }
 }
 
-bool cmn::CommonParticle::unkfunc_0204556c(dss::Camera* camera)
+bool cmn::CommonParticle::isInView(dss::Camera* camera)
 {
     VecFx32 v;
     dss::Fix32Vector3& pos = camera->getPosition();
@@ -304,7 +304,7 @@ cmn::CommonParticleEmitter* cmn::CommonParticleEmitter::getSingleton()
 
 void cmn::CommonParticleEmitter::initialize()
 {
-    if (data_02101c88.unkfunc_02051818(4)) {
+    if (data_02101c88.isCurrentPart(4)) {
         unk_00 = &TownCamera::getSingleton()->camera_;
     } else {
         unk_00 = &fld::FieldCamera::getSingleton().camera_;
@@ -371,7 +371,7 @@ void cmn::CommonParticleEmitter::setup(int type)
     dss::Fix32Vector3 pos;
     dss::Fix32Vector3 velocity;
     dss::Fix32 scl;
-    unkfunc_02044e08(type);
+    loadParticleTexture(type);
     setupParameter(type);
     stop_ = 0;
     enable_ = 1;
@@ -416,7 +416,7 @@ void cmn::CommonParticleEmitter::cleanup()
         particle_[i].unkfunc_020455ec();
     }
     dssFree(&data_020fd24c, particle_);
-    unkfunc_02044fb0();
+    releaseParticleTexture();
     enable_ = 0;
 }
 
@@ -452,7 +452,7 @@ void cmn::CommonParticleEmitter::draw()
         return;
     }
     int screen;
-    if (data_02101c88.unkfunc_02051818(4)) {
+    if (data_02101c88.isCurrentPart(4)) {
         screen = (getDisplayFrame() & 1) == 0 ? 1 : 0;
     } else {
         screen = getDisplayFrame() & 1;
@@ -462,7 +462,7 @@ void cmn::CommonParticleEmitter::draw()
         particle_[i].loopBack(&unk_00->unk_004);
     }
     for (int i = 0; i < count_; i++) {
-        if (particle_[i].unkfunc_0204556c(screen == 0 ? &unk_00->unk_004 : &unk_00->unk_074)) {
+        if (particle_[i].isInView(screen == 0 ? &unk_00->unk_004 : &unk_00->unk_074)) {
             particle_[i].setPolygonID(polygonID & 0x3f);
             particle_[i].draw();
             polygonID++;

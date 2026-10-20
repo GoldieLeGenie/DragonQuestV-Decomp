@@ -267,7 +267,7 @@ void CmdMessage::initialize(char* scriptParam)
     PARAM_MESSAGE1* param = (PARAM_MESSAGE1*)scriptParam;
     int ctrl = getPlacementCtrlId();
     if (getObjectCount() > ctrl) {
-        if (data_02101c88.unkfunc_02051818(4)) {
+        if (data_02101c88.isCurrentPart(4)) {
             cmn::g_talkSound.setVoice(TownCharacterManager::getSingleton()->getCharaIndex(ctrl));
         }
     } else {
@@ -275,7 +275,7 @@ void CmdMessage::initialize(char* scriptParam)
         ctrl = -1;
     }
     cmn::g_talkSound.setMessageSound(param->count, ctrl);
-    if (data_02101c88.unkfunc_02051818(6)) {
+    if (data_02101c88.isCurrentPart(6)) {
         fld::FieldWindowSystem::getSingleton()->openMessage(param->message, param->count);
     } else if (twn::TownWindowSystem::getSingleton().isMessageStart()) {
         for (int i = 0; i < param->count; i++) {
@@ -299,7 +299,7 @@ void CmdMessage2::initialize(char* scriptParam)
     PARAM_MESSAGE2* param = (PARAM_MESSAGE2*)scriptParam;
     int ctrl = getPlacementCtrlId();
     if (getObjectCount() > ctrl) {
-        if (data_02101c88.unkfunc_02051818(4)) {
+        if (data_02101c88.isCurrentPart(4)) {
             cmn::g_talkSound.setVoice(TownCharacterManager::getSingleton()->getCharaIndex(ctrl));
         }
     } else {
@@ -323,7 +323,7 @@ void CmdMessage2::initialize(char* scriptParam)
         count++;
     }
     cmn::g_talkSound.setMessageSound(count, ctrl);
-    if (data_02101c88.unkfunc_02051818(6)) {
+    if (data_02101c88.isCurrentPart(6)) {
         fld::FieldWindowSystem::getSingleton()->openCommonMessage();
         for (int i = 0; i < 8; i++) {
             if (mess[i] != 0) {
@@ -357,7 +357,7 @@ void CmdMessageWaitClosing::initialize(char* scriptParam)
 
 int CmdMessageWaitClosing::isEnd()
 {
-    if (data_02101c88.unkfunc_02051818(6)) {
+    if (data_02101c88.isCurrentPart(6)) {
         if (!fld::FieldWindowSystem::getSingleton()->isMessageOpen()) {
             return true;
         }
@@ -376,7 +376,7 @@ void CmdMessage2WaitClosing::initialize(char* scriptParam)
 
 int CmdMessage2WaitClosing::isEnd()
 {
-    if (data_02101c88.unkfunc_02051818(6)) {
+    if (data_02101c88.isCurrentPart(6)) {
         if (!fld::FieldWindowSystem::getSingleton()->isMessageOpen()) {
             return true;
         }
@@ -501,7 +501,7 @@ bool cmdSetMacroTargetWithDeath(void* scriptParam)
 bool cmdSetMacroMName(void* scriptParam)
 {
     PARAM_SET_MACRO_M_NAME* param = (PARAM_SET_MACRO_M_NAME*)scriptParam;
-    if (data_02101c88.unkfunc_02051818(5)) {
+    if (data_02101c88.isCurrentPart(5)) {
         TextAPI::setMACRO0(0xd, 0x60000000, param->index);
     } else {
         TextAPI::setMACRO0(0xd, 0x60000000, status::PlayerDataAll::getCtrlFromFriendMonsterIndex(param->index));
@@ -579,7 +579,7 @@ void MenuYesNo::initialize(char* scriptParam)
 
 int MenuYesNo::isEnd()
 {
-    if (data_02101c88.unkfunc_02051818(4)) {
+    if (data_02101c88.isCurrentPart(4)) {
         if (twn::TownWindowSystem::getSingleton().isMessageStart() || twn::TownWindowSystem::getSingleton().isMessageOpen()) {
             return false;
         }
@@ -632,7 +632,7 @@ void Menu_save::initialize(char* scriptParam)
     PARAM_MENU_SAVE* param = (PARAM_MENU_SAVE*)scriptParam;
     int ctrl = getPlacementCtrlId();
     MaterielMenu_WINDOW_MANAGER::getSingleton()->setSaveMenuType(param->type);
-    if (data_02101c88.unkfunc_02051818(4) == true) {
+    if (data_02101c88.isCurrentPart(4) == true) {
         window::gShopMenuControl.startMenu(0x11);
     } else {
         MaterielMenu_WINDOW_MANAGER::getSingleton()->openMaterielWindow(0x11);
@@ -703,7 +703,7 @@ void Menu_save::partyOut(int index)
 
 int Menu_save::isEnd()
 {
-    if (data_02101c88.unkfunc_02051818(4) == true) {
+    if (data_02101c88.isCurrentPart(4) == true) {
         if (window::gShopMenuControl.isMenuEnd()) {
             return true;
         }
@@ -726,7 +726,7 @@ bool cmd_random_message(void* scriptParam)
     PARAM_RANDOM_MESSAGE* param = (PARAM_RANDOM_MESSAGE*)scriptParam;
     int ctrl = getPlacementCtrlId();
     if (getObjectCount() > ctrl) {
-        if (data_02101c88.unkfunc_02051818(4)) {
+        if (data_02101c88.isCurrentPart(4)) {
             cmn::g_talkSound.setVoice(TownCharacterManager::getSingleton()->getCharaIndex(ctrl));
         }
     } else {
@@ -763,7 +763,7 @@ void MessageWithSound::initialize(char* scriptParam)
     playEnd_ = 0;
     int ctrl = getPlacementCtrlId();
     if (getObjectCount() > ctrl) {
-        if (data_02101c88.unkfunc_02051818(4)) {
+        if (data_02101c88.isCurrentPart(4)) {
             cmn::g_talkSound.setVoice(TownCharacterManager::getSingleton()->getCharaIndex(ctrl));
         }
     } else {
@@ -915,7 +915,7 @@ void ShakeMessage::initialize(char* scriptParam)
     PARAM_SHAKE_MESSAGE* param = (PARAM_SHAKE_MESSAGE*)scriptParam;
     int ctrl = getPlacementCtrlId();
     if (getObjectCount() > ctrl) {
-        if (data_02101c88.unkfunc_02051818(4)) {
+        if (data_02101c88.isCurrentPart(4)) {
             cmn::g_talkSound.setVoice(TownCharacterManager::getSingleton()->getCharaIndex(ctrl));
         }
     } else {
@@ -924,7 +924,7 @@ void ShakeMessage::initialize(char* scriptParam)
     }
     cmn::g_talkSound.setMessageSound(1, ctrl);
     s_draw->unk_9d4 = param->count;
-    if (data_02101c88.unkfunc_02051818(6)) {
+    if (data_02101c88.isCurrentPart(6)) {
         fld::FieldWindowSystem::getSingleton()->openCommonMessage();
         fld::FieldWindowSystem::getSingleton()->addCommonMessage(param->message);
     } else {
@@ -946,7 +946,7 @@ void DelayMessage::initialize(char* scriptParam)
     PARAM_DELAY_MESSAGE* param = (PARAM_DELAY_MESSAGE*)scriptParam;
     int ctrl = getPlacementCtrlId();
     if (getObjectCount() > ctrl) {
-        if (data_02101c88.unkfunc_02051818(4)) {
+        if (data_02101c88.isCurrentPart(4)) {
             cmn::g_talkSound.setVoice(TownCharacterManager::getSingleton()->getCharaIndex(ctrl));
         }
     } else {
@@ -955,7 +955,7 @@ void DelayMessage::initialize(char* scriptParam)
     }
     cmn::g_talkSound.setMessageSound(1, ctrl);
     s_draw->unk_9ec = param->frame;
-    if (data_02101c88.unkfunc_02051818(6)) {
+    if (data_02101c88.isCurrentPart(6)) {
         fld::FieldWindowSystem::getSingleton()->openCommonMessage();
         fld::FieldWindowSystem::getSingleton()->addCommonMessage(param->message);
     } else {
@@ -967,7 +967,7 @@ void DelayMessage::initialize(char* scriptParam)
 
 int DelayMessage::isEnd()
 {
-    if (data_02101c88.unkfunc_02051818(6)) {
+    if (data_02101c88.isCurrentPart(6)) {
         if (!fld::FieldWindowSystem::getSingleton()->isMessageOpen()) {
             return true;
         }
@@ -984,7 +984,7 @@ void NarrationMessage::initialize(char* scriptParam)
     PARAM_NARRATION_MESSAGE* param = (PARAM_NARRATION_MESSAGE*)scriptParam;
     int ctrl = getPlacementCtrlId();
     if (getObjectCount() > ctrl) {
-        if (data_02101c88.unkfunc_02051818(4)) {
+        if (data_02101c88.isCurrentPart(4)) {
             cmn::g_talkSound.setVoice(TownCharacterManager::getSingleton()->getCharaIndex(ctrl));
         }
     } else {
@@ -1015,7 +1015,7 @@ void NarrationMessage2::initialize(char* scriptParam)
     PARAM_NARRATION_MESSAGE2* param = (PARAM_NARRATION_MESSAGE2*)scriptParam;
     int ctrl = getPlacementCtrlId();
     if (getObjectCount() > ctrl) {
-        if (data_02101c88.unkfunc_02051818(4)) {
+        if (data_02101c88.isCurrentPart(4)) {
             cmn::g_talkSound.setVoice(TownCharacterManager::getSingleton()->getCharaIndex(ctrl));
         }
     } else {

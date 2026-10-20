@@ -159,7 +159,7 @@ ARM void Render::updateAnimations()
 {
     for (int i = 0; i < 128; i++) {
         if (animations_[i] != NULL) {
-            animations_[i]->unkfunc_0204667c();
+            animations_[i]->execute();
         }
     }
 }

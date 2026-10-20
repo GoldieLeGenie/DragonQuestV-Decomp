@@ -72,7 +72,7 @@ inline COLL_ADD_RESULT_TYPE fld::FLDObject::addExtraPolyColl(int extraNo, int po
     return coll_AddCollPoly2(extraNo, polyNo, m_coll, new_poly, &m_allocator, allocFlag);
 }
 
-static void unkfunc_0206a99c();
+static void resetGlbMatrix();
 
 static int s_drawTick;
 
@@ -118,7 +118,7 @@ void FldStage::setup(bool flag)
     m_fld.Setup(model, texture, coll, (int)*getHeap0(&data_020fd24c));
     setSepiarExecute();
     if (flag) {
-        unkfunc_0206a898();
+        dropModelTexture();
     }
     dss::Fix32Vector3 scale(1, 1, 1);
     setPaletteRgbRate(0, scale);
@@ -168,7 +168,7 @@ void FldStage::load(const char* name)
     }
 }
 
-void FldStage::unkfunc_0206a898()
+void FldStage::dropModelTexture()
 {
     NNSG3dResFileHeader* header = (NNSG3dResFileHeader*)m_model.getAddr();
     NNSG3dResTex* tex = func_02083270(header);
@@ -192,7 +192,7 @@ void FldStage::setSepiarExecute()
     if (flag_ & 1) {
         applyModelPaletteSepia(getLastModelTexture());
         m_fld.SetSepia();
-        m_fld.unkfunc_02061798(0x7fff);
+        m_fld.setShapeColor(0x7fff);
         flag_ &= ~1;
     }
 }
@@ -200,14 +200,14 @@ void FldStage::setSepiarExecute()
 void FldStage::draw()
 {
     s_drawTick = getTick();
-    unkfunc_0206a99c();
-    m_fld.unkfunc_0205f404();
-    unkfunc_0206a99c();
+    resetGlbMatrix();
+    m_fld.calc();
+    resetGlbMatrix();
     if (collisionDrawFlag_ == 0) {
         func_0208032c((VecFx32*)&scale_);
-        m_fld.unkfunc_0205f85c();
+        m_fld.draw();
     }
-    unkfunc_0206a99c();
+    resetGlbMatrix();
     s_drawTick = getTick() - s_drawTick;
 }
 
@@ -221,7 +221,7 @@ int FldStage::getDrawTick()
     return s_drawTick;
 }
 
-static void unkfunc_0206a99c()
+static void resetGlbMatrix()
 {
     VecFx32 scale = { FX32_ONE, FX32_ONE, FX32_ONE };
     VecFx32 trans = { 0, 0, 0 };
@@ -258,11 +258,11 @@ void FldStage::setMapUidOnOff(int id, int flag)
 int FldStage::eventAnim(int event, int objID)
 {
     if (objID == 0) {
-        m_fld.unkfunc_0206092c(event);
+        m_fld.setEventAnimation(event);
         return 1;
     }
     if (m_fld.getMapObjAnimFrame(objID) == m_fld.getMapObjAnimFrameMax(objID)) {
-        m_fld.unkfunc_0206092c(event);
+        m_fld.setEventAnimation(event);
         return 1;
     }
     return 0;
@@ -538,7 +538,7 @@ int FldStage::IsCommonAnimationEnd(int obj_uid)
     return true;
 }
 
-int unkfunc_0206b048(dss::Fix32Vector3* pos, dss::Fix32Vector3* rot, dss::Fix32Vector3* scale, GXBoxTestParam* box, dss::Fix32* rate)
+int fldBoxTest(dss::Fix32Vector3* pos, dss::Fix32Vector3* rot, dss::Fix32Vector3* scale, GXBoxTestParam* box, dss::Fix32* rate)
 {
     int result;
     G3_PushMtx();

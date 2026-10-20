@@ -6,7 +6,7 @@ inline bool ModelAnimation::checkFlag(int bit) const
     return (flag_ & bit) ? true : false;
 }
 
-ARM void ModelAnimation::unkfunc_020465e0(void* resource, void* model)
+ARM void ModelAnimation::setup(void* resource, void* model)
 {
     resource_ = resource;
     func_0207ebe4(&allocator_, (int)*getSystemHeap(&data_020fd24c), 4);
@@ -15,12 +15,12 @@ ARM void ModelAnimation::unkfunc_020465e0(void* resource, void* model)
     func_0207fa14(obj_, anm_, model, NULL);
 }
 
-ARM void ModelAnimation::unkfunc_02046644()
+ARM void ModelAnimation::cleanup()
 {
     func_02082da8(&allocator_, obj_);
 }
 
-ARM void ModelAnimation::unkfunc_02046658(int loop)
+ARM void ModelAnimation::start(int loop)
 {
     obj_->frame = 0;
     flag_ = 0;
@@ -29,7 +29,7 @@ ARM void ModelAnimation::unkfunc_02046658(int loop)
     }
 }
 
-ARM void ModelAnimation::unkfunc_0204667c()
+ARM void ModelAnimation::execute()
 {
     obj_->frame += FX32_ONE;
     if (obj_->frame < ((unsigned short*)obj_->resAnm)[2] << 12) {
@@ -42,7 +42,7 @@ ARM void ModelAnimation::unkfunc_0204667c()
     }
 }
 
-ARM int ModelAnimation::unkfunc_020466c4()
+ARM int ModelAnimation::isEnd()
 {
     return checkFlag(2);
 }

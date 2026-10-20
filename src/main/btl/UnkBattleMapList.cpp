@@ -22,32 +22,32 @@ THUMB void UnkBattleMapList::unkfunc_0206da18(const char* filename)
     loaded_ = 1;
 }
 
-THUMB int UnkBattleMapList::unkfunc_0206da30()
+THUMB int UnkBattleMapList::isLoaded()
 {
     return loaded_;
 }
 
-THUMB char* UnkBattleMapList::unkfunc_0206da34()
+THUMB char* UnkBattleMapList::getGroupName()
 {
-    return unkfunc_02052314(group_ + map_, 1);
+    return getText(group_ + map_, 1);
 }
 
-THUMB void UnkBattleMapList::unkfunc_0206da44()
+THUMB void UnkBattleMapList::nextGroup()
 {
     int i = 0;
-    char* name = unkfunc_02052314(group_ + map_, 1);
+    char* name = getText(group_ + map_, 1);
     while (true) {
-        if (unkfunc_02052314(group_ + map_ + i, 1) == NULL) {
+        if (getText(group_ + map_ + i, 1) == NULL) {
             return;
         }
-        if (dss::strcmp(name, unkfunc_02052314(group_ + map_ + i, 1)) != 0) {
+        if (dss::strcmp(name, getText(group_ + map_ + i, 1)) != 0) {
             map_ += i;
             unk_28 = 0;
             return;
         }
         i++;
-        char* first = unkfunc_02052314(group_, 0);
-        char* text = unkfunc_02052314(group_ + map_ + i, 0);
+        char* first = getText(group_, 0);
+        char* text = getText(group_ + map_ + i, 0);
         if (text == NULL) {
             return;
         }
@@ -57,17 +57,17 @@ THUMB void UnkBattleMapList::unkfunc_0206da44()
     }
 }
 
-THUMB void UnkBattleMapList::unkfunc_0206dac4()
+THUMB void UnkBattleMapList::prevGroup()
 {
     int i = 0;
     int offset = 0;
     if (map_ == 0) {
         return;
     }
-    char* prev = unkfunc_02052314(group_ + map_, 1);
-    char* name = unkfunc_02052314(group_, 1);
+    char* prev = getText(group_ + map_, 1);
+    char* name = getText(group_, 1);
     while (true) {
-        char* text = unkfunc_02052314(group_ + offset + i, 1);
+        char* text = getText(group_ + offset + i, 1);
         if (dss::strcmp(name, text) != 0) {
             if (dss::strcmp(prev, text) == 0) {
                 map_ = offset;
@@ -75,13 +75,13 @@ THUMB void UnkBattleMapList::unkfunc_0206dac4()
                 return;
             }
             offset += i;
-            name = unkfunc_02052314(group_ + offset, 1);
+            name = getText(group_ + offset, 1);
             i = 0;
         } else {
             i++;
         }
-        char* first = unkfunc_02052314(group_, 0);
-        char* cur = unkfunc_02052314(group_ + offset + i, 0);
+        char* first = getText(group_, 0);
+        char* cur = getText(group_ + offset + i, 0);
         if (cur == NULL) {
             return;
         }
@@ -91,33 +91,33 @@ THUMB void UnkBattleMapList::unkfunc_0206dac4()
     }
 }
 
-THUMB char* UnkBattleMapList::unkfunc_0206db60()
+THUMB char* UnkBattleMapList::getMapName()
 {
-    return unkfunc_02052314(group_ + map_ + unk_28, 2);
+    return getText(group_ + map_ + unk_28, 2);
 }
 
-THUMB void UnkBattleMapList::unkfunc_0206db74()
+THUMB void UnkBattleMapList::nextMap()
 {
-    unkfunc_02052314(group_, 0);
-    char* name = unkfunc_02052314(group_ + map_, 1);
-    if (unkfunc_02052314(group_ + map_ + unk_28 + 1, 2) == NULL) {
+    getText(group_, 0);
+    char* name = getText(group_ + map_, 1);
+    if (getText(group_ + map_ + unk_28 + 1, 2) == NULL) {
         return;
     }
-    char* next = unkfunc_02052314(group_ + map_ + unk_28 + 1, 2);
+    char* next = getText(group_ + map_ + unk_28 + 1, 2);
     if (dss::strncmp(name, next, dss::strlen(name)) == 0) {
         unk_28++;
     }
 }
 
-THUMB void UnkBattleMapList::unkfunc_0206dbdc()
+THUMB void UnkBattleMapList::prevMap()
 {
-    unkfunc_02052314(group_, 0);
-    char* name = unkfunc_02052314(group_ + map_, 1);
+    getText(group_, 0);
+    char* name = getText(group_ + map_, 1);
     int row = group_ + map_ + unk_28 - 1;
     if (row < 0) {
         return;
     }
-    char* prev = unkfunc_02052314(row, 2);
+    char* prev = getText(row, 2);
     if (dss::strncmp(name, prev, dss::strlen(name)) == 0) {
         unk_28--;
     }

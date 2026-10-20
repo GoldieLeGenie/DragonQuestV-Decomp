@@ -13,7 +13,7 @@ THUMB void fld::SpriteShipCharacter::setup(const char* name)
     SpriteCharacter::setup(name, 0x20, 0x20, 0);
     frameHeight_ = 0x18;
     frameWidth_ = 0x20;
-    unkfunc_020583ec();
+    resetFrame();
 }
 
 THUMB void fld::SpriteShipCharacter::execute()

@@ -99,7 +99,7 @@ THUMB void DebugInfo::drawPosition(int x, int y)
     dss::Fix32Vector3 position;
     short dirIdx;
     cmn::g_cmnPartyInfo.getPartyInfo(position, dirIdx);
-    if (data_02101c88.unkfunc_02051810() == 4) {
+    if (data_02101c88.getCurrentPart() == 4) {
         if (posX_ != position.vx.value) {
             posX_ = position.vx.value;
             dss::sprintf_s(posXText_, 0x20, "X:%10f", position.vx.getfloat());
@@ -140,21 +140,21 @@ THUMB void DebugInfo::drawPosition(int x, int y)
     debugPrint(x + 14, y + 1, dirText_);
     char* mapName = status::g_StageAttribute.getMapName();
     if (mapName != NULL) {
-        if (data_02101c88.unkfunc_02051810() == 4) {
+        if (data_02101c88.getCurrentPart() == 4) {
             debugConsolePrintf(x, y + 2, "%3d", g_Global.getMapNameIdByName(mapName));
             debugPrint(x + 4, y + 2, mapName);
         }
-        if (data_02101c88.unkfunc_02051810() == 6) {
+        if (data_02101c88.getCurrentPart() == 6) {
             debugConsolePrintf(x, y + 2, "---");
             debugPrint(x + 4, y + 2, mapName);
         }
     }
     debugConsolePrintf(x + 20, y + 2, "LK=%d", util::StageLink::getTownExitIndex());
     int walkCount = -1;
-    if (data_02101c88.unkfunc_02051810() == 4) {
+    if (data_02101c88.getCurrentPart() == 4) {
         walkCount = (int)twn::TownPlayerManager::getSingleton().walkCounter_ / 16;
     }
-    if (data_02101c88.unkfunc_02051810() == 6) {
+    if (data_02101c88.getCurrentPart() == 6) {
         walkCount = fld::FieldPlayerManager::getSingleton().walkCounter / 16;
     }
     debugConsolePrintf(x + 13, y + 2, "WK=%d", walkCount);

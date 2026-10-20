@@ -75,7 +75,7 @@ THUMB void status::ActionMessage::setResultMessage(int actionIndex, CharacterSta
         useActionMessage.setResultMessage(0, 0);
         return;
     }
-    if (characterStatus.getCharacterType() == MONSTER && characterStatus.getHaveStatusInfo().isDeath() && data_02101c88.unkfunc_02051818(dq5::BATTLE_PART)) {
+    if (characterStatus.getCharacterType() == MONSTER && characterStatus.getHaveStatusInfo().isDeath() && data_02101c88.isCurrentPart(dq5::BATTLE_PART)) {
         int maxCount = g_Monster.getCount();
         int index = 0;
         for (int i = 0; i < maxCount; i++) {

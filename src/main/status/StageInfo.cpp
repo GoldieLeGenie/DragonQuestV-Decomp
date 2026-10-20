@@ -463,7 +463,7 @@ THUMB void status::StageInfo::setRuraFlag(int rura)
 {
     ruraFlag_ = rura;
     if (rura == 1) {
-        if (data_02101c88.unkfunc_02051818(dq5::FIELD_PART)) {
+        if (data_02101c88.isCurrentPart(dq5::FIELD_PART)) {
             fld::FieldPlayerManager::getSingleton().setLock(true);
         } else {
             twn::TownPlayerManager::getSingleton().setLock(true);
@@ -516,7 +516,7 @@ THUMB void status::StageInfo::playerFlagClear()
 
 THUMB void status::StageInfo::saveBeforTruckDataSetup()
 {
-    if (data_02101c88.unkfunc_02051818(dq5::TOWN_PART)) {
+    if (data_02101c88.isCurrentPart(dq5::TOWN_PART)) {
         twn::TownPlayerManager::getSingleton().player_.townActionTruck_.system_.saveBeforSetup();
     } else {
         switchDataFlag_ = 0;

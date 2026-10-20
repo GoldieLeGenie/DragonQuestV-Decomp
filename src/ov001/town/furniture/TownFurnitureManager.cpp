@@ -452,7 +452,7 @@ THUMB int twn::TownFurnitureManager::searchFloorItem()
 THUMB void twn::TownFurnitureManager::setTwinklePoint()
 {
     for (int i = 0; i < floorItem_; i++) {
-        if (unkfunc_0206b048(&twinkle[i].position, &s_twinkleRot, &s_twinkleScale, &s_twinkleBox, &s_twinkleRate)) {
+        if (fldBoxTest(&twinkle[i].position, &s_twinkleRot, &s_twinkleScale, &s_twinkleBox, &s_twinkleRate)) {
             twinkle[i].enable = true;
         }
     }

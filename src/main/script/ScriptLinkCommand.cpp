@@ -71,7 +71,7 @@ THUMB bool cmd_floor_change(void* scriptParam)
     short dir = cmn::CommonCalculate::getIdxByParam(param->direction);
     cmn::g_extraMapLink.setExtraLinkTown(param->floor, pos, dir);
     ScriptSystem::getSingleton()->setEnableExecute(false);
-    if (data_02101c88.unkfunc_02051818(4)) {
+    if (data_02101c88.isCurrentPart(4)) {
         twn::TownCharacterBase::setAllEventLock(false);
         BillboardCharacter::setAllCharaAnim(true);
         TownCharacterManager::getSingleton()->restoreCharacterAnim();
@@ -90,7 +90,7 @@ THUMB bool cmd_floor_exit(void* scriptParam)
     PARAM_FLOOR_EXIT* param = (PARAM_FLOOR_EXIT*)scriptParam;
     cmn::g_extraMapLink.setExtraExitTown(param->floor, param->exitNo);
     ScriptSystem::getSingleton()->setEnableExecute(false);
-    if (data_02101c88.unkfunc_02051818(4)) {
+    if (data_02101c88.isCurrentPart(4)) {
         twn::TownCharacterBase::setAllEventLock(false);
         BillboardCharacter::setAllCharaAnim(true);
         TownCharacterManager::getSingleton()->restoreCharacterAnim();
@@ -113,10 +113,10 @@ THUMB bool cmd_set_map_link_on_off(void* scriptParam)
     } else {
         type = cmn::LINK_DEFAULT;
     }
-    if (data_02101c88.unkfunc_02051818(6)) {
+    if (data_02101c88.isCurrentPart(6)) {
         cmn::g_extraMapLink.setLinkData(param->surfaceNo, -1, type, 0, 0);
     }
-    if (data_02101c88.unkfunc_02051818(4)) {
+    if (data_02101c88.isCurrentPart(4)) {
         cmn::g_extraMapLink.setLinkData(param->surfaceNo, -1, type, g_Global.getMapNameId(), 0);
     }
     return true;
@@ -138,7 +138,7 @@ THUMB bool cmd_map_link_field_direct(void* scriptParam)
     pos.vy.value = param->posY;
     pos.vz = 0L;
     cmn::g_extraMapLink.setExtraExitField(param->symbol, pos);
-    if (data_02101c88.unkfunc_02051818(4)) {
+    if (data_02101c88.isCurrentPart(4)) {
         twn::TownCharacterBase::setAllEventLock(false);
         BillboardCharacter::setAllCharaAnim(true);
         TownCharacterManager::getSingleton()->restoreCharacterAnim();

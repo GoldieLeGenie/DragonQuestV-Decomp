@@ -144,7 +144,7 @@ THUMB void book::BookMonsterDraw::cleanup()
 {
     CharacterPalette* palette = &character_.palette_;
     if (palette->enable_) {
-        paletteAnim_.unkfunc_02051648();
+        paletteAnim_.cleanup();
         palette->enable_ = 0;
         dataObject_.cleanup();
     }

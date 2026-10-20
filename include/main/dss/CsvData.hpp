@@ -21,5 +21,5 @@ struct CsvData {
     ~CsvData();
     void loadText(const char* filename, int a);
     void load(const char* filename, int a);
-    char* unkfunc_02052314(int row, int column);
+    char* getText(int row, int column);
 };

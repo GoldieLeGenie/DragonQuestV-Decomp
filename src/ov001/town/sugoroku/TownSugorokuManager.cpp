@@ -394,7 +394,7 @@ void twn::TownSugorokuManager::draw()
         num = dss::clamp<int>(1, num, 6);
         diceAnim_.drawNumber(num);
     }
-    if (shopSprite_.unkfunc_02051b04()) {
+    if (shopSprite_.isLoaded()) {
         setupOrtho2D();
         shopSprite_.draw();
     }
@@ -698,7 +698,7 @@ void twn::TownSugorokuManager::setShopDraw(int type)
 
 void twn::TownSugorokuManager::clearShopDraw()
 {
-    if (shopSprite_.unkfunc_02051b04()) {
+    if (shopSprite_.isLoaded()) {
         shopSprite_.unload();
     }
 }

@@ -210,7 +210,7 @@ int twn::TownMessageCommand::isEnd()
             }
             data_0211b27c.count_ = 0;
             data_0211b27c.frames_ = 30;
-            data_02101d14.unkfunc_020519a8(&data_0211b27c);
+            data_02101d14.addPart(&data_0211b27c);
             status::g_StageInfo.setReliveMessageFlag(false);
             SoundManager::townPlay(TownSystem::getFloorBgmIndex());
         }

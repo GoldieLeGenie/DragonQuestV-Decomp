@@ -139,7 +139,7 @@ ARM void args::GamePart::vf10()
         updateDisplay();
         flushVramRequests();
     }
-    data_02101d14.unkfunc_02051958();
+    data_02101d14.drawParts();
     s_endLine = GX_GetVCount();
 }
 
@@ -150,7 +150,7 @@ ARM void args::GamePart::vf0c()
     s_lineLog[index][0] = GX_GetVCount();
     func_020624d8();
     TextAPI::execute();
-    if (unkfunc_02067ac0()) {
+    if (canExecutePart()) {
         onExecutePart();
         unkfunc_02067a58();
     }
@@ -168,7 +168,7 @@ ARM void args::GamePart::vf0c()
     onDebugPart();
     s_tickLog[index][4] = getTick();
     s_lineLog[index][4] = GX_GetVCount();
-    data_02101d14.unkfunc_02051908();
+    data_02101d14.updateParts();
     data_02101584.update();
     s_tickLog[index][5] = getTick();
     s_lineLog[index][5] = GX_GetVCount();
@@ -221,7 +221,7 @@ ARM static void updateRenderedLines()
     s_renderedLines = REG_RDLINES_COUNT;
 }
 
-ARM int args::GamePart::unkfunc_02067ac0()
+ARM int args::GamePart::canExecutePart()
 {
     return MenuManager::isExtraMenu() == 0;
 }
@@ -233,7 +233,7 @@ ARM void args::GamePart::onSwapBuffersPart()
     OS_RestoreIME(enable);
 }
 
-ARM void unkfunc_02067b00(void (*callback)())
+ARM void setFrameCallback(void (*callback)())
 {
     s_callback = callback;
 }

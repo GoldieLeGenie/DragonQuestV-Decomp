@@ -10,9 +10,9 @@ THUMB UnkTownPartCheck::~UnkTownPartCheck()
 {
 }
 
-THUMB bool UnkTownPartCheck::unkfunc_0203f2a8()
+THUMB bool UnkTownPartCheck::isTownPart()
 {
-    if (data_02101c88.unkfunc_02051818(4)) {
+    if (data_02101c88.isCurrentPart(4)) {
         return true;
     }
     return false;

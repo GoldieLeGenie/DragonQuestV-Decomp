@@ -51,7 +51,7 @@ struct SpriteCharacter : Sprite2D {
     virtual void execute();
     void setup(const char* name, int width, int height, int flag);
     void cleanup();
-    void unkfunc_020583ec();
+    void resetFrame();
     void unkfunc_0205833c(int width, int height);
     void unkfunc_0205853c(int dir);             // shows the texture of a direction
     void setPosition(int x, int y);

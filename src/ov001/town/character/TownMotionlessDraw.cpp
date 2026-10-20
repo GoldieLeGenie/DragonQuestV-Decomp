@@ -42,7 +42,7 @@ void twn::TownMotionlessDraw::setup(TOWN_CHARACTER& chara)
 {
     TownCharacterBase::setup(chara);
     readData();
-    motionless_.unkfunc_02049134(data_.position);
+    motionless_.setModelPosition(data_.position);
     dirIdx_ = 0;
     display_ = true;
     modelIdx3d_.set(0, 0, 0);
@@ -90,7 +90,7 @@ void twn::TownMotionlessDraw::changePose(int set)
     motionless_.vf04();
     data_.charaIndex = set;
     readData();
-    motionless_.unkfunc_02049134(data_.position);
+    motionless_.setModelPosition(data_.position);
     dirIdx_ = 0;
     display_ = true;
     modelIdx3d_.set(0, 0, 0);
@@ -101,20 +101,20 @@ void twn::TownMotionlessDraw::restorePose()
     motionless_.vf04();
     data_.charaIndex = defaultIndex_;
     readData();
-    motionless_.unkfunc_02049134(data_.position);
+    motionless_.setModelPosition(data_.position);
 }
 
 void twn::TownMotionlessDraw::requestReload()
 {
     motionless_.vf04();
     readData();
-    motionless_.unkfunc_02049134(data_.position);
+    motionless_.setModelPosition(data_.position);
 }
 
 void twn::TownMotionlessDraw::setScale(dss::Fix32 scale)
 {
     dss::Fix32Vector3 scl(scale, scale, scale);
-    motionless_.unkfunc_02049124(scl);
+    motionless_.setModelScale(scl);
 }
 
 void twn::TownMotionlessDraw::setPosition(dss::Fix32Vector3& target)
@@ -122,12 +122,12 @@ void twn::TownMotionlessDraw::setPosition(dss::Fix32Vector3& target)
     dss::Fix32Vector3 nowPos = getPosition();
     TownExtraCollManager::getSingleton().addMoveColl(data_.ctrlNo, type_, nowPos, target);
     data_.position = target;
-    motionless_.unkfunc_02049134(target);
+    motionless_.setModelPosition(target);
 }
 
 void twn::TownMotionlessDraw::setRotation(dss::Vector3<short>& rot)
 {
-    motionless_.unkfunc_02049144(rot);
+    motionless_.setModelRotation(rot);
 }
 
 dss::Fix32Vector3 twn::TownMotionlessDraw::getPosition()

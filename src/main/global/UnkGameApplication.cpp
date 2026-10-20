@@ -178,7 +178,7 @@ ARM void UnkGameApplication::vf00()
     SoundManager::initialize((void*)"data/sound/sound_data.sdat", dssAlloc(&data_020fd24c, 0xb0400, 0x20), 0xb0400, 0, 0x5a, 0x5b, data_02093480);
     vf0c();
     vf08();
-    unkfunc_02008d5c();
+    initGameManagers();
     setArrayErrorEnabled(2);
 }
 
@@ -217,31 +217,31 @@ ARM void UnkGameApplication::vf08()
 ARM void UnkGameApplication::vf0c()
 {
     data_0209aea0 = 0;
-    data_02101c88.unkfunc_020517c0(TITLE_PART, &data_0209cf9c);
-    data_02101c88.unkfunc_020517c0(BOOK_PART, &g_BookPart);
-    data_02101c88.unkfunc_020517c0(CASINO_PART, &g_CasinoPart);
-    data_02101c88.unkfunc_020517c0(SLIME_RACE_PART, &g_SlimeRacePart);
-    data_02101c88.unkfunc_020517c0(SLIME_TOUCH_PART, &g_SlimeTouchPart);
-    data_02101c88.unkfunc_020517c0(MENU_PART, &data_0209cfd0);
-    data_02101c88.unkfunc_020517c0(CEREMONY_PART, &g_CeremonyPart);
-    data_02101c88.unkfunc_020517c0(GAME_START_PART, &g_GameStartPart);
-    data_02101c88.unkfunc_020517c0(TOWN_PART, &g_TownPart);
-    data_02101c88.unkfunc_020517c0(BATTLE_PART, &g_BattlePart);
-    data_02101c88.unkfunc_020517c0(FIELD_PART, &g_FieldPart);
-    data_02101c88.unkfunc_020517c0(BATTLE_MENU_PART, &data_0209cf54);
-    data_02101c88.unkfunc_020517c0(CARDCHECK_PART, &g_CardCheckPart);
-    data_02101c88.unkfunc_020517c0(GAME_END_PART, &g_GameEndPart);
-    data_02101c88.unkfunc_020517c0(MPEXCHANGE_PART, &g_MPExchangePart);
-    UnkGlobalSystem::unkfunc_0205183c(unkfunc_02008e54);
-    UnkGlobalSystem::unkfunc_0205182c(unkfunc_02008e6c);
-    UnkGlobalSystem::unkfunc_0205184c(unkfunc_02008e84);
-    unkfunc_02067b00(unkfunc_02008e98);
+    data_02101c88.registerTask(TITLE_PART, &data_0209cf9c);
+    data_02101c88.registerTask(BOOK_PART, &g_BookPart);
+    data_02101c88.registerTask(CASINO_PART, &g_CasinoPart);
+    data_02101c88.registerTask(SLIME_RACE_PART, &g_SlimeRacePart);
+    data_02101c88.registerTask(SLIME_TOUCH_PART, &g_SlimeTouchPart);
+    data_02101c88.registerTask(MENU_PART, &data_0209cfd0);
+    data_02101c88.registerTask(CEREMONY_PART, &g_CeremonyPart);
+    data_02101c88.registerTask(GAME_START_PART, &g_GameStartPart);
+    data_02101c88.registerTask(TOWN_PART, &g_TownPart);
+    data_02101c88.registerTask(BATTLE_PART, &g_BattlePart);
+    data_02101c88.registerTask(FIELD_PART, &g_FieldPart);
+    data_02101c88.registerTask(BATTLE_MENU_PART, &data_0209cf54);
+    data_02101c88.registerTask(CARDCHECK_PART, &g_CardCheckPart);
+    data_02101c88.registerTask(GAME_END_PART, &g_GameEndPart);
+    data_02101c88.registerTask(MPEXCHANGE_PART, &g_MPExchangePart);
+    UnkGlobalSystem::setTaskChangeHook(resetGame);
+    UnkGlobalSystem::setFrameHook(countPlayTime);
+    UnkGlobalSystem::setTaskEndHook(clearPartChangeFlag);
+    setFrameCallback(updateSound);
     data_02101c88.unk_78 = 0;
 }
 
-ARM void UnkGameApplication::unkfunc_02008d5c()
+ARM void UnkGameApplication::initGameManagers()
 {
-    GameMonsterData::unkfunc_02058098(LinkList);
+    GameMonsterData::setLinkList(LinkList);
     data_0209ce6c.unkfunc_0206da18("data/btlmap/_list.txt");
     changeDisplayPlugin(&dss::g_DISPLAYPLUGIN_SINGLE3D);
     dq5::level::levelData.setup();
@@ -272,30 +272,30 @@ ARM void UnkGameApplication::unkfunc_02008d5c()
     status::Status::initialize_character();
     util::StageLink::initialize();
     btl::Encount::getSingleton()->enable_ = 1;
-    unkfunc_02086df0();
+    runProtectCheck();
 }
 
 ARM void UnkGameApplication::vf14()
 {
 }
 
-ARM void UnkGameApplication::unkfunc_02008e54()
+ARM void UnkGameApplication::resetGame()
 {
     g_Global.initialize();
     status::Status::initialize_character();
 }
 
-ARM void UnkGameApplication::unkfunc_02008e6c()
+ARM void UnkGameApplication::countPlayTime()
 {
     status::g_Game.addPlayTime(1);
 }
 
-ARM void UnkGameApplication::unkfunc_02008e84()
+ARM void UnkGameApplication::clearPartChangeFlag()
 {
     g_Global.partChangeFlag_ = 0;
 }
 
-ARM void UnkGameApplication::unkfunc_02008e98()
+ARM void UnkGameApplication::updateSound()
 {
     SoundManager::update();
 }
