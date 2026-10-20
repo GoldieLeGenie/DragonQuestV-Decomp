@@ -20,7 +20,7 @@ THUMB fld::FieldShipDraw::~FieldShipDraw()
 THUMB void fld::FieldShipDraw::initialize()
 {
     nami_.setup("data/chr/h303.pack");
-    nami_.unk_28 = 4;
+    nami_.depth_ = 4;
     nami_.setDirection(4);
     nami_.setShadowFlag(0);
 }
@@ -33,7 +33,7 @@ THUMB void fld::FieldShipDraw::terminate()
 THUMB void fld::FieldShipDraw::setup()
 {
     ship_.setup("data/chr/h302.pack", 0x28, 0x20, 0);
-    ship_.unk_28 = 2;
+    ship_.depth_ = 2;
     ship_.setDirection(4);
     ship_.setShadowFlag(0);
     ship_.setAnimFlag(0);
@@ -80,7 +80,7 @@ THUMB void fld::FieldShipDraw::setDrawPosition(int posX, int posY)
 
 THUMB void fld::FieldShipDraw::setDepth(int d)
 {
-    ship_.unk_28 = d;
+    ship_.depth_ = d;
 }
 
 THUMB void fld::FieldShipDraw::setShadowWH(int x, int y)
@@ -115,5 +115,5 @@ THUMB void fld::FieldShipDraw::setShadowFlag(int flag)
 
 THUMB void fld::FieldShipDraw::setShadowDepth(int depth)
 {
-    ship_.shadow_.unk_28 = depth;
+    ship_.shadow_.depth_ = depth;
 }

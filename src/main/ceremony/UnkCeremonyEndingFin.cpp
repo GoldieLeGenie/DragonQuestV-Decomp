@@ -35,7 +35,7 @@ THUMB void ceremony::UnkCeremonyEndingFin::initialize()
     sprite_.unkfunc_02047e88(0x48, 0x20);
     sprite_.unkfunc_02047ecc(0, 0, 0x80, 0x60);
     sprite_.unkfunc_02047ec0(0x80, 0x60);
-    sprite_.unk_2c = 1;
+    sprite_.screens_ = 1;
     enable_ = true;
 }
 

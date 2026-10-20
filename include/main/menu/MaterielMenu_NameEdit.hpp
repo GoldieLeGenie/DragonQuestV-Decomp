@@ -64,7 +64,7 @@ struct MaterielMenu_NameEdit : menu::MenuBase {
     };
 
     menu::MenuItem menuItem_;                   // 0x1C
-    int unk_80;                                 // 0x80
+    int language_;                                 // 0x80
     INPUT_TYPE inputType_;                      // 0x84
     int unk_88;                                 // 0x88
     int unk_8C;                                 // 0x8C

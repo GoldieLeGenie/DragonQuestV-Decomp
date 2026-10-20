@@ -7,7 +7,7 @@ ARM VramTransferManager::VramTransferManager()
 {
     unk_00 = 0;
     unk_810 = 0;
-    unk_814 = 1;
+    vblankTransfer_ = 1;
 }
 
 ARM VramTransferManager::~VramTransferManager()
@@ -26,7 +26,7 @@ ARM void VramTransferManager::unkfunc_0204a53c(int texSize, int plttSize)
 {
     texSize_ = texSize;
     unk_00 = 0;
-    unk_04 = 0;
+    plttUsed_ = 0;
     unk_08 = texSize;
     func_02086aa4(texSize, 0, data_020f5f8c, func_02086aa0(0x80), 1);
     if (texSize_ == 0x40000) {
@@ -65,14 +65,14 @@ ARM int VramTransferManager::getTexVramSize(unsigned int handle)
 ARM int VramTransferManager::allocPlttVram(int size)
 {
     int handle = (*data_0209c790)(size, 0, 0);
-    unk_04 += size;
+    plttUsed_ += size;
     return handle;
 }
 
 ARM void VramTransferManager::freePlttVram(unsigned int handle)
 {
     (*data_0209c794)(handle);
-    unk_04 -= getPlttVramSize(handle);
+    plttUsed_ -= getPlttVramSize(handle);
 }
 
 ARM int VramTransferManager::getPlttVramAddr(unsigned int handle)
@@ -87,7 +87,7 @@ ARM int VramTransferManager::getPlttVramSize(unsigned int handle)
 
 ARM void VramTransferManager::transferToVram(int type, void* src, int address, unsigned int size, int flag)
 {
-    if (unk_814 != 0) {
+    if (vblankTransfer_ != 0) {
         func_020867d0(type, address, src, size);
         if (flag != 0) {
             doTransfers();

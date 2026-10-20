@@ -37,12 +37,12 @@ THUMB void BattleMenu_ARRAYMENU::menuSetup()
     gBattleMenuSub_HISTORY.update_ = 1;
     gBattleMenuSub_HISTORY.select_ = 0;
     BattleMenuPlayerControl::getSingleton()->activeChara_ = -1;
-    unk_1c = 0;
+    cursorPos_ = 0;
 }
 
 THUMB void BattleMenu_ARRAYMENU::menuExecute()
 {
-    unkfunc_02175afc(&menuItem_, unk_1c);
+    unkfunc_02175afc(&menuItem_, cursorPos_);
     unkfunc_02175a5c(&cancelItem_);
 }
 
@@ -113,7 +113,7 @@ THUMB void BattleMenu_ARRAYMENU::menuUpdate()
     menuItem_.execInput();
     switch (menuItem_.result_) {
     case menu::MenuItem::MENUITEM_RESULT_CHANGE:
-        unk_1c = menuItem_.active_;
+        cursorPos_ = menuItem_.active_;
         break;
     case menu::MenuItem::MENUITEM_RESULT_OK:
         menuItem_.result_ = 0;
@@ -122,11 +122,11 @@ THUMB void BattleMenu_ARRAYMENU::menuUpdate()
         changeUpdate();
         break;
     case menu::MenuItem::MENUITEM_RESULT_LEFT:
-        unk_1c = 1;
+        cursorPos_ = 1;
         menuItem_.active_ = 1;
         break;
     case menu::MenuItem::MENUITEM_RESULT_RIGHT:
-        unk_1c = 0;
+        cursorPos_ = 0;
         menuItem_.active_ = 0;
         break;
     }

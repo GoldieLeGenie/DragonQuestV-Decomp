@@ -184,7 +184,7 @@ THUMB void ceremony::CeremonyEndingSystem::execute()
                     rollSprite_[page].enable_ = 1;
                     rollTexture_[page]->unkfunc_02049e9c(0);
                 }
-                rollSprite_[page].unk_2c = 3;
+                rollSprite_[page].screens_ = 3;
                 rollSprite_[page].unkfunc_02047ecc(0, 0, 0x100, 0xc0);
                 rollSprite_[page].unkfunc_02047ec0(0x100, 0xc0);
             }

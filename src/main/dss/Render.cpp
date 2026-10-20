@@ -20,29 +20,29 @@ ARM Render::Render()
 
 ARM void Render::unkfunc_02048860()
 {
-    unk_000 = NULL;
+    camera_ = NULL;
     for (int i = 0; i < 32; i++) {
         unk_004[i] = NULL;
     }
     for (int i = 0; i < 64; i++) {
-        unk_084[i] = NULL;
+        objects_[i] = NULL;
     }
     for (int i = 0; i < 128; i++) {
-        unk_204[i] = NULL;
+        animations_[i] = NULL;
     }
 }
 
 ARM void Render::unkfunc_020488b4()
 {
-    unk_000 = NULL;
+    camera_ = NULL;
     for (int i = 0; i < 32; i++) {
         unk_004[i] = NULL;
     }
     for (int i = 0; i < 64; i++) {
-        unk_084[i] = NULL;
+        objects_[i] = NULL;
     }
     for (int i = 0; i < 128; i++) {
-        unk_204[i] = NULL;
+        animations_[i] = NULL;
     }
 }
 
@@ -99,8 +99,8 @@ ARM void Render::unkfunc_02048aa4(UnkRenderModel* model)
 
 ARM void Render::unkfunc_02048ad0()
 {
-    if (unk_000 != NULL) {
-        unk_000->applyCamera();
+    if (camera_ != NULL) {
+        camera_->applyCamera();
     }
 }
 
@@ -117,8 +117,8 @@ ARM void Render::unkfunc_02048ae8()
 ARM void Render::unkfunc_02048b24(RenderObject* object)
 {
     for (int i = 0; i < 64; i++) {
-        if (unk_084[i] == NULL) {
-            unk_084[i] = object;
+        if (objects_[i] == NULL) {
+            objects_[i] = object;
             return;
         }
     }
@@ -127,8 +127,8 @@ ARM void Render::unkfunc_02048b24(RenderObject* object)
 ARM void Render::unkfunc_02048b4c(RenderObject* object)
 {
     for (int i = 0; i < 64; i++) {
-        if (unk_084[i] != NULL && unk_084[i] == object) {
-            unk_084[i] = NULL;
+        if (objects_[i] != NULL && objects_[i] == object) {
+            objects_[i] = NULL;
             return;
         }
     }
@@ -137,15 +137,15 @@ ARM void Render::unkfunc_02048b4c(RenderObject* object)
 ARM void Render::unkfunc_02048b80()
 {
     for (int i = 0; i < 64; i++) {
-        if (unk_084[i] != NULL) {
-            unk_084[i]->draw();
+        if (objects_[i] != NULL) {
+            objects_[i]->draw();
         }
     }
 }
 
 ARM void Render::unkfunc_02048bb8()
 {
-    if (unk_000 == NULL) {
+    if (camera_ == NULL) {
         return;
     }
     for (int i = 0; i < 32; i++) {
@@ -158,8 +158,8 @@ ARM void Render::unkfunc_02048bb8()
 ARM void Render::unkfunc_02048bfc()
 {
     for (int i = 0; i < 128; i++) {
-        if (unk_204[i] != NULL) {
-            unk_204[i]->unkfunc_0204667c();
+        if (animations_[i] != NULL) {
+            animations_[i]->unkfunc_0204667c();
         }
     }
 }
@@ -167,8 +167,8 @@ ARM void Render::unkfunc_02048bfc()
 ARM void Render::unkfunc_02048c2c(RenderObject* object)
 {
     for (int i = 0; i < 128; i++) {
-        if (unk_404[i] == NULL) {
-            unk_404[i] = object;
+        if (sprites_[i] == NULL) {
+            sprites_[i] = object;
             return;
         }
     }
@@ -177,9 +177,9 @@ ARM void Render::unkfunc_02048c2c(RenderObject* object)
 ARM void Render::unkfunc_02048c54(RenderObject* object)
 {
     for (int i = 0; i < 128; i++) {
-        if (unk_404[i] != NULL) {
-            if (unk_404[i] == object) {
-                unk_404[i] = NULL;
+        if (sprites_[i] != NULL) {
+            if (sprites_[i] == object) {
+                sprites_[i] = NULL;
                 return;
             }
         }
@@ -190,8 +190,8 @@ ARM void Render::unkfunc_02048c88()
 {
     setupOrtho2D();
     for (int i = 0; i < 128; i++) {
-        if (unk_404[i] != NULL) {
-            unk_404[i]->draw();
+        if (sprites_[i] != NULL) {
+            sprites_[i]->draw();
         }
     }
 }

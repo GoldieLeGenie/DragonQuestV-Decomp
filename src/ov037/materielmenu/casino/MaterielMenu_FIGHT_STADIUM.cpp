@@ -90,8 +90,8 @@ THUMB void MaterielMenu_FIGHT_STADIUM::menuSetup()
     }
     unk_104 = 0;
     m_bDispCoin = 0;
-    unk_f8 = 0;
-    unk_f5 = 0;
+    blink_ = 0;
+    blinkCount_ = 0;
     ui_MsgSndSet(0x32);
 }
 
@@ -113,16 +113,16 @@ THUMB void MaterielMenu_FIGHT_STADIUM::menuDraw()
         unkfunc_0202a0d0(g_StadiumData.betCoin_, 0, 0x18, show);
         unkfunc_02029fc8(status_ == FIGHT_STADIUM_BET || unk_104 != 0);
         if (m_bDispCoin != 0) {
-            if (unk_f8 != 0) {
-                if (unk_f5 > 15) {
+            if (blink_ != 0) {
+                if (blinkCount_ > 15) {
                     menuItem_.drawActive();
                 }
-                if (unk_f5 == 0 || unk_f5 == 16) {
+                if (blinkCount_ == 0 || blinkCount_ == 16) {
                     redraw_ = 1;
                 }
-                unk_f5++;
-                if (unk_f5 > 30) {
-                    unk_f5 = 0;
+                blinkCount_++;
+                if (blinkCount_ > 30) {
+                    blinkCount_ = 0;
                 }
             }
             else {
@@ -328,12 +328,12 @@ THUMB void MaterielMenu_FIGHT_STADIUM::monsterListUpdate()
     if (!gTownMenu_MESSAGE.isOpen()) {
         return;
     }
-    int prev = unk_fc;
-    unk_fc = gTownMenu_MESSAGE.isMessageWAITPROG();
-    if (unk_fc == 0) {
+    int prev = waitProg_;
+    waitProg_ = gTownMenu_MESSAGE.isMessageWAITPROG();
+    if (waitProg_ == 0) {
         return;
     }
-    if (prev == 0 && unk_fc != 0) {
+    if (prev == 0 && waitProg_ != 0) {
         int active = monsterItem_.active_;
         monsterItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD_CANCEL, menu::MenuItem::CURSORTYPE_ACTIVE);
         monsterItem_.active_ = active;
@@ -404,20 +404,20 @@ THUMB void MaterielMenu_FIGHT_STADIUM::coinUpdate()
     if (!gTownMenu_MESSAGE.isOpen()) {
         return;
     }
-    int prev = unk_fc;
-    unk_fc = gTownMenu_MESSAGE.isMessageWAITPROG();
-    if (unk_fc == 0) {
+    int prev = waitProg_;
+    waitProg_ = gTownMenu_MESSAGE.isMessageWAITPROG();
+    if (waitProg_ == 0) {
         return;
     }
-    if (prev == 0 && unk_fc != 0) {
-        unk_f8 = 1;
+    if (prev == 0 && waitProg_ != 0) {
+        blink_ = 1;
         m_bDispCoin = 1;
         redraw_ = 1;
     }
     menuItem_.execInput();
     int result = menuItem_.result_;
     if (result != 0) {
-        unk_f8 = 0;
+        blink_ = 0;
     }
     switch (result) {
         case menu::MenuItem::MENUITEM_RESULT_CANCEL:

@@ -17,13 +17,13 @@ namespace casino {
     struct PokerCard {
         static const int MAX_FRAME = 30;
 
-        PokerCardPolygon unk_000;               // 0x000 front
-        PokerCardPolygon unk_088;               // 0x088 back
-        PokerCardPolygon unk_110;               // 0x110 effect
-        PokerCardPolygon unk_198;               // 0x198 effect base
+        PokerCardPolygon m_front_polygon;               // 0x000 front
+        PokerCardPolygon m_back_polygon;               // 0x088 back
+        PokerCardPolygon m_shine_polygon;               // 0x110 effect
+        PokerCardPolygon m_glow_polygon;               // 0x198 effect base
         dss::Flag m_ctrl;                       // 0x220
         int m_effect_frame;                     // 0x224
-        int unk_228;                            // 0x228 effect scroll speed
+        int m_shine_scroll_speed;                            // 0x228 effect scroll speed
         int m_effect_enable;                    // 0x22C
         UnkBillboardTexCoord unk_230;           // 0x230 effect texture coordinates
 

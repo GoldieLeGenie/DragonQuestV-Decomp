@@ -24,7 +24,7 @@ THUMB void twn::TownImageShoplist::setup()
         shop_.unkfunc_02051b80();
         shop_.unkfunc_02051b90(0);
         shop_.unkfunc_02051ba0(0x3f);
-        shop_.sprite_.unk_32 = 1;
+        shop_.sprite_.color0Opaque_ = 1;
         black_.unkfunc_02051b20(0x100, 0xc0);
         black_.unkfunc_02051b90(0);
         black_.unkfunc_02051b80();

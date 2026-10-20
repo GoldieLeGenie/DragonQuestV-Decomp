@@ -19,54 +19,54 @@ THUMB void casino::PokerCard::setup()
 
 THUMB void casino::PokerCard::unkfunc_021282f0(dss::Fix32 scale)
 {
-    unk_000.setScale(scale);
-    unk_088.setScale(scale);
-    unk_110.setScale(scale);
-    unk_198.setScale(scale);
+    m_front_polygon.setScale(scale);
+    m_back_polygon.setScale(scale);
+    m_shine_polygon.setScale(scale);
+    m_glow_polygon.setScale(scale);
 }
 
 THUMB void casino::PokerCard::unkfunc_02128350(const UnkPolygonVertex* vertex)
 {
-    unk_000.unkfunc_0204709c(vertex);
-    unk_088.unkfunc_0204709c(vertex);
-    unk_110.unkfunc_0204709c(vertex);
-    unk_198.unkfunc_0204709c(vertex);
+    m_front_polygon.unkfunc_0204709c(vertex);
+    m_back_polygon.unkfunc_0204709c(vertex);
+    m_shine_polygon.unkfunc_0204709c(vertex);
+    m_glow_polygon.unkfunc_0204709c(vertex);
 }
 
 THUMB void casino::PokerCard::setPosition(dss::Fix32Vector3& pos)
 {
-    unk_000.setPosition(pos);
-    unk_088.setPosition(pos);
-    unk_198.setPosition(pos);
+    m_front_polygon.setPosition(pos);
+    m_back_polygon.setPosition(pos);
+    m_glow_polygon.setPosition(pos);
     pos.vz.value += 0x100;
-    unk_110.setPosition(pos);
+    m_shine_polygon.setPosition(pos);
 }
 
 THUMB dss::Fix32Vector3 casino::PokerCard::getPosition()
 {
-    return *unk_000.getPosition();
+    return *m_front_polygon.getPosition();
 }
 
 THUMB void casino::PokerCard::setAngle(int angle)
 {
-    unk_000.angle_ = angle;
-    unk_088.angle_ = angle + 0x8000;
+    m_front_polygon.angle_ = angle;
+    m_back_polygon.angle_ = angle + 0x8000;
 }
 
 THUMB void casino::PokerCard::unkfunc_02128400(const UnkBillboardTexCoord* texCoord)
 {
-    unk_000.unkfunc_02047138(texCoord);
+    m_front_polygon.unkfunc_02047138(texCoord);
 }
 
 THUMB void casino::PokerCard::unkfunc_02128408(const UnkBillboardTexCoord* texCoord)
 {
-    unk_088.unkfunc_02047138(texCoord);
+    m_back_polygon.unkfunc_02047138(texCoord);
 }
 
 THUMB void casino::PokerCard::unkfunc_02128414(const UnkBillboardTexCoord* texCoord)
 {
-    unk_110.unkfunc_02047138(texCoord);
-    unk_110.setAlpha(12);
+    m_shine_polygon.unkfunc_02047138(texCoord);
+    m_shine_polygon.setAlpha(12);
     unk_230.v[0].vx = texCoord->v[0].vx;
     unk_230.v[0].vy = texCoord->v[0].vy;
     unk_230.v[1].vx = texCoord->v[1].vx;
@@ -79,28 +79,28 @@ THUMB void casino::PokerCard::unkfunc_02128414(const UnkBillboardTexCoord* texCo
 
 THUMB void casino::PokerCard::unkfunc_021284a0(const UnkBillboardTexCoord* texCoord)
 {
-    unk_198.unkfunc_02047138(texCoord);
+    m_glow_polygon.unkfunc_02047138(texCoord);
 }
 
 THUMB void casino::PokerCard::unkfunc_021284b0(void* texture)
 {
-    unk_000.texture_ = texture;
+    m_front_polygon.texture_ = texture;
 }
 
 THUMB void casino::PokerCard::unkfunc_021284b4(void* texture)
 {
-    unk_088.texture_ = texture;
+    m_back_polygon.texture_ = texture;
 }
 
 THUMB void casino::PokerCard::unkfunc_021284bc(void* texture)
 {
-    unk_110.texture_ = texture;
+    m_shine_polygon.texture_ = texture;
 }
 
 THUMB void casino::PokerCard::unkfunc_021284c4(void* texture)
 {
-    unk_198.texture_ = texture;
-    unk_198.setAlpha(1);
+    m_glow_polygon.texture_ = texture;
+    m_glow_polygon.setAlpha(1);
 }
 
 THUMB void casino::PokerCard::draw()
@@ -108,21 +108,21 @@ THUMB void casino::PokerCard::draw()
     if (!m_ctrl.check(1)) {
         return;
     }
-    unk_000.draw();
-    unk_088.draw();
-    unk_198.draw();
+    m_front_polygon.draw();
+    m_back_polygon.draw();
+    m_glow_polygon.draw();
     if (m_effect_enable) {
         UnkBillboardTexCoord texCoord;
         texCoord.v[0] = unk_230.v[0];
         texCoord.v[1] = unk_230.v[1];
         texCoord.v[2] = unk_230.v[2];
         texCoord.v[3] = unk_230.v[3];
-        texCoord.v[0].vy.value = unk_230.v[0].vy.value + unk_228 * m_effect_frame;
-        texCoord.v[1].vy.value = unk_230.v[1].vy.value + unk_228 * m_effect_frame;
-        texCoord.v[2].vy.value = unk_230.v[2].vy.value + unk_228 * m_effect_frame;
-        texCoord.v[3].vy.value = unk_230.v[3].vy.value + unk_228 * m_effect_frame;
-        unk_110.unkfunc_02047138(&texCoord);
-        unk_110.draw();
+        texCoord.v[0].vy.value = unk_230.v[0].vy.value + m_shine_scroll_speed * m_effect_frame;
+        texCoord.v[1].vy.value = unk_230.v[1].vy.value + m_shine_scroll_speed * m_effect_frame;
+        texCoord.v[2].vy.value = unk_230.v[2].vy.value + m_shine_scroll_speed * m_effect_frame;
+        texCoord.v[3].vy.value = unk_230.v[3].vy.value + m_shine_scroll_speed * m_effect_frame;
+        m_shine_polygon.unkfunc_02047138(&texCoord);
+        m_shine_polygon.draw();
         m_effect_frame++;
     }
     if (m_effect_frame == MAX_FRAME) {
@@ -135,11 +135,11 @@ THUMB void casino::PokerCard::setEffect()
     m_effect_enable = 1;
     dss::Fix32Vector3 pos;
     m_effect_frame = 0;
-    pos = *unk_088.getPosition();
+    pos = *m_back_polygon.getPosition();
     pos.vy.value += 0x100;
-    unk_110.setPosition(pos);
-    unk_198.setPosition(pos);
-    unk_228 = 0x3333;
+    m_shine_polygon.setPosition(pos);
+    m_glow_polygon.setPosition(pos);
+    m_shine_scroll_speed = 0x3333;
 }
 
 THUMB void casino::PokerCard::unkfunc_02128688(bool enable)
@@ -153,6 +153,6 @@ THUMB void casino::PokerCard::unkfunc_02128688(bool enable)
 
 THUMB void casino::PokerCard::setAlpha(unsigned char alpha)
 {
-    unk_000.setAlpha(alpha);
-    unk_088.setAlpha(alpha);
+    m_front_polygon.setAlpha(alpha);
+    m_back_polygon.setAlpha(alpha);
 }

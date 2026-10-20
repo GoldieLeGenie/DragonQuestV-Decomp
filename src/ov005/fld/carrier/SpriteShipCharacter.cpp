@@ -11,8 +11,8 @@ THUMB fld::SpriteShipCharacter::~SpriteShipCharacter()
 THUMB void fld::SpriteShipCharacter::setup(const char* name)
 {
     SpriteCharacter::setup(name, 0x20, 0x20, 0);
-    unk_a0 = 0x18;
-    unk_9c = 0x20;
+    frameHeight_ = 0x18;
+    frameWidth_ = 0x20;
     unkfunc_020583ec();
 }
 

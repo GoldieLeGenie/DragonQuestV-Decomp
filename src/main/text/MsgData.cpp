@@ -6,7 +6,7 @@ THUMB void MsgFile::init()
 {
     m_addr = (unsigned char*)unkfunc_0204c504(&data_020fd24c, 0x404, -4);
     m_size = 0x400;
-    unk_80c = 0;
+    m_is_loaded = 0;
 }
 
 THUMB void MsgFile::cleanup()
@@ -51,17 +51,17 @@ THUMB int MsgFile::readMessage(unsigned int msg_id, int lang)
 THUMB int MsgFile::loadMessage(unsigned int msg_id, int lang)
 {
     m_msg_id = msg_id;
-    unk_80c = readMessage(msg_id, lang);
-    if (unk_80c == 0) {
-        return unk_80c;
+    m_is_loaded = readMessage(msg_id, lang);
+    if (m_is_loaded == 0) {
+        return m_is_loaded;
     }
-    unk_80c = m_meta.parse(m_addr, msg_id, lang);
-    return unk_80c;
+    m_is_loaded = m_meta.parse(m_addr, msg_id, lang);
+    return m_is_loaded;
 }
 
 THUMB unsigned char* MsgFile::getField(int index)
 {
-    if (unk_80c != 0) {
+    if (m_is_loaded != 0) {
         return m_meta.getField(index);
     }
     if (index == 10) {
@@ -74,8 +74,8 @@ THUMB unsigned char* MsgFile::getField(int index)
 THUMB MsgData::MsgData()
 {
     m_addr = 0;
-    unk_10 = -1;
-    unk_18 = -1;
+    m_loaded_msg_id = -1;
+    m_loaded_lang = -1;
 }
 
 THUMB void MsgData::msg_setup(int msg_base_id, int arg1, int size, int count)
@@ -84,13 +84,13 @@ THUMB void MsgData::msg_setup(int msg_base_id, int arg1, int size, int count)
     m_size = size;
     m_msg_base_id = msg_base_id;
     if (arg1 == 0) {
-        unk_0c = msg_base_id + count - 1;
+        m_msg_last_id = msg_base_id + count - 1;
     } else {
-        unk_0c = arg1;
+        m_msg_last_id = arg1;
     }
-    unk_10 = -1;
-    unk_18 = -1;
-    unk_14 = count;
+    m_loaded_msg_id = -1;
+    m_loaded_lang = -1;
+    m_block_size = count;
 }
 
 THUMB void MsgData::cleanup()
@@ -99,14 +99,14 @@ THUMB void MsgData::cleanup()
     m_addr = 0;
     m_size = 0;
     m_msg_base_id = -1;
-    unk_0c = -1;
-    unk_10 = -1;
-    unk_18 = -1;
+    m_msg_last_id = -1;
+    m_loaded_msg_id = -1;
+    m_loaded_lang = -1;
 }
 
 THUMB int MsgData::containsId(unsigned int msg_id)
 {
-    if (m_msg_base_id <= msg_id && msg_id <= unk_0c) {
+    if (m_msg_base_id <= msg_id && msg_id <= m_msg_last_id) {
         return 1;
     }
     return 0;
@@ -115,16 +115,16 @@ THUMB int MsgData::containsId(unsigned int msg_id)
 THUMB int MsgData::loadBlock(unsigned int msg_id, int lang)
 {
     char path[0x80];
-    if (unk_18 != lang) {
-        unk_10 = -1;
+    if (m_loaded_lang != lang) {
+        m_loaded_msg_id = -1;
     }
     int block = -1;
     if (msg_id != -1) {
-        block = msg_id / unk_14 * unk_14;
+        block = msg_id / m_block_size * m_block_size;
     }
     int cur = -1;
-    if (unk_10 != -1) {
-        cur = (unsigned int)unk_10 / unk_14 * unk_14;
+    if (m_loaded_msg_id != -1) {
+        cur = (unsigned int)m_loaded_msg_id / m_block_size * m_block_size;
     }
     if (block != cur) {
         const char* folder = unkfunc_0206c6e8(block);
@@ -147,7 +147,7 @@ THUMB int MsgData::loadBlock(unsigned int msg_id, int lang)
         if (lang == 5) {
             dir = "ES";
         }
-        if (unk_14 == 10000) {
+        if (m_block_size == 10000) {
             dss::sprintf(path, "DATA/%s/%s/a%07d.mpt", folder, dir, block);
         } else {
             dss::sprintf(path, "DATA/%s/%s/b%07d.mpt", folder, dir, block);
@@ -158,8 +158,8 @@ THUMB int MsgData::loadBlock(unsigned int msg_id, int lang)
         dss::g_File.unkfunc_0204b32c(path, dss::File::Switching);
         dss::g_File.unkfunc_0204b21c(path, m_addr, 1);
     }
-    unk_10 = msg_id;
-    unk_18 = lang;
+    m_loaded_msg_id = msg_id;
+    m_loaded_lang = lang;
     return 1;
 }
 

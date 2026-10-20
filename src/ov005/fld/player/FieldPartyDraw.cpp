@@ -102,7 +102,7 @@ THUMB void fld::FieldPartyDraw::setupChara(int index, int charaNo)
     height = dq5::level::CharaData::getRecord(charaparam)->height;
     dss::sprintf_s(name, sizeof(name), "data/chr/h%03d.pack", charaNo);
     partyCharacter_[index].setup(name, width, height, dq5::level::CharaData::loadSwitch_);
-    partyCharacter_[index].unk_28 = index - 6;
+    partyCharacter_[index].depth_ = index - 6;
     partyCharacter_[index].setDirection(4);
 }
 
@@ -131,7 +131,7 @@ THUMB void fld::FieldPartyDraw::draw()
                 temp = valueY_[count];
             }
         }
-        partyCharacter_[no].unk_28 = 10 - i;
+        partyCharacter_[no].depth_ = 10 - i;
         partyCharacter_[no].draw();
         tempDraw[no] = NULL;
     }

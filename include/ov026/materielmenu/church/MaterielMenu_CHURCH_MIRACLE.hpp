@@ -28,7 +28,7 @@ struct MaterielMenu_CHURCH_MIRACLE : menu::MenuBase {
     int miracle_;                               // 0xF0
     int activeChara_;                           // 0xF4
     MIRACLE_STATUS miracleStatus_;              // 0xF8
-    int unk_fc;                                 // 0xFC  list opens when the message is shown
+    int sexType_;                                 // 0xFC  list opens when the message is shown
     int miracleAmount_[3];                      // 0x100
     int soundType_;                             // 0x10C
 

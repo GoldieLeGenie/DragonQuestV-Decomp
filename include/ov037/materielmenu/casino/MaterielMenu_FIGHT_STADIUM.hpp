@@ -29,9 +29,9 @@ struct MaterielMenu_FIGHT_STADIUM : menu::MenuBase {
     int haveCoin_;                              // 0xEC
     int result_;                                // 0xF0
     unsigned char unk_f4;                       // 0xF4
-    unsigned char unk_f5;                       // 0xF5  blink frame counter
-    int unk_f8;                                 // 0xF8  blinks the bet cursor
-    int unk_fc;                                 // 0xFC  message waiting for the menu (last frame)
+    unsigned char blinkCount_;                       // 0xF5  blink frame counter
+    int blink_;                                 // 0xF8  blinks the bet cursor
+    int waitProg_;                                 // 0xFC  message waiting for the menu (last frame)
     int m_bDispCoin;                            // 0x100
     int unk_104;                                // 0x104 monster list shown
 

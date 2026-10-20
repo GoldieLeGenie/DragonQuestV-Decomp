@@ -8,8 +8,8 @@ using menu::MenuStatusInfo;
 THUMB void BattleMenu_ITEMUSE2ENEMY::menuSetup()
 {
     MenuStatusInfo::setMode(MenuStatusInfo::BATTLE_MODE);
-    unk_148 = 0;
-    unk_14c = 0;
+    activeChara_ = 0;
+    activeItem_ = 0;
     menuItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD_CANCEL, menu::MenuItem::CURSORTYPE_NONE);
     unk_160 = 0;
 }
@@ -29,7 +29,7 @@ THUMB void BattleMenu_ITEMUSE2ENEMY::menuDraw()
 THUMB void BattleMenu_ITEMUSE2ENEMY::menuUpdate()
 {
     MenuStatusInfo::setMode(MenuStatusInfo::BATTLE_MODE);
-    unk_158 = menuItem_.active_;
+    oldActive_ = menuItem_.active_;
     if (unkfunc_02173134() && unk_160 == 0) {
         unkfunc_0217310c();
     }
@@ -37,8 +37,8 @@ THUMB void BattleMenu_ITEMUSE2ENEMY::menuUpdate()
 
 THUMB void BattleMenu_ITEMUSE2ENEMY::unkfunc_021730b8()
 {
-    unk_15c = 0;
-    BattleMenuJudge::getSingleton()->setItemEnemy(unk_14c, gBattleMenu_ATTACK.touchRect_[gBattleMenu_ATTACK.menuItem_.active_].group);
+    monsterMask_ = 0;
+    BattleMenuJudge::getSingleton()->setItemEnemy(activeItem_, gBattleMenu_ATTACK.touchRect_[gBattleMenu_ATTACK.menuItem_.active_].group);
     BattleMenuJudge::getSingleton()->setNextPlayer();
     gBattleMenu_ATTACK.unk_f4 = 1;
     close();
@@ -62,7 +62,7 @@ THUMB int BattleMenu_ITEMUSE2ENEMY::unkfunc_02173134()
     if ((unsigned int)(menuItem_.result_ - menu::MenuItem::MENUITEM_RESULT_CANCEL) <= 1) {
         menuItem_.result_ = 0;
         menuItem_.lastresult_ = 0;
-        unk_15c = 0;
+        monsterMask_ = 0;
         close();
         unk_160 = 1;
         gBattleMenu_ITEM.open();
@@ -73,6 +73,6 @@ THUMB int BattleMenu_ITEMUSE2ENEMY::unkfunc_02173134()
 
 THUMB void BattleMenu_ITEMUSE2ENEMY::unkfunc_0217316c(int chara, int item)
 {
-    unk_148 = chara;
-    unk_14c = item;
+    activeChara_ = chara;
+    activeItem_ = item;
 }

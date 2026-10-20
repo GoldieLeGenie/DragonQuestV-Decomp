@@ -23,10 +23,10 @@ THUMB void fld::FieldDragonDraw::setHigh(int high)
 THUMB void fld::FieldDragonDraw::setup()
 {
     dragon_.setup("data/chr/h309.pack", 0x40, 0x40, 0);
-    dragon_.unk_28 = 6;
+    dragon_.depth_ = 6;
     dragon_.setShadowFlag(0);
     shadow_.setup("data/chr/h310.pack", 0x20, 0x20, 0);
-    shadow_.unk_28 = 6;
+    shadow_.depth_ = 6;
     shadow_.setShadowFlag(0);
     shadow_.setAlpha(0x10);
     shadow_.setPolygonID(0x1f);
@@ -70,8 +70,8 @@ THUMB void fld::FieldDragonDraw::setDrawPosition(int x, int y)
 
 THUMB void fld::FieldDragonDraw::setDepth(int depth)
 {
-    dragon_.unk_28 = depth + 1;
-    shadow_.unk_28 = depth;
+    dragon_.depth_ = depth + 1;
+    shadow_.depth_ = depth;
 }
 
 THUMB void fld::FieldDragonDraw::setShadowWH(int w, int h)
@@ -108,6 +108,6 @@ THUMB void fld::FieldDragonDraw::setShadowFlag(int flag)
 
 THUMB void fld::FieldDragonDraw::setShadowDepth(int depth)
 {
-    dragon_.unk_28 = depth + 1;
-    shadow_.unk_28 = depth;
+    dragon_.depth_ = depth + 1;
+    shadow_.depth_ = depth;
 }

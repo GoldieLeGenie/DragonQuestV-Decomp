@@ -143,7 +143,7 @@ THUMB void BattleMenu_ARRAY_ALL::menuUpdate()
         if (unk_2c - unk_30 == 0) {
             close();
             gBattleMenu_ARRAYMENU.open();
-            gBattleMenu_ARRAYMENU.unk_1c = 1;
+            gBattleMenu_ARRAYMENU.cursorPos_ = 1;
         } else {
             unkfunc_02172034();
         }

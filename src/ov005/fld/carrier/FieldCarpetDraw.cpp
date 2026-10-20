@@ -17,11 +17,11 @@ THUMB void fld::FieldCarpetDraw::setHeight(int height)
 THUMB void fld::FieldCarpetDraw::setup()
 {
     carpet_.setup("data/chr/h304.pack", 0x20, 0x20, 0);
-    carpet_.unk_28 = 4;
+    carpet_.depth_ = 4;
     carpet_.setDirection(4);
     carpet_.setShadowFlag(0);
     shadow_.setup("data/chr/h305.pack", 0x20, 0x20, 0);
-    shadow_.unk_28 = 3;
+    shadow_.depth_ = 3;
     shadow_.setAlpha(0x10);
     shadow_.setDirection(4);
     shadow_.setShadowFlag(0);
@@ -58,7 +58,7 @@ THUMB void fld::FieldCarpetDraw::setDrawPosition(int x, int y)
 
 THUMB void fld::FieldCarpetDraw::setDepth(int depth)
 {
-    carpet_.unk_28 = depth;
+    carpet_.depth_ = depth;
 }
 
 THUMB void fld::FieldCarpetDraw::setShadowWH(int w, int h)
@@ -93,5 +93,5 @@ THUMB void fld::FieldCarpetDraw::setShadowFlag(int flag)
 
 THUMB void fld::FieldCarpetDraw::setShadowDepth(int depth)
 {
-    shadow_.unk_28 = depth;
+    shadow_.depth_ = depth;
 }

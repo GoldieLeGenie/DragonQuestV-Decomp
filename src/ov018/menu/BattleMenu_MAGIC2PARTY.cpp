@@ -12,10 +12,10 @@ THUMB void BattleMenu_MAGIC2PARTY::menuSetup()
     MenuStatusInfo::setMode(MenuStatusInfo::BATTLE_MODE);
     menuItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD, menu::MenuItem::CURSORTYPE_ACTIVE);
     cancelItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_CANCEL, menu::MenuItem::CURSORTYPE_NONE);
-    unk_e4 = MenuStatusInfo::getPartyCount(MenuStatusInfo::COUNT_CARRIAGE_OUT);
+    partyMax_ = MenuStatusInfo::getPartyCount(MenuStatusInfo::COUNT_CARRIAGE_OUT);
     m_magic = BattleMenuPlayerControl::getSingleton()->activeMagic_;
     if (unkfunc_02173ed4(MenuStatusInfo::getPlayerActionID(BattleMenuPlayerControl::getSingleton()->activeChara_, m_magic))) {
-        for (int i = 0; i < unk_e4; i++) {
+        for (int i = 0; i < partyMax_; i++) {
             if (MenuStatusInfo::getHaveStatusInfo(i).isDeath()) {
                 menuItem_.active_ = i;
                 return;
@@ -27,8 +27,8 @@ THUMB void BattleMenu_MAGIC2PARTY::menuSetup()
 THUMB void BattleMenu_MAGIC2PARTY::menuExecute()
 {
     MenuStatusInfo::setMode(MenuStatusInfo::BATTLE_MODE);
-    navigator_.setup(2, 2, unk_e4);
-    unkfunc_02175ae8(&menuItem_, unk_e4);
+    navigator_.setup(2, 2, partyMax_);
+    unkfunc_02175ae8(&menuItem_, partyMax_);
     unkfunc_02175a5c(&cancelItem_);
 }
 

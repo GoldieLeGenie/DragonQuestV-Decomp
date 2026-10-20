@@ -36,18 +36,18 @@ THUMB void BattleMenu_ROOT::menuSetup()
     gBattleMenuSub_HISTORY.update_ = 1;
     gBattleMenuSub_HISTORY.history_ = 1;
     navigator_.setupBase();
-    unk_f4 = 0;
-    unk_f0 = 0;
+    isCancelWait_ = 0;
+    cancelWait_ = 0;
 }
 
 THUMB void BattleMenu_ROOT::menuExecute()
 {
-    if (unk_f4 != 0) {
-        unk_f0--;
+    if (isCancelWait_ != 0) {
+        cancelWait_--;
         menuItem_.active_ = 0;
-        if (unk_f0 <= 0) {
-            unk_f0 = 0;
-            unk_f4 = 0;
+        if (cancelWait_ <= 0) {
+            cancelWait_ = 0;
+            isCancelWait_ = 0;
             redraw_ = 1;
         }
         return;
@@ -59,7 +59,7 @@ THUMB void BattleMenu_ROOT::menuExecute()
 
 THUMB void BattleMenu_ROOT::menuDraw()
 {
-    if (unk_f4 == 0) {
+    if (isCancelWait_ == 0) {
         unkfunc_0216ff70();
         menuItem_.drawActive();
     }
@@ -68,7 +68,7 @@ THUMB void BattleMenu_ROOT::menuDraw()
 THUMB void BattleMenu_ROOT::menuUpdate()
 {
     MenuStatusInfo::setMode(MenuStatusInfo::BATTLE_MODE);
-    if (unk_f4 == 0) {
+    if (isCancelWait_ == 0) {
         if (gTownMenu_MESSAGE.isOpen()) {
             if ((unsigned int)(gTownMenu_MESSAGE.stat_ - 1) <= 1) {
                 gTownMenu_MESSAGE.close();
@@ -77,8 +77,8 @@ THUMB void BattleMenu_ROOT::menuUpdate()
         } else {
             cancelItem_.execInput();
             if (cancelItem_.result_ == menu::MenuItem::MENUITEM_RESULT_CANCEL) {
-                unk_f4 = 1;
-                unk_f0 = 8;
+                isCancelWait_ = 1;
+                cancelWait_ = 8;
                 cancelItem_.result_ = 0;
                 cancelItem_.lastresult_ = 0;
                 redraw_ = 1;

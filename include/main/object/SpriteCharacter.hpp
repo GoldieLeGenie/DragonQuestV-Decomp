@@ -38,8 +38,8 @@ struct SpriteCharacter : Sprite2D {
     TextureObject* unk_78[8];                // 0x78 textures of the file, one per direction
     short direction_;                           // 0x98
     short dispDirection_;                       // 0x9A
-    int unk_9c;                                 // 0x9C width
-    int unk_a0;                                 // 0xA0 height
+    int frameWidth_;                                 // 0x9C width
+    int frameHeight_;                                 // 0xA0 height
     SpriteShadow shadow_;                       // 0xA4
 
     static dss::BitFlag<unsigned char> allFlag_;

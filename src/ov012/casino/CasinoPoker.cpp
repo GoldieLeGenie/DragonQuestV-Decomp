@@ -42,7 +42,7 @@ THUMB void casino::CasinoPoker::initialize()
     sprite_.unkfunc_02051b80();
     sprite_.unkfunc_02051ba0(0x3e);
     sprite_.unkfunc_02051bb0(0);
-    sprite_.sprite_.unk_32 = 1;
+    sprite_.sprite_.color0Opaque_ = 1;
     sprite_.unkfunc_02051b2c(0, 0, 0x100, 0xc0);
     sprite_.unkfunc_02051b20(0x100, 0xc0);
     sprite_.unkfunc_02051adc(&CasinoSystem::getSingleton()->render_);

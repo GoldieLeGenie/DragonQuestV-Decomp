@@ -321,7 +321,7 @@ ARM void DisplayCharacter::setHueChange(int type, int frame)
             break;
         }
         unsigned short* palette;
-        if (texture->unk_14 & 1) {
+        if (texture->flags_ & 1) {
             palette = (unsigned short*)texture->unkfunc_0204a1d4();
         } else {
             palette = (unsigned short*)((char*)texture + texture->unkfunc_0204a1d4());
@@ -354,7 +354,7 @@ ARM void DisplayCharacter::execHueChange()
     }
     TextureObject* texture = (TextureObject*)unkfunc_02055a70(unk_2a8);
     unsigned short* palette;
-    if (texture->unk_14 & 1) {
+    if (texture->flags_ & 1) {
         palette = (unsigned short*)texture->unkfunc_0204a1d4();
     } else {
         palette = (unsigned short*)((char*)texture + texture->unkfunc_0204a1d4());

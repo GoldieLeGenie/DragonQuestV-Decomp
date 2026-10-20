@@ -151,7 +151,7 @@ THUMB void MPExchangePart::onExecutePart()
             break;
         case 9: {
             data = exchange_.unkfunc_0212a2fc();
-            if (exchange_.unk_fc <= 4) {
+            if (exchange_.receiveCount_ <= 4) {
                 unkfunc_02043370(7);
                 break;
             }
@@ -182,7 +182,7 @@ THUMB void MPExchangePart::onExecutePart()
                 gTownMenu_MESSAGE.addMessage(0xcc60a);
                 gTownMenu_MESSAGE.setYesNo(1);
                 message_ = 0;
-                exchange_.unk_1c = 1;
+                exchange_.cancelRequest_ = 1;
             }
             if (counter_ > 60) {
                 if (gTownMenu_MESSAGE.stat_ == menu::MenuBase::MENUBASE_STAT_CANCEL) {
@@ -220,7 +220,7 @@ THUMB void MPExchangePart::onExecutePart()
             unkfunc_02043410();
             if (counter_ == 0) {
                 gTownMenu_MESSAGE.close();
-                exchange_.unk_1c = 1;
+                exchange_.cancelRequest_ = 1;
                 g_Global.fadeOutBlack(30, true);
             }
             if (counter_ > 30 && exchange_.mode_ == SYSMODE_FINISH_WAIT) {

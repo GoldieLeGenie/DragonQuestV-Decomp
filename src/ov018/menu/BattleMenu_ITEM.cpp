@@ -133,8 +133,8 @@ THUMB void BattleMenu_ITEM::selectUseItem()
         if (area == status::UseAction::One) {
             BattleMenuPlayerControl::getSingleton()->targetChara_ = 0;
             gBattleMenu_ITEMUSE2PARTY.open();
-            gBattleMenu_ITEMUSE2PARTY.unk_e4 = activeChara_;
-            gBattleMenu_ITEMUSE2PARTY.unk_e8 = index;
+            gBattleMenu_ITEMUSE2PARTY.activeChara_ = activeChara_;
+            gBattleMenu_ITEMUSE2PARTY.activeItem_ = index;
             BattleMenuJudge::getSingleton()->setItemParty(index, -1);
             close();
             return;

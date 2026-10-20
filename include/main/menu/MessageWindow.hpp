@@ -60,7 +60,7 @@ struct MessageWindow : MenuDisplay {
     int keySound_;                              // 0x9C0
     int unk_9c4;                                // 0x9C4
     int wait_;                                  // 0x9C8
-    int unk_9cc;                                // 0x9CC
+    int waitProgFlag_;                                // 0x9CC
     int unk_9d0;                                // 0x9D0
     int unk_9d4;                                // 0x9D4
     int shake_;                                 // 0x9D8

@@ -156,8 +156,8 @@ THUMB void fld::FieldData::setupSymbol(int flag)
             m_symbol[i].texture_ = symbolTexture_[data->id];
             m_symbol[i].unkfunc_02047ec0(data->w, data->h);
             m_symbol[i].unkfunc_02047ecc(0, 0, data->w, data->h);
-            m_symbol[i].unk_2c = 1;
-            m_symbol[i].unk_28 = 1;
+            m_symbol[i].screens_ = 1;
+            m_symbol[i].depth_ = 1;
             if (symbolTexture_[data->id] == NULL) {
                 m_symbol[i].setAlpha(0);
             }
@@ -165,9 +165,9 @@ THUMB void fld::FieldData::setupSymbol(int flag)
             m_symbol[i].unkfunc_02047e88(0x100, 0xc0);
             m_symbol[i].unkfunc_02047ec0(8, 8);
             m_symbol[i].unkfunc_02047ecc(0, 0, 8, 8);
-            m_symbol[i].unk_2c = 1;
+            m_symbol[i].screens_ = 1;
             m_symbol[i].texture_ = symbolTexture_[0];
-            m_symbol[i].unk_28 = 1;
+            m_symbol[i].depth_ = 1;
         }
     }
     if (flag == 0) {

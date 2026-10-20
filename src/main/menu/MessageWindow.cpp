@@ -486,7 +486,7 @@ THUMB void MessageWindow::unkfunc_0206653c()
                 extra = 10;
             }
             wait_ = config_->wait_;
-            unk_9cc = config_->unk_4c;
+            waitProgFlag_ = config_->unk_4c;
             if (sound_ != 0 && sound_ != -1) {
                 if (soundTimer_ > 100) {
                     Sound::sePlay(sound_);
@@ -531,8 +531,8 @@ THUMB void MessageWindow::unkfunc_0206668c()
         state_ = 4;
         return;
     }
-    if (unk_9cc) {
-        unk_9cc--;
+    if (waitProgFlag_) {
+        waitProgFlag_--;
         return;
     }
     if (unkfunc_02066918(getIterator()->unkfunc_0204a990())) {
@@ -569,8 +569,8 @@ THUMB void MessageWindow::unkfunc_0206668c()
 
 THUMB void MessageWindow::unkfunc_02066788()
 {
-    if (unk_9cc) {
-        unk_9cc--;
+    if (waitProgFlag_) {
+        waitProgFlag_--;
         return;
     }
     if (unk_9d0 != 1) {

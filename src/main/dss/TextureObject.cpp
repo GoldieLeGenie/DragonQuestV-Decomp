@@ -12,10 +12,10 @@ ARM TextureObject::~TextureObject()
 
 ARM void TextureObject::unkfunc_02049e9c(int flag)
 {
-    if (unk_14 & 1) {
+    if (flags_ & 1) {
         return;
     }
-    unk_14 |= 1;
+    flags_ |= 1;
     unkfunc_02049ef0();
     unkfunc_0204a004();
     if (flag != 0) {
@@ -27,15 +27,15 @@ ARM void TextureObject::unkfunc_02049e9c(int flag)
 
 ARM void TextureObject::unkfunc_02049ef0()
 {
-    unk_34 = (int)((unsigned char*)this + unk_34);
-    unk_3c = (int)((unsigned char*)this + unk_3c);
-    unk_30 = unkfunc_02049f7c(unk_30, 0x400);
-    unk_38 = unkfunc_02049f7c(unk_38, 0x20);
-    if (unk_18 == 1 || unk_18 == 2) {
+    texData_ = (int)((unsigned char*)this + texData_);
+    plttData_ = (int)((unsigned char*)this + plttData_);
+    texSize_ = unkfunc_02049f7c(texSize_, 0x400);
+    plttSize_ = unkfunc_02049f7c(plttSize_, 0x20);
+    if (type_ == 1 || type_ == 2) {
         unk_54 = (int)((unsigned char*)this + unk_54);
-        unk_5c = (int)((unsigned char*)this + unk_5c);
+        subPlttData_ = (int)((unsigned char*)this + subPlttData_);
         unk_50 = unkfunc_02049f7c(unk_50, 0x400);
-        unk_58 = unkfunc_02049f7c(unk_58, 0x20);
+        subPlttSize_ = unkfunc_02049f7c(subPlttSize_, 0x20);
     }
 }
 
@@ -46,89 +46,89 @@ ARM unsigned int unkfunc_02049f7c(unsigned int value, unsigned int align)
 
 ARM void TextureObject::unkfunc_02049f90()
 {
-    if (!(unk_14 & 1)) {
+    if (!(flags_ & 1)) {
         return;
     }
-    unk_14 &= ~1;
-    if (unk_40 != 0) {
-        data_020f4f74.freeTexVram(unk_40);
+    flags_ &= ~1;
+    if (texVramKey_ != 0) {
+        data_020f4f74.freeTexVram(texVramKey_);
     }
-    if (unk_44 != 0) {
-        data_020f4f74.freePlttVram(unk_44);
+    if (plttVramKey_ != 0) {
+        data_020f4f74.freePlttVram(plttVramKey_);
     }
-    if (unk_18 == 1 || unk_18 == 2) {
-        if (unk_64 != 0) {
-            data_020f4f74.freePlttVram(unk_64);
+    if (type_ == 1 || type_ == 2) {
+        if (subPlttVramKey_ != 0) {
+            data_020f4f74.freePlttVram(subPlttVramKey_);
         }
     }
 }
 
 ARM void TextureObject::unkfunc_0204a004()
 {
-    unk_14 |= 1;
-    unk_40 = data_020f4f74.allocTexVram(unk_30);
-    unk_44 = data_020f4f74.allocPlttVram(unk_38);
-    unk_48 = data_020f4f74.getTexVramAddr(unk_40);
-    unk_4c = data_020f4f74.getPlttVramAddr(unk_44);
-    if (unk_18 == 1 || unk_18 == 2) {
-        unk_64 = data_020f4f74.allocPlttVram(unk_58);
-        unk_6c = data_020f4f74.getPlttVramAddr(unk_64);
+    flags_ |= 1;
+    texVramKey_ = data_020f4f74.allocTexVram(texSize_);
+    plttVramKey_ = data_020f4f74.allocPlttVram(plttSize_);
+    texAddr_ = data_020f4f74.getTexVramAddr(texVramKey_);
+    plttAddr_ = data_020f4f74.getPlttVramAddr(plttVramKey_);
+    if (type_ == 1 || type_ == 2) {
+        subPlttVramKey_ = data_020f4f74.allocPlttVram(subPlttSize_);
+        subPlttAddr_ = data_020f4f74.getPlttVramAddr(subPlttVramKey_);
     }
 }
 
 ARM void TextureObject::unkfunc_0204a090(int flag)
 {
-    data_020f4f74.transferToVram(0, (void*)unk_34, unk_48, unk_30, flag);
-    data_020f4f74.transferToVram(1, (void*)unk_3c, unk_4c, unk_38, flag);
-    if (unk_18 == 1 || unk_18 == 2) {
-        data_020f4f74.transferToVram(1, (void*)unk_5c, unk_6c, unk_58, flag);
+    data_020f4f74.transferToVram(0, (void*)texData_, texAddr_, texSize_, flag);
+    data_020f4f74.transferToVram(1, (void*)plttData_, plttAddr_, plttSize_, flag);
+    if (type_ == 1 || type_ == 2) {
+        data_020f4f74.transferToVram(1, (void*)subPlttData_, subPlttAddr_, subPlttSize_, flag);
     }
 }
 
 ARM void TextureObject::unkfunc_0204a114(TextureObject* src, int flag)
 {
-    if (src->unk_14 & 1) {
-        data_020f4f74.transferToVram(0, (void*)unk_34, unk_48, unk_30, flag);
-        data_020f4f74.transferToVram(1, (void*)unk_3c, unk_4c, unk_38, flag);
+    if (src->flags_ & 1) {
+        data_020f4f74.transferToVram(0, (void*)texData_, texAddr_, texSize_, flag);
+        data_020f4f74.transferToVram(1, (void*)plttData_, plttAddr_, plttSize_, flag);
     } else {
-        data_020f4f74.transferToVram(0, (unsigned char*)src + src->unk_34, unk_48, unk_30, flag);
-        data_020f4f74.transferToVram(1, (unsigned char*)src + src->unk_3c, unk_4c, unk_38, flag);
+        data_020f4f74.transferToVram(0, (unsigned char*)src + src->texData_, texAddr_, texSize_, flag);
+        data_020f4f74.transferToVram(1, (unsigned char*)src + src->plttData_, plttAddr_, plttSize_, flag);
     }
 }
 
 ARM int TextureObject::unkfunc_0204a1bc()
 {
-    return unk_48;
+    return texAddr_;
 }
 
 ARM int TextureObject::unkfunc_0204a1c4()
 {
-    return unk_34;
+    return texData_;
 }
 
 ARM int TextureObject::unkfunc_0204a1cc()
 {
-    return unk_4c;
+    return plttAddr_;
 }
 
 ARM int TextureObject::unkfunc_0204a1d4()
 {
-    return unk_3c;
+    return plttData_;
 }
 
 ARM int TextureObject::unkfunc_0204a1dc()
 {
-    return unk_38;
+    return plttSize_;
 }
 
 ARM void TextureObject::unkfunc_0204a1e4()
 {
-    G3_TexImageParam(unk_20, GX_TEXGEN_TEXCOORD, unk_24, unk_28, GX_TEXREPEAT_NONE, GX_TEXFLIP_NONE, GX_TEXPLTTCOLOR0_TRNS, unk_48);
+    G3_TexImageParam(unk_20, GX_TEXGEN_TEXCOORD, unk_24, unk_28, GX_TEXREPEAT_NONE, GX_TEXFLIP_NONE, GX_TEXPLTTCOLOR0_TRNS, texAddr_);
 }
 
 ARM void TextureObject::unkfunc_0204a21c()
 {
-    G3_TexImageParam(unk_20, GX_TEXGEN_TEXCOORD, unk_24, unk_28, GX_TEXREPEAT_NONE, GX_TEXFLIP_NONE, GX_TEXPLTTCOLOR0_USE, unk_48);
+    G3_TexImageParam(unk_20, GX_TEXGEN_TEXCOORD, unk_24, unk_28, GX_TEXREPEAT_NONE, GX_TEXFLIP_NONE, GX_TEXPLTTCOLOR0_USE, texAddr_);
 }
 
 ARM void disableTexture()
@@ -138,26 +138,26 @@ ARM void disableTexture()
 
 ARM void TextureObject::unkfunc_0204a264()
 {
-    *(volatile unsigned int*)0x040004ac = (unsigned int)unk_4c >> (4 - (unk_20 == 2));
+    *(volatile unsigned int*)0x040004ac = (unsigned int)plttAddr_ >> (4 - (unk_20 == 2));
 }
 
 ARM void TextureObject::unkfunc_0204a290()
 {
-    if (unk_18 == 1) {
-        G3_TexImageParam(GX_TEXFMT_A3I5, GX_TEXGEN_TEXCOORD, unk_24, unk_28, GX_TEXREPEAT_NONE, GX_TEXFLIP_NONE, GX_TEXPLTTCOLOR0_TRNS, unk_48);
+    if (type_ == 1) {
+        G3_TexImageParam(GX_TEXFMT_A3I5, GX_TEXGEN_TEXCOORD, unk_24, unk_28, GX_TEXREPEAT_NONE, GX_TEXFLIP_NONE, GX_TEXPLTTCOLOR0_TRNS, texAddr_);
     }
-    if (unk_18 == 2) {
-        G3_TexImageParam(GX_TEXFMT_A5I3, GX_TEXGEN_TEXCOORD, unk_24, unk_28, GX_TEXREPEAT_NONE, GX_TEXFLIP_NONE, GX_TEXPLTTCOLOR0_TRNS, unk_48);
+    if (type_ == 2) {
+        G3_TexImageParam(GX_TEXFMT_A5I3, GX_TEXGEN_TEXCOORD, unk_24, unk_28, GX_TEXREPEAT_NONE, GX_TEXFLIP_NONE, GX_TEXPLTTCOLOR0_TRNS, texAddr_);
     }
 }
 
 ARM void TextureObject::unkfunc_0204a300()
 {
-    if (unk_18 == 1) {
-        *(volatile unsigned int*)0x040004ac = (unsigned int)unk_6c >> 4;
+    if (type_ == 1) {
+        *(volatile unsigned int*)0x040004ac = (unsigned int)subPlttAddr_ >> 4;
     }
-    if (unk_18 == 2) {
-        *(volatile unsigned int*)0x040004ac = (unsigned int)unk_6c >> 4;
+    if (type_ == 2) {
+        *(volatile unsigned int*)0x040004ac = (unsigned int)subPlttAddr_ >> 4;
     }
 }
 

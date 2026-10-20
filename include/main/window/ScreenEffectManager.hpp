@@ -109,8 +109,8 @@ namespace window {
         int unk_24;                             // 0x24
         int unk_28;                             // 0x28
         int unk_2c;                             // 0x2C
-        int unk_30;                             // 0x30
-        int unk_34;                             // 0x34
+        int angle0_;                             // 0x30
+        int angle1_;                             // 0x34
 
         void setup();
         void draw();

@@ -106,8 +106,8 @@ ARM void clearVram()
 ARM void dss::File::unkfunc_0204b1cc(int)
 {
     unkfunc_0204b1e8();
-    unk_4c = 0;
-    unk_50 = 0;
+    readOffset_ = 0;
+    readSize_ = 0;
 }
 
 ARM void dss::File::unkfunc_0204b1e8()
@@ -121,10 +121,10 @@ ARM int dss::File::unkfunc_0204b21c(const char* fname, void* dst, int a)
     int size;
     if (a == 0) {
         size = unkfunc_0204b26c(fname, dst);
-        unk_4c = 0;
+        readOffset_ = 0;
     } else {
         size = unkfunc_0204b284(fname, dst);
-        unk_4c = 0;
+        readOffset_ = 0;
     }
     DC_CleanAll();
     return size;
@@ -132,8 +132,8 @@ ARM int dss::File::unkfunc_0204b21c(const char* fname, void* dst, int a)
 
 ARM int dss::File::unkfunc_0204b250(const char* fname, void* dst, int offset, int size, int a)
 {
-    unk_4c = offset;
-    unk_50 = size;
+    readOffset_ = offset;
+    readSize_ = size;
     return unkfunc_0204b21c(fname, dst, a);
 }
 
@@ -202,14 +202,14 @@ ARM int dss::File::unkfunc_0204b370(const char* fname, void* dst)
 {
     func_02073868(&file_);
     int ok = func_02073a3c(&file_, fname);
-    if (unk_4c != 0) {
-        func_02073b64(&file_, unk_4c, 0);
+    if (readOffset_ != 0) {
+        func_02073b64(&file_, readOffset_, 0);
     }
     if (ok) {
         size_ = file_.endRomOffset - file_.startRomOffset;
-        if (unk_50 != 0) {
-            size_ = unk_50;
-            unk_50 = 0;
+        if (readSize_ != 0) {
+            size_ = readSize_;
+            readSize_ = 0;
         }
         size_ = func_02073b58(&file_, dst, size_);
         if (size_ == -1) {

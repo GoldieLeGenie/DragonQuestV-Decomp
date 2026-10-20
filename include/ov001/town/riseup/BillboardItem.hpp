@@ -12,7 +12,7 @@ namespace twn {
 }
 
 struct BillboardItem : TextureBillboard {
-    DataObject unk_b8;                          // 0xB8 texture file
+    DataObject data_;                          // 0xB8 texture file
 
     BillboardItem();
     ~BillboardItem();

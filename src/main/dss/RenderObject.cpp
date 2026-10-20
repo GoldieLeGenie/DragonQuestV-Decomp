@@ -425,42 +425,42 @@ ARM void loadBillboardMatrix()
 
 ARM Sprite2D::Sprite2D()
 {
-    unk_1c = 0;
-    unk_1e = 0;
-    unk_20 = 0;
-    unk_22 = 0;
-    unk_24 = 0;
-    unk_26 = 0;
-    unk_28 = 0;
-    unk_30 = 0;
-    unk_32 = 0;
-    unk_34 = 0x7fff;
+    width_ = 0;
+    height_ = 0;
+    u0_ = 0;
+    v0_ = 0;
+    u1_ = 0;
+    v1_ = 0;
+    depth_ = 0;
+    rotation_ = 0;
+    color0Opaque_ = 0;
+    color_ = 0x7fff;
 }
 
 ARM void Sprite2D::unkfunc_02047e88(int x, int y)
 {
-    unk_14.vx.value = x << FX32_SHIFT;
-    unk_14.vy.value = y << FX32_SHIFT;
+    position_.vx.value = x << FX32_SHIFT;
+    position_.vy.value = y << FX32_SHIFT;
 }
 
 ARM void Sprite2D::unkfunc_02047e9c(dss::Fix32 x, dss::Fix32 y)
 {
-    unk_14.vx = x;
-    unk_14.vy = y;
+    position_.vx = x;
+    position_.vy = y;
 }
 
 ARM void Sprite2D::unkfunc_02047ec0(int w, int h)
 {
-    unk_1c = w;
-    unk_1e = h;
+    width_ = w;
+    height_ = h;
 }
 
 ARM void Sprite2D::unkfunc_02047ecc(int u0, int v0, int u1, int v1)
 {
-    unk_20 = u0;
-    unk_22 = v0;
-    unk_24 = u1;
-    unk_26 = v1;
+    u0_ = u0;
+    v0_ = v0;
+    u1_ = u1;
+    v1_ = v1;
 }
 
 ARM void Sprite2D::draw()
@@ -469,15 +469,15 @@ ARM void Sprite2D::draw()
         return;
     }
     if (getDisplayFrame() & 1) {
-        if (!(unk_2c & 1)) {
+        if (!(screens_ & 1)) {
             return;
         }
-    } else if (!(unk_2c & 2)) {
+    } else if (!(screens_ & 2)) {
         return;
     }
     G3_PushMtx();
     if (texture_) {
-        if (unk_32 == 0) {
+        if (color0Opaque_ == 0) {
             ((TextureObject*)texture_)->unkfunc_0204a1e4();
             ((TextureObject*)texture_)->unkfunc_0204a264();
         } else {
@@ -489,16 +489,16 @@ ARM void Sprite2D::draw()
     }
     G3_PolygonAttr(0, 0, 0xc0, polygonID_, alpha_, 0x8000);
     G3_Identity();
-    G3_Color(unk_34);
-    G3_Translate(unk_14.vx.value, unk_14.vy.value, (unk_28 - 0x400) << FX32_SHIFT);
-    G3_Translate(unk_1c * FX32_ONE / 2, unk_1e * FX32_ONE / 2, 0);
-    func_020761dc(FX_SinIdx(unk_30), FX_CosIdx(unk_30));
-    G3_Translate(unk_1c * -FX32_ONE / 2, unk_1e * -FX32_ONE / 2, 0);
-    G3_Scale(unk_1c << FX32_SHIFT, unk_1e << FX32_SHIFT, FX32_ONE);
-    fx32 u0 = unk_20 << FX32_SHIFT;
-    fx32 u1 = unk_24 << FX32_SHIFT;
-    fx32 v0 = unk_22 << FX32_SHIFT;
-    fx32 v1 = unk_26 << FX32_SHIFT;
+    G3_Color(color_);
+    G3_Translate(position_.vx.value, position_.vy.value, (depth_ - 0x400) << FX32_SHIFT);
+    G3_Translate(width_ * FX32_ONE / 2, height_ * FX32_ONE / 2, 0);
+    func_020761dc(FX_SinIdx(rotation_), FX_CosIdx(rotation_));
+    G3_Translate(width_ * -FX32_ONE / 2, height_ * -FX32_ONE / 2, 0);
+    G3_Scale(width_ << FX32_SHIFT, height_ << FX32_SHIFT, FX32_ONE);
+    fx32 u0 = u0_ << FX32_SHIFT;
+    fx32 u1 = u1_ << FX32_SHIFT;
+    fx32 v0 = v0_ << FX32_SHIFT;
+    fx32 v1 = v1_ << FX32_SHIFT;
     G3_Begin(1);
     G3_TexCoord(u0, v1);
     G3_Vtx(0, FX32_ONE, 0);
@@ -688,12 +688,12 @@ ARM void unkfunc_02048738()
 
 ARM void Sprite2D::setColor(int r, int g, int b)
 {
-    unk_34 = r | (g << 5) | (b << 10);
+    color_ = r | (g << 5) | (b << 10);
 }
 
 ARM void Sprite2D::setColor(int color)
 {
-    unk_34 = color;
+    color_ = color;
 }
 
 

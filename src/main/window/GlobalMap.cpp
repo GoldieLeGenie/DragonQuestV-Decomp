@@ -27,7 +27,7 @@ THUMB void window::GlobalMap::setup()
     unk_04.unkfunc_02051b80();
     unk_04.unkfunc_02051ba0(0x3e);
     unk_04.unkfunc_02051bb0(0);
-    unk_04.sprite_.unk_32 = 1;
+    unk_04.sprite_.color0Opaque_ = 1;
     dss::sprintf_s(path, sizeof(path), "data/field/2d/dq5ds_wmap1m.tex");
     unk_a8.unkfunc_02051a50(path, 0);
     unk_a8.unkfunc_02051b80();

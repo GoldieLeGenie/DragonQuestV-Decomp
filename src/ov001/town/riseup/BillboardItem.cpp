@@ -58,9 +58,9 @@ BillboardItem::~BillboardItem()
 
 void BillboardItem::unkfunc_0214e840(const char* filename)
 {
-    unk_b8.setup(filename, 0, 0);
+    data_.setup(filename, 0, 0);
     OS_Wait();
-    unkfunc_0205071c(&xy, &uv, unk_b8.getAddr());
+    unkfunc_0205071c(&xy, &uv, data_.getAddr());
     setScale(scale);
     setPolygonID(0x1f);
     setAlpha(0x1f);
@@ -79,10 +79,10 @@ void BillboardItem::unkfunc_0214e8a8(const UnkBillboardTexCoord* texCoord)
 void BillboardItem::unkfunc_0214e8b0(const char* filename, int index)
 {
     unsigned char buf[0x400];
-    unk_b8.setup(filename, 0, 0);
+    data_.setup(filename, 0, 0);
     OS_Wait();
-    unkfunc_0205071c(&xy, &uv, unk_b8.getAddr());
-    texture_ = unk_b8.getAddr();
+    unkfunc_0205071c(&xy, &uv, data_.getAddr());
+    texture_ = data_.getAddr();
     ((TextureObject*)texture_)->unkfunc_02049e9c(0);
     ((TextureObject*)texture_)->unkfunc_0204a004();
     unkfunc_02047a20(&xy);
@@ -126,5 +126,5 @@ void BillboardItem::cleanup()
 {
     removeRender();
     unkfunc_02050760();
-    unk_b8.cleanup();
+    data_.cleanup();
 }

@@ -82,9 +82,9 @@ twn::UnkTownSpotlight::~UnkTownSpotlight()
 void twn::UnkTownSpotlight::unkfunc_0212e850()
 {
     unkfunc_0212e8d4();
-    blind_.unk_2c = 3;
+    blind_.screens_ = 3;
     blind_.setPolygonID(0x3e);
-    blind_.unk_28 = 0;
+    blind_.depth_ = 0;
     blind_.setAlpha(0x1e);
     blind_.unkfunc_02047e88(0, 0);
     blind_.unkfunc_02047ec0(0x80, 0x80);

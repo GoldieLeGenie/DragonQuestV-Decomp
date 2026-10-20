@@ -87,7 +87,7 @@ THUMB void MaterielMenu_CHURCH_MIRACLE::menuSetup()
     navigator_.setup(5, 2, status::g_Party.getCount());
     miracle_ = -1;
     miracleStatus_ = MIRACLE_NONE;
-    unk_fc = 1;
+    sexType_ = 1;
     soundType_ = 1;
     MaterielMenu_CHURCH_ROOT::setTalkSound();
     for (int i = 0; i < 2; i++) {
@@ -265,8 +265,8 @@ THUMB bool MaterielMenu_CHURCH_MIRACLE::listUpdate()
     if (gTownMenu_MESSAGE.isMessageWAITPROG() == false) {
         return false;
     }
-    if (unk_fc) {
-        unk_fc = 0;
+    if (sexType_) {
+        sexType_ = 0;
         redraw_ = 1;
         return false;
     }

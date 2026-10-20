@@ -25,7 +25,7 @@ THUMB void twn::TownGlobalMap::setup()
     map_.unkfunc_02051b80();
     map_.unkfunc_02051b90(0);
     map_.unkfunc_02051ba0(0x3f);
-    map_.sprite_.unk_32 = 1;
+    map_.sprite_.color0Opaque_ = 1;
 }
 
 THUMB void twn::TownGlobalMap::cleanup()

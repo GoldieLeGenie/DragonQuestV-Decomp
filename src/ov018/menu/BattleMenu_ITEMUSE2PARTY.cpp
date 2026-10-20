@@ -12,11 +12,11 @@ THUMB void BattleMenu_ITEMUSE2PARTY::menuSetup()
     MenuStatusInfo::setMode(MenuStatusInfo::BATTLE_MODE);
     menuItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD, menu::MenuItem::CURSORTYPE_ACTIVE);
     cancelItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_CANCEL, menu::MenuItem::CURSORTYPE_NONE);
-    unk_e4 = BattleMenuPlayerControl::getSingleton()->activeChara_;
-    unk_e8 = BattleMenuPlayerControl::getSingleton()->activeItem_;
-    unk_ec = MenuStatusInfo::getPartyCount(MenuStatusInfo::COUNT_CARRIAGE_OUT);
-    if (unkfunc_02173308(MenuStatusInfo::getPlayerItemID(unk_e4, unk_e8))) {
-        for (int i = 0; i < unk_ec; i++) {
+    activeChara_ = BattleMenuPlayerControl::getSingleton()->activeChara_;
+    activeItem_ = BattleMenuPlayerControl::getSingleton()->activeItem_;
+    partyMax_ = MenuStatusInfo::getPartyCount(MenuStatusInfo::COUNT_CARRIAGE_OUT);
+    if (unkfunc_02173308(MenuStatusInfo::getPlayerItemID(activeChara_, activeItem_))) {
+        for (int i = 0; i < partyMax_; i++) {
             if (MenuStatusInfo::getHaveStatusInfo(i).isDeath()) {
                 menuItem_.active_ = i;
                 return;
@@ -28,8 +28,8 @@ THUMB void BattleMenu_ITEMUSE2PARTY::menuSetup()
 THUMB void BattleMenu_ITEMUSE2PARTY::menuExecute()
 {
     MenuStatusInfo::setMode(MenuStatusInfo::BATTLE_MODE);
-    navigator_.setup(2, 2, unk_ec);
-    unkfunc_02175ae8(&menuItem_, unk_ec);
+    navigator_.setup(2, 2, partyMax_);
+    unkfunc_02175ae8(&menuItem_, partyMax_);
     unkfunc_02175a5c(&cancelItem_);
 }
 
@@ -61,7 +61,7 @@ THUMB void BattleMenu_ITEMUSE2PARTY::menuUpdate()
         redraw_ = 1;
         if (result == 2) {
             close();
-            BattleMenuJudge::getSingleton()->setItemParty(unk_e8, menuItem_.active_);
+            BattleMenuJudge::getSingleton()->setItemParty(activeItem_, menuItem_.active_);
             BattleMenuJudge::getSingleton()->setNextPlayer();
         }
         int target = menuItem_.active_;

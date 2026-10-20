@@ -14,7 +14,7 @@ THUMB void BattleMenu_ATTACK::menuSetup()
 {
     MenuStatusInfo::setMode(MenuStatusInfo::BATTLE_MODE);
     enemyMaxNum_ = 0;
-    unk_e8 = 0;
+    monsterMask_ = 0;
     unk_ec = 0;
     menuItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD, menu::MenuItem::CURSORTYPE_NONE);
     cancelItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_CANCEL, menu::MenuItem::CURSORTYPE_NONE);
@@ -64,7 +64,7 @@ THUMB void BattleMenu_ATTACK::menuUpdate()
         return;
     }
     MenuStatusInfo::setMode(MenuStatusInfo::BATTLE_MODE);
-    unk_e8 = touchRect_[menuItem_.active_].group;
+    monsterMask_ = touchRect_[menuItem_.active_].group;
     unk_ec = menuItem_.active_;
     if (unkfunc_02175f50()) {
         unkfunc_02175e7c();
@@ -78,7 +78,7 @@ THUMB void BattleMenu_ATTACK::unkfunc_02175df0(int index)
             index = 0;
             continue;
         }
-        if (unk_e8 != touchRect_[index].group) {
+        if (monsterMask_ != touchRect_[index].group) {
             menuItem_.active_ = index;
             return;
         }
@@ -93,7 +93,7 @@ THUMB void BattleMenu_ATTACK::unkfunc_02175e34(int index)
             index = enemyMaxNum_ - 1;
             continue;
         }
-        if (unk_e8 != touchRect_[index].group) {
+        if (monsterMask_ != touchRect_[index].group) {
             menuItem_.active_ = index;
             return;
         }
@@ -107,7 +107,7 @@ THUMB void BattleMenu_ATTACK::unkfunc_02175e7c()
     switch (menuItem_.result_) {
     case menu::MenuItem::MENUITEM_RESULT_CHANGE:
         redraw_ = 1;
-        if (unk_e8 == touchRect_[menuItem_.active_].group) {
+        if (monsterMask_ == touchRect_[menuItem_.active_].group) {
             if (unk_ec < menuItem_.active_) {
                 unkfunc_02175df0(menuItem_.active_);
             } else {

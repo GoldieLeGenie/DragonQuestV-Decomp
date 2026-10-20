@@ -214,7 +214,7 @@ ARM void DSSAObject::setTexture(void* texture)
         return;
     }
     TextureObject* tex = (TextureObject*)dssaData_.texture_;
-    if (tex->unk_14 & 1) {
+    if (tex->flags_ & 1) {
         unkfunc_02049868((unsigned short*)tex->unkfunc_0204a1d4(), tex->unkfunc_0204a1dc(), hue);
         ((TextureObject*)dssaData_.texture_)->unkfunc_0204a090(0);
     } else {

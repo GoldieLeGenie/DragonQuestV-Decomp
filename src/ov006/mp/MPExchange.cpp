@@ -41,7 +41,7 @@ ARM void MPExchange::unkfunc_0212a1b4()
 
 ARM void MPExchange::unkfunc_0212a2b8(status::TAISHI_DATA* data)
 {
-    unk_fc = 0;
+    receiveCount_ = 0;
     dss::memset(sendData_, 0, 0xdc);
     dss::memset(receiveData_, 0, 0xdc);
     dss::memcpy(sendData_, data, 0xdc);
@@ -49,7 +49,7 @@ ARM void MPExchange::unkfunc_0212a2b8(status::TAISHI_DATA* data)
 
 ARM status::TAISHI_DATA* MPExchange::unkfunc_0212a2fc()
 {
-    if (unk_fc == 0) {
+    if (receiveCount_ == 0) {
         return NULL;
     }
     return (status::TAISHI_DATA*)receiveData_;
@@ -60,17 +60,17 @@ ARM void MPExchange::unkfunc_0212a310()
     OSOwnerInfo info;
     unk_38 = data_020f325c;
     role_.mode_ = data_020f3258;
-    unk_3c = data_020f3260;
-    unkfunc_02122a00(unk_3c);
+    forceError_ = data_020f3260;
+    unkfunc_02122a00(forceError_);
     func_020887c8(&info);
     nickNameLength_ = info.nickNameLength;
     dss::memcpy(nickName_, info.nickName, info.nickNameLength);
-    unk_1c = 0;
-    unk_f4 = 0;
+    cancelRequest_ = 0;
+    fatalErrorStep_ = 0;
     frame_ = 0;
     tgid_ = func_0207a3d4();
     channel_ = 0;
-    unk_34 = 0;
+    dataSharingFailed_ = 0;
     parentCount_ = 0;
     unk_0212e0c4 = 0;
     MI_CpuSet(bssDesc_, 0, sizeof(bssDesc_));
@@ -351,19 +351,19 @@ ARM void MPExchange::updateLightErrorWait()
 
 ARM void MPExchange::updateFatalError()
 {
-    switch (unk_f4) {
+    switch (fatalErrorStep_) {
     case 0:
         resetWh();
-        unk_f4++;
+        fatalErrorStep_++;
         break;
     case 1:
         if (getWhSysState() == WH_SYSSTATE_IDLE) {
-            unk_f4++;
+            fatalErrorStep_++;
         }
         break;
     case 2:
         endWh();
-        unk_f4++;
+        fatalErrorStep_++;
         break;
     }
 }

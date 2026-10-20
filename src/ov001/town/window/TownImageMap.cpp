@@ -61,7 +61,7 @@ THUMB void twn::TownImageMap::setup()
         map_.unkfunc_02051b80();
         map_.unkfunc_02051b90(0);
         map_.unkfunc_02051ba0(0x3f);
-        map_.sprite_.unk_32 = 1;
+        map_.sprite_.color0Opaque_ = 1;
         point_.unkfunc_02051a50("data/field/2d/point_s.tex", 0);
         point_.unkfunc_02051b80();
         point_.unkfunc_02051b90(0);

@@ -692,7 +692,7 @@ void twn::TownSugorokuManager::setShopDraw(int type)
     shopSprite_.unkfunc_02051b90(0x1f);
     shopSprite_.unkfunc_02051ba0(0x3f);
     shopSprite_.unkfunc_02051bb0(0x80);
-    shopSprite_.sprite_.unk_32 = 1;
+    shopSprite_.sprite_.color0Opaque_ = 1;
     shopSprite_.unkfunc_02051b14(0, 0);
 }
 

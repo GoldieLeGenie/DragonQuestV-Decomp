@@ -31,15 +31,15 @@ THUMB void BattleMenuJudge::baseSetup()
 {
     turnCount_ = 0;
     prevturnCount_ = 0;
-    unk_08 = 0;
+    playerMaxNum_ = 0;
     minadeinFlag_ = 0;
 }
 
 THUMB void BattleMenuJudge::turnSetup()
 {
     BattleMenuPlayerControl::getSingleton()->activeChara_ = -1;
-    unk_08 = MenuStatusInfo::getPartyCount(MenuStatusInfo::COUNT_ALL);
-    for (int i = 0; i < unk_08; i++) {
+    playerMaxNum_ = MenuStatusInfo::getPartyCount(MenuStatusInfo::COUNT_ALL);
+    for (int i = 0; i < playerMaxNum_; i++) {
         MenuStatusInfo::getHaveBattleStatus(i).clearSelectCommand();
     }
 }

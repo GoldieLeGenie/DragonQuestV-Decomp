@@ -26,7 +26,7 @@ THUMB void fld::FieldYamiMap::setup()
     unk_04.unkfunc_02051b80();
     unk_04.unkfunc_02051ba0(0x3e);
     unk_04.unkfunc_02051bb0(0);
-    unk_04.sprite_.unk_32 = 1;
+    unk_04.sprite_.color0Opaque_ = 1;
     unk_04.unkfunc_02051b90(0);
     unk_04.unkfunc_02051a20();
     unk_a8.unkfunc_02051a20();

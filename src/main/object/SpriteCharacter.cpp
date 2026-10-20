@@ -37,8 +37,8 @@ void SpriteCharacter::unkfunc_0205833c(int width, int height)
     anmIndex_ = 0;
     direction_ = -1;
     dispDirection_ = 0;
-    unk_9c = width;
-    unk_a0 = height;
+    frameWidth_ = width;
+    frameHeight_ = height;
     unkfunc_020583ec();
     shadow_.unkfunc_0205876c();
     flag_.flag_ |= FLAG_DEFAULT;
@@ -53,9 +53,9 @@ void SpriteCharacter::cleanup()
 
 void SpriteCharacter::unkfunc_020583ec()
 {
-    unkfunc_02047ec0(unk_9c, unk_a0);
-    unkfunc_02047ecc(0, 0, unk_9c, unk_a0);
-    unk_2c = 1;
+    unkfunc_02047ec0(frameWidth_, frameHeight_);
+    unkfunc_02047ecc(0, 0, frameWidth_, frameHeight_);
+    screens_ = 1;
 }
 
 void SpriteCharacter::setAlpha(int alpha)
@@ -87,16 +87,16 @@ void SpriteCharacter::execute()
     }
     switch (anmIndex_ / 12) {
     case 0:
-        unkfunc_02047ecc(0, 0, unk_9c, unk_a0);
+        unkfunc_02047ecc(0, 0, frameWidth_, frameHeight_);
         break;
     case 1:
-        unkfunc_02047ecc(unk_9c, 0, unk_9c * 2, unk_a0);
+        unkfunc_02047ecc(frameWidth_, 0, frameWidth_ * 2, frameHeight_);
         break;
     case 2:
-        unkfunc_02047ecc(unk_9c * 2, 0, unk_9c * 3, unk_a0);
+        unkfunc_02047ecc(frameWidth_ * 2, 0, frameWidth_ * 3, frameHeight_);
         break;
     case 3:
-        unkfunc_02047ecc(unk_9c, 0, unk_9c * 2, unk_a0);
+        unkfunc_02047ecc(frameWidth_, 0, frameWidth_ * 2, frameHeight_);
         break;
     }
     anmIndex_++;
@@ -119,7 +119,7 @@ void SpriteCharacter::reload()
 
 void SpriteCharacter::setPosition(int x, int y)
 {
-    unkfunc_02047e88(x - unk_9c / 2, y - unk_a0);
+    unkfunc_02047e88(x - frameWidth_ / 2, y - frameHeight_);
     if (flag_.check(FLAG_STAY)) {
         shadow_.setPosition(x, y);
     }
@@ -127,7 +127,7 @@ void SpriteCharacter::setPosition(int x, int y)
 
 void SpriteCharacter::setPosition(dss::Vector2<int> pos)
 {
-    unkfunc_02047e88(pos.vx - unk_9c / 2, pos.vy - unk_a0);
+    unkfunc_02047e88(pos.vx - frameWidth_ / 2, pos.vy - frameHeight_);
     if (flag_.check(FLAG_STAY)) {
         shadow_.setPosition(pos.vx, pos.vy);
     }
@@ -245,8 +245,8 @@ void SpriteShadow::unkfunc_0205876c()
     unkfunc_02047e88(0, 0);
     unkfunc_02047ec0(0x12, 0xc);
     unkfunc_02047ecc(0, 0, 0x20, 0x20);
-    unk_2c = 1;
-    unk_28 = 4;
+    screens_ = 1;
+    depth_ = 4;
     setAlpha(15);
 }
 

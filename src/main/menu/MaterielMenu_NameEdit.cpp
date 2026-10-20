@@ -112,7 +112,7 @@ THUMB void MaterielMenu_NameEdit::menuSetup()
     menuItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD_CANCEL, menu::MenuItem::CURSORTYPE_ACTIVE);
     keyboard_.unkfunc_0202acd4();
     unk_88 = 0;
-    unk_80 = status::g_Game.language_;
+    language_ = status::g_Game.language_;
     inputType_ = TYPE_NAME_EDIT;
     s_maxCount = unkfunc_0202acc0();
     closeFlag_ = 0;
@@ -222,7 +222,7 @@ THUMB void MaterielMenu_NameEdit::unkfunc_0202a6e0(int message)
         blink = 1;
     }
     cursorTimer_++;
-    unkfunc_0202a374(unk_80, s_nameText, s_count, s_maxCount, blink, 0);
+    unkfunc_0202a374(language_, s_nameText, s_count, s_maxCount, blink, 0);
     drawMenuFrame(0, 0x30, 0x100, 0x78, 0x48);
     drawCenteredMessage(&message, 8, 0x4a, 0xf0, 0x2c);
 }

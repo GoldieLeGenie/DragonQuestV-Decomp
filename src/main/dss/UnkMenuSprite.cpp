@@ -106,17 +106,17 @@ THUMB void UnkMenuSprite::unkfunc_02051b74(int enable)
 
 THUMB void UnkMenuSprite::unkfunc_02051b78()
 {
-    sprite_.unk_2c = 1;
+    sprite_.screens_ = 1;
 }
 
 THUMB void UnkMenuSprite::unkfunc_02051b80()
 {
-    sprite_.unk_2c = 2;
+    sprite_.screens_ = 2;
 }
 
 THUMB void UnkMenuSprite::unkfunc_02051b88()
 {
-    sprite_.unk_2c = 3;
+    sprite_.screens_ = 3;
 }
 
 THUMB void UnkMenuSprite::unkfunc_02051b90(int a)
@@ -131,12 +131,12 @@ THUMB void UnkMenuSprite::unkfunc_02051ba0(int polygonID)
 
 THUMB void UnkMenuSprite::unkfunc_02051bb0(int a)
 {
-    sprite_.unk_28 = a;
+    sprite_.depth_ = a;
 }
 
 THUMB void UnkMenuSprite::unkfunc_02051bb4(int a)
 {
-    sprite_.unk_30 = a;
+    sprite_.rotation_ = a;
 }
 
 THUMB void UnkMenuSprite::unkfunc_02051bbc(unsigned char r, unsigned char g, unsigned char b)

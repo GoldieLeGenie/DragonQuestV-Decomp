@@ -60,7 +60,7 @@ THUMB void btl::BattleMonster::draw()
 {
     CharacterPalette* palette = &monsterDraw_.palette_;
     if (palette->enable_ && !paletteAnimation_.unkfunc_02051628()) {
-        paletteAnimation_.unkfunc_02051580(palette->unk_408, palette->unk_404);
+        paletteAnimation_.unkfunc_02051580(palette->address_, palette->size_);
     }
     if (monsterDraw_.currentAnimationIndex_ != 0) {
         dss::Fix32Vector3 pos = *monsterDraw_.getPosition();
@@ -205,7 +205,7 @@ THUMB void btl::BattleMonster::setPaletteAstoron(int flag)
         dataObject_.setup(filename, 1, 0);
         palette->enable_ = 1;
         paletteAnimation_.anim_.setup(dataObject_.getAddr());
-        paletteAnimation_.unkfunc_0205150c(palette->unk_408, palette->unk_404);
+        paletteAnimation_.unkfunc_0205150c(palette->address_, palette->size_);
     }
 }
 

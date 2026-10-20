@@ -20,8 +20,8 @@ THUMB void window::ScreenEffectBattle::setup()
     unk_08 = dss::Fix32(0x8000);
     counter_ = 0;
     unk_24 = 0;
-    unk_30 = 0xffff;
-    unk_34 = 0xffff;
+    angle0_ = 0xffff;
+    angle1_ = 0xffff;
     unk_2c = 0xffff;
 }
 
@@ -30,7 +30,7 @@ THUMB void window::ScreenEffectBattle::unkfunc_02029588(short x, short y, short 
     const int unused[1] = {2};  // unreferenced, only its .rodata copy remains
     int rnd = UnkDssRand::rand(2);
     int count = rnd ? counter_ : unk_24;
-    int angle = rnd ? unk_30 : unk_34;
+    int angle = rnd ? angle0_ : angle1_;
     int x2 = x * 2;
     if (count > x2) {
         data_020c32a0[index].x -= 2;
@@ -91,16 +91,16 @@ THUMB void window::ScreenEffectBattle::draw()
     counter_ += 2;
     if (counter_ > 0x14) {
         unk_24 += 2;
-        if (unk_34 > 0xc000) {
-            unk_34 -= 0xf0;
+        if (angle1_ > 0xc000) {
+            angle1_ -= 0xf0;
         } else {
-            unk_34 = 0xc000;
+            angle1_ = 0xc000;
         }
     }
-    if (unk_30 > 0xc000) {
-        unk_30 -= 0xf0;
+    if (angle0_ > 0xc000) {
+        angle0_ -= 0xf0;
     } else {
-        unk_30 = 0xc000;
+        angle0_ = 0xc000;
     }
     if (unk_2c < 0) {
         unk_2c += 0xffff;
