@@ -20,11 +20,11 @@ struct MPExchangePart : args::GamePart {
     virtual void onDrawPart();
     virtual void onWindowPart();
     virtual void onDebugPart();
-    void unkfunc_02043370(int state);
-    void unkfunc_02043374();
-    void unkfunc_0204338c();                    // LCD off while the lid is closed
-    void unkfunc_020433f4();
-    void unkfunc_02043410();
+    void setState(int state);
+    void updateState();
+    void updateLcdPower();                    // LCD off while the lid is closed
+    void playWaitSe();
+    void restoreLcdAndSleep();
 };
 
 extern MPExchangePart g_MPExchangePart;

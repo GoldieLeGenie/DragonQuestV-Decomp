@@ -22,7 +22,7 @@ THUMB void status::PlayerDataAll::initialize(bool flag)
     }
     if (flag) {
         TextAPI::Init();
-        TextAPI::unkfunc_0206cd20();
+        TextAPI::update();
     }
     for (int i = 1; i < 16; i++) {
         playerData_[i].setup(flag, i, i, 0);
@@ -38,7 +38,7 @@ THUMB void status::PlayerDataAll::initialize(bool flag)
         playerFlag_[i].clear();
     }
     if (flag) {
-        TextAPI::unkfunc_0206cc98();
+        TextAPI::terminate();
     }
 }
 

@@ -47,7 +47,7 @@ THUMB void DebugBattleInfo::draw()
         unkfunc_020273fc(1, 1);
     }
     if (showLog_ != 0) {
-        unkfunc_020278ac(1, 7);
+        drawMessageIDs(1, 7);
     }
     if (type_ == 0 || (type_ == 1 && index_ >= status::g_Party.getCount()) ||
         (type_ == 2 && index_ >= status::g_Monster.getCount())) {
@@ -59,14 +59,14 @@ THUMB void DebugBattleInfo::draw()
         debugConsolePrintf(13, 1, "PLAYER NO      %3d", index);
         debugConsolePrintf(13, 2, "                  ");
         debugConsolePrintf(13, 3, "COMMAND        %3d", command);
-        unkfunc_02027460(13, 5, &status::g_Party.getPlayerStatus(index).haveStatusInfo_);
+        drawStatusInfo(13, 5, &status::g_Party.getPlayerStatus(index).haveStatusInfo_);
     }
     if (type_ == 2) {
         int command = status::g_Monster.getMonsterStatus(index).haveBattleStatus_.actionIndex_;
         debugConsolePrintf(13, 1, "MONSTER NO     %3d", index);
         debugConsolePrintf(13, 2, "GROUP NO       %3d", status::g_Monster.getMonsterGroup(index));
         debugConsolePrintf(13, 3, "COMMAND        %3d", command);
-        unkfunc_02027460(13, 5, &status::g_Monster.getMonsterStatus(index).haveStatusInfo_);
+        drawStatusInfo(13, 5, &status::g_Monster.getMonsterStatus(index).haveStatusInfo_);
     }
     if (type_ == 2) {
         int* rect = btl::BattleMonsterMask::getSingleton()->getMonsterTouchRect(index);
@@ -92,7 +92,7 @@ THUMB void DebugBattleInfo::unkfunc_020273fc(int x, int y)
     drawDebugWindow(x, y, 4, 4);
 }
 
-THUMB void DebugBattleInfo::unkfunc_02027460(int x, int y, status::HaveStatusInfo* info)
+THUMB void DebugBattleInfo::drawStatusInfo(int x, int y, status::HaveStatusInfo* info)
 {
     int hp = info->getHp();
     int hpMax = info->getHpMax();
@@ -148,7 +148,7 @@ THUMB void DebugBattleInfo::unkfunc_02027460(int x, int y, status::HaveStatusInf
     }
 }
 
-THUMB void DebugBattleInfo::unkfunc_020278ac(int x, int y)
+THUMB void DebugBattleInfo::drawMessageIDs(int x, int y)
 {
-    data_020c2d10.unkfunc_02027d7c(x, y);
+    data_020c2d10.drawShortMessageIDs(x, y);
 }

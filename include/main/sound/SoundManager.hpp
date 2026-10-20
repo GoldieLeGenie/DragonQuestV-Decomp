@@ -18,10 +18,10 @@ struct SoundManager {
     static void stopBgm(int fade);
     static void stopBgmForce(int fade);
     static int playSe(int se, int param);
-    static void unkfunc_0206fc10(int se, int fade);
+    static void stopSe(int se, int fade);
     static void stopSeWithIndex(int se, int fade);
     static void playSe2(int se, int param);
-    static void unkfunc_0206fc44(int fade);
+    static void stopSe2(int fade);
     static void setBgmVolumeSys(int volume);
     static void setBgmVolume(int volume);
     static void setSeVolumeSys(int volume);

@@ -127,7 +127,7 @@ THUMB int MsgData::loadBlock(unsigned int msg_id, int lang)
         cur = (unsigned int)m_loaded_msg_id / m_block_size * m_block_size;
     }
     if (block != cur) {
-        const char* folder = unkfunc_0206c6e8(block);
+        const char* folder = getMsgFolder(block);
         const char* dir = 0;
         if (lang == 0) {
             dir = "JA";

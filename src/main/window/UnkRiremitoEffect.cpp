@@ -31,7 +31,7 @@ THUMB void window::UnkRiremitoEffect::setup()
 
 THUMB void window::UnkRiremitoEffect::draw()
 {
-    unkfunc_020289e4();
+    drawPanels();
 }
 
 THUMB bool window::UnkRiremitoEffect::isEnd()
@@ -42,14 +42,14 @@ THUMB bool window::UnkRiremitoEffect::isEnd()
     return false;
 }
 
-THUMB void window::UnkRiremitoEffect::unkfunc_020289e4()
+THUMB void window::UnkRiremitoEffect::drawPanels()
 {
     if (isActive() == false) {
         return;
     }
     dss::g_DISPLAYPLUGIN_DOUBLE3D.SetBlur(4, 12);
     alpha_ = 31;
-    UnkScreenEffectCamera::unkfunc_02028cc4()->unkfunc_02028d44();
+    UnkScreenEffectCamera::getSingleton()->draw();
     {
         VecFx32 scale = {FX32_ONE, FX32_ONE, FX32_ONE};
         VecFx32 trans = {0, 0, 0};
@@ -104,7 +104,7 @@ THUMB void window::UnkRiremitoEffect::unkfunc_020289e4()
                 alpha = 0;
             }
             alpha_ = alpha;
-            unkfunc_020287e8(polygonId);
+            setPolygonParams(polygonId);
             polygonId++;
             G3_Begin(1);
             int n = 0;

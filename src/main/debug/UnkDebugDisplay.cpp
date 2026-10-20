@@ -30,7 +30,7 @@ THUMB void debugPrint(int x, int y, const char* str)
     }
 }
 
-THUMB void unkfunc_02027058(int x, int y, int w, int h)
+THUMB void drawDebugBox(int x, int y, int w, int h)
 {
     if (!MenuManager::isRequesting()) {
         fillWindowBackRect(data_02106178.back_.getScreenBuffer(), x, y, w, h, 0xf);
@@ -45,34 +45,34 @@ THUMB void drawDebugWindow(int x, int y, int w, int h)
     }
 }
 
-THUMB void unkfunc_020270dc()
+THUMB void initDebugDisplay()
 {
     s_display[0] = NULL;
     s_display[1] = &data_020c2ce4;
     s_display[2] = &data_020c2d10;
-    UnkDebugDisplay* display = s_display[unkfunc_020271b4()];
+    UnkDebugDisplay* display = s_display[getDebugDisplaySlot()];
     if (display != NULL) {
         display->initialize();
     }
     data_020f6f9c.clear();
 }
 
-THUMB void unkfunc_0202711c()
+THUMB void updateDebugDisplay()
 {
-    UnkDebugDisplay* display = s_display[unkfunc_020271b4()];
+    UnkDebugDisplay* display = s_display[getDebugDisplaySlot()];
     if (display != NULL) {
         display->draw();
     }
-    data_020c2c40.unkfunc_02026b68();
+    data_020c2c40.update();
     UnkDebugTask* task = &data_020d8800;
-    task->unkfunc_02038248();
+    task->update();
     task = &data_020dc058;
-    task->unkfunc_02038248();
+    task->update();
     task = &data_020f3520;
-    task->unkfunc_02038248();
+    task->update();
     if (s_arrayWarningCount != getArrayErrorCount()) {
         s_arrayWarningCount = getArrayErrorCount();
-        data_020c2d10.unkfunc_02028258(1);
+        data_020c2d10.setShowArrayWarning(1);
     }
     if (s_messageTime != 0) {
         if (s_messageTime & 1) {
@@ -82,7 +82,7 @@ THUMB void unkfunc_0202711c()
     }
 }
 
-THUMB int unkfunc_020271b4()
+THUMB int getDebugDisplaySlot()
 {
     switch (data_02101c88.unkfunc_02051810()) {
     case 4:

@@ -39,7 +39,7 @@ THUMB UnkBattleTest::UnkBattleTest()
     counter_ = -1;
 }
 
-THUMB void UnkBattleTest::unkfunc_02026b68()
+THUMB void UnkBattleTest::update()
 {
     switch (state_) {
     case 0:

@@ -57,14 +57,14 @@ UnkShopMapCheck::UnkShopMapCheck()
 void UnkShopMapCheck::vf0c()
 {
     if (frame_ == 10) {
-        unkfunc_02038148();
+        startShopMap();
     }
     if (waitFrame_ == frame_) {
         if (twn::TownPlayerManager::getSingleton().getActionType() == twn::ACTION_TYPE_FALL) {
             waitFrame_ = frame_ + 10;
             return;
         }
-        unkfunc_02038118();
+        nextShop();
     }
 }
 
@@ -75,7 +75,7 @@ void UnkShopMapCheck::vf04()
     state_ = 0;
 }
 
-void UnkShopMapCheck::unkfunc_02038118()
+void UnkShopMapCheck::nextShop()
 {
     int index = ++index_;
     if (index > endIndex_) {
@@ -90,7 +90,7 @@ void UnkShopMapCheck::unkfunc_02038118()
     }
 }
 
-void UnkShopMapCheck::unkfunc_02038148()
+void UnkShopMapCheck::startShopMap()
 {
     int index = index_ + 1;
     dq5::level::EventList* event = NULL;
@@ -123,7 +123,7 @@ void UnkShopMapCheck::unkfunc_02038148()
     }
 }
 
-void UnkDebugTask::unkfunc_02038248()
+void UnkDebugTask::update()
 {
     if (requestState_ != state_) {
         state_ = requestState_;

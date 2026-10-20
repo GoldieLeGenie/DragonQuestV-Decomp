@@ -10,10 +10,10 @@ namespace window {
 
         UnkScreenEffectCamera();
         ~UnkScreenEffectCamera();
-        static UnkScreenEffectCamera* unkfunc_02028cc4();   // the instance
-        void unkfunc_02028d00();                // setup
-        void unkfunc_02028d40();
-        void unkfunc_02028d44();                // apply
+        static UnkScreenEffectCamera* getSingleton();   // the instance
+        void initialize();                // setup
+        void terminate();
+        void draw();                // apply
     };
 
     // one panel of the screen effects (position, 4 vertices, 4 texture coordinates)
@@ -47,10 +47,10 @@ namespace window {
 
         UnkScreenEffect();
         ~UnkScreenEffect();
-        bool unkfunc_020284cc();                // builds the panels, false while waiting
+        bool setupTiles();                // builds the panels, false while waiting
         void terminate();
         void execute();
-        void unkfunc_020287e8(int polygonId);   // polygon attributes
+        void setPolygonParams(int polygonId);   // polygon attributes
         bool isActive();
         bool isSetup();
         bool isReady();
@@ -71,7 +71,7 @@ namespace window {
         void setup();
         void draw();
         bool isEnd();
-        void unkfunc_020289e4();                // draws the panels
+        void drawPanels();                // draws the panels
     };
 
     // ranaruta day/night switch effect
@@ -87,7 +87,7 @@ namespace window {
         void setup();
         void draw();
         bool isEnd();
-        void unkfunc_020290c8(int index, int vertex, short z);  // moves a vertex shared by 4 panels
+        void setSharedVertexZ(int index, int vertex, short z);  // moves a vertex shared by 4 panels
     };
 
     // tabi (travel door) effect
@@ -100,7 +100,7 @@ namespace window {
         void setup();
         void draw();
         bool isEnd();
-        void unkfunc_02029ba4(int travelBack);
+        void setTravelBack(int travelBack);
     };
 
     // battle start effect
@@ -115,7 +115,7 @@ namespace window {
         void setup();
         void draw();
         bool isEnd();
-        void unkfunc_02029588(short x, short y, short index, short* sin, short* cos);
+        void updatePanel(short x, short y, short index, short* sin, short* cos);
     };
 
     // Screen effects played back on the map screens (cure floor, rura, battle start...)

@@ -104,7 +104,7 @@ ARM void MPExchange::unkfunc_0212a424()
     }
     }
     unkfunc_0212a950();
-    unkfunc_02043430(getModeName(mode_));
+    clearDebugConsole(getModeName(mode_));
     switch (mode_) {
     case SYSMODE_STOP:
         break;

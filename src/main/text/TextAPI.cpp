@@ -69,19 +69,19 @@ THUMB void TextAPI::resetMacro()
 
 THUMB int TextAPI::isExistMessage(int messageID)
 {
-    return unkfunc_0206ce14(messageID, m_lang);
+    return msgExists(messageID, m_lang);
 }
 
 THUMB void TextAPI::getMessage(char* message, int messageSize, int messageID)
 {
-    unkfunc_0206ce28(messageID, m_lang);
+    loadMessageFile(messageID, m_lang);
     dss::strcpy_s(s_work, 0x200, msg_get_body());
     g_text_env.process_msg(message, messageSize, s_work);
 }
 
 THUMB void TextAPI::getMessage(char* message, int messageSize, char* name, int nameSize, int messageID)
 {
-    unkfunc_0206ce28(messageID, m_lang);
+    loadMessageFile(messageID, m_lang);
     dss::strcpy_s(m_work1, 0x200, msg_get_body());
     dss::strcpy_s(m_work2, 0x80, msg_get_head());
     m_msg_last_sound = msg_get_sound();
@@ -94,14 +94,14 @@ THUMB int TextAPI::getMessageSound()
     return m_msg_last_sound;
 }
 
-THUMB void unkfunc_0206c6bc(const char* folder1, const char* folder2)
+THUMB void setMsgFolders(const char* folder1, const char* folder2)
 {
     dss::strcpy_s(s_folder1, 0x80, folder1);
     dss::strcpy_s(s_folder2, 0x80, folder2);
     s_folderSet = 1;
 }
 
-THUMB const char* unkfunc_0206c6e8(int msg_id)
+THUMB const char* getMsgFolder(int msg_id)
 {
     if (s_folderSet == 0) {
         return NULL;

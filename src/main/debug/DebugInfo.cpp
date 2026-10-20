@@ -27,7 +27,7 @@ static char s_flagHeader[] = "-flg 0 1 2 3 4 5 6 7 8 9";
 
 THUMB DebugInfo::DebugInfo()
 {
-    unkfunc_0202825c();
+    clearLog();
 }
 
 THUMB void DebugInfo::initialize()
@@ -36,7 +36,7 @@ THUMB void DebugInfo::initialize()
     posY_ = 0xfe02;
     posZ_ = 0xfe02;
     dir_ = 0xfe02;
-    unkfunc_02027cdc();
+    clearMessageIDs();
 }
 
 THUMB void DebugInfo::draw()
@@ -46,35 +46,35 @@ THUMB void DebugInfo::draw()
         return;
     }
     if (showLog_ != 0) {
-        unkfunc_0202827c(1, 2);
+        drawLog(1, 2);
         return;
     }
     if (showPosition_ != 0) {
-        unkfunc_02027a38(1, 20);
+        drawPosition(1, 20);
     }
     if (showMessageID_ != 0) {
         unkfunc_02027d1c(25, 1);
     }
     if (showFlag_ != 0) {
         if (showFlag_ != 0) {
-            unkfunc_02027ddc(0, 0);
+            drawFlags(0, 0);
         }
         return;
     }
     if (showWorldTime_ != 0) {
-        unkfunc_02027f58(1, 1);
+        drawWorldTime(1, 1);
     }
     if (showPlayTime_ != 0) {
-        unkfunc_02027fe8(12, 1);
+        drawPlayTime(12, 1);
     }
     if (showHeap_ != 0) {
         drawHeap(1, 6);
     }
     if (showMuseum_ != 0) {
-        unkfunc_020280e0(1, 12);
+        drawMuseum(1, 12);
     }
     if (showFriend_ != 0) {
-        unkfunc_02028204(8, 6);
+        drawFriendMonsters(8, 6);
     }
 }
 
@@ -94,7 +94,7 @@ THUMB void DebugInfo::drawArrayWarnings(int x, int y)
     s_arrayWarningDrawCount++;
 }
 
-THUMB void DebugInfo::unkfunc_02027a38(int x, int y)
+THUMB void DebugInfo::drawPosition(int x, int y)
 {
     dss::Fix32Vector3 position;
     short dirIdx;
@@ -161,7 +161,7 @@ THUMB void DebugInfo::unkfunc_02027a38(int x, int y)
     drawDebugWindow(x, y, 29, 3);
 }
 
-THUMB void DebugInfo::unkfunc_02027cdc()
+THUMB void DebugInfo::clearMessageIDs()
 {
     for (int i = 0; i < 16; i++) {
         messageID_[i] = -1;
@@ -191,7 +191,7 @@ THUMB void DebugInfo::unkfunc_02027d1c(int x, int y)
     drawDebugWindow(x, y, 6, 17);
 }
 
-THUMB void DebugInfo::unkfunc_02027d7c(int x, int y)
+THUMB void DebugInfo::drawShortMessageIDs(int x, int y)
 {
     debugPrint(x, y, "MessID");
     for (int i = 0; i < 6; i++) {
@@ -204,17 +204,17 @@ THUMB void DebugInfo::unkfunc_02027d7c(int x, int y)
     drawDebugWindow(x, y, 6, 7);
 }
 
-THUMB void DebugInfo::unkfunc_02027ddc(int x, int y)
+THUMB void DebugInfo::drawFlags(int x, int y)
 {
-    unkfunc_02027e74(x, y, 'G', &g_AreaFlag, areaFlagTop_, 5, &areaFlag_);
-    unkfunc_02027e74(x, y + 7, 'A', &g_LocalFlag, localFlagTop_, 5, &localFlag_);
-    unkfunc_02027e74(x, y + 14, 'L', &g_GlobalFlag, globalFlagTop_, 5, &globalFlag_);
-    unkfunc_02027058(0, 0, 24, 6);
-    unkfunc_02027058(0, 7, 24, 6);
-    unkfunc_02027058(0, 14, 24, 6);
+    drawFlagTable(x, y, 'G', &g_AreaFlag, areaFlagTop_, 5, &areaFlag_);
+    drawFlagTable(x, y + 7, 'A', &g_LocalFlag, localFlagTop_, 5, &localFlag_);
+    drawFlagTable(x, y + 14, 'L', &g_GlobalFlag, globalFlagTop_, 5, &globalFlag_);
+    drawDebugBox(0, 0, 24, 6);
+    drawDebugBox(0, 7, 24, 6);
+    drawDebugBox(0, 14, 24, 6);
 }
 
-THUMB void DebugInfo::unkfunc_02027e74(int x, int y, char kind, status::GameFlag* flag, int top, int lines, status::GameFlag* prevFlag)
+THUMB void DebugInfo::drawFlagTable(int x, int y, char kind, status::GameFlag* flag, int top, int lines, status::GameFlag* prevFlag)
 {
     int blink;
     if (getDisplayFrame() & 2) {
@@ -248,7 +248,7 @@ THUMB void DebugInfo::unkfunc_02027e74(int x, int y, char kind, status::GameFlag
     }
 }
 
-THUMB void DebugInfo::unkfunc_02027f58(int x, int y)
+THUMB void DebugInfo::drawWorldTime(int x, int y)
 {
     const char* timeZoneName = "";
     switch (cmn::WorldLocation::getCurrentTimeZone()) {
@@ -271,7 +271,7 @@ THUMB void DebugInfo::unkfunc_02027f58(int x, int y)
     drawDebugWindow(x, y, 9, 3);
 }
 
-THUMB void DebugInfo::unkfunc_02027fe8(int x, int y)
+THUMB void DebugInfo::drawPlayTime(int x, int y)
 {
     unsigned int playTime = status::g_Game.getPlayTime();
     unsigned int frameCount = data_02101c88.frameCount_;
@@ -285,7 +285,7 @@ THUMB void DebugInfo::unkfunc_02027fe8(int x, int y)
     drawDebugWindow(x, y, 11, 3);
 }
 
-THUMB void DebugInfo::unkfunc_020280e0(int x, int y)
+THUMB void DebugInfo::drawMuseum(int x, int y)
 {
     char fear = '-';
     char funny = '-';
@@ -319,7 +319,7 @@ THUMB void DebugInfo::drawHeap(int x, int y)
     drawDebugWindow(x, y, 5, 4);
 }
 
-THUMB void DebugInfo::unkfunc_02028204(int x, int y)
+THUMB void DebugInfo::drawFriendMonsters(int x, int y)
 {
     debugConsolePrintf(x, y, "ALL FRIEND");
     debugConsolePrintf(x, y + 1, "count:%d", status::PlayerDataAll::getFriendMonsterCount());
@@ -328,12 +328,12 @@ THUMB void DebugInfo::unkfunc_02028204(int x, int y)
     drawDebugWindow(x, y, 13, 4);
 }
 
-THUMB void DebugInfo::unkfunc_02028258(int show)
+THUMB void DebugInfo::setShowArrayWarning(int show)
 {
     showArrayWarning_ = show;
 }
 
-THUMB void DebugInfo::unkfunc_0202825c()
+THUMB void DebugInfo::clearLog()
 {
     showLog_ = 0;
     unk_24 = 1;
@@ -343,7 +343,7 @@ THUMB void DebugInfo::unkfunc_0202825c()
     }
 }
 
-THUMB void DebugInfo::unkfunc_0202827c(int x, int y)
+THUMB void DebugInfo::drawLog(int x, int y)
 {
     drawDebugWindow(x, y, 30, 16);
     int index = logIndex_ - 16;

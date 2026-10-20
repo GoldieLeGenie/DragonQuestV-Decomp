@@ -7,12 +7,12 @@ int data_02101da4;
 static dss::Fix32Vector3 s_pointPos[64];
 static dss::Vector2<int> s_pointScreenPos[64][2];
 
-void unkfunc_02052150(int index, dss::Fix32Vector3& pos)
+void setProjectedPointPos(int index, dss::Fix32Vector3& pos)
 {
     s_pointPos[index] = pos;
 }
 
-dss::Vector2<int>* unkfunc_02052164(int index)
+dss::Vector2<int>* getProjectedPointScreenPos(int index)
 {
     return &s_pointScreenPos[index][getDisplayFrame() & 1];
 }

@@ -120,7 +120,7 @@ THUMB void btl::BattleMonsterMask::calcTargetPos(int actorindex)
     int index = status::g_Monster.getMonsterStatus(actorindex).haveStatusInfo_.drawCtrlId_;
     dss::Fix32Vector3* position = BattleMonsterDraw2::getSingleton().getMonster(index).monsterDraw_.getPosition();
     pos = dss::Fix32Vector3(*position);
-    unkfunc_02052150(actorindex, pos);
+    setProjectedPointPos(actorindex, pos);
 }
 
 THUMB dss::Vector2<int> btl::BattleMonsterMask::getTargetPos(int actorindex)
@@ -137,7 +137,7 @@ THUMB dss::Vector2<int> btl::BattleMonsterMask::getTargetPos(int actorindex)
     int maskScaleX = dss::abs<int>(rect[1] - rect[3]);
     int maskScaleY = (scale_ * dss::abs<int>(rect[2] - rect[4])).value / 4096;
     maskScaleX = (scale_ * maskScaleX).value / 4096;
-    screen = *unkfunc_02052164(actorindex);
+    screen = *getProjectedPointScreenPos(actorindex);
     maskScaleY = maskScaleY * 2 / 3;
     screen.vx -= maskScaleY;
     screen.vy -= maskScaleX;
@@ -159,7 +159,7 @@ THUMB int* btl::BattleMonsterMask::getMonsterTouchRect(int actorindex)
     short* rect = MonsterTaiData[monster];
     int width = dss::abs<int>(rect[2] - rect[4]);
     int height = dss::abs<int>(rect[1] - rect[3]);
-    dss::Vector2<int> screen = *unkfunc_02052164(actorindex);
+    dss::Vector2<int> screen = *getProjectedPointScreenPos(actorindex);
     monsterRectTemp[0] = status::g_Monster.getMonsterGroup(actorindex);
     monsterRectTemp[1] = screen.vx - width / 2;
     monsterRectTemp[2] = screen.vy - height - rect[3] / 2;

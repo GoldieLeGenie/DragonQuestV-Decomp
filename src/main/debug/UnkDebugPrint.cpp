@@ -5,7 +5,7 @@ int data_020f325c;
 int data_020f3258;
 int data_020f3260;
 
-ARM void unkfunc_02043430(const char* title)
+ARM void clearDebugConsole(const char* title)
 {
     data_020f6f9c.clearRect(0, 0, 0x20, 0x30);
     if (data_020f325c != 0) {

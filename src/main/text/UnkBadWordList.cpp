@@ -2,7 +2,7 @@
 #include "main/dss/DssUtils.hpp"
 #include "main/dss/UnkUtf8Iterator.hpp"
 
-THUMB void UnkBadWordList::unkfunc_0206b6b4()
+THUMB void UnkBadWordList::load()
 {
     char line[0x200];
     m_data.setup("DATA/G2D/bin/badword_ja.txt", 0, 0);
@@ -12,12 +12,12 @@ THUMB void UnkBadWordList::unkfunc_0206b6b4()
     }
 }
 
-THUMB void UnkBadWordList::unkfunc_0206b6fc()
+THUMB void UnkBadWordList::unload()
 {
     m_data.cleanup();
 }
 
-THUMB int UnkBadWordList::unkfunc_0206b704(char* name)
+THUMB int UnkBadWordList::containsBadWord(char* name)
 {
     char buf[0x200];
     char conv[0x200];
@@ -37,7 +37,7 @@ THUMB int UnkBadWordList::unkfunc_0206b704(char* name)
         if (readNextWord(&it, line, 0x200) == 0) {
             break;
         }
-        if (unkfunc_0206b7d0(line) != 0) {
+        if (isBadWord(line) != 0) {
             convertUtf8ToSjisWork(line);
             return 1;
         }
@@ -45,7 +45,7 @@ THUMB int UnkBadWordList::unkfunc_0206b704(char* name)
     return 0;
 }
 
-THUMB int UnkBadWordList::unkfunc_0206b7d0(char* word)
+THUMB int UnkBadWordList::isBadWord(char* word)
 {
     char line[0x200];
     char conv[0x200];

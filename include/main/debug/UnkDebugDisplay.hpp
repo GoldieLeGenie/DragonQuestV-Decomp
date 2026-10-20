@@ -13,8 +13,8 @@ struct UnkDebugDisplay {
 
 void debugConsolePrintf(int x, int y, const char* fmt, ...);  // console printf
 void debugPrint(int x, int y, const char* str);      // console print (not while a menu is requested)
-void unkfunc_02027058(int x, int y, int w, int h);         // sub screen back BG box
+void drawDebugBox(int x, int y, int w, int h);         // sub screen back BG box
 void drawDebugWindow(int x, int y, int w, int h);         // sub screen window frame
-void unkfunc_020270dc();                                   // end of the part initialize
-void unkfunc_0202711c();                                   // part onDebugPart
-int unkfunc_020271b4();                                    // part slot of the current task
+void initDebugDisplay();                                   // end of the part initialize
+void updateDebugDisplay();                                   // part onDebugPart
+int getDebugDisplaySlot();                                    // part slot of the current task

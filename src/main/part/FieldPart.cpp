@@ -34,7 +34,7 @@ ARM void fld::FieldPart::initialize()
     FieldSystem::getSingleton()->initialize();
     FieldWindowSystem::getSingleton()->initialize();
     g_Global.fadeIn(30);
-    unkfunc_020270dc();
+    initDebugDisplay();
 }
 
 ARM void fld::FieldPart::terminate()
@@ -65,7 +65,7 @@ ARM void fld::FieldPart::onWindowPart()
 
 ARM void fld::FieldPart::onDebugPart()
 {
-    unkfunc_0202711c();
+    updateDebugDisplay();
 }
 
 ARM void fld::FieldPart::onSwapBuffersPart()

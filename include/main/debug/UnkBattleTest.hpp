@@ -26,7 +26,7 @@ struct UnkBattleTest {
     int monsterCount_[4];                       // 0x5C
 
     UnkBattleTest();
-    void unkfunc_02026b68();                    // update
+    void update();                    // update
 };
 
 extern UnkBattleTest data_020c2c40;

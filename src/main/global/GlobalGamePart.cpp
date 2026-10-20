@@ -76,9 +76,9 @@ ARM void args::GamePart::vf00()
     initialize();
     data_020f4f74.vblankTransfer_ = 0;
     unkfunc_02067a58();
-    data_02101584.unkfunc_0205027c();
+    data_02101584.update();
     func_020624bc();
-    TextAPI::unkfunc_0206cc94();
+    TextAPI::start();
     s_taskTick = getTick() - s_taskTick;
 }
 
@@ -91,11 +91,11 @@ ARM void args::GamePart::vf04()
     s_taskTick = getTick();
     data_020f6f9c.clear();
     func_020624c8();
-    TextAPI::unkfunc_0206cc98();
-    data_02101584.unkfunc_0205027c();
+    TextAPI::terminate();
+    data_02101584.update();
     terminate();
     unkfunc_02067a58();
-    data_02101584.unkfunc_0205027c();
+    data_02101584.update();
     s_taskTick = getTick() - s_taskTick;
 }
 
@@ -110,7 +110,7 @@ ARM void args::GamePart::vf08()
     dss::g_Pad.update();
     clearOamBuffers();
     func_020624cc();
-    TextAPI::unkfunc_0206cd20();
+    TextAPI::update();
 }
 
 ARM void args::GamePart::vf10()
@@ -122,7 +122,7 @@ ARM void args::GamePart::vf10()
     }
     s_swapLine = GX_GetVCount();
     func_020624e8();
-    TextAPI::unkfunc_0206cd2c();
+    TextAPI::draw();
     func_02082604();
     onSwapBuffersPart();
     func_02052180();
@@ -149,7 +149,7 @@ ARM void args::GamePart::vf0c()
     s_tickLog[index][0] = getTick();
     s_lineLog[index][0] = GX_GetVCount();
     func_020624d8();
-    TextAPI::unkfunc_0206cd28();
+    TextAPI::execute();
     if (unkfunc_02067ac0()) {
         onExecutePart();
         unkfunc_02067a58();
@@ -169,7 +169,7 @@ ARM void args::GamePart::vf0c()
     s_tickLog[index][4] = getTick();
     s_lineLog[index][4] = GX_GetVCount();
     data_02101d14.unkfunc_02051908();
-    data_02101584.unkfunc_0205027c();
+    data_02101584.update();
     s_tickLog[index][5] = getTick();
     s_lineLog[index][5] = GX_GetVCount();
     if (s_callback) {

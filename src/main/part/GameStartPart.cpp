@@ -17,7 +17,7 @@ GameStartPart g_GameStartPart;
 THUMB void GameStartPart::initialize()
 {
     changeDisplayPlugin(&dss::g_DISPLAYPLUGIN_SINGLE3D);
-    Sound::unkfunc_02068908(0);
+    Sound::strmStop(0);
     SoundManager::stop(0);
     g_Global.fadeIn(30);
     loadOverlay((int)&OVERLAY_19_ID);

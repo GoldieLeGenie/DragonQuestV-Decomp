@@ -118,7 +118,7 @@ THUMB void TextEnv::expandVars(char* dst, int size, unsigned char* src)
                         }
                     }
                 }
-                dst = unkfunc_0206c1f4(dst, size, (unsigned char*)str, cap);
+                dst = copyWithCase(dst, size, (unsigned char*)str, cap);
                 cap = 0;
                 c = 0;
             }
@@ -181,7 +181,7 @@ THUMB char* TextEnv::getUndefinedMacroText(int def, int array_index_no)
     return s_macro_buf;
 }
 
-THUMB char* TextEnv::unkfunc_0206c1f4(char* dst, int size, unsigned char* src, int cap)
+THUMB char* TextEnv::copyWithCase(char* dst, int size, unsigned char* src, int cap)
 {
     unsigned char tmp[0x200];
     switch (cap) {

@@ -250,7 +250,7 @@ THUMB void btl::BattleActorAnimation::setDamangeDraw(status::CharacterStatus* ta
             break;
         }
     }
-    dss::Vector2<int>* position = unkfunc_02052164(actorIndex);
+    dss::Vector2<int>* position = getProjectedPointScreenPos(actorIndex);
     int x = position->vx;
     int y = position->vy;
     y -= dss::abs(rect[1] - rect[3]);

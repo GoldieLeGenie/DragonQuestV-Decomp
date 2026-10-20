@@ -22,10 +22,10 @@ struct UnkBattleMenuPart : args::GamePart {
     virtual void onDrawPart();
     virtual void onWindowPart();
     virtual void onDebugPart();
-    void unkfunc_0200928c();                    // encount mode input
-    void unkfunc_02009378();                    // select mode input
-    void unkfunc_02009504();                    // encount mode draw
-    void unkfunc_0200959c();                    // select mode draw
+    void updateEncountMode();                    // encount mode input
+    void updateSelectMode();                    // select mode input
+    void drawEncountMode();                    // encount mode draw
+    void drawSelectMode();                    // select mode draw
 };
 
 extern UnkBattleMenuPart data_0209cf54;

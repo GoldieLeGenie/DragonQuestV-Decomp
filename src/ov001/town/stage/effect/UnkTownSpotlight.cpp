@@ -64,8 +64,8 @@ void twn::UnkTownSpotlightLight::unkfunc_0212e758(int screen)
 void twn::UnkTownSpotlightLight::unkfunc_0212e7c0()
 {
     if (enable_) {
-        unkfunc_02052150(index_, *pos_);
-        dss::Vector2<int>* point = unkfunc_02052164(index_);
+        setProjectedPointPos(index_, *pos_);
+        dss::Vector2<int>* point = getProjectedPointScreenPos(index_);
         x_ = point->vx - size_ / 2;
         y_ = point->vy - size_ * 2 / 3;
     }

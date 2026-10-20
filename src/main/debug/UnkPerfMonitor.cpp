@@ -33,7 +33,7 @@ THUMB int UnkPerfRecord::getValue()
     return value_;
 }
 
-THUMB void unkfunc_02045f14(UnkPerfRecord* records, int count, int mapId, int value)
+THUMB void keepLowestPerfRecord(UnkPerfRecord* records, int count, int mapId, int value)
 {
     int max = -1;
     int index = -1;
@@ -53,7 +53,7 @@ THUMB void unkfunc_02045f14(UnkPerfRecord* records, int count, int mapId, int va
     }
 }
 
-THUMB void unkfunc_02045f74(UnkPerfRecord* records, int count, int mapId, int value)
+THUMB void keepHighestPerfRecord(UnkPerfRecord* records, int count, int mapId, int value)
 {
     int min = -1;
     int index = -1;
@@ -73,7 +73,7 @@ THUMB void unkfunc_02045f74(UnkPerfRecord* records, int count, int mapId, int va
     }
 }
 
-THUMB void unkfunc_02045fd4(UnkPerfRecord* records, int count)
+THUMB void sortPerfRecordsDescending(UnkPerfRecord* records, int count)
 {
     for (int n = count - 1; n >= 1; n--) {
         for (int i = 0; i < n; i++) {
@@ -87,7 +87,7 @@ THUMB void unkfunc_02045fd4(UnkPerfRecord* records, int count)
     }
 }
 
-THUMB void unkfunc_02046050(UnkPerfRecord* records, int count)
+THUMB void sortPerfRecordsAscending(UnkPerfRecord* records, int count)
 {
     for (int n = count - 1; n >= 1; n--) {
         for (int i = 0; i < n; i++) {
@@ -101,7 +101,7 @@ THUMB void unkfunc_02046050(UnkPerfRecord* records, int count)
     }
 }
 
-THUMB void unkfunc_020460cc(UnkPerfRecord* record, const char* label)
+THUMB void printPerfRecord(UnkPerfRecord* record, const char* label)
 {
     char name[0x80];
     g_Global.getMapNameById(name, record->mapId_);
@@ -154,39 +154,39 @@ THUMB void UnkPerfMonitor::stop()
 {
     active_ = 0;
     int mapId = g_Global.nextMapNameId;
-    unkfunc_02045f74(draw0_, 16, mapId, drawTick0_);
-    unkfunc_02045f74(draw1_, 16, mapId, drawTick1_);
-    unkfunc_02045f74(collision0_, 16, mapId, collisionTick0_);
-    unkfunc_02045f74(collision1_, 16, mapId, collisionTick1_);
-    unkfunc_02045f14(heap_, 16, mapId, freeHeap_);
-    unkfunc_02045f14(vram_, 16, mapId, freeVram_);
+    keepHighestPerfRecord(draw0_, 16, mapId, drawTick0_);
+    keepHighestPerfRecord(draw1_, 16, mapId, drawTick1_);
+    keepHighestPerfRecord(collision0_, 16, mapId, collisionTick0_);
+    keepHighestPerfRecord(collision1_, 16, mapId, collisionTick1_);
+    keepLowestPerfRecord(heap_, 16, mapId, freeHeap_);
+    keepLowestPerfRecord(vram_, 16, mapId, freeVram_);
 }
 
 THUMB void UnkPerfMonitor::finish()
 {
-    unkfunc_02045fd4(draw0_, 16);
-    unkfunc_02045fd4(draw1_, 16);
-    unkfunc_02045fd4(collision0_, 16);
-    unkfunc_02045fd4(collision1_, 16);
-    unkfunc_02046050(heap_, 16);
-    unkfunc_02046050(vram_, 16);
+    sortPerfRecordsDescending(draw0_, 16);
+    sortPerfRecordsDescending(draw1_, 16);
+    sortPerfRecordsDescending(collision0_, 16);
+    sortPerfRecordsDescending(collision1_, 16);
+    sortPerfRecordsAscending(heap_, 16);
+    sortPerfRecordsAscending(vram_, 16);
     for (int i = 0; i < 16; i++) {
-        unkfunc_020460cc(&draw0_[i], "");
+        printPerfRecord(&draw0_[i], "");
     }
     for (int i = 0; i < 16; i++) {
-        unkfunc_020460cc(&draw1_[i], "");
+        printPerfRecord(&draw1_[i], "");
     }
     for (int i = 0; i < 16; i++) {
-        unkfunc_020460cc(&collision0_[i], "");
+        printPerfRecord(&collision0_[i], "");
     }
     for (int i = 0; i < 16; i++) {
-        unkfunc_020460cc(&collision1_[i], "");
+        printPerfRecord(&collision1_[i], "");
     }
     for (int i = 0; i < 16; i++) {
-        unkfunc_020460cc(&heap_[i], "");
+        printPerfRecord(&heap_[i], "");
     }
     for (int i = 0; i < 16; i++) {
-        unkfunc_020460cc(&vram_[i], "");
+        printPerfRecord(&vram_[i], "");
     }
     done_ = 1;
 }

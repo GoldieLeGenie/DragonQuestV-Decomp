@@ -58,13 +58,13 @@ struct TextAPI {
     static int splitMessage(int msg_id, unsigned char* line0, unsigned char* line1, unsigned char* line2,
                             unsigned char* line3, unsigned char* line4, unsigned char* line5, unsigned char* line6,
                             unsigned char* line7);
-    static void unkfunc_0206cb34();
+    static void load();
     static void Init();
-    static void unkfunc_0206cc94();
-    static void unkfunc_0206cc98();
-    static void unkfunc_0206cd20();
-    static void unkfunc_0206cd28();
-    static void unkfunc_0206cd2c();
+    static void start();
+    static void terminate();
+    static void update();
+    static void execute();
+    static void draw();
 
     static unsigned char m_msg_last_sound;
     static int m_lang;
@@ -107,7 +107,7 @@ struct TextEnv {
     char* check_text_hook(int def, int array_index_no);
     MACRO_STAT getHookMacroStat(int def, int array_index_no);
     char* getUndefinedMacroText(int def, int array_index_no);
-    char* unkfunc_0206c1f4(char* dst, int size, unsigned char* src, int cap);
+    char* copyWithCase(char* dst, int size, unsigned char* src, int cap);
     MACRO_STAT macro_getMacroStat(int def, int array_index_no);
     MACRO_STAT macro_checkActorTarget();
     MACRO_STAT macro_checkVowel(char* text);
@@ -126,7 +126,7 @@ struct TextExtractor {
     UnkTextExtractorHook* hook_;    /* 0x224 */
 
     TextExtractor();
-    void unkfunc_0206d9ec(UnkTextExtractorHook* hook);
+    void setHook(UnkTextExtractorHook* hook);
     int extractText(char* dst, int size, int msg_id);
     int extractText(char* dst, int size, int type, int no);
     int extract_text(char* dst, int size, int type, int no, int ex, int plural);
@@ -190,10 +190,10 @@ struct MsgFile {
 struct UnkBadWordList {
     DataObject m_data;              /* 0x00 */
 
-    void unkfunc_0206b6b4();
-    void unkfunc_0206b6fc();
-    int unkfunc_0206b704(char* name);
-    int unkfunc_0206b7d0(char* word);
+    void load();
+    void unload();
+    int containsBadWord(char* name);
+    int isBadWord(char* word);
 };
 
 struct MessageMacro {
@@ -219,10 +219,10 @@ struct UnkMacroName {
 };
 
 MsgData* findMsgData(int msg_id);
-void unkfunc_0206c6bc(const char* folder1, const char* folder2);   // message folders (ids below / from 1000000)
-const char* unkfunc_0206c6e8(int msg_id);   // folder of a message block
-int unkfunc_0206ce14(int msg_id, int lang);
-int unkfunc_0206ce28(int msg_id, int lang);
+void setMsgFolders(const char* folder1, const char* folder2);   // message folders (ids below / from 1000000)
+const char* getMsgFolder(int msg_id);   // folder of a message block
+int msgExists(int msg_id, int lang);
+int loadMessageFile(int msg_id, int lang);
 char* msg_get_head();
 char* msg_get_body();
 unsigned char msg_get_sound();

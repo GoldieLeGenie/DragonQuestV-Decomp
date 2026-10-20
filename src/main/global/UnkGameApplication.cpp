@@ -125,11 +125,11 @@ ARM void UnkGameApplication::vf00()
     tableE0_.setup("DATA/G2D/BIN/E0_EF.bin", 0, 0);
     initSjisTables((unsigned short*)table81_.getAddr(), table81_.getSize(), (unsigned short*)tableE0_.getAddr(), tableE0_.getSize());
     data_020f6f9c.reset();
-    unkfunc_0206c6bc("MESS5", "MENULIST");
+    setMsgFolders("MESS5", "MENULIST");
     func_020624a8();
-    TextAPI::unkfunc_0206cb34();
+    TextAPI::load();
     g_text_env.m_text_hook = &gTextHook;
-    g_text_extractor.unkfunc_0206d9ec(&data_020ef2e0);
+    g_text_extractor.setHook(&data_020ef2e0);
     int region = getGameRegion();
     OSOwnerInfo info;
     func_020887c8(&info);

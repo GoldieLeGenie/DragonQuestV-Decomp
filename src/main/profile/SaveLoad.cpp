@@ -388,7 +388,7 @@ THUMB bool profile::SaveLoad::isCardOK()
     return memoryload(0, buff, sizeof(buff));
 }
 
-THUMB int profile::SaveLoad::unkfunc_020415c8()
+THUMB int profile::SaveLoad::checkBackup()
 {
     int result = 1;
     unsigned char buff[0x200];

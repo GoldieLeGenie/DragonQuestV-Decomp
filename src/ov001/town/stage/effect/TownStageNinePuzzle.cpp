@@ -110,7 +110,7 @@ void twn::TownStageNinePuzzle::execute()
             dss::Fix32Vector3& playerPos = TownPlayerManager::getSingleton().getPosition();
             TownPlayerManager::getSingleton().setPartyToFirst(playerPos);
             TownPlayerManager::getSingleton().setLock(false);
-            SoundManager::unkfunc_0206fc10(ctrl_, 0);
+            SoundManager::stopSe(ctrl_, 0);
             SoundManager::playSe(0x456, 0);
             phase_ = 5;
         }
@@ -223,7 +223,7 @@ void twn::TownStageNinePuzzle::setSlideMove()
     moveId_ = TownFurnitureControlManager::getSingleton().setFurnitureMove(moveSection_ + modelOffset, moveFrame_, pos);
     TownFurnitureControlManager::getSingleton().setGarbageCorrect(moveId_, false);
     TownPlayerManager::getSingleton().party_.setParallelMove(playerPos, moveFrame_);
-    SoundManager::unkfunc_0206fc10(ctrl_, 0);
+    SoundManager::stopSe(ctrl_, 0);
     ctrl_ = SoundManager::playSe(0x471, 0);
 }
 

@@ -25,7 +25,7 @@ THUMB void window::ScreenEffectBattle::setup()
     unk_2c = 0xffff;
 }
 
-THUMB void window::ScreenEffectBattle::unkfunc_02029588(short x, short y, short index, short* sin, short* cos)
+THUMB void window::ScreenEffectBattle::updatePanel(short x, short y, short index, short* sin, short* cos)
 {
     const int unused[1] = {2};  // unreferenced, only its .rodata copy remains
     int rnd = UnkDssRand::rand(2);
@@ -48,7 +48,7 @@ THUMB void window::ScreenEffectBattle::draw()
         return;
     }
     dss::g_DISPLAYPLUGIN_DOUBLE3D.SetBlur(4, 12);
-    UnkScreenEffectCamera::unkfunc_02028cc4()->unkfunc_02028d44();
+    UnkScreenEffectCamera::getSingleton()->draw();
     {
         VecFx32 scale = {FX32_ONE, FX32_ONE, FX32_ONE};
         VecFx32 trans = {0, 0, 0};
@@ -71,9 +71,9 @@ THUMB void window::ScreenEffectBattle::draw()
             G3_Translate(data_020c32a0[index].x, data_020c32a0[index].y, data_020c32a0[index].z);
             sc[1] = FX_SinIdx(0);
             sc[0] = FX_CosIdx(0);
-            unkfunc_02029588(j, i, index, &sc[1], &sc[0]);
+            updatePanel(j, i, index, &sc[1], &sc[0]);
             func_020761a0(sc[1], sc[0]);
-            unkfunc_020287e8(0x18);
+            setPolygonParams(0x18);
             G3_Begin(1);
             for (int n = 0; n < 4; n++) {
                 G3_Color(0x7fff);

@@ -17,8 +17,8 @@ struct DebugBattleInfo : UnkDebugDisplay {
     virtual void initialize();
     virtual void draw();
     void unkfunc_020273fc(int x, int y);        // free heap / VRAM
-    void unkfunc_02027460(int x, int y, status::HaveStatusInfo* info);  // status of a player or monster
-    void unkfunc_020278ac(int x, int y);        // message IDs of the debug info page
+    void drawStatusInfo(int x, int y, status::HaveStatusInfo* info);  // status of a player or monster
+    void drawMessageIDs(int x, int y);        // message IDs of the debug info page
 };
 
 extern DebugBattleInfo data_020c2ce4;

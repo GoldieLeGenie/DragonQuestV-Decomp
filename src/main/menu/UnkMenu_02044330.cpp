@@ -4,7 +4,7 @@
 
 THUMB void UnkMenu_02044330::menuSetup()
 {
-    data_020c2d10.unkfunc_02027cdc();
+    data_020c2d10.clearMessageIDs();
 }
 
 THUMB void UnkMenu_02044330::menuExecute()

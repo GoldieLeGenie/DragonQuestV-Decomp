@@ -110,11 +110,11 @@ THUMB void UnkBattleMenuPart::onExecutePart()
         }
     }
     if (mode_ == 0) {
-        unkfunc_0200928c();
+        updateEncountMode();
         cursor_ = dss::loop<long>(cursor_, 0, 4);
     }
     if (mode_ == 1) {
-        unkfunc_02009378();
+        updateSelectMode();
         cursor_ = dss::loop<long>(cursor_, 0, 5);
     }
     if (isStart_ != 0) {
@@ -146,11 +146,11 @@ THUMB void UnkBattleMenuPart::onDrawPart()
     data_020f6f9c.printf(x_, y_ + cursor_, ">");
     if (mode_ == 0) {
         data_020f6f9c.printf(x_ + 1, y_, "1.Mode : Encount");
-        unkfunc_02009504();
+        drawEncountMode();
     }
     if (mode_ == 1) {
         data_020f6f9c.printf(x_ + 1, y_, "1.Mode : Select");
-        unkfunc_0200959c();
+        drawSelectMode();
     }
 }
 
@@ -163,7 +163,7 @@ THUMB void UnkBattleMenuPart::onDebugPart()
     data_020f6f9c.printf(0, 0, "Battle Menu Part", REG_GFX_RAM_COUNT);
 }
 
-THUMB void UnkBattleMenuPart::unkfunc_0200928c()
+THUMB void UnkBattleMenuPart::updateEncountMode()
 {
     switch (cursor_) {
     case 0:
@@ -204,7 +204,7 @@ THUMB void UnkBattleMenuPart::unkfunc_0200928c()
     }
 }
 
-THUMB void UnkBattleMenuPart::unkfunc_02009378()
+THUMB void UnkBattleMenuPart::updateSelectMode()
 {
     switch (cursor_) {
     case 0:
@@ -264,7 +264,7 @@ THUMB void UnkBattleMenuPart::unkfunc_02009378()
     }
 }
 
-THUMB void UnkBattleMenuPart::unkfunc_02009504()
+THUMB void UnkBattleMenuPart::drawEncountMode()
 {
     data_020f6f9c.printf(x_ + 1, y_ + 1, "2.Encount Tile : %3d", tileId_);
     char timeZone[3][8] = { "None", "Day", "Night" };
@@ -273,7 +273,7 @@ THUMB void UnkBattleMenuPart::unkfunc_02009504()
     data_020f6f9c.printf(x_ + 1, y_ + 4, "5.Map          : %s", data_0209ce6c.unkfunc_0206db60());
 }
 
-THUMB void UnkBattleMenuPart::unkfunc_0200959c()
+THUMB void UnkBattleMenuPart::drawSelectMode()
 {
     data_020f6f9c.printf(x_ + 1, y_ + 1, "2.GROUP   : %d", group_ + 1);
     data_020f6f9c.printf(x_ + 1, y_ + 2, "3.MONSTER : m%03d", monster_[group_]);

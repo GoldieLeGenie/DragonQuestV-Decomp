@@ -52,7 +52,7 @@ namespace profile {
         static int getPlaceNameByChapter(int chap);
         static bool isThisMap(char* now, char* name);
         static bool isCardOK();
-        static int unkfunc_020415c8();
+        static int checkBackup();
         static bool setSaveBank(int bank);
         static int getSaveBank();
     };

@@ -456,7 +456,7 @@ THUMB void MapFlash::initialize(char* scriptParam)
     PARAM_MAP_FLASH* param = (PARAM_MAP_FLASH*)scriptParam;
     count_ = 0;
     countFrame_ = param->frame;
-    data_021025e0.unkfunc_02055194(0, param->se);
+    data_021025e0.playSe(0, param->se);
     data_0211b27c.flashWhite((unsigned char)param->r, (unsigned char)param->g, (unsigned char)param->b, countFrame_ / 2);
 }
 

@@ -32,7 +32,7 @@ ARM void ceremony::CeremonyPart::initialize()
     ov019_entry();
     CeremonySystem::getSingleton()->initialize();
     g_Global.fadeIn(30);
-    unkfunc_020270dc();
+    initDebugDisplay();
 }
 
 ARM void ceremony::CeremonyPart::terminate()
@@ -60,7 +60,7 @@ ARM void ceremony::CeremonyPart::onWindowPart()
 
 ARM void ceremony::CeremonyPart::onDebugPart()
 {
-    unkfunc_0202711c();
+    updateDebugDisplay();
 }
 
 ARM void ceremony::CeremonyPart::onSwapBuffersPart()

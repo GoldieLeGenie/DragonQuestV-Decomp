@@ -320,7 +320,7 @@ THUMB void Global::startTitle()
     data_0209d690.setNextPart(CEREMONY_PART);
     data_02101d14.unkfunc_020519a8(&data_0209d690);
     fadeOutBlack(30, true);
-    Sound::unkfunc_020689a4(10);
+    Sound::seStopAll(10);
     partChangeFlag_ = true;
     setCeremonyType(1);
 }
@@ -332,7 +332,7 @@ THUMB void Global::startOpeningStaff()
     data_0209d690.setNextPart(CEREMONY_PART);
     data_02101d14.unkfunc_020519a8(&data_0209d690);
     fadeOutBlack(30, true);
-    Sound::unkfunc_020689a4(10);
+    Sound::seStopAll(10);
     partChangeFlag_ = true;
     setCeremonyType(0);
 }
@@ -344,7 +344,7 @@ THUMB void Global::startStaffroll()
     data_0209d690.setNextPart(CEREMONY_PART);
     data_02101d14.unkfunc_020519a8(&data_0209d690);
     fadeOutBlack(30, true);
-    Sound::unkfunc_020689a4(10);
+    Sound::seStopAll(10);
     partChangeFlag_ = true;
     setCeremonyType(2);
 }
@@ -356,7 +356,7 @@ THUMB void Global::startFin()
     data_0209d690.setNextPart(CEREMONY_PART);
     data_02101d14.unkfunc_020519a8(&data_0209d690);
     fadeOutBlack(30, true);
-    Sound::unkfunc_020689a4(10);
+    Sound::seStopAll(10);
     partChangeFlag_ = true;
     setCeremonyType(3);
 }

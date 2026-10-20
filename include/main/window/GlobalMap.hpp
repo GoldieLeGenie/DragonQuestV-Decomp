@@ -17,8 +17,8 @@ namespace window {
         virtual void clear();
         virtual void playerMapPosition();
         virtual void setAlpha(unsigned char alpha);
-        void unkfunc_020195f0();
-        void unkfunc_02019704(int x, int y, bool veil);
+        void drawVeilMap();
+        void veilDraw(int x, int y, bool veil);
         static dss::Vector2<int> convertMapPos(int x, int y);
     };
 }

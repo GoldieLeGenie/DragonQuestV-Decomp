@@ -128,14 +128,14 @@ THUMB void ceremony::CeremonyOpeningSystem::initialize()
         logo4Dssa_.setTexture(texture_);
         logo4Dssa_.pause(true);
     }
-    Sound::unkfunc_0206889c(0xf);
+    Sound::bgmStop(0xf);
     CeremonyStage::getSingleton()->stage_.m_fld.SetCameraNo(1, 0);
     CeremonyStage::getSingleton()->stage_.m_fld.SetCameraNo(2, 1);
 }
 
 THUMB void ceremony::CeremonyOpeningSystem::terminate()
 {
-    Sound::unkfunc_02068908(0xf);
+    Sound::strmStop(0xf);
     texture_->freeVram();
     textureData_.cleanup();
     logo1Dssa_.cleanup();
@@ -144,7 +144,7 @@ THUMB void ceremony::CeremonyOpeningSystem::terminate()
     logo3Data_.cleanup();
     logo4Dssa_.cleanup();
     logo4Data_.cleanup();
-    Sound::unkfunc_02068908(0);
+    Sound::strmStop(0);
 }
 
 THUMB void ceremony::CeremonyOpeningSystem::execute()
@@ -153,7 +153,7 @@ THUMB void ceremony::CeremonyOpeningSystem::execute()
     case OPENING_PHASE_FADEIN:
         if (counter_ == 30) {
             setNextPhase(OPENING_PHASE_KEYWAIT);
-            Sound::unkfunc_020688f8(0);
+            Sound::strmPlay(0);
             logo1Dssa_.start(0);
             cmn::CommonEffectLocation::getSingleton().start(0x26, 0);
         }
@@ -165,14 +165,14 @@ THUMB void ceremony::CeremonyOpeningSystem::execute()
             } else {
                 setNextPhase(OPENING_PHASE_TO_GAMESTART);
             }
-            Sound::unkfunc_02068908(0xf);
-        } else if (!Sound::unkfunc_02068918()) {
+            Sound::strmStop(0xf);
+        } else if (!Sound::isStrmPlaying()) {
             if (CeremonySetting::getSingleton()->opening_ == 0) {
                 setNextPhase(OPENING_PHASE_TO_LOGO);
             } else {
                 setNextPhase(OPENING_PHASE_TO_GAMESTART);
             }
-            Sound::unkfunc_02068908(0xf);
+            Sound::strmStop(0xf);
         }
         break;
     case OPENING_PHASE_TO_LOGO:

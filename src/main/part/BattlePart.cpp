@@ -35,7 +35,7 @@ ARM void btl::BattlePart::initialize()
     func_02082654(1);
     g_Global.fadeIn(30);
     dss::g_Pad.setMaskL(0);
-    unkfunc_020270dc();
+    initDebugDisplay();
 }
 
 ARM void btl::BattlePart::terminate()
@@ -66,5 +66,5 @@ ARM void btl::BattlePart::onWindowPart()
 
 ARM void btl::BattlePart::onDebugPart()
 {
-    unkfunc_0202711c();
+    updateDebugDisplay();
 }

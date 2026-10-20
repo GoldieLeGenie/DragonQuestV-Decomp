@@ -23,7 +23,7 @@ THUMB void TownMenu_MESSAGE::menuSetup()
     suspendInput_ = 0;
     busyIcon_ = 0;
     busyIconWait_ = 0;
-    data_020c2d10.unkfunc_02027cdc();
+    data_020c2d10.clearMessageIDs();
 }
 
 THUMB void TownMenu_MESSAGE::menuExecute()
@@ -254,7 +254,7 @@ THUMB void TownMenu_MESSAGE::restartMessage()
     ynPosY_ = 0x40;
     s_draw->unkfunc_02066b48();
     s_msgCount = 0;
-    data_020c2d10.unkfunc_02027cdc();
+    data_020c2d10.clearMessageIDs();
 }
 
 THUMB void TownMenu_MESSAGE::addMessageWAITKEY()

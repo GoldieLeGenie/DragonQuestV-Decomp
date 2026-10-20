@@ -18,7 +18,7 @@ THUMB window::UnkScreenEffectCamera::~UnkScreenEffectCamera()
 {
 }
 
-THUMB window::UnkScreenEffectCamera* window::UnkScreenEffectCamera::unkfunc_02028cc4()
+THUMB window::UnkScreenEffectCamera* window::UnkScreenEffectCamera::getSingleton()
 {
     static UnkScreenEffectCamera camera;
     return &camera;
@@ -32,7 +32,7 @@ static dss::Fix32 s_unk(2L);
 static short s_fov = 10;
 VecFx32 unusedScreenEffectPosition;     // not linked: unreferenced, only takes part in the data layout
 
-THUMB void window::UnkScreenEffectCamera::unkfunc_02028d00()
+THUMB void window::UnkScreenEffectCamera::initialize()
 {
     camera_.setup();
     camera_.setTarget(s_target);
@@ -41,11 +41,11 @@ THUMB void window::UnkScreenEffectCamera::unkfunc_02028d00()
     camera_.setFOV2(s_fov);
 }
 
-THUMB void window::UnkScreenEffectCamera::unkfunc_02028d40()
+THUMB void window::UnkScreenEffectCamera::terminate()
 {
 }
 
-THUMB void window::UnkScreenEffectCamera::unkfunc_02028d44()
+THUMB void window::UnkScreenEffectCamera::draw()
 {
     camera_.applyCamera();
 }
@@ -71,7 +71,7 @@ THUMB void window::ScreenEffectRanaruta::draw()
         return;
     }
     dss::g_DISPLAYPLUGIN_DOUBLE3D.SetBlur(2, 14);
-    UnkScreenEffectCamera::unkfunc_02028cc4()->unkfunc_02028d44();
+    UnkScreenEffectCamera::getSingleton()->draw();
     {
         VecFx32 scale = {FX32_ONE, FX32_ONE, FX32_ONE};
         VecFx32 trans = {0, 0, 0};
@@ -91,7 +91,7 @@ THUMB void window::ScreenEffectRanaruta::draw()
                 short z = data_020c32a0[index].vertex[k][2];
                 short average = (data_020c32a0[index - 1].vertex[k][2] + data_020c32a0[index + 1].vertex[k][2] + data_020c32a0[index - 24].vertex[k][2] + data_020c32a0[index + 24].vertex[k][2]) >> 2;
                 z += (short)(average - z) >> 2;
-                unkfunc_020290c8(index, k, z);
+                setSharedVertexZ(index, k, z);
             }
         }
     }
@@ -106,7 +106,7 @@ THUMB void window::ScreenEffectRanaruta::draw()
             } else {
                 G3_Translate(data_020c32a0[index].x, data_020c32a0[index].y - counter_, data_020c32a0[index].z);
             }
-            unkfunc_020287e8(24);
+            setPolygonParams(24);
             G3_Begin(1);
             for (int k = 0; k < 4; k++) {
                 data_020c32a0[index].vertex[k][2] -= 40;
@@ -125,10 +125,10 @@ THUMB void window::ScreenEffectRanaruta::draw()
     unk_20++;
     counter_++;
     for (int i = 0; i < 10; i++) {
-        unkfunc_020290c8(wavePanel_[i], 0, waveHeight_);
-        unkfunc_020290c8(wavePanel_[i], 1, waveHeight_);
-        unkfunc_020290c8(wavePanel_[i], 2, waveHeight_);
-        unkfunc_020290c8(wavePanel_[i], 3, waveHeight_);
+        setSharedVertexZ(wavePanel_[i], 0, waveHeight_);
+        setSharedVertexZ(wavePanel_[i], 1, waveHeight_);
+        setSharedVertexZ(wavePanel_[i], 2, waveHeight_);
+        setSharedVertexZ(wavePanel_[i], 3, waveHeight_);
     }
     waveHeight_ += waveSpeed_;
     if (waveHeight_ < -10000 || (waveHeight_ >= -2000 && waveSpeed_ > 0)) {
@@ -141,7 +141,7 @@ THUMB bool window::ScreenEffectRanaruta::isEnd()
     return counter_ > 60;
 }
 
-THUMB void window::ScreenEffectRanaruta::unkfunc_020290c8(int index, int vertex, short z)
+THUMB void window::ScreenEffectRanaruta::setSharedVertexZ(int index, int vertex, short z)
 {
     int up = index - 24;
     int down = index + 24;

@@ -59,7 +59,7 @@ bool cmdSetSe2(void* scriptParam)
 
 bool cmdCutSe2(void* scriptParam)
 {
-    SoundManager::unkfunc_0206fc44(15);
+    SoundManager::stopSe2(15);
     return true;
 }
 

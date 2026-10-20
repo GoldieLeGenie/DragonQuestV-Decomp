@@ -75,7 +75,7 @@ THUMB window::UnkScreenEffect::~UnkScreenEffect()
 
 THUMB void window::UnkScreenEffect::setup()
 {
-    UnkScreenEffectCamera::unkfunc_02028cc4()->unkfunc_02028d00();
+    UnkScreenEffectCamera::getSingleton()->initialize();
     dss::g_DISPLAYPLUGIN_DOUBLE3D.SetBlur(16, 0);
     flag_ = 0;
     s_vertex.v[0] = s_leftBottom;
@@ -89,7 +89,7 @@ THUMB void window::UnkScreenEffect::setup()
     unk_14 = 0;
 }
 
-THUMB bool window::UnkScreenEffect::unkfunc_020284cc()
+THUMB bool window::UnkScreenEffect::setupTiles()
 {
     if (unk_18 < 3) {
         unk_18++;
@@ -136,13 +136,13 @@ THUMB bool window::UnkScreenEffect::unkfunc_020284cc()
 THUMB void window::UnkScreenEffect::terminate()
 {
     data_020c32a0 = NULL;
-    UnkScreenEffectCamera::unkfunc_02028cc4()->unkfunc_02028d40();
+    UnkScreenEffectCamera::getSingleton()->terminate();
 }
 
 THUMB void window::UnkScreenEffect::execute()
 {
     if (isSetup() == false && isActive() == false) {
-        if (unkfunc_020284cc()) {
+        if (setupTiles()) {
             flag_ |= FLAG_SETUP;
         } else {
             if (data_02101c88.unkfunc_02051818(4)) {
@@ -167,7 +167,7 @@ THUMB void window::UnkScreenEffect::execute()
     }
 }
 
-THUMB void window::UnkScreenEffect::unkfunc_020287e8(int polygonId)
+THUMB void window::UnkScreenEffect::setPolygonParams(int polygonId)
 {
     if (getDisplayFrame() & 1) {
         G3_TexImageParam(GX_TEXFMT_DIRECT, GX_TEXGEN_TEXCOORD, GX_TEXSIZE_S256, GX_TEXSIZE_T256, GX_TEXREPEAT_NONE, GX_TEXFLIP_NONE, GX_TEXPLTTCOLOR0_USE, 0x20000);
@@ -182,7 +182,7 @@ THUMB void window::UnkScreenEffect::draw()
     if (isActive() == false) {
         return;
     }
-    UnkScreenEffectCamera::unkfunc_02028cc4()->unkfunc_02028d44();
+    UnkScreenEffectCamera::getSingleton()->draw();
     func_020802dc();
     func_02082604();
     for (int i = 0; i < unk_0c; i++) {
@@ -191,7 +191,7 @@ THUMB void window::UnkScreenEffect::draw()
             int index = j + i * unk_10;
             G3_Scale(unk_08.value, unk_08.value, unk_08.value);
             G3_Translate(data_020c32a0[index].x, data_020c32a0[index].y, data_020c32a0[index].z);
-            unkfunc_020287e8(24);
+            setPolygonParams(24);
             G3_Begin(1);
             for (int k = 0; k < 4; k++) {
                 G3_Color(0x7fff);

@@ -6,7 +6,7 @@ CardCheckPart g_CardCheckPart;
 
 THUMB void CardCheckPart::initialize()
 {
-    switch (profile::SaveLoad::unkfunc_020415c8()) {
+    switch (profile::SaveLoad::checkBackup()) {
     case 1:
         data_02101c88.unkfunc_02051800(MENU_PART);
         break;
@@ -14,16 +14,16 @@ THUMB void CardCheckPart::initialize()
         data_02101c88.unkfunc_02051800(MENU_PART);
         break;
     case -2:
-        g_GameEndPart.unkfunc_02041acc(5, MENU_PART);
+        g_GameEndPart.startWithNextPart(5, MENU_PART);
         break;
     case -3:
-        g_GameEndPart.unkfunc_02041ab8(1);
+        g_GameEndPart.start(1);
         break;
     case -4:
-        g_GameEndPart.unkfunc_02041ab8(4);
+        g_GameEndPart.start(4);
         break;
     case -5:
-        g_GameEndPart.unkfunc_02041ab8(3);
+        g_GameEndPart.start(3);
         break;
     }
 }

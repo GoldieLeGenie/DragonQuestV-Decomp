@@ -57,7 +57,7 @@ THUMB void fld::FieldActionTabi::start(int index, int flag)
     start_ = flag;
     window::gScreenEffect.effectStart(window::ScreenEffectManager::PLAY_BACK_TABI);
     if (flag == true) {
-        window::gScreenEffect.tabiEffect_.unkfunc_02029ba4(1);
+        window::gScreenEffect.tabiEffect_.setTravelBack(1);
     }
     FieldPlayerManager::getSingleton().setRemote(true);
     counter_ = 0;

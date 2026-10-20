@@ -13,11 +13,11 @@ struct UnkPerfRecord {
     int getValue();
 };
 
-void unkfunc_02045f14(UnkPerfRecord* records, int count, int mapId, int value);  // keep the smallest values
-void unkfunc_02045f74(UnkPerfRecord* records, int count, int mapId, int value);  // keep the largest values
-void unkfunc_02045fd4(UnkPerfRecord* records, int count);  // sort, largest first
-void unkfunc_02046050(UnkPerfRecord* records, int count);  // sort, smallest first
-void unkfunc_020460cc(UnkPerfRecord* record, const char* label);  // print
+void keepLowestPerfRecord(UnkPerfRecord* records, int count, int mapId, int value);  // keep the smallest values
+void keepHighestPerfRecord(UnkPerfRecord* records, int count, int mapId, int value);  // keep the largest values
+void sortPerfRecordsDescending(UnkPerfRecord* records, int count);  // sort, largest first
+void sortPerfRecordsAscending(UnkPerfRecord* records, int count);  // sort, smallest first
+void printPerfRecord(UnkPerfRecord* record, const char* label);  // print
 
 // worst frame times and lowest free memory of each map
 struct UnkPerfMonitor {

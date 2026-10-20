@@ -15,10 +15,10 @@ struct GameEndPart : args::GamePart {
     virtual void onDrawPart();
     virtual void onWindowPart();
     virtual void onDebugPart();
-    void unkfunc_02041a4c(int type);
-    void unkfunc_02041a58(int type, int nextPart);
-    void unkfunc_02041ab8(int type);
-    void unkfunc_02041acc(int type, int nextPart);
+    void setType(int type);
+    void setTypeAndNextPart(int type, int nextPart);
+    void start(int type);
+    void startWithNextPart(int type, int nextPart);
 };
 
 extern GameEndPart g_GameEndPart;

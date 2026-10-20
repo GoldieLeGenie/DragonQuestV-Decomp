@@ -132,7 +132,7 @@ THUMB void window::ScreenEffectManager::effectStart(PLAY_BACK_EFFECT mode)
             effect_->setup();
             if (travelFlag_) {
                 g_Global.fadeOutBlack(1, true);
-                tabiEffect_.unkfunc_02029ba4(true);
+                tabiEffect_.setTravelBack(true);
                 travelFlag_ = false;
             }
             break;

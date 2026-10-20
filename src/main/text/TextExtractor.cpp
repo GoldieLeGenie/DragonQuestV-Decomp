@@ -485,7 +485,7 @@ THUMB const char* TextExtractor::getGrammarSuffix(int number, int art, int casus
     return "\0";
 }
 
-THUMB void TextExtractor::unkfunc_0206d9ec(UnkTextExtractorHook* hook)
+THUMB void TextExtractor::setHook(UnkTextExtractorHook* hook)
 {
     hook_ = hook;
 }

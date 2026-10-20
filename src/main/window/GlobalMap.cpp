@@ -46,11 +46,11 @@ THUMB void window::GlobalMap::setup()
 
 THUMB void window::GlobalMap::draw()
 {
-    unkfunc_020195f0();
+    drawVeilMap();
     symbolDraw(0);
 }
 
-THUMB void window::GlobalMap::unkfunc_020195f0()
+THUMB void window::GlobalMap::drawVeilMap()
 {
     unk_04.setSubScreen();
     unk_04.setDepth(0);
@@ -82,12 +82,12 @@ THUMB void window::GlobalMap::unkfunc_020195f0()
 
     for (int y = 0; y < 16; y++) {
         for (int x = 0; x < 16; x++) {
-            unkfunc_02019704(x, y, status::g_StageInfo.getMapVeil(x, y));
+            veilDraw(x, y, status::g_StageInfo.getMapVeil(x, y));
         }
     }
 }
 
-THUMB void window::GlobalMap::unkfunc_02019704(int x, int y, bool veil)
+THUMB void window::GlobalMap::veilDraw(int x, int y, bool veil)
 {
     if (veil) {
         unk_a8.setSubScreen();

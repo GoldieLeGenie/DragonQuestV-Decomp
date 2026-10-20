@@ -47,7 +47,7 @@ THUMB void MPExchangePart::initialize()
     data_0211b27c.frames_ = 30;
     data_02101d14.unkfunc_020519a8(&data_0211b27c);
     setSleepEnabled(0);
-    unkfunc_02043370(0);
+    setState(0);
 }
 
 THUMB void MPExchangePart::terminate()
@@ -63,7 +63,7 @@ THUMB void MPExchangePart::onExecutePart()
     switch (state_) {
         case 0:
             if (counter_ > 30) {
-                unkfunc_02043370(1);
+                setState(1);
             }
             break;
         case 1:
@@ -74,7 +74,7 @@ THUMB void MPExchangePart::onExecutePart()
                 message_ = 0;
             }
             if (counter_ > 120) {
-                unkfunc_02043370(4);
+                setState(4);
             }
             break;
         case 4: {
@@ -85,15 +85,15 @@ THUMB void MPExchangePart::onExecutePart()
             convertUtf8ToSjisWork(data->producer_);
             convertUtf8ToSjisWork(data->message_);
             exchange_.unkfunc_0212a2b8(data);
-            unkfunc_02043370(2);
+            setState(2);
             break;
         }
         case 2:
             if (exchange_.mode_ == SYSMODE_FATAL_ERROR) {
-                unkfunc_02043370(8);
+                setState(8);
             } else if (exchange_.mode_ == SYSMODE_READY) {
                 exchange_.startRoleSelection();
-                unkfunc_02043370(3);
+                setState(3);
             }
             break;
         case 3:
@@ -104,23 +104,23 @@ THUMB void MPExchangePart::onExecutePart()
                     message_ = 1;
                 }
                 if (counter_ == 30) {
-                    unkfunc_02043370(5);
+                    setState(5);
                 }
             } else {
-                unkfunc_02043370(5);
+                setState(5);
             }
             break;
         case 5:
-            unkfunc_0204338c();
-            unkfunc_020433f4();
+            updateLcdPower();
+            playWaitSe();
             if (exchange_.mode_ == SYSMODE_FATAL_ERROR) {
-                unkfunc_02043370(6);
+                setState(6);
             } else if (exchange_.mode_ == SYSMODE_LIGHT_ERROR) {
-                unkfunc_02043370(7);
+                setState(7);
             } else if (exchange_.mode_ == SYSMODE_FINISH_WAIT) {
-                unkfunc_02043370(9);
+                setState(9);
             } else if (PAD_DetectFold() == FALSE && (dss::g_Pad.edge() & PAD_BUTTON_A)) {
-                unkfunc_02043370(10);
+                setState(10);
             }
             break;
         case 6:
@@ -131,14 +131,14 @@ THUMB void MPExchangePart::onExecutePart()
                 exchange_.unkfunc_0212acdc();
             }
             if (counter_ > 60 && gTownMenu_MESSAGE.stat_ == menu::MenuBase::MENUBASE_STAT_OK) {
-                unkfunc_02043370(13);
+                setState(13);
             }
             break;
         case 7:
-            unkfunc_02043370(4);
+            setState(4);
             break;
         case 8:
-            unkfunc_02043410();
+            restoreLcdAndSleep();
             if (counter_ == 0) {
                 gTownMenu_MESSAGE.openMessageForMENU();
                 gTownMenu_MESSAGE.addMessage(0xcc620);
@@ -146,13 +146,13 @@ THUMB void MPExchangePart::onExecutePart()
                 exchange_.unkfunc_0212acdc();
             }
             if (counter_ > 60 && gTownMenu_MESSAGE.stat_ == menu::MenuBase::MENUBASE_STAT_OK) {
-                unkfunc_02043370(13);
+                setState(13);
             }
             break;
         case 9: {
             data = exchange_.unkfunc_0212a2fc();
             if (exchange_.receiveCount_ <= 4) {
-                unkfunc_02043370(7);
+                setState(7);
                 break;
             }
             if (PAD_DetectFold() == FALSE) {
@@ -167,15 +167,15 @@ THUMB void MPExchangePart::onExecutePart()
             convertUtf8ToSjisWork(data->taishiName_);
             convertUtf8ToSjisWork(data->producer_);
             convertUtf8ToSjisWork(data->message_);
-            unkfunc_02043370(12);
+            setState(12);
             break;
         }
         case 10:
             status::g_MuseumStatus.setSuccessTaishi(NULL, false);
-            unkfunc_02043370(11);
+            setState(11);
             break;
         case 11:
-            unkfunc_02043410();
+            restoreLcdAndSleep();
             if (counter_ == 0) {
                 gTownMenu_MESSAGE.close();
                 gTownMenu_MESSAGE.openMessageForTALK();
@@ -187,17 +187,17 @@ THUMB void MPExchangePart::onExecutePart()
             if (counter_ > 60) {
                 if (gTownMenu_MESSAGE.stat_ == menu::MenuBase::MENUBASE_STAT_CANCEL) {
                     gTownMenu_MESSAGE.close();
-                    unkfunc_02043370(13);
+                    setState(13);
                 }
                 if (gTownMenu_MESSAGE.stat_ == menu::MenuBase::MENUBASE_STAT_OK) {
                     gTownMenu_MESSAGE.close();
                     setSleepEnabled(0);
-                    unkfunc_02043370(4);
+                    setState(4);
                 }
             }
             break;
         case 12:
-            unkfunc_02043410();
+            restoreLcdAndSleep();
             if (counter_ == 0) {
                 int message;
                 if (known_ != 0) {
@@ -213,11 +213,11 @@ THUMB void MPExchangePart::onExecutePart()
                 message_ = 0;
             }
             if (counter_ > 60 && gTownMenu_MESSAGE.stat_ == menu::MenuBase::MENUBASE_STAT_OK) {
-                unkfunc_02043370(13);
+                setState(13);
             }
             break;
         case 13:
-            unkfunc_02043410();
+            restoreLcdAndSleep();
             if (counter_ == 0) {
                 gTownMenu_MESSAGE.close();
                 exchange_.cancelRequest_ = 1;
@@ -229,12 +229,12 @@ THUMB void MPExchangePart::onExecutePart()
                 g_Global.startTown("xdb1b");
                 status::g_StageInfo.flagMapChange_ = 1;
                 status::g_MuseumStatus.updateMuseum();
-                unkfunc_02043370(14);
+                setState(14);
             }
             break;
     }
     exchange_.unkfunc_0212a424();
-    unkfunc_02043374();
+    updateState();
 }
 
 THUMB void MPExchangePart::onDebugPart()
@@ -242,7 +242,7 @@ THUMB void MPExchangePart::onDebugPart()
     exchange_.updateDataSharing();
 }
 
-THUMB void MPExchangePart::unkfunc_02043370(int state)
+THUMB void MPExchangePart::setState(int state)
 {
     nextState_ = state;
 }
@@ -250,7 +250,7 @@ THUMB void MPExchangePart::unkfunc_02043370(int state)
 /* not original: without it nextState_ is loaded before state_ */
 #pragma push
 #pragma opt_common_subs off
-THUMB void MPExchangePart::unkfunc_02043374()
+THUMB void MPExchangePart::updateState()
 {
     if (state_ != nextState_) {
         state_ = nextState_;
@@ -261,7 +261,7 @@ THUMB void MPExchangePart::unkfunc_02043374()
 }
 #pragma pop
 
-THUMB void MPExchangePart::unkfunc_0204338c()
+THUMB void MPExchangePart::updateLcdPower()
 {
     if (PAD_DetectFold()) {
         if (func_020791f4() == TRUE) {
@@ -276,14 +276,14 @@ THUMB void MPExchangePart::unkfunc_0204338c()
     lcdCounter_++;
 }
 
-THUMB void MPExchangePart::unkfunc_020433f4()
+THUMB void MPExchangePart::playWaitSe()
 {
     if (counter_ % 60 == 0) {
         Sound::sePlay(0x12f);
     }
 }
 
-THUMB void MPExchangePart::unkfunc_02043410()
+THUMB void MPExchangePart::restoreLcdAndSleep()
 {
     if (func_020791f4() == FALSE) {
         func_020791e0(TRUE);

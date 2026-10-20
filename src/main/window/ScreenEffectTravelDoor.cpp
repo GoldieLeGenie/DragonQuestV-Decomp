@@ -30,7 +30,7 @@ THUMB void window::ScreenEffectTravelDoor::draw()
         return;
     }
     dss::g_DISPLAYPLUGIN_DOUBLE3D.SetBlur(4, 12);
-    UnkScreenEffectCamera::unkfunc_02028cc4()->unkfunc_02028d44();
+    UnkScreenEffectCamera::getSingleton()->draw();
     {
         VecFx32 scale = {FX32_ONE, FX32_ONE, FX32_ONE};
         VecFx32 trans = {0, 0, 0};
@@ -64,7 +64,7 @@ THUMB void window::ScreenEffectTravelDoor::draw()
             func_020761dc(FX_SinIdx(angle_), FX_CosIdx(angle_));
             int index = j + i * 0x18;
             G3_Translate(data_020c32a0[index].x, data_020c32a0[index].y, data_020c32a0[index].z);
-            unkfunc_020287e8(0x18);
+            setPolygonParams(0x18);
             G3_Begin(1);
             for (int n = 0; n < 4; n++) {
                 VecFx16 dir;
@@ -117,7 +117,7 @@ THUMB bool window::ScreenEffectTravelDoor::isEnd()
     return false;
 }
 
-THUMB void window::ScreenEffectTravelDoor::unkfunc_02029ba4(int travelBack)
+THUMB void window::ScreenEffectTravelDoor::setTravelBack(int travelBack)
 {
     travelBack_ = travelBack;
     if (travelBack) {

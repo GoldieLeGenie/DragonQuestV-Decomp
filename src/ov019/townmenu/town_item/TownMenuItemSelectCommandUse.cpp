@@ -348,7 +348,7 @@ THUMB void TownMenuItemSelectCommandUse::useItemNoTarget()
     }
     if (m_itemID == 0xd3 && m_preMe != 0x14) {
         if (m_preSe != 0) {
-            SoundManager::unkfunc_0206fc44(0);
+            SoundManager::stopSe2(0);
         }
         SoundManager::play(0x14, 5);
     }

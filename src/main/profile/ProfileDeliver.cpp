@@ -76,7 +76,7 @@ THUMB bool profile::Profile::deliverProfile(int no)
     }
     g_Global.initialize();
     status::g_Party.clear();
-    Sound::unkfunc_0206889c(15);
+    Sound::bgmStop(15);
     deliver_PROFILE_SYSTEM();
     deliver_PROFILE_PARTY();
     deliver_PROFILE_ASSETS();

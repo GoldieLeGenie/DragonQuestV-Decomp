@@ -28,7 +28,7 @@ ARM void twn::TownPart::initialize()
     GX_SetBankForTex(GX_VRAM_AB);
     data_020f4f74.initVramManagers(0x40000, 0x4000);
     changeDisplayPlugin(&dss::g_DISPLAYPLUGIN_DOUBLE3D);
-    data_02101584.unkfunc_0205027c();
+    data_02101584.update();
     getTick();
     loadOverlay((int)&OVERLAY_1_ID);
     ov001_entry();
@@ -42,14 +42,14 @@ ARM void twn::TownPart::initialize()
     if (getAppHeapTotalFreeSize(&data_020fd24c) < s_minFreeSize) {
         s_minFreeSize = getAppHeapTotalFreeSize(&data_020fd24c);
     }
-    unkfunc_020270dc();
+    initDebugDisplay();
 }
 
 ARM void twn::TownPart::terminate()
 {
     twn::TownWindowSystem::getSingleton().terminate();
     twn::TownSystem::getSingleton().terminate();
-    data_02101584.unkfunc_0205027c();
+    data_02101584.update();
     getTick();
     data_020a29f4.unload();
     unkfunc_02018eac();
@@ -74,5 +74,5 @@ ARM void twn::TownPart::onWindowPart()
 ARM void twn::TownPart::onDebugPart()
 {
     twn::TownSystem::getSingleton().debug();
-    unkfunc_0202711c();
+    updateDebugDisplay();
 }

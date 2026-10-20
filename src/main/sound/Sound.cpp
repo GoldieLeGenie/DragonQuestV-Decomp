@@ -9,109 +9,109 @@ static unsigned char s_bgm_volume_tbl[] = {
 };
 unsigned char* data_0209af0c = s_bgm_volume_tbl;
 
-THUMB void Sound::unkfunc_02068868(int bgm, int sub)
+THUMB void Sound::bgmPlay(int bgm, int sub)
 {
-    data_021025e0.unkfunc_020550e4(data_0209af0c[bgm]);
-    data_021025e0.unkfunc_02055010(bgm, sub);
-    data_021025e0.unkfunc_02055038(0, bgm, sub);
+    data_021025e0.setBgmVolume(data_0209af0c[bgm]);
+    data_021025e0.loadBgm(bgm, sub);
+    data_021025e0.playBgm(0, bgm, sub);
 }
 
-THUMB void Sound::unkfunc_0206889c(int fade)
+THUMB void Sound::bgmStop(int fade)
 {
-    data_021025e0.unkfunc_02055070(0, fade);
+    data_021025e0.stopBgm(0, fade);
 }
 
-THUMB void Sound::unkfunc_020688b0(int fade)
+THUMB void Sound::bgmStopAll(int fade)
 {
-    data_021025e0.unkfunc_02055088(0, fade);
+    data_021025e0.stopAllBgm(0, fade);
 }
 
-THUMB int Sound::unkfunc_020688c4()
+THUMB int Sound::isBgmPlaying()
 {
-    return data_021025e0.unkfunc_020550a0(0);
+    return data_021025e0.isBgmPlaying(0);
 }
 
-THUMB int Sound::unkfunc_020688d4()
+THUMB int Sound::isBgmStopped()
 {
-    return data_021025e0.unkfunc_020550b0(0);
+    return data_021025e0.isBgmStopped(0);
 }
 
-THUMB void Sound::unkfunc_020688e4(int pause)
+THUMB void Sound::bgmPause(int pause)
 {
-    data_021025e0.unkfunc_020550c0(0, pause);
+    data_021025e0.pauseBgm(0, pause);
 }
 
-THUMB void Sound::unkfunc_020688f8(int no)
+THUMB void Sound::strmPlay(int no)
 {
-    data_021025e0.unkfunc_02055260(no);
+    data_021025e0.playStrm(no);
 }
 
-THUMB void Sound::unkfunc_02068908(int value)
+THUMB void Sound::strmStop(int value)
 {
-    data_021025e0.unkfunc_02055270(value);
+    data_021025e0.stopStrm(value);
 }
 
-THUMB int Sound::unkfunc_02068918()
+THUMB int Sound::isStrmPlaying()
 {
-    return data_021025e0.unkfunc_02055280();
+    return data_021025e0.isStrmPlaying();
 }
 
 THUMB int Sound::sePlay(int se)
 {
-    return data_021025e0.unkfunc_02055194(0, se);
+    return data_021025e0.playSe(0, se);
 }
 
 THUMB int Sound::sePlay2(int se)
 {
-    data_021025e0.unkfunc_020550e4(110);
-    data_021025e0.unkfunc_02055010(se, 0);
-    data_021025e0.unkfunc_02055038(2, se, 0);
+    data_021025e0.setBgmVolume(110);
+    data_021025e0.loadBgm(se, 0);
+    data_021025e0.playBgm(2, se, 0);
     return 0;
 }
 
-THUMB void Sound::unkfunc_02068968(int fade)
+THUMB void Sound::se2Stop(int fade)
 {
-    data_021025e0.unkfunc_02055070(2, fade);
+    data_021025e0.stopBgm(2, fade);
 }
 
-THUMB void Sound::unkfunc_0206897c(int fade)
+THUMB void Sound::seStopFirst(int fade)
 {
-    data_021025e0.unkfunc_020551f0(0, fade);
+    data_021025e0.stopSeHandle(0, fade);
 }
 
-THUMB void Sound::unkfunc_02068990(int se, int fade)
+THUMB void Sound::seStop(int se, int fade)
 {
-    data_021025e0.unkfunc_02055208(0, se, fade);
+    data_021025e0.stopSe(0, se, fade);
 }
 
-THUMB void Sound::unkfunc_020689a4(int fade)
+THUMB void Sound::seStopAll(int fade)
 {
-    data_021025e0.unkfunc_0205523c(fade);
+    data_021025e0.stopAllSe(fade);
 }
 
 THUMB int Sound::sePlayDirect(int se)
 {
-    int ret = data_021025e0.unkfunc_02055194(0, se);
-    data_02101584.unkfunc_0205027c();
+    int ret = data_021025e0.playSe(0, se);
+    data_02101584.update();
     return ret;
 }
 
 THUMB void Sound::setBgmVolume(int volume)
 {
-    data_021025e0.unkfunc_020550e4(volume);
+    data_021025e0.setBgmVolume(volume);
 }
 
 THUMB int Sound::getBgmVolume()
 {
-    return data_021025e0.unkfunc_020550f4();
+    return data_021025e0.getBgmVolume();
 }
 
 THUMB void Sound::setBgmVolumeSys(int volume)
 {
-    data_021025e0.unkfunc_020550d4(volume);
+    data_021025e0.setBgmVolumeSys(volume);
 }
 
 THUMB void Sound::setSeVolumeSys(int volume)
 {
-    data_021025e0.unkfunc_020550fc(volume);
+    data_021025e0.setSeVolumeSys(volume);
 }

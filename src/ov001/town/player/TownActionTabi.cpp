@@ -88,7 +88,7 @@ void twn::TownActionTabi::start(int exitIndex, bool startFlag)
     window::gScreenEffect.effectStart(window::ScreenEffectManager::PLAY_BACK_TABI);
     start_ = startFlag;
     if (startFlag == true) {
-        window::gScreenEffect.tabiEffect_.unkfunc_02029ba4(true);
+        window::gScreenEffect.tabiEffect_.setTravelBack(true);
     }
     TownPlayerManager::getSingleton().setRemote(true);
     TownPlayerManager::getSingleton().lockMapLink(EXIT_LOCK_TABI);

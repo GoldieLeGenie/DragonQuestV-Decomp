@@ -986,7 +986,7 @@ bool cmd_start_opening(void* scriptParam)
     pos.vy.value = param->exitY;
     pos.vz.value = param->exitZ;
     ceremony::CeremonySetting::getSingleton()->setNextActPos(pos);
-    Sound::unkfunc_02068908(0xF);
+    Sound::strmStop(0xF);
     return true;
 }
 

@@ -48,12 +48,12 @@ THUMB void GameEndPart::onDebugPart()
 {
 }
 
-THUMB void GameEndPart::unkfunc_02041a4c(int type)
+THUMB void GameEndPart::setType(int type)
 {
-    unkfunc_02041a58(type, -1);
+    setTypeAndNextPart(type, -1);
 }
 
-THUMB void GameEndPart::unkfunc_02041a58(int type, int nextPart)
+THUMB void GameEndPart::setTypeAndNextPart(int type, int nextPart)
 {
     type_ = type;
     nextPart_ = nextPart;
@@ -82,14 +82,14 @@ THUMB void GameEndPart::unkfunc_02041a58(int type, int nextPart)
     }
 }
 
-THUMB void GameEndPart::unkfunc_02041ab8(int type)
+THUMB void GameEndPart::start(int type)
 {
-    unkfunc_02041a4c(type);
+    setType(type);
     data_02101c88.unkfunc_02051800(GAME_END_PART);
 }
 
-THUMB void GameEndPart::unkfunc_02041acc(int type, int nextPart)
+THUMB void GameEndPart::startWithNextPart(int type, int nextPart)
 {
-    unkfunc_02041a58(type, nextPart);
+    setTypeAndNextPart(type, nextPart);
     data_02101c88.unkfunc_02051800(GAME_END_PART);
 }

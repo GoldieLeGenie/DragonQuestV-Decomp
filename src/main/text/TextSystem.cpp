@@ -7,7 +7,7 @@ TextExtractor g_text_extractor;
 UnkBadWordList g_bad_word_list;
 MsgFile g_msg_file;
 
-THUMB void TextAPI::unkfunc_0206cb34()
+THUMB void TextAPI::load()
 {
 }
 
@@ -28,11 +28,11 @@ THUMB void TextAPI::Init()
     g_msg_file.init();
 }
 
-THUMB void TextAPI::unkfunc_0206cc94()
+THUMB void TextAPI::start()
 {
 }
 
-THUMB void TextAPI::unkfunc_0206cc98()
+THUMB void TextAPI::terminate()
 {
     g_msg_data_default.cleanup();
     g_msg_data[0].cleanup();
@@ -49,16 +49,16 @@ THUMB void TextAPI::unkfunc_0206cc98()
     g_msg_file.cleanup();
 }
 
-THUMB void TextAPI::unkfunc_0206cd20()
+THUMB void TextAPI::update()
 {
     resetMacro();
 }
 
-THUMB void TextAPI::unkfunc_0206cd28()
+THUMB void TextAPI::execute()
 {
 }
 
-THUMB void TextAPI::unkfunc_0206cd2c()
+THUMB void TextAPI::draw()
 {
 }
 
@@ -104,12 +104,12 @@ THUMB MsgData* findMsgData(int msg_id)
     return msg;
 }
 
-THUMB int unkfunc_0206ce14(int msg_id, int lang)
+THUMB int msgExists(int msg_id, int lang)
 {
     return g_msg_file.hasMessage(msg_id, lang);
 }
 
-THUMB int unkfunc_0206ce28(int msg_id, int lang)
+THUMB int loadMessageFile(int msg_id, int lang)
 {
     return g_msg_file.loadMessage(msg_id, lang);
 }
@@ -134,9 +134,9 @@ THUMB int CheckBadWord(char* name)
     if (TextAPI::m_lang != 0) {
         return 0;
     }
-    g_bad_word_list.unkfunc_0206b6b4();
-    int result = g_bad_word_list.unkfunc_0206b704(name);
-    g_bad_word_list.unkfunc_0206b6fc();
+    g_bad_word_list.load();
+    int result = g_bad_word_list.containsBadWord(name);
+    g_bad_word_list.unload();
     return result;
 }
 

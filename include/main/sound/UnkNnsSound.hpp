@@ -18,20 +18,20 @@ struct UnkSoundHandle {
 
     UnkSoundHandle();
     ~UnkSoundHandle();
-    void unkfunc_0204fde0(int a);                       // init
-    void unkfunc_0204fdfc(int bgm, int sub);            // play bgm
-    void unkfunc_0204feac(int fade);                    // stop bgm
-    int unkfunc_0204fed0();                             // bgm playing
-    int unkfunc_0204ff08();                             // bgm stopped
-    void unkfunc_0204ff40(int pause);                   // pause
-    int unkfunc_0204ff50();                             // paused
-    void unkfunc_0204ff54(int fade);                    // stop all
-    void unkfunc_0204ff74(int seqArc, int index);       // play se
-    int unkfunc_020500c4(int seqArc, int index);        // se playing
-    void unkfunc_020500dc(int fade);                    // stop se
-    int unkfunc_020500f8();
-    void unkfunc_0205011c(int volume);                  // set volume
-    void unkfunc_0205012c();                            // apply the volume
+    void init(int a);                       // init
+    void playBgm(int bgm, int sub);            // play bgm
+    void stopBgm(int fade);                    // stop bgm
+    int isBgmPlaying();                             // bgm playing
+    int isBgmStopped();                             // bgm stopped
+    void setPause(int pause);                   // pause
+    int isPaused();                             // paused
+    void stopAll(int fade);                    // stop all
+    void playSe(int seqArc, int index);       // play se
+    int isSe(int seqArc, int index);        // se playing
+    void stopSe(int fade);                    // stop se
+    int isSePlaying();
+    void setVolume(int volume);                  // set volume
+    void applyVolume();                            // apply the volume
 };
 
 // Game wrapper of the NNS sound library
@@ -52,14 +52,14 @@ struct UnkNnsSound {
 
     UnkNnsSound();
     ~UnkNnsSound();
-    void unkfunc_0205015c(void* file, void* memory, int size, int group);  // init
-    void unkfunc_020501c0();                            // load the sound archive
-    void unkfunc_0205027c();                            // NNS_SndMain
-    void unkfunc_02050284(int bgm, int sub);            // load a bgm
-    void unkfunc_020503f4(int a, int b);
-    int unkfunc_0205040c(int no, void* heap);           // load a sequence
-    int unkfunc_02050418(int no, void* heap);           // load a bank
-    int unkfunc_02050424(int no, void* heap);           // load a wave archive
+    void init(void* file, void* memory, int size, int group);  // init
+    void loadArchive();                            // load the sound archive
+    void update();                            // NNS_SndMain
+    void loadBgm(int bgm, int sub);            // load a bgm
+    void preload(int a, int b);
+    int loadSeq(int no, void* heap);           // load a sequence
+    int loadBank(int no, void* heap);           // load a bank
+    int loadWaveArc(int no, void* heap);           // load a wave archive
 };
 
 struct UnkSoundMember {
@@ -68,10 +68,10 @@ struct UnkSoundMember {
 
     UnkSoundMember();
     ~UnkSoundMember();
-    void unkfunc_02050438();
-    void unkfunc_02050440(int no);
-    void unkfunc_0205045c(int value);
-    int unkfunc_02050464();
+    void init();
+    void play(int no);
+    void stop(int value);
+    int isPlaying();
 };
 
 extern int data_02101570[2];

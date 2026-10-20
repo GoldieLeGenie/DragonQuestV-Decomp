@@ -14,10 +14,10 @@ int SoundManager::nextIndex_[2];
 
 ARM void SoundManager::initialize(void* file, void* memory, int size, int a, int b, int c, unsigned char* volume)
 {
-    data_02101584.unkfunc_0205015c(file, memory, size, 1);
-    data_021025e0.unkfunc_02054fd0();
-    data_021025e0.unkfunc_02055024(a, b);
-    data_021025e0.unkfunc_02055024(a, c);
+    data_02101584.init(file, memory, size, 1);
+    data_021025e0.init();
+    data_021025e0.preload(a, b);
+    data_021025e0.preload(a, c);
     if (volume != NULL) {
         data_0209af0c = volume;
     }
@@ -27,13 +27,13 @@ ARM void SoundManager::initialize(void* file, void* memory, int size, int a, int
 
 ARM void SoundManager::update()
 {
-    if (nextIndex_[0] != 0 && Sound::unkfunc_020688d4()) {
+    if (nextIndex_[0] != 0 && Sound::isBgmStopped()) {
         bgmIndex_ = nextIndex_[0];
         if (interrupt_ != 0) {
-            Sound::unkfunc_02068868(nextIndex_[0], 1);
+            Sound::bgmPlay(nextIndex_[0], 1);
             interrupt_ = 0;
         } else {
-            Sound::unkfunc_02068868(nextIndex_[0], 0);
+            Sound::bgmPlay(nextIndex_[0], 0);
         }
         nextIndex_[0] = 0;
         fadeFrame_ = 0;
@@ -44,10 +44,10 @@ ARM void SoundManager::update()
         }
     }
     updateFadeOut();
-    if (!Sound::unkfunc_020688c4()) {
+    if (!Sound::isBgmPlaying()) {
         bgmIndex_ = 0;
     }
-    data_021025e0.unkfunc_0205528c();
+    data_021025e0.updateSe();
 }
 
 ARM void SoundManager::updateFadeOut()
@@ -58,13 +58,13 @@ ARM void SoundManager::updateFadeOut()
     fadeCount_++;
     if (fadeFrame_ == fadeCount_) {
         if (interrupt_ != 0) {
-            Sound::unkfunc_020688e4(1);
+            Sound::bgmPause(1);
         } else {
-            Sound::unkfunc_0206889c(15);
+            Sound::bgmStop(15);
         }
         fadeFrame_ = 0;
         fadeCount_ = 0;
-        data_02101584.unkfunc_0205027c();
+        data_02101584.update();
     }
     setBgmVolume(127 * (fadeFrame_ - fadeCount_) / fadeFrame_);
 }
@@ -86,7 +86,7 @@ ARM void SoundManager::play(int bgm, int fade)
 
 ARM void SoundManager::stop(int fade)
 {
-    Sound::unkfunc_0206889c(fade);
+    Sound::bgmStop(fade);
 }
 
 ARM void SoundManager::playRestart(int bgm, int fade)
@@ -98,7 +98,7 @@ ARM void SoundManager::playRestart(int bgm, int fade)
         interrupt_ = 1;
     } else {
         bgmIndex_ = bgm;
-        Sound::unkfunc_02068868(bgm, 0);
+        Sound::bgmPlay(bgm, 0);
     }
 }
 
@@ -110,7 +110,7 @@ ARM void SoundManager::townPlay(int bgm)
     townBgmEnable_ = 1;
     for (int i = 0; i < 15; i++) {
         update();
-        data_02101584.unkfunc_0205027c();
+        data_02101584.update();
         OS_Wait();
     }
 }
@@ -128,7 +128,7 @@ ARM void SoundManager::fieldPlay(int bgm)
     townBgmEnable_ = 1;
     for (int i = 0; i < 15; i++) {
         update();
-        data_02101584.unkfunc_0205027c();
+        data_02101584.update();
         OS_Wait();
     }
 }
@@ -159,7 +159,7 @@ ARM void SoundManager::stopBgm(int fade)
 
 ARM void SoundManager::stopBgmForce(int fade)
 {
-    Sound::unkfunc_020688b0(fade);
+    Sound::bgmStopAll(fade);
 }
 
 ARM int SoundManager::playSe(int se, int param)
@@ -167,14 +167,14 @@ ARM int SoundManager::playSe(int se, int param)
     return Sound::sePlay(se);
 }
 
-ARM void SoundManager::unkfunc_0206fc10(int se, int fade)
+ARM void SoundManager::stopSe(int se, int fade)
 {
-    Sound::unkfunc_0206897c(se);
+    Sound::seStopFirst(se);
 }
 
 ARM void SoundManager::stopSeWithIndex(int se, int fade)
 {
-    Sound::unkfunc_02068990(se, fade);
+    Sound::seStop(se, fade);
 }
 
 ARM void SoundManager::playSe2(int se, int param)
@@ -183,9 +183,9 @@ ARM void SoundManager::playSe2(int se, int param)
     se2_ = se;
 }
 
-ARM void SoundManager::unkfunc_0206fc44(int fade)
+ARM void SoundManager::stopSe2(int fade)
 {
-    Sound::unkfunc_02068968(fade);
+    Sound::se2Stop(fade);
     se2_ = 0;
 }
 

@@ -218,12 +218,12 @@ THUMB void twn::TownImageMap::calcTargetPos()
     } else {
         pos = dss::Fix32Vector3(status::g_StageInfo.overviewTempPosition_);
     }
-    unkfunc_02052150(2, pos);
+    setProjectedPointPos(2, pos);
 }
 
 THUMB void twn::TownImageMap::getTargetPos()
 {
-    targetPos_ = *unkfunc_02052164(2);
+    targetPos_ = *getProjectedPointScreenPos(2);
 }
 
 THUMB void twn::TownImageMap::setOverview()

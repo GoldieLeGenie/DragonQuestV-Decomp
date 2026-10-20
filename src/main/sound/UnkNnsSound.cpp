@@ -21,7 +21,7 @@ THUMB UnkSoundHandle::~UnkSoundHandle()
 {
 }
 
-THUMB void UnkSoundHandle::unkfunc_0204fde0(int a)
+THUMB void UnkSoundHandle::init(int a)
 {
     current_ = 0;
     pause_ = 0;
@@ -30,7 +30,7 @@ THUMB void UnkSoundHandle::unkfunc_0204fde0(int a)
     unk_14 = a;
 }
 
-THUMB void UnkSoundHandle::unkfunc_0204fdfc(int bgm, int sub)
+THUMB void UnkSoundHandle::playBgm(int bgm, int sub)
 {
     if (pause_ != 0 && sub == 0) {
         if (active_[0] == 0) {
@@ -40,7 +40,7 @@ THUMB void UnkSoundHandle::unkfunc_0204fdfc(int bgm, int sub)
             bgm_[1] = -1;
         }
         if (bgm != bgm_[0]) {
-            unkfunc_0204ff54(15);
+            stopAll(15);
             func_0207b384();
         }
     }
@@ -48,14 +48,14 @@ THUMB void UnkSoundHandle::unkfunc_0204fdfc(int bgm, int sub)
     if (sub == 0) {
         current_ = 0;
         if (pause_ != 0) {
-            unkfunc_0204ff40(0);
-            unkfunc_0205012c();
+            setPause(0);
+            applyVolume();
             return;
         }
         func_0207ceac(&handle_[current_], bgm);
     } else {
         if (sub != 0) {
-            unkfunc_0204ff40(1);
+            setPause(1);
         }
         current_ = 1;
         func_0207ceac(&handle_[current_], bgm);
@@ -63,10 +63,10 @@ THUMB void UnkSoundHandle::unkfunc_0204fdfc(int bgm, int sub)
     bgm_[current_] = bgm;
     active_[current_] = 1;
     func_0207b578(&handle_[current_], data_0209a370);
-    unkfunc_0205012c();
+    applyVolume();
 }
 
-THUMB void UnkSoundHandle::unkfunc_0204feac(int fade)
+THUMB void UnkSoundHandle::stopBgm(int fade)
 {
     if (current_ == 0) {
         pause_ = 0;
@@ -75,9 +75,9 @@ THUMB void UnkSoundHandle::unkfunc_0204feac(int fade)
     active_[current_] = 0;
 }
 
-THUMB int UnkSoundHandle::unkfunc_0204fed0()
+THUMB int UnkSoundHandle::isBgmPlaying()
 {
-    if (unkfunc_0204ff50()) {
+    if (isPaused()) {
         if (func_0207b534(bgm_[1])) {
             return 1;
         }
@@ -91,9 +91,9 @@ THUMB int UnkSoundHandle::unkfunc_0204fed0()
     return 0;
 }
 
-THUMB int UnkSoundHandle::unkfunc_0204ff08()
+THUMB int UnkSoundHandle::isBgmStopped()
 {
-    if (unkfunc_0204ff50()) {
+    if (isPaused()) {
         if (func_0207b534(bgm_[1]) == 0) {
             return 1;
         }
@@ -104,18 +104,18 @@ THUMB int UnkSoundHandle::unkfunc_0204ff08()
     return 0;
 }
 
-THUMB void UnkSoundHandle::unkfunc_0204ff40(int pause)
+THUMB void UnkSoundHandle::setPause(int pause)
 {
     pause_ = pause;
     func_0207b510(&handle_[current_], pause);
 }
 
-THUMB int UnkSoundHandle::unkfunc_0204ff50()
+THUMB int UnkSoundHandle::isPaused()
 {
     return pause_;
 }
 
-THUMB void UnkSoundHandle::unkfunc_0204ff54(int fade)
+THUMB void UnkSoundHandle::stopAll(int fade)
 {
     func_0207b504(&handle_[0], 0);
     func_0207b504(&handle_[1], 0);
@@ -125,7 +125,7 @@ THUMB void UnkSoundHandle::unkfunc_0204ff54(int fade)
     current_ = 0;
 }
 
-THUMB void UnkSoundHandle::unkfunc_0204ff74(int seqArc, int index)
+THUMB void UnkSoundHandle::playSe(int seqArc, int index)
 {
     func_0207b504(&handle_[current_], 0);
     int mode = 0;
@@ -202,7 +202,7 @@ THUMB void UnkSoundHandle::unkfunc_0204ff74(int seqArc, int index)
     sePlaying_ = 1;
 }
 
-THUMB int UnkSoundHandle::unkfunc_020500c4(int seqArc, int index)
+THUMB int UnkSoundHandle::isSe(int seqArc, int index)
 {
     if (seArc_ != seqArc) {
         return 0;
@@ -210,7 +210,7 @@ THUMB int UnkSoundHandle::unkfunc_020500c4(int seqArc, int index)
     return seIndex_ == index;
 }
 
-THUMB void UnkSoundHandle::unkfunc_020500dc(int fade)
+THUMB void UnkSoundHandle::stopSe(int fade)
 {
     func_0207b504(&handle_[current_], fade);
     seArc_ = -1;
@@ -218,7 +218,7 @@ THUMB void UnkSoundHandle::unkfunc_020500dc(int fade)
     sePlaying_ = 0;
 }
 
-THUMB int UnkSoundHandle::unkfunc_020500f8()
+THUMB int UnkSoundHandle::isSePlaying()
 {
     if (func_0207b5e0(&handle_[current_]) != 0) {
         return 1;
@@ -226,13 +226,13 @@ THUMB int UnkSoundHandle::unkfunc_020500f8()
     return sePlaying_ == 1;
 }
 
-THUMB void UnkSoundHandle::unkfunc_0205011c(int volume)
+THUMB void UnkSoundHandle::setVolume(int volume)
 {
     volume_ = volume;
     func_0207b568(&handle_[current_], volume);
 }
 
-THUMB void UnkSoundHandle::unkfunc_0205012c()
+THUMB void UnkSoundHandle::applyVolume()
 {
     func_0207b568(&handle_[current_], volumeSys_ * volume_ / 127);
 }
@@ -246,7 +246,7 @@ THUMB UnkNnsSound::~UnkNnsSound()
 {
 }
 
-THUMB void UnkNnsSound::unkfunc_0205015c(void* file, void* memory, int size, int group)
+THUMB void UnkNnsSound::init(void* file, void* memory, int size, int group)
 {
     unk_b4 = 0;
     bgm_ = 0;
@@ -258,10 +258,10 @@ THUMB void UnkNnsSound::unkfunc_0205015c(void* file, void* memory, int size, int
     heap_[0] = func_0207c5fc(memory_, size_);
     heap_[1] = func_0207c5fc((unsigned char*)memory_ + size_, 0xc800);
     heap_[2] = func_0207c5fc((unsigned char*)memory_ + (size_ + 0xc800), 0x32000);
-    unkfunc_020501c0();
+    loadArchive();
 }
 
-THUMB void UnkNnsSound::unkfunc_020501c0()
+THUMB void UnkNnsSound::loadArchive()
 {
     func_0207c658(heap_[0]);
     func_0207c658(heap_[1]);
@@ -288,12 +288,12 @@ THUMB void UnkNnsSound::unkfunc_020501c0()
     saved_ = 0;
 }
 
-THUMB void UnkNnsSound::unkfunc_0205027c()
+THUMB void UnkNnsSound::update()
 {
     func_0207b384();
 }
 
-THUMB void UnkNnsSound::unkfunc_02050284(int bgm, int sub)
+THUMB void UnkNnsSound::loadBgm(int bgm, int sub)
 {
     if (saved_ == 0) {
         heapState_[0] = func_0207c70c(heap_[0]);
@@ -308,8 +308,8 @@ THUMB void UnkNnsSound::unkfunc_02050284(int bgm, int sub)
         if (unk_b4 != 0) {
             func_0207c740(heap_[0], state_);
             func_0207c740(heap_[2], heapState_[2]);
-            unkfunc_02050418(bgm, heap_[0]);
-            unkfunc_02050424(bgm, heap_[2]);
+            loadBank(bgm, heap_[0]);
+            loadWaveArc(bgm, heap_[2]);
             unk_b4 = 0;
             bgm_ = bgm;
             return;
@@ -318,47 +318,47 @@ THUMB void UnkNnsSound::unkfunc_02050284(int bgm, int sub)
         if (main) {
             func_0207c740(heap_[0], heapState_[0]);
             func_0207c740(heap_[2], heapState_[2]);
-            unkfunc_0205040c(bgm, heap_[0]);
-            unkfunc_02050418(bgm, heap_[0]);
+            loadSeq(bgm, heap_[0]);
+            loadBank(bgm, heap_[0]);
             state_ = func_0207c70c(heap_[0]);
-            unkfunc_02050424(bgm, heap_[2]);
+            loadWaveArc(bgm, heap_[2]);
             unk_b4 = 0;
             bgm_ = bgm;
             return;
         }
-        unkfunc_0205040c(bgm, heap_[1]);
-        unkfunc_02050418(bgm, heap_[1]);
-        unkfunc_02050424(bgm, heap_[1]);
+        loadSeq(bgm, heap_[1]);
+        loadBank(bgm, heap_[1]);
+        loadWaveArc(bgm, heap_[1]);
         subBgm_ = bgm;
         return;
     }
     func_0207c740(heap_[1], heapState_[1]);
     func_0207c740(heap_[2], heapState_[2]);
-    unkfunc_0205040c(bgm, heap_[1]);
-    unkfunc_02050418(bgm, heap_[1]);
+    loadSeq(bgm, heap_[1]);
+    loadBank(bgm, heap_[1]);
     state_ = func_0207c70c(heap_[1]);
-    unkfunc_02050424(bgm, heap_[2]);
+    loadWaveArc(bgm, heap_[2]);
     unk_b4 = 1;
     subBgm_ = -1;
 }
 
-THUMB void UnkNnsSound::unkfunc_020503f4(int a, int b)
+THUMB void UnkNnsSound::preload(int a, int b)
 {
     func_0207c844(a, heap_[0]);
     func_0207c860(b, heap_[0]);
 }
 
-THUMB int UnkNnsSound::unkfunc_0205040c(int no, void* heap)
+THUMB int UnkNnsSound::loadSeq(int no, void* heap)
 {
     return func_0207c87c(no, 1, heap);
 }
 
-THUMB int UnkNnsSound::unkfunc_02050418(int no, void* heap)
+THUMB int UnkNnsSound::loadBank(int no, void* heap)
 {
     return func_0207c87c(no, 2, heap);
 }
 
-THUMB int UnkNnsSound::unkfunc_02050424(int no, void* heap)
+THUMB int UnkNnsSound::loadWaveArc(int no, void* heap)
 {
     return func_0207c87c(no, 4, heap);
 }
@@ -371,23 +371,23 @@ THUMB UnkSoundMember::~UnkSoundMember()
 {
 }
 
-THUMB void UnkSoundMember::unkfunc_02050438()
+THUMB void UnkSoundMember::init()
 {
     func_0207d280(this);
 }
 
-THUMB void UnkSoundMember::unkfunc_02050440(int no)
+THUMB void UnkSoundMember::play(int no)
 {
     func_0207d244(this, no, 0);
     func_0207d270(this, data_0209a374);
 }
 
-THUMB void UnkSoundMember::unkfunc_0205045c(int value)
+THUMB void UnkSoundMember::stop(int value)
 {
     func_0207d260(this, value);
 }
 
-THUMB int UnkSoundMember::unkfunc_02050464()
+THUMB int UnkSoundMember::isPlaying()
 {
     if (func_0207d29c(this) != 0) {
         return 1;

@@ -39,21 +39,21 @@ struct DebugInfo : UnkDebugDisplay {
     virtual void initialize();
     virtual void draw();
     void drawArrayWarnings(int x, int y);        // array warnings
-    void unkfunc_02027a38(int x, int y);        // position, map name, walk count
-    void unkfunc_02027cdc();                    // clear the message IDs
+    void drawPosition(int x, int y);        // position, map name, walk count
+    void clearMessageIDs();                    // clear the message IDs
     void addMessageID(int messageID);       // add a message ID
     void unkfunc_02027d1c(int x, int y);        // the 16 message IDs
-    void unkfunc_02027d7c(int x, int y);        // the first 6 message IDs
-    void unkfunc_02027ddc(int x, int y);        // area, local and global flags
-    void unkfunc_02027e74(int x, int y, char kind, status::GameFlag* flag, int top, int lines, status::GameFlag* prevFlag);
-    void unkfunc_02027f58(int x, int y);        // world time
-    void unkfunc_02027fe8(int x, int y);        // play time
-    void unkfunc_020280e0(int x, int y);        // museum
+    void drawShortMessageIDs(int x, int y);        // the first 6 message IDs
+    void drawFlags(int x, int y);        // area, local and global flags
+    void drawFlagTable(int x, int y, char kind, status::GameFlag* flag, int top, int lines, status::GameFlag* prevFlag);
+    void drawWorldTime(int x, int y);        // world time
+    void drawPlayTime(int x, int y);        // play time
+    void drawMuseum(int x, int y);        // museum
     void drawHeap(int x, int y);        // free heap / VRAM
-    void unkfunc_02028204(int x, int y);        // friend monsters
-    void unkfunc_02028258(int show);            // show the array warnings
-    void unkfunc_0202825c();                    // clear the log
-    void unkfunc_0202827c(int x, int y);        // log
+    void drawFriendMonsters(int x, int y);        // friend monsters
+    void setShowArrayWarning(int show);            // show the array warnings
+    void clearLog();                    // clear the log
+    void drawLog(int x, int y);        // log
 };
 
 extern DebugInfo data_020c2d10;

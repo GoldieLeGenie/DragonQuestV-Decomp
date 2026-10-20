@@ -13,8 +13,8 @@ struct UnkShopMapCheck : UnkDebugTask {
     UnkShopMapCheck();
     virtual void vf04();
     virtual void vf0c();
-    void unkfunc_02038118();
-    void unkfunc_02038148();
+    void nextShop();
+    void startShopMap();
 };
 
 extern UnkShopMapCheck data_020dc058;

@@ -100,19 +100,19 @@ THUMB void ceremony::CeremonyStaffSystem::initialize()
         staffDownDssa_.setup(staffDownData_.getAddr());
         staffDownDssa_.setTexture(texture_);
     }
-    Sound::unkfunc_0206889c(0xf);
+    Sound::bgmStop(0xf);
 }
 
 THUMB void ceremony::CeremonyStaffSystem::terminate()
 {
-    Sound::unkfunc_02068908(0xf);
+    Sound::strmStop(0xf);
     texture_->freeVram();
     textureData_.cleanup();
     staffUpDssa_.cleanup();
     staffUpData_.cleanup();
     staffDownDssa_.cleanup();
     staffDownData_.cleanup();
-    Sound::unkfunc_02068908(0);
+    Sound::strmStop(0);
 }
 
 THUMB void ceremony::CeremonyStaffSystem::execute()
