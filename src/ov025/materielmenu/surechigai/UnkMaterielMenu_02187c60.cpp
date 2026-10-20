@@ -45,7 +45,7 @@ THUMB void UnkMaterielMenu_02187c60::menuSetup()
         gMaterielMenu_NameEdit.setDefaultName(status::g_MuseumStatus.playerTaishi_.taishiName_);
         return;
     }
-    gMaterielMenu_NameEdit.unkfunc_0202a528();
+    gMaterielMenu_NameEdit.setMessageMode();
     gMaterielMenu_NameEdit.setDefaultName(status::g_MuseumStatus.playerTaishi_.message_);
     dss::strcpy_s(unk_26, 0x88, status::g_MuseumStatus.playerTaishi_.message_);
 }
@@ -146,7 +146,7 @@ THUMB void UnkMaterielMenu_02187c60::unkfunc_02186c38()
                 gMaterielMenu_NameEdit.setDefaultName(status::g_MuseumStatus.playerTaishi_.taishiName_);
                 return;
             }
-            gMaterielMenu_NameEdit.unkfunc_0202a528();
+            gMaterielMenu_NameEdit.setMessageMode();
             status::g_MuseumStatus.playerTaishi_.setTaishiMessage(unk_26);
             gMaterielMenu_NameEdit.setDefaultName(status::g_MuseumStatus.playerTaishi_.message_);
             break;

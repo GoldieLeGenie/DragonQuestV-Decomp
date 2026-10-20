@@ -44,12 +44,12 @@ THUMB void TownMenu_MESSAGE::menuDraw()
 {
     s_draw->setEnable(1);
     if (windowType_ == UNK_MESSAGE_WINDOW_7) {
-        unkfunc_02061c5c(0, 0);
+        setMenuDrawOffset(0, 0);
         UnkMenuParts parts[] = {
             {3, 0xd0, (short)0xf000, 0, 0, 0, 0x100, 0xc0},
             {0xff},
         };
-        unkfunc_0206297c(parts, 0);
+        drawMenuPartsPlain(parts, 0);
     }
     if (busyIconWait_ != 0) {
         busyIconWait_--;
@@ -78,11 +78,11 @@ THUMB void TownMenu_MESSAGE::menuUpdate()
             }
             if (keyEnable_ != 0) {
                 if (ynFlag_ != 0) {
-                    if (s_draw->unkfunc_02066b74() && key == 1) {
-                        s_draw->unkfunc_02066bc4();
+                    if (s_draw->isWaitTrigger() && key == 1) {
+                        s_draw->clearWaitTriggerSE();
                         keyEnable_ = 0;
                     }
-                    if (s_draw->unkfunc_02066b88()) {
+                    if (s_draw->isFinish()) {
                         data_020a2b04.open();
                         data_020a2b04.setYesNo(ynCursor_);
                         data_020a2b04.setPosition(ynPosX_, ynPosY_);
@@ -91,25 +91,25 @@ THUMB void TownMenu_MESSAGE::menuUpdate()
                         keyEnable_ = 0;
                     }
                 } else {
-                    if (s_draw->unkfunc_02066b74() && key == 1) {
-                        s_draw->unkfunc_02066bc4();
+                    if (s_draw->isWaitTrigger() && key == 1) {
+                        s_draw->clearWaitTriggerSE();
                         keyEnable_ = 0;
                     }
-                    if (s_draw->unkfunc_02066b88() && key == 1) {
-                        s_draw->unkfunc_02066bc4();
+                    if (s_draw->isFinish() && key == 1) {
+                        s_draw->clearWaitTriggerSE();
                         keyEnable_ = 0;
                         pushKey_ = pushKey;
                     }
                 }
             } else {
-                if (s_draw->unkfunc_02066b74() && key == 0) {
+                if (s_draw->isWaitTrigger() && key == 0) {
                     keyEnable_ = 1;
                 }
-                if (s_draw->unkfunc_02066b88() && key == 0) {
+                if (s_draw->isFinish() && key == 0) {
                     keyEnable_ = 1;
                 }
             }
-            if (s_draw->unkfunc_02066b9c()) {
+            if (s_draw->isEnd()) {
                 stat_ = MENUBASE_STAT_OK;
             }
         } else {
@@ -252,7 +252,7 @@ THUMB void TownMenu_MESSAGE::restartMessage()
     ynExec_ = 0;
     ynPosX_ = 0xc0;
     ynPosY_ = 0x40;
-    s_draw->unkfunc_02066b48();
+    s_draw->restart();
     s_msgCount = 0;
     data_020c2d10.clearMessageIDs();
 }
@@ -264,12 +264,12 @@ THUMB void TownMenu_MESSAGE::addMessageWAITKEY()
 
 THUMB bool TownMenu_MESSAGE::isMessageWAITPROG()
 {
-    return s_draw->unkfunc_02066bb0();
+    return s_draw->isWaitProg();
 }
 
 THUMB void TownMenu_MESSAGE::clearMessageWAITPROG()
 {
-    s_draw->unkfunc_02066be8(0);
+    s_draw->setWaitProg(0);
 }
 
 THUMB void TownMenu_MESSAGE::setMessageCursor(bool flag)
@@ -293,7 +293,7 @@ THUMB void TownMenu_MESSAGE::setBusyIcon(bool flag)
     MenuFaceDisplay* const busy = &data_02114dd4.face_;
     if (flag) {
         busyIconWait_ = 2;
-        busy->unkfunc_02064c80();
+        busy->loadLoadingAnim();
         busy->mode_ = 11;
         busy->setPriority(0);
         busy->setPosition(0xe0, 0x164);

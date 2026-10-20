@@ -32,7 +32,7 @@ ARM void twn::TownPart::initialize()
     getTick();
     loadOverlay((int)&OVERLAY_1_ID);
     ov001_entry();
-    unkfunc_02018e6c(1);
+    loadWindowOverlay(1);
     ov019_entry();
     getTick();
     twn::TownSystem::getSingleton().initialize();
@@ -52,7 +52,7 @@ ARM void twn::TownPart::terminate()
     data_02101584.update();
     getTick();
     data_020a29f4.unload();
-    unkfunc_02018eac();
+    unloadWindowOverlay();
     unloadOverlay((int)&OVERLAY_1_ID);
     data_020f4f74.onPartTerminate();
 }

@@ -28,7 +28,7 @@ struct MenuDisplay {
     virtual void draw(UnkOamBuffer* main, UnkOamBuffer* sub) = 0;
     void reset();                    // hide
     void updateMove();                    // move toward the target
-    int unkfunc_02064730(UnkOamBuffer* main, UnkOamBuffer* sub);
+    int isDrawable(UnkOamBuffer* main, UnkOamBuffer* sub);
     void setType(int type);
     void setEnable(int enable);
     void setPosition(int x, int y);

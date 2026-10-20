@@ -97,7 +97,7 @@ THUMB void MaterielMenu_WINDOW_MANAGER::openMaterielWindow(int menuType)
                 }
                 ui_MsgSndSet(voice);
             }
-            unkfunc_02018d64(1);
+            loadMaterielMenuOverlay(1);
             dq5::level::InnMessage::setup();
             if (menuType == MENU_SUGOROKU_INN) {
                 innType = 2;
@@ -110,13 +110,13 @@ THUMB void MaterielMenu_WINDOW_MANAGER::openMaterielWindow(int menuType)
         }
         case MENU_CHURCH:
         case MENU_CHURCH_TYPE2:
-            unkfunc_02018d64(2);
+            loadMaterielMenuOverlay(2);
             ui_MsgSndSet(cmn::g_talkSound.getCharacterVoice(ctrlID));
             dq5::level::ChurchMessage::setup();
             gMaterielMenu_CHURCH_ROOT.open();
             break;
         case MENU_CHURCH_MIRACLE:
-            unkfunc_02018d64(2);
+            loadMaterielMenuOverlay(2);
             dq5::level::ChurchMessage::setup();
             gMaterielMenu_CHURCH_MIRACLE.open();
             break;
@@ -129,7 +129,7 @@ THUMB void MaterielMenu_WINDOW_MANAGER::openMaterielWindow(int menuType)
         case MENU_SHOP_ITEM_TYPE2:
         case MENU_SHOP_YOROZU_TYPE2:
         case MENU_SUGOROKU_SHOP:
-            unkfunc_02018d64(3);
+            loadMaterielMenuOverlay(3);
             dq5::level::ShopMessage::setup();
             if (menuType == MENU_SUGOROKU_SHOP) {
                 ui_MsgSndSet(0x32);
@@ -142,7 +142,7 @@ THUMB void MaterielMenu_WINDOW_MANAGER::openMaterielWindow(int menuType)
             break;
         case MENU_CHANGE_GIFT:
         case MENU_CHANGE_GIFT_TYPE2:
-            unkfunc_02018d64(3);
+            loadMaterielMenuOverlay(3);
             dq5::level::GiftMessage::setup();
             ui_MsgSndSet(cmn::g_talkSound.getCharacterVoice(ctrlID));
             MaterielMenu_SHOP_MANAGER::getSingleton()->initialize();
@@ -150,7 +150,7 @@ THUMB void MaterielMenu_WINDOW_MANAGER::openMaterielWindow(int menuType)
             gMaterielMenu_CHANGEGIFT_ROOT.open();
             break;
         case MENU_COIN_SALEROOM:
-            unkfunc_02018d64(4);
+            loadMaterielMenuOverlay(4);
             dq5::level::CoinMessage::setup();
             ui_MsgSndSet(cmn::g_talkSound.getCharacterVoice(ctrlID));
             gMaterielMenu_COINSALEROOM_ROOT.open();
@@ -165,17 +165,17 @@ THUMB void MaterielMenu_WINDOW_MANAGER::openMaterielWindow(int menuType)
             gMaterielMenu_POKER_BETCOIN.open();
             break;
         case MENU_CASINO_FIGHTSTADIUM:
-            unkfunc_02018d64(15);
+            loadMaterielMenuOverlay(15);
             gMaterielMenu_FIGHT_STADIUM.open();
             break;
         case MENU_BANK:
-            unkfunc_02018d64(5);
+            loadMaterielMenuOverlay(5);
             dq5::level::GoldMessage::setup();
             ui_MsgSndSet(cmn::g_talkSound.getCharacterVoice(ctrlID));
             gMaterielMenu_BANK_ROOT.open();
             break;
         case MENU_MEDAL_KING:
-            unkfunc_02018d64(3);
+            loadMaterielMenuOverlay(3);
             dq5::level::MedalMessage::setup();
             ui_MsgSndSet(cmn::g_talkSound.getCharacterVoice(ctrlID));
             MaterielMenu_SHOP_MANAGER::getSingleton()->initialize();
@@ -183,7 +183,7 @@ THUMB void MaterielMenu_WINDOW_MANAGER::openMaterielWindow(int menuType)
             gMaterielMenu_MEDALKING_ROOT.open();
             break;
         case MENU_SAVE:
-            unkfunc_02018d64(2);
+            loadMaterielMenuOverlay(2);
             gMaterielMenu_SAVE.open();
             dq5::level::ChurchMessage::setup();
             if (status::g_Menu.bookingFlag_ == 1) {
@@ -199,13 +199,13 @@ THUMB void MaterielMenu_WINDOW_MANAGER::openMaterielWindow(int menuType)
             }
             break;
         case MENU_SURECHIGAI_MAKE_TAISHI:
-            unkfunc_02018d64(6);
+            loadMaterielMenuOverlay(6);
             dq5::level::SurechigaiData::setup();
             dq5::level::MeisanhinData::setup();
             data_ov019_021854d4.open();
             break;
         case MENU_SURECHIGAI_ROOT:
-            unkfunc_02018d64(6);
+            loadMaterielMenuOverlay(6);
             ui_MsgSndSet(cmn::g_talkSound.getCharacterVoice(ctrlID));
             dq5::level::SurechigaiData::setup();
             dq5::level::MeisanhinData::setup();
@@ -214,40 +214,40 @@ THUMB void MaterielMenu_WINDOW_MANAGER::openMaterielWindow(int menuType)
             changeTaishi_ = 0;
             break;
         case MENU_SURECHIGAI_MESSAGE:
-            unkfunc_02018d64(6);
+            loadMaterielMenuOverlay(6);
             dq5::level::SurechigaiData::setup();
             dq5::level::MeisanhinData::setup();
             data_ov019_0218616c.unk_af = 1;
             data_ov019_0218616c.open();
             break;
         case MENU_MONSTAR_JISAN:
-            unkfunc_02018d64(8);
+            loadMaterielMenuOverlay(8);
             ui_MsgSndSet(cmn::g_talkSound.getCharacterVoice(ctrlID));
             dq5::level::JisanMessage::setup();
             gMaterielMenu_JISAN_ROOT.active_ = 0;
             gMaterielMenu_JISAN_ROOT.open();
             break;
         case MENU_LUIDANO_SAKABA:
-            unkfunc_02018d64(9);
+            loadMaterielMenuOverlay(9);
             ui_MsgSndSet(cmn::g_talkSound.getCharacterVoice(ctrlID));
             dq5::level::LuidaMessage::setup();
             gMaterielMenu_LUIDA_ROOT.active_ = 0;
             gMaterielMenu_LUIDA_ROOT.open();
             break;
         case MENU_HUKUBIKIJO:
-            unkfunc_02018d64(7);
+            loadMaterielMenuOverlay(7);
             ui_MsgSndSet(cmn::g_talkSound.getCharacterVoice(ctrlID));
             dq5::level::HukubikiMessage::setup();
             dq5::level::HukubikiPrize::setup();
             gMaterielMenu_HUKUBIKI_ROOT.open();
             break;
         case MENU_SUGOROKU_ROOT:
-            unkfunc_02018d64(10);
+            loadMaterielMenuOverlay(10);
             MaterielMenuPlayerControl::getSingleton()->initialize();
             gMaterielMenu_SUGOROKU_ROOT.open();
             break;
         case MENU_SUGOROKU_GETITEM:
-            unkfunc_02018d64(10);
+            loadMaterielMenuOverlay(10);
             MaterielMenuPlayerControl::getSingleton()->initialize();
             gMaterielMenu_SUGOROKU_GETITEM.itemID_ = sugorokuItem_;
             gMaterielMenu_SUGOROKU_GETITEM.open();
@@ -261,32 +261,32 @@ THUMB void MaterielMenu_WINDOW_MANAGER::openMaterielWindow(int menuType)
             }
             break;
         case MENU_SLIME_RACE:
-            unkfunc_02018d64(11);
+            loadMaterielMenuOverlay(11);
             gMaterielMenu_RaceEntrance.open();
             break;
         case MENU_SLIME_RACE_MAIN:
-            unkfunc_02018d64(11);
+            loadMaterielMenuOverlay(11);
             gMaterielMenu_SlimeRace.open();
             break;
         case MENU_SLIME_RACE_RESULT:
-            unkfunc_02018d64(11);
+            loadMaterielMenuOverlay(11);
             gMaterielMenu_RaceResult.open();
             break;
         case MENU_SLIME_TOUCH:
-            unkfunc_02018d64(13);
+            loadMaterielMenuOverlay(13);
             gMaterielMenu_SlimeTouch.open();
             break;
         case MENU_SLIME_TOUCH_RESULT:
-            unkfunc_02018d64(13);
+            loadMaterielMenuOverlay(13);
             gMaterielMenu_TouchResult.open();
             break;
         case MENU_SET_MEISANHIN_ITEM:
-            unkfunc_02018d64(12);
+            loadMaterielMenuOverlay(12);
             MaterielMenuPlayerControl::getSingleton()->initialize();
             gMaterielMenu_MEISANHIN_ROOT.open();
             break;
         case MENU_MIMI_MEMO:
-            unkfunc_02018d64(12);
+            loadMaterielMenuOverlay(12);
             ui_MsgSndSet(0x31);
             dq5::level::MeisanhinData::setup();
             MaterielMenuPlayerControl::getSingleton()->initialize();
@@ -294,7 +294,7 @@ THUMB void MaterielMenu_WINDOW_MANAGER::openMaterielWindow(int menuType)
             gMaterielMenu_MIMI_ROOT.open();
             break;
         case MENU_MIMI_HINT:
-            unkfunc_02018d64(12);
+            loadMaterielMenuOverlay(12);
             ui_MsgSndSet(0x31);
             dq5::level::MeisanhinData::setup();
             MaterielMenuPlayerControl::getSingleton()->initialize();
@@ -302,12 +302,12 @@ THUMB void MaterielMenu_WINDOW_MANAGER::openMaterielWindow(int menuType)
             gMaterielMenu_MIMI_ROOT.open();
             break;
         case MENU_TAISHI_INFO:
-            unkfunc_02018d64(6);
+            loadMaterielMenuOverlay(6);
             dq5::level::SurechigaiData::setup();
             data_ov019_02185604.open();
             break;
         case MENU_MONSTER_AZUKE:
-            unkfunc_02018d64(8);
+            loadMaterielMenuOverlay(8);
             dq5::level::JisanMessage::setup();
             gMaterielMenu_JISAN_LEAVE_SCRIPT.open();
             break;

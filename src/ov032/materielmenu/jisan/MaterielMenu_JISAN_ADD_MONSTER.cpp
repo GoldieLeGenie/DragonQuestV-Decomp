@@ -71,7 +71,7 @@ THUMB void MaterielMenu_JISAN_ADD_MONSTER::menuSetup()
 
 THUMB void MaterielMenu_JISAN_ADD_MONSTER::menuExecute()
 {
-    unkfunc_0201c904(&menuItem_, navigator_.getCountInPage(), menuItem_.active_);
+    setupCharaRowLayout5x1(&menuItem_, navigator_.getCountInPage(), menuItem_.active_);
 }
 
 THUMB void MaterielMenu_JISAN_ADD_MONSTER::menuDraw()

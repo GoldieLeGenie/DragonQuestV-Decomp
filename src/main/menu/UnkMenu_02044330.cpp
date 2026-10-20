@@ -17,10 +17,10 @@ THUMB void UnkMenu_02044330::menuDraw()
 
 THUMB void UnkMenu_02044330::menuUpdate()
 {
-    unkfunc_02044350();
+    startNextMessage();
 }
 
-THUMB void UnkMenu_02044330::unkfunc_02044350()
+THUMB void UnkMenu_02044330::startNextMessage()
 {
     if (messageId_ != 0) {
         return;

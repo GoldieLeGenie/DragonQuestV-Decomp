@@ -96,7 +96,7 @@ THUMB bool window::UnkScreenEffect::setupTiles()
         return false;
     }
     if (data_020c32a0 == NULL) {
-        unkfunc_02018e6c(3);
+        loadWindowOverlay(3);
         data_020c32a0 = (UnkScreenEffectPanel*)ov020_entry();
     }
     unk_18 = 0;

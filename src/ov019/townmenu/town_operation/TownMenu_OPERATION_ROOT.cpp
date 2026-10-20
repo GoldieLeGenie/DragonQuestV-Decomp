@@ -162,7 +162,7 @@ THUMB void TownMenu_OPERATION_ROOT::menuUpdate()
     }
     if (gTownMenu_MESSAGE.isOpen()) {
         int stat = gTownMenu_MESSAGE.stat_;
-        if (s_draw->unkfunc_02066b88()) {
+        if (s_draw->isFinish()) {
             isMantan_ = 0;
             if (mode_ == MODE_ALL_RECOVERY) {
                 status::UseActionParam useActionParam;

@@ -112,8 +112,8 @@ THUMB void window::ScreenEffectManager::cleanUp()
         effect_->terminate();
         effect_ = NULL;
         if (effectMode_ == PLAY_BACK_TABI) {
-            unkfunc_02018eac();
-            unkfunc_02018e6c(1);
+            unloadWindowOverlay();
+            loadWindowOverlay(1);
         }
         dss::g_DISPLAYPLUGIN_DOUBLE3D.ReqBlurMode(0);
     }

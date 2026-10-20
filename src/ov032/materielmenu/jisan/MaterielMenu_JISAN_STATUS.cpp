@@ -45,7 +45,7 @@ THUMB void MaterielMenu_JISAN_STATUS::menuSetup()
 
 THUMB void MaterielMenu_JISAN_STATUS::menuExecute()
 {
-    unkfunc_0201c904(&menuItem_, navigator_.getCountInPage(), menuItem_.active_);
+    setupCharaRowLayout5x1(&menuItem_, navigator_.getCountInPage(), menuItem_.active_);
 }
 
 THUMB void MaterielMenu_JISAN_STATUS::menuDraw()

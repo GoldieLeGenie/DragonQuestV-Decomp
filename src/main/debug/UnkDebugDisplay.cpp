@@ -40,7 +40,7 @@ THUMB void drawDebugBox(int x, int y, int w, int h)
 THUMB void drawDebugWindow(int x, int y, int w, int h)
 {
     if (!MenuManager::isRequesting()) {
-        drawWindowBorder(data_02106178.window_.unkfunc_0206370c(), x - 1, y - 1, w + 2, h + 2, 0xf);
+        drawWindowBorder(data_02106178.window_.getScreenBuffer(), x - 1, y - 1, w + 2, h + 2, 0xf);
         drawWindowBack(data_02106178.back_.getScreenBuffer(), x - 1, y - 1, w + 2, h + 2, 0xf);
     }
 }

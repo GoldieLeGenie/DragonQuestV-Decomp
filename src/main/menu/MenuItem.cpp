@@ -142,7 +142,7 @@ THUMB int menu::MenuItem::execInput()
 {
     lastresult_ = result_;
     if (menuitem_data_ != NULL) {
-        unkfunc_02051b60();
+        drawTouchFrames();
         if (result_ != MENUITEM_RESULT_OK && result_ != MENUITEM_RESULT_CANCEL) {
             result_ = MENUITEM_RESULT_NONE;
             reason_ = MENUITEM_REASON_NONE;
@@ -170,7 +170,7 @@ THUMB int menu::MenuItem::execInput()
 }
 
 // draws the item frames on the sub screen: the active one and a quarter of the others each frame
-THUMB void menu::MenuItem::unkfunc_02051b60()
+THUMB void menu::MenuItem::drawTouchFrames()
 {
     if (!flagTouch_) {
         return;

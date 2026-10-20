@@ -140,7 +140,7 @@ THUMB int CheckBadWord(char* name)
     return result;
 }
 
-THUMB int unkfunc_0206cea4(char* name)
+THUMB int isNameTooWide(char* name)
 {
     setBgTextFontSize(10);
     drawBgTextWrapped(NULL, 0, 0, 0, name, 0);

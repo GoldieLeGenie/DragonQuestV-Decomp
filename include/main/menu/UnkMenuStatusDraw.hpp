@@ -8,18 +8,18 @@ void drawPartyStatusWindows();                                        // frames 
 int getActorConditionColor(int actor);                          // 0 normal, 1 near death, 2 dead
 void drawMoneyWindow(int x, int y, int type);                  // gold (0), coins (1) or medals (2)
 void drawCharaStatusWindow(int activeChara, int mode);               // status of one member
-void unkfunc_0201b3c8(int icon, int x, int y);                  // character icon
-void unkfunc_0201b3e4(int activeChara, int x, int y);           // character icon with its condition marks
-void unkfunc_0201b4d4(int activeChara, int flag, int ctrl);     // detailed status
-void unkfunc_0201b6b4(int activeChara, int ctrl);               // abilities
-void unkfunc_0201b7dc(int activeChara, int mode);               // equipment
-void unkfunc_0201ba48(int activeChara, int mode);               // spells
-void unkfunc_0201bbb4();                                        // money and play time
-void unkfunc_0201bcc8(int mode);                                // HP/MP of the party
-void unkfunc_0201be24(int mode);                                // attack/defence of the party
-void unkfunc_0201bfbc(int activeChara);                         // items of a member
-void unkfunc_0201c084(int activeChara, int ctrl);               // spells of a member
-void unkfunc_0201c188(int activeChara, int pos);                // member window
-void unkfunc_0201c218(int activeChara, int x, int y);           // HP/MP of a member
-void unkfunc_0201c29c(int activeChara, int x, int y);           // attack/defence of a member
-void unkfunc_0201c300(int activeChara, int pos, int w, int y);  // level of a member
+void drawCharaIcon(int icon, int x, int y);                  // character icon
+void drawCharaIconWithCondition(int activeChara, int x, int y);           // character icon with its condition marks
+void drawCharaDetailWindow(int activeChara, int flag, int ctrl);     // detailed status
+void drawCharaAbilityWindow(int activeChara, int ctrl);               // abilities
+void drawCharaEquipWindow(int activeChara, int mode);               // equipment
+void drawCharaSpellWindow(int activeChara, int mode);               // spells
+void drawMoneyTimeWindow();                                        // money and play time
+void drawPartyHpMpWindows(int mode);                                // HP/MP of the party
+void drawPartyAttackDefenceWindows(int mode);                                // attack/defence of the party
+void drawCharaItemWindow(int activeChara);                         // items of a member
+void drawCharaSpellListWindow(int activeChara, int ctrl);               // spells of a member
+void drawPartyMemberWindow(int activeChara, int pos);                // member window
+void drawCharaHpMp(int activeChara, int x, int y);           // HP/MP of a member
+void drawCharaAttackDefence(int activeChara, int x, int y);           // attack/defence of a member
+void drawCharaLevel(int activeChara, int pos, int w, int y);  // level of a member

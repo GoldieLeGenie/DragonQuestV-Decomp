@@ -49,7 +49,7 @@ THUMB void UnkBattleMenuFriendSelect::menuSetup()
 
 THUMB void UnkBattleMenuFriendSelect::menuExecute()
 {
-    unkfunc_0201c904(&menuItem_, navigator_.getCountInPage(), menuItem_.active_);
+    setupCharaRowLayout5x1(&menuItem_, navigator_.getCountInPage(), menuItem_.active_);
 }
 
 THUMB void UnkBattleMenuFriendSelect::menuDraw()

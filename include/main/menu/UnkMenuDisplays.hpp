@@ -11,7 +11,7 @@
 #include "main/menu/UnkMenuSpriteDisplay.hpp"
 #include "main/menu/MenuArrowDisplay.hpp"
 
-// Menu display objects, set up, updated and drawn together by setupMenuDisplays...unkfunc_02064154
+// Menu display objects, set up, updated and drawn together by setupMenuDisplays...resetMenuDisplays
 struct UnkMenuDisplays {
     MenuFrameDisplay frames_;                // 0x0000
     MenuFaceDisplay face_;                   // 0x1034

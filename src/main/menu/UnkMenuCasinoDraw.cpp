@@ -68,7 +68,7 @@ THUMB void unkfunc_unused_020962e4()
 {
     int param[] = {0x58, 0x10};
     int pos[] = {0x0e, 0x90};
-    unkfunc_020629b4(s_unusedParts, param, pos[0], pos[1], 1);
+    drawMenuParts(s_unusedParts, param, pos[0], pos[1], 1);
 }
 
 static UnkMenuParts s_logNameParts[] = {
@@ -158,38 +158,38 @@ static UnkMenuParts s_logParts[] = {
     PARTS_END,
 };
 
-THUMB void unkfunc_02029fa4(int flag)
+THUMB void drawFightStadiumLayout(int flag)
 {
     if (flag) {
-        unkfunc_0206297c(s_monsterTitleActiveParts, 0);
+        drawMenuPartsPlain(s_monsterTitleActiveParts, 0);
     }
     else {
-        unkfunc_0206297c(s_monsterTitleParts, 0);
+        drawMenuPartsPlain(s_monsterTitleParts, 0);
     }
 }
 
-THUMB void unkfunc_02029fc8(int flag)
+THUMB void drawFightStadiumPanels(int flag)
 {
     if (flag) {
-        unkfunc_0206297c(s_betTitleActiveParts, 0);
+        drawMenuPartsPlain(s_betTitleActiveParts, 0);
     }
     else {
-        unkfunc_0206297c(s_betTitleParts, 0);
+        drawMenuPartsPlain(s_betTitleParts, 0);
     }
 }
 
-THUMB void unkfunc_02029fec(int* message, int count, int x, int y)
+THUMB void drawMessageColumn(int* message, int count, int x, int y)
 {
     int param = 0;
     s_commandParts[0].x_ = x;
     s_commandParts[0].y_ = y;
     for (int i = 0; i < count; i++) {
         param = message[i];
-        unkfunc_020629b4(s_commandParts, &param, 0, i * 0xe, 1);
+        drawMenuParts(s_commandParts, &param, 0, i * 0xe, 1);
     }
 }
 
-THUMB void unkfunc_0202a034(int monster, int diameter, int index, int order)
+THUMB void drawFightStadiumEntry(int monster, int diameter, int index, int order)
 {
     if (monster >= 0) {
         const char* orderText[] = {"", "\xff\xfe\x21\xff", "\xff\xfe\x22\xff", "\xff\xfe\x23\xff", "\xff\xfe\x24\xff"};
@@ -201,26 +201,26 @@ THUMB void unkfunc_0202a034(int monster, int diameter, int index, int order)
         param[4] = diameter % 10;
         param[5] = 0xe0000353;
         param[6] = (int)orderText[order + 1];
-        unkfunc_020629b4(s_monsterLineParts, param, 0, index * 0x18 + 0x10, 1);
+        drawMenuParts(s_monsterLineParts, param, 0, index * 0x18 + 0x10, 1);
     }
 }
 
 THUMB void drawFightStadiumCursor(int index)
 {
-    unkfunc_02062990(s_monsterCursorParts, 0, 0xc, index * 0x18 + 0x16);
+    drawMenuPartsAt(s_monsterCursorParts, 0, 0xc, index * 0x18 + 0x16);
 }
 
-THUMB void unkfunc_0202a0d0(int coin, int x, int y, int flag)
+THUMB void drawFightStadiumBetDigits(int coin, int x, int y, int flag)
 {
     int param[] = {0xe0000352, coin};
     if (flag) {
         param[0] = (int)"@";
     }
-    unkfunc_020629b4(s_coinParts, param, x + 0xc0, y + 8, 1);
+    drawMenuParts(s_coinParts, param, x + 0xc0, y + 8, 1);
     if (flag && coin < 10) {
         param[0] = (int)"@";
         param[1] = 0;
-        unkfunc_020629b4(s_coinParts, param, x + 0xb8, y + 8, 1);
+        drawMenuParts(s_coinParts, param, x + 0xb8, y + 8, 1);
     }
 }
 
@@ -230,10 +230,10 @@ THUMB void drawCenteredMessage(int* message, int x, int y, int w, int h)
     s_titleParts[0].y_ = y + ((h - y) >> 1);
     s_titleParts[0].w_ = w;
     s_titleParts[0].h_ = 10;
-    unkfunc_020629a4(s_titleParts, message, 1);
+    drawMenuPartsColored(s_titleParts, message, 1);
 }
 
-THUMB void unkfunc_0202a164(int index, const char* name, int clear, int level, int town, int time, int x, int flag)
+THUMB void drawJournalSlot(int index, const char* name, int clear, int level, int town, int time, int x, int flag)
 {
     UnkMenuParts* parts = s_logParts;
     int color;
@@ -275,12 +275,12 @@ THUMB void unkfunc_0202a164(int index, const char* name, int clear, int level, i
         }
     }
     else {
-        unkfunc_020629b4(s_logNameParts, &param[0], 0x10, x + index * 0x1a, color);
+        drawMenuParts(s_logNameParts, &param[0], 0x10, x + index * 0x1a, color);
     }
-    unkfunc_020629b4(parts, &param[0], 0x10, x + index * 0x1a, color);
+    drawMenuParts(parts, &param[0], 0x10, x + index * 0x1a, color);
 }
 
-THUMB void unkfunc_0202a274(const char* name, int clear, int level, int time)
+THUMB void drawResumeSlot(const char* name, int clear, int level, int time)
 {
     unsigned int hour = time / 216000;
     unsigned int minute = time % 216000 / 3600;
@@ -298,8 +298,8 @@ THUMB void unkfunc_0202a274(const char* name, int clear, int level, int time)
     if (clear == 0) {
         param[1] = (int)"";
     }
-    unkfunc_020629b4(s_resumeNameParts, param, 0x10, 0x5a, 1);
-    unkfunc_020629b4(s_resumeTimeParts, param, 0x10, 0x5a, 1);
+    drawMenuParts(s_resumeNameParts, param, 0x10, 0x5a, 1);
+    drawMenuParts(s_resumeTimeParts, param, 0x10, 0x5a, 1);
 }
 
 // keyboard lines
@@ -314,12 +314,12 @@ THUMB void drawNameEditCharTable(int* text, int flag)
         for (int j = 0; j < 11; j++) {
             param[j] = *text++;
         }
-        unkfunc_020629b4(s_keyLineParts, param, 0x18, y + lineY, 1);
+        drawMenuParts(s_keyLineParts, param, 0x18, y + lineY, 1);
     }
 }
 
 // name chars
-THUMB void unkfunc_0202a374(int language, unsigned int* text, int count, int max, int blink, int type)
+THUMB void drawNameEditField(int language, unsigned int* text, int count, int max, int blink, int type)
 {
     int i;
     int x = 0x8c - (max >> 1) * 0xe - (max % 2) * 7;
@@ -340,10 +340,10 @@ THUMB void unkfunc_0202a374(int language, unsigned int* text, int count, int max
             param = *text;
         }
         if (count != i) {
-            unkfunc_020629b4(s_nameCharParts, &param, x, y, 1);
+            drawMenuParts(s_nameCharParts, &param, x, y, 1);
         }
         else if (blink == 0) {
-            unkfunc_020629b4(s_cursorParts, 0, x + 6, 0x28, 1);
+            drawMenuParts(s_cursorParts, 0, x + 6, 0x28, 1);
         }
         text++;
         x += 0xc;
@@ -351,7 +351,7 @@ THUMB void unkfunc_0202a374(int language, unsigned int* text, int count, int max
 }
 
 // message chars
-THUMB void unkfunc_0202a428(unsigned int* text, int count)
+THUMB void drawNameEditCommentField(unsigned int* text, int count)
 {
     for (int i = 0; i < 0x2d; i++) {
         int param = text[i];
@@ -361,10 +361,10 @@ THUMB void unkfunc_0202a428(unsigned int* text, int count)
             x = 2;
         }
         if (count != i) {
-            unkfunc_020629b4(s_messageCharParts, &param, x + (i % 15) * 0xe, (i / 15) * 0x10 + 0xe, 1);
+            drawMenuParts(s_messageCharParts, &param, x + (i % 15) * 0xe, (i / 15) * 0x10 + 0xe, 1);
         }
         else {
-            unkfunc_020629b4(s_messageCursorParts, 0, (i % 15) * 0xe + 0x1e, (i / 15) * 0x10 + 0x1c, 1);
+            drawMenuParts(s_messageCursorParts, 0, (i % 15) * 0xe + 0x1e, (i / 15) * 0x10 + 0x1c, 1);
         }
     }
 }

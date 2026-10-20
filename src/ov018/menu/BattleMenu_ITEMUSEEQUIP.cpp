@@ -40,7 +40,7 @@ THUMB void BattleMenu_ITEMUSEEQUIP::menuExecute()
         {0xff, 0xff, 0, 0, 0, 0},
     };
     MenuStatusInfo::setMode(MenuStatusInfo::BATTLE_MODE);
-    unkfunc_0201c8e8(&menuItem_, 6, (activeItem_ - 1) % 6 + 1);
+    setupItemIcon32Layout2x3(&menuItem_, 6, (activeItem_ - 1) % 6 + 1);
     unkfunc_0217300c();
     useEquipItem_.setMenuItem(menu, 2, 1, 2);
     unkfunc_02175a5c(&cancelItem_);

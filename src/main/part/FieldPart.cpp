@@ -29,7 +29,7 @@ ARM void fld::FieldPart::initialize()
     setBackgroundGradientEnable(0);
     loadOverlay((int)&OVERLAY_5_ID);
     ov005_entry();
-    unkfunc_02018e6c(1);
+    loadWindowOverlay(1);
     ov019_entry();
     FieldSystem::getSingleton()->initialize();
     FieldWindowSystem::getSingleton()->initialize();
@@ -41,7 +41,7 @@ ARM void fld::FieldPart::terminate()
 {
     FieldWindowSystem::getSingleton()->terminate();
     FieldSystem::getSingleton()->terminate();
-    unkfunc_02018eac();
+    unloadWindowOverlay();
     unloadOverlay((int)&OVERLAY_5_ID);
     dss::g_Pad.setMaskL(0);
     data_020f4f74.onPartTerminate();

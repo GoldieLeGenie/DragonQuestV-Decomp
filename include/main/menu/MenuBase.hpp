@@ -109,7 +109,7 @@ struct MenuItem {
     void setSEenable(bool flag);
     int getActive();
     int execInput();
-    void unkfunc_02051b60();
+    void drawTouchFrames();
     int unkfunc_02051be0();
     int unkfunc_02051be4();
     int check11_PAD_DirectButton();
@@ -139,10 +139,10 @@ struct UnkMenuParts {
     short w_;               /* 0xA */  // 0: 256
     short h_;               /* 0xC */  // 0: 256
 
-    int unkfunc_02063218(int* param);           // value of the part
-    int unkfunc_0206322c();                     // palette
-    int unkfunc_02063238();                     // text color
-    int unkfunc_02063244();                     // icon slot
+    int getValue(int* param);           // value of the part
+    int getPalette();                     // palette
+    int getTextColor();                     // text color
+    int getIconSlot();                     // icon slot
 };
 
 struct MENUITEM_DATA {

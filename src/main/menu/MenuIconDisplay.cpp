@@ -30,23 +30,23 @@ THUMB void MenuIconDisplay::execute(UnkOamBuffer* main, UnkOamBuffer* sub)
 
 THUMB void MenuIconDisplay::draw(UnkOamBuffer* main, UnkOamBuffer* sub)
 {
-    if (!unkfunc_02064730(main, sub)) {
+    if (!isDrawable(main, sub)) {
         return;
     }
     if (y_ > 0xc0) {
         return;
     }
     if (flag_[0] == 1) {
-        unkfunc_02064ddc(main, posX_[0], posY_[0], 0);
+        drawIcon(main, posX_[0], posY_[0], 0);
     }
     if (flag_[1] == 1) {
-        unkfunc_02064ddc(main, posX_[1], posY_[1], 1);
+        drawIcon(main, posX_[1], posY_[1], 1);
     }
     if (flag_[2] == 1) {
-        unkfunc_02064ddc(main, posX_[2], posY_[2], 2);
+        drawIcon(main, posX_[2], posY_[2], 2);
     }
     if (flag_[3] == 1) {
-        unkfunc_02064ddc(main, posX_[3], posY_[3], 3);
+        drawIcon(main, posX_[3], posY_[3], 3);
     }
     flag_[0] = 0;
     flag_[1] = 0;
@@ -54,7 +54,7 @@ THUMB void MenuIconDisplay::draw(UnkOamBuffer* main, UnkOamBuffer* sub)
     flag_[3] = 0;
 }
 
-THUMB void MenuIconDisplay::unkfunc_02064ddc(UnkOamBuffer* oam, int x, int y, int index)
+THUMB void MenuIconDisplay::drawIcon(UnkOamBuffer* oam, int x, int y, int index)
 {
     index *= 8;
     G2_SetOBJAttr(oam->allocEntry(), x, y, 2, GX_OAM_MODE_NORMAL, FALSE, GX_OAM_EFFECT_NONE, GX_OAM_SHAPE_32x32, GX_OAM_COLORMODE_256, index + 0xe0, 0, 0);

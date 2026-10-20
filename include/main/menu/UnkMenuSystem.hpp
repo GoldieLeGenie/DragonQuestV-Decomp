@@ -18,12 +18,12 @@ extern "C" {
 
 void setupMenuDisplays();                        // setup all menu displays
 void disableMenuDisplays();                        // disable all menu displays
-void unkfunc_02063d94();
-void unkfunc_02063e98();
-void unkfunc_02063f9c();
+void updateMenuDisplays();
+void executeMenuDisplays();
+void drawMenuDisplays();
 void moveMenuDisplays();                        // move all menu displays
-void unkfunc_02064154();
-void unkfunc_02063414();
-void unkfunc_0206343c();
-void unkfunc_02063440();
-void unkfunc_02063450();
+void resetMenuDisplays();
+void initMenuBg();
+void updateMenuBg();
+void executeMenuBg();
+void transferMenuBg();

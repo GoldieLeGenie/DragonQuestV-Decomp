@@ -4,7 +4,7 @@
 UnkOverlaySlot data_020a29f4;
 UnkOverlaySlot data_020a29ec;
 
-THUMB void unkfunc_02018d64(int menu)
+THUMB void loadMaterielMenuOverlay(int menu)
 {
     switch (menu) {
         case 0:
@@ -57,7 +57,7 @@ THUMB void unkfunc_02018d64(int menu)
     }
 }
 
-THUMB void unkfunc_02018e6c(int menu)
+THUMB void loadWindowOverlay(int menu)
 {
     switch (menu) {
         case 1:
@@ -72,7 +72,7 @@ THUMB void unkfunc_02018e6c(int menu)
     }
 }
 
-THUMB void unkfunc_02018eac()
+THUMB void unloadWindowOverlay()
 {
     data_020a29ec.unload();
 }

@@ -351,7 +351,7 @@ void twn::TownSugorokuManager::terminate()
 void twn::TownSugorokuManager::execute()
 {
     if (returnMenuFlag_ == true) {
-        unkfunc_02018d64(10);
+        loadMaterielMenuOverlay(10);
         returnMenuFlag_ = false;
     }
     if (nextState_ != sugoroku::NOT_CHANGE_STATE) {
@@ -582,7 +582,7 @@ void twn::TownSugorokuManager::startSugoroku()
     }
     status::g_BattleResult.setPlayerDemolition(false);
     diceAnim_.setup();
-    unkfunc_02018d64(10);
+    loadMaterielMenuOverlay(10);
     flag_.set(GAME_INIT);
     dss::Fix32Vector3 pos(TownPlayerManager::getSingleton().getPosition());
     dq5::level::SugorokuDrop::setup();
@@ -786,7 +786,7 @@ void twn::TownSugorokuManager::drawSugorokuTimer()
         {0x0f, 0x06, (short)0xf000, 5, 64, 8, 8, 12},
         {0xff, 0x00, 0x0000, 0, 0, 0, 0, 0},
     };
-    unkfunc_02061c5c(0, 0xc0);
+    setMenuDrawOffset(0, 0xc0);
     int sugorokuTime = g_SugorokuInfo.getTime();
     if (sugorokuTime < 0) {
         sugorokuTime = 0;
@@ -800,13 +800,13 @@ void twn::TownSugorokuManager::drawSugorokuTimer()
     param[2] = m % 10;
     param[4] = s / 10;
     param[5] = s % 10;
-    unkfunc_0206297c(s_timerFrameParts, NULL);
+    drawMenuPartsPlain(s_timerFrameParts, NULL);
     if (m / 100 != 0) {
-        unkfunc_020629a4(s_timerParts3, param, 1);
+        drawMenuPartsColored(s_timerParts3, param, 1);
     } else if (m / 10 != 0) {
-        unkfunc_020629a4(s_timerParts2, param, 1);
+        drawMenuPartsColored(s_timerParts2, param, 1);
     } else {
-        unkfunc_020629a4(s_timerParts1, param, 1);
+        drawMenuPartsColored(s_timerParts1, param, 1);
     }
     MenuAPI::menuEnable(1);
 }

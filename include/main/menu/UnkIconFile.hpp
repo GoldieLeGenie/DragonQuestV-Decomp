@@ -14,10 +14,10 @@ struct UnkIconFile {
     char* cache_;                               // 0x28
     void* header_;                              // 0x2C
 
-    void unkfunc_0206dc2c(const char* file);
-    void unkfunc_0206dc3c(const char* file, const char* streamFile, int entrySize, int cacheNum);
-    void* unkfunc_0206dc68(int index);         // icon data, index 9999: palette
-    void unkfunc_0206dd28();                    // clear the cache
-    void unkfunc_0206dd54(int entrySize, int cacheNum);   // allocate the cache, load the header
-    char* unkfunc_0206dde4(int index);         // cached entry (NULL: not cached)
+    void setup(const char* file);
+    void setupStream(const char* file, const char* streamFile, int entrySize, int cacheNum);
+    void* getData(int index);         // icon data, index 9999: palette
+    void clearCache();                    // clear the cache
+    void setupCache(int entrySize, int cacheNum);   // allocate the cache, load the header
+    char* findCachedEntry(int index);         // cached entry (NULL: not cached)
 };

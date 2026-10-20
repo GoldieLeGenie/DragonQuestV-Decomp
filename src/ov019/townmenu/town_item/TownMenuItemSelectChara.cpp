@@ -95,7 +95,7 @@ THUMB void TownMenuItemSelectChara::menuSetup()
 THUMB void TownMenuItemSelectChara::menuExecute()
 {
     MenuStatusInfo::setMode(MenuStatusInfo::PLAYER_MODE);
-    unkfunc_0201c8e8(&menuItem_, navigator_.getCountInPage(), menuItem_.active_);
+    setupItemIcon32Layout2x3(&menuItem_, navigator_.getCountInPage(), menuItem_.active_);
 }
 
 THUMB void TownMenuItemSelectChara::menuDraw()

@@ -3,7 +3,7 @@
 
 int data_02094dd4[6] = {1, 7, 9, 2, 4, 5};
 
-THUMB void unkfunc_0201c8e8(menu::MenuItem* menuitem, int itemMaxCount, int active)
+THUMB void setupItemIcon32Layout2x3(menu::MenuItem* menuitem, int itemMaxCount, int active)
 {
     static MENUITEM_DATA menu[] = {
         {1, 2, 0x14, 0x0c, 0x68, 0x18},
@@ -18,7 +18,7 @@ THUMB void unkfunc_0201c8e8(menu::MenuItem* menuitem, int itemMaxCount, int acti
     menuitem->active_ = active;
 }
 
-THUMB void unkfunc_0201c904(menu::MenuItem* menuitem, int itemMaxCount, int active)
+THUMB void setupCharaRowLayout5x1(menu::MenuItem* menuitem, int itemMaxCount, int active)
 {
     static MENUITEM_DATA menu[] = {
         {1, 2, 0x14, 0x80, 0x20, 0x18},

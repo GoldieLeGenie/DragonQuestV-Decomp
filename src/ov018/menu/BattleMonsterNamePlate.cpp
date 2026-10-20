@@ -130,7 +130,7 @@ THUMB void BattleMonsterNamePlate::setMonsterParameter(int group, int monsterCou
     } else {
         TextAPI::getMonsterNamePlateTextImitation(text, monsterData_[addCount_].name, monsterData_[addCount_].num);
     }
-    monsterData_[addCount_].leng = unkfunc_020623f8(addCount_, text);
+    monsterData_[addCount_].leng = setNamePlateText(addCount_, text);
     monsterData_[addCount_].height = rect[2];
     monsterData_[addCount_].drawID = (addCount_ == 0) ? 1 : 2;
     if (dq5::level::MonsterData::getRecord(index)->getPosition()) {

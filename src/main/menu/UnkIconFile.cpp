@@ -2,12 +2,12 @@
 #include "main/dss/UnkMemory.hpp"
 #include "main/dss/UnkMessageFind.hpp"
 
-THUMB void UnkIconFile::unkfunc_0206dc2c(const char* file)
+THUMB void UnkIconFile::setup(const char* file)
 {
-    unkfunc_0206dc3c(file, NULL, 0, 0);
+    setupStream(file, NULL, 0, 0);
 }
 
-THUMB void UnkIconFile::unkfunc_0206dc3c(const char* file, const char* streamFile, int entrySize, int cacheNum)
+THUMB void UnkIconFile::setupStream(const char* file, const char* streamFile, int entrySize, int cacheNum)
 {
     file_ = file;
     streamFile_ = streamFile;
@@ -15,11 +15,11 @@ THUMB void UnkIconFile::unkfunc_0206dc3c(const char* file, const char* streamFil
         data_.setup(file, 1, 0);
     }
     if (streamFile != NULL) {
-        unkfunc_0206dd54(entrySize, cacheNum);
+        setupCache(entrySize, cacheNum);
     }
 }
 
-THUMB void* UnkIconFile::unkfunc_0206dc68(int index)
+THUMB void* UnkIconFile::getData(int index)
 {
     char* data = NULL;
     if (file_ != NULL) {
@@ -29,7 +29,7 @@ THUMB void* UnkIconFile::unkfunc_0206dc68(int index)
         return data;
     }
     if (streamFile_ != NULL) {
-        data = unkfunc_0206dde4(index);
+        data = findCachedEntry(index);
         if (data != NULL) {
             return data;
         }
@@ -60,7 +60,7 @@ THUMB void* UnkIconFile::unkfunc_0206dc68(int index)
     return data;
 }
 
-THUMB void UnkIconFile::unkfunc_0206dd28()
+THUMB void UnkIconFile::clearCache()
 {
     if (streamFile_ != NULL) {
         for (int i = 0; i < cacheNum_; i++) {
@@ -70,14 +70,14 @@ THUMB void UnkIconFile::unkfunc_0206dd28()
     }
 }
 
-THUMB void UnkIconFile::unkfunc_0206dd54(int entrySize, int cacheNum)
+THUMB void UnkIconFile::setupCache(int entrySize, int cacheNum)
 {
     entrySize_ = entrySize;
     cacheNum_ = cacheNum;
     keys_ = (int*)allocAppHeap(&data_020fd24c, cacheNum * 4, 0x20);
     ages_ = (int*)allocAppHeap(&data_020fd24c, cacheNum * 4, 0x20);
     cache_ = (char*)allocAppHeap(&data_020fd24c, entrySize * cacheNum, 0x20);
-    unkfunc_0206dd28();
+    clearCache();
     DataObject header;
     header.setup(streamFile_, 1, 0);
     UnkMessageFile* file = (UnkMessageFile*)header.getAddr();
@@ -87,7 +87,7 @@ THUMB void UnkIconFile::unkfunc_0206dd54(int entrySize, int cacheNum)
     dss::g_File.loadPartToBuffer(streamFile_, header_, 0, size, 0);
 }
 
-THUMB char* UnkIconFile::unkfunc_0206dde4(int index)
+THUMB char* UnkIconFile::findCachedEntry(int index)
 {
     for (int i = 0; i < cacheNum_; i++) {
         if (keys_[i] == index) {

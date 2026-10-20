@@ -104,14 +104,14 @@ THUMB void MaterielMenu_FIGHT_STADIUM::menuExecute()
 THUMB void MaterielMenu_FIGHT_STADIUM::menuDraw()
 {
     int show = 0;
-    unkfunc_0202a0d0(haveCoin_, show, show, show);
+    drawFightStadiumBetDigits(haveCoin_, show, show, show);
     if (m_bDispCoin != 0
         || (status_ == FIGHT_STADIUM_RESULT && result_ < RESULT_DRAW)
         || (status_ == FIGHT_STADIUM_RETRY && messageCount_ != 0)
         || (unk_104 != 0 && g_StadiumData.doubleUp_ != 0)) {
         show = 1;
-        unkfunc_0202a0d0(g_StadiumData.betCoin_, 0, 0x18, show);
-        unkfunc_02029fc8(status_ == FIGHT_STADIUM_BET || unk_104 != 0);
+        drawFightStadiumBetDigits(g_StadiumData.betCoin_, 0, 0x18, show);
+        drawFightStadiumPanels(status_ == FIGHT_STADIUM_BET || unk_104 != 0);
         if (m_bDispCoin != 0) {
             if (blink_ != 0) {
                 if (blinkCount_ > 15) {
@@ -143,10 +143,10 @@ THUMB void MaterielMenu_FIGHT_STADIUM::menuDraw()
         int count = FightStadiumManager::getSingleton().getMonsterCount();
         monsterItem_.drawActive();
         for (int i = 0; i < count; i++) {
-            unkfunc_0202a034(FightStadiumManager::getSingleton().getMonsterID(i), FightStadiumManager::getSingleton().getDiameter(i), i, FightStadiumManager::getSingleton().getOrderCount(i));
+            drawFightStadiumEntry(FightStadiumManager::getSingleton().getMonsterID(i), FightStadiumManager::getSingleton().getDiameter(i), i, FightStadiumManager::getSingleton().getOrderCount(i));
         }
         drawMenuFrame(0, 0, 0xb8, count * 16 + 0x30, -1);
-        unkfunc_02029fa4(show);
+        drawFightStadiumLayout(show);
     }
     if (status_ == FIGHT_STADIUM_BET) {
         drawFightStadiumCursor(g_StadiumData.monsterArray_);

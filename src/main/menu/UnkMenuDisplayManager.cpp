@@ -42,7 +42,7 @@ THUMB void disableMenuDisplays()
     data_02114dd4.hopping_.setEnable(0);
 }
 
-THUMB void unkfunc_02063d94()
+THUMB void updateMenuDisplays()
 {
     UnkOamBuffer* main = getOamBufferAtY(0);
     UnkOamBuffer* sub = getOamBufferAtY(192);
@@ -63,7 +63,7 @@ THUMB void unkfunc_02063d94()
     data_02114dd4.hopping_.update(main, sub);
 }
 
-THUMB void unkfunc_02063e98()
+THUMB void executeMenuDisplays()
 {
     UnkOamBuffer* main = getOamBufferAtY(0);
     UnkOamBuffer* sub = getOamBufferAtY(192);
@@ -84,7 +84,7 @@ THUMB void unkfunc_02063e98()
     data_02114dd4.hopping_.execute(main, sub);
 }
 
-THUMB void unkfunc_02063f9c()
+THUMB void drawMenuDisplays()
 {
     UnkOamBuffer* main = getOamBufferAtY(0);
     UnkOamBuffer* sub = getOamBufferAtY(192);
@@ -127,7 +127,7 @@ THUMB void moveMenuDisplays()
     data_02114dd4.hopping_.updateMove();
 }
 
-THUMB void unkfunc_02064154()
+THUMB void resetMenuDisplays()
 {
     data_02114dd4.face_.reset();
     data_02114dd4.icon_.reset();

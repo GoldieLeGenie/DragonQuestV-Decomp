@@ -56,7 +56,7 @@ THUMB void BattleMenu_ITEM::menuExecute()
     if (page != last) {
         num = 6;
     }
-    unkfunc_0201c8e8(&menuItem_, num, menuItem_.active_);
+    setupItemIcon32Layout2x3(&menuItem_, num, menuItem_.active_);
     unkfunc_02175a5c(&cancelItem_);
     int max = navigator_.getPageMaxCount() - 1;
     unkfunc_02175c0c(&pageItem_, pageItem_.active_, max, 0xd8, 0x78);

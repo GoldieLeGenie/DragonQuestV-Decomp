@@ -42,7 +42,7 @@ THUMB void UnkMenuYesNoDisplay::draw(UnkOamBuffer* main, UnkOamBuffer* sub)
     if (!enable_) {
         setWindow1Enable(0);
     }
-    if (!unkfunc_02064730(main, sub)) {
+    if (!isDrawable(main, sub)) {
         return;
     }
     int y = y_ % 192;
@@ -50,7 +50,7 @@ THUMB void UnkMenuYesNoDisplay::draw(UnkOamBuffer* main, UnkOamBuffer* sub)
     frame->setNameWidth(0);
     frame->setPosition(x_, y_);
     frame->setSize(w_, h_);
-    frame->unkfunc_020652bc(x_ + 10, y + 16 + cursor_ * 24, 1);
+    frame->setArrow(x_ + 10, y + 16 + cursor_ * 24, 1);
     frame->setFrameType(1);
     frame->setEnable(1);
     G2_SetOBJAttr(sub->allocEntry(), x_ + 14, y + 10, 0, GX_OAM_MODE_NORMAL, 0, GX_OAM_EFFECT_NONE,
@@ -91,7 +91,7 @@ THUMB void UnkMenuYesNoDisplay::unkfunc_0206756c(UnkOamBuffer* main, UnkOamBuffe
 {
 }
 
-THUMB void UnkMenuYesNoDisplay::unkfunc_02067570(int yesMessageId, int noMessageId)
+THUMB void UnkMenuYesNoDisplay::setTexts(int yesMessageId, int noMessageId)
 {
     char yes[0x200];
     char no[0x200];

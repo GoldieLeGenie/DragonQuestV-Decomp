@@ -270,33 +270,33 @@ THUMB void unkfunc_02173560(int page)
 {
     int activeChara = TownMenuPlayerControl::getSingleton()->activeChara_;
     unkfunc_021739d8(activeChara, page);
-    unkfunc_0201b4d4(activeChara, 1, 0);
-    unkfunc_0201b6b4(activeChara, 0);
-    unkfunc_0201b7dc(activeChara, 0);
+    drawCharaDetailWindow(activeChara, 1, 0);
+    drawCharaAbilityWindow(activeChara, 0);
+    drawCharaEquipWindow(activeChara, 0);
 }
 
 THUMB void unkfunc_02173590(int page)
 {
     int activeChara = TownMenuPlayerControl::getSingleton()->activeChara_;
     unkfunc_021739d8(activeChara, page);
-    unkfunc_0201ba48(activeChara, 0);
-    unkfunc_0201ba48(activeChara, 1);
+    drawCharaSpellWindow(activeChara, 0);
+    drawCharaSpellWindow(activeChara, 1);
 }
 
 THUMB void unkfunc_021735b8(int chara, int flag, int page)
 {
     unkfunc_021739d8(chara, page);
     if (flag == 1) {
-        unkfunc_0201bcc8(0);
+        drawPartyHpMpWindows(0);
     } else {
-        unkfunc_0201be24(0);
+        drawPartyAttackDefenceWindows(0);
     }
 }
 
 THUMB void unkfunc_021735d8(int page)
 {
     unkfunc_021739d8(-2, page);
-    unkfunc_0201bbb4();
+    drawMoneyTimeWindow();
 }
 
 THUMB void unkfunc_021735ec(int messageOpen)
@@ -387,7 +387,7 @@ THUMB void unkfunc_021737e4(char* allocation, char* list, int active, int count)
     if (list[active] != -1) {
         drawCharaStatusWindow(list[active], 0);
         if (MenuStatusInfo::isCarriageEnable()) {
-            unkfunc_0201ba48(list[active], 1);
+            drawCharaSpellWindow(list[active], 1);
             drawMenuFrame(0, 0, 0x100, 0xc0, 0x28);
             return;
         }
@@ -405,7 +405,7 @@ THUMB void unkfunc_0217386c(int messageOpen)
         unkfunc_02173a18(activeChara);
         unkfunc_02173a58(0, 1);
     }
-    unkfunc_0201b7dc(activeChara, 1);
+    drawCharaEquipWindow(activeChara, 1);
 }
 
 THUMB void unkfunc_02173894(short* itemPosList, int itemCount, int itemType, int itemListActive)
@@ -428,7 +428,7 @@ THUMB void unkfunc_02173894(short* itemPosList, int itemCount, int itemType, int
         unkfunc_02174248(activeChara, itemPosList[index], itemType, itemListActive);
     }
     drawMenuFrame(0, 0x78, 0x68, 0x48, 0x90);
-    unkfunc_0201b7dc(activeChara, 1);
+    drawCharaEquipWindow(activeChara, 1);
 }
 
 THUMB void unkfunc_02173940(int type)

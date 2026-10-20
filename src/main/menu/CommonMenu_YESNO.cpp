@@ -21,7 +21,7 @@ THUMB void CommonMenu_YESNO::menuSetup()
     menuItem_.enableLoopEdge_ = 1;
     UnkMenuYesNoDisplay* const window = &data_02114dd4.yesNo_;
     window->setEnable(1);
-    window->unkfunc_02067570(0xe00000aa, 0xe00000ab);
+    window->setTexts(0xe00000aa, 0xe00000ab);
     window->setPosition(0xc0, 0xc0);
     ui_MsgSetYesNoCursor(0);
     Sound::sePlay(0x130);
@@ -36,7 +36,7 @@ THUMB void CommonMenu_YESNO::menuExecute()
 
 THUMB void CommonMenu_YESNO::menuDraw()
 {
-    unkfunc_0206264c();
+    ui_MsgDrawYesNo();
     menuItem_.drawActive();
 }
 

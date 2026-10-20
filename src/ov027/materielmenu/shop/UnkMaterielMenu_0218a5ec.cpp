@@ -57,7 +57,7 @@ THUMB void UnkMaterielMenu_0218a5ec::menuSetup()
 
 THUMB void UnkMaterielMenu_0218a5ec::menuExecute()
 {
-    unkfunc_0201c8e8(&menuItem_, navigator_.getCountInPage(), menuItem_.active_);
+    setupItemIcon32Layout2x3(&menuItem_, navigator_.getCountInPage(), menuItem_.active_);
 }
 
 THUMB void UnkMaterielMenu_0218a5ec::menuDraw()

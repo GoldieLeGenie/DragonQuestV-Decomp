@@ -16,7 +16,7 @@ struct UnkMenu_02044330 : menu::MenuBase {
     virtual void menuExecute();
     virtual void menuDraw();
     virtual void menuUpdate();
-    void unkfunc_02044350();                    // next message
+    void startNextMessage();                    // next message
 };
 
 extern UnkMenu_02044330 data_020a2c3c;

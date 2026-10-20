@@ -34,7 +34,7 @@ THUMB void MenuWindowFrame::draw(UnkOamBuffer* main, UnkOamBuffer* sub)
         blink = 1;
     }
     blink_++;
-    if (unkfunc_02064730(main, sub)) {
+    if (isDrawable(main, sub)) {
         int x = x_;
         int y = y_ - 192;
         int bottom = 32 - (64 - h_);
@@ -61,10 +61,10 @@ THUMB void MenuWindowFrame::draw(UnkOamBuffer* main, UnkOamBuffer* sub)
             frames->addOpaqueFrame(x_ + 4, y_ + 4, w_ - 8, h_ - 8, 0, 15);
         }
         if (nameWidth_ <= 16) {
-            unkfunc_020652c8(sub, x, y, w_, h_);
+            drawBorder(sub, x, y, w_, h_);
             return;
         }
-        unkfunc_0206539c(sub, x, y, w_, h_, nameWidth_, 16);
+        drawBorderWithTab(sub, x, y, w_, h_, nameWidth_, 16);
         if (frameType_ == 1) {
             frames->addFrame(x_ + 4, y_ - 12, nameWidth_ - 6, 16, 0, 15);
         } else {
@@ -89,7 +89,7 @@ THUMB void MenuWindowFrame::setCursor(int cursor)
     cursor_ = cursor;
 }
 
-THUMB void MenuWindowFrame::unkfunc_020652bc(int x, int y, int arrow)
+THUMB void MenuWindowFrame::setArrow(int x, int y, int arrow)
 {
     arrowX_ = x;
     arrowY_ = y;
@@ -101,187 +101,187 @@ THUMB void MenuWindowFrame::setFrameType(int type)
     frameType_ = type;
 }
 
-THUMB void MenuWindowFrame::unkfunc_020652c8(UnkOamBuffer* oam, int x, int y, int w, int h)
+THUMB void MenuWindowFrame::drawBorder(UnkOamBuffer* oam, int x, int y, int w, int h)
 {
-    unkfunc_02065888(oam, x, y, 0x109, 32);
-    unkfunc_02065888(oam, x + w - 32, y, 0x10b, 32);
-    unkfunc_02065888(oam, x, y + h - 32, 0x149, 32);
-    unkfunc_02065888(oam, x + w - 32, y + h - 32, 0x14b, 32);
-    unkfunc_020654d0(oam, x + 32, y, w - 64);
-    unkfunc_020655b0(oam, x + 32, y + h - 8, w - 64);
-    unkfunc_020656ac(oam, x, y + 32, h - 64);
-    unkfunc_0206578c(oam, x + w - 8, y + 32, h - 64);
+    drawSprite(oam, x, y, 0x109, 32);
+    drawSprite(oam, x + w - 32, y, 0x10b, 32);
+    drawSprite(oam, x, y + h - 32, 0x149, 32);
+    drawSprite(oam, x + w - 32, y + h - 32, 0x14b, 32);
+    drawTopEdge(oam, x + 32, y, w - 64);
+    drawBottomEdge(oam, x + 32, y + h - 8, w - 64);
+    drawLeftEdge(oam, x, y + 32, h - 64);
+    drawRightEdge(oam, x + w - 8, y + 32, h - 64);
 }
 
-THUMB void MenuWindowFrame::unkfunc_0206539c(UnkOamBuffer* oam, int x, int y, int w, int h, int tabW, int tabH)
+THUMB void MenuWindowFrame::drawBorderWithTab(UnkOamBuffer* oam, int x, int y, int w, int h, int tabW, int tabH)
 {
-    unkfunc_02065888(oam, x, y - tabH, 0x109, 16);
-    unkfunc_02065888(oam, x + w - 32, y, 0x10b, 32);
-    unkfunc_02065888(oam, x, y + h - 32, 0x149, 32);
-    unkfunc_02065888(oam, x + w - 32, y + h - 32, 0x14b, 32);
-    unkfunc_020655b0(oam, x + 32, y + h - 8, w - 64);
-    unkfunc_020656ac(oam, x, y + 16 - tabH, h - 32);
-    unkfunc_0206578c(oam, x + w - 8, y + 32, h - 64);
+    drawSprite(oam, x, y - tabH, 0x109, 16);
+    drawSprite(oam, x + w - 32, y, 0x10b, 32);
+    drawSprite(oam, x, y + h - 32, 0x149, 32);
+    drawSprite(oam, x + w - 32, y + h - 32, 0x14b, 32);
+    drawBottomEdge(oam, x + 32, y + h - 8, w - 64);
+    drawLeftEdge(oam, x, y + 16 - tabH, h - 32);
+    drawRightEdge(oam, x + w - 8, y + 32, h - 64);
     int length = tabW - 32;
-    unkfunc_020654d0(oam, x + 16, y - tabH, length);
-    unkfunc_02065888(oam, x + 16 + length, y - tabH, 0x10d, 16);
-    unkfunc_02065888(oam, x + 24 + length, y, 0x1af, 8);
-    unkfunc_020654d0(oam, x + tabW, y, w - tabW - 32);
+    drawTopEdge(oam, x + 16, y - tabH, length);
+    drawSprite(oam, x + 16 + length, y - tabH, 0x10d, 16);
+    drawSprite(oam, x + 24 + length, y, 0x1af, 8);
+    drawTopEdge(oam, x + tabW, y, w - tabW - 32);
 }
 
-THUMB void MenuWindowFrame::unkfunc_020654d0(UnkOamBuffer* oam, int x, int y, int length)
+THUMB void MenuWindowFrame::drawTopEdge(UnkOamBuffer* oam, int x, int y, int length)
 {
     if (length <= 0) {
         return;
     }
     if (length > 32) {
         while (length > 32) {
-            unkfunc_02065888(oam, x, y, 0x10a, 32);
+            drawSprite(oam, x, y, 0x10a, 32);
             length -= 32;
             x += 32;
         }
         if (length != 0) {
-            unkfunc_02065888(oam, x - (32 - length), y, 0x10a, 32);
+            drawSprite(oam, x - (32 - length), y, 0x10a, 32);
         }
     } else if (length > 16) {
         while (length > 16) {
-            unkfunc_02065888(oam, x, y, 0x10b, 16);
+            drawSprite(oam, x, y, 0x10b, 16);
             length -= 16;
             x += 16;
         }
         if (length != 0) {
-            unkfunc_02065888(oam, x - (16 - length), y, 0x10b, 16);
+            drawSprite(oam, x - (16 - length), y, 0x10b, 16);
         }
     } else {
         if (length < 8) {
             length = 8;
         }
         while (length > 8) {
-            unkfunc_02065888(oam, x, y, 0x10b, 8);
+            drawSprite(oam, x, y, 0x10b, 8);
             length -= 8;
             x += 8;
         }
         if (length != 0) {
-            unkfunc_02065888(oam, x - (8 - length), y, 0x10b, 8);
+            drawSprite(oam, x - (8 - length), y, 0x10b, 8);
         }
     }
 }
 
-THUMB void MenuWindowFrame::unkfunc_020655b0(UnkOamBuffer* oam, int x, int y, int length)
+THUMB void MenuWindowFrame::drawBottomEdge(UnkOamBuffer* oam, int x, int y, int length)
 {
     if (length <= 0) {
         return;
     }
     if (length > 32) {
         while (length > 32) {
-            unkfunc_02065888(oam, x, y - 24, 0x14a, 32);
+            drawSprite(oam, x, y - 24, 0x14a, 32);
             length -= 32;
             x += 32;
         }
         if (length != 0) {
-            unkfunc_02065888(oam, x - (32 - length), y - 24, 0x14a, 32);
+            drawSprite(oam, x - (32 - length), y - 24, 0x14a, 32);
         }
     } else if (length > 16) {
         while (length > 16) {
-            unkfunc_02065888(oam, x, y - 8, 0x18b, 16);
+            drawSprite(oam, x, y - 8, 0x18b, 16);
             length -= 16;
             x += 16;
         }
         if (length != 0) {
-            unkfunc_02065888(oam, x - (16 - length), y - 8, 0x18b, 16);
+            drawSprite(oam, x - (16 - length), y - 8, 0x18b, 16);
         }
     } else {
         if (length < 8) {
             length = 8;
         }
         while (length > 8) {
-            unkfunc_02065888(oam, x, y, 0x1ab, 8);
+            drawSprite(oam, x, y, 0x1ab, 8);
             length -= 8;
             x += 8;
         }
         if (length != 0) {
-            unkfunc_02065888(oam, x - (8 - length), y, 0x1ab, 8);
+            drawSprite(oam, x - (8 - length), y, 0x1ab, 8);
         }
     }
 }
 
-THUMB void MenuWindowFrame::unkfunc_020656ac(UnkOamBuffer* oam, int x, int y, int length)
+THUMB void MenuWindowFrame::drawLeftEdge(UnkOamBuffer* oam, int x, int y, int length)
 {
     if (length <= 0) {
         return;
     }
     if (length > 32) {
         while (length > 32) {
-            unkfunc_02065888(oam, x, y, 0x129, 32);
+            drawSprite(oam, x, y, 0x129, 32);
             length -= 32;
             y += 32;
         }
         if (length != 0) {
-            unkfunc_02065888(oam, x, y - (32 - length), 0x129, 32);
+            drawSprite(oam, x, y - (32 - length), 0x129, 32);
         }
     } else if (length > 16) {
         while (length > 16) {
-            unkfunc_02065888(oam, x, y, 0x149, 16);
+            drawSprite(oam, x, y, 0x149, 16);
             length -= 16;
             y += 16;
         }
         if (length != 0) {
-            unkfunc_02065888(oam, x, y - (16 - length), 0x149, 16);
+            drawSprite(oam, x, y - (16 - length), 0x149, 16);
         }
     } else {
         if (length < 8) {
             length = 8;
         }
         while (length > 8) {
-            unkfunc_02065888(oam, x, y, 0x149, 8);
+            drawSprite(oam, x, y, 0x149, 8);
             length -= 8;
             y += 8;
         }
         if (length != 0) {
-            unkfunc_02065888(oam, x, y - (8 - length), 0x149, 8);
+            drawSprite(oam, x, y - (8 - length), 0x149, 8);
         }
     }
 }
 
-THUMB void MenuWindowFrame::unkfunc_0206578c(UnkOamBuffer* oam, int x, int y, int length)
+THUMB void MenuWindowFrame::drawRightEdge(UnkOamBuffer* oam, int x, int y, int length)
 {
     if (length <= 0) {
         return;
     }
     if (length > 32) {
         while (length > 32) {
-            unkfunc_02065888(oam, x - 24, y, 0x12b, 32);
+            drawSprite(oam, x - 24, y, 0x12b, 32);
             length -= 32;
             y += 32;
         }
         if (length != 0) {
-            unkfunc_02065888(oam, x - 24, y - (32 - length), 0x12b, 32);
+            drawSprite(oam, x - 24, y - (32 - length), 0x12b, 32);
         }
     } else if (length > 16) {
         while (length > 16) {
-            unkfunc_02065888(oam, x - 8, y, 0x14d, 16);
+            drawSprite(oam, x - 8, y, 0x14d, 16);
             length -= 16;
             y += 16;
         }
         if (length != 0) {
-            unkfunc_02065888(oam, x - 8, y - (16 - length), 0x14d, 16);
+            drawSprite(oam, x - 8, y - (16 - length), 0x14d, 16);
         }
     } else {
         if (length < 8) {
             length = 8;
         }
         while (length > 8) {
-            unkfunc_02065888(oam, x, y, 0x14e, 8);
+            drawSprite(oam, x, y, 0x14e, 8);
             length -= 8;
             y += 8;
         }
         if (length != 0) {
-            unkfunc_02065888(oam, x, y - (8 - length), 0x14e, 8);
+            drawSprite(oam, x, y - (8 - length), 0x14e, 8);
         }
     }
 }
 
-THUMB void MenuWindowFrame::unkfunc_02065888(UnkOamBuffer* oam, int x, int y, int chr, int size)
+THUMB void MenuWindowFrame::drawSprite(UnkOamBuffer* oam, int x, int y, int chr, int size)
 {
     int shape = 0;
     if (size == 8) {

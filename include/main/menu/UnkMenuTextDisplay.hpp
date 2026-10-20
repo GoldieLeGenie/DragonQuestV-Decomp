@@ -29,19 +29,19 @@ struct UnkMenuTextDisplay : MenuDisplay {
     virtual void update(UnkOamBuffer* main, UnkOamBuffer* sub);
     virtual void execute(UnkOamBuffer* main, UnkOamBuffer* sub);
     virtual void draw(UnkOamBuffer* main, UnkOamBuffer* sub);
-    void unkfunc_02066ef4(UnkOamBuffer* oam, int x, int y, int width, int height);
+    void drawHiddenMask(UnkOamBuffer* oam, int x, int y, int width, int height);
     void unkfunc_02066fe4(int font, const char* text, int x, int y, int clear, int center);
-    int unkfunc_020670f4(int font, const char* text, int priority, int flag);
-    void unkfunc_02067180(int count);
-    void unkfunc_020671c8(int width);
-    int unkfunc_020671d0();
-    int unkfunc_020671d8();
-    int unkfunc_020671e0();
-    void unkfunc_020671e8(int scroll);
-    void unkfunc_02067268(int flag);
-    void unkfunc_02067270(UnkOamBuffer* oam, int x, int y, int chr);
-    void unkfunc_020672ac(UnkOamBuffer* oam, int x, int y, int chr);
-    void unkfunc_020672e8(UnkOamBuffer* oam, int x, int y, int chr);    // 8x16 sprite
-    void unkfunc_02067324(const char* text);    // keep a copy of the text
+    int setFramedText(int font, const char* text, int priority, int flag);
+    void setVisibleCount(int count);
+    void setVisibleWidth(int width);
+    int getVisibleCount();
+    int getCharCount();
+    int getTextWidth();
+    void clearScrolledLines(int scroll);
+    void setTranslucent(int flag);
+    void drawFrameSprite32(UnkOamBuffer* oam, int x, int y, int chr);
+    void drawFrameSprite16(UnkOamBuffer* oam, int x, int y, int chr);
+    void drawFrameSprite8(UnkOamBuffer* oam, int x, int y, int chr);    // 8x16 sprite
+    void storeText(const char* text);    // keep a copy of the text
 };
 

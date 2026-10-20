@@ -32,7 +32,7 @@ THUMB void CommonMenu_Dummy::menuDraw()
         if (mapInfo_ == 2) {
             param[1] = 0xe00001c3;
         }
-        unkfunc_0206297c(s_parts, param);
+        drawMenuPartsPlain(s_parts, param);
     }
 }
 

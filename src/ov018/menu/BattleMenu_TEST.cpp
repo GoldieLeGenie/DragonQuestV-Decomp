@@ -49,7 +49,7 @@ THUMB void BattleMenu_TEST::menuDraw()
     s_param[3] = 0xa;
     // "@テストです" ("this is a test")
     s_param[4] = (int)"@\x83\x65\x83\x58\x83\x67\x82\xc5\x82\xb7";
-    unkfunc_0206297c(s_parts, s_param);
+    drawMenuPartsPlain(s_parts, s_param);
     menuItem_.drawActive();
 }
 

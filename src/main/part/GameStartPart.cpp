@@ -25,7 +25,7 @@ THUMB void GameStartPart::initialize()
     if (cardcheck_ == 0) {
         return;
     }
-    unkfunc_02018d64(14);
+    loadMaterielMenuOverlay(14);
     MenuAPI::openMenu(&gMaterielMenu_LOAD);
     active = 1;
     SoundManager::play(0x17, 5);

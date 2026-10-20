@@ -70,18 +70,18 @@ THUMB void MaterielMenu_SAVE::menuDraw()
     for (int i = 0; i < 3; i++) {
         switch (diary_[i].savetype_) {
             case profile::SAVETYPE_NEW:
-                unkfunc_0202a164(i, diary_[i].name_, 0, 1, diary_[i].town_, diary_[i].time_, 0x22, diary_[i].name_ != 0);
+                drawJournalSlot(i, diary_[i].name_, 0, 1, diary_[i].town_, diary_[i].time_, 0x22, diary_[i].name_ != 0);
                 break;
             case profile::SAVETYPE_INTERVAL:
-                unkfunc_0202a164(i, diary_[i].name_, diary_[i].clear_, diary_[i].level_, diary_[i].town_, diary_[i].time_, 0x22, diary_[i].name_ != 0);
+                drawJournalSlot(i, diary_[i].name_, diary_[i].clear_, diary_[i].level_, diary_[i].town_, diary_[i].time_, 0x22, diary_[i].name_ != 0);
                 break;
             case profile::SAVETYPE_CHURCH:
-                unkfunc_0202a164(i, diary_[i].name_, diary_[i].clear_, diary_[i].level_, diary_[i].town_, diary_[i].time_, 0x22, diary_[i].name_ != 0);
+                drawJournalSlot(i, diary_[i].name_, diary_[i].clear_, diary_[i].level_, diary_[i].town_, diary_[i].time_, 0x22, diary_[i].name_ != 0);
                 break;
             case profile::SAVETYPE_NONE:
             case profile::SAVETYPE_RESUME:
             default:
-                unkfunc_0202a164(i, diary_[i].name_, diary_[i].clear_, diary_[i].level_, -1, diary_[i].time_, 0x22, diary_[i].name_ != 0);
+                drawJournalSlot(i, diary_[i].name_, diary_[i].clear_, diary_[i].level_, -1, diary_[i].time_, 0x22, diary_[i].name_ != 0);
                 break;
         }
     }

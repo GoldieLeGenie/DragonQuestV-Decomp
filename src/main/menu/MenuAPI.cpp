@@ -32,7 +32,7 @@ static menu::MenuBase* s_rootmenu;
 
 static const int unk_unused_MenuAPI = 0;
 
-THUMB void MenuAPI::unkfunc_020199cc()
+THUMB void MenuAPI::openMenuByIndex()
 {
     char* name = 0;
     if (s_menuIndex != 0) {
@@ -125,7 +125,7 @@ THUMB void MenuAPI::clearMenuAll()
 THUMB void MenuAPI::openTownMenu()
 {
     if (s_menuIndex != 0) {
-        unkfunc_020199cc();
+        openMenuByIndex();
     } else {
         openMenu(&gTownMenu_ROOT);
     }
@@ -203,17 +203,17 @@ THUMB bool MenuAPI::isWaitMessage()
 
 THUMB int MenuAPI::isMessageWaitTrigger()
 {
-    return s_draw->unkfunc_02066b74();
+    return s_draw->isWaitTrigger();
 }
 
 THUMB void MenuAPI::clearMessageWaitTriggerSE()
 {
-    s_draw->unkfunc_02066bc4();
+    s_draw->clearWaitTriggerSE();
 }
 
 THUMB void MenuAPI::clearMessageWaitTriggerNOSE()
 {
-    s_draw->unkfunc_02066bd4();
+    s_draw->clearWaitTriggerNoSE();
 }
 
 THUMB void MenuAPI::openEncountMessage()
@@ -287,12 +287,12 @@ THUMB int MenuAPI::isFinishMessageWindow()
 
 THUMB int MenuAPI::isFinishMessage()
 {
-    return s_draw->unkfunc_02066b88();
+    return s_draw->isFinish();
 }
 
 THUMB int MenuAPI::isEndMessage()
 {
-    return s_draw->unkfunc_02066b9c();
+    return s_draw->isEnd();
 }
 
 THUMB void MenuAPI::suspendMessageKeyInput(int flag)

@@ -63,7 +63,7 @@ THUMB void MessageWindow::update(UnkOamBuffer* main, UnkOamBuffer* sub)
 
 THUMB void MessageWindow::execute(UnkOamBuffer* main, UnkOamBuffer* sub)
 {
-    unkfunc_02066288();
+    executeState();
 }
 
 THUMB void MessageWindow::draw(UnkOamBuffer* main, UnkOamBuffer* sub)
@@ -71,7 +71,7 @@ THUMB void MessageWindow::draw(UnkOamBuffer* main, UnkOamBuffer* sub)
     if (!enable_) {
         setWindow0Enable(0);
     }
-    if (!unkfunc_02064730(main, sub) || state_ == 0) {
+    if (!isDrawable(main, sub) || state_ == 0) {
         return;
     }
     frame_->setPosition(x_ + shakeX_, y_ + shakeY_);
@@ -83,16 +83,16 @@ THUMB void MessageWindow::draw(UnkOamBuffer* main, UnkOamBuffer* sub)
     }
     if (namePlate_) {
         namePlate_->setPosition(shakeX_ + (x_ + config_->margin_), shakeY_ + (y_ + config_->margin_ - config_->nameY_) - 4);
-        namePlate_->unkfunc_02067180(-1);
+        namePlate_->setVisibleCount(-1);
         namePlate_->setEnable(1);
     }
     for (int i = 0; i < lineCount_; i++) {
         UnkMenuTextDisplay* line = lines_[i];
         if (line) {
             if (config_->frameType_ == 1) {
-                line->unkfunc_02067268(1);
+                line->setTranslucent(1);
             } else {
-                line->unkfunc_02067268(0);
+                line->setTranslucent(0);
             }
             line->setPosition(config_->margin_ + (x_ + shakeX_), config_->margin_ + (y_ + shakeY_) + i * lineHeight_ - scroll_);
             line->setEnable(1);
@@ -258,7 +258,7 @@ THUMB void MessageWindow::startWindow()
     if (name) {
         namePlate_ = &data_02114dd4.texts_[3];
         namePlate_->unkfunc_02066fe4(config_->font_, name, 0, 0, 0, 0);
-        offset = config_->nameX_ + namePlate_->unkfunc_020671e0();
+        offset = config_->nameX_ + namePlate_->getTextWidth();
     } else {
         offset = 0;
         namePlate_ = NULL;
@@ -311,7 +311,7 @@ THUMB void MessageWindow::startWindow()
     unk_038 = config_->unk_54;
 }
 
-THUMB void MessageWindow::unkfunc_020661cc()
+THUMB void MessageWindow::updateNameFrame()
 {
     lineCount_ = config_->lineCount_;
     const char* name = name_;
@@ -326,7 +326,7 @@ THUMB void MessageWindow::unkfunc_020661cc()
     if (name) {
         namePlate_ = &data_02114dd4.texts_[3];
         namePlate_->unkfunc_02066fe4(config_->font_, name, 0, 0, 1, 0);
-        offset = config_->nameX_ + namePlate_->unkfunc_020671e0();
+        offset = config_->nameX_ + namePlate_->getTextWidth();
     } else {
         offset = 0;
         namePlate_ = NULL;
@@ -344,44 +344,44 @@ THUMB void MessageWindow::unkfunc_020661cc()
     setPosition(config_->x_, config_->y_);
 }
 
-THUMB void MessageWindow::unkfunc_02066288()
+THUMB void MessageWindow::executeState()
 {
     switch (state_) {
     case 0:
-        unkfunc_020662dc();
+        stateIdle();
         break;
     case 1:
-        unkfunc_020662e0();
+        stateNextLine();
         break;
     case 2:
-        unkfunc_0206653c();
+        statePrint();
         break;
     case 3:
-        unkfunc_0206662c();
+        stateScroll();
         break;
     case 4:
-        unkfunc_0206668c();
+        stateWaitKey();
         break;
     case 5:
-        unkfunc_02066788();
+        stateWaitProg();
         break;
     case 6:
-        unkfunc_020667ac();
+        stateFinish();
         break;
     case 7:
         break;
     }
 }
 
-THUMB void MessageWindow::unkfunc_020662dc()
+THUMB void MessageWindow::stateIdle()
 {
 }
 
-THUMB void MessageWindow::unkfunc_020662e0()
+THUMB void MessageWindow::stateNextLine()
 {
     char buf[0x800];
     int c = getIterator()->getChar();
-    if (unkfunc_02066918(c)) {
+    if (isEndChar(c)) {
         state_ = 4;
         unk_9c4 = -1;
         return;
@@ -405,7 +405,7 @@ THUMB void MessageWindow::unkfunc_020662e0()
             }
         }
         if (c == 'A') {
-            unkfunc_02066ad0();
+            nextName();
         }
         return;
     }
@@ -421,10 +421,10 @@ THUMB void MessageWindow::unkfunc_020662e0()
     if (c == 0x328d) {
         getIterator()->nextChar();
         state_ = 5;
-        unkfunc_02066be8(1);
+        setWaitProg(1);
         return;
     }
-    UnkMenuTextDisplay* line = unkfunc_02066864();
+    UnkMenuTextDisplay* line = allocLine();
     if (line == NULL) {
         state_ = 3;
         return;
@@ -451,11 +451,11 @@ THUMB void MessageWindow::unkfunc_020662e0()
                 continue;
             }
         }
-        if (unkfunc_02066918(c) || isControlCode(c)) {
+        if (isEndChar(c) || isControlCode(c)) {
             break;
         }
         if (isNewlineChar(c)) {
-            unkfunc_02066968(getIterator());
+            skipNewlines(getIterator());
             break;
         }
         getIterator()->nextChar();
@@ -469,18 +469,18 @@ THUMB void MessageWindow::unkfunc_020662e0()
     state_ = 2;
 }
 
-THUMB void MessageWindow::unkfunc_0206653c()
+THUMB void MessageWindow::statePrint()
 {
-    UnkMenuTextDisplay* line = unkfunc_020668b0();
-    if (line->unkfunc_020671d0() != line->unkfunc_020671d8()) {
+    UnkMenuTextDisplay* line = getLastLine();
+    if (line->getVisibleCount() != line->getCharCount()) {
         if (unk_9f0 != 0) {
             int limit = line->unk_394;
-            if (line->unkfunc_020671d0() < limit) {
+            if (line->getVisibleCount() < limit) {
                 unk_9f0 = 0;
             }
         }
         if (unk_9f0 == 0) {
-            line->unkfunc_02067180(config_->printSpeed_ + line->unkfunc_020671d0());
+            line->setVisibleCount(config_->printSpeed_ + line->getVisibleCount());
             int extra = 0;
             if (line->unk_130[line->visibleCount_] == 0x3222) {
                 extra = 10;
@@ -507,27 +507,27 @@ THUMB void MessageWindow::unkfunc_0206653c()
     wait_--;
 }
 
-THUMB void MessageWindow::unkfunc_0206662c()
+THUMB void MessageWindow::stateScroll()
 {
     scroll_ += scrollSpeed_;
     if (scroll_ > lineHeight_) {
         scroll_ = lineHeight_;
     }
-    unkfunc_020668ac()->unkfunc_020671e8(scroll_);
+    getFirstLine()->clearScrolledLines(scroll_);
     if (scroll_ == lineHeight_) {
-        if (waitLine_ == unkfunc_020668ac()) {
+        if (waitLine_ == getFirstLine()) {
             waitLine_ = NULL;
         }
-        unkfunc_020668d4();
+        releaseFirstLine();
         scroll_ = 0;
         state_ = 1;
     }
 }
 
-THUMB void MessageWindow::unkfunc_0206668c()
+THUMB void MessageWindow::stateWaitKey()
 {
-    if (config_->margin_ != 0 && waitLine_ != unkfunc_020668ac()) {
-        unkfunc_0206662c();
+    if (config_->margin_ != 0 && waitLine_ != getFirstLine()) {
+        stateScroll();
         state_ = 4;
         return;
     }
@@ -535,7 +535,7 @@ THUMB void MessageWindow::unkfunc_0206668c()
         waitProgFlag_--;
         return;
     }
-    if (unkfunc_02066918(getIterator()->getChar())) {
+    if (isEndChar(getIterator()->getChar())) {
         keyWait_ = 0;
         keySound_ = 0;
         state_ = 6;
@@ -543,7 +543,7 @@ THUMB void MessageWindow::unkfunc_0206668c()
     }
     if (unk_9c4 == 0) {
         getIterator()->nextChar();
-        unkfunc_02066968(getIterator());
+        skipNewlines(getIterator());
         frame_->setCursor(0);
         waitLine_ = NULL;
         keyWait_ = 0;
@@ -567,7 +567,7 @@ THUMB void MessageWindow::unkfunc_0206668c()
     }
 }
 
-THUMB void MessageWindow::unkfunc_02066788()
+THUMB void MessageWindow::stateWaitProg()
 {
     if (waitProgFlag_) {
         waitProgFlag_--;
@@ -578,7 +578,7 @@ THUMB void MessageWindow::unkfunc_02066788()
     }
 }
 
-THUMB void MessageWindow::unkfunc_020667ac()
+THUMB void MessageWindow::stateFinish()
 {
     if (cursor_ == 0 && lastCursor_) {
         frame_->setCursor(1);
@@ -608,7 +608,7 @@ THUMB void MessageWindow::initLines()
     }
 }
 
-THUMB UnkMenuTextDisplay* MessageWindow::unkfunc_02066864()
+THUMB UnkMenuTextDisplay* MessageWindow::allocLine()
 {
     for (int i = 0; i < lineCount_; i++) {
         if (freeLines_[i]) {
@@ -625,12 +625,12 @@ THUMB UnkMenuTextDisplay* MessageWindow::unkfunc_02066864()
     return NULL;
 }
 
-THUMB UnkMenuTextDisplay* MessageWindow::unkfunc_020668ac()
+THUMB UnkMenuTextDisplay* MessageWindow::getFirstLine()
 {
     return lines_[0];
 }
 
-THUMB UnkMenuTextDisplay* MessageWindow::unkfunc_020668b0()
+THUMB UnkMenuTextDisplay* MessageWindow::getLastLine()
 {
     UnkMenuTextDisplay* last = NULL;
     for (int i = 0; i < lineCount_; i++) {
@@ -641,7 +641,7 @@ THUMB UnkMenuTextDisplay* MessageWindow::unkfunc_020668b0()
     return last;
 }
 
-THUMB void MessageWindow::unkfunc_020668d4()
+THUMB void MessageWindow::releaseFirstLine()
 {
     UnkMenuTextDisplay* first = lines_[0];
     for (int i = 1; i < lineCount_; i++) {
@@ -656,7 +656,7 @@ THUMB void MessageWindow::unkfunc_020668d4()
     }
 }
 
-THUMB int MessageWindow::unkfunc_02066918(int c)
+THUMB int MessageWindow::isEndChar(int c)
 {
     if (c == 0) {
         return 1;
@@ -690,7 +690,7 @@ THUMB int MessageWindow::isControlCode(int c)
     return 0;
 }
 
-THUMB void MessageWindow::unkfunc_02066968(UnkTextIterator* it)
+THUMB void MessageWindow::skipNewlines(UnkTextIterator* it)
 {
     while (isNewlineChar(it->getChar())) {
         it->nextChar();
@@ -713,15 +713,15 @@ THUMB void MessageWindow::addText(const char* text)
 
 THUMB void MessageWindow::addWaitKey()
 {
-    unkfunc_02066a00(0x328a);
+    addControlCode(0x328a);
 }
 
-THUMB void MessageWindow::unkfunc_020669f0()
+THUMB void MessageWindow::addWaitProg()
 {
-    unkfunc_02066a00(0x328d);
+    addControlCode(0x328d);
 }
 
-THUMB void MessageWindow::unkfunc_02066a00(int code)
+THUMB void MessageWindow::addControlCode(int code)
 {
     const char* text;
     switch (code) {
@@ -755,7 +755,7 @@ THUMB void MessageWindow::unkfunc_02066a00(int code)
     appendText(text);
 }
 
-THUMB void MessageWindow::unkfunc_02066a7c()
+THUMB void MessageWindow::clearNames()
 {
     nameIndex_ = -1;
     nameCount_ = 0;
@@ -764,7 +764,7 @@ THUMB void MessageWindow::unkfunc_02066a7c()
     }
 }
 
-THUMB void MessageWindow::unkfunc_02066aa4(const char* name)
+THUMB void MessageWindow::addName(const char* name)
 {
     if (nameCount_ != 32) {
         dss::strcpy_s(names_[nameCount_], 0x80, name);
@@ -772,11 +772,11 @@ THUMB void MessageWindow::unkfunc_02066aa4(const char* name)
     }
 }
 
-THUMB void MessageWindow::unkfunc_02066ad0()
+THUMB void MessageWindow::nextName()
 {
-    const char* prev = unkfunc_02066b1c();
+    const char* prev = getCurrentName();
     nameIndex_++;
-    const char* next = unkfunc_02066b1c();
+    const char* next = getCurrentName();
     if (prev == NULL) {
         prev = "";
     }
@@ -785,11 +785,11 @@ THUMB void MessageWindow::unkfunc_02066ad0()
     }
     if (dss::strcmp(prev, next) != 0) {
         setName(next);
-        unkfunc_020661cc();
+        updateNameFrame();
     }
 }
 
-THUMB const char* MessageWindow::unkfunc_02066b1c()
+THUMB const char* MessageWindow::getCurrentName()
 {
     if (nameIndex_ == -1) {
         return NULL;
@@ -800,7 +800,7 @@ THUMB const char* MessageWindow::unkfunc_02066b1c()
     return names_[nameIndex_];
 }
 
-THUMB void MessageWindow::unkfunc_02066b48()
+THUMB void MessageWindow::restart()
 {
     state_ = 1;
     waitLine_ = NULL;
@@ -812,7 +812,7 @@ THUMB void MessageWindow::unkfunc_02066b48()
     }
 }
 
-THUMB int MessageWindow::unkfunc_02066b74()
+THUMB int MessageWindow::isWaitTrigger()
 {
     if (state_ == 4) {
         return 1;
@@ -820,7 +820,7 @@ THUMB int MessageWindow::unkfunc_02066b74()
     return 0;
 }
 
-THUMB int MessageWindow::unkfunc_02066b88()
+THUMB int MessageWindow::isFinish()
 {
     if (state_ == 6) {
         return 1;
@@ -828,7 +828,7 @@ THUMB int MessageWindow::unkfunc_02066b88()
     return 0;
 }
 
-THUMB int MessageWindow::unkfunc_02066b9c()
+THUMB int MessageWindow::isEnd()
 {
     if (state_ == 7) {
         return 1;
@@ -836,7 +836,7 @@ THUMB int MessageWindow::unkfunc_02066b9c()
     return 0;
 }
 
-THUMB bool MessageWindow::unkfunc_02066bb0()
+THUMB bool MessageWindow::isWaitProg()
 {
     if (state_ == 5) {
         return 1;
@@ -844,19 +844,19 @@ THUMB bool MessageWindow::unkfunc_02066bb0()
     return 0;
 }
 
-THUMB void MessageWindow::unkfunc_02066bc4()
+THUMB void MessageWindow::clearWaitTriggerSE()
 {
     keyWait_ = 1;
     keySound_ = 1;
 }
 
-THUMB void MessageWindow::unkfunc_02066bd4()
+THUMB void MessageWindow::clearWaitTriggerNoSE()
 {
     keyWait_ = 1;
     keySound_ = 0;
 }
 
-THUMB void MessageWindow::unkfunc_02066be8(int flag)
+THUMB void MessageWindow::setWaitProg(int flag)
 {
     unk_9d0 = flag;
 }

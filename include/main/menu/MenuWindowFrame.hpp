@@ -21,13 +21,13 @@ struct MenuWindowFrame : MenuDisplay {
     virtual void draw(UnkOamBuffer* main, UnkOamBuffer* sub);
     void setNameWidth(int width);
     void setCursor(int cursor);
-    void unkfunc_020652bc(int x, int y, int arrow);
+    void setArrow(int x, int y, int arrow);
     void setFrameType(int type);
-    void unkfunc_020652c8(UnkOamBuffer* oam, int x, int y, int w, int h);
-    void unkfunc_0206539c(UnkOamBuffer* oam, int x, int y, int w, int h, int tabW, int tabH);
-    void unkfunc_020654d0(UnkOamBuffer* oam, int x, int y, int length);    // top edge
-    void unkfunc_020655b0(UnkOamBuffer* oam, int x, int y, int length);    // bottom edge
-    void unkfunc_020656ac(UnkOamBuffer* oam, int x, int y, int length);    // left edge
-    void unkfunc_0206578c(UnkOamBuffer* oam, int x, int y, int length);    // right edge
-    void unkfunc_02065888(UnkOamBuffer* oam, int x, int y, int chr, int size);
+    void drawBorder(UnkOamBuffer* oam, int x, int y, int w, int h);
+    void drawBorderWithTab(UnkOamBuffer* oam, int x, int y, int w, int h, int tabW, int tabH);
+    void drawTopEdge(UnkOamBuffer* oam, int x, int y, int length);    // top edge
+    void drawBottomEdge(UnkOamBuffer* oam, int x, int y, int length);    // bottom edge
+    void drawLeftEdge(UnkOamBuffer* oam, int x, int y, int length);    // left edge
+    void drawRightEdge(UnkOamBuffer* oam, int x, int y, int length);    // right edge
+    void drawSprite(UnkOamBuffer* oam, int x, int y, int chr, int size);
 };

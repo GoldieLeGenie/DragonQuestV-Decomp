@@ -33,7 +33,7 @@ THUMB void MenuArrowDisplay::draw(UnkOamBuffer* main, UnkOamBuffer* sub)
 {
     int blink = (frame_ & 0x20) ? FALSE : TRUE;
     frame_++;
-    if (!unkfunc_02064730(main, sub)) {
+    if (!isDrawable(main, sub)) {
         return;
     }
     int animChar = getAnimCharName();

@@ -12,8 +12,8 @@ struct HoppingDigit {
 
     void clear();
     void start(int x, int y, int number, int delay);
-    void unkfunc_020658ec(UnkOamBuffer* oam);
-    void unkfunc_02065920(UnkOamBuffer* oam);
+    void update(UnkOamBuffer* oam);
+    void draw(UnkOamBuffer* oam);
     int isFree();
 };
 
@@ -42,7 +42,7 @@ struct MenuIconDisplay : MenuDisplay {
     virtual void update(UnkOamBuffer* main, UnkOamBuffer* sub);
     virtual void execute(UnkOamBuffer* main, UnkOamBuffer* sub);
     virtual void draw(UnkOamBuffer* main, UnkOamBuffer* sub);
-    void unkfunc_02064ddc(UnkOamBuffer* oam, int x, int y, int index);
+    void drawIcon(UnkOamBuffer* oam, int x, int y, int index);
     void loadIcon(int index, int value);
     void setIconPosition(int index, int x, int y);
     void setIconVisible(int index, int flag);

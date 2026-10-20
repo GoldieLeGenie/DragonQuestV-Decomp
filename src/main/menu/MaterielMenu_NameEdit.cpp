@@ -110,11 +110,11 @@ THUMB void MaterielMenu_NameEdit::menuSetup()
 {
     status_ = EDIT_INIT;
     menuItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD_CANCEL, menu::MenuItem::CURSORTYPE_ACTIVE);
-    keyboard_.unkfunc_0202acd4();
+    keyboard_.setup();
     unk_88 = 0;
     language_ = status::g_Game.language_;
     inputType_ = TYPE_NAME_EDIT;
-    s_maxCount = unkfunc_0202acc0();
+    s_maxCount = getNameMaxCount();
     closeFlag_ = 0;
     cancelLock_ = 0;
 }
@@ -125,7 +125,7 @@ THUMB void MaterielMenu_NameEdit::setTaishiNameMode()
     s_maxCount = 9;
 }
 
-THUMB void MaterielMenu_NameEdit::unkfunc_0202a528()
+THUMB void MaterielMenu_NameEdit::setMessageMode()
 {
     inputType_ = TYPE_MESSAGE;
     s_maxCount = 0x2d;
@@ -147,7 +147,7 @@ THUMB void MaterielMenu_NameEdit::menuDraw()
 {
     if (closeFlag_ == 0 && !gTownMenu_MESSAGE.isOpen()) {
         getNamePointer(s_nameText);
-        int message = unkfunc_0202a670();
+        int message = getPromptMessage();
         int isMessage;
         if (inputType_ == TYPE_MESSAGE) {
             isMessage = 1;
@@ -161,38 +161,38 @@ THUMB void MaterielMenu_NameEdit::menuDraw()
         }
         else {
             drawMenuFrame(0x38, 0x10, 0xa0, 0x20, -1);
-            unkfunc_0202a6e0(message);
+            drawNameInput(message);
         }
         if (redraw_) {
             for (int i = 0; i < 0x42; i++) {
                 s_keyText[i] = 0;
             }
-            unkfunc_0202a610();
+            buildKeyLabels();
             drawNameEditCharTable(s_keyText, isMessage);
         }
         menuItem_.drawActive();
     }
 }
 
-THUMB void MaterielMenu_NameEdit::unkfunc_0202a610()
+THUMB void MaterielMenu_NameEdit::buildKeyLabels()
 {
     static char s_keyChar[0x14a];
     int pos = 0;
     for (int i = 0; i < 0x42; i++) {
         char* text = &s_keyChar[pos];
         s_keyText[i] = (int)text;
-        if (keyboard_.unkfunc_0202b098(i)) {
-            pos += unpackCharCode(keyboard_.unkfunc_0202b850(i), text);
+        if (keyboard_.isTextKey(i)) {
+            pos += unpackCharCode(keyboard_.getCodeAtPosition(i), text);
             s_keyChar[pos] = 0;
             pos++;
         }
         else {
-            s_keyText[i] = keyboard_.unkfunc_0202b850(i);
+            s_keyText[i] = keyboard_.getCodeAtPosition(i);
         }
     }
 }
 
-THUMB int MaterielMenu_NameEdit::unkfunc_0202a670()
+THUMB int MaterielMenu_NameEdit::getPromptMessage()
 {
     switch (inputType_) {
         case TYPE_MESSAGE:
@@ -207,12 +207,12 @@ THUMB int MaterielMenu_NameEdit::unkfunc_0202a670()
 
 THUMB void MaterielMenu_NameEdit::drawMessageInput(int message)
 {
-    unkfunc_0202a428(s_nameText, s_count);
+    drawNameEditCommentField(s_nameText, s_count);
     drawMenuFrame(0, 0, 0x100, 0x48, -1);
     drawCenteredMessage(&message, 8, 0x4a, 0xf0, 0x58);
 }
 
-THUMB void MaterielMenu_NameEdit::unkfunc_0202a6e0(int message)
+THUMB void MaterielMenu_NameEdit::drawNameInput(int message)
 {
     int blink = 0;
     if (cursorTimer_ > 30) {
@@ -222,7 +222,7 @@ THUMB void MaterielMenu_NameEdit::unkfunc_0202a6e0(int message)
         blink = 1;
     }
     cursorTimer_++;
-    unkfunc_0202a374(language_, s_nameText, s_count, s_maxCount, blink, 0);
+    drawNameEditField(language_, s_nameText, s_count, s_maxCount, blink, 0);
     drawMenuFrame(0, 0x30, 0x100, 0x78, 0x48);
     drawCenteredMessage(&message, 8, 0x4a, 0xf0, 0x2c);
 }
@@ -249,13 +249,13 @@ THUMB void MaterielMenu_NameEdit::commandUpdate()
         if (result == menu::MenuItem::MENUITEM_RESULT_OK) {
             menuItem_.result_ = 0;
             menuItem_.lastresult_ = 0;
-            unsigned int code = keyboard_.unkfunc_0202ad54();
+            unsigned int code = keyboard_.getPressedCode();
             int index = keyboard_.index_;
             if (code & 0x80000000) {
-                unkfunc_0202a9fc();
+                onSpecialKey();
             }
             else {
-                unkfunc_0202a8a4(index, code);
+                appendChar(index, code);
             }
             redraw_ = 1;
         }
@@ -288,24 +288,24 @@ THUMB void MaterielMenu_NameEdit::commandUpdate()
             }
         }
         if (result == menu::MenuItem::MENUITEM_RESULT_UP) {
-            menuItem_.active_ = keyboard_.unkfunc_0202b200();
+            menuItem_.active_ = keyboard_.moveCursorUp();
         }
         if (result == menu::MenuItem::MENUITEM_RESULT_DOWN) {
-            menuItem_.active_ = keyboard_.unkfunc_0202b20c();
+            menuItem_.active_ = keyboard_.moveCursorDown();
         }
         if (result == menu::MenuItem::MENUITEM_RESULT_LEFT) {
-            menuItem_.active_ = keyboard_.unkfunc_0202b218();
+            menuItem_.active_ = keyboard_.moveCursorLeft();
         }
         if (result == menu::MenuItem::MENUITEM_RESULT_RIGHT) {
-            menuItem_.active_ = keyboard_.unkfunc_0202b224();
+            menuItem_.active_ = keyboard_.moveCursorRight();
         }
     }
     else if ((dss::g_Pad.edge() & 8) && s_count > 0) {
-        menuItem_.active_ = keyboard_.unkfunc_0202b82c(0x41);
+        menuItem_.active_ = keyboard_.setCursorPosition(0x41);
     }
 }
 
-THUMB void MaterielMenu_NameEdit::unkfunc_0202a8a4(int index, unsigned int code)
+THUMB void MaterielMenu_NameEdit::appendChar(int index, unsigned int code)
 {
     int max = s_maxCount;
     if (s_count < max) {
@@ -314,11 +314,11 @@ THUMB void MaterielMenu_NameEdit::unkfunc_0202a8a4(int index, unsigned int code)
     s_code[s_count - 1] = code;
     s_index[s_count - 1] = index;
     if (s_count == max) {
-        menuItem_.active_ = keyboard_.unkfunc_0202b82c(0x41);
+        menuItem_.active_ = keyboard_.setCursorPosition(0x41);
     }
 }
 
-THUMB void MaterielMenu_NameEdit::unkfunc_0202a8e4(int index, unsigned int code)
+THUMB void MaterielMenu_NameEdit::replaceLastChar(int index, unsigned int code)
 {
     int count = s_count;
     if (count > 0) {
@@ -330,7 +330,7 @@ THUMB void MaterielMenu_NameEdit::unkfunc_0202a8e4(int index, unsigned int code)
         s_index[0] = index;
     }
     if (count == s_maxCount) {
-        menuItem_.active_ = keyboard_.unkfunc_0202b82c(0x41);
+        menuItem_.active_ = keyboard_.setCursorPosition(0x41);
     }
 }
 
@@ -357,14 +357,14 @@ THUMB bool MaterielMenu_NameEdit::judgeNameEnable()
     if (space) {
         clearName();
         menuItem_.active_ = 0;
-        keyboard_.unkfunc_0202b82c(0);
+        keyboard_.setCursorPosition(0);
         return false;
     }
     if (CheckBadWord(getNameUTF8())) {
         badWord = true;
     }
     if (inputType_ == TYPE_NAME_EDIT) {
-        if (unkfunc_0206cea4(getNameUTF8())) {
+        if (isNameTooWide(getNameUTF8())) {
             badWord = 1;
         }
     }
@@ -378,7 +378,7 @@ THUMB bool MaterielMenu_NameEdit::judgeNameEnable()
     return false;
 }
 
-THUMB void MaterielMenu_NameEdit::unkfunc_0202a9fc()
+THUMB void MaterielMenu_NameEdit::onSpecialKey()
 {
     unsigned int code = s_code[0];
     int index = s_index[0];
@@ -386,7 +386,7 @@ THUMB void MaterielMenu_NameEdit::unkfunc_0202a9fc()
         code = s_code[s_count - 1];
         index = s_index[s_count - 1];
     }
-    switch (keyboard_.unkfunc_0202b74c()) {
+    switch (keyboard_.getCursorKeyType()) {
         case 1:
             deleteLastChar();
             break;
@@ -398,10 +398,10 @@ THUMB void MaterielMenu_NameEdit::unkfunc_0202a9fc()
         case 2:
         case 3:
             if (s_count > 0) {
-                code = keyboard_.unkfunc_0202b0f4(index, code);
-                index = keyboard_.unkfunc_0202b1c4(index);
+                code = keyboard_.getDakutenCode(index, code);
+                index = keyboard_.getDakutenKey(index);
                 if (code != -1) {
-                    unkfunc_0202a8e4(index, code);
+                    replaceLastChar(index, code);
                 }
             }
             break;
@@ -410,7 +410,7 @@ THUMB void MaterielMenu_NameEdit::unkfunc_0202a9fc()
 
 THUMB void MaterielMenu_NameEdit::endMenu(EDIT_STATUS status)
 {
-    keyboard_.unkfunc_0202ad28();
+    keyboard_.cleanup();
     close();
     status_ = status;
 }
@@ -516,7 +516,7 @@ THUMB void MaterielMenu_NameEdit::setDefaultName(const char* str)
             code |= c << (rest * 8);
         }
         if (--rest < 0) {
-            unkfunc_0202ac90(code);
+            appendDefaultChar(code);
             code = 0;
             rest = 0;
         }
@@ -524,14 +524,14 @@ THUMB void MaterielMenu_NameEdit::setDefaultName(const char* str)
     keyboard_.page_ = 0;
 }
 
-THUMB void MaterielMenu_NameEdit::unkfunc_0202ac90(unsigned int code)
+THUMB void MaterielMenu_NameEdit::appendDefaultChar(unsigned int code)
 {
     s_code[s_count] = code;
-    s_index[s_count] = keyboard_.unkfunc_0202b040(code);
+    s_index[s_count] = keyboard_.getKeyOfCode(code);
     s_count++;
 }
 
-THUMB int MaterielMenu_NameEdit::unkfunc_0202acc0()
+THUMB int MaterielMenu_NameEdit::getNameMaxCount()
 {
     if (getGameRegion() == 1) {
         return 4;
@@ -539,7 +539,7 @@ THUMB int MaterielMenu_NameEdit::unkfunc_0202acc0()
     return 8;
 }
 
-THUMB void UnkNameKeyboard::unkfunc_0202acd4()
+THUMB void UnkNameKeyboard::setup()
 {
     index_ = 0;
     keyCount_ = 0x42;
@@ -561,7 +561,7 @@ THUMB void UnkNameKeyboard::unkfunc_0202acd4()
     }
 }
 
-THUMB void UnkNameKeyboard::unkfunc_0202ad28()
+THUMB void UnkNameKeyboard::cleanup()
 {
     if (japanese_) {
         dq5::level::KeyDataJH::cleanup();
@@ -577,18 +577,18 @@ THUMB void UnkNameKeyboard::unkfunc_0202ad28()
     }
 }
 
-THUMB unsigned int UnkNameKeyboard::unkfunc_0202ad54()
+THUMB unsigned int UnkNameKeyboard::getPressedCode()
 {
-    switch (unkfunc_0202b758(index_)) {
+    switch (getKeyType(index_)) {
         case 0:
-            return unkfunc_0202ad80();
+            return getCursorCode();
         case 4:
-            return unkfunc_0202b1ec();
+            return switchPage();
     }
     return 0x80000000;
 }
 
-THUMB unsigned int UnkNameKeyboard::unkfunc_0202ad80()
+THUMB unsigned int UnkNameKeyboard::getCursorCode()
 {
     if (japanese_) {
         if (page_ == 0) {
@@ -608,7 +608,7 @@ THUMB unsigned int UnkNameKeyboard::unkfunc_0202ad80()
     }
 }
 
-THUMB unsigned int UnkNameKeyboard::unkfunc_0202ae3c(int index)
+THUMB unsigned int UnkNameKeyboard::getCode(int index)
 {
     if (japanese_) {
         if (page_ == 0) {
@@ -628,7 +628,7 @@ THUMB unsigned int UnkNameKeyboard::unkfunc_0202ae3c(int index)
     }
 }
 
-THUMB unsigned short UnkNameKeyboard::unkfunc_0202aef0(int index)
+THUMB unsigned short UnkNameKeyboard::getCharNo(int index)
 {
     if (japanese_) {
         if (page_ == 0) {
@@ -648,7 +648,7 @@ THUMB unsigned short UnkNameKeyboard::unkfunc_0202aef0(int index)
     }
 }
 
-THUMB unsigned int UnkNameKeyboard::unkfunc_0202afa4()
+THUMB unsigned int UnkNameKeyboard::getKeyDataCount()
 {
     if (japanese_) {
         if (page_ != 0) {
@@ -668,111 +668,111 @@ THUMB unsigned int UnkNameKeyboard::unkfunc_0202afa4()
     }
 }
 
-THUMB unsigned int UnkNameKeyboard::unkfunc_0202afdc(int no)
+THUMB unsigned int UnkNameKeyboard::getCodeOfCharNo(int no)
 {
-    int count = unkfunc_0202afa4();
+    int count = getKeyDataCount();
     for (int i = 0; i < count; i++) {
-        if (no == unkfunc_0202aef0(i)) {
-            return unkfunc_0202ae3c(i);
+        if (no == getCharNo(i)) {
+            return getCode(i);
         }
     }
     return -1;
 }
 
-THUMB int UnkNameKeyboard::unkfunc_0202b010(int no)
+THUMB int UnkNameKeyboard::getKeyOfCharNo(int no)
 {
-    unsigned int count = unkfunc_0202afa4();
+    unsigned int count = getKeyDataCount();
     for (unsigned int i = 0; i < count; i++) {
-        if (no == unkfunc_0202aef0(i)) {
+        if (no == getCharNo(i)) {
             return i;
         }
     }
     return -1;
 }
 
-THUMB int UnkNameKeyboard::unkfunc_0202b040(unsigned int code)
+THUMB int UnkNameKeyboard::getKeyOfCode(unsigned int code)
 {
-    unsigned int count = unkfunc_0202afa4();
+    unsigned int count = getKeyDataCount();
     for (unsigned int i = 0; i < count; i++) {
-        if (code == unkfunc_0202ae3c(i)) {
+        if (code == getCode(i)) {
             return i;
         }
     }
-    unkfunc_0202b1ec();
-    count = unkfunc_0202afa4();
+    switchPage();
+    count = getKeyDataCount();
     for (unsigned int i = 0; i < count; i++) {
-        if (code == unkfunc_0202ae3c(i)) {
+        if (code == getCode(i)) {
             return i;
         }
     }
     return -1;
 }
 
-THUMB int UnkNameKeyboard::unkfunc_0202b098(int position)
+THUMB int UnkNameKeyboard::isTextKey(int position)
 {
     int result = 0;
-    if (unkfunc_0202b880(position) == 0 || unkfunc_0202b850(position) == getSpace() || unkfunc_0202b880(position) == 2
-        || unkfunc_0202b880(position) == 3) {
+    if (getKeyTypeAtPosition(position) == 0 || getCodeAtPosition(position) == getSpace() || getKeyTypeAtPosition(position) == 2
+        || getKeyTypeAtPosition(position) == 3) {
         result = 1;
     }
     return result;
 }
 
-THUMB int UnkNameKeyboard::unkfunc_0202b0d4(int no)
+THUMB int UnkNameKeyboard::getDakutenCharNo(int no)
 {
-    if (unkfunc_0202b74c() == 2) {
+    if (getCursorKeyType() == 2) {
         no += 100;
     }
-    if (unkfunc_0202b74c() == 3) {
+    if (getCursorKeyType() == 3) {
         no += 200;
     }
     return no;
 }
 
-THUMB unsigned int UnkNameKeyboard::unkfunc_0202b0f4(int index, unsigned int code)
+THUMB unsigned int UnkNameKeyboard::getDakutenCode(int index, unsigned int code)
 {
     if (!japanese_) {
         return -1;
     }
     int switched = 0;
-    if (code != unkfunc_0202ae3c(index)) {
+    if (code != getCode(index)) {
         switched = 1;
-        unkfunc_0202b1ec();
+        switchPage();
     }
-    int no = unkfunc_0202b15c(index);
+    int no = getBaseCharNo(index);
     if (no == -1) {
         if (switched) {
-            unkfunc_0202b1ec();
+            switchPage();
         }
         return no;
     }
-    unsigned int result = unkfunc_0202afdc(unkfunc_0202b0d4(no));
+    unsigned int result = getCodeOfCharNo(getDakutenCharNo(no));
     if (switched) {
-        unkfunc_0202b1ec();
+        switchPage();
     }
     return result;
 }
 
-THUMB int UnkNameKeyboard::unkfunc_0202b15c(int index)
+THUMB int UnkNameKeyboard::getBaseCharNo(int index)
 {
-    int no = unkfunc_0202aef0(index);
+    int no = getCharNo(index);
     if (!japanese_) {
         return no;
     }
-    switch (unkfunc_0202b74c()) {
+    switch (getCursorKeyType()) {
         case 2:
-            if (unkfunc_0202aef0(index) > 200) {
+            if (getCharNo(index) > 200) {
                 no -= 200;
             }
-            else if (unkfunc_0202aef0(index) > 100) {
+            else if (getCharNo(index) > 100) {
                 return -1;
             }
             break;
         case 3:
-            if (unkfunc_0202aef0(index) > 200) {
+            if (getCharNo(index) > 200) {
                 return -1;
             }
-            if (unkfunc_0202aef0(index) > 100) {
+            if (getCharNo(index) > 100) {
                 no -= 100;
             }
             break;
@@ -780,16 +780,16 @@ THUMB int UnkNameKeyboard::unkfunc_0202b15c(int index)
     return no;
 }
 
-THUMB int UnkNameKeyboard::unkfunc_0202b1c4(int index)
+THUMB int UnkNameKeyboard::getDakutenKey(int index)
 {
     if (!japanese_) {
         return -1;
     }
-    int no = unkfunc_0202b15c(index);
-    return unkfunc_0202b010(unkfunc_0202b0d4(no));
+    int no = getBaseCharNo(index);
+    return getKeyOfCharNo(getDakutenCharNo(no));
 }
 
-THUMB unsigned int UnkNameKeyboard::unkfunc_0202b1ec()
+THUMB unsigned int UnkNameKeyboard::switchPage()
 {
     if (page_) {
         page_ = 0;
@@ -800,37 +800,37 @@ THUMB unsigned int UnkNameKeyboard::unkfunc_0202b1ec()
     return 0x80000000;
 }
 
-THUMB int UnkNameKeyboard::unkfunc_0202b200()
+THUMB int UnkNameKeyboard::moveCursorUp()
 {
-    return unkfunc_0202b230(0);
+    return moveCursor(0);
 }
 
-THUMB int UnkNameKeyboard::unkfunc_0202b20c()
+THUMB int UnkNameKeyboard::moveCursorDown()
 {
-    return unkfunc_0202b230(1);
+    return moveCursor(1);
 }
 
-THUMB int UnkNameKeyboard::unkfunc_0202b218()
+THUMB int UnkNameKeyboard::moveCursorLeft()
 {
-    return unkfunc_0202b230(2);
+    return moveCursor(2);
 }
 
-THUMB int UnkNameKeyboard::unkfunc_0202b224()
+THUMB int UnkNameKeyboard::moveCursorRight()
 {
-    return unkfunc_0202b230(3);
+    return moveCursor(3);
 }
 
-THUMB int UnkNameKeyboard::unkfunc_0202b230(int dir)
+THUMB int UnkNameKeyboard::moveCursor(int dir)
 {
     int i = 0;
-    while (!unkfunc_0202b798(dir, i)) {
+    while (!isNeighbourKey(dir, i)) {
         i++;
     }
     index_ = i;
-    return unkfunc_0202b698(i);
+    return getTablePosition(i);
 }
 
-THUMB unsigned char UnkNameKeyboard::unkfunc_0202b260(int index)
+THUMB unsigned char UnkNameKeyboard::getTableNo(int index)
 {
     if (japanese_) {
         if (page_ == 0) {
@@ -850,7 +850,7 @@ THUMB unsigned char UnkNameKeyboard::unkfunc_0202b260(int index)
     }
 }
 
-THUMB unsigned char UnkNameKeyboard::unkfunc_0202b314(int index)
+THUMB unsigned char UnkNameKeyboard::getTableUp(int index)
 {
     if (japanese_) {
         if (page_ == 0) {
@@ -870,7 +870,7 @@ THUMB unsigned char UnkNameKeyboard::unkfunc_0202b314(int index)
     }
 }
 
-THUMB unsigned char UnkNameKeyboard::unkfunc_0202b3c8(int index)
+THUMB unsigned char UnkNameKeyboard::getTableDown(int index)
 {
     if (japanese_) {
         if (page_ == 0) {
@@ -890,7 +890,7 @@ THUMB unsigned char UnkNameKeyboard::unkfunc_0202b3c8(int index)
     }
 }
 
-THUMB unsigned char UnkNameKeyboard::unkfunc_0202b47c(int index)
+THUMB unsigned char UnkNameKeyboard::getTableLeft(int index)
 {
     if (japanese_) {
         if (page_ == 0) {
@@ -910,7 +910,7 @@ THUMB unsigned char UnkNameKeyboard::unkfunc_0202b47c(int index)
     }
 }
 
-THUMB unsigned char UnkNameKeyboard::unkfunc_0202b530(int index)
+THUMB unsigned char UnkNameKeyboard::getTableRight(int index)
 {
     if (japanese_) {
         if (page_ == 0) {
@@ -930,7 +930,7 @@ THUMB unsigned char UnkNameKeyboard::unkfunc_0202b530(int index)
     }
 }
 
-THUMB unsigned char UnkNameKeyboard::unkfunc_0202b5e4(int index)
+THUMB unsigned char UnkNameKeyboard::getTableCommand(int index)
 {
     if (japanese_) {
         if (page_ == 0) {
@@ -950,7 +950,7 @@ THUMB unsigned char UnkNameKeyboard::unkfunc_0202b5e4(int index)
     }
 }
 
-THUMB unsigned char UnkNameKeyboard::unkfunc_0202b698(int index)
+THUMB unsigned char UnkNameKeyboard::getTablePosition(int index)
 {
     if (japanese_) {
         if (page_ == 0) {
@@ -970,14 +970,14 @@ THUMB unsigned char UnkNameKeyboard::unkfunc_0202b698(int index)
     }
 }
 
-THUMB int UnkNameKeyboard::unkfunc_0202b74c()
+THUMB int UnkNameKeyboard::getCursorKeyType()
 {
-    return unkfunc_0202b758(index_);
+    return getKeyType(index_);
 }
 
-THUMB int UnkNameKeyboard::unkfunc_0202b758(int index)
+THUMB int UnkNameKeyboard::getKeyType(int index)
 {
-    switch (unkfunc_0202b5e4(index)) {
+    switch (getTableCommand(index)) {
         case 1:
             return 0;
         case 5:
@@ -994,25 +994,25 @@ THUMB int UnkNameKeyboard::unkfunc_0202b758(int index)
     return 6;
 }
 
-THUMB int UnkNameKeyboard::unkfunc_0202b798(int dir, int index)
+THUMB int UnkNameKeyboard::isNeighbourKey(int dir, int index)
 {
     switch (dir) {
         case 0:
-            return unkfunc_0202b314(index_) == unkfunc_0202b260(index);
+            return getTableUp(index_) == getTableNo(index);
         case 1:
-            return unkfunc_0202b3c8(index_) == unkfunc_0202b260(index);
+            return getTableDown(index_) == getTableNo(index);
         case 2:
-            return unkfunc_0202b47c(index_) == unkfunc_0202b260(index);
+            return getTableLeft(index_) == getTableNo(index);
         case 3:
-            return unkfunc_0202b530(index_) == unkfunc_0202b260(index);
+            return getTableRight(index_) == getTableNo(index);
     }
     return 0;
 }
 
-THUMB int UnkNameKeyboard::unkfunc_0202b82c(int position)
+THUMB int UnkNameKeyboard::setCursorPosition(int position)
 {
     for (int i = 0; i < 0x42; i++) {
-        if (position == unkfunc_0202b698(i)) {
+        if (position == getTablePosition(i)) {
             index_ = i;
             return position;
         }
@@ -1020,21 +1020,21 @@ THUMB int UnkNameKeyboard::unkfunc_0202b82c(int position)
     return 0;
 }
 
-THUMB unsigned int UnkNameKeyboard::unkfunc_0202b850(int position)
+THUMB unsigned int UnkNameKeyboard::getCodeAtPosition(int position)
 {
     for (int i = 0; i < keyCount_; i++) {
-        if (position == unkfunc_0202b698(i)) {
-            return unkfunc_0202ae3c(i);
+        if (position == getTablePosition(i)) {
+            return getCode(i);
         }
     }
     return 0;
 }
 
-THUMB int UnkNameKeyboard::unkfunc_0202b880(int position)
+THUMB int UnkNameKeyboard::getKeyTypeAtPosition(int position)
 {
     for (int i = 0; i < keyCount_; i++) {
-        if (position == unkfunc_0202b698(i)) {
-            return unkfunc_0202b758(i);
+        if (position == getTablePosition(i)) {
+            return getKeyType(i);
         }
     }
     return 6;

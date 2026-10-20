@@ -33,7 +33,7 @@ THUMB void TownMenu_STATUS::menuSetup()
 
 THUMB void TownMenu_STATUS::menuExecute()
 {
-    unkfunc_0201c904(&menuItem_, navigator_.getCountInPage(), menuItem_.active_);
+    setupCharaRowLayout5x1(&menuItem_, navigator_.getCountInPage(), menuItem_.active_);
 }
 
 THUMB void TownMenu_STATUS::menuDraw()

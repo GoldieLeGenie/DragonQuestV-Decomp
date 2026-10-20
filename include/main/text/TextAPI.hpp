@@ -227,7 +227,7 @@ char* msg_get_head();
 char* msg_get_body();
 unsigned char msg_get_sound();
 int CheckBadWord(char* name);
-int unkfunc_0206cea4(char* name);
+int isNameTooWide(char* name);
 
 extern MsgData g_msg_data_default;
 extern MsgData g_msg_data[11];

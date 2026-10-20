@@ -60,11 +60,11 @@ THUMB void MaterielMenu_LOAD::menuDraw()
     int rootResumeMessage[4] = { 0xe00002ef, 0xe00002ee, 0xe00002f0, 0xe00002f1 };
     if (status_ == LOAD_MODESELECT) {
         if (resumeExist_ == 1) {
-            unkfunc_02029fec(rootResumeMessage, ROOT_RESUME_COUNT, 0x18, 0x10);
+            drawMessageColumn(rootResumeMessage, ROOT_RESUME_COUNT, 0x18, 0x10);
             drawMenuFrame(8, 8, 0xa0, 0x48, -1);
             rootItem_.drawActive();
         } else {
-            unkfunc_02029fec(rootMessage, ROOT_COUNT, 0x18, 0x10);
+            drawMessageColumn(rootMessage, ROOT_COUNT, 0x18, 0x10);
             drawMenuFrame(8, 8, 0xa0, 0x38, -1);
             rootItem_.drawActive();
         }
@@ -82,18 +82,18 @@ THUMB void MaterielMenu_LOAD::menuDraw()
         for (int i = 0; i < 3; i++) {
             switch (diary_[i].savetype_) {
                 case profile::SAVETYPE_NEW:
-                    unkfunc_0202a164(i, diary_[i].name_, 0, 1, diary_[i].town_, diary_[i].time_, 0x5a, flag);
+                    drawJournalSlot(i, diary_[i].name_, 0, 1, diary_[i].town_, diary_[i].time_, 0x5a, flag);
                     break;
                 case profile::SAVETYPE_INTERVAL:
-                    unkfunc_0202a164(i, diary_[i].name_, diary_[i].clear_, diary_[i].level_, diary_[i].town_, diary_[i].time_, 0x5a, flag);
+                    drawJournalSlot(i, diary_[i].name_, diary_[i].clear_, diary_[i].level_, diary_[i].town_, diary_[i].time_, 0x5a, flag);
                     break;
                 case profile::SAVETYPE_CHURCH:
-                    unkfunc_0202a164(i, diary_[i].name_, diary_[i].clear_, diary_[i].level_, diary_[i].town_, diary_[i].time_, 0x5a, flag);
+                    drawJournalSlot(i, diary_[i].name_, diary_[i].clear_, diary_[i].level_, diary_[i].town_, diary_[i].time_, 0x5a, flag);
                     break;
                 case profile::SAVETYPE_NONE:
                 case profile::SAVETYPE_RESUME:
                 default:
-                    unkfunc_0202a164(i, diary_[i].name_, diary_[i].clear_, diary_[i].level_, -1, diary_[i].time_, 0x5a, flag);
+                    drawJournalSlot(i, diary_[i].name_, diary_[i].clear_, diary_[i].level_, -1, diary_[i].time_, 0x5a, flag);
                     break;
             }
         }
@@ -102,7 +102,7 @@ THUMB void MaterielMenu_LOAD::menuDraw()
     }
     if (status_ == LOAD_IS_RESUME) {
         drawCenteredMessage(&rootResumeMessage[1], 8, 0x38, 0xf0, 0x50);
-        unkfunc_0202a274(diary_[3].name_, diary_[3].clear_, diary_[3].level_, diary_[3].time_);
+        drawResumeSlot(diary_[3].name_, diary_[3].clear_, diary_[3].level_, diary_[3].time_);
         drawMenuFrame(8, 0x38, 0xf0, 0x40, 0x50);
         resumeItem_.drawActive();
     }

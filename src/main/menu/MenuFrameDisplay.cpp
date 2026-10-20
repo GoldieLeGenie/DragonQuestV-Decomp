@@ -25,10 +25,10 @@ THUMB void MenuFrameDisplay::execute(UnkOamBuffer* main, UnkOamBuffer* sub)
 THUMB void MenuFrameDisplay::draw(UnkOamBuffer* main, UnkOamBuffer* sub)
 {
     setEnable(1);
-    if (unkfunc_02064730(main, sub)) {
+    if (isDrawable(main, sub)) {
         UnkMenuFrameRequest* request = requests_;
         for (int i = 0; i < requestCount_; i++) {
-            request->unkfunc_0204edb4(main, sub);
+            request->draw(main, sub);
             request++;
         }
         requestCount_ = 0;
@@ -59,7 +59,7 @@ inline void G2_SetOBJAttrFrame(GXOamAttr* oam, int x, int y, int priority, int m
 }
 
 #pragma opt_propagation off
-THUMB void UnkMenuFrameRequest::unkfunc_0204edb4(UnkOamBuffer* main, UnkOamBuffer* sub)
+THUMB void UnkMenuFrameRequest::draw(UnkOamBuffer* main, UnkOamBuffer* sub)
 {
     UnkOamBuffer* oam = NULL;
     int screen = y_ / 192;

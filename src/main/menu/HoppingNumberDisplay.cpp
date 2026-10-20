@@ -24,7 +24,7 @@ THUMB void HoppingDigit::start(int x, int y, int number, int delay)
     frame_ = (signed char)-delay;
 }
 
-THUMB void HoppingDigit::unkfunc_020658ec(UnkOamBuffer* oam)
+THUMB void HoppingDigit::update(UnkOamBuffer* oam)
 {
     if (frame_ == -99) {
         return;
@@ -39,7 +39,7 @@ THUMB void HoppingDigit::unkfunc_020658ec(UnkOamBuffer* oam)
     }
 }
 
-THUMB void HoppingDigit::unkfunc_02065920(UnkOamBuffer* oam)
+THUMB void HoppingDigit::draw(UnkOamBuffer* oam)
 {
     int name;
     if (frame_ < 0) {
@@ -106,7 +106,7 @@ THUMB void HoppingNumberDisplay::setup(int id)
 THUMB void HoppingNumberDisplay::update(UnkOamBuffer* main, UnkOamBuffer* sub)
 {
     for (int i = 0; i < 40; i++) {
-        digit_[i].unkfunc_020658ec(sub);
+        digit_[i].update(sub);
     }
 }
 
@@ -117,9 +117,9 @@ THUMB void HoppingNumberDisplay::execute(UnkOamBuffer* main, UnkOamBuffer* sub)
 THUMB void HoppingNumberDisplay::draw(UnkOamBuffer* main, UnkOamBuffer* sub)
 {
     setEnable(1);
-    if (unkfunc_02064730(main, sub)) {
+    if (isDrawable(main, sub)) {
         for (int i = 0; i < 40; i++) {
-            digit_[i].unkfunc_02065920(sub);
+            digit_[i].draw(sub);
         }
     }
 }

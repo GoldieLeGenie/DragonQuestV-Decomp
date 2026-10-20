@@ -5,19 +5,19 @@
 
 extern "C" THUMB void func_020624a8()
 {
-    unkfunc_02063250();
+    loadMenuIconFiles();
 }
 
 extern "C" THUMB void func_020624b0()
 {
-    unkfunc_02061bd0();
+    initMenuMsgSystem();
     MenuManager::setup();
 }
 
 extern "C" THUMB void func_020624bc()
 {
     setupMenuDisplays();
-    unkfunc_02063414();
+    initMenuBg();
 }
 
 extern "C" THUMB void func_020624c8()
@@ -26,19 +26,19 @@ extern "C" THUMB void func_020624c8()
 
 extern "C" THUMB void func_020624cc()
 {
-    unkfunc_02063d94();
-    unkfunc_0206343c();
+    updateMenuDisplays();
+    updateMenuBg();
 }
 
 extern "C" THUMB void func_020624d8()
 {
     MenuManager::execute();
-    unkfunc_02063e98();
-    unkfunc_02063440();
+    executeMenuDisplays();
+    executeMenuBg();
 }
 
 extern "C" THUMB void func_020624e8()
 {
-    unkfunc_02063f9c();
-    unkfunc_02063450();
+    drawMenuDisplays();
+    transferMenuBg();
 }

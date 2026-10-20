@@ -31,7 +31,7 @@ THUMB void MenuFaceDisplay::execute(UnkOamBuffer* main, UnkOamBuffer* sub)
 
 THUMB void MenuFaceDisplay::draw(UnkOamBuffer* main, UnkOamBuffer* sub)
 {
-    if (!unkfunc_02064730(main, sub) || y_ < 192) {
+    if (!isDrawable(main, sub) || y_ < 192) {
         return;
     }
     int y = y_ % 192;
@@ -87,8 +87,8 @@ THUMB void MenuFaceDisplay::draw(UnkOamBuffer* main, UnkOamBuffer* sub)
     if (mode_ == 11) {
         int frame = animFrame_ / 2;
         int part = s_part[frame];
-        unkfunc_02064bc8(sub, s_moveX[frame], -s_moveY[frame], 8);
-        unkfunc_02064bc8(sub, 0, 0, part);
+        drawPart(sub, s_moveX[frame], -s_moveY[frame], 8);
+        drawPart(sub, 0, 0, part);
         animFrame_++;
         if (s_part[animFrame_ / 2] == -1) {
             animFrame_ = 0;
@@ -96,7 +96,7 @@ THUMB void MenuFaceDisplay::draw(UnkOamBuffer* main, UnkOamBuffer* sub)
     }
 }
 
-THUMB void MenuFaceDisplay::unkfunc_02064bc8(UnkOamBuffer* oam, int x, int y, int part)
+THUMB void MenuFaceDisplay::drawPart(UnkOamBuffer* oam, int x, int y, int part)
 {
     int chr;
     x += x_;
@@ -151,13 +151,13 @@ THUMB void MenuFaceDisplay::loadFace(int index)
     mode_ = 1;
 }
 
-THUMB void MenuFaceDisplay::unkfunc_02064c80()
+THUMB void MenuFaceDisplay::loadLoadingAnim()
 {
     loadIcon(0xf9000000, 1);
     mode_ = 11;
 }
 
-THUMB void MenuFaceDisplay::unkfunc_0204f568()
+THUMB void MenuFaceDisplay::resetAnim()
 {
     animFrame_ = 0;
 }

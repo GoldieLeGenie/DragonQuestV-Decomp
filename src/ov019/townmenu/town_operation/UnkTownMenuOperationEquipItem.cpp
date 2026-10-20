@@ -62,7 +62,7 @@ THUMB void UnkTownMenuOperationEquipItem::menuSetup()
 THUMB void UnkTownMenuOperationEquipItem::menuExecute()
 {
     MenuStatusInfo::setMode(MenuStatusInfo::PLAYER_MODE);
-    unkfunc_0201c8e8(&itemItem_, itemNavigator_.getCountInPage(), itemItem_.active_);
+    setupItemIcon32Layout2x3(&itemItem_, itemNavigator_.getCountInPage(), itemItem_.active_);
     unkfunc_02171584(&removeItem_);
 }
 

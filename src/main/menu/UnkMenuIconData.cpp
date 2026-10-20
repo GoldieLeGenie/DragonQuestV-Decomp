@@ -12,15 +12,15 @@ static UnkIconFile s_face48;
 static UnkIconFile s_wireless48;
 static UnkIconFile s_loading48;
 
-THUMB void unkfunc_02063250()
+THUMB void loadMenuIconFiles()
 {
-    s_command32.unkfunc_0206dc2c("DATA/G2D/icon/command32.mptp");
-    s_command24.unkfunc_0206dc2c("DATA/G2D/icon/command24.mptp");
-    s_item32.unkfunc_0206dc3c(NULL, "DATA/G2D/icon/item32.mptp", 0x258, 24);
-    s_char32.unkfunc_0206dc3c(NULL, "DATA/G2D/icon/char32.mptp", 0x208, 14);
-    s_face48.unkfunc_0206dc3c(NULL, "DATA/G2D/icon/face48.mpt", 0x900, 12);
-    s_wireless48.unkfunc_0206dc2c("DATA/G2D/icon/wireless48.mpt");
-    s_loading48.unkfunc_0206dc2c("DATA/G2D/icon/loading48.mpt");
+    s_command32.setup("DATA/G2D/icon/command32.mptp");
+    s_command24.setup("DATA/G2D/icon/command24.mptp");
+    s_item32.setupStream(NULL, "DATA/G2D/icon/item32.mptp", 0x258, 24);
+    s_char32.setupStream(NULL, "DATA/G2D/icon/char32.mptp", 0x208, 14);
+    s_face48.setupStream(NULL, "DATA/G2D/icon/face48.mpt", 0x900, 12);
+    s_wireless48.setup("DATA/G2D/icon/wireless48.mpt");
+    s_loading48.setup("DATA/G2D/icon/loading48.mpt");
     s_itemIconType = 0;
 }
 
@@ -37,7 +37,7 @@ THUMB void setItemIconType(int type)
         }
         if (path != NULL) {
             dss::g_File.loadToBuffer(path, s_item32.data_.getAddr(), 1);
-            data_02106178.icon_.unkfunc_020637ac();
+            data_02106178.icon_.loadPalettes();
         }
     }
 }
@@ -81,5 +81,5 @@ THUMB void* getMenuIconData(int type, int index)
     default:
         return NULL;
     }
-    return file->unkfunc_0206dc68(index);
+    return file->getData(index);
 }

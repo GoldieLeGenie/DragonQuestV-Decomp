@@ -175,5 +175,5 @@ THUMB void TownMenu_OPERATION_SETTING::unkfunc_02176840()
             s_parts[3].y_ = 0x4e;
             break;
     }
-    unkfunc_02062990(s_parts, 0, 0, 0);
+    drawMenuPartsAt(s_parts, 0, 0, 0);
 }

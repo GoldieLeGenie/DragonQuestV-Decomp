@@ -6,40 +6,40 @@ static int s_textX;                             // end of the last text, for fol
 static int s_textY;
 int data_02105fcc;
 
-THUMB void unkfunc_0206297c(UnkMenuParts* parts, int* param)
+THUMB void drawMenuPartsPlain(UnkMenuParts* parts, int* param)
 {
-    unkfunc_020629b4(parts, param, 0, 0, -1);
+    drawMenuParts(parts, param, 0, 0, -1);
 }
 
-THUMB void unkfunc_02062990(UnkMenuParts* parts, int* param, int x, int y)
+THUMB void drawMenuPartsAt(UnkMenuParts* parts, int* param, int x, int y)
 {
-    unkfunc_020629b4(parts, param, x, y, -1);
+    drawMenuParts(parts, param, x, y, -1);
 }
 
-THUMB void unkfunc_020629a4(UnkMenuParts* parts, int* param, int color)
+THUMB void drawMenuPartsColored(UnkMenuParts* parts, int* param, int color)
 {
-    unkfunc_020629b4(parts, param, 0, 0, color);
+    drawMenuParts(parts, param, 0, 0, color);
 }
 
-THUMB void unkfunc_020629b4(UnkMenuParts* parts, int* param, int x, int y, int color)
+THUMB void drawMenuParts(UnkMenuParts* parts, int* param, int x, int y, int color)
 {
     s_textX = 0;
     s_textY = 0;
     while (parts->type_ != 0xff) {
-        unkfunc_02062a04(parts, param, x, y, color);
+        drawMenuPart(parts, param, x, y, color);
         parts++;
     }
 }
 
-THUMB void unkfunc_020629f0(UnkMenuParts* part, int* param, int x, int y)
+THUMB void drawMenuPartAt(UnkMenuParts* part, int* param, int x, int y)
 {
-    unkfunc_02062a04(part, param, x, y, -1);
+    drawMenuPart(part, param, x, y, -1);
 }
 
-THUMB void unkfunc_02062a04(UnkMenuParts* part, int* param, int x, int y, int defaultColor)
+THUMB void drawMenuPart(UnkMenuParts* part, int* param, int x, int y, int defaultColor)
 {
-    int palette = part->unkfunc_0206322c();
-    int color = part->unkfunc_02063238();
+    int palette = part->getPalette();
+    int color = part->getTextColor();
     int px = x + (part->x_ + data_02105f2c);
     int py = y + (part->y_ + data_02105f30);
     int w = part->w_;
@@ -54,7 +54,7 @@ THUMB void unkfunc_02062a04(UnkMenuParts* part, int* param, int x, int y, int de
     int vflip = 0;
     int font = -1;
     int align = -1;
-    int value = part->unkfunc_02063218(param);
+    int value = part->getValue(param);
     int index = part->index_;
     switch (part->type_) {
     case 1:
@@ -158,7 +158,7 @@ THUMB void unkfunc_02062a04(UnkMenuParts* part, int* param, int x, int y, int de
     }
     case 9: {
         MenuIconDisplay* icon = &data_02114dd4.icon_;
-        int slot = part->unkfunc_02063244();
+        int slot = part->getIconSlot();
         icon->setEnable(1);
         icon->loadIcon(slot, value);
         icon->setIconPosition(slot, px, py);
@@ -267,23 +267,23 @@ THUMB void unkfunc_02062a04(UnkMenuParts* part, int* param, int x, int y, int de
         }
         if (font != -1) {
             if (part->type_ == 13) {
-                s_textX = unkfunc_02061e98(px, py + offsetY, w, h, 15, color, align, font, value, 0, 0);
+                s_textX = drawMenuText(px, py + offsetY, w, h, 15, color, align, font, value, 0, 0);
             }
             if (part->type_ == 14) {
-                s_textX = unkfunc_02061e98(px, py + offsetY, w, h, 15, color, align, font, value, 1, 0);
+                s_textX = drawMenuText(px, py + offsetY, w, h, 15, color, align, font, value, 1, 0);
             }
             if (part->type_ == 25) {
-                s_textX = unkfunc_02061e98(px, py + offsetY, w, h, 15, color, align, font, value, 0, 1);
+                s_textX = drawMenuText(px, py + offsetY, w, h, 15, color, align, font, value, 0, 1);
             }
             if (part->type_ == 15) {
-                s_textX = unkfunc_02062244(px, py + offsetY, w, h, 15, color, align, font, value);
+                s_textX = drawMenuNumber(px, py + offsetY, w, h, 15, color, align, font, value);
             }
         }
         s_textY = py;
         return;
     }
     case 17:
-        unkfunc_020622d8(px, py, value);
+        drawMenuHpGauge(px, py, value);
         return;
     case 20: {
         int show = 0;
@@ -413,7 +413,7 @@ THUMB void unkfunc_02062a04(UnkMenuParts* part, int* param, int x, int y, int de
     }
 }
 
-THUMB int UnkMenuParts::unkfunc_02063218(int* param)
+THUMB int UnkMenuParts::getValue(int* param)
 {
     if (param == NULL) {
         return -1;
@@ -421,17 +421,17 @@ THUMB int UnkMenuParts::unkfunc_02063218(int* param)
     return param[index_];
 }
 
-THUMB int UnkMenuParts::unkfunc_0206322c()
+THUMB int UnkMenuParts::getPalette()
 {
     return (attr_ >> 12) & 0xf;
 }
 
-THUMB int UnkMenuParts::unkfunc_02063238()
+THUMB int UnkMenuParts::getTextColor()
 {
     return (attr_ >> 8) & 0xf;
 }
 
-THUMB int UnkMenuParts::unkfunc_02063244()
+THUMB int UnkMenuParts::getIconSlot()
 {
     return attr_ & 0xff;
 }

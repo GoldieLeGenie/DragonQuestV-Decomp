@@ -58,7 +58,7 @@ THUMB void TownMenuItemSelectTargetItem::menuExecute()
     } else {
         count = MenuStatusInfo::getPlayerItemCount(targetChara) + 1;
     }
-    unkfunc_0201c8e8(&menuItem_, count, menuItem_.active_);
+    setupItemIcon32Layout2x3(&menuItem_, count, menuItem_.active_);
 }
 
 THUMB void TownMenuItemSelectTargetItem::menuDraw()

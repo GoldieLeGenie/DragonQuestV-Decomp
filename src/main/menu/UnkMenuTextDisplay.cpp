@@ -45,7 +45,7 @@ THUMB void UnkMenuTextDisplay::draw(UnkOamBuffer* main, UnkOamBuffer* sub)
         timer_--;
         return;
     }
-    if (!unkfunc_02064730(main, sub)) {
+    if (!isDrawable(main, sub)) {
         return;
     }
     y = y_ % 192;
@@ -54,7 +54,7 @@ THUMB void UnkMenuTextDisplay::draw(UnkOamBuffer* main, UnkOamBuffer* sub)
     for (i = 0; i < 8; i++, x += 32, chr += 4) {
         if (x < visibleWidth_) {
             if (visibleWidth_ < width_ && x + 32 > visibleWidth_) {
-                unkfunc_02066ef4(sub, x_ + visibleWidth_, y, x + 32 - visibleWidth_, 14);
+                drawHiddenMask(sub, x_ + visibleWidth_, y, x + 32 - visibleWidth_, 14);
             }
             G2_SetOBJAttr(sub->allocEntry(), x_ + x, y, priority_, GX_OAM_MODE_NORMAL, 0, GX_OAM_EFFECT_NONE,
                           GX_OAM_SHAPE_32x16, GX_OAM_COLORMODE_16, chr, palette_, 0);
@@ -66,19 +66,19 @@ THUMB void UnkMenuTextDisplay::draw(UnkOamBuffer* main, UnkOamBuffer* sub)
         top = baseY - 2;
         width = frameWidth_ + 4;
         if (width < 40) {
-            unkfunc_020672ac(sub, left, top, 0x109);
-            unkfunc_020672ac(sub, left, baseY + 2, 0x189);
+            drawFrameSprite16(sub, left, top, 0x109);
+            drawFrameSprite16(sub, left, baseY + 2, 0x189);
             right = left + width - 16;
-            unkfunc_020672ac(sub, right, top, 0x10d);
-            unkfunc_020672ac(sub, right, baseY + 2, 0x18d);
-            unkfunc_020672e8(sub, left + 16, top, 0x10b);
-            unkfunc_020672e8(sub, left + 16, baseY + 2, 0x18b);
+            drawFrameSprite16(sub, right, top, 0x10d);
+            drawFrameSprite16(sub, right, baseY + 2, 0x18d);
+            drawFrameSprite8(sub, left + 16, top, 0x10b);
+            drawFrameSprite8(sub, left + 16, baseY + 2, 0x18b);
         } else {
-            unkfunc_02067270(sub, left, top, 0x109);
-            unkfunc_02067270(sub, left, baseY + 2, 0x189);
+            drawFrameSprite32(sub, left, top, 0x109);
+            drawFrameSprite32(sub, left, baseY + 2, 0x189);
             right = left + width - 32;
-            unkfunc_02067270(sub, right, top, 0x10b);
-            unkfunc_02067270(sub, right, baseY + 2, 0x18b);
+            drawFrameSprite32(sub, right, top, 0x10b);
+            drawFrameSprite32(sub, right, baseY + 2, 0x18b);
         }
         width -= 64;
         left += 32;
@@ -91,8 +91,8 @@ THUMB void UnkMenuTextDisplay::draw(UnkOamBuffer* main, UnkOamBuffer* sub)
         } else {
             back = 0;
         }
-        unkfunc_02067270(sub, left + pos - back, top, 0x10a);
-        unkfunc_02067270(sub, left + pos - back, baseY + 2, 0x18a);
+        drawFrameSprite32(sub, left + pos - back, top, 0x10a);
+        drawFrameSprite32(sub, left + pos - back, baseY + 2, 0x18a);
         }
         for (pos = 0; pos < frameWidth_; pos += 16) {
             back = 0;
@@ -110,7 +110,7 @@ THUMB void UnkMenuTextDisplay::draw(UnkOamBuffer* main, UnkOamBuffer* sub)
     }
 }
 
-THUMB void UnkMenuTextDisplay::unkfunc_02066ef4(UnkOamBuffer* oam, int x, int y, int width, int height)
+THUMB void UnkMenuTextDisplay::drawHiddenMask(UnkOamBuffer* oam, int x, int y, int width, int height)
 {
     int y2 = y + height - 8;
     int size;
@@ -152,7 +152,7 @@ THUMB void UnkMenuTextDisplay::unkfunc_02066ef4(UnkOamBuffer* oam, int x, int y,
 
 THUMB void UnkMenuTextDisplay::unkfunc_02066fe4(int font, const char* text, int x, int y, int clear, int center)
 {
-    unkfunc_02067324(text);
+    storeText(text);
     setBgTextFontSize(font);
     int offset = 0;
     if (center) {
@@ -166,7 +166,7 @@ THUMB void UnkMenuTextDisplay::unkfunc_02066fe4(int font, const char* text, int 
     width_ = getBgTextWidth();
     visibleCount_ = 0;
     visibleWidth_ = 0;
-    unkfunc_02067180(0);
+    setVisibleCount(0);
     unk_398 = offset;
     width_ += offset;
     requestVramCopy(0x13, id_ << 5, charData_, 0x800);
@@ -183,9 +183,9 @@ THUMB void UnkMenuTextDisplay::unkfunc_02066fe4(int font, const char* text, int 
     }
 }
 
-THUMB int UnkMenuTextDisplay::unkfunc_020670f4(int font, const char* text, int priority, int flag)
+THUMB int UnkMenuTextDisplay::setFramedText(int font, const char* text, int priority, int flag)
 {
-    unkfunc_02067324(text);
+    storeText(text);
     setBgTextFontSize(10);
     drawBgText(NULL, 0, 0, 0, text);
     int width = getBgTextWidth();
@@ -195,12 +195,12 @@ THUMB int UnkMenuTextDisplay::unkfunc_020670f4(int font, const char* text, int p
     frameWidth_ = width + 9;
     unk_bc8 = 14;
     priority_ = priority;
-    unkfunc_020671c8(width + 9);
+    setVisibleWidth(width + 9);
     timer_ = 1;
     return width + 13;
 }
 
-THUMB void UnkMenuTextDisplay::unkfunc_02067180(int count)
+THUMB void UnkMenuTextDisplay::setVisibleCount(int count)
 {
     if (count == -1) {
         count = count_;
@@ -216,27 +216,27 @@ THUMB void UnkMenuTextDisplay::unkfunc_02067180(int count)
     visibleWidth_ = width + unk_398;
 }
 
-THUMB void UnkMenuTextDisplay::unkfunc_020671c8(int width)
+THUMB void UnkMenuTextDisplay::setVisibleWidth(int width)
 {
     visibleWidth_ = width;
 }
 
-THUMB int UnkMenuTextDisplay::unkfunc_020671d0()
+THUMB int UnkMenuTextDisplay::getVisibleCount()
 {
     return visibleCount_;
 }
 
-THUMB int UnkMenuTextDisplay::unkfunc_020671d8()
+THUMB int UnkMenuTextDisplay::getCharCount()
 {
     return count_;
 }
 
-THUMB int UnkMenuTextDisplay::unkfunc_020671e0()
+THUMB int UnkMenuTextDisplay::getTextWidth()
 {
     return width_;
 }
 
-THUMB void UnkMenuTextDisplay::unkfunc_020671e8(int scroll)
+THUMB void UnkMenuTextDisplay::clearScrolledLines(int scroll)
 {
     int i;
     char* dst;
@@ -261,33 +261,33 @@ THUMB void UnkMenuTextDisplay::unkfunc_020671e8(int scroll)
     requestVramCopy(0x13, id_ << 5, charData_, 0x800);
 }
 
-THUMB void UnkMenuTextDisplay::unkfunc_02067268(int flag)
+THUMB void UnkMenuTextDisplay::setTranslucent(int flag)
 {
     xlu_ = flag;
 }
 
-THUMB void UnkMenuTextDisplay::unkfunc_02067270(UnkOamBuffer* oam, int x, int y, int chr)
+THUMB void UnkMenuTextDisplay::drawFrameSprite32(UnkOamBuffer* oam, int x, int y, int chr)
 {
     GXOamAttr* obj = oam->allocEntry();
     G2_SetOBJAttr(obj, x, y, priority_, GX_OAM_MODE_NORMAL, 0, GX_OAM_EFFECT_NONE, GX_OAM_SHAPE_32x16, GX_OAM_COLORMODE_16,
                   chr, palette_, 0);
 }
 
-THUMB void UnkMenuTextDisplay::unkfunc_020672ac(UnkOamBuffer* oam, int x, int y, int chr)
+THUMB void UnkMenuTextDisplay::drawFrameSprite16(UnkOamBuffer* oam, int x, int y, int chr)
 {
     GXOamAttr* obj = oam->allocEntry();
     G2_SetOBJAttr(obj, x, y, priority_, GX_OAM_MODE_NORMAL, 0, GX_OAM_EFFECT_NONE, GX_OAM_SHAPE_16x16, GX_OAM_COLORMODE_16,
                   chr, palette_, 0);
 }
 
-THUMB void UnkMenuTextDisplay::unkfunc_020672e8(UnkOamBuffer* oam, int x, int y, int chr)
+THUMB void UnkMenuTextDisplay::drawFrameSprite8(UnkOamBuffer* oam, int x, int y, int chr)
 {
     GXOamAttr* obj = oam->allocEntry();
     G2_SetOBJAttr(obj, x, y, priority_, GX_OAM_MODE_NORMAL, 0, GX_OAM_EFFECT_NONE, GX_OAM_SHAPE_8x16, GX_OAM_COLORMODE_16,
                   chr, palette_, 0);
 }
 
-THUMB void UnkMenuTextDisplay::unkfunc_02067324(const char* text)
+THUMB void UnkMenuTextDisplay::storeText(const char* text)
 {
     dss::strcpy_s(unk_330, 0x62, text);
 }

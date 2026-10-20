@@ -2,7 +2,7 @@
 #include "main/menu/MenuBase.hpp"
 
 namespace MenuAPI {
-    void unkfunc_020199cc();
+    void openMenuByIndex();
     void changeMenuModeNormal();
     void changeMenuModeExtra();
     int isMenuModeNormal();

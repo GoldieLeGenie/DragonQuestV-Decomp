@@ -13,7 +13,7 @@ struct UnkMenuFrameRequest {
     int effect_;                                // 0x18
     int mode_;                                  // 0x1C
 
-    void unkfunc_0204edb4(UnkOamBuffer* main, UnkOamBuffer* sub);
+    void draw(UnkOamBuffer* main, UnkOamBuffer* sub);
 };
 
 // Frames drawn as sprites, queued each frame (data_02114dd4.frames_)

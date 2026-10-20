@@ -27,7 +27,7 @@ ARM void btl::BattlePart::initialize()
     changeDisplayPlugin(&dss::g_DISPLAYPLUGIN_SINGLE3D);
     loadOverlay((int)&OVERLAY_0_ID);
     ov000_entry();
-    unkfunc_02018e6c(2);
+    loadWindowOverlay(2);
     ov018_entry();
     data_020a29f4.unload();
     BattleSystem::getSingleton()->initialize();
@@ -43,7 +43,7 @@ ARM void btl::BattlePart::terminate()
     dss::g_Pad.setMaskL(0);
     UnkBattleSystem::getSingleton()->terminate();
     BattleSystem::getSingleton()->terminate();
-    unkfunc_02018eac();
+    unloadWindowOverlay();
     unloadOverlay((int)&OVERLAY_0_ID);
     data_020f4f74.onPartTerminate();
 }

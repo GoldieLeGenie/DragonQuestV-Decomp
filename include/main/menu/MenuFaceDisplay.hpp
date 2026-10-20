@@ -13,10 +13,10 @@ struct MenuFaceDisplay : MenuDisplay {
     virtual void update(UnkOamBuffer* main, UnkOamBuffer* sub);
     virtual void execute(UnkOamBuffer* main, UnkOamBuffer* sub);
     virtual void draw(UnkOamBuffer* main, UnkOamBuffer* sub);
-    void unkfunc_02064bc8(UnkOamBuffer* oam, int x, int y, int mode);
+    void drawPart(UnkOamBuffer* oam, int x, int y, int mode);
     void setPriority(int priority);
     void loadFace(int index);           // face icon
-    void unkfunc_02064c80();                    // loading animation
-    void unkfunc_0204f568();
+    void loadLoadingAnim();                    // loading animation
+    void resetAnim();
     void loadIcon(int type, int index);
 };

@@ -76,7 +76,7 @@ THUMB void MaterielMenu_SUGOROKU_GETITEM::menuSetup()
 
 THUMB void MaterielMenu_SUGOROKU_GETITEM::menuExecute()
 {
-    unkfunc_0201c8e8(&menuItem_, navigator_.getCountInPage(), menuItem_.active_);
+    setupItemIcon32Layout2x3(&menuItem_, navigator_.getCountInPage(), menuItem_.active_);
 }
 
 THUMB void MaterielMenu_SUGOROKU_GETITEM::menuDraw()

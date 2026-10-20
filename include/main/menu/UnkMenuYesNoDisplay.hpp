@@ -18,7 +18,7 @@ struct UnkMenuYesNoDisplay : MenuDisplay {
     virtual void execute(UnkOamBuffer* main, UnkOamBuffer* sub);
     virtual void draw(UnkOamBuffer* main, UnkOamBuffer* sub);
     virtual void unkfunc_0206756c(UnkOamBuffer* main, UnkOamBuffer* sub);
-    void unkfunc_02067570(int yesMessageId, int noMessageId);
+    void setTexts(int yesMessageId, int noMessageId);
     void unkfunc_020675ec(int cursor);
     void transferRow(int row);                  // copy one row of both texts to VRAM
 };

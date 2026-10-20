@@ -27,7 +27,7 @@ THUMB void MenuDisplay::updateMove()
     y_ += ((targetY_ - y_) * 4096 / moveCount_) / 4096;
 }
 
-THUMB int MenuDisplay::unkfunc_02064730(UnkOamBuffer* main, UnkOamBuffer* sub)
+THUMB int MenuDisplay::isDrawable(UnkOamBuffer* main, UnkOamBuffer* sub)
 {
     if (enable_ == 0) {
         return 0;

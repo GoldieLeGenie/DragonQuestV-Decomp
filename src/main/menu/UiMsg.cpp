@@ -38,16 +38,16 @@ THUMB void ui_MsgSetup(eMessageWindow type, int lang)
 
 THUMB void ui_MsgAdd(int strNo)
 {
-    unkfunc_0206266c(strNo);
+    ui_MsgAddId(strNo);
 }
 
 THUMB int ui_MsgAddSerial(int no)
 {
     int count = 0;
-    if (unkfunc_02062748(no) != 0) {
+    if (ui_MsgIsQueued(no) != 0) {
         return count;
     }
-    unkfunc_0206266c(no);
+    ui_MsgAddId(no);
     ui_MsgAddWaitTrigger();
     no++;
     count++;
@@ -55,8 +55,8 @@ THUMB int ui_MsgAddSerial(int no)
         if (TextAPI::isExistMessage(no) == 0) {
             break;
         }
-        if (unkfunc_02062748(no) == 0) {
-            unkfunc_0206266c(no);
+        if (ui_MsgIsQueued(no) == 0) {
+            ui_MsgAddId(no);
             ui_MsgAddWaitTrigger();
         }
         no++;
@@ -101,10 +101,10 @@ THUMB void ui_MsgAddWaitTrigger()
 THUMB void ui_MsgAddWait()
 {
     ui_MsgOpenIfFirst();
-    s_draw->unkfunc_020669f0();
+    s_draw->addWaitProg();
 }
 
-THUMB void unkfunc_0206264c()
+THUMB void ui_MsgDrawYesNo()
 {
     data_02114dd4.yesNo_.setEnable(1);
 }
@@ -114,7 +114,7 @@ THUMB void ui_MsgSetYesNoCursor(int cursor)
     data_02114dd4.yesNo_.unkfunc_020675ec(cursor);
 }
 
-THUMB void unkfunc_0206266c(int strNo)
+THUMB void ui_MsgAddId(int strNo)
 {
     char buf[0x400];
     char name[0x80];
@@ -132,12 +132,12 @@ THUMB void unkfunc_0206266c(int strNo)
         s_draw->openWindow(s_windowType, "", "");
         s_draw->addText("\x1b" "A");
         s_draw->addText(buf);
-        s_draw->unkfunc_02066a7c();
+        s_draw->clearNames();
     } else {
         s_draw->addText("\x1b" "A");
         s_draw->addText(buf);
     }
-    s_draw->unkfunc_02066aa4(name);
+    s_draw->addName(name);
     s_msgCur++;
 }
 
@@ -149,7 +149,7 @@ THUMB void ui_MsgOpenIfFirst()
     }
 }
 
-THUMB int unkfunc_02062748(int no)
+THUMB int ui_MsgIsQueued(int no)
 {
     for (int i = 0; i < s_msgCount; i++) {
         if (no == s_msgQue[i]) {
@@ -189,7 +189,7 @@ THUMB int ui_MsgSndGet()
     return s_msgSndLast;
 }
 
-THUMB void unkfunc_020627f8(char* dst, const char* src, int width, int lines, int font)
+THUMB void ui_MsgWrapText(char* dst, const char* src, int width, int lines, int font)
 {
     int length = dss::strlen(src);
     int x = 0;
