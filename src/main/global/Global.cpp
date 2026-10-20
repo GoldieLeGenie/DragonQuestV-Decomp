@@ -48,7 +48,7 @@ static int s_firstTownMapNameId = 72;
 static char s_firstMapName[] = "mbout";
 
 Global g_Global;
-static UnkGlobalChangePart data_0209d690;
+static GlobalChangePart data_0209d690;
 FadeEffector fadeEffector;
 static UnkGlobalWaitPart data_0209d698;
 
@@ -444,7 +444,7 @@ THUMB bool Global::checkSave2()
     return false;
 }
 
-THUMB void UnkGlobalChangePart::update()
+THUMB void GlobalChangePart::update()
 {
     if (fadeEffector.isFadeEnd()) {
         data_02101c88.unkfunc_02051800(nextPart_);
@@ -452,7 +452,7 @@ THUMB void UnkGlobalChangePart::update()
     }
 }
 
-THUMB int UnkGlobalChangePart::isEnd()
+THUMB int GlobalChangePart::isEnd()
 {
     if (nextPart_ == NONE_PART) {
         return true;
@@ -460,7 +460,7 @@ THUMB int UnkGlobalChangePart::isEnd()
     return false;
 }
 
-THUMB void UnkGlobalChangePart::setNextPart(int part)
+THUMB void GlobalChangePart::setNextPart(int part)
 {
     nextPart_ = part;
 }
@@ -502,8 +502,8 @@ THUMB void FadeEffector::draw()
             break;
     }
     if (unk_14) {
-        unkfunc_0204b53c(brightness_);
-        unkfunc_0204b554(brightness_);
+        setMainBrightness(brightness_);
+        setSubBrightness(brightness_);
     }
 }
 

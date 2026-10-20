@@ -23,4 +23,4 @@ struct UnkModelMember {
 extern NNSG3dResTex* data_020f3e84;             // last loaded textures
 extern int data_020f3e88;                       // skip the next texture load
 
-NNSG3dResTex* unkfunc_02046f40();
+NNSG3dResTex* getLastModelTexture();

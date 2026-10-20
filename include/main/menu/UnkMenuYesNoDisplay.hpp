@@ -1,10 +1,10 @@
 #pragma once
 #include <globaldefs.h>
-#include "main/menu/UnkMenuDisplay.hpp"
+#include "main/menu/MenuDisplay.hpp"
 #include "main/dss/UnkBgBuffer.hpp"
 
 // Yes/no window drawn on the sub screen, texts drawn in two 6x2 character buffers (data_02114dd4.yesNo_)
-struct UnkMenuYesNoDisplay : UnkMenuDisplay {
+struct UnkMenuYesNoDisplay : MenuDisplay {
     UnkCharBuffer yesChar_;                     // 0x030
     UnkCharBuffer noChar_;                      // 0x040
     char yesData_[0x180];                       // 0x050

@@ -28,10 +28,10 @@ ARM void UnkGlobalSystem::unkfunc_020516e4(int partId)
     while (1) {
         int id = part_id_;
         if (id >= 24) {
-            unkfunc_0204c140(id, 24);
+            reportArrayError(id, 24);
         }
         if (id < 0) {
-            unkfunc_0204c140(id, 24);
+            reportArrayError(id, 24);
         }
         currentTask_ = task_[id];
         unkfunc_0205185c(currentTask_);
@@ -61,10 +61,10 @@ ARM void UnkGlobalSystem::unkfunc_020516e4(int partId)
 ARM void UnkGlobalSystem::unkfunc_020517c0(int partId, UnkGameTask* task)
 {
     if (partId >= 24) {
-        unkfunc_0204c140(partId, 24);
+        reportArrayError(partId, 24);
     }
     if (partId < 0) {
-        unkfunc_0204c140(partId, 24);
+        reportArrayError(partId, 24);
     }
     task_[partId] = task;
 }

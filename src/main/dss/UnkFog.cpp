@@ -55,7 +55,7 @@ THUMB void unkfunc_02046be0()
     if (data_020f3e30 == 0) {
         return;
     }
-    if (unkfunc_0204ccd0() & 1) {
+    if (getDisplayFrame() & 1) {
         func_02075e00(1, 0, 10, data_020f3e3c[0]);
         func_02075eb8(data_020f3e44[0]);
     } else {

@@ -1,7 +1,7 @@
 #include "main/menu/UnkMenuBg.hpp"
 #include "main/dss/UnkDisplay.hpp"
 #include "main/menu/UnkMenuIconData.hpp"
-#include "main/menu/UnkMenuIconDisplay.hpp"
+#include "main/menu/MenuIconDisplay.hpp"
 #include "main/menu/UnkMenuSystem.hpp"
 #include "main/menu/UiMsg.hpp"
 #include "nitro/gx.h"
@@ -31,7 +31,7 @@ THUMB void unkfunc_02063450()
     if (!unkfunc_0204cca8() || bg->transferCount_ == 0) {
         return;
     }
-    int frame = unkfunc_0204ccd0() & 1;
+    int frame = getDisplayFrame() & 1;
     int line = frame * 192;
     int index = unkfunc_0204ced8(line);
     if (index != -1) {
@@ -39,7 +39,7 @@ THUMB void unkfunc_02063450()
         void* chr = unkfunc_0204e564(bg->window_.unkfunc_02063708(), 0, y);
         unkfunc_0204dca8(unkfunc_0204de14(index), 0x1000, chr, 0x6000);
         UnkScreenBuffer* window = bg->window_.unkfunc_0206370c();
-        UnkScreenBuffer* screen = unkfunc_0204d048();
+        UnkScreenBuffer* screen = getDebugScreenBuffer();
         unsigned short* src = unkfunc_0204e858(window, 0, y);
         unsigned short* dst = unkfunc_0204e858(screen, 0, y);
         for (int i = 0; i < 0x300; i++) {
@@ -52,7 +52,7 @@ THUMB void unkfunc_02063450()
     }
     index = unkfunc_0204cf7c(line);
     if (index != -1) {
-        unsigned short* back = unkfunc_0204e858(bg->back_.unkfunc_020635a8(), 0, frame * 24);
+        unsigned short* back = unkfunc_0204e858(bg->back_.getScreenBuffer(), 0, frame * 24);
         unkfunc_0204dca8(unkfunc_0204de5c(index), 0, back, 0x600);
     }
     bg->icon_.unkfunc_02063ba4(frame);
@@ -64,20 +64,20 @@ THUMB void unkfunc_02063568()
     data_02106178.transferCount_ = 2;
 }
 
-THUMB void UnkMenuBackBg::unkfunc_02063574()
+THUMB void MenuBackBg::unkfunc_02063574()
 {
     unkfunc_0204e83c(&screen_, screenData_, 32, 48);
-    unkfunc_020635ac(0, 0, 0, 0);
+    startFade(0, 0, 0, 0);
     enable_ = 0;
     unk_c34 = 0;
 }
 
-THUMB UnkScreenBuffer* UnkMenuBackBg::unkfunc_020635a8()
+THUMB UnkScreenBuffer* MenuBackBg::getScreenBuffer()
 {
     return &screen_;
 }
 
-THUMB void UnkMenuBackBg::unkfunc_020635ac(int r, int g, int b, int frame)
+THUMB void MenuBackBg::startFade(int r, int g, int b, int frame)
 {
     enable_ = 1;
     targetR_ = r;
@@ -86,7 +86,7 @@ THUMB void UnkMenuBackBg::unkfunc_020635ac(int r, int g, int b, int frame)
     frame_ = frame;
 }
 
-THUMB void UnkMenuBackBg::unkfunc_020635d4()
+THUMB void MenuBackBg::unkfunc_020635d4()
 {
     if (!enable_) {
         return;
@@ -101,7 +101,7 @@ THUMB void UnkMenuBackBg::unkfunc_020635d4()
         b_ += (targetB_ - b_) / frame_;
         frame_--;
     }
-    unkfunc_0204cd8c(1)->unkfunc_0204dbe8(13, 15, GX_RGB(r_, g_, b_));
+    getBgPaletteBuffer(1)->unkfunc_0204dbe8(13, 15, GX_RGB(r_, g_, b_));
     unkfunc_0204e90c(&screen_, 0, 24, 16, 20, 13, 7);
     unkfunc_0204e90c(&screen_, unk_c34 * 8, 44, 32 - unk_c34 * 8, 4, 13, 7);
 }
@@ -155,7 +155,7 @@ THUMB int UnkMenuIconSlot::unkfunc_02063730()
     return offset_;
 }
 
-THUMB int UnkMenuIconRequest::unkfunc_02063734(int x, int y, int w, int h, int type, int index)
+THUMB int MenuIconRequest::set(int x, int y, int w, int h, int type, int index)
 {
     enable_ = 1;
     x_ = x;
@@ -188,9 +188,9 @@ THUMB void UnkMenuIconBg::unkfunc_0206375c(int enable)
 
 THUMB void UnkMenuIconBg::unkfunc_020637ac()
 {
-    UnkPaletteBuffer* palette = unkfunc_0204cd8c(0);
-    void* item = unkfunc_0206333c(0xf0000000, 9999);
-    void* chara = unkfunc_0206333c(0xf1000000, 9999);
+    UnkPaletteBuffer* palette = getBgPaletteBuffer(0);
+    void* item = getMenuIconData(0xf0000000, 9999);
+    void* chara = getMenuIconData(0xf1000000, 9999);
     palette->unkfunc_0204dbf4(0, 0, item, 0xa0);
     palette->unkfunc_0204dbf4(10, 0, chara, 0x40);
 }
@@ -292,7 +292,7 @@ THUMB void UnkMenuIconBg::unkfunc_020639f8(int x, int y, int w, int h, int type,
     }
     w /= 8;
     h /= 8;
-    void* src = unkfunc_0206333c(type, index);
+    void* src = getMenuIconData(type, index);
     if (src == NULL) {
         return;
     }
@@ -310,7 +310,7 @@ THUMB void UnkMenuIconBg::unkfunc_020639f8(int x, int y, int w, int h, int type,
 
 THUMB void UnkMenuIconBg::unkfunc_02063aac(int x, int y, int w, int h, int type, int index)
 {
-    requests_[requestCount_].unkfunc_02063734(x, y, w, h, type, index);
+    requests_[requestCount_].set(x, y, w, h, type, index);
     requestCount_++;
 }
 
@@ -319,7 +319,7 @@ THUMB void UnkMenuIconBg::unkfunc_02063ae4()
     unkfunc_02063b50(0xf4000000);
     unkfunc_02063b50(0xf3000000);
     unkfunc_02063b50(0xf2000000);
-    UnkMenuIconRequest* request = requests_;
+    MenuIconRequest* request = requests_;
     for (int i = 0; i < requestCount_; i++, request++) {
         if (request->enable_) {
             unkfunc_020639f8(request->x_, request->y_, request->w_, request->h_, request->type_, request->index_);
@@ -330,7 +330,7 @@ THUMB void UnkMenuIconBg::unkfunc_02063ae4()
 
 THUMB void UnkMenuIconBg::unkfunc_02063b50(int type)
 {
-    UnkMenuIconRequest* request = requests_;
+    MenuIconRequest* request = requests_;
     for (int i = 0; i < requestCount_; i++, request++) {
         if (type == request->type_ && request->enable_) {
             unkfunc_020639f8(request->x_, request->y_, request->w_, request->h_, request->type_, request->index_);

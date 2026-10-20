@@ -15,7 +15,7 @@ struct MaterielMenu_JISAN_ADD_MONSTER : menu::MenuBase {
 
     char mode_;                             // 0x1C
     menu::MenuItem menuItem_;               // 0x20
-    UnkCursorMoveGridLoop navigator_;       // 0x84
+    CursorMoveGridLoop navigator_;       // 0x84
 
     virtual void menuSetup();
     virtual void menuExecute();

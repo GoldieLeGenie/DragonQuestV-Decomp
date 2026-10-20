@@ -1,7 +1,7 @@
 #pragma once
 #include <globaldefs.h>
 #include "main/menu/MenuBase.hpp"
-#include "main/menu/UnkCursorMoveGridLoop.hpp"
+#include "main/menu/CursorMoveGridLoop.hpp"
 
 // town item menu: command selection for an item (use, give, throw, equip, show)
 struct TownMenuItemSelectCommand : menu::MenuBase {
@@ -10,7 +10,7 @@ struct TownMenuItemSelectCommand : menu::MenuBase {
     char commandFlag_;                          // 0x20
     char throwType_;                            // 0x21  step of the throw away messages
     menu::MenuItem menuItem_;                   // 0x24
-    UnkCursorMoveGridLoop navigator_;           // 0x88
+    CursorMoveGridLoop navigator_;           // 0x88
 
     virtual void menuSetup();
     virtual void menuExecute();

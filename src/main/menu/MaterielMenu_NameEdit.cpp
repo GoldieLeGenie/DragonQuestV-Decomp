@@ -156,11 +156,11 @@ THUMB void MaterielMenu_NameEdit::menuDraw()
             isMessage = 0;
         }
         if (isMessage) {
-            unkfunc_0201b0f8(0, 0x48, 0x100, 0x78, 0x60);
-            unkfunc_0202a69c(message);
+            drawMenuFrame(0, 0x48, 0x100, 0x78, 0x60);
+            drawMessageInput(message);
         }
         else {
-            unkfunc_0201b0f8(0x38, 0x10, 0xa0, 0x20, -1);
+            drawMenuFrame(0x38, 0x10, 0xa0, 0x20, -1);
             unkfunc_0202a6e0(message);
         }
         if (redraw_) {
@@ -168,7 +168,7 @@ THUMB void MaterielMenu_NameEdit::menuDraw()
                 s_keyText[i] = 0;
             }
             unkfunc_0202a610();
-            unkfunc_0202a330(s_keyText, isMessage);
+            drawNameEditCharTable(s_keyText, isMessage);
         }
         menuItem_.drawActive();
     }
@@ -182,7 +182,7 @@ THUMB void MaterielMenu_NameEdit::unkfunc_0202a610()
         char* text = &s_keyChar[pos];
         s_keyText[i] = (int)text;
         if (keyboard_.unkfunc_0202b098(i)) {
-            pos += unkfunc_0202ac10(keyboard_.unkfunc_0202b850(i), text);
+            pos += unpackCharCode(keyboard_.unkfunc_0202b850(i), text);
             s_keyChar[pos] = 0;
             pos++;
         }
@@ -205,11 +205,11 @@ THUMB int MaterielMenu_NameEdit::unkfunc_0202a670()
     return 0;
 }
 
-THUMB void MaterielMenu_NameEdit::unkfunc_0202a69c(int message)
+THUMB void MaterielMenu_NameEdit::drawMessageInput(int message)
 {
     unkfunc_0202a428(s_nameText, s_count);
-    unkfunc_0201b0f8(0, 0, 0x100, 0x48, -1);
-    unkfunc_0202a138(&message, 8, 0x4a, 0xf0, 0x58);
+    drawMenuFrame(0, 0, 0x100, 0x48, -1);
+    drawCenteredMessage(&message, 8, 0x4a, 0xf0, 0x58);
 }
 
 THUMB void MaterielMenu_NameEdit::unkfunc_0202a6e0(int message)
@@ -223,8 +223,8 @@ THUMB void MaterielMenu_NameEdit::unkfunc_0202a6e0(int message)
     }
     cursorTimer_++;
     unkfunc_0202a374(unk_80, s_nameText, s_count, s_maxCount, blink, 0);
-    unkfunc_0201b0f8(0, 0x30, 0x100, 0x78, 0x48);
-    unkfunc_0202a138(&message, 8, 0x4a, 0xf0, 0x2c);
+    drawMenuFrame(0, 0x30, 0x100, 0x78, 0x48);
+    drawCenteredMessage(&message, 8, 0x4a, 0xf0, 0x2c);
 }
 
 THUMB void MaterielMenu_NameEdit::menuUpdate()
@@ -268,7 +268,7 @@ THUMB void MaterielMenu_NameEdit::commandUpdate()
                 }
             }
             else {
-                unkfunc_0202a92c();
+                deleteLastChar();
                 redraw_ = 1;
             }
         }
@@ -334,7 +334,7 @@ THUMB void MaterielMenu_NameEdit::unkfunc_0202a8e4(int index, unsigned int code)
     }
 }
 
-THUMB void MaterielMenu_NameEdit::unkfunc_0202a92c()
+THUMB void MaterielMenu_NameEdit::deleteLastChar()
 {
     if (s_count > 0) {
         s_count--;
@@ -388,7 +388,7 @@ THUMB void MaterielMenu_NameEdit::unkfunc_0202a9fc()
     }
     switch (keyboard_.unkfunc_0202b74c()) {
         case 1:
-            unkfunc_0202a92c();
+            deleteLastChar();
             break;
         case 5:
             if (judgeNameEnable()) {
@@ -431,7 +431,7 @@ THUMB char* MaterielMenu_NameEdit::getNameUTF8()
     static char s_nameUTF8[0x89];
     int length = 0;
     for (int i = 0; i < s_count; i++) {
-        length += unkfunc_0202ac10(s_code[i], &s_nameUTF8[length]);
+        length += unpackCharCode(s_code[i], &s_nameUTF8[length]);
     }
     s_nameUTF8[length] = 0;
     unkfunc_0204afa8(s_nameUTF8);
@@ -476,13 +476,13 @@ THUMB void MaterielMenu_NameEdit::getNamePointer(unsigned int* pointer)
     int pos = 0;
     for (int i = 0; i < s_count; i++) {
         pointer[i] = (unsigned int)&s_nameChar[pos];
-        pos += unkfunc_0202ac10(s_code[i], &s_nameChar[pos]);
+        pos += unpackCharCode(s_code[i], &s_nameChar[pos]);
         s_nameChar[pos] = 0;
         pos++;
     }
 }
 
-THUMB int MaterielMenu_NameEdit::unkfunc_0202ac10(unsigned int code, char* buf)
+THUMB int MaterielMenu_NameEdit::unpackCharCode(unsigned int code, char* buf)
 {
     int size = 0;
     for (int i = 3; i >= 0; i--) {

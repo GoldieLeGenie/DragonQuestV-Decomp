@@ -1,7 +1,7 @@
 #pragma once
 #include <globaldefs.h>
 #include "main/menu/MenuBase.hpp"
-#include "main/menu/UnkCursorMoveGridLoop.hpp"
+#include "main/menu/CursorMoveGridLoop.hpp"
 
 // town menu root (talk, spells, items, search, status, misc)
 struct TownMenu_ROOT : menu::MenuBase {
@@ -17,7 +17,7 @@ struct TownMenu_ROOT : menu::MenuBase {
     };
 
     menu::MenuItem menuItem_;                   // 0x1C
-    UnkCursorMoveGridLoop navigator_;           // 0x80
+    CursorMoveGridLoop navigator_;           // 0x80
 
     virtual void menuSetup();
     virtual void menuExecute();

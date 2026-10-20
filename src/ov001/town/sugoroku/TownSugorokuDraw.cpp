@@ -3,7 +3,7 @@
 #include "ov001/town/TownSugorokuDraw.hpp"
 #include "main/dss/UnkArchive.hpp"
 #include "main/dss/UnkDisplay.hpp"
-#include "main/dss/UnkTextureObject.hpp"
+#include "main/dss/TextureObject.hpp"
 
 template <>
 inline dss::Vector3<dss::Fix16>::Vector3() : vx(0L), vy(0L), vz(0L)
@@ -37,8 +37,8 @@ void twn::TownSugorokuDraw::unkfunc_0214d3ac(const UnkPolygonVertex* xy)
 {
     data_.setup("data/sugoroku/sgpall.tex", 0, 0);
     texture_ = data_.getAddr();
-    ((UnkTextureObject*)texture_)->unkfunc_02049e9c(1);
-    int width = ((UnkTextureObject*)texture_)->unkfunc_0204a340() / 32;
+    ((TextureObject*)texture_)->unkfunc_02049e9c(1);
+    int width = ((TextureObject*)texture_)->unkfunc_0204a340() / 32;
     dss::Vector2<dss::Fix32> leftTop;
     dss::Vector2<dss::Fix32> rightTop;
     dss::Vector2<dss::Fix32> rightBottom;
@@ -57,7 +57,7 @@ void twn::TownSugorokuDraw::unkfunc_0214d3ac(const UnkPolygonVertex* xy)
         uv_[i].set(leftBottom, rightBottom, rightTop, leftTop);
     }
     xy_ = *xy;
-    polygon_.UnkRenderObject::texture_ = texture_;
+    polygon_.RenderObject::texture_ = texture_;
     polygon_.unkfunc_0204709c(&xy_);
 }
 
@@ -70,7 +70,7 @@ void twn::TownSugorokuDraw::unkfunc_0214d568(int type, dss::Fix32Vector3& pos)
 
 void twn::TownSugorokuDraw::cleanup()
 {
-    ((UnkTextureObject*)texture_)->unkfunc_02049f90();
+    ((TextureObject*)texture_)->unkfunc_02049f90();
     data_.cleanup();
 }
 
@@ -87,10 +87,10 @@ void twn::TownSugorokuDice::setup()
     char path[128];
     dss::sprintf_s(path, sizeof(path), "data/sugoroku/dice.pack");
     diceData_.setup(path, 0, 0);
-    texture_ = unkfunc_0204c878(diceData_.getAddr(), 0);
-    ((UnkTextureObject*)texture_)->unkfunc_02049e9c(1);
+    texture_ = getArchiveFile(diceData_.getAddr(), 0);
+    ((TextureObject*)texture_)->unkfunc_02049e9c(1);
     for (int i = 0; i < DICE_ANIM_MAX; i++) {
-        diceAnim_[i].setup(unkfunc_0204c878(diceData_.getAddr(), i + 1));
+        diceAnim_[i].setup(getArchiveFile(diceData_.getAddr(), i + 1));
         diceAnim_[i].setTexture(texture_);
     }
     enable_ = false;
@@ -109,7 +109,7 @@ void twn::TownSugorokuDice::draw()
         return;
     }
     if (diceAnim_[number_ - 1].isEnd() == false) {
-        if (unkfunc_0204ccd0() & 1) {
+        if (getDisplayFrame() & 1) {
             diceAnim_[number_ - 1].draw();
         }
         diceAnim_[number_ - 1].execute();
@@ -120,7 +120,7 @@ void twn::TownSugorokuDice::draw()
 
 void twn::TownSugorokuDice::drawNumber(int number)
 {
-    if (unkfunc_0204ccd0() & 1) {
+    if (getDisplayFrame() & 1) {
         diceAnim_[number + 5].draw();
     }
 }
@@ -130,7 +130,7 @@ void twn::TownSugorokuDice::cleanup()
     for (int i = 0; i < DICE_ANIM_MAX; i++) {
         diceAnim_[i].cleanup();
     }
-    ((UnkTextureObject*)texture_)->unkfunc_02049f90();
+    ((TextureObject*)texture_)->unkfunc_02049f90();
     diceData_.cleanup();
 }
 
@@ -146,7 +146,7 @@ void twn::TownSugorokuArrow::setup(const UnkPolygonVertex* xy)
 {
     arrowData_.setup("data/sugoroku/arrow.tex", 0, 0);
     texture_ = arrowData_.getAddr();
-    ((UnkTextureObject*)texture_)->unkfunc_02049e9c(1);
+    ((TextureObject*)texture_)->unkfunc_02049e9c(1);
     dss::Vector2<dss::Fix32> leftTop;
     dss::Vector2<dss::Fix32> rightTop;
     dss::Vector2<dss::Fix32> rightBottom;
@@ -163,7 +163,7 @@ void twn::TownSugorokuArrow::setup(const UnkPolygonVertex* xy)
         uv_[i].set(leftBottom, rightBottom, rightTop, leftTop);
     }
     xy_ = *xy;
-    polygon_.UnkRenderObject::texture_ = texture_;
+    polygon_.RenderObject::texture_ = texture_;
     polygon_.unkfunc_0204709c(&xy_);
     counter_ = 0;
     animFrame_ = 8;
@@ -180,7 +180,7 @@ void twn::TownSugorokuArrow::draw(dss::Fix32Vector3& pos)
 
 void twn::TownSugorokuArrow::cleanup()
 {
-    ((UnkTextureObject*)texture_)->unkfunc_02049f90();
+    ((TextureObject*)texture_)->unkfunc_02049f90();
     arrowData_.cleanup();
 }
 

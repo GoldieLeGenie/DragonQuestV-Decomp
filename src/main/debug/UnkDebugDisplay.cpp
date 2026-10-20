@@ -1,7 +1,7 @@
 #include "main/debug/UnkDebugDisplay.hpp"
 #include "main/debug/UnkBattleTest.hpp"
-#include "main/debug/UnkDebugBattleInfo.hpp"
-#include "main/debug/UnkDebugInfo.hpp"
+#include "main/debug/DebugBattleInfo.hpp"
+#include "main/debug/DebugInfo.hpp"
 #include "main/dss/DssCore.hpp"
 #include "main/dss/UnkArrayWarning.hpp"
 #include "main/global/UnkGlobalSystem.hpp"
@@ -14,7 +14,7 @@ static int s_arrayWarningCount;
 static UnkDebugDisplay* s_display[3];
 static char s_message[0x24];
 
-THUMB void unkfunc_02026ffc(int x, int y, const char* fmt, ...)
+THUMB void debugConsolePrintf(int x, int y, const char* fmt, ...)
 {
     char buf[0x80];
     va_list args;
@@ -23,7 +23,7 @@ THUMB void unkfunc_02026ffc(int x, int y, const char* fmt, ...)
     data_020f6f9c.unkfunc_0204b034(x, y, buf);
 }
 
-THUMB void unkfunc_02027034(int x, int y, const char* str)
+THUMB void debugPrint(int x, int y, const char* str)
 {
     if (!MenuManager::isRequesting()) {
         data_020f6f9c.unkfunc_0204b034(x, y, str);
@@ -33,15 +33,15 @@ THUMB void unkfunc_02027034(int x, int y, const char* str)
 THUMB void unkfunc_02027058(int x, int y, int w, int h)
 {
     if (!MenuManager::isRequesting()) {
-        unkfunc_0204ead4(data_02106178.back_.unkfunc_020635a8(), x, y, w, h, 0xf);
+        unkfunc_0204ead4(data_02106178.back_.getScreenBuffer(), x, y, w, h, 0xf);
     }
 }
 
-THUMB void unkfunc_0202708c(int x, int y, int w, int h)
+THUMB void drawDebugWindow(int x, int y, int w, int h)
 {
     if (!MenuManager::isRequesting()) {
         unkfunc_0204ec48(data_02106178.window_.unkfunc_0206370c(), x - 1, y - 1, w + 2, h + 2, 0xf);
-        unkfunc_0204eb00(data_02106178.back_.unkfunc_020635a8(), x - 1, y - 1, w + 2, h + 2, 0xf);
+        unkfunc_0204eb00(data_02106178.back_.getScreenBuffer(), x - 1, y - 1, w + 2, h + 2, 0xf);
     }
 }
 
@@ -70,8 +70,8 @@ THUMB void unkfunc_0202711c()
     task->unkfunc_02038248();
     task = &data_020f3520;
     task->unkfunc_02038248();
-    if (s_arrayWarningCount != unkfunc_0204c130()) {
-        s_arrayWarningCount = unkfunc_0204c130();
+    if (s_arrayWarningCount != getArrayErrorCount()) {
+        s_arrayWarningCount = getArrayErrorCount();
         data_020c2d10.unkfunc_02028258(1);
     }
     if (s_messageTime != 0) {

@@ -1,6 +1,6 @@
-#include "main/dss/UnkSprite2D.hpp"
-#include "main/dss/UnkRenderObject.hpp"
-#include "main/dss/UnkTextureObject.hpp"
+#include "main/dss/Sprite2D.hpp"
+#include "main/dss/RenderObject.hpp"
+#include "main/dss/TextureObject.hpp"
 
 THUMB UnkMenuSprite::UnkMenuSprite()
 {
@@ -13,22 +13,22 @@ THUMB UnkMenuSprite::~UnkMenuSprite()
 
 THUMB void UnkMenuSprite::unkfunc_02051a20()
 {
-    ((UnkTextureObject*)texture_)->unkfunc_02049f90();
+    ((TextureObject*)texture_)->unkfunc_02049f90();
 }
 
 THUMB void UnkMenuSprite::unkfunc_02051a2c()
 {
-    ((UnkTextureObject*)texture_)->unkfunc_0204a090(0);
+    ((TextureObject*)texture_)->unkfunc_0204a090(0);
 }
 
 THUMB void UnkMenuSprite::unkfunc_02051a38()
 {
-    ((UnkTextureObject*)texture_)->unkfunc_0204a004();
+    ((TextureObject*)texture_)->unkfunc_0204a004();
 }
 
 THUMB int UnkMenuSprite::unkfunc_02051a44()
 {
-    return ((UnkTextureObject*)texture_)->unkfunc_0204a1c4();
+    return ((TextureObject*)texture_)->unkfunc_0204a1c4();
 }
 
 THUMB void UnkMenuSprite::unkfunc_02051a50(const char* filename, int a)
@@ -40,16 +40,16 @@ THUMB void UnkMenuSprite::unkfunc_02051a50(const char* filename, int a)
 THUMB void UnkMenuSprite::unkfunc_02051a68()
 {
     texture_ = data_.getAddr();
-    ((UnkTextureObject*)texture_)->unkfunc_02049e9c(1);
+    ((TextureObject*)texture_)->unkfunc_02049e9c(1);
     sprite_.texture_ = texture_;
     sprite_.unkfunc_02047e88(0, 0);
-    sprite_.unkfunc_02047ec0(((UnkTextureObject*)texture_)->unkfunc_0204a340(), ((UnkTextureObject*)texture_)->unkfunc_0204a38c());
-    sprite_.unkfunc_02047ecc(0, 0, ((UnkTextureObject*)texture_)->unkfunc_0204a340(), ((UnkTextureObject*)texture_)->unkfunc_0204a38c());
+    sprite_.unkfunc_02047ec0(((TextureObject*)texture_)->unkfunc_0204a340(), ((TextureObject*)texture_)->unkfunc_0204a38c());
+    sprite_.unkfunc_02047ecc(0, 0, ((TextureObject*)texture_)->unkfunc_0204a340(), ((TextureObject*)texture_)->unkfunc_0204a38c());
 }
 
 THUMB void UnkMenuSprite::unkfunc_02051ac4()
 {
-    ((UnkTextureObject*)texture_)->unkfunc_02049f90();
+    ((TextureObject*)texture_)->unkfunc_02049f90();
     data_.cleanup();
     texture_ = 0;
 }

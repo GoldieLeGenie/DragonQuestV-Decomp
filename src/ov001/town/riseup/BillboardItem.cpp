@@ -83,15 +83,15 @@ void BillboardItem::unkfunc_0214e8b0(const char* filename, int index)
     OS_Wait();
     unkfunc_0205071c(&xy, &uv, unk_b8.getAddr());
     texture_ = unk_b8.getAddr();
-    ((UnkTextureObject*)texture_)->unkfunc_02049e9c(0);
-    ((UnkTextureObject*)texture_)->unkfunc_0204a004();
+    ((TextureObject*)texture_)->unkfunc_02049e9c(0);
+    ((TextureObject*)texture_)->unkfunc_0204a004();
     unkfunc_02047a20(&xy);
     unkfunc_02047a94(&uv);
     setAlpha(0x1f);
-    UnkRenderObject::texture_ = texture_;
+    RenderObject::texture_ = texture_;
     setScale(scale);
-    unsigned char* dst = (unsigned char*)((UnkTextureObject*)texture_)->unkfunc_0204a1c4();
-    void* src = unkfunc_0206333c(0xf0000000, index);
+    unsigned char* dst = (unsigned char*)((TextureObject*)texture_)->unkfunc_0204a1c4();
+    void* src = getMenuIconData(0xf0000000, index);
     switch (*(unsigned int*)src & 0xf0) {
     case 0x10:
         func_02070620(src, buf);
@@ -112,14 +112,14 @@ void BillboardItem::unkfunc_0214e8b0(const char* filename, int index)
             }
         }
     }
-    void* palette = unkfunc_0206333c(0xf0000000, 9999);
-    dss::memcpy((void*)((UnkTextureObject*)texture_)->unkfunc_0204a1d4(), palette, 0x200);
-    ((UnkTextureObject*)texture_)->unkfunc_0204a090(1);
+    void* palette = getMenuIconData(0xf0000000, 9999);
+    dss::memcpy((void*)((TextureObject*)texture_)->unkfunc_0204a1d4(), palette, 0x200);
+    ((TextureObject*)texture_)->unkfunc_0204a090(1);
 }
 
 void BillboardItem::draw()
 {
-    UnkBillboard::draw();
+    Billboard::draw();
 }
 
 void BillboardItem::cleanup()

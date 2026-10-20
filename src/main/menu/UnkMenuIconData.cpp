@@ -24,7 +24,7 @@ THUMB void unkfunc_02063250()
     s_itemIconType = 0;
 }
 
-THUMB void unkfunc_020632ec(int type)
+THUMB void setItemIconType(int type)
 {
     if (s_itemIconType != type) {
         const char* path = NULL;
@@ -42,14 +42,14 @@ THUMB void unkfunc_020632ec(int type)
     }
 }
 
-THUMB void* unkfunc_0206333c(int type, int index)
+THUMB void* getMenuIconData(int type, int index)
 {
     if (index != 9999) {
         if (type == 0xf0000000) {
-            unkfunc_020632ec(0);
+            setItemIconType(0);
         }
         if (type == 0xf7000000) {
-            unkfunc_020632ec(1);
+            setItemIconType(1);
         }
     }
     UnkIconFile* file;

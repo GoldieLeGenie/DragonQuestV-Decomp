@@ -1,6 +1,6 @@
 #pragma ipa file
 #include "main/dss/UnkPaletteEffect.hpp"
-#include "main/dss/UnkVramTransfer.hpp"
+#include "main/dss/VramTransferManager.hpp"
 #include "nitro/os.hpp"
 
 namespace dss {
@@ -30,23 +30,23 @@ ARM void unkfunc_020491f8(NNSG3dResTex* tex)
     data_020f3f54 = tex;
 }
 
-ARM void unkfunc_02049208(int index, dss::Fix32Vector3 rate)
+ARM void setPaletteRgbRate(int index, dss::Fix32Vector3 rate)
 {
     data_020f3f58 = index;
     data_020f3f5c = rate;
 }
 
-ARM void unkfunc_02049228(NNSG3dResTex* tex, dss::Fix32Vector3 rate)
+ARM void applyModelPaletteRgbRate(NNSG3dResTex* tex, dss::Fix32Vector3 rate)
 {
     unsigned int size = tex->plttInfo.sizePltt << 3;
     unsigned int address = (tex->plttInfo.vramKey & 0xffff) << 3;
     MI_CpuCopyU8((unsigned char*)tex + tex->plttInfo.ofsPlttData, data_020f3f68, size);
-    unkfunc_020492a0(data_020f3f68, size, rate);
+    applyPaletteRgbRate(data_020f3f68, size, rate);
     DC_CleanAll();
-    data_020f4f74.unkfunc_0204a6f0(1, data_020f3f68, address, size, 0);
+    data_020f4f74.transferToVram(1, data_020f3f68, address, size, 0);
 }
 
-ARM void unkfunc_020492a0(unsigned short* palette, int size, dss::Fix32Vector3& rate)
+ARM void applyPaletteRgbRate(unsigned short* palette, int size, dss::Fix32Vector3& rate)
 {
     for (int i = 0; i < size / 2; i++) {
         dss::Fix32 r;
@@ -107,9 +107,9 @@ ARM void unkfunc_02049868(unsigned short* palette, unsigned int size, int mode)
         float r2 = y + 1.402f * cr;
         float g2 = y - 0.34414f * cb - 0.71414f * cr;
         float b2 = y + 1.772f * cb;
-        r2 = unkfunc_02049a88(r2, 0.0f, 255.0f);
-        g2 = unkfunc_02049a88(g2, 0.0f, 255.0f);
-        b2 = unkfunc_02049a88(b2, 0.0f, 255.0f);
+        r2 = clampFloat(r2, 0.0f, 255.0f);
+        g2 = clampFloat(g2, 0.0f, 255.0f);
+        b2 = clampFloat(b2, 0.0f, 255.0f);
         r2 /= 8.0f;
         g2 /= 8.0f;
         b2 /= 8.0f;
@@ -117,30 +117,30 @@ ARM void unkfunc_02049868(unsigned short* palette, unsigned int size, int mode)
     }
 }
 
-ARM float unkfunc_02049a88(float value, float min, float max)
+ARM float clampFloat(float value, float min, float max)
 {
-    return unkfunc_02049abc(unkfunc_02049aa0(value, min), max);
+    return minFloat(maxFloat(value, min), max);
 }
 
-ARM float unkfunc_02049aa0(float a, float b)
+ARM float maxFloat(float a, float b)
 {
     return (a > b) ? a : b;
 }
 
-ARM float unkfunc_02049abc(float a, float b)
+ARM float minFloat(float a, float b)
 {
     return (a < b) ? a : b;
 }
 
-ARM void unkfunc_02049ad8(UnkTextureObject* texture, dss::Fix32Vector3& rgb)
+ARM void unkfunc_02049ad8(TextureObject* texture, dss::Fix32Vector3& rgb)
 {
     int data = texture->unkfunc_0204a1d4();
     int address = texture->unkfunc_0204a1cc();
     int size = texture->unkfunc_0204a1dc();
     MI_CpuCopyU8((void*)data, data_020f3f68, size);
-    unkfunc_020492a0(data_020f3f68, size, rgb);
+    applyPaletteRgbRate(data_020f3f68, size, rgb);
     DC_CleanAll();
-    data_020f4f74.unkfunc_0204a6f0(1, data_020f3f68, address, size, 0);
+    data_020f4f74.transferToVram(1, data_020f3f68, address, size, 0);
 }
 
 ARM void unkfunc_02049b5c(NNSG3dResTex* tex, int r, int g, int b, dss::Fix32 rate)
@@ -154,7 +154,7 @@ ARM void unkfunc_02049b5c(NNSG3dResTex* tex, int r, int g, int b, dss::Fix32 rat
     color.vz = dss::Fix32((long)b);
     unkfunc_02049564(data_020f3f68, size, color, rate);
     DC_CleanAll();
-    data_020f4f74.unkfunc_0204a6f0(1, data_020f3f68, address, size, 0);
+    data_020f4f74.transferToVram(1, data_020f3f68, address, size, 0);
 }
 
 ARM void unkfunc_02049c30(NNSG3dResTex* tex)
@@ -162,13 +162,13 @@ ARM void unkfunc_02049c30(NNSG3dResTex* tex)
     unsigned int offset = tex->plttInfo.ofsPlttData;
     unsigned int size = tex->plttInfo.sizePltt << 3;
     unsigned int address = (tex->plttInfo.vramKey & 0xffff) << 3;
-    unkfunc_02049c90(tex);
+    applyPaletteSepia(tex);
     DC_CleanAll();
-    data_020f4f74.unkfunc_0204a6f0(1, (unsigned char*)tex + offset, address, size, 0);
-    data_020f4f74.unkfunc_0204a7cc();
+    data_020f4f74.transferToVram(1, (unsigned char*)tex + offset, address, size, 0);
+    data_020f4f74.doTransfers();
 }
 
-ARM void unkfunc_02049c90(NNSG3dResTex* tex)
+ARM void applyPaletteSepia(NNSG3dResTex* tex)
 {
     unsigned int size = tex->plttInfo.sizePltt << 3;
     unsigned short* palette = (unsigned short*)((unsigned char*)tex + tex->plttInfo.ofsPlttData);
@@ -186,9 +186,9 @@ ARM void unkfunc_02049c90(NNSG3dResTex* tex)
         float r2 = y + 1.402f * cr;
         float g2 = y - 0.34414f * cb - 0.71414f * cr;
         float b2 = y + 1.772f * cb;
-        r2 = unkfunc_02049a88(r2, 0.0f, 255.0f);
-        g2 = unkfunc_02049a88(g2, 0.0f, 255.0f);
-        b2 = unkfunc_02049a88(b2, 0.0f, 255.0f);
+        r2 = clampFloat(r2, 0.0f, 255.0f);
+        g2 = clampFloat(g2, 0.0f, 255.0f);
+        b2 = clampFloat(b2, 0.0f, 255.0f);
         r2 /= 8.0f;
         g2 /= 8.0f;
         b2 /= 8.0f;

@@ -11,7 +11,7 @@ struct MaterielMenu_CHANGEGIFT_SELECTGIFT : menu::MenuBase {
     };
 
     menu::MenuItem menuItem_;               // 0x1C
-    UnkCursorMoveGridLoop navigator_;       // 0x80
+    CursorMoveGridLoop navigator_;       // 0x80
     char itemCount_;                        // 0x8C
     char mode_;                             // 0x8D
 

@@ -17,6 +17,6 @@ inline void MaterielMenu_SCRIPT::menuUpdate()
 THUMB void MaterielMenu_SCRIPT::menuDraw()
 {
     if (drawMode_ == DRAW_GOLD) {
-        unkfunc_0201b1cc(-1, -1, 0);
+        drawMoneyWindow(-1, -1, 0);
     }
 }

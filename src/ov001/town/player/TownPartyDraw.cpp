@@ -425,7 +425,7 @@ THUMB void twn::TownPartyDraw::execute()
     if (exe_ == 0) {
         return;
     }
-    if (unkfunc_0204ccd0() & 1) {
+    if (getDisplayFrame() & 1) {
         for (int i = 0; i < PARTY_MAX; i++) {
             partyCharacter_[i].unkfunc_0205608c(1);
             partyCharacter_[i].setBoxTestOff(true);

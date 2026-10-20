@@ -7,7 +7,7 @@ struct UnkMaterielMenu_0218a5d0 : menu::MenuBase {
     int unk_1c;                             // 0x1C
     char quantity_;                         // 0x20
     menu::MenuItem menuItem_;               // 0x24
-    UnkCursorMoveGridLoop navigator_;       // 0x88
+    CursorMoveGridLoop navigator_;       // 0x88
 
     virtual void menuSetup();
     virtual void menuExecute();

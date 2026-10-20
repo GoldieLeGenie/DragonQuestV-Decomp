@@ -172,7 +172,7 @@ THUMB void unkfunc_02171458(menu::MenuItem* menuItem, int max, int active, int x
     };
     if (x != -1 && y != -1) {
         for (int i = 0; i < 10; i++) {
-            unkfunc_02067ca4(&menu[i], x, y);
+            setMenuItemPosition(&menu[i], x, y);
         }
     }
     menuItem->setMenuItem(menu, 5, 2, max);
@@ -191,7 +191,7 @@ THUMB void unkfunc_021714a8(menu::MenuItem* menuItem, int max, int active, int x
     };
     if (x != -1 && y != -1) {
         for (int i = 0; i < 10; i++) {
-            unkfunc_02067ca4(&menu[i], x, y);
+            setMenuItemPosition(&menu[i], x, y);
         }
     }
     menuItem->setMenuItem(menu, 5, 1, max);

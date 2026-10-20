@@ -2,7 +2,7 @@
 #include "main/global/UnkProtectCheck.hpp"
 #include "main/dss/DssUtils.hpp"
 #include "main/dss/DssCore.hpp"
-#include "main/dss/UnkSprite2D.hpp"
+#include "main/dss/Sprite2D.hpp"
 #include "main/global/GlobalGamePart.hpp"
 #include "main/global/UnkGlobalSystem.hpp"
 
@@ -97,7 +97,7 @@ struct Global {
 };
 
 // Changes the game part once the fade is over
-struct UnkGlobalChangePart : UnkGlobalPart {
+struct GlobalChangePart : UnkGlobalPart {
     int nextPart_;                              // 0x04
 
     virtual void update();
@@ -149,14 +149,14 @@ struct FadeEffector : UnkGlobalPart {
     bool isFadeDisable();
 };
 
-struct UnkSpriteFade : UnkGlobalPart {
+struct GlobalSpriteFade : UnkGlobalPart {
     FadeEffector::UnkFadeState state_;            // 0x04
     int alpha_;                                 // 0x08
     int count_;                                 // 0x0C
     int frames_;                                // 0x10
-    UnkSprite2D sprite_[2];                     // 0x14 
+    Sprite2D sprite_[2];                     // 0x14 
 
-    UnkSpriteFade();
+    GlobalSpriteFade();
     void flashWhite(int r, int g, int b, int frames);
     virtual void update();
     virtual void draw();
@@ -165,5 +165,5 @@ struct UnkSpriteFade : UnkGlobalPart {
 
 extern Global g_Global;
 extern FadeEffector fadeEffector;
-extern UnkSpriteFade data_0211b27c;
+extern GlobalSpriteFade data_0211b27c;
 

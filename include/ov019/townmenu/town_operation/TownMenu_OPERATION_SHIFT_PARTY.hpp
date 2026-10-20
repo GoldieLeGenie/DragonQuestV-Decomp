@@ -1,7 +1,7 @@
 #pragma once
 #include <globaldefs.h>
 #include "main/menu/MenuBase.hpp"
-#include "main/menu/UnkCursorMoveGridLoop.hpp"
+#include "main/menu/CursorMoveGridLoop.hpp"
 
 // town misc menu: party order
 struct TownMenu_OPERATION_SHIFT_PARTY : menu::MenuBase {
@@ -13,7 +13,7 @@ struct TownMenu_OPERATION_SHIFT_PARTY : menu::MenuBase {
     unsigned char selectCharaMaxCount_;         // 0x31
     unsigned char shiftPartyCharaCount_;        // 0x32
     menu::MenuItem menuItem_;                   // 0x34
-    UnkCursorMoveGridLoop navigator_;           // 0x98
+    CursorMoveGridLoop navigator_;           // 0x98
 
     virtual void menuSetup();
     virtual void menuExecute();

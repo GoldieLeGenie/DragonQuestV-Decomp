@@ -1,12 +1,12 @@
 #pragma once
 #include <globaldefs.h>
 #include "main/menu/MenuBase.hpp"
-#include "main/menu/UnkCursorMoveGridLoop.hpp"
+#include "main/menu/CursorMoveGridLoop.hpp"
 
 // town status menu
 struct TownMenu_STATUS : menu::MenuBase {
     char mode_;                                 // 0x1C  displayed page
-    UnkCursorMoveGridLoop navigator_;           // 0x20
+    CursorMoveGridLoop navigator_;           // 0x20
     menu::MenuItem menuItem_;                   // 0x2C
 
     virtual void menuSetup();

@@ -36,7 +36,7 @@ THUMB void unkfunc_02061bd8(int redraw)
     UnkMenuWindowBg* window = &data_02106178.window_;
     data_02105f40 = window->unkfunc_02063708();
     data_02105f3c = window->unkfunc_0206370c();
-    data_02105f38 = data_02106178.back_.unkfunc_020635a8();
+    data_02105f38 = data_02106178.back_.getScreenBuffer();
     data_02105f34 = redraw;
     if (redraw) {
         unkfunc_0204e574(data_02105f40, 0);
@@ -53,44 +53,44 @@ THUMB void unkfunc_02061c5c(int x, int y)
     data_02105f30 = y;
 }
 
-THUMB void unkfunc_02061c68(int x, int y, int w, int h, int palette)
+THUMB void fillMenuBackRect(int x, int y, int w, int h, int palette)
 {
     if (data_02105f34 == 1) {
         unkfunc_0204ead4(data_02105f38, x / 8, y / 8, w / 8, h / 8, palette);
     }
 }
 
-THUMB void unkfunc_02061cb0(int x, int y, int w, int h, int palette)
+THUMB void drawMenuWindowBack(int x, int y, int w, int h, int palette)
 {
     if (data_02105f34 == 1) {
         unkfunc_0204eb00(data_02105f38, x / 8, y / 8, w / 8, h / 8, palette);
     }
 }
 
-THUMB void unkfunc_02061cf8(int x, int y, int w, int h, int palette)
+THUMB void drawMenuWindowBorder(int x, int y, int w, int h, int palette)
 {
     if (data_02105f34 == 1) {
         unkfunc_0204ec48(data_02105f3c, x / 8, y / 8, w / 8, h / 8, palette);
     }
 }
 
-THUMB void unkfunc_02061d40(int x, int y, int w, int h, int xlu)
+THUMB void drawMenuObjFrame(int x, int y, int w, int h, int xlu)
 {
-    UnkMenuFrameDisplay* frames = &data_02114dd4.frames_;
+    MenuFrameDisplay* frames = &data_02114dd4.frames_;
     if (xlu) {
-        frames->unkfunc_02064290(x, y, w, h, 3, 15);
+        frames->addRoundedFrame(x, y, w, h, 3, 15);
     } else {
-        frames->unkfunc_02064270(x, y, w, h, 3, 15);
+        frames->addFrame(x, y, w, h, 3, 15);
     }
 }
 
-THUMB void unkfunc_02061d84(int x, int y, int w, int h, int priority, int flag)
+THUMB void drawMenuItemFrame(int x, int y, int w, int h, int priority, int flag)
 {
-    UnkMenuFrameDisplay* frames = &data_02114dd4.frames_;
-    frames->unkfunc_02064270(x, y, w, h, priority, flag ? 9 : 6);
+    MenuFrameDisplay* frames = &data_02114dd4.frames_;
+    frames->addFrame(x, y, w, h, priority, flag ? 9 : 6);
 }
 
-THUMB void unkfunc_02061db8(int x, int y, int w, int h, int type, int index)
+THUMB void drawMenuIcon(int x, int y, int w, int h, int type, int index)
 {
     if (unkfunc_0204d03c()) {
         data_02106178.icon_.unkfunc_02063aac(x / 8, y / 8, w, h, type, index);
@@ -145,11 +145,11 @@ THUMB int unkfunc_02061e98(int x, int y, int w, int h, int palette, int color, i
         }
         if (msgId == -1) {
             if (text[0] == '@') {
-                unkfunc_0204ae2c(work, sizeof(work), text + 1);
+                convertSjisToUtf8(work, sizeof(work), text + 1);
                 text = work;
             }
             if ((unsigned char)text[0] == 0xff && (unsigned char)text[1] == 0xfe) {
-                unkfunc_0204ace4(work, sizeof(work), text);
+                convertUtf16ToUtf8(work, sizeof(work), text);
                 text = work;
             }
         }
@@ -310,19 +310,19 @@ THUMB int unkfunc_020623f8(int index, const char* text)
 THUMB void unkfunc_0206241c(int index, int x, int y, int priority, int flag)
 {
     UnkMenuTextDisplay* plate = &data_02114dd4.texts_[index];
-    plate->unkfunc_0206478c(x, y);
+    plate->setPosition(x, y);
     plate->priority_ = priority;
     plate->frame_ = 1;
     plate->palette_ = flag ? 15 : 14;
-    plate->unkfunc_02064780(1);
+    plate->setEnable(1);
 }
 
 THUMB void menu::BattleMenu_setHoppingNumber(int x, int y, int value, int delay)
 {
-    data_02114dd4.hopping_.unkfunc_02065a84(x, y, value, delay);
+    data_02114dd4.hopping_.startNumber(x, y, value, delay);
 }
 
 extern "C" THUMB void func_02062480(int index, int r, int g, int b)
 {
-    unkfunc_0204cd8c(0)->unkfunc_0204dbe8(15, index, GX_RGB(r, g, b));
+    getBgPaletteBuffer(0)->unkfunc_0204dbe8(15, index, GX_RGB(r, g, b));
 }

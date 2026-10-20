@@ -16,7 +16,7 @@ struct MaterielMenu_JISAN_CHANGE_NAME : menu::MenuBase {
     short unk_1c;                           // 0x1C
     char mode_;                             // 0x1E
     menu::MenuItem menuItem_;               // 0x20
-    UnkCursorMoveGridLoop navigator_;       // 0x84
+    CursorMoveGridLoop navigator_;       // 0x84
     short unk_90[0x51];                     // 0x90
 
     virtual void menuSetup();

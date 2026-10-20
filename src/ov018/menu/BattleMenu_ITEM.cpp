@@ -73,7 +73,7 @@ THUMB void BattleMenu_ITEM::menuDraw()
         for (int i = 0; i < count; i++) {
             items[i] = info.haveItem_.getItem(i);
         }
-        unkfunc_0216fff8(items, count, navigator_.getPageNo());
+        drawItemMenu(items, count, navigator_.getPageNo());
         menuItem_.drawActive();
     }
 }

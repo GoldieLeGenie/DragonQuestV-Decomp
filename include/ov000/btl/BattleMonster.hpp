@@ -3,7 +3,7 @@
 #include "main/dss/DssUtils.hpp"
 #include "main/data/DataObject.hpp"
 #include "main/object/GameMonster.hpp"
-#include "main/object/UnkPaletteAnimationObject.hpp"
+#include "main/object/PaletteAnimationObject.hpp"
 
 namespace btl {
     struct BattleMonster {
@@ -20,7 +20,7 @@ namespace btl {
         dss::Vector2<int> screen;                       // 0xF30
         int animationFlag_;                             // 0xF38
         DataObject dataObject_;                         // 0xF3C
-        UnkPaletteAnimationObject paletteAnimation_;    // 0xF4C
+        PaletteAnimationObject paletteAnimation_;    // 0xF4C
         dss::Flag flag_;                                // 0xF6C
 
         BattleMonster();

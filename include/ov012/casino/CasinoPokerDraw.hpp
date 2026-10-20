@@ -2,7 +2,7 @@
 #include <globaldefs.h>
 #include "main/data/DataObject.hpp"
 #include "main/dss/DssUtils.hpp"
-#include "main/dss/UnkTextureObject.hpp"
+#include "main/dss/TextureObject.hpp"
 #include "ov012/casino/PokerCard.hpp"
 
 namespace casino {
@@ -16,7 +16,7 @@ namespace casino {
         dss::Fix32 cardScale_;                          // 0x00C
         dss::Fix32Vector3 defaultPos[MAX_CARD_INSTANCE];    // 0x010
         DataObject cardObject[MAX_CARD_TYPE];           // 0x04C
-        UnkTextureObject* cardTexture_[MAX_CARD_TYPE];  // 0x0AC
+        TextureObject* cardTexture_[MAX_CARD_TYPE];  // 0x0AC
         PokerCard card[MAX_CARD_INSTANCE];              // 0x0C4
         unsigned char alpha_;                           // 0xC54
 

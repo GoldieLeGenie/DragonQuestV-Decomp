@@ -4,7 +4,7 @@
 #include "main/dss/Pad.hpp"
 #include "main/menu/CommonMenu_YESNO.hpp"
 #include "main/status/GameStatus.hpp"
-#include "main/debug/UnkDebugInfo.hpp"
+#include "main/debug/DebugInfo.hpp"
 
 static MENUITEM_DATA yesNoItemData[] = {
     {1, 2, 0, 0, 0x100, 0xc0},
@@ -32,17 +32,17 @@ THUMB void TownMenu_MESSAGE::menuExecute()
         yesNoItem_.setMenuItem(yesNoItemData, 1, 1, 1);
     }
     if (busyIcon_ != 0) {
-        UnkMenuFaceDisplay* const busy = &data_02114dd4.face_;
+        MenuFaceDisplay* const busy = &data_02114dd4.face_;
         busy->mode_ = 11;
-        busy->unkfunc_02064c60(0);
-        busy->unkfunc_0206478c(0xe0, 0x164);
-        busy->unkfunc_02064780(1);
+        busy->setPriority(0);
+        busy->setPosition(0xe0, 0x164);
+        busy->setEnable(1);
     }
 }
 
 THUMB void TownMenu_MESSAGE::menuDraw()
 {
-    s_draw->unkfunc_02064780(1);
+    s_draw->setEnable(1);
     if (windowType_ == UNK_MESSAGE_WINDOW_7) {
         unkfunc_02061c5c(0, 0);
         UnkMenuParts parts[] = {
@@ -178,7 +178,7 @@ THUMB void TownMenu_MESSAGE::openMessage(eMessageWindow type)
 THUMB void TownMenu_MESSAGE::addMessageNOWAIT(int messageID)
 {
     ui_MsgAdd(messageID);
-    data_020c2d10.unkfunc_02027cf0(messageID);
+    data_020c2d10.addMessageID(messageID);
 }
 
 THUMB void TownMenu_MESSAGE::addMessage(int messageID)
@@ -188,8 +188,8 @@ THUMB void TownMenu_MESSAGE::addMessage(int messageID)
         return;
     }
     ui_MsgAdd(messageID);
-    unkfunc_02062624();
-    data_020c2d10.unkfunc_02027cf0(messageID);
+    ui_MsgAddWaitTrigger();
+    data_020c2d10.addMessageID(messageID);
 }
 
 THUMB void TownMenu_MESSAGE::addMessage(int messageID1, int messageID2)
@@ -216,15 +216,15 @@ THUMB void TownMenu_MESSAGE::addMessageSerial(int messageID)
 {
     int count = ui_MsgAddSerial(messageID);
     for (int i = 0; i < count; i++) {
-        data_020c2d10.unkfunc_02027cf0(messageID + i);
+        data_020c2d10.addMessageID(messageID + i);
     }
 }
 
 THUMB void TownMenu_MESSAGE::addMessage(const char* message)
 {
     ui_MsgAdd(message);
-    unkfunc_02062624();
-    data_020c2d10.unkfunc_02027cf0(99999999);
+    ui_MsgAddWaitTrigger();
+    data_020c2d10.addMessageID(99999999);
 }
 
 THUMB void TownMenu_MESSAGE::setYesNo()
@@ -290,17 +290,17 @@ THUMB void TownMenu_MESSAGE::setMessageLastCursor(bool flag)
 
 THUMB void TownMenu_MESSAGE::setBusyIcon(bool flag)
 {
-    UnkMenuFaceDisplay* const busy = &data_02114dd4.face_;
+    MenuFaceDisplay* const busy = &data_02114dd4.face_;
     if (flag) {
         busyIconWait_ = 2;
         busy->unkfunc_02064c80();
         busy->mode_ = 11;
-        busy->unkfunc_02064c60(0);
-        busy->unkfunc_0206478c(0xe0, 0x164);
-        busy->unkfunc_02064780(0);
+        busy->setPriority(0);
+        busy->setPosition(0xe0, 0x164);
+        busy->setEnable(0);
         return;
     }
     busy->mode_ = 0;
-    busy->unkfunc_02064780(0);
+    busy->setEnable(0);
     busyIcon_ = 0;
 }

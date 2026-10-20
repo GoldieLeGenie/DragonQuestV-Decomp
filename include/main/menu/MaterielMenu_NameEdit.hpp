@@ -89,17 +89,17 @@ struct MaterielMenu_NameEdit : menu::MenuBase {
     void setDefaultName(const char* name);
     void unkfunc_0202a610();                    // texts of the keys
     int unkfunc_0202a670();                     // title message
-    void unkfunc_0202a69c(int message);         // draw the message input window
+    void drawMessageInput(int message);         // draw the message input window
     void unkfunc_0202a6e0(int message);         // draw the name input window
     void commandUpdate();
     void unkfunc_0202a8a4(int index, unsigned int code);   // add a char
     void unkfunc_0202a8e4(int index, unsigned int code);   // replace the last char
-    void unkfunc_0202a92c();                    // delete the last char
+    void deleteLastChar();                    // delete the last char
     bool judgeNameEnable();
     void unkfunc_0202a9fc();                    // special key
     void endMenu(EDIT_STATUS status);
     void getNamePointer(unsigned int* pointer);
-    int unkfunc_0202ac10(unsigned int code, char* buf);    // UTF-8 bytes of a code
+    int unpackCharCode(unsigned int code, char* buf);    // UTF-8 bytes of a code
     void unkfunc_0202ac90(unsigned int code);   // add a char of the default name
     int unkfunc_0202acc0();                     // max char count of a name
 };

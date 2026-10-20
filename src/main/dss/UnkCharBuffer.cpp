@@ -47,11 +47,11 @@ THUMB void unkfunc_0204e5ec(UnkCharBuffer* buffer, int x, int y, int color)
 
 THUMB void unkfunc_0204e60c(UnkCharBuffer* buffer, int x, int y, int flip, int bank, unsigned short chr)
 {
-    unsigned char* src = (unsigned char*)unkfunc_0204e698(bank != 0) + chr * 0x20;
+    unsigned char* src = (unsigned char*)getSystemTextData(bank != 0) + chr * 0x20;
     void* dst = unkfunc_0204e564(buffer, x, y);
     if (flip) {
-        unkfunc_0204eed8(dst, src);
+        drawTileTransparentVFlip(dst, src);
     } else {
-        unkfunc_0204ee90(dst, src);
+        drawTileTransparent(dst, src);
     }
 }

@@ -257,7 +257,7 @@ THUMB void MenuAPI::catMessage(int message)
 
 THUMB void MenuAPI::shakeMessage()
 {
-    UnkMessageWindow* window = s_draw;
+    MessageWindow* window = s_draw;
     window->shake_ = 1;
     window->shakeCount_ = 0;
     window->shakeRepeat_ = 1;

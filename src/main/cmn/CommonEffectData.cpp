@@ -29,7 +29,7 @@ THUMB void cmn::CommonEffectData::setup(int index)
         dss::sprintf_s(path, 0x80, "data/effect/effect%03db.lz", index - 10000);
     }
     effectData_.setup(path, 1, 1);
-    m_effect_type = *(int*)unkfunc_0204c878(effectData_.getAddr(), 0);
+    m_effect_type = *(int*)getArchiveFile(effectData_.getAddr(), 0);
     if (m_effect_type == 0) {
         setupTexture();
     }
@@ -37,7 +37,7 @@ THUMB void cmn::CommonEffectData::setup(int index)
 
 THUMB void cmn::CommonEffectData::setupTexture()
 {
-    ((UnkTextureObject*)(getTextureData()))->unkfunc_02049e9c(0);
+    ((TextureObject*)(getTextureData()))->unkfunc_02049e9c(0);
 }
 
 THUMB void cmn::CommonEffectData::cleanup()
@@ -52,17 +52,17 @@ THUMB void cmn::CommonEffectData::cleanup()
 
 THUMB void cmn::CommonEffectData::cleanupTexture()
 {
-    ((UnkTextureObject*)(getTextureData()))->unkfunc_02049f90();
+    ((TextureObject*)(getTextureData()))->unkfunc_02049f90();
 }
 
 THUMB void* cmn::CommonEffectData::getTextureData()
 {
-    return unkfunc_0204c878(effectData_.getAddr(), 1);
+    return getArchiveFile(effectData_.getAddr(), 1);
 }
 
 THUMB void* cmn::CommonEffectData::getAnimationData()
 {
-    return unkfunc_0204c878(effectData_.getAddr(), 2);
+    return getArchiveFile(effectData_.getAddr(), 2);
 }
 
 THUMB void* cmn::CommonEffectData::getPaletteAnimData()
@@ -70,7 +70,7 @@ THUMB void* cmn::CommonEffectData::getPaletteAnimData()
     if (!isPamEnable()) {
         return 0;
     }
-    return unkfunc_0204c878(effectData_.getAddr(), 3);
+    return getArchiveFile(effectData_.getAddr(), 3);
 }
 
 THUMB int cmn::CommonEffectData::isPamEnable()
@@ -80,13 +80,13 @@ THUMB int cmn::CommonEffectData::isPamEnable()
 
 THUMB void* cmn::CommonEffectData::getModelData()
 {
-    return unkfunc_0204c878(effectData_.getAddr(), 1);
+    return getArchiveFile(effectData_.getAddr(), 1);
 }
 
 THUMB void* cmn::CommonEffectData::getAnimData(int index)
 {
     if (unkfunc_0204c860(effectData_.getAddr()) > index + 2) {
-        return unkfunc_0204c878(effectData_.getAddr(), index + 2);
+        return getArchiveFile(effectData_.getAddr(), index + 2);
     }
     return 0;
 }

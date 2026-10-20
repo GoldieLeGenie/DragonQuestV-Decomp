@@ -1,11 +1,11 @@
 #pragma once
 #include <globaldefs.h>
 #include "main/dss/Position.hpp"
-#include "main/dss/UnkCharacterPalette.hpp"
+#include "main/dss/CharacterPalette.hpp"
 #include "main/data/DataObject.hpp"
 #include "main/object/DSSAObject.hpp"
 #include "main/object/GameMonsterData.hpp"
-#include "main/dss/UnkTextureObject.hpp"
+#include "main/dss/TextureObject.hpp"
 
 struct DSSACharacter : Position {
     virtual void setScale(dss::Fix32 scale);    // slot 1
@@ -16,7 +16,7 @@ struct DSSACharacter : Position {
     int firstAnimationIndex_;                   // 0x040
     DSSAObjectWithCamera dssaObject_[17];       // 0x044
     void* texture_;                             // 0xAE4
-    UnkCharacterPalette palette_;               // 0xAE8
+    CharacterPalette palette_;               // 0xAE8
     DataObject* dataObject_;                    // 0xEFC
     dss::Flag flag_;                            // 0xF00
     long flagCount_;                            // 0xF04
@@ -25,7 +25,7 @@ struct DSSACharacter : Position {
 
     DSSACharacter();
     ~DSSACharacter();
-    void unkfunc_020524c8(UnkTextureObject* texture, DataObject* animation);
+    void unkfunc_020524c8(TextureObject* texture, DataObject* animation);
     void cleanup();
     void draw();
     bool start(int index, int loop);

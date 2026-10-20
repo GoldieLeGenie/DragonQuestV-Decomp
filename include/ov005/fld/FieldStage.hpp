@@ -2,8 +2,8 @@
 #include <globaldefs.h>
 #include "main/dss/DssUtils.hpp"
 #include "main/data/DataObject.hpp"
-#include "main/dss/UnkSprite2D.hpp"
-#include "main/dss/UnkTextureObject.hpp"
+#include "main/dss/Sprite2D.hpp"
+#include "main/dss/TextureObject.hpp"
 #include "main/fld/CWorldMap.hpp"
 #include "ov005/fld/FieldActionCalculate.hpp"
 
@@ -20,13 +20,13 @@ namespace fld
         DataObject pattern8_;                           // 0x000C
         DataObject pattern24_;                          // 0x001C
         DataObject symbolPack_;                         // 0x002C
-        UnkTextureObject* symbolTexture_[SYMBOL_TEXTURE_NUM];   // 0x003C
-        UnkSprite2D m_symbol[SYMBOL_MAX];               // 0x00C4
+        TextureObject* symbolTexture_[SYMBOL_TEXTURE_NUM];   // 0x003C
+        Sprite2D m_symbol[SYMBOL_MAX];               // 0x00C4
         unsigned short symbolPalette_[SYMBOL_TEXTURE_NUM][16];  // 0x1CC4
         DataObject dataObject_;                         // 0x2104 map file
         DataObject blockData_;                          // 0x2114 block texture file
-        UnkTextureObject* blockTexture_;                // 0x2124
-        UnkTextureObject blockTextureObject_;           // 0x2128
+        TextureObject* blockTexture_;                // 0x2124
+        TextureObject blockTextureObject_;           // 0x2128
         UnkMenuSprite ruramoon_;                        // 0x2198
         UnkMenuSprite smoke_;                           // 0x21E8
         UnkMenuSprite magma_;                           // 0x2238

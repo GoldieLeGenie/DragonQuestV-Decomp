@@ -9,11 +9,11 @@ inline DSSAObject2D::~DSSAObject2D()
 {
 }
 
-inline UnkPaletteAnimation::~UnkPaletteAnimation()
+inline PaletteAnimation::~PaletteAnimation()
 {
 }
 
-inline UnkPaletteAnimationObject::UnkPaletteAnimationObject()
+inline PaletteAnimationObject::PaletteAnimationObject()
 {
     texture_ = 0;
 }
@@ -69,7 +69,7 @@ THUMB void cmn::CommonEffectFlat::setup(CommonEffectData* data, int flag)
     dssaEffect_.type_ = DSSAObjectWithCamera::Near;
     if (effectData_->isPamEnable()) {
         paletteAnim_.anim_.setup(effectData_->getPaletteAnimData());
-        paletteAnim_.texture_ = (UnkTextureObject*)texture_;
+        paletteAnim_.texture_ = (TextureObject*)texture_;
         paletteAnim_.colorCount_ = paletteAnim_.anim_.getColorCount();
     }
     rate_.value = 0x1000;
@@ -202,7 +202,7 @@ THUMB void cmn::CommonEffectOrtho::setup(CommonEffectData* data, int flag)
     dssaEffect_.setTexture(texture_);
     if (effectData_->isPamEnable()) {
         paletteAnim_.anim_.setup(effectData_->getPaletteAnimData());
-        paletteAnim_.texture_ = (UnkTextureObject*)texture_;
+        paletteAnim_.texture_ = (TextureObject*)texture_;
         paletteAnim_.colorCount_ = paletteAnim_.anim_.getColorCount();
     }
     rate_.value = 0x1000;

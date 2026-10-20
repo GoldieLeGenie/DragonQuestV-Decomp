@@ -169,7 +169,7 @@ THUMB void window::UnkScreenEffect::execute()
 
 THUMB void window::UnkScreenEffect::unkfunc_020287e8(int polygonId)
 {
-    if (unkfunc_0204ccd0() & 1) {
+    if (getDisplayFrame() & 1) {
         G3_TexImageParam(GX_TEXFMT_DIRECT, GX_TEXGEN_TEXCOORD, GX_TEXSIZE_S256, GX_TEXSIZE_T256, GX_TEXREPEAT_NONE, GX_TEXFLIP_NONE, GX_TEXPLTTCOLOR0_USE, 0x20000);
     } else {
         G3_TexImageParam(GX_TEXFMT_DIRECT, GX_TEXGEN_TEXCOORD, GX_TEXSIZE_S256, GX_TEXSIZE_T256, GX_TEXREPEAT_NONE, GX_TEXFLIP_NONE, GX_TEXPLTTCOLOR0_USE, 0);

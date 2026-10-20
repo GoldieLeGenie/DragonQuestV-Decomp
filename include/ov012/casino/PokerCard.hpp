@@ -1,11 +1,11 @@
 #pragma once
 #include <globaldefs.h>
 #include "main/dss/DssUtils.hpp"
-#include "main/dss/UnkPolygonObject.hpp"
+#include "main/dss/PolygonObject.hpp"
 
 namespace casino {
     // card face drawn with a rotation around the vertical axis
-    struct PokerCardPolygon : UnkPolygonObject {
+    struct PokerCardPolygon : PolygonObject {
         virtual void draw();
 
         unsigned short angle_;                  // 0x84

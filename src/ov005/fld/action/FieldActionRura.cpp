@@ -2,7 +2,7 @@
 #include "main/cmn/CommonActionMoveToTarget.hpp"
 #include "main/cmn/CommonPartyInfo.hpp"
 #include "main/cmn/ExtraMapLink.hpp"
-#include "main/dss/UnkVramTransfer.hpp"
+#include "main/dss/VramTransferManager.hpp"
 #include "main/global/StageLink.hpp"
 #include "main/sound/SoundManager.hpp"
 #include "main/status/StageAttribute.hpp"

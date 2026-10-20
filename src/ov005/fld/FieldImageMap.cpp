@@ -1,6 +1,6 @@
 #include "ov005/fld/FieldImageMap.hpp"
 #include "main/dss/UnkDisplay.hpp"
-#include "main/dss/UnkRenderObject.hpp"
+#include "main/dss/RenderObject.hpp"
 #include "main/global/Global.hpp"
 
 THUMB fld::FieldImageMap::FieldImageMap()
@@ -56,7 +56,7 @@ THUMB void fld::FieldImageMap::execute()
         worldMap_->setAlpha(frame_);
         break;
     case 4:
-        if (unkfunc_0204ccd0() & 1) {
+        if (getDisplayFrame() & 1) {
             return;
         }
         map2d_ = 5;
@@ -85,7 +85,7 @@ THUMB void fld::FieldImageMap::execute()
         largeMap_.unkfunc_021340c8(frame_);
         break;
     case 0:
-        if (unkfunc_0204ccd0() & 1) {
+        if (getDisplayFrame() & 1) {
             return;
         }
         worldMap_->setup();
@@ -106,7 +106,7 @@ THUMB void fld::FieldImageMap::execute()
 
 THUMB void fld::FieldImageMap::draw()
 {
-    unkfunc_020482b8();
+    setupOrtho2DBackground();
     worldMap_->draw();
 }
 

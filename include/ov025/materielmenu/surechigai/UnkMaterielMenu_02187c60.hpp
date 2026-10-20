@@ -11,7 +11,7 @@ struct UnkMaterielMenu_02187c60 : menu::MenuBase {
     signed char mode_;                          // 0xAE
     signed char unk_af;                         // 0xAF  0 name, 1 message
     menu::MenuItem menuItem_;                   // 0xB0
-    UnkCursorMoveGridLoop navigator_;           // 0x114
+    CursorMoveGridLoop navigator_;           // 0x114
 
     virtual void menuSetup();
     virtual void menuExecute();

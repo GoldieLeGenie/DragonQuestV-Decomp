@@ -73,8 +73,8 @@ THUMB void unkfunc_0204dc28()
 
 THUMB UnkVramRequest* unkfunc_0204dc6c(int type, int offset, void* data, int size)
 {
-    void* buffer = unkfunc_0204c278(data);
-    UnkVramRequest* request = unkfunc_0204dca8(type, offset, buffer, unkfunc_0204c214(data));
+    void* buffer = uncompressAlloc(data);
+    UnkVramRequest* request = unkfunc_0204dca8(type, offset, buffer, getUncompressedSize(data));
     if (request == NULL) {
         unkfunc_0204c5c8(&data_020fd24c, buffer);
         return NULL;

@@ -268,7 +268,7 @@ THUMB void unkfunc_0204ee28(void* tile, const void* src)
     }
 }
 
-THUMB void unkfunc_0204ee90(void* dst, const void* src)
+THUMB void drawTileTransparent(void* dst, const void* src)
 {
     unsigned int* d = (unsigned int*)dst;
     const unsigned int* s = (const unsigned int*)src;
@@ -283,7 +283,7 @@ THUMB void unkfunc_0204ee90(void* dst, const void* src)
     }
 }
 
-THUMB void unkfunc_0204eed8(void* dst, const void* src)
+THUMB void drawTileTransparentVFlip(void* dst, const void* src)
 {
     unsigned int* d = (unsigned int*)dst + 7;
     const unsigned int* s = (const unsigned int*)src;

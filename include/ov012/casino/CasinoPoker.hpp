@@ -1,6 +1,6 @@
 #pragma once
 #include <globaldefs.h>
-#include "main/dss/UnkSprite2D.hpp"
+#include "main/dss/Sprite2D.hpp"
 #include "ov012/casino/CasinoMiniGameBase.hpp"
 
 namespace casino {

@@ -1,19 +1,19 @@
 #include "main/global/Global.hpp"
 
-UnkGlobalGamePartManager data_02101d14;
+GlobalGamePartManager data_02101d14;
 
-ARM UnkGlobalGamePartManager::UnkGlobalGamePartManager()
+ARM GlobalGamePartManager::GlobalGamePartManager()
 {
     for (int i = 0; i < 8; i++) {
         part_[i] = 0;
     }
 }
 
-ARM UnkGlobalGamePartManager::~UnkGlobalGamePartManager()
+ARM GlobalGamePartManager::~GlobalGamePartManager()
 {
 }
 
-ARM void UnkGlobalGamePartManager::unkfunc_02051908()
+ARM void GlobalGamePartManager::unkfunc_02051908()
 {
     for (int i = 0; i < 8; i++) {
         if (part_[i] != 0) {
@@ -25,7 +25,7 @@ ARM void UnkGlobalGamePartManager::unkfunc_02051908()
     }
 }
 
-ARM void UnkGlobalGamePartManager::unkfunc_02051958()
+ARM void GlobalGamePartManager::unkfunc_02051958()
 {
     for (int i = 0; i < 8; i++) {
         if (part_[i] != 0) {
@@ -37,7 +37,7 @@ ARM void UnkGlobalGamePartManager::unkfunc_02051958()
     }
 }
 
-ARM void UnkGlobalGamePartManager::unkfunc_020519a8(UnkGlobalPart* part)
+ARM void GlobalGamePartManager::unkfunc_020519a8(UnkGlobalPart* part)
 {
     for (int i = 0; i < 8; i++) {
         if (part_[i] == 0) {
@@ -47,7 +47,7 @@ ARM void UnkGlobalGamePartManager::unkfunc_020519a8(UnkGlobalPart* part)
     }
 }
 
-ARM void UnkGlobalGamePartManager::unkfunc_020519cc(UnkGlobalPart* part)
+ARM void GlobalGamePartManager::unkfunc_020519cc(UnkGlobalPart* part)
 {
     for (int i = 0; i < 8; i++) {
         if (part_[i] == part) {

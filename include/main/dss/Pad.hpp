@@ -33,7 +33,7 @@ namespace dss {
         int pad();                              // held keys & enable mask
         int padDir();                           // direction
         int edge();                             // triggered keys & enable mask
-        int unkfunc_0204bc00();                 // repeat keys & enable mask
+        int repeat();                 // repeat keys & enable mask
         int unkfunc_0204bc10();                 // L+R+SELECT+START held
         void unkfunc_0204bc24(int flag);        // flag != 0: mask out the L button
         void unkfunc_0204bc44();                // record buffer full
@@ -46,8 +46,8 @@ namespace dss {
         void unkfunc_0204be10(unsigned short keys);     // record keys
         void unkfunc_0204be48();                // stop playing
         void unkfunc_0204be8c();                // clear the record
-        void unkfunc_0204be98(unsigned short keys, int count);  // record keys count times
-        void unkfunc_0204bef0(unsigned short keys, int count);  // record count presses of keys
+        void addRecordKeys(unsigned short keys, int count);  // record keys count times
+        void addRecordPresses(unsigned short keys, int count);  // record count presses of keys
     };
 
     extern Pad g_Pad;

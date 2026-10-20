@@ -3,12 +3,12 @@
 #include "main/object/DSSAObject.hpp"
 #include "nitro/os.hpp"
 
-ARM void unkfunc_0204c1ac(void* src)
+ARM void setCompressedData(void* src)
 {
     data_020fd244[0] = src;
 }
 
-ARM void unkfunc_0204c1bc(void* dst)
+ARM void uncompressData(void* dst)
 {
     data_020fd244[1] = dst;
     switch (*(unsigned int*)data_020fd244[0] & 0xf0) {
@@ -25,7 +25,7 @@ ARM void unkfunc_0204c1bc(void* dst)
     DC_CleanAll();
 }
 
-ARM unsigned int unkfunc_0204c214(void* src)
+ARM unsigned int getUncompressedSize(void* src)
 {
     if (src == NULL) {
         src = data_020fd244[0];
@@ -33,7 +33,7 @@ ARM unsigned int unkfunc_0204c214(void* src)
     return *(unsigned int*)src >> 8;
 }
 
-ARM int unkfunc_0204c230(void* data)
+ARM int isCompressed(void* data)
 {
     switch (*(int*)data & 0xf0) {
     case 0x10:
@@ -45,11 +45,11 @@ ARM int unkfunc_0204c230(void* data)
     return 0;
 }
 
-ARM void* unkfunc_0204c278(void* data)
+ARM void* uncompressAlloc(void* data)
 {
-    unkfunc_0204c1ac(data);
-    void* dst = unkfunc_0204c5bc(&data_020fd24c, unkfunc_0204c214(data), 4);
-    unkfunc_0204c1bc(dst);
+    setCompressedData(data);
+    void* dst = unkfunc_0204c5bc(&data_020fd24c, getUncompressedSize(data), 4);
+    uncompressData(dst);
     return dst;
 }
 

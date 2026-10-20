@@ -5,11 +5,11 @@
 #include "main/dss/Pad.hpp"
 #include "main/dss/UnkDisplay.hpp"
 #include "main/dss/UnkFog.hpp"
-#include "main/dss/UnkRenderObject.hpp"
+#include "main/dss/RenderObject.hpp"
 #include "main/dss/UnkSleep.hpp"
-#include "main/dss/UnkSprite2D.hpp"
+#include "main/dss/Sprite2D.hpp"
 #include "main/dss/UnkVramRequest.hpp"
-#include "main/dss/UnkVramTransfer.hpp"
+#include "main/dss/VramTransferManager.hpp"
 #include "main/menu/MenuManager.hpp"
 #include "main/menu/UnkMenuSystem.hpp"
 #include "main/object/DSSAObject.hpp"
@@ -26,7 +26,7 @@ enum UnkFadeResult {
     FADE_END = 1,
 };
 
-inline UnkSpriteFade::UnkSpriteFade()
+inline GlobalSpriteFade::GlobalSpriteFade()
 {
     sprite_[0].unkfunc_02047e88(0, 0);
     sprite_[0].unkfunc_02047ec0(256, 192);
@@ -47,8 +47,8 @@ inline UnkSpriteFade::UnkSpriteFade()
 }
 
 static void unkfunc_02067a58();
-static void unkfunc_02067a64();
-static void unkfunc_02067aa4();
+static void updatePolygonOverflow();
+static void updateRenderedLines();
 
 int data_0209aea0 = 2;
 static unsigned int s_swapLine;
@@ -65,7 +65,7 @@ args::GamePart data_0211b150;
 static long long s_taskTick;
 static unsigned int s_lineLog[2][16];
 static unsigned int s_tickLog[2][16];
-UnkSpriteFade data_0211b27c;
+GlobalSpriteFade data_0211b27c;
 
 ARM void args::GamePart::vf00()
 {
@@ -129,11 +129,11 @@ ARM void args::GamePart::vf10()
     unkfunc_02046be0();
     s_drawLine = GX_GetVCount();
     OS_Wait();
-    unkfunc_02067a64();
-    unkfunc_02067aa4();
+    updatePolygonOverflow();
+    updateRenderedLines();
     unkfunc_0204d0f4();
     s_textureSize = data_020f4f74.texSize_;
-    data_020f4f74.unkfunc_0204a7cc();
+    data_020f4f74.doTransfers();
     s_frameEndLine = GX_GetVCount();
     if (REG_GFX_VTX_RAM_COUNT == 0) {
         unkfunc_0204ca6c();
@@ -145,7 +145,7 @@ ARM void args::GamePart::vf10()
 
 ARM void args::GamePart::vf0c()
 {
-    int index = (unkfunc_0204ccd0() & 1) ? 0 : 1;
+    int index = (getDisplayFrame() & 1) ? 0 : 1;
     s_tickLog[index][0] = unkfunc_0204afe0();
     s_lineLog[index][0] = GX_GetVCount();
     func_020624d8();
@@ -159,7 +159,7 @@ ARM void args::GamePart::vf0c()
     onDrawPart();
     s_tickLog[index][2] = unkfunc_0204afe0();
     s_lineLog[index][2] = GX_GetVCount();
-    unkfunc_020481fc();
+    setupOrtho2DFine();
     data_0211b27c.sprite_[0].draw();
     data_0211b27c.sprite_[1].draw();
     onWindowPart();
@@ -206,7 +206,7 @@ ARM static void unkfunc_02067a58()
     unkfunc_0204afdc();
 }
 
-ARM static void unkfunc_02067a64()
+ARM static void updatePolygonOverflow()
 {
     if (!(REG_DISP3DCNT & 0x1000)) {
         s_polygonOverflow = 0;
@@ -216,7 +216,7 @@ ARM static void unkfunc_02067a64()
     s_polygonOverflow = 1;
 }
 
-ARM static void unkfunc_02067aa4()
+ARM static void updateRenderedLines()
 {
     s_renderedLines = REG_RDLINES_COUNT;
 }
@@ -238,16 +238,16 @@ ARM void unkfunc_02067b00(void (*callback)())
     s_callback = callback;
 }
 
-ARM int UnkSpriteFade::isEnd()
+ARM int GlobalSpriteFade::isEnd()
 {
     return count_ != frames_ ? FADE_RUNNING : FADE_END;
 }
 
-ARM void UnkSpriteFade::draw()
+ARM void GlobalSpriteFade::draw()
 {
 }
 
-ARM void UnkSpriteFade::update()
+ARM void GlobalSpriteFade::update()
 {
     count_++;
     count_ = dss::clamp<int>(count_, 0, frames_);

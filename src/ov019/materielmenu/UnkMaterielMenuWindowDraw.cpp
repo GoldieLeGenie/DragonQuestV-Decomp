@@ -113,14 +113,14 @@ static UnkMenuParts s_parts_02181f9a[] = {
 THUMB void unkfunc_0217be3c()
 {
     unkfunc_02178ff8(0, 0);
-    unkfunc_0217c504();
+    drawMoneyAndPartyWindows();
 }
 
 THUMB void unkfunc_0217be4c(int type)
 {
     unkfunc_0217927c(type);
     unkfunc_02179214();
-    unkfunc_0201b1cc(0x88, 0xa0, type);
+    drawMoneyWindow(0x88, 0xa0, type);
     MaterielMenuPlayerControl* control = MaterielMenuPlayerControl::getSingleton();
     int itemID = MaterielMenu_SHOP_MANAGER::getSingleton()->getItem(control->activeItem_);
     unkfunc_021791c0(itemID);
@@ -134,24 +134,24 @@ THUMB void unkfunc_0217be4c(int type)
 THUMB void unkfunc_0217be90(int type, int itemID)
 {
     unkfunc_021794a0(itemID);
-    unkfunc_02179614(0, 1);
-    unkfunc_0217a234(0);
-    unkfunc_0201b1cc(0x88, 0xa0, type);
+    drawPartyIcons(0, 1);
+    drawActiveCharaHp(0);
+    drawMoneyWindow(0x88, 0xa0, type);
     unkfunc_02179378();
 }
 
 THUMB void unkfunc_0217beb8()
 {
-    unkfunc_02179614(0, 1);
-    unkfunc_0217a234(0);
-    unkfunc_0201b1cc(0x88, 0xa0, 0);
+    drawPartyIcons(0, 1);
+    drawActiveCharaHp(0);
+    drawMoneyWindow(0x88, 0xa0, 0);
     unkfunc_02179774();
 }
 
 THUMB void unkfunc_0217bed8(int fukuro)
 {
-    unkfunc_0217a234(0);
-    unkfunc_0201b1cc(0x88, 0xa0, 0);
+    drawActiveCharaHp(0);
+    drawMoneyWindow(0x88, 0xa0, 0);
     unkfunc_02179aac(0);
     unkfunc_02179878(0);
     if (fukuro == 1) {
@@ -164,8 +164,8 @@ THUMB void unkfunc_0217bed8(int fukuro)
 
 THUMB void unkfunc_0217bf14()
 {
-    unkfunc_0217a234(0);
-    unkfunc_0201b1cc(0x88, 0xa0, 0);
+    drawActiveCharaHp(0);
+    drawMoneyWindow(0x88, 0xa0, 0);
     unkfunc_021799e4(1);
     unkfunc_02179aac(1);
     unkfunc_02179878(1);
@@ -176,7 +176,7 @@ THUMB void unkfunc_0217bf44(int value)
 {
     unkfunc_02179ce4(value);
     unkfunc_02178ff8(0, 0);
-    unkfunc_0217a450(0xa4, 0x28);
+    drawCommandCursor(0xa4, 0x28);
     unkfunc_02179b3c(-1, 0);
 }
 
@@ -191,58 +191,58 @@ THUMB void unkfunc_0217bf68()
             y = 0x40;
             break;
     }
-    unkfunc_0217a450(0xa4, y);
+    drawCommandCursor(0xa4, y);
     unkfunc_0217be3c();
 }
 
-THUMB void unkfunc_0217bf94(int index, int flag)
+THUMB void drawChurchScreen(int index, int flag)
 {
     if (index == -1 && gTownMenu_MESSAGE.isMessageWAITPROG() == true && flag == 0) {
-        unkfunc_0217a12c();
+        drawChurchCommands();
     }
-    unkfunc_0217c504();
+    drawMoneyAndPartyWindows();
 }
 
 THUMB void unkfunc_0217bfbc()
 {
     int chara = MaterielMenuPlayerControl::getSingleton()->activeChara_;
-    unkfunc_02179614(0x28, 0);
-    unkfunc_0217a234(1);
-    unkfunc_0201b2a8(chara, 1);
-    unkfunc_0201b1cc(-1, -1, 0);
+    drawPartyIcons(0x28, 0);
+    drawActiveCharaHp(1);
+    drawCharaStatusWindow(chara, 1);
+    drawMoneyWindow(-1, -1, 0);
 }
 
 THUMB void unkfunc_0217bfe8()
 {
-    unkfunc_0201b158();
+    drawPartyStatusWindows();
 }
 
 THUMB void unkfunc_0217bff0()
 {
     unkfunc_02178ff8(1, 0);
-    unkfunc_0217c504();
+    drawMoneyAndPartyWindows();
 }
 
-THUMB void unkfunc_0217c000(int mode, int flag, int value)
+THUMB void drawBankAmountScreen(int mode, int flag, int value)
 {
     if (mode == 0) {
         if (flag != 0) {
-            unkfunc_0217a450(0xa4, 0x10);
+            drawCommandCursor(0xa4, 0x10);
         } else {
-            unkfunc_0217a450(0xa4, 0x28);
+            drawCommandCursor(0xa4, 0x28);
         }
         unkfunc_02178ff8(1, 1);
-        unkfunc_0217a19c(value, 1);
+        drawBankDigits(value, 1);
     }
-    unkfunc_0217c504();
+    drawMoneyAndPartyWindows();
 }
 
 THUMB void unkfunc_0217c034(int value, int flag)
 {
     if (flag != 0) {
-        unkfunc_0217a19c(value, 0);
+        drawBankDigits(value, 0);
     }
-    unkfunc_0217c504();
+    drawMoneyAndPartyWindows();
 }
 
 THUMB void unkfunc_0217c048(int coin, int bet, int type)
@@ -438,12 +438,12 @@ THUMB void unkfunc_0217c458()
     unkfunc_0217aa1c();
 }
 
-THUMB void unkfunc_0217c460(int mode, int icon, int type, int value)
+THUMB void drawTagModeAmbassadorScreen(int mode, int icon, int type, int value)
 {
     if (mode == 0) {
-        unkfunc_0217aa78(type, value);
+        drawTagModeIconGrid(type, value);
     } else {
-        unkfunc_0217a4a0(icon, 0x48);
+        drawNameEditIcon(icon, 0x48);
     }
 }
 
@@ -451,7 +451,7 @@ THUMB void unkfunc_0217c47c(int page, int value, int index, int icon, int flag)
 {
     unkfunc_0217ab94(page, value, flag);
     if (index != -1) {
-        unkfunc_0217a4a0(icon, 0);
+        drawNameEditIcon(icon, 0);
         unkfunc_0217ac98(index, 0);
     }
 }
@@ -459,7 +459,7 @@ THUMB void unkfunc_0217c47c(int page, int value, int index, int icon, int flag)
 THUMB void unkfunc_0217c4a4(int mode, int icon, int page, int value)
 {
     if (mode <= 1) {
-        unkfunc_0217a4a0(icon, 0);
+        drawNameEditIcon(icon, 0);
     }
     switch (mode) {
         case 0:
@@ -478,17 +478,17 @@ THUMB void unkfunc_0217c4e4(int mode, int flag, int icon)
 {
     if (flag == 0) {
         if (mode == 0) {
-            unkfunc_0217a4a0(icon, 0);
+            drawNameEditIcon(icon, 0);
         }
     } else if (mode == 1) {
         unkfunc_0217af70();
     }
 }
 
-THUMB void unkfunc_0217c504()
+THUMB void drawMoneyAndPartyWindows()
 {
-    unkfunc_0201b1cc(-1, -1, 0);
-    unkfunc_0201b158();
+    drawMoneyWindow(-1, -1, 0);
+    drawPartyStatusWindows();
 }
 
 THUMB void unkfunc_0217c518()
@@ -498,10 +498,10 @@ THUMB void unkfunc_0217c518()
 
 THUMB void unkfunc_0217c520(int mode)
 {
-    unkfunc_0217a234(0);
+    drawActiveCharaHp(0);
     unkfunc_0201b3e4(0, 0x10, 0x70);
     unkfunc_0201b3e4(-2, 0x38, 0x70);
-    unkfunc_0201b0f8(0, 0x70, 0xb8, 0x30, -1);
+    drawMenuFrame(0, 0x70, 0xb8, 0x30, -1);
     int chara = MaterielMenuPlayerControl::getSingleton()->activeChara_;
     if (chara == 0) {
         if (mode == 0) {

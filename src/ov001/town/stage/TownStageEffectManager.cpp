@@ -136,10 +136,10 @@ void twn::TownStageEffectManager::setStopLightning(bool stop)
         rate.vx.value = 0x1000;
         rate.vy.value = 0x1000;
         rate.vz.value = 0x1000;
-        unkfunc_02049228(unkfunc_02046f40(), rate);
+        applyModelPaletteRgbRate(getLastModelTexture(), rate);
     } else {
         dss::Fix32Vector3 rate;
-        unkfunc_02049228(unkfunc_02046f40(), rate);
+        applyModelPaletteRgbRate(getLastModelTexture(), rate);
     }
 }
 

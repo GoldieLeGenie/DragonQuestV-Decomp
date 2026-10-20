@@ -1,7 +1,7 @@
 #include "main/debug/UnkPerfMonitor.hpp"
 #include "main/dss/UnkDisplay.hpp"
 #include "main/dss/UnkMemory.hpp"
-#include "main/dss/UnkVramTransfer.hpp"
+#include "main/dss/VramTransferManager.hpp"
 #include "main/fld/FldCollision.hpp"
 #include "main/fld/FldStage.hpp"
 #include "main/global/Global.hpp"
@@ -193,7 +193,7 @@ THUMB void UnkPerfMonitor::finish()
 
 THUMB void UnkPerfMonitor::measure()
 {
-    if (unkfunc_0204ccd0() & 1) {
+    if (getDisplayFrame() & 1) {
         int draw = FldStage::getDrawTick();
         int collision = FldCollision::getCollisionTick();
         if (drawTick0_ < draw) {

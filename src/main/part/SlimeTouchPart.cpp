@@ -6,7 +6,7 @@
 #include "main/dss/UnkDisplayPlugin.hpp"
 #include "main/dss/UnkMemory.hpp"
 #include "main/dss/UnkOverlaySlot.hpp"
-#include "main/dss/UnkVramTransfer.hpp"
+#include "main/dss/VramTransferManager.hpp"
 #include "main/global/Global.hpp"
 #include "main/status/MenuStatus.hpp"
 #include "main/status/TouchData.hpp"

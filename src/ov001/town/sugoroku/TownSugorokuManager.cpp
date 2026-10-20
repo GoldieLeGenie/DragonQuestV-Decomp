@@ -6,7 +6,7 @@
 #include "ov001/town/TownSystem.hpp"
 #include "main/cmn/CommonPartyInfo.hpp"
 #include "main/dss/UnkRandom.hpp"
-#include "main/dss/UnkRenderObject.hpp"
+#include "main/dss/RenderObject.hpp"
 #include "main/global/Global.hpp"
 #include "main/leveldata/LevelDataUtility.hpp"
 #include "main/leveldata/SugorokuChanceCard.hpp"
@@ -395,7 +395,7 @@ void twn::TownSugorokuManager::draw()
         diceAnim_.drawNumber(num);
     }
     if (shopSprite_.unkfunc_02051b04()) {
-        unkfunc_0204813c();
+        setupOrtho2D();
         shopSprite_.unkfunc_02051b68();
     }
     if (flag_.flag_ & DRAW_ARROW1) {

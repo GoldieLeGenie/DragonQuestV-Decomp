@@ -13,7 +13,7 @@ struct MaterielMenu_SHOP_BUYMENU : menu::MenuBase {
     menu::MenuItem menuItem_;                   // 0x1C
     int unk_80;                                 // 0x80
     char mode_;                                 // 0x84
-    UnkCursorMoveGridLoop navigator_;           // 0x88
+    CursorMoveGridLoop navigator_;           // 0x88
 
     virtual void menuSetup();
     virtual void menuExecute();

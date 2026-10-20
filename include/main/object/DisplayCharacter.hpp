@@ -12,7 +12,7 @@ struct DisplayCharacter : BillboardCharacter {
     virtual void setRender(Render* render);
     virtual void removeRender();
 
-    UnkBillboard head_;                         // 0x1B0
+    Billboard head_;                         // 0x1B0
     unsigned short unk_264;                     // 0x264 hue change frame count
     unsigned short unk_266;                     // 0x266 hue change frame
     unsigned short unk_268[16];                 // 0x268 hue changed palette

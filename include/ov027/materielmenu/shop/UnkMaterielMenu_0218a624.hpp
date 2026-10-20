@@ -5,7 +5,7 @@
 // shop: choose the item of a party member to sell
 struct UnkMaterielMenu_0218a624 : menu::MenuBase {
     menu::MenuItem menuItem_;               // 0x1C
-    UnkCursorMoveGridLoop navigator_;       // 0x80
+    CursorMoveGridLoop navigator_;       // 0x80
 
     virtual void menuSetup();
     virtual void menuExecute();

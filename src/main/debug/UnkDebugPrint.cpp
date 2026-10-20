@@ -9,18 +9,18 @@ ARM void unkfunc_02043430(const char* title)
 {
     data_020f6f9c.unkfunc_0204b00c(0, 0, 0x20, 0x30);
     if (data_020f325c != 0) {
-        unkfunc_0204348c(0, 0, title);
+        debugConsolePrint(0, 0, title);
     }
 }
 
-ARM void unkfunc_0204348c(int x, int y, const char* str)
+ARM void debugConsolePrint(int x, int y, const char* str)
 {
     if (data_020f325c != 0) {
         data_020f6f9c.unkfunc_0204b04c(x, y, str);
     }
 }
 
-ARM void unkfunc_020434c8(int x, int y, const char* fmt, ...)
+ARM void debugConsolePrintfIfEnabled(int x, int y, const char* fmt, ...)
 {
     char out[0x21];
     char buf[0x200];
@@ -43,5 +43,5 @@ ARM void unkfunc_020434c8(int x, int y, const char* fmt, ...)
         }
     }
     out[i] = '\0';
-    unkfunc_0204348c(x, y, out);
+    debugConsolePrint(x, y, out);
 }

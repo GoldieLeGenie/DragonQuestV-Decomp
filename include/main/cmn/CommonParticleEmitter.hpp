@@ -1,11 +1,11 @@
 #pragma once
 #include <globaldefs.h>
-#include "main/dss/UnkBillboard.hpp"
+#include "main/dss/Billboard.hpp"
 #include "main/dss/Camera.hpp"
 
 namespace cmn
 {
-    struct CommonParticle : UnkBillboard {
+    struct CommonParticle : Billboard {
         int frame;                              // 0xB4
         int anim;                               // 0xB8
         int pattern;                            // 0xBC

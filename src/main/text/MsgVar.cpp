@@ -18,7 +18,7 @@ THUMB void MsgVar::set(int def, int array_index_no, int type, int no, int opt)
     set(def, array_index_no, type, no, 0, opt);
 }
 
-THUMB int MsgVar::unkfunc_0206bcf4(int def, int array_index_no)
+THUMB int MsgVar::matches(int def, int array_index_no)
 {
     if (m_def != def) {
         return 0;
@@ -122,7 +122,7 @@ THUMB int MsgVar::extract_var(char* dst, int size, int ex)
     return ret;
 }
 
-THUMB int MsgVar::unkfunc_0206bec8()
+THUMB int MsgVar::isNumber()
 {
     if (m_type == 0xf0000000) {
         return 1;

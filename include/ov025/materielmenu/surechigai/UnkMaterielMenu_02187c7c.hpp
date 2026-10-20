@@ -10,7 +10,7 @@ struct UnkMaterielMenu_02187c7c : menu::MenuBase {
     int unk_24;                                 // 0x24
     int unk_28;                                 // 0x28  screen offset set
     menu::MenuItem menuItem_;                   // 0x2C
-    UnkCursorMoveGridLoop navigator_;           // 0x90
+    CursorMoveGridLoop navigator_;           // 0x90
 
     virtual void menuSetup();
     virtual void menuExecute();

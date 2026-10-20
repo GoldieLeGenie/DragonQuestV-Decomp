@@ -136,7 +136,7 @@ THUMB void UnkBattleTest::unkfunc_02026b68()
                     state_ = 2;
                     counter_ = -1;
                     dss::g_Pad.unkfunc_0204be8c();
-                    dss::g_Pad.unkfunc_0204bef0(1, 4);
+                    dss::g_Pad.addRecordPresses(1, 4);
                     dss::g_Pad.unkfunc_0204bd50(0x300);
                 } else {
                     state_ = 4;
@@ -154,7 +154,7 @@ THUMB void UnkBattleTest::unkfunc_02026b68()
                 state_ = 2;
                 counter_ = -1;
                 dss::g_Pad.unkfunc_0204be8c();
-                dss::g_Pad.unkfunc_0204bef0(1, 4);
+                dss::g_Pad.addRecordPresses(1, 4);
                 dss::g_Pad.unkfunc_0204bd50(0x300);
             }
         }

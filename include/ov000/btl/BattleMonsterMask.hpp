@@ -1,6 +1,6 @@
 #pragma once
 #include <globaldefs.h>
-#include "main/dss/UnkSprite2D.hpp"
+#include "main/dss/Sprite2D.hpp"
 
 namespace btl
 {
@@ -9,7 +9,7 @@ namespace btl
         static const int MONSTER_MAX = 12;
 
         int select_;                                // 0x000
-        UnkSprite2D sprite_;                        // 0x004
+        Sprite2D sprite_;                        // 0x004
         UnkMenuSprite mask_[MASK_MAX];              // 0x03C
         dss::Vector2<int> targetPos[MONSTER_MAX];   // 0x0DC
         dss::Fix32 scale_;                          // 0x13C

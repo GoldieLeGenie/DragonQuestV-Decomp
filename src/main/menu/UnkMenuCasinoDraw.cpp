@@ -205,7 +205,7 @@ THUMB void unkfunc_0202a034(int monster, int diameter, int index, int order)
     }
 }
 
-THUMB void unkfunc_0202a0b4(int index)
+THUMB void drawFightStadiumCursor(int index)
 {
     unkfunc_02062990(s_monsterCursorParts, 0, 0xc, index * 0x18 + 0x16);
 }
@@ -224,7 +224,7 @@ THUMB void unkfunc_0202a0d0(int coin, int x, int y, int flag)
     }
 }
 
-THUMB void unkfunc_0202a138(int* message, int x, int y, int w, int h)
+THUMB void drawCenteredMessage(int* message, int x, int y, int w, int h)
 {
     s_titleParts[0].x_ = x;
     s_titleParts[0].y_ = y + ((h - y) >> 1);
@@ -303,7 +303,7 @@ THUMB void unkfunc_0202a274(const char* name, int clear, int level, int time)
 }
 
 // keyboard lines
-THUMB void unkfunc_0202a330(int* text, int flag)
+THUMB void drawNameEditCharTable(int* text, int flag)
 {
     int y = 0x10;
     if (flag == 1) {

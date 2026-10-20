@@ -38,7 +38,7 @@ THUMB void casino::CasinoPokerDraw::initialize()
     cardObject[4].setup("data/minigame/poker/joker_omote.tex", 0, 0);
     cardObject[5].setup("data/minigame/poker/hikari.tex", 0, 0);
     for (int i = 0; i < MAX_CARD_TYPE; i++) {
-        cardTexture_[i] = (UnkTextureObject*)cardObject[i].getAddr();
+        cardTexture_[i] = (TextureObject*)cardObject[i].getAddr();
         cardTexture_[i]->unkfunc_02049e9c(1);
     }
     s_vertex.v[0] = s_vertexLeftTop;
@@ -247,10 +247,10 @@ THUMB void casino::PokerCardPolygon::draw()
     G3_MaterialColorDiffAmb(0x7fff, 0x4210, 1);
     G3_MaterialColorSpecEmi(0x4210, 0, 0);
     if (texture_) {
-        ((UnkTextureObject*)texture_)->unkfunc_0204a1e4();
-        ((UnkTextureObject*)texture_)->unkfunc_0204a264();
+        ((TextureObject*)texture_)->unkfunc_0204a1e4();
+        ((TextureObject*)texture_)->unkfunc_0204a264();
     } else {
-        unkfunc_0204a250();
+        disableTexture();
     }
     unkfunc_02046fe8();
     G3_Begin(1);
@@ -265,7 +265,7 @@ THUMB void casino::PokerCardPolygon::draw()
 
 // The original TU also emitted UnkRenderObject3D's weak vtable (merged with main's by the linker).
 // Our headers keep it external, so this dead-stripped stand-in recreates that 0x3C vtable for the data layout.
-struct CasinoPokerDrawWeakVtable : UnkRenderObject, Position {
+struct CasinoPokerDrawWeakVtable : RenderObject, Position {
 };
 
 void CasinoPokerDraw_weakVtable()

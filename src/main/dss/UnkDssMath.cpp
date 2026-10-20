@@ -14,7 +14,7 @@ ARM int unkfunc_0204f3bc(int r, int g, int b, int a)
     return (r << 24) | (g << 16) | (b << 8) | a;
 }
 
-ARM int unkfunc_0204f3d0(dss::Fix32 degree)
+ARM int degreeToAngle(dss::Fix32 degree)
 {
     return (unsigned short)(degree * data_0209a354 / data_0209a360).value;
 }

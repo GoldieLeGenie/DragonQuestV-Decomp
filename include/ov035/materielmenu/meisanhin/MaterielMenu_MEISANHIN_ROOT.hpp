@@ -15,7 +15,7 @@ struct MaterielMenu_MEISANHIN_ROOT : menu::MenuBase {
     };
 
     menu::MenuItem menuItem_;                   // 0x1C
-    UnkCursorMoveGridLoop navigator_;           // 0x80
+    CursorMoveGridLoop navigator_;           // 0x80
     short meisanItem_;                          // 0x8C
     char mode_;                                 // 0x8E
     char daizaNo_;                              // 0x8F

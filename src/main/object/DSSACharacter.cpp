@@ -19,13 +19,13 @@ ARM DSSACharacter::~DSSACharacter()
 
 ARM void DSSACharacter::unkfunc_0205248c(DataObject* texture, DataObject* animation)
 {
-    UnkTextureObject* textureObject = (UnkTextureObject*)texture->getAddr();
+    TextureObject* textureObject = (TextureObject*)texture->getAddr();
     textureObject->unkfunc_02049e9c(1);
     unk_034 = 1;
     unkfunc_020524c8(textureObject, animation);
 }
 
-ARM void DSSACharacter::unkfunc_020524c8(UnkTextureObject* texture, DataObject* animation)
+ARM void DSSACharacter::unkfunc_020524c8(TextureObject* texture, DataObject* animation)
 {
     flag_.clear();
     unk_ae4 = texture;
@@ -38,14 +38,14 @@ ARM void DSSACharacter::unkfunc_020524c8(UnkTextureObject* texture, DataObject* 
                 currentAnimationIndex_ = i;
                 firstAnimationIndex_ = i;
             }
-            dssaObject_[i].setup(unkfunc_0204c878(dataObject_->getAddr(), i));
+            dssaObject_[i].setup(getArchiveFile(dataObject_->getAddr(), i));
             dssaObject_[i].setTexture(unk_ae4);
             dssaObject_[i].setPalette(&palette_);
         }
     }
 }
 
-ARM void DSSACharacter::unkfunc_02052594(UnkTextureObject* texture, const char* format, int count)
+ARM void DSSACharacter::unkfunc_02052594(TextureObject* texture, const char* format, int count)
 {
     char filename[0x20];
     flag_.clear();

@@ -18,7 +18,7 @@ struct MaterielMenu_LUIDA_ROOT : menu::MenuBase {
     char mode_;                                 // 0x20
     char active_;                           // 0x21
     menu::MenuItem menuItem_;                   // 0x24
-    UnkCursorMoveGridLoop navigator_;           // 0x88
+    CursorMoveGridLoop navigator_;           // 0x88
 
     virtual void menuSetup();
     virtual void menuExecute();

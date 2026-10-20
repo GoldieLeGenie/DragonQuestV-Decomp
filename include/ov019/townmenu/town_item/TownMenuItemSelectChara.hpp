@@ -1,7 +1,7 @@
 #pragma once
 #include <globaldefs.h>
 #include "main/menu/MenuBase.hpp"
-#include "main/menu/UnkCursorMoveGridLoop.hpp"
+#include "main/menu/CursorMoveGridLoop.hpp"
 
 // town item menu: item list of the selected character (or of the bag), also used to place souvenirs in the museum
 struct TownMenuItemSelectChara : menu::MenuBase {
@@ -18,7 +18,7 @@ struct TownMenuItemSelectChara : menu::MenuBase {
     short setItem_;                             // 0x2A
     char mode_;                                 // 0x2C
     menu::MenuItem menuItem_;                   // 0x30
-    UnkCursorMoveGridLoop navigator_;           // 0x94
+    CursorMoveGridLoop navigator_;           // 0x94
 
     virtual void menuSetup();
     virtual void menuExecute();

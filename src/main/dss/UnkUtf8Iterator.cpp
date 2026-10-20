@@ -464,7 +464,7 @@ THUMB void unkfunc_0204acc4(unsigned short* table81, int size81, unsigned short*
     data_020f679c[0] = '\0';
 }
 
-THUMB int unkfunc_0204ace4(char* dst, int size, const char* src)
+THUMB int convertUtf16ToUtf8(char* dst, int size, const char* src)
 {
     UnkUtf8Iterator out;
     out.unkfunc_0204a828(dst, size);
@@ -547,7 +547,7 @@ THUMB int unkfunc_0204adb8(char* dst, unsigned int size, const char* src)
     return 1;
 }
 
-THUMB int unkfunc_0204ae2c(char* dst, int size, const char* src)
+THUMB int convertSjisToUtf8(char* dst, int size, const char* src)
 {
     UnkUtf8Iterator out;
     out.unkfunc_0204a828(dst, size);

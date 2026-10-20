@@ -2,7 +2,7 @@
 #include "main/fld/Coll.hpp"
 #include "main/fld/FldStage.hpp"
 #include "main/object/DSSAObject.hpp"
-#include "main/dss/UnkVramTransfer.hpp"
+#include "main/dss/VramTransferManager.hpp"
 #include "nitro/g3.hpp"
 #include "nitro/fx/fx_trig.h"
 #include <mem.h>
@@ -206,7 +206,7 @@ ARM static unsigned int unkfunc_0205c6cc(unsigned int c0, unsigned int c1, fx32 
 }
 static void unkfunc_0205d4a0(FLD_MAP_OBJ* obj, VecFx32* ofs);
 static int unkfunc_0205d7ec(UnkFldAnim* anim, FLD_ANIM_FUNC func, void* work);
-static int unkfunc_0205d9a4(void* key0, void* key1, fx32 rate, void* work);
+static int applyCameraKey(void* key0, void* key1, fx32 rate, void* work);
 static int unkfunc_0205dbe8(void* key0, void* key1, fx32 rate, void* work);
 static int unkfunc_0205decc(void* key0, void* key1, fx32 rate, void* work);
 static int unkfunc_0205e2dc(void* key0, void* key1, fx32 rate, void* work);
@@ -286,7 +286,7 @@ ARM int FLDObject::SetCameraNo(int no, int screen)
         anim->wait = anim->wait_start;
         anim->frame = 0;
         s_cameraNo = screen;
-        unkfunc_0205d9a4(anim->key, anim->key, 0, this);
+        applyCameraKey(anim->key, anim->key, 0, this);
     } else {
         SetCameraPos(0, 0, 0, screen);
         SetCameraCent(0, 0, FX32_ONE, screen);
@@ -680,7 +680,7 @@ ARM static int unkfunc_0205d7ec(UnkFldAnim* anim, FLD_ANIM_FUNC func, void* work
     return ret;
 }
 
-ARM static int unkfunc_0205d9a4(void* key0, void* key1, fx32 rate, void* work)
+ARM static int applyCameraKey(void* key0, void* key1, fx32 rate, void* work)
 {
     UnkFldCameraKey* k0 = (UnkFldCameraKey*)key0;
     UnkFldCameraKey* k1 = (UnkFldCameraKey*)key1;
@@ -725,7 +725,7 @@ ARM void FLDObject::unkfunc_0205db94(int screen)
     }
     UnkFldAnim* anim = (UnkFldAnim*)camera->res[no - 1];
     s_cameraNo = screen;
-    unkfunc_0205d7ec(anim, unkfunc_0205d9a4, this);
+    unkfunc_0205d7ec(anim, applyCameraKey, this);
 }
 
 ARM static int unkfunc_0205dbe8(void* key0, void* key1, fx32 rate, void* work)
@@ -1290,7 +1290,7 @@ ARM void FLDObject::unkfunc_0205f05c(UnkFldPlttEntry* entry, UnkFldPlttSet* set,
     }
 }
 
-ARM void FLDObject::unkfunc_0205f0d0()
+ARM void FLDObject::applyRgbRateToPlttAnims()
 {
     int i;
     UnkFldPlttEntry* entry;
@@ -1438,7 +1438,7 @@ ARM void FLDObject::unkfunc_0205f404()
         unkfunc_020615c0();
     }
     if (m_flag & 0xc0) {
-        unkfunc_020616f4();
+        transferPltt();
     }
 }
 
@@ -1855,7 +1855,7 @@ ARM void FLDObject::SetMapObjPosFX32(int obj, VecFx32* pos)
     o->render->flag |= 1;
 }
 
-ARM void FLDObject::unkfunc_02060384(int obj, VecFx32* rot)
+ARM void FLDObject::setMapObjRotFX32(int obj, VecFx32* rot)
 {
     FLD_MAP_OBJ* o = GetMapObjPtr(obj);
     if (o == NULL) {
@@ -1928,7 +1928,7 @@ ARM void FLDObject::SetMapUidRotFX32(int uid, VecFx32* rot)
     for (int i = 0; i < m_map->obj_num; i++) {
         short index = m_map->index[i];
         if (index >= 0 && uid == m_map->obj[index].uid) {
-            unkfunc_02060384(i, rot);
+            setMapObjRotFX32(i, rot);
         }
     }
 }
@@ -2334,7 +2334,7 @@ ARM VecFx32* FLDObject::GetMapObjRotFX32(int obj)
     return NULL;
 }
 
-ARM int FLDObject::unkfunc_020611b8(int obj)
+ARM int FLDObject::getMapObjAnimFrame(int obj)
 {
     FLD_MAP_OBJ* o = GetMapObjPtr(obj);
     int frame = 0;
@@ -2348,7 +2348,7 @@ ARM int FLDObject::unkfunc_020611b8(int obj)
     return frame;
 }
 
-ARM int FLDObject::unkfunc_02061224(int obj)
+ARM int FLDObject::getMapObjAnimFrameMax(int obj)
 {
     FLD_MAP_OBJ* o = GetMapObjPtr(obj);
     int frame = 0;
@@ -2399,7 +2399,7 @@ ARM void FLDObject::SetRGBRate(VecFx32* rate, int real_time)
     m_flag &= ~0x40;
 
     if (m_pltt != NULL)
-        unkfunc_0205f0d0();
+        applyRgbRateToPlttAnims();
 
     unkfunc_020615c0();
 }
@@ -2529,17 +2529,17 @@ ARM void FLDObject::unkfunc_020615c0()
     }
 }
 
-ARM void FLDObject::unkfunc_020616f4()
+ARM void FLDObject::transferPltt()
 {
     NNSG3dResTex* tex = m_tex;
     unsigned int ofs = tex->plttInfo.ofsPlttData;
     unsigned int size = tex->plttInfo.sizePltt * 8;
     DC_CleanRange((unsigned char*)tex + ofs, size);
-    data_020f4f74.unkfunc_0204a6f0(1, (unsigned char*)tex + ofs, (tex->plttInfo.vramKey & 0xffff) << 3, size, 0);
+    data_020f4f74.transferToVram(1, (unsigned char*)tex + ofs, (tex->plttInfo.vramKey & 0xffff) << 3, size, 0);
     m_flag &= ~0x80;
 }
 
-ARM void FLDObject::unkfunc_0206175c(fx32 x, fx32 y, fx32 z)
+ARM void FLDObject::setScale(fx32 x, fx32 y, fx32 z)
 {
     m_scale.x = x;
     m_scale.y = y;

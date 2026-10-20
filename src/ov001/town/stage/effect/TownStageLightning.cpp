@@ -3,7 +3,7 @@
 #include "ov001/town/TownCharacterManager.hpp"
 #include "main/dss/UnkDisplay.hpp"
 #include "main/dss/UnkModelMember.hpp"
-#include "main/dss/UnkVramTransfer.hpp"
+#include "main/dss/VramTransferManager.hpp"
 #include "main/sound/SoundManager.hpp"
 
 #pragma thumb on
@@ -54,7 +54,7 @@ void twn::TownStageLightning::cleanup()
 
 void twn::TownStageLightning::execute()
 {
-    if (enable_ == false || (unkfunc_0204ccd0() & 1)) {
+    if (enable_ == false || (getDisplayFrame() & 1)) {
         return;
     }
     counter_++;
@@ -63,15 +63,15 @@ void twn::TownStageLightning::execute()
     unsigned int address;
     char* data;
     if (phase_ == false) {
-        tex = unkfunc_02046f40();
+        tex = getLastModelTexture();
         size = tex->plttInfo.sizePltt << 3;
         address = (tex->plttInfo.vramKey & 0xffff) << 3;
         data = (char*)unk_1c.getAddr();
         data += size * 39;
-        data_020f4f74.unkfunc_0204a6f0(1, data, address, size, 0);
+        data_020f4f74.transferToVram(1, data, address, size, 0);
         TownCharacterManager::getSingleton()->setSpecCharaAlpha(0x4d, 0);
     } else {
-        tex = unkfunc_02046f40();
+        tex = getLastModelTexture();
         size = tex->plttInfo.sizePltt << 3;
         address = (tex->plttInfo.vramKey & 0xffff) << 3;
         if (frame_ == 0x28) {
@@ -80,7 +80,7 @@ void twn::TownStageLightning::execute()
             data = (char*)unk_2c.getAddr();
         }
         data += size * lightCounter_;
-        data_020f4f74.unkfunc_0204a6f0(1, data, address, size, 0);
+        data_020f4f74.transferToVram(1, data, address, size, 0);
         int color = (lightCounter_ * dark_ + light_ * (frame_ - lightCounter_)) / frame_;
         TownCharacterManager::getSingleton()->setSpecCharaAlpha(0x4d, color * 31 / 4096);
         if (lightCounter_ == 0) {

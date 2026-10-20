@@ -2,8 +2,8 @@
 #include <globaldefs.h>
 
 struct Render;
-struct UnkRenderObject;
-struct UnkModelAnimation;
+struct RenderObject;
+struct ModelAnimation;
 namespace dss {
     struct Camera;
 }
@@ -24,10 +24,10 @@ struct UnkRenderModel {
 struct Render {
     dss::Camera* unk_000;                       // 0x000 camera
     UnkRenderModel* unk_004[32];                // 0x004 3D scenes
-    UnkRenderObject* unk_084[64];                  // 0x084 3D objects
-    UnkRenderObject* unk_184[32];                  // 0x184 3D objects drawn with a camera only
-    UnkModelAnimation* unk_204[128];            // 0x204 animations
-    UnkRenderObject* unk_404[128];                 // 0x404 2D sprites
+    RenderObject* unk_084[64];                  // 0x084 3D objects
+    RenderObject* unk_184[32];                  // 0x184 3D objects drawn with a camera only
+    ModelAnimation* unk_204[128];            // 0x204 animations
+    RenderObject* unk_404[128];                 // 0x404 2D sprites
     int unk_604;                                // 0x604
 
     Render();
@@ -38,12 +38,12 @@ struct Render {
     void unkfunc_02048aa4(UnkRenderModel* model);
     void unkfunc_02048ad0();
     void unkfunc_02048ae8();
-    void unkfunc_02048b24(UnkRenderObject* object);
-    void unkfunc_02048b4c(UnkRenderObject* object);
+    void unkfunc_02048b24(RenderObject* object);
+    void unkfunc_02048b4c(RenderObject* object);
     void unkfunc_02048b80();
     void unkfunc_02048bb8();
     void unkfunc_02048bfc();
-    void unkfunc_02048c2c(UnkRenderObject* object);    // add to the first free slot of unk_404
-    void unkfunc_02048c54(UnkRenderObject* object);    // remove
+    void unkfunc_02048c2c(RenderObject* object);    // add to the first free slot of unk_404
+    void unkfunc_02048c54(RenderObject* object);    // remove
     void unkfunc_02048c88();
 };

@@ -19,7 +19,7 @@ struct MaterielMenu_RaceOdds : menu::MenuBase {
     int unk_28;                                 // 0x28  held button: 1 bet, 2 back
     int unk_2c;                                 // 0x2C  held button frame counter
     menu::MenuItem menuItem_;                   // 0x30
-    UnkCursorMoveGridLoop navigator_;           // 0x94
+    CursorMoveGridLoop navigator_;           // 0x94
     RACE_ODDS_MODE mode_;                       // 0xA0
     int unk_a4;                                 // 0xA4
 

@@ -1,6 +1,6 @@
 #pragma ipa file
 #include "ov001/town/TownGlobalMap.hpp"
-#include "main/dss/UnkRenderObject.hpp"
+#include "main/dss/RenderObject.hpp"
 
 THUMB twn::TownGlobalMap::TownGlobalMap()
 {
@@ -72,7 +72,7 @@ THUMB void twn::TownGlobalMap::execute()
 THUMB void twn::TownGlobalMap::draw()
 {
     if (isEnable_) {
-        unkfunc_0204813c();
+        setupOrtho2D();
         map_.unkfunc_02051b68();
         point_[0].unkfunc_02051b68();
         point_[1].unkfunc_02051b68();

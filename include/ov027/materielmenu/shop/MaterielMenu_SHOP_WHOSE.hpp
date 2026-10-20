@@ -8,7 +8,7 @@ struct MaterielMenu_SHOP_WHOSE : menu::MenuBase {
     int unk_80;                                 // 0x80  message shown when returning to the shop menu
     char activeItem_;                           // 0x84
     char mode_;                                 // 0x85
-    UnkCursorMoveGridLoop navigator_;           // 0x88
+    CursorMoveGridLoop navigator_;           // 0x88
 
     virtual void menuSetup();
     virtual void menuExecute();

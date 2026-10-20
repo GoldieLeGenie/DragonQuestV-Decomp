@@ -40,13 +40,13 @@ THUMB void UnkMaterielMenu_02187cb4::menuDraw()
     if (gTownMenu_MESSAGE.isMessageWAITPROG()) {
         int active = menuItem_.active_;
         int page = navigator_.getPageNo();
-        unkfunc_0217c460(mode_, active, page, navigator_.getPageMaxCount());
+        drawTagModeAmbassadorScreen(mode_, active, page, navigator_.getPageMaxCount());
         menuItem_.drawActive();
     }
     if (mode_ == 1) {
         int icon = dq5::level::SurechigaiData::getRecord(status::g_MuseumStatus.playerTaishi_.objectId_)->cgicon;
         int page = navigator_.getPageNo();
-        unkfunc_0217c460(mode_, icon, page, navigator_.getPageMaxCount());
+        drawTagModeAmbassadorScreen(mode_, icon, page, navigator_.getPageMaxCount());
     }
 }
 

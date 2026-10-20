@@ -1,7 +1,7 @@
 #pragma once
 #include <globaldefs.h>
 #include "main/menu/MenuBase.hpp"
-#include "main/menu/UnkCursorMoveGridLoop.hpp"
+#include "main/menu/CursorMoveGridLoop.hpp"
 
 // town misc menu: settings (music volume, sound effect volume, battle speed)
 struct TownMenu_OPERATION_SETTING : menu::MenuBase {
@@ -10,13 +10,13 @@ struct TownMenu_OPERATION_SETTING : menu::MenuBase {
     menu::MenuItem bgmItem_;                    // 0x20
     menu::MenuItem seItem_;                     // 0x84
     menu::MenuItem battleItem_;                 // 0xE8
-    UnkCursorMoveGridLoop navigator_;           // 0x14C
+    CursorMoveGridLoop navigator_;           // 0x14C
 
     virtual void menuSetup();
     virtual void menuExecute();
     virtual void menuDraw();
     virtual void menuUpdate();
-    void unkfunc_02176750();
+    void loadOptionValues();
     bool unkfunc_0217677c(menu::MenuItem* menuItem, int mode);
     void unkfunc_02176840();
 };

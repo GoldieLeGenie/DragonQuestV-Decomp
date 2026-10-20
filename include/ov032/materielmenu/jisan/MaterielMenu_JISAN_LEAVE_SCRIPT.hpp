@@ -16,7 +16,7 @@ struct MaterielMenu_JISAN_LEAVE_SCRIPT : menu::MenuBase {
     char mode_;                             // 0x3E
     char monsterCount_;                     // 0x3F
     menu::MenuItem menuItem_;               // 0x40
-    UnkCursorMoveGridLoop navigator_;       // 0xA4
+    CursorMoveGridLoop navigator_;       // 0xA4
 
     virtual void menuSetup();
     virtual void menuExecute();

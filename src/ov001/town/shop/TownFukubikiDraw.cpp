@@ -2,7 +2,7 @@
 #include "ov001/town/TownStageManager.hpp"
 #include "main/cmn/CommonCounterInfo.hpp"
 #include "main/dss/UnkDisplay.hpp"
-#include "main/dss/UnkTextureObject.hpp"
+#include "main/dss/TextureObject.hpp"
 #include "main/object/BillboardCharacter.hpp"
 #include "main/sound/SoundManager.hpp"
 
@@ -79,7 +79,7 @@ THUMB void twn::TownFukubikiDraw::initialize()
     char path[0x80];
     dss::sprintf_s(path, sizeof(path), "data/fukubiki/fukubiki.tex");
     lotteryTextureData_.setup(path, 0, 0);
-    lotteryTexture_ = (UnkTextureObject*)lotteryTextureData_.getAddr();
+    lotteryTexture_ = (TextureObject*)lotteryTextureData_.getAddr();
     lotteryTexture_->unkfunc_02049e9c(1);
 }
 
@@ -118,11 +118,11 @@ THUMB void twn::TownFukubikiDraw::draw()
 {
     if (enable_) {
         if (!lotteryAnim_.isEnd()) {
-            if (unkfunc_0204ccd0() & 1) {
+            if (getDisplayFrame() & 1) {
                 lotteryAnim_.draw();
             }
             lotteryAnim_.execute();
-        } else if (unkfunc_0204ccd0() & 1) {
+        } else if (getDisplayFrame() & 1) {
             lotteryStopAnim_.draw();
         }
     }

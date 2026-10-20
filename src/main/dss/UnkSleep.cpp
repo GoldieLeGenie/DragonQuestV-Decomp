@@ -10,7 +10,7 @@ int data_020fd160;
 UnkPmSleepCallback data_020fd168;
 UnkPmSleepCallback data_020fd174;
 
-ARM void unkfunc_0204bf48()
+ARM void initSleep()
 {
     data_020fd15c = 1;
     data_020fd168.func_ = unkfunc_02089578;

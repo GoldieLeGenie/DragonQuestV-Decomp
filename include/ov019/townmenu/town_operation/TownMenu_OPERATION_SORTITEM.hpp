@@ -1,7 +1,7 @@
 #pragma once
 #include <globaldefs.h>
 #include "main/menu/MenuBase.hpp"
-#include "main/menu/UnkCursorMoveGridLoop.hpp"
+#include "main/menu/CursorMoveGridLoop.hpp"
 
 // town misc menu: item sorting
 struct TownMenu_OPERATION_SORTITEM : menu::MenuBase {
@@ -15,7 +15,7 @@ struct TownMenu_OPERATION_SORTITEM : menu::MenuBase {
     char m_selectPlayerCount;                   // 0x2E
     char m_mode;                                // 0x2F
     menu::MenuItem menuItem_;                   // 0x30
-    UnkCursorMoveGridLoop navigator_;           // 0x94
+    CursorMoveGridLoop navigator_;           // 0x94
 
     virtual void menuSetup();
     virtual void menuExecute();

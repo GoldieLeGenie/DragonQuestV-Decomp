@@ -74,7 +74,7 @@ src/ov018/menu/BattleMenu_ITEM.cpp:
     .text       start:0x0217273c end:0x02172bc4
     .data       start:0x0217775c end:0x02177778
 
-src/ov018/menu/UnkBattleMenuEquipItem.cpp:
+src/ov018/menu/BattleMenu_ITEMUSEEQUIP.cpp:
     complete
     .text       start:0x02172bc4 end:0x02173038
     .data       start:0x02177778 end:0x021777b4
@@ -137,7 +137,7 @@ src/ov018/menu/BattleMenu_TACTICSMENU.cpp:
     .rodata     start:0x021766cc end:0x021766e4
     .data       start:0x02177878 end:0x02177894
 
-src/ov018/menu/UnkBattleMenuTest.cpp:
+src/ov018/menu/BattleMenu_TEST.cpp:
     complete
     .text       start:0x02175164 end:0x021751e4
     .data       start:0x02177894 end:0x021779c0

@@ -336,7 +336,7 @@ struct FLDObject
     void unkfunc_0205ee84(FLD_MAP_OBJ* obj);
     void unkfunc_0205eed0();
     void unkfunc_0205f05c(UnkFldPlttEntry* entry, UnkFldPlttSet* set, int index);
-    void unkfunc_0205f0d0();
+    void applyRgbRateToPlttAnims();
     void unkfunc_0205f398();
     void unkfunc_0205f404();                                    // calc
     void unkfunc_0205f85c();                                    // draw
@@ -344,7 +344,7 @@ struct FLDObject
     void SetMapObjAlpha(int obj, int alpha, int flag);
     void SetMapObjOnOff(int obj, int flag);
     void SetMapObjPosFX32(int obj, VecFx32* pos);
-    void unkfunc_02060384(int obj, VecFx32* rot);
+    void setMapObjRotFX32(int obj, VecFx32* rot);
     void AddMapObjRotFX32(int obj, VecFx32* rot);
     void AddMapObjPosFX32(int obj, VecFx32* pos);
     void SetMapUidAlpha(int uid, int alpha, int flag);
@@ -371,8 +371,8 @@ struct FLDObject
     int GetMapObjUid(int obj);
     int CollGetObjId(int poly_no);
     VecFx32* GetMapObjRotFX32(int obj);
-    int unkfunc_020611b8(int obj);                              // animation frame
-    int unkfunc_02061224(int obj);                              // animation frame max
+    int getMapObjAnimFrame(int obj);                              // animation frame
+    int getMapObjAnimFrameMax(int obj);                              // animation frame max
     int GetCommonAnimationNo(int obj);
     int GetMapObjCommonId(int obj);
     void SetSepia();
@@ -380,8 +380,8 @@ struct FLDObject
     NNSG3dResTex* unkfunc_02061358();
     void unkfunc_02061520(unsigned short* src, unsigned short* dst, int num);
     void unkfunc_020615c0();
-    void unkfunc_020616f4();
-    void unkfunc_0206175c(fx32 x, fx32 y, fx32 z);              // scale
+    void transferPltt();
+    void setScale(fx32 x, fx32 y, fx32 z);              // scale
     void* unkfunc_0206176c(int size);           // allocate from the work memory
     void unkfunc_02061794(void* p);             // free (nothing to do)
     void unkfunc_02061798(unsigned int color);  // sets the vertex colors of all the shapes

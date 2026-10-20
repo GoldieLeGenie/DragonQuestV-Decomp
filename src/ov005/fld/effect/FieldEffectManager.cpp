@@ -64,7 +64,7 @@ THUMB void fld::FieldEffectManager::draw()
     if (riseupCounter_ != 0) {
         for (int i = 0; i < EFFECT_MAX; i++) {
             if (riseup_[i] != NULL) {
-                if (unkfunc_0204ccd0() & 1) {
+                if (getDisplayFrame() & 1) {
                     riseup_[i]->draw();
                 }
                 if (riseup_[i]->enable_ == 0) {

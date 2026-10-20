@@ -10,7 +10,7 @@ ARM void unkfunc_0204c0b4(int enable)
     data_0209a288 = enable;
 }
 
-ARM void unkfunc_02089590(int index, int size, unsigned int caller)
+ARM void addArrayError(int index, int size, unsigned int caller)
 {
     if (data_020fd180 < 16) {
         data_020fd184[data_020fd180].index_ = index;
@@ -20,22 +20,22 @@ ARM void unkfunc_02089590(int index, int size, unsigned int caller)
     data_020fd180++;
 }
 
-ARM UnkArrayWarning* unkfunc_0204c11c(int index)
+ARM UnkArrayWarning* getArrayError(int index)
 {
     return &data_020fd184[index];
 }
 
-ARM int unkfunc_0204c130()
+ARM int getArrayErrorCount()
 {
     return data_020fd180;
 }
 
-ARM void unkfunc_0204c140(int index, int size)
+ARM void reportArrayError(int index, int size)
 {
     register unsigned int caller = 0;
     asm { mov caller, lr }
     if (data_0209a288 != 0) {
-        unkfunc_02089590(index, size, caller);
+        addArrayError(index, size, caller);
         char buf[0x40];
         dss::sprintf_s(buf, sizeof(buf), "ARRAY ERROR %d/%d %08x !!!!", index, size, caller);
         if (data_0209a288 == 1) {

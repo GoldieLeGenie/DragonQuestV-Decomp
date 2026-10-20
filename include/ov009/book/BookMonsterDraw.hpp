@@ -4,7 +4,7 @@
 #include "main/data/DataObject.hpp"
 #include "main/leveldata/MonsterData.hpp"
 #include "main/object/GameMonster.hpp"
-#include "main/object/UnkPaletteAnimationObject.hpp"
+#include "main/object/PaletteAnimationObject.hpp"
 #include "ov009/book/BookEffectGroup.hpp"
 
 namespace book
@@ -20,7 +20,7 @@ namespace book
         BookSystem* system_;                    // 0x0010
         GameMonster character_;                 // 0x0014
         DataObject dataObject_;                 // 0x0F2C palette animation file
-        UnkPaletteAnimationObject paletteAnim_; // 0x0F3C
+        PaletteAnimationObject paletteAnim_; // 0x0F3C
         BookEffectGroup effect_;                // 0x0F5C
         cmn::CommonEffectResource resource_;    // 0x1350
         int wait_;                              // 0x1BC0

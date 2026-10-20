@@ -130,14 +130,14 @@ THUMB void MaterielMenu_FIGHT_STADIUM::menuDraw()
             }
         }
         if (m_bDispCoin != 0) {
-            unkfunc_0201b0f8(0xb8, 0, 0x48, 0x48, -1);
+            drawMenuFrame(0xb8, 0, 0x48, 0x48, -1);
         }
         else {
-            unkfunc_0201b0f8(0xb8, 0, 0x48, 0x40, -1);
+            drawMenuFrame(0xb8, 0, 0x48, 0x40, -1);
         }
     }
     else {
-        unkfunc_0201b0f8(0xb8, 0, 0x48, 0x28, -1);
+        drawMenuFrame(0xb8, 0, 0x48, 0x28, -1);
     }
     if (unk_104 != 0) {
         int count = FightStadiumManager::getSingleton().getMonsterCount();
@@ -145,11 +145,11 @@ THUMB void MaterielMenu_FIGHT_STADIUM::menuDraw()
         for (int i = 0; i < count; i++) {
             unkfunc_0202a034(FightStadiumManager::getSingleton().getMonsterID(i), FightStadiumManager::getSingleton().getDiameter(i), i, FightStadiumManager::getSingleton().getOrderCount(i));
         }
-        unkfunc_0201b0f8(0, 0, 0xb8, count * 16 + 0x30, -1);
+        drawMenuFrame(0, 0, 0xb8, count * 16 + 0x30, -1);
         unkfunc_02029fa4(show);
     }
     if (status_ == FIGHT_STADIUM_BET) {
-        unkfunc_0202a0b4(g_StadiumData.monsterArray_);
+        drawFightStadiumCursor(g_StadiumData.monsterArray_);
     }
 }
 

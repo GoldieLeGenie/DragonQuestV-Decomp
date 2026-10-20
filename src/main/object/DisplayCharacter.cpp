@@ -3,15 +3,15 @@
 #include "main/dss/Camera.hpp"
 #include "main/dss/UnkDisplay.hpp"
 #include "main/dss/UnkPaletteEffect.hpp"
-#include "main/dss/UnkTextureObject.hpp"
-#include "main/dss/UnkVramTransfer.hpp"
+#include "main/dss/TextureObject.hpp"
+#include "main/dss/VramTransferManager.hpp"
 #include "main/fld/FldStage.hpp"
 #include "nitro/fx/fx_trig.h"
 #include "nitro/os.hpp"
 
 inline bool isEven()
 {
-    return (unkfunc_0204ccd0() & 1) == 0;
+    return (getDisplayFrame() & 1) == 0;
 }
 
 inline dss::Camera* getCamera()
@@ -59,13 +59,13 @@ ARM DisplayCharacter::~DisplayCharacter()
 ARM void DisplayCharacter::unkfunc_02056b80(void* data)
 {
     unkfunc_0205568c(data);
-    head_.texture_ = UnkRenderObject::texture_;
+    head_.texture_ = RenderObject::texture_;
 }
 
 ARM void DisplayCharacter::unkfunc_02056b98()
 {
     unkfunc_02055a34();
-    head_.texture_ = UnkRenderObject::texture_;
+    head_.texture_ = RenderObject::texture_;
 }
 
 ARM void DisplayCharacter::setup(const char* name, dss::File::LoadSwitch loadSwitch)
@@ -80,7 +80,7 @@ ARM void DisplayCharacter::setup(const char* name, dss::File::LoadSwitch loadSwi
     texCoord.v[1].vy = texCoord.v[1].vy * 9 / 16;
     head_.unkfunc_02047a20(&vertex);
     head_.unkfunc_02047a94(&texCoord);
-    head_.texture_ = UnkRenderObject::texture_;
+    head_.texture_ = RenderObject::texture_;
     head_.setScale(workScale_);
     head_.setPolygonID(1);
 
@@ -92,7 +92,7 @@ ARM void DisplayCharacter::setup(const char* name, dss::File::LoadSwitch loadSwi
     bodyTexCoord.v[3].vy = bodyTexCoord.v[1].vy * 1 / 2;
     unkfunc_02047a20(&bodyVertex);
     unkfunc_02047a94(&bodyTexCoord);
-    UnkRenderObject::setPolygonID(1);
+    RenderObject::setPolygonID(1);
 
     boxTestParam_.x = 0;
     boxTestParam_.y = 0;
@@ -110,17 +110,17 @@ ARM void DisplayCharacter::cleanup()
 
 ARM void DisplayCharacter::setRender(Render* render)
 {
-    UnkRenderObject::setRender(render);
+    RenderObject::setRender(render);
 }
 
 ARM void DisplayCharacter::removeRender()
 {
-    UnkRenderObject::removeRender();
+    RenderObject::removeRender();
 }
 
 ARM void DisplayCharacter::setAlpha(int alpha)
 {
-    UnkRenderObject::setAlpha(alpha);
+    RenderObject::setAlpha(alpha);
     head_.setAlpha(alpha);
     setShadowAlpha((unsigned char)(alpha * 12 / 31));
 }
@@ -221,13 +221,13 @@ ARM void DisplayCharacter::drawSleep(dss::Fix32Vector3& position, UnkBillboardVe
 {
     G3_PushMtx();
     G3_Translate(position.vx.value, position.vy.value, position.vz.value);
-    unkfunc_02047d38();
+    loadBillboardMatrix();
     G3_Scale(scale_.vx.value, scale_.vx.value, scale_.vx.value);
-    if (UnkRenderObject::texture_) {
-        ((UnkTextureObject*)UnkRenderObject::texture_)->unkfunc_0204a1e4();
-        ((UnkTextureObject*)UnkRenderObject::texture_)->unkfunc_0204a264();
+    if (RenderObject::texture_) {
+        ((TextureObject*)RenderObject::texture_)->unkfunc_0204a1e4();
+        ((TextureObject*)RenderObject::texture_)->unkfunc_0204a264();
     } else {
-        unkfunc_0204a250();
+        disableTexture();
     }
     unkfunc_02046fe8();
     unkfunc_02047b2c();
@@ -316,7 +316,7 @@ ARM bool DisplayCharacter::isHueChange()
 ARM void DisplayCharacter::setHueChange(int type, int frame)
 {
     for (int i = 0; i < 8; i++) {
-        UnkTextureObject* texture = (UnkTextureObject*)unkfunc_02055a70(i);
+        TextureObject* texture = (TextureObject*)unkfunc_02055a70(i);
         if (texture == NULL) {
             break;
         }
@@ -352,7 +352,7 @@ ARM void DisplayCharacter::execHueChange()
         unk_264 = 0;
         return;
     }
-    UnkTextureObject* texture = (UnkTextureObject*)unkfunc_02055a70(unk_2a8);
+    TextureObject* texture = (TextureObject*)unkfunc_02055a70(unk_2a8);
     unsigned short* palette;
     if (texture->unk_14 & 1) {
         palette = (unsigned short*)texture->unkfunc_0204a1d4();
@@ -372,7 +372,7 @@ ARM void DisplayCharacter::execHueChange()
         palette[i] = r + (g << 5) + (b << 10);
     }
     DC_CleanAll();
-    data_020f4f74.unkfunc_0204a6f0(1, palette, ((UnkTextureObject*)unkfunc_02055a70(0))->unkfunc_0204a1cc(), ((UnkTextureObject*)unkfunc_02055a70(0))->unkfunc_0204a1dc(), 0);
+    data_020f4f74.transferToVram(1, palette, ((TextureObject*)unkfunc_02055a70(0))->unkfunc_0204a1cc(), ((TextureObject*)unkfunc_02055a70(0))->unkfunc_0204a1dc(), 0);
     unk_266++;
 }
 

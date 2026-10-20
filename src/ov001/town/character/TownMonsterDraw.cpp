@@ -47,7 +47,7 @@ void twn::TownMonsterDraw::setup(TOWN_CHARACTER& chara)
     TownCharacterBase::setup(chara);
     dss::sprintf_s(path, 0x80, "data/chr/h%03d.tex.lz", data_.charaIndex);
     textureData_.setup(path, dq5::level::CharaData::loadSwitch_, 1);
-    UnkTextureObject* texture = (UnkTextureObject*)textureData_.getAddr();
+    TextureObject* texture = (TextureObject*)textureData_.getAddr();
     texture->unkfunc_02049e9c(1);
     dss::memcpy(&texture_, texture, 0x70);
     if (data_.charaIndex == 0x204 || data_.charaIndex == 0x205 || data_.charaIndex == 0x219) {
@@ -88,7 +88,7 @@ void twn::TownMonsterDraw::draw()
 {
     if (display_) {
         DSSAObject::calcType_ = false;
-        int no = (unkfunc_0204ccd0() & 1) ? 0 : 1;
+        int no = (getDisplayFrame() & 1) ? 0 : 1;
         TownCamera* camera = TownCamera::getSingleton();
         monster_.setCamera(no == 0 ? &camera->camera_.unk_004 : &camera->camera_.unk_074);
         monster_.draw();
@@ -133,7 +133,7 @@ void twn::TownMonsterDraw::setPosition(dss::Fix32Vector3& pos)
 
 void twn::TownMonsterDraw::setPaletteRate(dss::Fix32 r, dss::Fix32 g, dss::Fix32 b)
 {
-    UnkTextureObject* texture = monster_.unk_ae4;
+    TextureObject* texture = monster_.unk_ae4;
     dss::Fix32Vector3 rate(r, g, b);
     unkfunc_02049ad8(texture, rate);
 }

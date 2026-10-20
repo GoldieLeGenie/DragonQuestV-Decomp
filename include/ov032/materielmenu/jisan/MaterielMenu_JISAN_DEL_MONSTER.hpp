@@ -16,7 +16,7 @@ struct MaterielMenu_JISAN_DEL_MONSTER : menu::MenuBase {
     short activeChara_;                     // 0x24
     char mode_;                             // 0x26
     menu::MenuItem menuItem_;               // 0x28
-    UnkCursorMoveGridLoop navigator_;       // 0x8C
+    CursorMoveGridLoop navigator_;       // 0x8C
 
     virtual void menuSetup();
     virtual void menuExecute();

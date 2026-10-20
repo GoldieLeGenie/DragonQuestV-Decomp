@@ -46,7 +46,7 @@ THUMB void ceremony::CeremonyStaffSystem::initialize()
         char path[128];
         dss::sprintf_s(path, sizeof(path), "data/opening/jp/staff.tex.lz");
         textureData_.setup(path, 0, 1);
-        texture_ = (UnkTextureObject*)textureData_.getAddr();
+        texture_ = (TextureObject*)textureData_.getAddr();
         texture_->unkfunc_02049e9c(1);
         dss::sprintf_s(path, sizeof(path), "data/opening/jp/staff_u.dssa");
         staffUpData_.setup(path, 0, 0);
@@ -89,7 +89,7 @@ THUMB void ceremony::CeremonyStaffSystem::initialize()
         }
         dss::sprintf_s(path, sizeof(path), "data/opening/%s/%s/staff_%s_%s.tex.lz", area, lang, area, lang);
         textureData_.setup(path, 0, 1);
-        texture_ = (UnkTextureObject*)textureData_.getAddr();
+        texture_ = (TextureObject*)textureData_.getAddr();
         texture_->unkfunc_02049e9c(1);
         dss::sprintf_s(path, sizeof(path), "data/opening/%s/%s/staff_%s_%s_u.dssa", area, lang, area, lang);
         staffUpData_.setup(path, 0, 0);
@@ -147,7 +147,7 @@ THUMB void ceremony::CeremonyStaffSystem::execute()
 
 THUMB void ceremony::CeremonyStaffSystem::draw()
 {
-    if (unkfunc_0204ccd0() & 1) {
+    if (getDisplayFrame() & 1) {
         dss::Fix32Vector3 posD(0, 0x18, 0);
         staffDownDssa_.setPosition(posD);
         staffDownDssa_.draw();

@@ -35,7 +35,7 @@ THUMB void TownMenu_OPERATION_SETTING::menuSetup()
     battleItem_.setSEenable(false);
     mode_ = 0;
     prevMode_ = 0;
-    unkfunc_02176750();
+    loadOptionValues();
 }
 
 THUMB void TownMenu_OPERATION_SETTING::menuExecute()
@@ -90,12 +90,12 @@ THUMB void TownMenu_OPERATION_SETTING::menuUpdate()
         bgmItem_.setSEenable(false);
         seItem_.setSEenable(false);
         battleItem_.setSEenable(false);
-        unkfunc_02176750();
+        loadOptionValues();
         prevMode_ = mode_;
     }
 }
 
-THUMB void TownMenu_OPERATION_SETTING::unkfunc_02176750()
+THUMB void TownMenu_OPERATION_SETTING::loadOptionValues()
 {
     bgmItem_.active_ = g_Option.getBgmVolume();
     seItem_.active_ = g_Option.getSeVolume();

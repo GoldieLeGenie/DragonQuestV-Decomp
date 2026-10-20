@@ -11,7 +11,7 @@ struct MaterielMenu_BANK_DRAW : menu::MenuBase {
     };
 
     menu::MenuItem menuItem_;                   // 0x1C
-    UnkCursorMoveGridLoop navigator_;           // 0x80
+    CursorMoveGridLoop navigator_;           // 0x80
     int bankMoney_;                             // 0x8C
     int drawMoney_;                             // 0x90
     char mode_;                                 // 0x94

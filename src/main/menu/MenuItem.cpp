@@ -2,7 +2,7 @@
 #include "main/dss/UnkDisplay.hpp"
 #include "main/menu/MenuBase.hpp"
 #include "main/menu/MenuManager.hpp"
-#include "main/menu/UnkMenuArrowDisplay.hpp"
+#include "main/menu/MenuArrowDisplay.hpp"
 #include "main/menu/UnkMenuDisplays.hpp"
 #include "main/dss/Camera.hpp"
 #include "main/dss/Pad.hpp"
@@ -10,7 +10,7 @@
 #include "nitro/pad.h"
 #include "main/menu/UnkMenuPartsDraw.hpp"
 
-THUMB void unkfunc_02067ca4(MENUITEM_DATA* data, int x, int y)
+THUMB void setMenuItemPosition(MENUITEM_DATA* data, int x, int y)
 {
     data->x = x;
     data->y = y;
@@ -67,7 +67,7 @@ THUMB void menu::MenuItem::drawActive()
     if (data == NULL) {
         return;
     }
-    unkfunc_0204ccd0();
+    getDisplayFrame();
     for (int i = 0; i <= menuitem_max_; data++, i++) {
         int view;
         switch (data->view) {
@@ -118,7 +118,7 @@ THUMB void menu::MenuItem::drawActive()
                 y += h / 2;
                 break;
             }
-            data_02114dd4.arrow_.unkfunc_020649b4(x, y, ctype_, 0);
+            data_02114dd4.arrow_.addArrow(x, y, ctype_, 0);
         }
     }
 }
@@ -149,8 +149,8 @@ THUMB int menu::MenuItem::execInput()
             if (!unkfunc_02051be0() && !unkfunc_02051be4() && !check11_PAD_DirectButton() && !check20_PAD_CancelButton()
                 && !check30_PAD_Noactive() && !check40_PAD_OkButton()) {
                 if (navMode_ == 0) {
-                    if (!unkfunc_02051d40() && !unkfunc_02051dcc() && !unkfunc_02051e5c()) {
-                        unkfunc_02051ed0();
+                    if (!check50_PAD_UP() && !check60_PAD_DOWN() && !check70_PAD_LEFT()) {
+                        check80_PAD_RIGHT();
                     }
                 } else {
                     if (!check50_NEW_PAD_UP() && !check60_NEW_PAD_DOWN() && !check70_NEW_PAD_LEFT()) {
@@ -161,7 +161,7 @@ THUMB int menu::MenuItem::execInput()
         }
     }
     if (result_ == MENUITEM_RESULT_CHANGE || (unsigned int)(result_ - MENUITEM_RESULT_UP) <= MENUITEM_RESULT_RIGHT - MENUITEM_RESULT_UP) {
-        data_02114dd4.arrow_.unkfunc_02052694();
+        data_02114dd4.arrow_.resetBlink();
     }
     if (result_ == MENUITEM_RESULT_OK && lastresult_ != result_ && enableSE_) {
         Sound::sePlay(300);
@@ -180,14 +180,14 @@ THUMB void menu::MenuItem::unkfunc_02051b60()
         return;
     }
     MENUITEM_DATA* data = menuitem_data_;
-    int frame = unkfunc_0204ccd0();
+    int frame = getDisplayFrame();
     for (int i = 0; i <= menuitem_max_; i++, data++) {
         int x = unk_44 + data->x;
         int y = unk_48 + data->y;
         int w = data->w;
         int h = data->h;
         if (i == active_ || (i & 3) == (frame & 3)) {
-            unkfunc_02061d84(x, y + 192, w, h, 0, 1);
+            drawMenuItemFrame(x, y + 192, w, h, 0, 1);
         }
     }
 }
@@ -255,7 +255,7 @@ THUMB int menu::MenuItem::check30_PAD_Noactive()
         menuitem_temp_y_ = active_ / menuitem_width_;
         return 0;
     }
-    if (dss::g_Pad.unkfunc_0204bc00() & PAD_KEY_ALL) {
+    if (dss::g_Pad.repeat() & PAD_KEY_ALL) {
         active_ = 0;
         result_ = MENUITEM_RESULT_CHANGE;
         reason_ = MENUITEM_REASON_PAD;
@@ -284,7 +284,7 @@ THUMB int menu::MenuItem::check40_PAD_OkButton()
     return 0;
 }
 
-THUMB int menu::MenuItem::unkfunc_02051d40()
+THUMB int menu::MenuItem::check50_PAD_UP()
 {
     int x;
     int y;
@@ -293,7 +293,7 @@ THUMB int menu::MenuItem::unkfunc_02051d40()
     if (!enablePad_) {
         return 0;
     }
-    if (!(dss::g_Pad.unkfunc_0204bc00() & PAD_KEY_UP)) {
+    if (!(dss::g_Pad.repeat() & PAD_KEY_UP)) {
         return 0;
     }
     height = menuitem_height_;
@@ -329,7 +329,7 @@ THUMB int menu::MenuItem::unkfunc_02051d40()
     return 1;
 }
 
-THUMB int menu::MenuItem::unkfunc_02051dcc()
+THUMB int menu::MenuItem::check60_PAD_DOWN()
 {
     int x;
     int y;
@@ -338,7 +338,7 @@ THUMB int menu::MenuItem::unkfunc_02051dcc()
     if (!enablePad_) {
         return 0;
     }
-    if (!(dss::g_Pad.unkfunc_0204bc00() & PAD_KEY_DOWN)) {
+    if (!(dss::g_Pad.repeat() & PAD_KEY_DOWN)) {
         return 0;
     }
     height = menuitem_height_;
@@ -374,12 +374,12 @@ THUMB int menu::MenuItem::unkfunc_02051dcc()
     return 1;
 }
 
-THUMB int menu::MenuItem::unkfunc_02051e5c()
+THUMB int menu::MenuItem::check70_PAD_LEFT()
 {
     if (!enablePad_) {
         return 0;
     }
-    if (!(dss::g_Pad.unkfunc_0204bc00() & PAD_KEY_LEFT)) {
+    if (!(dss::g_Pad.repeat() & PAD_KEY_LEFT)) {
         return 0;
     }
     if (menuitem_width_ == 1) {
@@ -406,12 +406,12 @@ THUMB int menu::MenuItem::unkfunc_02051e5c()
     return 1;
 }
 
-THUMB int menu::MenuItem::unkfunc_02051ed0()
+THUMB int menu::MenuItem::check80_PAD_RIGHT()
 {
     if (!enablePad_) {
         return 0;
     }
-    if (!(dss::g_Pad.unkfunc_0204bc00() & PAD_KEY_RIGHT)) {
+    if (!(dss::g_Pad.repeat() & PAD_KEY_RIGHT)) {
         return 0;
     }
     if (menuitem_width_ == 1) {
@@ -443,7 +443,7 @@ THUMB int menu::MenuItem::check50_NEW_PAD_UP()
     if (!enablePad_) {
         return 0;
     }
-    if (!(dss::g_Pad.unkfunc_0204bc00() & PAD_KEY_UP)) {
+    if (!(dss::g_Pad.repeat() & PAD_KEY_UP)) {
         return 0;
     }
     if (menuitem_height_ == 1) {
@@ -478,7 +478,7 @@ THUMB int menu::MenuItem::check60_NEW_PAD_DOWN()
     if (!enablePad_) {
         return 0;
     }
-    if (!(dss::g_Pad.unkfunc_0204bc00() & PAD_KEY_DOWN)) {
+    if (!(dss::g_Pad.repeat() & PAD_KEY_DOWN)) {
         return 0;
     }
     int height = menuitem_height_;
@@ -516,7 +516,7 @@ THUMB int menu::MenuItem::check70_NEW_PAD_LEFT()
     if (!enablePad_) {
         return 0;
     }
-    if (!(dss::g_Pad.unkfunc_0204bc00() & PAD_KEY_LEFT)) {
+    if (!(dss::g_Pad.repeat() & PAD_KEY_LEFT)) {
         return 0;
     }
     if (menuitem_width_ == 1) {
@@ -546,7 +546,7 @@ THUMB int menu::MenuItem::check80_NEW_PAD_RIGHT()
     if (!enablePad_) {
         return 0;
     }
-    if (!(dss::g_Pad.unkfunc_0204bc00() & PAD_KEY_RIGHT)) {
+    if (!(dss::g_Pad.repeat() & PAD_KEY_RIGHT)) {
         return 0;
     }
     int width = menuitem_width_;

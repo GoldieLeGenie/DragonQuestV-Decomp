@@ -2,7 +2,7 @@
 #include "ov001/town/TownImageMap.hpp"
 #include "ov001/town/TownCamera.hpp"
 #include "ov001/town/TownPlayerManager.hpp"
-#include "main/dss/UnkRenderObject.hpp"
+#include "main/dss/RenderObject.hpp"
 #include "main/data/FileLoader.hpp"
 #include "main/global/Global.hpp"
 #include "main/leveldata/LevelDataUtility.hpp"
@@ -172,10 +172,10 @@ THUMB void twn::TownImageMap::checkData()
 THUMB void twn::TownImageMap::draw()
 {
     if (isEnable_) {
-        unkfunc_0204813c();
+        setupOrtho2D();
         map_.unkfunc_02051b68();
         point_.unkfunc_02051b68();
-        unkfunc_020481fc();
+        setupOrtho2DFine();
         black_.unkfunc_02051b68();
         camera_.applyCamera();
     }
@@ -185,7 +185,7 @@ THUMB void twn::TownImageMap::open()
 {
     setup();
     camera_.applyCamera();
-    unkfunc_0204813c();
+    setupOrtho2D();
     map2d_ = 1;
 }
 

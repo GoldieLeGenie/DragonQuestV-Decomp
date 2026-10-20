@@ -1,7 +1,7 @@
 #pragma once
 #include <globaldefs.h>
-#include "main/dss/UnkTextureBillboard.hpp"
-#include "main/dss/UnkPolygonObject.hpp"
+#include "main/dss/TextureBillboard.hpp"
+#include "main/dss/PolygonObject.hpp"
 #include "main/data/DataObject.hpp"
 
 namespace dss {
@@ -23,7 +23,7 @@ struct UnkBillboardTexCorners : UnkBillboardTexCoord {
 
 // shadow under a billboard character: a textured quad, or the shadow volume of the shadow polygons
 /* vtable 0x0209a630 */
-struct UnkCharacterShadow : UnkPolygonObject {
+struct UnkCharacterShadow : PolygonObject {
     virtual void draw();
     virtual void setPosition(const dss::Fix32Vector3& position);
 
@@ -43,7 +43,7 @@ struct UnkBillboardAnimation {
 };
 
 /* vtable 0x0209a5f0 */
-struct BillboardCharacter : UnkTextureBillboard {
+struct BillboardCharacter : TextureBillboard {
     enum {
         FLAG_ENABLE = 0x1,
         FLAG_DISPLAY = 0x2,

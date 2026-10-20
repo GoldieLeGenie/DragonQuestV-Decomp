@@ -23,7 +23,7 @@ struct MaterielMenu_CHURCH_ROOT : menu::MenuBase {
     int commandNum_;                            // 0xF4
     int firstFlag_;                             // 0xF8
     int m_bOpen;                                // 0xFC
-    UnkCursorMoveGridLoop navigator_;           // 0x100
+    CursorMoveGridLoop navigator_;           // 0x100
 
     virtual void menuSetup();
     virtual void menuExecute();

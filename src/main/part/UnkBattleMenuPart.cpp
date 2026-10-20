@@ -169,35 +169,35 @@ THUMB void UnkBattleMenuPart::unkfunc_0200928c()
     case 0:
         break;
     case 1:
-        if (dss::g_Pad.unkfunc_0204bc00() & 0x10) {
+        if (dss::g_Pad.repeat() & 0x10) {
             tileId_++;
         }
-        if (dss::g_Pad.unkfunc_0204bc00() & 0x20) {
+        if (dss::g_Pad.repeat() & 0x20) {
             tileId_--;
         }
         break;
     case 2:
-        if (dss::g_Pad.unkfunc_0204bc00() & 0x10) {
+        if (dss::g_Pad.repeat() & 0x10) {
             timeZone_++;
         }
-        if (dss::g_Pad.unkfunc_0204bc00() & 0x20) {
+        if (dss::g_Pad.repeat() & 0x20) {
             timeZone_--;
         }
         timeZone_ = dss::clamp<int>(timeZone_, 0, 2);
         break;
     case 3:
-        if (dss::g_Pad.unkfunc_0204bc00() & 0x10) {
+        if (dss::g_Pad.repeat() & 0x10) {
             data_0209ce6c.unkfunc_0206da44();
         }
-        if (dss::g_Pad.unkfunc_0204bc00() & 0x20) {
+        if (dss::g_Pad.repeat() & 0x20) {
             data_0209ce6c.unkfunc_0206dac4();
         }
         break;
     case 4:
-        if (dss::g_Pad.unkfunc_0204bc00() & 0x10) {
+        if (dss::g_Pad.repeat() & 0x10) {
             data_0209ce6c.unkfunc_0206db74();
         }
-        if (dss::g_Pad.unkfunc_0204bc00() & 0x20) {
+        if (dss::g_Pad.repeat() & 0x20) {
             data_0209ce6c.unkfunc_0206dbdc();
         }
         break;
@@ -210,54 +210,54 @@ THUMB void UnkBattleMenuPart::unkfunc_02009378()
     case 0:
         break;
     case 1:
-        if (dss::g_Pad.unkfunc_0204bc00() & 0x10) {
+        if (dss::g_Pad.repeat() & 0x10) {
             group_++;
         }
-        if (dss::g_Pad.unkfunc_0204bc00() & 0x20) {
+        if (dss::g_Pad.repeat() & 0x20) {
             group_--;
         }
         group_ = dss::clamp<int>(group_, 0, 3);
         break;
     case 2:
         if (dss::g_Pad.pad() & 0x100) {
-            if (dss::g_Pad.unkfunc_0204bc00() & 0x10) {
+            if (dss::g_Pad.repeat() & 0x10) {
                 monster_[group_] += 10;
             }
-            if (dss::g_Pad.unkfunc_0204bc00() & 0x20) {
+            if (dss::g_Pad.repeat() & 0x20) {
                 monster_[group_] -= 10;
             }
         } else {
-            if (dss::g_Pad.unkfunc_0204bc00() & 0x10) {
+            if (dss::g_Pad.repeat() & 0x10) {
                 monster_[group_]++;
             }
-            if (dss::g_Pad.unkfunc_0204bc00() & 0x20) {
+            if (dss::g_Pad.repeat() & 0x20) {
                 monster_[group_]--;
             }
         }
         monster_[group_] = dss::clamp<int>(monster_[group_], 0, 0x140);
         break;
     case 3:
-        if (dss::g_Pad.unkfunc_0204bc00() & 0x10) {
+        if (dss::g_Pad.repeat() & 0x10) {
             count_[group_]++;
         }
-        if (dss::g_Pad.unkfunc_0204bc00() & 0x20) {
+        if (dss::g_Pad.repeat() & 0x20) {
             count_[group_]--;
         }
         count_[group_] = dss::clamp<int>(count_[group_], 0, 8);
         break;
     case 4:
-        if (dss::g_Pad.unkfunc_0204bc00() & 0x10) {
+        if (dss::g_Pad.repeat() & 0x10) {
             data_0209ce6c.unkfunc_0206da44();
         }
-        if (dss::g_Pad.unkfunc_0204bc00() & 0x20) {
+        if (dss::g_Pad.repeat() & 0x20) {
             data_0209ce6c.unkfunc_0206dac4();
         }
         break;
     case 5:
-        if (dss::g_Pad.unkfunc_0204bc00() & 0x10) {
+        if (dss::g_Pad.repeat() & 0x10) {
             data_0209ce6c.unkfunc_0206db74();
         }
-        if (dss::g_Pad.unkfunc_0204bc00() & 0x20) {
+        if (dss::g_Pad.repeat() & 0x20) {
             data_0209ce6c.unkfunc_0206dbdc();
         }
         break;

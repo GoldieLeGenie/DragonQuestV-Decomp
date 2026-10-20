@@ -4,7 +4,7 @@
 #include "main/dss/DssCore.hpp"
 #include "main/dss/DssUtils.hpp"
 #include "main/dss/UnkRandom.hpp"
-#include "main/dss/UnkVramTransfer.hpp"
+#include "main/dss/VramTransferManager.hpp"
 #include "main/sound/SoundManager.hpp"
 #include "nitro/dc.h"
 #include "nitro/fs.hpp"

@@ -20,10 +20,10 @@ ARM void ScriptGroup::setup(void* addr)
 
 ARM void ScriptGroup::setup()
 {
-    mainScriptObject_.setup(unkfunc_0204c878(dataObject_.getAddr(), 0));
+    mainScriptObject_.setup(getArchiveFile(dataObject_.getAddr(), 0));
     scriptObjectCount_ = unkfunc_0204c860(dataObject_.getAddr()) - 1;
     for (int i = 0; i < scriptObjectCount_; i++) {
-        scriptObject_[i].setup(unkfunc_0204c878(dataObject_.getAddr(), i + 1));
+        scriptObject_[i].setup(getArchiveFile(dataObject_.getAddr(), i + 1));
     }
     for (int i = 0; i < SCRIPT_OBJECT_MAX; i++) {
         scriptObjectEnableFlag_[i] = 0;

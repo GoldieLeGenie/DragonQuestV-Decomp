@@ -41,17 +41,17 @@ THUMB void MenuManager::setup()
 THUMB void MenuManager::setMenuDisplay(int mode)
 {
     if (mode == MENUDISPLAY_OFF) {
-        unkfunc_0204d050(4);
+        setDisplayTextCounter(4);
         data_02106178.icon_.unkfunc_0206375c(0);
         unkfunc_0204cc9c(&dss::g_DISPLAYPLUGIN_DOUBLE3D);
     }
     if (mode == MENUDISPLAY_NORMAL) {
-        unkfunc_0204d050(4);
+        setDisplayTextCounter(4);
         data_02106178.icon_.unkfunc_0206375c(0);
         unkfunc_0204cc9c(&dss::g_DISPLAYPLUGIN_DOUBLE3D);
     }
     if (mode == MENUDISPLAY_EXTRA) {
-        unkfunc_0204d050(4);
+        setDisplayTextCounter(4);
         unkfunc_0204cc9c(&dss::g_DISPLAYPLUGIN_CAPTURE);
         data_02106178.icon_.unkfunc_0206375c(1);
     }

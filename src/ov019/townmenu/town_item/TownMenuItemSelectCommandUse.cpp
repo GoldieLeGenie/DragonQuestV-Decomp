@@ -176,7 +176,7 @@ THUMB void TownMenuItemSelectCommandUse::menuSetup()
 THUMB void TownMenuItemSelectCommandUse::menuDraw()
 {
     MenuStatusInfo::setMode(MenuStatusInfo::PLAYER_MODE);
-    unkfunc_0201b158();
+    drawPartyStatusWindows();
 }
 
 THUMB void TownMenuItemSelectCommandUse::menuUpdate()

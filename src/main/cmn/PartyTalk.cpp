@@ -829,7 +829,7 @@ THUMB int cmn::PartyTalk::checkCondition(int condition, int value)
         case 19: {
             char buf[25];
             char name[25] = "\x83\x70\x83\x93\x83\x63";
-            unkfunc_0204ae2c(buf, 25, name);
+            convertSjisToUtf8(buf, 25, name);
             if (dss::strcmp(status::PlayerDataAll::playerData_[13].name_, buf) != 0) {
                 ret = true;
             }
@@ -1262,8 +1262,8 @@ THUMB void cmn::PartyTalk::checkNameGorosute(int& son, int& daughter)
     char buf2[25];
     char name1[25] = "\x83\x53\x83\x8d\x83\x58\x83\x65";
     char name2[25] = "\x82\xb2\x82\xeb\x82\xb7\x82\xc4";
-    unkfunc_0204ae2c(buf1, 25, name1);
-    unkfunc_0204ae2c(buf2, 25, name2);
+    convertSjisToUtf8(buf1, 25, name1);
+    convertSjisToUtf8(buf2, 25, name2);
     if (dss::strcmp(status::PlayerDataAll::playerData_[13].name_, buf1) == 0 || dss::strcmp(status::PlayerDataAll::playerData_[13].name_, buf2) == 0) {
         son = true;
     }

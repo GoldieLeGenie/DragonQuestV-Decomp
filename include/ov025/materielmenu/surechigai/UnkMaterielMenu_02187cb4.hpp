@@ -8,7 +8,7 @@ struct UnkMaterielMenu_02187cb4 : menu::MenuBase {
     int unk_20;                                 // 0x20  first message
     int unk_24;                                 // 0x24  cancel allowed
     menu::MenuItem menuItem_;                   // 0x28
-    UnkCursorMoveGridLoop navigator_;           // 0x8C
+    CursorMoveGridLoop navigator_;           // 0x8C
 
     virtual void menuSetup();
     virtual void menuExecute();

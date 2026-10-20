@@ -5,7 +5,7 @@
 #include "main/dss/DssUtils.hpp"
 #include "main/dss/UnkDisplay.hpp"
 #include "main/dss/UnkLanguage.hpp"
-#include "main/dss/UnkRenderObject.hpp"
+#include "main/dss/RenderObject.hpp"
 #include "ov004/leveldata/PetalData.hpp"
 
 inline UnkLZDataObject::UnkLZDataObject()
@@ -111,7 +111,7 @@ THUMB void ceremony::CeremonyEndingSystem::initialize()
     endStaff_ = 0;
     dss::sprintf_s(path, sizeof(path), "data/ending/animation/hanabira.tex");
     petalTextureData_.setup(path, 0, 0);
-    petalTexture_ = (UnkTextureObject*)petalTextureData_.getAddr();
+    petalTexture_ = (TextureObject*)petalTextureData_.getAddr();
     petalTexture_->unkfunc_02049e9c(0);
     for (int i = 0; i < MAX_PETAL; i++) {
         dss::sprintf_s(path, sizeof(path), "data/ending/animation/hanabira_%d.dssa", i + 1);
@@ -172,14 +172,14 @@ THUMB void ceremony::CeremonyEndingSystem::execute()
                 if (rollSprite_[page].enable_) {
                     UnkLZDataObject data;
                     data.setup(path, 0, 1);
-                    UnkTextureObject* texture = (UnkTextureObject*)data.getAddr();
+                    TextureObject* texture = (TextureObject*)data.getAddr();
                     dss::memcpy((void*)rollTexture_[page]->unkfunc_0204a1c4(), (char*)texture + texture->unkfunc_0204a1c4(), 0x6000);
                     dss::memcpy((void*)rollTexture_[page]->unkfunc_0204a1d4(), (char*)texture + texture->unkfunc_0204a1d4(), 0x20);
                     rollTexture_[page]->unkfunc_0204a090(0);
                     data.cleanup();
                 } else {
                     rollData_[page].setup(path, 0, 1);
-                    rollTexture_[page] = (UnkTextureObject*)rollData_[page].getAddr();
+                    rollTexture_[page] = (TextureObject*)rollData_[page].getAddr();
                     rollSprite_[page].texture_ = rollTexture_[page];
                     rollSprite_[page].enable_ = 1;
                     rollTexture_[page]->unkfunc_02049e9c(0);
@@ -232,10 +232,10 @@ THUMB void ceremony::CeremonyEndingSystem::execute()
 
 THUMB void ceremony::CeremonyEndingSystem::draw()
 {
-    unkfunc_020482b8();
+    setupOrtho2DBackground();
     if (phase_ != ENDING_PHASE_LASTROLL && phase_ != ENDING_PHASE_STOP) {
         for (int i = 0; i < DIVISION; i++) {
-            if (unkfunc_0204ccd0() & 1) {
+            if (getDisplayFrame() & 1) {
                 rollSprite_[i].unkfunc_02047e88(0, 0xbf - (counter_ - i * 0xc0) % 0x240);
                 if (rollSprite_[i].enable_) {
                     rollSprite_[i].draw();
@@ -248,7 +248,7 @@ THUMB void ceremony::CeremonyEndingSystem::draw()
             }
         }
     } else {
-        if (unkfunc_0204ccd0() & 1) {
+        if (getDisplayFrame() & 1) {
             rollSprite_[(lineCount_ - 1) % DIVISION].draw();
         } else {
             rollSprite_[(lineCount_ - 2) % DIVISION].unkfunc_02047e88(0, -counter_);
@@ -256,7 +256,7 @@ THUMB void ceremony::CeremonyEndingSystem::draw()
         }
     }
     for (int i = 0; i < MAX_PETAL; i++) {
-        if (unkfunc_0204ccd0() & 1) {
+        if (getDisplayFrame() & 1) {
             petalDssa_[i].draw();
             petalDssa_[i].execute();
         }

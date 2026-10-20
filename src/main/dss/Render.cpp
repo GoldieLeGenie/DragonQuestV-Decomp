@@ -1,13 +1,13 @@
 #include "main/dss/Render.hpp"
-#include "main/dss/UnkRenderObject.hpp"
-#include "main/dss/UnkBillboard.hpp"
+#include "main/dss/RenderObject.hpp"
+#include "main/dss/Billboard.hpp"
 #include "main/dss/Camera.hpp"
 #include "main/dss/DssCore.hpp"
 #include "main/dss/Pad.hpp"
 #include "main/object/ModelObject.hpp"
 #include "main/object/DSSAObject.hpp"
 
-inline void UnkRenderObject::draw()
+inline void RenderObject::draw()
 {
 }
 
@@ -56,7 +56,7 @@ ARM void Render::unkfunc_02048908()
     func_020802dc();
     dss::g_Pad.edge();
     data_020f3f04[0] = func_020885e0() - start;
-    unkfunc_020482b8();
+    setupOrtho2DBackground();
     unkfunc_02048370();
     data_020f3f04[1] = func_020885e0() - start;
     unkfunc_02048c88();
@@ -114,7 +114,7 @@ ARM void Render::unkfunc_02048ae8()
     func_02082604();
 }
 
-ARM void Render::unkfunc_02048b24(UnkRenderObject* object)
+ARM void Render::unkfunc_02048b24(RenderObject* object)
 {
     for (int i = 0; i < 64; i++) {
         if (unk_084[i] == NULL) {
@@ -124,7 +124,7 @@ ARM void Render::unkfunc_02048b24(UnkRenderObject* object)
     }
 }
 
-ARM void Render::unkfunc_02048b4c(UnkRenderObject* object)
+ARM void Render::unkfunc_02048b4c(RenderObject* object)
 {
     for (int i = 0; i < 64; i++) {
         if (unk_084[i] != NULL && unk_084[i] == object) {
@@ -164,7 +164,7 @@ ARM void Render::unkfunc_02048bfc()
     }
 }
 
-ARM void Render::unkfunc_02048c2c(UnkRenderObject* object)
+ARM void Render::unkfunc_02048c2c(RenderObject* object)
 {
     for (int i = 0; i < 128; i++) {
         if (unk_404[i] == NULL) {
@@ -174,7 +174,7 @@ ARM void Render::unkfunc_02048c2c(UnkRenderObject* object)
     }
 }
 
-ARM void Render::unkfunc_02048c54(UnkRenderObject* object)
+ARM void Render::unkfunc_02048c54(RenderObject* object)
 {
     for (int i = 0; i < 128; i++) {
         if (unk_404[i] != NULL) {
@@ -188,7 +188,7 @@ ARM void Render::unkfunc_02048c54(UnkRenderObject* object)
 
 ARM void Render::unkfunc_02048c88()
 {
-    unkfunc_0204813c();
+    setupOrtho2D();
     for (int i = 0; i < 128; i++) {
         if (unk_404[i] != NULL) {
             unk_404[i]->draw();

@@ -45,8 +45,8 @@ void unkfunc_0204ec48(UnkScreenBuffer* buffer, int x, int y, int w, int h, int p
 void unkfunc_0204ed5c(UnkScreenBuffer* buffer, int x, int y, int w, int palette, int type);    // horizontal line
 void unkfunc_0204ee0c(void* tile, int x, int y, int color);             // set a pixel
 void unkfunc_0204ee28(void* tile, const void* src);                     // flip horizontally (NULL: in place)
-void unkfunc_0204ee90(void* dst, const void* src);                      // draw a tile (color 0 is transparent)
-void unkfunc_0204eed8(void* dst, const void* src);                      // draw a tile flipped vertically
+void drawTileTransparent(void* dst, const void* src);                      // draw a tile (color 0 is transparent)
+void drawTileTransparentVFlip(void* dst, const void* src);                      // draw a tile flipped vertically
 
 
 

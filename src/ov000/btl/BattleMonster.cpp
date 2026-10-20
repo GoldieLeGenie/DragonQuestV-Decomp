@@ -7,7 +7,7 @@
 #include "main/sound/SoundManager.hpp"
 #include <printf.h>
 
-inline UnkPaletteAnimationObject::UnkPaletteAnimationObject() : texture_(0) {}
+inline PaletteAnimationObject::PaletteAnimationObject() : texture_(0) {}
 inline dq5::level::MonsterAnim* dq5::level::MonsterAnim::getRecord(int index) { return (MonsterAnim*)binary_.getRecord(index, addr_, filename_, loadSwitch_); }
 inline unsigned char dq5::level::MonsterAnim::getAnimfile() { return animfile; }
 inline void DSSACharacter::setTransOfEnd() { flag_.set(0x20); }
@@ -38,7 +38,7 @@ THUMB void btl::BattleMonster::setup(int monsterGroup, int monsterIndex)
 
 THUMB void btl::BattleMonster::cleanup()
 {
-    UnkCharacterPalette* palette = &monsterDraw_.palette_;
+    CharacterPalette* palette = &monsterDraw_.palette_;
     if (palette->enable_) {
         paletteAnimation_.unkfunc_02051648();
         palette->enable_ = 0;
@@ -58,7 +58,7 @@ THUMB void btl::BattleMonster::setPosition(const dss::Fix32Vector3& position)
 
 THUMB void btl::BattleMonster::draw()
 {
-    UnkCharacterPalette* palette = &monsterDraw_.palette_;
+    CharacterPalette* palette = &monsterDraw_.palette_;
     if (palette->enable_ && !paletteAnimation_.unkfunc_02051628()) {
         paletteAnimation_.unkfunc_02051580(palette->unk_408, palette->unk_404);
     }
@@ -189,7 +189,7 @@ THUMB void btl::BattleMonster::setPaletteAnim(int animNo)
 
 THUMB void btl::BattleMonster::setPaletteAstoron(int flag)
 {
-    UnkCharacterPalette* palette = &monsterDraw_.palette_;
+    CharacterPalette* palette = &monsterDraw_.palette_;
     if (palette->enable_) {
         paletteAnimation_.unkfunc_02051648();
         dataObject_.cleanup();

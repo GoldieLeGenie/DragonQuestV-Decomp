@@ -63,7 +63,7 @@ THUMB void MaterielMenu_SAVE::menuDraw()
 {
     if (status_ != MENU_SELECT || messageCounter_ == 0) {
         if (saveType_ == TYPE_CHURCH) {
-            unkfunc_0217c504();
+            drawMoneyAndPartyWindows();
         }
         return;
     }
@@ -85,9 +85,9 @@ THUMB void MaterielMenu_SAVE::menuDraw()
                 break;
         }
     }
-    unkfunc_0201b0f8(0, 0x10, 0x100, 0x68, 0);
+    drawMenuFrame(0, 0x10, 0x100, 0x68, 0);
     if (saveType_ == TYPE_CHURCH) {
-        unkfunc_0217c504();
+        drawMoneyAndPartyWindows();
     }
     menuItem_.drawActive();
 }

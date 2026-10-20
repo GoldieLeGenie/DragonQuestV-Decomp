@@ -31,10 +31,10 @@ THUMB void unkfunc_02172ef0(int messageOpen)
 {
     if (messageOpen == 0) {
         unkfunc_021715fc(-1, -1);
-        unkfunc_021715b4(0, 0, 1);
+        drawRootMenuButtonFrames(0, 0, 1);
     }
-    unkfunc_0201b158();
-    unkfunc_0201b1cc(-1, -1, 0);
+    drawPartyStatusWindows();
+    drawMoneyWindow(-1, -1, 0);
 }
 
 THUMB void unkfunc_02172f1c(int messageOpen)
@@ -45,10 +45,10 @@ THUMB void unkfunc_02172f1c(int messageOpen)
         unkfunc_021729dc(1);
         unkfunc_02173a58(1, 0);
     }
-    unkfunc_0201b158();
+    drawPartyStatusWindows();
     if (messageOpen == 0) {
         unkfunc_02173c50(activeChara, 0);
-        unkfunc_0201b0f8(0, 0x50, 0x100, 0x70, -1);
+        drawMenuFrame(0, 0x50, 0x100, 0x70, -1);
     }
 }
 
@@ -66,7 +66,7 @@ THUMB void unkfunc_02172f6c(int messageOpen, int page)
     if (messageOpen == 0) {
         unkfunc_02173948(activeChara, 0, 1, 0);
         unkfunc_02173c80(activeChara, page, 0);
-        unkfunc_0201b0f8(0, 0, 0x100, 0xa0, 0x70);
+        drawMenuFrame(0, 0, 0x100, 0xa0, 0x70);
         unkfunc_02171b70(itemID, 0, 0);
         if (TownMenuPlayerControl::getSingleton()->activeFukuro_ != 0) {
             if (MenuStatusInfo::getFukuroItemCount() > 6) {
@@ -76,8 +76,8 @@ THUMB void unkfunc_02172f6c(int messageOpen, int page)
             unkfunc_02171ad4(0xd0, 1, page, 0);
         }
     }
-    unkfunc_0201b158();
-    unkfunc_0201b0f8(0, 0x78, 0xb0, 0x48, 0x90);
+    drawPartyStatusWindows();
+    drawMenuFrame(0, 0x78, 0xb0, 0x48, 0x90);
     switch (status::UseItem::getEquipItemType(itemID)) {
         case ITEM_WEAPON:
         case ITEM_ARMOR:
@@ -111,13 +111,13 @@ THUMB void unkfunc_02173098(int messageOpen, int a1, int itemID, int page)
         }
         unkfunc_02173948(activeChara, 0, 1, 0);
         unkfunc_02171d90(commandFlag);
-        unkfunc_0201b0f8(0, 0, 0x100, 0xa0, 0x68);
+        drawMenuFrame(0, 0, 0x100, 0xa0, 0x68);
         unkfunc_02173c80(activeChara, page, 0);
         unkfunc_0217283c(x, y + 4);
     }
-    unkfunc_0201b158();
+    drawPartyStatusWindows();
     if (messageOpen == 0 && a1 == 0) {
-        unkfunc_0201b0f8(0, 0x78, 0xb0, 0x48, 0x90);
+        drawMenuFrame(0, 0x78, 0xb0, 0x48, 0x90);
         switch (status::UseItem::getEquipItemType(itemID)) {
             case ITEM_WEAPON:
             case ITEM_ARMOR:
@@ -137,14 +137,14 @@ THUMB void unkfunc_02173194(int messageOpen, int itemID, int page)
 {
     if (messageOpen == 0) {
         unkfunc_02173948(TownMenuPlayerControl::getSingleton()->targetChara_, 0, 1, 1);
-        unkfunc_0201b0f8(0, 0, 0x100, 0xa0, -1);
+        drawMenuFrame(0, 0, 0x100, 0xa0, -1);
         unkfunc_02173e7c(page);
         MenuStatusInfo::setMode(MenuStatusInfo::PLAYER_MODE);
     }
-    unkfunc_0201b158();
+    drawPartyStatusWindows();
     if (messageOpen == 0) {
         unkfunc_02171bd4(itemID);
-        unkfunc_0201b0f8(0, 0x78, 0xb0, 0x48, 0x90);
+        drawMenuFrame(0, 0x78, 0xb0, 0x48, 0x90);
     }
 }
 
@@ -161,15 +161,15 @@ THUMB void unkfunc_021731f8(int messageOpen)
     }
     if (messageOpen == 0) {
         unkfunc_02173948(activeChara, 0, 0, 0);
-        unkfunc_0201b0f8(0x88, 0xa0, 0x40, 0x20, -1);
+        drawMenuFrame(0x88, 0xa0, 0x40, 0x20, -1);
         unkfunc_02171914(targetChara);
         unkfunc_02172850(targetChara, itemID, 0);
         unkfunc_02173a58(1, 0);
-        unkfunc_0201b0f8(0, 0, 0x100, 0x48, 0x28);
+        drawMenuFrame(0, 0, 0x100, 0x48, 0x28);
     }
     unkfunc_02173c50(targetChara, 1);
-    unkfunc_0201b0f8(0, 0x50, 0x100, 0x70, -1);
-    unkfunc_0201b158();
+    drawMenuFrame(0, 0x50, 0x100, 0x70, -1);
+    drawPartyStatusWindows();
 }
 
 THUMB void unkfunc_021732b0(int messageOpen)
@@ -186,9 +186,9 @@ THUMB void unkfunc_021732b0(int messageOpen)
     }
     if (messageOpen == 0) {
         unkfunc_02173948(activeChara, 0, 0, 0);
-        unkfunc_0201b0f8(0x88, 0xa0, 0x40, 0x20, -1);
+        drawMenuFrame(0x88, 0xa0, 0x40, 0x20, -1);
         unkfunc_02171914(targetChara);
-        unkfunc_0201b0f8(0, 0, 0x100, 0xa0, 0x70);
+        drawMenuFrame(0, 0, 0x100, 0xa0, 0x70);
         unkfunc_02173c80(targetChara, targetItemPage, 1);
         unkfunc_02171b70(0, 0, 1);
         if (MenuStatusInfo::getPlayerItemCount(targetChara) + 1 > 6) {
@@ -196,9 +196,9 @@ THUMB void unkfunc_021732b0(int messageOpen)
         }
     }
     unkfunc_02172850(targetChara, itemID, 1);
-    unkfunc_0201b0f8(0, 8, 0x100, 0x48, 0x30);
+    drawMenuFrame(0, 8, 0x100, 0x48, 0x30);
     unkfunc_02173c50(targetChara, 1);
-    unkfunc_0201b0f8(0, 0x50, 0x100, 0x70, -1);
+    drawMenuFrame(0, 0x50, 0x100, 0x70, -1);
 }
 
 THUMB void unkfunc_021733b0(int messageOpen)
@@ -213,7 +213,7 @@ THUMB void unkfunc_021733b0(int messageOpen)
         unkfunc_021729dc(0);
         unkfunc_02172228(activeChara);
     }
-    unkfunc_0201b158();
+    drawPartyStatusWindows();
 }
 
 THUMB void unkfunc_02173400(int messageOpen)
@@ -227,10 +227,10 @@ THUMB void unkfunc_02173400(int messageOpen)
         unkfunc_021721d4(activeChara, mp, useMp);
         unkfunc_02173e94(activeChara);
         unkfunc_02171b70(magicID, 1, 0);
-        unkfunc_0201b0f8(0, 0, 0x100, 0xa0, 0x70);
+        drawMenuFrame(0, 0, 0x100, 0xa0, 0x70);
         unkfunc_02172a60(0);
     }
-    unkfunc_0201b158();
+    drawPartyStatusWindows();
 }
 
 THUMB void unkfunc_02173478(int messageOpen, int page)
@@ -240,15 +240,15 @@ THUMB void unkfunc_02173478(int messageOpen, int page)
         int mp = MenuDataCommon::getStatus(activeChara, MenuDataCommon::NOWMP, false);
         int useMp = status::UseAction::getUseMp(0x81);
         unkfunc_021715fc(1, -1);
-        unkfunc_021715b4(0x40, 0xa0, 0);
+        drawRootMenuButtonFrames(0x40, 0xa0, 0);
         unkfunc_021721d4(activeChara, mp, useMp);
-        unkfunc_0201b0f8(0, 0xa0, 0x40, 0x20, -1);
+        drawMenuFrame(0, 0xa0, 0x40, 0x20, -1);
         unkfunc_02171820(activeChara, 0, 0, 0);
-        unkfunc_0201b0f8(0, 0, 0x100, 0xa0, 0x70);
+        drawMenuFrame(0, 0, 0x100, 0xa0, 0x70);
         unkfunc_021722d8(page);
         unkfunc_02172a60(1);
     }
-    unkfunc_0201b158();
+    drawPartyStatusWindows();
 }
 
 THUMB void unkfunc_021734f8(int messageOpen, int page)
@@ -260,10 +260,10 @@ THUMB void unkfunc_021734f8(int messageOpen, int page)
         int useMp = status::UseAction::getUseMp(magicID);
         unkfunc_0217399c(activeChara);
         unkfunc_021721d4(activeChara, mp, useMp);
-        unkfunc_0201b0f8(0, 0, 0x100, 0xa0, -1);
+        drawMenuFrame(0, 0, 0x100, 0xa0, -1);
         unkfunc_02173e24(page);
     }
-    unkfunc_0201b158();
+    drawPartyStatusWindows();
 }
 
 THUMB void unkfunc_02173560(int page)
@@ -303,10 +303,10 @@ THUMB void unkfunc_021735ec(int messageOpen)
 {
     if (messageOpen == 0) {
         unkfunc_021715fc(5, -1);
-        unkfunc_021715b4(0x40, 0xa0, 0);
+        drawRootMenuButtonFrames(0x40, 0xa0, 0);
         unkfunc_02173efc();
     }
-    unkfunc_0201b158();
+    drawPartyStatusWindows();
 }
 
 THUMB void unkfunc_02173610(int messageOpen, int mode)
@@ -317,8 +317,8 @@ THUMB void unkfunc_02173610(int messageOpen, int mode)
         unkfunc_021715fc(5, 0);
         if (mode == 1) {
             unkfunc_0217269c(2);
-            unkfunc_021715b4(0, 0xa0, 0);
-            unkfunc_0201b0f8(0x98, 0xa0, 0x40, 0x20, -1);
+            drawRootMenuButtonFrames(0, 0xa0, 0);
+            drawMenuFrame(0x98, 0xa0, 0x40, 0x20, -1);
             if (activeChara == count) {
                 unkfunc_02171820(-2, 1, 0, 0x10);
             } else {
@@ -339,14 +339,14 @@ THUMB void unkfunc_02173610(int messageOpen, int mode)
             unkfunc_02173fa4(list, 2);
         } else {
             unkfunc_0217269c(3);
-            unkfunc_021715b4(0, 0xa0, 0);
+            drawRootMenuButtonFrames(0, 0xa0, 0);
             unkfunc_02173f68();
         }
     }
-    unkfunc_0201b158();
+    drawPartyStatusWindows();
     if (activeChara != count && mode == 1) {
         unkfunc_02173c50(activeChara, 0);
-        unkfunc_0201b0f8(0, 0x50, 0x100, 0x70, -1);
+        drawMenuFrame(0, 0x50, 0x100, 0x70, -1);
     }
 }
 
@@ -354,8 +354,8 @@ THUMB void unkfunc_02173720(char* playerList, int chara)
 {
     unkfunc_021715fc(5, 0);
     unkfunc_0217269c(1);
-    unkfunc_021715b4(0, 0xa0, 0);
-    unkfunc_0201b0f8(0x98, 0xa0, 0x40, 0x20, -1);
+    drawRootMenuButtonFrames(0, 0xa0, 0);
+    drawMenuFrame(0x98, 0xa0, 0x40, 0x20, -1);
     unkfunc_02171820(chara, 1, 0, 0x10);
     unkfunc_02173fa4(playerList, -1);
     unkfunc_02174124(playerList);
@@ -373,7 +373,7 @@ THUMB void unkfunc_02173770(char* playerList, int chara, int active)
         y = 0x8c;
     }
     unkfunc_02172498();
-    unkfunc_0201b0f8(0x10, 0, 0xd0, 0x48, -1);
+    drawMenuFrame(0x10, 0, 0xd0, 0x48, -1);
     unkfunc_0217283c(x, y);
     unkfunc_02173720(playerList, chara);
 }
@@ -381,21 +381,21 @@ THUMB void unkfunc_02173770(char* playerList, int chara, int active)
 THUMB void unkfunc_021737e4(char* allocation, char* list, int active, int count)
 {
     unkfunc_021724f4(allocation, list, count);
-    unkfunc_0201b0f8(0, 0x68, 0xe0, 0x58, -1);
+    drawMenuFrame(0, 0x68, 0xe0, 0x58, -1);
     unkfunc_021725bc(allocation);
-    unkfunc_0201b0f8(0, 0, 0x90, 0x68, -1);
+    drawMenuFrame(0, 0, 0x90, 0x68, -1);
     if (list[active] != -1) {
-        unkfunc_0201b2a8(list[active], 0);
+        drawCharaStatusWindow(list[active], 0);
         if (MenuStatusInfo::isCarriageEnable()) {
             unkfunc_0201ba48(list[active], 1);
-            unkfunc_0201b0f8(0, 0, 0x100, 0xc0, 0x28);
+            drawMenuFrame(0, 0, 0x100, 0xc0, 0x28);
             return;
         }
-        unkfunc_0201b158();
+        drawPartyStatusWindows();
         return;
     }
     unkfunc_02172804();
-    unkfunc_0201b158();
+    drawPartyStatusWindows();
 }
 
 THUMB void unkfunc_0217386c(int messageOpen)
@@ -416,10 +416,10 @@ THUMB void unkfunc_02173894(short* itemPosList, int itemCount, int itemType, int
     unkfunc_02173a18(activeChara);
     unkfunc_02174170(activeChara, itemPosList, itemCount, page);
     if (itemCount > 6) {
-        unkfunc_02171b28(0x50, (itemCount - 1) / 6, page);
+        drawPageIndicatorWide(0x50, (itemCount - 1) / 6, page);
     }
     unkfunc_021726d0(itemType);
-    unkfunc_0201b0f8(0, 0, 0x100, 0xa0, -1);
+    drawMenuFrame(0, 0, 0x100, 0xa0, -1);
     if (activeItem == -1) {
         unkfunc_02174248(activeChara, -1, itemType, itemListActive);
     } else {
@@ -427,7 +427,7 @@ THUMB void unkfunc_02173894(short* itemPosList, int itemCount, int itemType, int
         index += page * 6;
         unkfunc_02174248(activeChara, itemPosList[index], itemType, itemListActive);
     }
-    unkfunc_0201b0f8(0, 0x78, 0x68, 0x48, 0x90);
+    drawMenuFrame(0, 0x78, 0x68, 0x48, 0x90);
     unkfunc_0201b7dc(activeChara, 1);
 }
 
@@ -439,11 +439,11 @@ THUMB void unkfunc_02173940(int type)
 THUMB void unkfunc_02173948(int chara, int a, int b, int c)
 {
     unkfunc_021715fc(s_pairs_0217ddb8[0].first, s_pairs_0217ddb8[0].second);
-    unkfunc_021715b4(0x40, 0xa0, a);
+    drawRootMenuButtonFrames(0x40, 0xa0, a);
     if (b != 0) {
-        unkfunc_0201b0f8(0x88, 0xa0, 0x40, 0x20, -1);
+        drawMenuFrame(0x88, 0xa0, 0x40, 0x20, -1);
     } else {
-        unkfunc_0201b0f8(0, 0xa0, 0x40, 0x20, -1);
+        drawMenuFrame(0, 0xa0, 0x40, 0x20, -1);
     }
     unkfunc_02171820(chara, b, c, 0);
 }
@@ -451,16 +451,16 @@ THUMB void unkfunc_02173948(int chara, int a, int b, int c)
 THUMB void unkfunc_0217399c(int chara)
 {
     unkfunc_021715fc(s_pairs_0217ddb8[1].first, s_pairs_0217ddb8[1].second);
-    unkfunc_021715b4(0x40, 0xa0, 0);
-    unkfunc_0201b0f8(0, 0xa0, 0x40, 0x20, -1);
+    drawRootMenuButtonFrames(0x40, 0xa0, 0);
+    drawMenuFrame(0, 0xa0, 0x40, 0x20, -1);
     unkfunc_02171820(chara, 0, 0, 0);
 }
 
 THUMB void unkfunc_021739d8(int chara, int page)
 {
     unkfunc_021715fc(4, -1);
-    unkfunc_021715b4(0x40, 0xa0, 0);
-    unkfunc_0201b0f8(0x88, 0xa0, 0x40, 0x20, -1);
+    drawRootMenuButtonFrames(0x40, 0xa0, 0);
+    drawMenuFrame(0x88, 0xa0, 0x40, 0x20, -1);
     unkfunc_02171820(chara, 1, 0, 0);
     unkfunc_02173ac8(page);
 }
@@ -468,9 +468,9 @@ THUMB void unkfunc_021739d8(int chara, int page)
 THUMB void unkfunc_02173a18(int chara)
 {
     unkfunc_021715fc(5, 0);
-    unkfunc_021715b4(0, 0xa0, 0);
+    drawRootMenuButtonFrames(0, 0xa0, 0);
     unkfunc_0217269c(0);
-    unkfunc_0201b0f8(0x98, 0xa0, 0x40, 0x20, -1);
+    drawMenuFrame(0x98, 0xa0, 0x40, 0x20, -1);
     unkfunc_02171820(chara, 1, 0, 0x10);
 }
 
@@ -484,11 +484,11 @@ THUMB void unkfunc_02173a58(int a, int b)
     }
     unkfunc_02171eb4(a, b);
     if (count < 5) {
-        unkfunc_0201b0f8(0, 0x70, 0xb8, 0x30, -1);
+        drawMenuFrame(0, 0x70, 0xb8, 0x30, -1);
     } else if (count == 5) {
-        unkfunc_0201b0f8(0, 0x70, 0xe0, 0x30, -1);
+        drawMenuFrame(0, 0x70, 0xe0, 0x30, -1);
     } else {
-        unkfunc_0201b0f8(0, 0x48, 0xe0, 0x58, -1);
+        drawMenuFrame(0, 0x48, 0xe0, 0x58, -1);
     }
 }
 
@@ -514,15 +514,15 @@ THUMB void unkfunc_02173ac8(int page)
         if (MenuStatusInfo::getPartyCount(MenuStatusInfo::COUNT_ALL) < 4) {
             int x = MenuStatusInfo::getPartyCount(MenuStatusInfo::COUNT_ALL) * 0x28 + 0x10;
             unkfunc_021716f0(-2, x, 0x70);
-            unkfunc_0201b0f8(0, 0x70, 0xb8, 0x30, -1);
+            drawMenuFrame(0, 0x70, 0xb8, 0x30, -1);
             return;
         }
         if (MenuStatusInfo::getPartyCount(MenuStatusInfo::COUNT_ALL) == 4) {
             unkfunc_021716f0(-2, 0xb0, 0x70);
-            unkfunc_0201b0f8(0, 0x70, 0xe0, 0x30, -1);
+            drawMenuFrame(0, 0x70, 0xe0, 0x30, -1);
             return;
         }
-        unkfunc_0201b0f8(0, 0x70, 0x100, 0x30, -1);
+        drawMenuFrame(0, 0x70, 0x100, 0x30, -1);
         return;
     }
     if (page == 1) {
@@ -540,7 +540,7 @@ THUMB void unkfunc_02173ac8(int page)
         unkfunc_021716f0(-2, 0x10, 0x70);
     }
     unkfunc_02171ad4(0xd0, MenuStatusInfo::getPartyCount(MenuStatusInfo::COUNT_ALL) / 5, page, 0);
-    unkfunc_0201b0f8(0, 0x70, 0x100, 0x30, -1);
+    drawMenuFrame(0, 0x70, 0x100, 0x30, -1);
 }
 
 THUMB void unkfunc_02173c50(int chara, int flag)
@@ -602,7 +602,7 @@ THUMB void unkfunc_02173e24(int page)
         unkfunc_02172094(i, i - page * 4, page);
     }
     if (MenuStatusInfo::getPartyCount(MenuStatusInfo::COUNT_ALL) > 4) {
-        unkfunc_02171b28(0x50, (MenuStatusInfo::getPartyCount(MenuStatusInfo::COUNT_ALL) - 1) / 4, page);
+        drawPageIndicatorWide(0x50, (MenuStatusInfo::getPartyCount(MenuStatusInfo::COUNT_ALL) - 1) / 4, page);
     }
 }
 
@@ -631,17 +631,17 @@ THUMB void unkfunc_02173efc()
 {
     int text[8] = {(int)0xe000015e, (int)0xe000015f, (int)0xe0000160, (int)0xe0000161, (int)0xe0000162, (int)0xe0000163, (int)0xe00001b5, (int)0xe0000165};
     for (int i = 0; i < 8; i++) {
-        unkfunc_02172414((i % 2) * 0x50 + 0x20 + (i % 2) * 16, (i / 2) * 16 + 0x3c + (i / 2) * 8, text[i]);
+        drawCommandLabel((i % 2) * 0x50 + 0x20 + (i % 2) * 16, (i / 2) * 16 + 0x3c + (i / 2) * 8, text[i]);
     }
-    unkfunc_0201b0f8(0x10, 0x30, 0xd0, 0x70, -1);
+    drawMenuFrame(0x10, 0x30, 0xd0, 0x70, -1);
 }
 
 THUMB void unkfunc_02173f68()
 {
     UnkTownMenuDrawPair text = s_pairs_0217ddb8[2];
-    unkfunc_02172414(0x10, 0x88, text.first);
-    unkfunc_02172414(0x70, 0x88, text.second);
-    unkfunc_0201b0f8(0, 0x80, 0xd0, 0x20, -1);
+    drawCommandLabel(0x10, 0x88, text.first);
+    drawCommandLabel(0x70, 0x88, text.second);
+    drawMenuFrame(0, 0x80, 0xd0, 0x20, -1);
 }
 
 THUMB void unkfunc_02173fa4(char* list, int mode)
@@ -663,9 +663,9 @@ THUMB void unkfunc_02173fa4(char* list, int mode)
         y = 0x70;
     }
     if (count < 5) {
-        unkfunc_0201b0f8(0, 0x70, 0xe0, 0x30, -1);
+        drawMenuFrame(0, 0x70, 0xe0, 0x30, -1);
     } else {
-        unkfunc_0201b0f8(0, 0x48, 0xe0, 0x58, -1);
+        drawMenuFrame(0, 0x48, 0xe0, 0x58, -1);
     }
     char* p;
     for (; (p = &list[i], list[i] != -1) && i < 5; i++) {
@@ -697,7 +697,7 @@ THUMB void unkfunc_02173fa4(char* list, int mode)
 THUMB void unkfunc_02174124(char* list)
 {
     int i = 0;
-    unkfunc_021723e0(i, 0xe, 0xe00001aa);
+    drawMenuHeaderText(i, 0xe, 0xe00001aa);
     if (list[i] != -1) {
         int y = 0x30;
         do {
@@ -706,7 +706,7 @@ THUMB void unkfunc_02174124(char* list)
             y += 0x10;
         } while (list[i] != -1);
     }
-    unkfunc_0201b0f8(0, 0, 0x100, 0xc0, 0x20);
+    drawMenuFrame(0, 0, 0x100, 0xc0, 0x20);
 }
 
 THUMB void unkfunc_02174170(int chara, short* itemPosList, int itemCount, int page)
@@ -747,7 +747,7 @@ THUMB void unkfunc_0217428c()
 {
     unkfunc_02172728();
     unkfunc_021715fc(5, -1);
-    unkfunc_021715b4(0x40, 0xa0, 0);
-    unkfunc_0201b158();
-    unkfunc_0201b1cc(-1, -1, 0);
+    drawRootMenuButtonFrames(0x40, 0xa0, 0);
+    drawPartyStatusWindows();
+    drawMoneyWindow(-1, -1, 0);
 }

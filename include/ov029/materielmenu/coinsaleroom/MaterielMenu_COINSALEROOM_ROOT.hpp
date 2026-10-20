@@ -12,7 +12,7 @@ struct MaterielMenu_COINSALEROOM_ROOT : menu::MenuBase {
     };
 
     menu::MenuItem menuItem_;                   // 0x1C
-    UnkCursorMoveGridLoop navigator_;           // 0x80
+    CursorMoveGridLoop navigator_;           // 0x80
     int unk_8c;                                 // 0x8C  blinks the cursor
     int coin_;                                  // 0x90
     unsigned char unk_94;                       // 0x94  blink frame counter

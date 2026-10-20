@@ -1,7 +1,7 @@
 #pragma once
 #include <globaldefs.h>
 #include "main/menu/MenuBase.hpp"
-#include "main/menu/UnkCursorMoveGridLoop.hpp"
+#include "main/menu/CursorMoveGridLoop.hpp"
 
 // town misc menu: tactics of the party members
 struct TownMenu_OPERATION_TACTICS : menu::MenuBase {
@@ -11,7 +11,7 @@ struct TownMenu_OPERATION_TACTICS : menu::MenuBase {
     unsigned char charaCount_;                  // 0x28
     menu::MenuItem tacticsItem_;                // 0x2C
     menu::MenuItem charaItem_;                  // 0x90
-    UnkCursorMoveGridLoop navigator_;           // 0xF4
+    CursorMoveGridLoop navigator_;           // 0xF4
 
     virtual void menuSetup();
     virtual void menuExecute();

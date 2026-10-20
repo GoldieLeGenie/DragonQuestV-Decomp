@@ -22,8 +22,8 @@ struct MaterielMenuPokerChangecard : menu::MenuBase {
     unsigned short ang_;                        // 0x5C
     menu::MenuItem menuItem_;                   // 0x60 cards
     menu::MenuItem dealItem_;                   // 0xC4 deal button
-    UnkCursorMoveGridLoop navigator_128;        // 0x128
-    UnkCursorMoveGridLoop navigator_134;        // 0x134
+    CursorMoveGridLoop navigator_128;        // 0x128
+    CursorMoveGridLoop navigator_134;        // 0x134
 
     virtual void menuSetup();
     virtual void menuExecute();

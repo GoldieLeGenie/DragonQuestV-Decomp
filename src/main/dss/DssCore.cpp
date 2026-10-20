@@ -41,17 +41,17 @@ THUMB void UnkDebugConsole::unkfunc_0204aff4()
 
 THUMB void UnkDebugConsole::unkfunc_0204affc()
 {
-    unkfunc_0204ea94(unkfunc_0204d048(), -1);
+    unkfunc_0204ea94(getDebugScreenBuffer(), -1);
 }
 
 THUMB void UnkDebugConsole::unkfunc_0204b00c(int x, int y, int w, int h)
 {
-    unkfunc_0204eaac(unkfunc_0204d048(), x, y, w, h, -1);
+    unkfunc_0204eaac(getDebugScreenBuffer(), x, y, w, h, -1);
 }
 
 THUMB void UnkDebugConsole::unkfunc_0204b034(int x, int y, const char* str)
 {
-    unkfunc_0204ea5c(unkfunc_0204d048(), x, y, str);
+    unkfunc_0204ea5c(getDebugScreenBuffer(), x, y, str);
 }
 
 THUMB void UnkDebugConsole::unkfunc_0204b04c(int x, int y, const char* format, ...)
@@ -60,15 +60,15 @@ THUMB void UnkDebugConsole::unkfunc_0204b04c(int x, int y, const char* format, .
     va_list args;
     va_start(args, format);
     vsnprintf(buf, sizeof(buf), format, args);
-    unkfunc_0204ea5c(unkfunc_0204d048(), x, y, buf);
+    unkfunc_0204ea5c(getDebugScreenBuffer(), x, y, buf);
 }
 
-ARM void unkfunc_0204b080()
+ARM void dssVBlankIntr()
 {
     *(volatile unsigned int*)((unsigned int)data_027e0000 + 0x3ff8) |= 1;
 }
 
-ARM void unkfunc_0204b09c(int exArena)
+ARM void initSystem(int exArena)
 {
     if (exArena != 0) {
         OS_EnableMainExArena();
@@ -84,7 +84,7 @@ ARM void unkfunc_0204b09c(int exArena)
     OS_InitThread();
     GX_DispOff();
     GXS_DispOff();
-    func_02086f88(1, unkfunc_0204b080);
+    func_02086f88(1, dssVBlankIntr);
     func_020870c4(1);
     OS_EnableIrq();
     func_02073850(3);
@@ -92,7 +92,7 @@ ARM void unkfunc_0204b09c(int exArena)
     func_0207b328();
 }
 
-ARM void unkfunc_0204b15c()
+ARM void clearVram()
 {
     GX_SetBankForLcdc(GX_VRAM_ALL);
     MI_CpuFill(0, (void*)0x06800000, 0xa4000);
@@ -258,12 +258,12 @@ ARM void unkfunc_0204b50c()
     *(volatile unsigned int*)0x04000000 &= ~0x38000000;
 }
 
-ARM void unkfunc_0204b53c(int brightness)
+ARM void setMainBrightness(int brightness)
 {
     func_0207438c((void*)0x0400006c, brightness);
 }
 
-ARM void unkfunc_0204b554(int brightness)
+ARM void setSubBrightness(int brightness)
 {
     func_0207438c((void*)0x0400106c, brightness);
 }

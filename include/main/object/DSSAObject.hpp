@@ -4,7 +4,7 @@
 #include "main/dss/Camera.hpp"
 
 #include "main/dss/Position.hpp"
-#include "main/dss/UnkTextureObject.hpp"
+#include "main/dss/TextureObject.hpp"
 
 struct DSSAParts {
     unsigned char partsIndex_;          /* 0x00 */

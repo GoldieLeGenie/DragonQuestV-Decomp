@@ -16,7 +16,7 @@ namespace menu {
 struct BattleMenu_ROOT : menu::MenuBase {
     menu::MenuItem menuItem_;                   // 0x1C
     menu::MenuItem cancelItem_;                 // 0x80
-    UnkCursorMoveGridLoop navigator_;           // 0xE4
+    CursorMoveGridLoop navigator_;           // 0xE4
     short unk_f0;                               // 0xF0
     int unk_f4;                                 // 0xF4
 
@@ -75,7 +75,7 @@ struct UnkBattleMenuFriendSelect : menu::MenuBase {
     int unk_54;                                 // 0x54
     int unk_58;                                 // 0x58
     menu::MenuItem menuItem_;                   // 0x5C
-    UnkCursorMoveGridLoop navigator_;           // 0xC0
+    CursorMoveGridLoop navigator_;           // 0xC0
 
     virtual void menuSetup();
     virtual void menuExecute();
@@ -127,7 +127,7 @@ struct BattleMenu_ACTIONMENU : menu::MenuBase {
     menu::MenuItem cancelItem_;                 // 0xE4
     int activeCharacter_;                       // 0x148
     int unk_14c;                                // 0x14C
-    UnkCursorMoveGridLoop navigator_;           // 0x150
+    CursorMoveGridLoop navigator_;           // 0x150
 
     virtual void menuSetup();
     virtual void menuExecute();
@@ -180,7 +180,7 @@ struct BattleMenu_ITEM : menu::MenuBase {
     menu::MenuItem menuItem_;                   // 0x24
     menu::MenuItem cancelItem_;                 // 0x88
     menu::MenuItem pageItem_;                   // 0xEC
-    UnkCursorMoveGridLoop navigator_;           // 0x150
+    CursorMoveGridLoop navigator_;           // 0x150
 
     virtual void menuSetup();
     virtual void menuExecute();
@@ -190,7 +190,7 @@ struct BattleMenu_ITEM : menu::MenuBase {
     bool unkfunc_02172ba8();
 };
 
-struct UnkBattleMenuEquipItem : menu::MenuBase {
+struct BattleMenu_ITEMUSEEQUIP : menu::MenuBase {
     menu::MenuItem menuItem_;                   // 0x1C
     menu::MenuItem cancelItem_;                 // 0x80
     menu::MenuItem unk_e4;                      // 0xE4
@@ -237,7 +237,7 @@ struct BattleMenu_ITEMUSE2PARTY : menu::MenuBase {
     int unk_e4;                                 // 0xE4
     int unk_e8;                                 // 0xE8
     int unk_ec;                                 // 0xEC
-    UnkCursorMoveGridLoop navigator_;           // 0xF0
+    CursorMoveGridLoop navigator_;           // 0xF0
 
     virtual void menuSetup();
     virtual void menuExecute();
@@ -250,7 +250,7 @@ struct BattleMenu_MAGIC : menu::MenuBase {
     menu::MenuItem menuItem_;                   // 0x1C
     menu::MenuItem cancelItem_;                 // 0x80
     menu::MenuItem pageItem_;                   // 0xE4
-    UnkCursorMoveGridLoop navigator_;           // 0x148
+    CursorMoveGridLoop navigator_;           // 0x148
     int count_;                                 // 0x154
     int haveAction_[30];                        // 0x158
     int haveActionIndex_[30];                   // 0x1D0
@@ -284,7 +284,7 @@ struct BattleMenu_MAGIC2PARTY : menu::MenuBase {
     int unk_e8;                                 // 0xE8
     int m_magic;                                // 0xEC
     int activeMagicPos_;                        // 0xF0
-    UnkCursorMoveGridLoop navigator_;           // 0xF4
+    CursorMoveGridLoop navigator_;           // 0xF4
 
     virtual void menuSetup();
     virtual void menuExecute();
@@ -320,7 +320,7 @@ struct BattleMenu_ARRAY_ALL : menu::MenuBase {
     int unk_34[25];                             // 0x34
     menu::MenuItem menuItem_;                   // 0x98
     menu::MenuItem cancelItem_;                 // 0xFC
-    UnkCursorMoveGridLoop navigator_;           // 0x160
+    CursorMoveGridLoop navigator_;           // 0x160
 
     virtual void menuSetup();
     virtual void menuExecute();
@@ -345,8 +345,8 @@ struct BattleMenu_ARRAY_CHANGE : menu::MenuBase {
     menu::MenuItem unk_8c;                      // 0x8C
     menu::MenuItem unk_f0;                      // 0xF0
     menu::MenuItem cancelItem_;                 // 0x154
-    UnkCursorMoveGridLoop unk_1b8;              // 0x1B8
-    UnkCursorMoveGridLoop unk_1c4;              // 0x1C4
+    CursorMoveGridLoop unk_1b8;              // 0x1B8
+    CursorMoveGridLoop unk_1c4;              // 0x1C4
 
     virtual void menuSetup();
     virtual void menuExecute();
@@ -368,8 +368,8 @@ struct BattleMenu_TACTICSMENU : menu::MenuBase {
     menu::MenuItem menuItem_;                   // 0xBC
     menu::MenuItem unk_120;                     // 0x120
     menu::MenuItem cancelItem_;                 // 0x184
-    UnkCursorMoveGridLoop unk_1e8;              // 0x1E8
-    UnkCursorMoveGridLoop unk_1f4;              // 0x1F4
+    CursorMoveGridLoop unk_1e8;              // 0x1E8
+    CursorMoveGridLoop unk_1f4;              // 0x1F4
 
     virtual void menuSetup();
     virtual void menuExecute();
@@ -383,7 +383,7 @@ struct BattleMenu_TACTICSMENU : menu::MenuBase {
 };
 
 // test menu with one item
-struct UnkBattleMenuTest : menu::MenuBase {
+struct BattleMenu_TEST : menu::MenuBase {
     menu::MenuItem menuItem_;                   // 0x1C
 
     virtual void menuSetup();
@@ -500,7 +500,7 @@ extern BattleMenu_ACTIONMENU gBattleMenu_ACTIONMENU;
 extern BattleMenu_ATTACK gBattleMenu_ATTACK;
 extern UnkBattleMenuAttackCancel gUnkBattleMenuAttackCancel;
 extern BattleMenu_ITEM gBattleMenu_ITEM;
-extern UnkBattleMenuEquipItem gUnkBattleMenuEquipItem;
+extern BattleMenu_ITEMUSEEQUIP gUnkBattleMenuEquipItem;
 extern BattleMenu_ITEMUSE2ENEMY gBattleMenu_ITEMUSE2ENEMY;
 extern BattleMenu_ITEMUSE2PARTY gBattleMenu_ITEMUSE2PARTY;
 extern BattleMenu_MAGIC gBattleMenu_MAGIC;
@@ -510,4 +510,4 @@ extern BattleMenu_ARRAYMENU gBattleMenu_ARRAYMENU;
 extern BattleMenu_ARRAY_ALL gBattleMenu_ARRAY_ALL;
 extern BattleMenu_ARRAY_CHANGE gBattleMenu_ARRAY_CHANGE;
 extern BattleMenu_TACTICSMENU gBattleMenu_TACTICSMENU;
-extern UnkBattleMenuTest gUnkBattleMenuTest;
+extern BattleMenu_TEST gUnkBattleMenuTest;

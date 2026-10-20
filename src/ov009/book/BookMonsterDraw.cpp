@@ -17,8 +17,8 @@ namespace book {
 
 #pragma thumb on
 
-inline UnkPaletteAnimationObject::UnkPaletteAnimationObject() : texture_(0) {}
-inline UnkPaletteAnimation::~UnkPaletteAnimation() {}
+inline PaletteAnimationObject::PaletteAnimationObject() : texture_(0) {}
+inline PaletteAnimation::~PaletteAnimation() {}
 inline unsigned int ExcelBinaryData::getRecordCount() { return record_; }
 inline dq5::level::MonsterData* dq5::level::MonsterData::getRecord(int index) { return (MonsterData*)binary_.getRecord(index, addr_, filename_, loadSwitch_); }
 inline unsigned short dq5::level::MonsterData::getIndex() { return index; }
@@ -142,7 +142,7 @@ ARM static void book::setCamera(dss::Camera* camera)
 
 THUMB void book::BookMonsterDraw::cleanup()
 {
-    UnkCharacterPalette* palette = &character_.palette_;
+    CharacterPalette* palette = &character_.palette_;
     if (palette->enable_) {
         paletteAnim_.unkfunc_02051648();
         palette->enable_ = 0;
@@ -181,7 +181,7 @@ void book::BookMonsterDraw::draw()
             wait_--;
         }
     }
-    if (unkfunc_0204ccd0() & 1) {
+    if (getDisplayFrame() & 1) {
         if (effect_.isEnable() && wait_ == 0) {
             effect_.draw();
         }

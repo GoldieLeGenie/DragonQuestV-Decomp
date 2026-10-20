@@ -61,11 +61,11 @@ THUMB void MaterielMenu_LOAD::menuDraw()
     if (status_ == LOAD_MODESELECT) {
         if (resumeExist_ == 1) {
             unkfunc_02029fec(rootResumeMessage, ROOT_RESUME_COUNT, 0x18, 0x10);
-            unkfunc_0201b0f8(8, 8, 0xa0, 0x48, -1);
+            drawMenuFrame(8, 8, 0xa0, 0x48, -1);
             rootItem_.drawActive();
         } else {
             unkfunc_02029fec(rootMessage, ROOT_COUNT, 0x18, 0x10);
-            unkfunc_0201b0f8(8, 8, 0xa0, 0x38, -1);
+            drawMenuFrame(8, 8, 0xa0, 0x38, -1);
             rootItem_.drawActive();
         }
     }
@@ -78,7 +78,7 @@ THUMB void MaterielMenu_LOAD::menuDraw()
         } else if (menuMode_ == 2) {
             message = rootMessage[2];
         }
-        unkfunc_0202a138(&message, 8, 0x38, 0xf0, 0x50);
+        drawCenteredMessage(&message, 8, 0x38, 0xf0, 0x50);
         for (int i = 0; i < 3; i++) {
             switch (diary_[i].savetype_) {
                 case profile::SAVETYPE_NEW:
@@ -97,13 +97,13 @@ THUMB void MaterielMenu_LOAD::menuDraw()
                     break;
             }
         }
-        unkfunc_0201b0f8(8, 0x38, 0xf0, 0x78, 0x50);
+        drawMenuFrame(8, 0x38, 0xf0, 0x78, 0x50);
         dataItem_.drawActive();
     }
     if (status_ == LOAD_IS_RESUME) {
-        unkfunc_0202a138(&rootResumeMessage[1], 8, 0x38, 0xf0, 0x50);
+        drawCenteredMessage(&rootResumeMessage[1], 8, 0x38, 0xf0, 0x50);
         unkfunc_0202a274(diary_[3].name_, diary_[3].clear_, diary_[3].level_, diary_[3].time_);
-        unkfunc_0201b0f8(8, 0x38, 0xf0, 0x40, 0x50);
+        drawMenuFrame(8, 0x38, 0xf0, 0x40, 0x50);
         resumeItem_.drawActive();
     }
 }

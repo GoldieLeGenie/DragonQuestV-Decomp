@@ -21,9 +21,9 @@ ARM void ScriptParam::setup(void* addr)
 
 ARM void ScriptParam::setup()
 {
-    tree_ = (char*)unkfunc_0204c878(dataObject_.getAddr(), 0);
-    offset_ = (int*)unkfunc_0204c878(dataObject_.getAddr(), 1);
-    command_ = (unsigned char*)unkfunc_0204c878(dataObject_.getAddr(), 2);
+    tree_ = (char*)getArchiveFile(dataObject_.getAddr(), 0);
+    offset_ = (int*)getArchiveFile(dataObject_.getAddr(), 1);
+    command_ = (unsigned char*)getArchiveFile(dataObject_.getAddr(), 2);
     count_ = unkfunc_0204c868(dataObject_.getAddr(), 0);
     char level = -1;
     scriptTree_.clear();

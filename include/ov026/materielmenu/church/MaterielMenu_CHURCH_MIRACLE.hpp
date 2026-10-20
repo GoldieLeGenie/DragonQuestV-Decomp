@@ -24,7 +24,7 @@ struct MaterielMenu_CHURCH_MIRACLE : menu::MenuBase {
 
     menu::MenuItem menuItem_;                   // 0x1C
     unsigned char unk_80[0x64];                 // 0x80
-    UnkCursorMoveGridLoop navigator_;           // 0xE4
+    CursorMoveGridLoop navigator_;           // 0xE4
     int miracle_;                               // 0xF0
     int activeChara_;                           // 0xF4
     MIRACLE_STATUS miracleStatus_;              // 0xF8

@@ -1,7 +1,7 @@
 #pragma once
 #include <globaldefs.h>
 #include "main/dss/Render.hpp"
-#include "main/dss/UnkSprite2D.hpp"
+#include "main/dss/Sprite2D.hpp"
 
 namespace book
 {

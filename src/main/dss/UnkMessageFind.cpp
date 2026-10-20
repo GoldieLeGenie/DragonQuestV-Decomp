@@ -4,7 +4,7 @@ int data_0209a2ec = -1;
 int data_0209a2e8 = -1;
 unsigned char* data_020fe6ac;
 
-ARM char* unkfunc_0204c89c(char* addr, unsigned int msg_id)
+ARM char* findMessage(char* addr, unsigned int msg_id)
 {
     if (addr == NULL) {
         return NULL;

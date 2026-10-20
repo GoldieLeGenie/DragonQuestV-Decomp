@@ -1,5 +1,5 @@
 #include "main/menu/UnkMenuTextDisplay.hpp"
-#include "main/menu/UnkMenuIconDisplay.hpp"
+#include "main/menu/MenuIconDisplay.hpp"
 #include "main/dss/DssUtils.hpp"
 #include "main/text/TextAPI.hpp"
 #include "nitro/g2.hpp"
@@ -17,7 +17,7 @@ THUMB void UnkMenuTextDisplay::setup(int id)
     timer_ = 0;
     unk_330[0] = 0;
     unk_394 = 0;
-    unkfunc_0206477c(2);
+    setType(2);
 }
 
 THUMB void UnkMenuTextDisplay::update(UnkOamBuffer* main, UnkOamBuffer* sub)

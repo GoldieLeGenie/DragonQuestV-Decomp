@@ -12,7 +12,7 @@ struct MaterielMenu_BANK_ROOT : menu::MenuBase {
     };
 
     menu::MenuItem menuItem_;                   // 0x1C
-    UnkCursorMoveGridLoop navigator_;           // 0x80
+    CursorMoveGridLoop navigator_;           // 0x80
     char m_state;                               // 0x8C
 
     virtual void menuSetup();

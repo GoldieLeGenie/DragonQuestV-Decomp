@@ -1,7 +1,7 @@
 #pragma once
 #include <globaldefs.h>
 #include "main/menu/MenuBase.hpp"
-#include "main/menu/UnkCursorMoveGridLoop.hpp"
+#include "main/menu/CursorMoveGridLoop.hpp"
 
 // town misc menu: equipment, selection of the item of each equipment type
 struct UnkTownMenuOperationEquipItem : menu::MenuBase {
@@ -11,8 +11,8 @@ struct UnkTownMenuOperationEquipItem : menu::MenuBase {
     char itemType_;                             // 0x39
     menu::MenuItem itemItem_;                   // 0x3C
     menu::MenuItem removeItem_;                 // 0xA0
-    UnkCursorMoveGridLoop itemNavigator_;       // 0x104
-    UnkCursorMoveGridLoop removeNavigator_;     // 0x110
+    CursorMoveGridLoop itemNavigator_;       // 0x104
+    CursorMoveGridLoop removeNavigator_;     // 0x110
 
     virtual void menuSetup();
     virtual void menuExecute();

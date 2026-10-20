@@ -71,11 +71,11 @@ THUMB void TextEnv::process_msg(char* dst, int size, const char* src)
     MessageMacro macro;
     char* tmp = (char*)unkfunc_0204c504(&data_020fd24c, 0x802, 0x20);
     macro.processMessage(tmp, 0x800, src);
-    unkfunc_0206bfc8(dst, size, (unsigned char*)tmp);
+    expandVars(dst, size, (unsigned char*)tmp);
     unkfunc_0204c5c8(&data_020fd24c, tmp);
 }
 
-THUMB void TextEnv::unkfunc_0206bfc8(char* dst, int size, unsigned char* src)
+THUMB void TextEnv::expandVars(char* dst, int size, unsigned char* src)
 {
     char tmp[0x200];
     int cap = 0;
@@ -105,7 +105,7 @@ THUMB void TextEnv::unkfunc_0206bfc8(char* dst, int size, unsigned char* src)
                 int idx = *src++ - '0';
                 char* str;
                 if (data_0211b7d8 != 0) {
-                    str = unkfunc_0206c174(def, idx);
+                    str = getUndefinedMacroText(def, idx);
                 } else {
                     MsgVar* var = search_msg_var(def, idx);
                     if (var != 0) {
@@ -114,7 +114,7 @@ THUMB void TextEnv::unkfunc_0206bfc8(char* dst, int size, unsigned char* src)
                     } else {
                         str = check_text_hook(def, idx);
                         if (str == 0) {
-                            str = unkfunc_0206c174(def, idx);
+                            str = getUndefinedMacroText(def, idx);
                         }
                     }
                 }
@@ -138,7 +138,7 @@ THUMB MsgVar* TextEnv::search_msg_var(int def, int array_index_no)
 {
     MsgVar* var = m_msg_var;
     for (int i = 0; i < m_msg_var_length; i++, var++) {
-        if (var->unkfunc_0206bcf4(def, array_index_no)) {
+        if (var->matches(def, array_index_no)) {
             return var;
         }
     }
@@ -157,7 +157,7 @@ THUMB char* TextEnv::check_text_hook(int def, int array_index_no)
     return s_hook_buf;
 }
 
-THUMB MACRO_STAT TextEnv::unkfunc_0206c158(int def, int array_index_no)
+THUMB MACRO_STAT TextEnv::getHookMacroStat(int def, int array_index_no)
 {
     if (m_text_hook == 0) {
         return MST_NULL;
@@ -165,7 +165,7 @@ THUMB MACRO_STAT TextEnv::unkfunc_0206c158(int def, int array_index_no)
     return (MACRO_STAT)m_text_hook->getMacroStat(def, array_index_no);
 }
 
-THUMB char* TextEnv::unkfunc_0206c174(int def, int array_index_no)
+THUMB char* TextEnv::getUndefinedMacroText(int def, int array_index_no)
 {
     for (int i = 0; s_macro_name_tbl[i].id != -1; i++) {
         if (def == s_macro_name_tbl[i].id) {
@@ -213,7 +213,7 @@ THUMB MACRO_STAT TextEnv::macro_getMacroStat(int def, int array_index_no)
     result = (MACRO_STAT)(result | macro_checkActorTarget());
     MsgVar* var = search_msg_var(def, array_index_no);
     if (var != 0) {
-        if (var->unkfunc_0206bec8()) {
+        if (var->isNumber()) {
             int no = var->m_no;
             if (no >= 0) {
                 result = (MACRO_STAT)(result | MST_PLUS);
@@ -232,7 +232,7 @@ THUMB MACRO_STAT TextEnv::macro_getMacroStat(int def, int array_index_no)
         result = (MACRO_STAT)(result | var->m_macro_stat);
     } else {
         ptr = check_text_hook(def, array_index_no);
-        result = (MACRO_STAT)(result | unkfunc_0206c158(def, array_index_no));
+        result = (MACRO_STAT)(result | getHookMacroStat(def, array_index_no));
     }
     result = (MACRO_STAT)(result | macro_checkVowel(ptr));
     return (MACRO_STAT)(macro_checkLastS(ptr) | result);

@@ -23,7 +23,7 @@ THUMB int UnkBadWordList::unkfunc_0206b704(char* name)
     char conv[0x200];
     char line[0x200];
     if (*(unsigned char*)name == '@') {
-        unkfunc_0204ae2c(buf, 0x200, name + 1);
+        convertSjisToUtf8(buf, 0x200, name + 1);
     } else {
         dss::strcpy_s(buf, 0x200, name);
     }

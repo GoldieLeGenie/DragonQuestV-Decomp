@@ -60,20 +60,20 @@ void unkfunc_0204ca54();                        // clear the OAM buffers
 void unkfunc_0204ca6c();                        // update
 void unkfunc_0204cc9c(dss::UnkDisplayPlugin* plugin);  // change the plugin
 int unkfunc_0204cca8();                         // plugin changed and text shown
-int unkfunc_0204ccd0();                         // frame counter
+int getDisplayFrame();                         // frame counter
 void unkfunc_0204ccdc(unsigned short color);    // backdrop color
 void unkfunc_0204cce8(unsigned short value);
 void unkfunc_0204ccf4(int mode);                // blend mode
-UnkPaletteBuffer* unkfunc_0204cd8c(int bg);     // BG palette (0-3 main, 4-7 sub)
-UnkPaletteBuffer* unkfunc_0204cdf0(int screen); // OBJ palette
+UnkPaletteBuffer* getBgPaletteBuffer(int bg);     // BG palette (0-3 main, 4-7 sub)
+UnkPaletteBuffer* getObjPaletteBuffer(int screen); // OBJ palette
 UnkOamBuffer* unkfunc_0204ce18(int screen);     // OAM buffer
 UnkOamBuffer* unkfunc_0204ce40(int y);          // OAM buffer of a position (0: main screen, 192: sub screen)
 int unkfunc_0204ced8(int y);                    // text BG of a position
 int unkfunc_0204cf7c(int y);
 void unkfunc_0204d020(int type, int screen1, int screen2, int unk_0c, int unk_10, int unk_14);
 int unkfunc_0204d03c();
-UnkScreenBuffer* unkfunc_0204d048();            // debug screen
-void unkfunc_0204d050(int counter);             // show the text
+UnkScreenBuffer* getDebugScreenBuffer();            // debug screen
+void setDisplayTextCounter(int counter);             // show the text
 void unkfunc_0204d068(int enable);              // window 0
 void unkfunc_0204d074(int enable);              // window 1
 void unkfunc_0204d080(int plane, int x, int y, int w, int h);

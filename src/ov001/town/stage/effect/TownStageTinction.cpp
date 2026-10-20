@@ -4,7 +4,7 @@
 #include "ov001/town/TownStageManager.hpp"
 #include "main/dss/UnkFog.hpp"
 #include "main/dss/UnkPaletteEffect.hpp"
-#include "main/dss/UnkRenderObject.hpp"
+#include "main/dss/RenderObject.hpp"
 #include "main/leveldata/CLUTCode.hpp"
 #include "main/leveldata/ColorCorrect.hpp"
 #include "main/status/StageAttribute.hpp"

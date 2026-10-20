@@ -12,7 +12,7 @@ struct MaterielMenu_POKER_HIGHANDLOW : menu::MenuBase {
     short m_doubleupCount;                      // 0x30
     char m_mode;                                // 0x32
     menu::MenuItem menuItem_;                   // 0x34
-    UnkCursorMoveGridLoop navigator_;           // 0x98
+    CursorMoveGridLoop navigator_;           // 0x98
 
     virtual void menuSetup();
     virtual void menuExecute();

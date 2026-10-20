@@ -1,7 +1,7 @@
 #pragma once
 #include <globaldefs.h>
 #include "main/menu/MenuBase.hpp"
-#include "main/menu/UnkCursorMoveGridLoop.hpp"
+#include "main/menu/CursorMoveGridLoop.hpp"
 
 namespace status {
     struct UseActionParam;
@@ -33,7 +33,7 @@ struct TownMenu_OPERATION_ROOT : menu::MenuBase {
     int saveResult_;                            // 0x24
     int isMantan_;                              // 0x28
     menu::MenuItem menuItem_;                   // 0x2C
-    UnkCursorMoveGridLoop navigator_;           // 0x90
+    CursorMoveGridLoop navigator_;           // 0x90
 
     virtual void menuSetup();
     virtual void menuExecute();

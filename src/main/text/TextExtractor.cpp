@@ -64,7 +64,7 @@ static UnkGrammarSuffix s_grammar_tbl[59] = {
     { 'u', 0x04000000, { "ein ", "eines ", "einem ", "ein " } },
 };
 
-THUMB UnkTextExtractor::UnkTextExtractor()
+THUMB TextExtractor::TextExtractor()
 {
     m_hero_name[0] = 0;
     for (int i = 0; i < 8; i++) {
@@ -73,21 +73,21 @@ THUMB UnkTextExtractor::UnkTextExtractor()
     hook_ = NULL;
 }
 
-THUMB int UnkTextExtractor::extractText(char* dst, int size, int msg_id)
+THUMB int TextExtractor::extractText(char* dst, int size, int msg_id)
 {
     return extract_text(dst, size, msg_id & 0xf0000000, msg_id & 0x0fffffff, 0, 0);
 }
 
-THUMB int UnkTextExtractor::extractText(char* dst, int size, int type, int no)
+THUMB int TextExtractor::extractText(char* dst, int size, int type, int no)
 {
     return extract_text(dst, size, type, no, 0, 0);
 }
 
-THUMB int UnkTextExtractor::extract_text(char* dst, int size, int type, int no, int ex, int plural)
+THUMB int TextExtractor::extract_text(char* dst, int size, int type, int no, int ex, int plural)
 {
     int ret;
     if (TextAPI::m_extra != 0) {
-        dss::sprintf(dst, "<%s.%d>", unkfunc_0206d7cc(type), no);
+        dss::sprintf(dst, "<%s.%d>", getTypeName(type), no);
         return 1;
     }
     if (hook_ != NULL) {
@@ -151,12 +151,12 @@ THUMB int UnkTextExtractor::extract_text(char* dst, int size, int type, int no, 
         ret = 0;
     }
     if (ret == 0) {
-        dss::sprintf_s(dst, size, "E:%s.%d", unkfunc_0206d7cc(type), no);
+        dss::sprintf_s(dst, size, "E:%s.%d", getTypeName(type), no);
     }
     return ret;
 }
 
-THUMB int UnkTextExtractor::extract_text_msg(char* dst, int size, unsigned int msg_id, int ex, int plural)
+THUMB int TextExtractor::extract_text_msg(char* dst, int size, unsigned int msg_id, int ex, int plural)
 {
     char buf1[0x400];
     char buf2[0x400];
@@ -180,15 +180,15 @@ THUMB int UnkTextExtractor::extract_text_msg(char* dst, int size, unsigned int m
     unsigned char* plrnoun;
     unsigned char* vowel;
     unsigned char* proper;
-    if (g_msg_file.unkfunc_0206b910(msg_id, TextAPI::m_lang) != 0) {
-        single = g_msg_file.unkfunc_0206b948(11);
-        meta1 = g_msg_file.unkfunc_0206b948(1);
-        meta4 = g_msg_file.unkfunc_0206b948(4);
-        meta2 = g_msg_file.unkfunc_0206b948(2);
-        meta3 = g_msg_file.unkfunc_0206b948(3);
-        meta5 = g_msg_file.unkfunc_0206b948(5);
-        meta6 = g_msg_file.unkfunc_0206b948(6);
-        meta7 = g_msg_file.unkfunc_0206b948(7);
+    if (g_msg_file.loadMessage(msg_id, TextAPI::m_lang) != 0) {
+        single = g_msg_file.getField(11);
+        meta1 = g_msg_file.getField(1);
+        meta4 = g_msg_file.getField(4);
+        meta2 = g_msg_file.getField(2);
+        meta3 = g_msg_file.getField(3);
+        meta5 = g_msg_file.getField(5);
+        meta6 = g_msg_file.getField(6);
+        meta7 = g_msg_file.getField(7);
         noun = 0;
         article = 0;
         sg = single;
@@ -327,14 +327,14 @@ THUMB int UnkTextExtractor::extract_text_msg(char* dst, int size, unsigned int m
         }
         str = buf1;
         if (casus != 0x100000) {
-            unkfunc_0206d910(buf2, (unsigned char*)buf1, number, art, casus);
+            applyGrammarSuffixes(buf2, (unsigned char*)buf1, number, art, casus);
             str = buf2;
         }
         m_macro_stat = MST_NULL;
-        gender = g_msg_file.unkfunc_0206b948(0);
-        plrnoun = g_msg_file.unkfunc_0206b948(8);
-        vowel = g_msg_file.unkfunc_0206b948(9);
-        proper = g_msg_file.unkfunc_0206b948(2);
+        gender = g_msg_file.getField(0);
+        plrnoun = g_msg_file.getField(8);
+        vowel = g_msg_file.getField(9);
+        proper = g_msg_file.getField(2);
         if (gender[0] == 'M') {
             m_macro_stat = (MACRO_STAT)(m_macro_stat | MST_MALE);
         }
@@ -370,12 +370,12 @@ THUMB int UnkTextExtractor::extract_text_msg(char* dst, int size, unsigned int m
     return 0;
 }
 
-THUMB void UnkTextExtractor::setHeroName(char* name)
+THUMB void TextExtractor::setHeroName(char* name)
 {
     dss::strcpy_s(m_hero_name, 0x20, name);
 }
 
-THUMB int UnkTextExtractor::extract_text_user_str(char* dst, int size, int no)
+THUMB int TextExtractor::extract_text_user_str(char* dst, int size, int no)
 {
     char* str = m_user_str[no];
     unkfunc_0204afa8(str);
@@ -383,12 +383,12 @@ THUMB int UnkTextExtractor::extract_text_user_str(char* dst, int size, int no)
     return 1;
 }
 
-THUMB void UnkTextExtractor::setUserString(int num, char* name)
+THUMB void TextExtractor::setUserString(int num, char* name)
 {
     dss::strcpy_s(m_user_str[num], 0x40, name);
 }
 
-THUMB int UnkTextExtractor::extract_text_number(char* dst, int size, int no)
+THUMB int TextExtractor::extract_text_number(char* dst, int size, int no)
 {
     char buf[0x200];
     if (TextAPI::m_lang == 0) {
@@ -400,7 +400,7 @@ THUMB int UnkTextExtractor::extract_text_number(char* dst, int size, int no)
     return 1;
 }
 
-THUMB const char* UnkTextExtractor::unkfunc_0206d7cc(int type)
+THUMB const char* TextExtractor::getTypeName(int type)
 {
     switch (type & 0xf0000000) {
         case 0x00000000:
@@ -439,7 +439,7 @@ THUMB const char* UnkTextExtractor::unkfunc_0206d7cc(int type)
     return "UKNOWN";
 }
 
-THUMB void UnkTextExtractor::unkfunc_0206d910(char* dst, const unsigned char* src, int number, int art, int casus)
+THUMB void TextExtractor::applyGrammarSuffixes(char* dst, const unsigned char* src, int number, int art, int casus)
 {
     while (*src != 0) {
         if (*src != '%') {
@@ -448,7 +448,7 @@ THUMB void UnkTextExtractor::unkfunc_0206d910(char* dst, const unsigned char* sr
         }
         int c = src[1];
         if (c >= 'b' && c <= 'u') {
-            const unsigned char* suffix = (const unsigned char*)unkfunc_0206d984(number, art, casus, c);
+            const unsigned char* suffix = (const unsigned char*)getGrammarSuffix(number, art, casus, c);
             while (*suffix != 0) {
                 *dst++ = *suffix++;
             }
@@ -462,7 +462,7 @@ THUMB void UnkTextExtractor::unkfunc_0206d910(char* dst, const unsigned char* sr
     *dst = 0;
 }
 
-THUMB const char* UnkTextExtractor::unkfunc_0206d984(int number, int art, int casus, int c)
+THUMB const char* TextExtractor::getGrammarSuffix(int number, int art, int casus, int c)
 {
     UnkGrammarSuffix* p = s_grammar_tbl;
     for (int i = 0; i < 59; i++, p++) {
@@ -485,7 +485,7 @@ THUMB const char* UnkTextExtractor::unkfunc_0206d984(int number, int art, int ca
     return "\0";
 }
 
-THUMB void UnkTextExtractor::unkfunc_0206d9ec(UnkTextExtractorHook* hook)
+THUMB void TextExtractor::unkfunc_0206d9ec(UnkTextExtractorHook* hook)
 {
     hook_ = hook;
 }

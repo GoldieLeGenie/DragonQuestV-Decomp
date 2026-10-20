@@ -61,18 +61,18 @@ struct UnkGlobalPart {
     virtual int isEnd();
 };
 
-struct UnkGlobalGamePartManager {
+struct GlobalGamePartManager {
     UnkGlobalPart* part_[8];                    // 0x00
 
-    UnkGlobalGamePartManager();
-    ~UnkGlobalGamePartManager();
+    GlobalGamePartManager();
+    ~GlobalGamePartManager();
     void unkfunc_02051908();                    //
     void unkfunc_02051958();                    //
     void unkfunc_020519a8(UnkGlobalPart* part);    // add
     void unkfunc_020519cc(UnkGlobalPart* part);    // remove
 };
 
-extern UnkGlobalGamePartManager data_02101d14;
+extern GlobalGamePartManager data_02101d14;
 extern int data_0209aea0;
 
 void unkfunc_02067b00(void (*callback)());       // set the per-frame callback

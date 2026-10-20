@@ -61,6 +61,6 @@ THUMB void casino::CasinoPoker::execute()
 THUMB void casino::CasinoPoker::draw()
 {
     CasinoPokerDraw::getSingleton()->draw();
-    unkfunc_0204813c();
+    setupOrtho2D();
     sprite_.unkfunc_02051b68();
 }

@@ -561,7 +561,7 @@ void twn::TownCharacterBase::execPursueMove()
         }
     }
     short idx = getDir();
-    if (moveData_.counter % 0x3c < 0x1e && (unkfunc_0204ccd0() & 1)) {
+    if (moveData_.counter % 0x3c < 0x1e && (getDisplayFrame() & 1)) {
         vec.normalize();
         dss::Fix32Vector3 newPos = oldPos + vec * moveData_.speed;
         TownStageManager::getSingleton()->characoterColl(oldPos, newPos, TownPlayerAction::collR, &newPos, 3);

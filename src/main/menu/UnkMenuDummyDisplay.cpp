@@ -7,8 +7,8 @@ THUMB UnkMenuDummyDisplay::UnkMenuDummyDisplay()
 THUMB void UnkMenuDummyDisplay::setup(int id)
 {
     id_ = id;
-    unkfunc_020646c8();
-    unkfunc_0206477c(1);
+    reset();
+    setType(1);
 }
 
 THUMB void UnkMenuDummyDisplay::update(UnkOamBuffer* main, UnkOamBuffer* sub)

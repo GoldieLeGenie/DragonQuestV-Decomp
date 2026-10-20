@@ -20,10 +20,10 @@ THUMB void CommonMenu_YESNO::menuSetup()
     menuItem_.active_ = 0;
     menuItem_.enableLoopEdge_ = 1;
     UnkMenuYesNoDisplay* const window = &data_02114dd4.yesNo_;
-    window->unkfunc_02064780(1);
+    window->setEnable(1);
     window->unkfunc_02067570(0xe00000aa, 0xe00000ab);
-    window->unkfunc_0206478c(0xc0, 0xc0);
-    unkfunc_0206265c(0);
+    window->setPosition(0xc0, 0xc0);
+    ui_MsgSetYesNoCursor(0);
     Sound::sePlay(0x130);
     superCancel_ = 1;
     wait_ = 0;
@@ -49,7 +49,7 @@ THUMB void CommonMenu_YESNO::menuUpdate()
     menuItem_.execInput();
     switch (menuItem_.result_) {
         case 1:
-            unkfunc_0206265c(menuItem_.active_);
+            ui_MsgSetYesNoCursor(menuItem_.active_);
             break;
         case 2:
             if (menuItem_.active_ == 0) {
@@ -75,11 +75,11 @@ THUMB void CommonMenu_YESNO::menuUpdate()
             break;
         case 5:
             menuItem_.active_ = 1;
-            unkfunc_0206265c(1);
+            ui_MsgSetYesNoCursor(1);
             break;
         case 6:
             menuItem_.active_ = 0;
-            unkfunc_0206265c(0);
+            ui_MsgSetYesNoCursor(0);
             break;
         case 7:
         case 8:
@@ -90,12 +90,12 @@ THUMB void CommonMenu_YESNO::menuUpdate()
 THUMB void CommonMenu_YESNO::setYesNo(int cursor)
 {
     menuItem_.active_ = cursor;
-    unkfunc_0206265c(cursor);
+    ui_MsgSetYesNoCursor(cursor);
 }
 
 THUMB void CommonMenu_YESNO::setPosition(int x, int y)
 {
-    data_02114dd4.yesNo_.unkfunc_0206478c(x, y + 0xc0);
+    data_02114dd4.yesNo_.setPosition(x, y + 0xc0);
 }
 
 THUMB void CommonMenu_YESNO::setSuperCancel(int flag)

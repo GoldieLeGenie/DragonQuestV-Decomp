@@ -1,7 +1,7 @@
 #pragma once
 #include <globaldefs.h>
 #include "main/dss/DssUtils.hpp"
-#include "main/dss/UnkSprite2D.hpp"
+#include "main/dss/Sprite2D.hpp"
 #include "main/window/UnkMapPoint.hpp"
 
 namespace twn {
@@ -35,7 +35,7 @@ namespace twn {
 
         int enable_;                                // 0x000
         int setup_;                                 // 0x004
-        UnkSprite2D blind_;                         // 0x008
+        Sprite2D blind_;                         // 0x008
         UnkTownSpotlightLight light_[LIGHT_MAX];    // 0x040
         dss::Fix32 unk_140;                         // 0x140
 

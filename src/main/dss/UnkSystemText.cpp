@@ -15,14 +15,14 @@ THUMB void unkfunc_0204e654(void* res0, void* res1, void* res2, void* res3, void
     data_02101550[2] = res2;
     data_02101550[3] = res3;
     data_02101550[4] = res4;
-    unsigned char* tile = (unsigned char*)unkfunc_0204e698(1);
+    unsigned char* tile = (unsigned char*)getSystemTextData(1);
     for (int i = 0; i < 0xa0; i++) {
         unkfunc_0204ee28(tile, NULL);
         tile += 0x20;
     }
 }
 
-THUMB void* unkfunc_0204e698(int index)
+THUMB void* getSystemTextData(int index)
 {
     return data_02101550[index];
 }
@@ -43,16 +43,16 @@ THUMB void unkfunc_0204e6b0(int type, int screen1, int screen2)
         sub = 1;
         second = 0;
     }
-    unkfunc_0204dca8(unkfunc_0204de14(screen1), 0, unkfunc_0204e698(0), 0x1000);
+    unkfunc_0204dca8(unkfunc_0204de14(screen1), 0, getSystemTextData(0), 0x1000);
     UnkCharBuffer buffer;
-    void* chr = unkfunc_0204e698(3);
+    void* chr = getSystemTextData(3);
     unkfunc_0204e558(&buffer, chr, 0x20, 8);
     unkfunc_0204dca8(0x13, 0x2000, chr, 0x2000);
     if (sub) {
-        unkfunc_0204dca8(unkfunc_0204de14(screen1), 0x8000, unkfunc_0204e698(0), 0x1000);
+        unkfunc_0204dca8(unkfunc_0204de14(screen1), 0x8000, getSystemTextData(0), 0x1000);
     }
     if (second) {
-        unkfunc_0204dca8(unkfunc_0204de14(screen2), 0, unkfunc_0204e698(0), 0x1000);
+        unkfunc_0204dca8(unkfunc_0204de14(screen2), 0, getSystemTextData(0), 0x1000);
     }
 }
 
@@ -74,19 +74,19 @@ THUMB void unkfunc_0204e74c(int type, int screen1, int screen2)
     if (palette2 == NULL) {
         palette2 = defaultPalette;
     }
-    UnkPaletteBuffer* bg = unkfunc_0204cd8c(screen1);
+    UnkPaletteBuffer* bg = getBgPaletteBuffer(screen1);
     bg->unkfunc_0204dbf4(0xe, 0, palette1 + 0x10, 0x10);
     bg->unkfunc_0204dbf4(0xf, 0, palette1, 0x10);
-    UnkPaletteBuffer* obj = unkfunc_0204cdf0(0);
+    UnkPaletteBuffer* obj = getObjPaletteBuffer(0);
     obj->unkfunc_0204dbf4(0xe, 0, palette2 + 0x10, 0x10);
     obj->unkfunc_0204dbf4(0xf, 0, palette2, 0x10);
     if (second == 0) {
         return;
     }
-    bg = unkfunc_0204cd8c(screen2);
+    bg = getBgPaletteBuffer(screen2);
     bg->unkfunc_0204dbf4(0xe, 0, palette1 + 0x10, 0x10);
     bg->unkfunc_0204dbf4(0xf, 0, palette1, 0x10);
-    obj = unkfunc_0204cdf0(1);
+    obj = getObjPaletteBuffer(1);
     obj->unkfunc_0204dbf4(0xe, 0, palette2 + 0x10, 0x10);
     obj->unkfunc_0204dbf4(0xf, 0, palette2, 0x10);
 }

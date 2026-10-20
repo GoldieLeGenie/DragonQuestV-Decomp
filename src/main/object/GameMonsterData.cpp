@@ -126,9 +126,9 @@ void DataCache::cleanup()
 
 void UnkTextureDataCache::unkfunc_02057f24(int index)
 {
-    UnkTextureObject* texture = (UnkTextureObject*)data_[index].getAddr();
+    TextureObject* texture = (TextureObject*)data_[index].getAddr();
     texture->unkfunc_02049e9c(1);
-    dss::memcpy(&texture_[index_], texture, sizeof(UnkTextureObject));
+    dss::memcpy(&texture_[index_], texture, sizeof(TextureObject));
     data_[index_].cleanup();
 }
 

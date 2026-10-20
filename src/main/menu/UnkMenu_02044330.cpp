@@ -1,5 +1,5 @@
 #include "main/menu/UnkMenu_02044330.hpp"
-#include "main/debug/UnkDebugInfo.hpp"
+#include "main/debug/DebugInfo.hpp"
 #include "main/text/TextAPI.hpp"
 
 THUMB void UnkMenu_02044330::menuSetup()

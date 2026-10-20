@@ -113,8 +113,8 @@ THUMB void ceremony::CeremonyCamera::draw()
         camera_.unkfunc_02051cbc();
         return;
     }
-    dss::Camera* camera = (unkfunc_0204ccd0() & 1) == 0 ? &camera_.unk_004 : &camera_.unk_074;
-    int screen = unkfunc_0204ccd0() & 1;
+    dss::Camera* camera = (getDisplayFrame() & 1) == 0 ? &camera_.unk_004 : &camera_.unk_074;
+    int screen = getDisplayFrame() & 1;
     camera->m_pos.vx.value = CeremonyStage::getSingleton()->getCameraPosFX32(screen)->x;
     camera->m_pos.vy.value = CeremonyStage::getSingleton()->getCameraPosFX32(screen)->y;
     camera->m_pos.vz.value = CeremonyStage::getSingleton()->getCameraPosFX32(screen)->z;
@@ -125,6 +125,6 @@ THUMB void ceremony::CeremonyCamera::draw()
     camera->m_target_pos.vy.value = CeremonyStage::getSingleton()->getCameraCentFX32(screen)->y;
     camera->m_target_pos.vz.value = CeremonyStage::getSingleton()->getCameraCentFX32(screen)->z;
     camera_.unkfunc_02051cd8();
-    bool sub = !(unkfunc_0204ccd0() & 1);
+    bool sub = !(getDisplayFrame() & 1);
     BillboardCharacter::setCamera(!sub ? &camera_.unk_004 : &camera_.unk_074);
 }

@@ -49,7 +49,7 @@ THUMB void BattleMenu_ARRAYMENU::menuExecute()
 THUMB void BattleMenu_ARRAYMENU::menuDraw()
 {
     if (!gTownMenu_MESSAGE.isOpen()) {
-        unkfunc_02170324();
+        drawFormationMenu();
         menuItem_.drawActive();
     }
 }

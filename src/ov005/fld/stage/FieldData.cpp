@@ -7,7 +7,7 @@
 #include "main/dss/UnkDisplay.hpp"
 #include "main/dss/UnkPaletteEffect.hpp"
 #include "main/dss/UnkRandom.hpp"
-#include "main/dss/UnkVramTransfer.hpp"
+#include "main/dss/VramTransferManager.hpp"
 #include "main/global/Global.hpp"
 #include "main/status/GameFlag.hpp"
 #include "main/status/StageInfo.hpp"
@@ -102,9 +102,9 @@ THUMB void fld::FieldData::setupBlock(int map)
     }
     worldData_.setup(dataObject_.getAddr());
     symbolData_.setup(worldData_.m_sym_data);
-    UnkTextureObject* texture = (UnkTextureObject*)blockData_.getAddr();
+    TextureObject* texture = (TextureObject*)blockData_.getAddr();
     texture->unkfunc_02049e9c(1);
-    dss::memcpy(&blockTextureObject_, texture, sizeof(UnkTextureObject));
+    dss::memcpy(&blockTextureObject_, texture, sizeof(TextureObject));
     blockTexture_ = &blockTextureObject_;
     dss::memcpy(blockPaletteOrg_, (void*)blockTexture_->unkfunc_0204a1d4(), blockTexture_->unkfunc_0204a1dc());
     if (map != 2) {
@@ -130,8 +130,8 @@ THUMB void fld::FieldData::setupBlock(int map)
     }
     pattern8_.setup(path8, 0, 0);
     pattern24_.setup(path24, 0, 0);
-    pattern8Block_ = data_020f4f74.unkfunc_0204a5f4(unkfunc_0204c868(pattern8_.getAddr(), 0));
-    pattern24Block_ = data_020f4f74.unkfunc_0204a5f4(unkfunc_0204c868(pattern24_.getAddr(), 0));
+    pattern8Block_ = data_020f4f74.allocTexVram(unkfunc_0204c868(pattern8_.getAddr(), 0));
+    pattern24Block_ = data_020f4f74.allocTexVram(unkfunc_0204c868(pattern24_.getAddr(), 0));
     nextAnimation8();
     nextAnimation24();
 }
@@ -146,7 +146,7 @@ THUMB void fld::FieldData::setupSymbol(int flag)
         if (flag == 0 && s_symbolLoad[i] == 0) {
             symbolTexture_[i] = NULL;
         } else {
-            symbolTexture_[i] = (UnkTextureObject*)unkfunc_0204c878(symbolPack_.getAddr(), i);
+            symbolTexture_[i] = (TextureObject*)getArchiveFile(symbolPack_.getAddr(), i);
             symbolTexture_[i]->unkfunc_02049e9c(1);
         }
     }
@@ -200,7 +200,7 @@ THUMB void fld::FieldData::setupSymbol(int flag)
 
 THUMB void fld::FieldData::reload()
 {
-    ((UnkTextureObject*)blockData_.getAddr())->unkfunc_0204a090(0);
+    ((TextureObject*)blockData_.getAddr())->unkfunc_0204a090(0);
     nextAnimation8();
     nextAnimation24();
     for (int i = 0; i < SYMBOL_TEXTURE_NUM; i++) {
@@ -212,8 +212,8 @@ THUMB void fld::FieldData::reload()
 
 THUMB void fld::FieldData::cleanup(int map)
 {
-    data_020f4f74.unkfunc_0204a618(pattern8Block_);
-    data_020f4f74.unkfunc_0204a618(pattern24Block_);
+    data_020f4f74.freeTexVram(pattern8Block_);
+    data_020f4f74.freeTexVram(pattern24Block_);
     pattern8_.cleanup();
     pattern24_.cleanup();
     for (int i = 0; i < SYMBOL_TEXTURE_NUM; i++) {
@@ -326,9 +326,9 @@ THUMB void fld::FieldData::drawBlock()
                 no = data->no;
             } else {
                 if (data->aflag == 8) {
-                    address = data_020f4f74.unkfunc_0204a634(pattern8Block_);
+                    address = data_020f4f74.getTexVramAddr(pattern8Block_);
                 } else if (data->aflag == 24) {
-                    address = data_020f4f74.unkfunc_0204a634(pattern24Block_);
+                    address = data_020f4f74.getTexVramAddr(pattern24Block_);
                 }
                 no = data->ano;
             }
@@ -503,9 +503,9 @@ THUMB void fld::FieldData::drawSymbol()
 
 THUMB void fld::FieldData::nextAnimation8()
 {
-    void* data = unkfunc_0204c878(pattern8_.getAddr(), animCounter8);
+    void* data = getArchiveFile(pattern8_.getAddr(), animCounter8);
     if (data != NULL) {
-        data_020f4f74.unkfunc_0204a6f0(0, data, data_020f4f74.unkfunc_0204a634(pattern8Block_), data_020f4f74.unkfunc_0204a640(pattern8Block_), 0);
+        data_020f4f74.transferToVram(0, data, data_020f4f74.getTexVramAddr(pattern8Block_), data_020f4f74.getTexVramSize(pattern8Block_), 0);
     }
     animCounter8++;
     if (animCounter8 >= ANIM_PATTERN8) {
@@ -515,9 +515,9 @@ THUMB void fld::FieldData::nextAnimation8()
 
 THUMB void fld::FieldData::nextAnimation24()
 {
-    void* data = unkfunc_0204c878(pattern24_.getAddr(), animCounter24);
+    void* data = getArchiveFile(pattern24_.getAddr(), animCounter24);
     if (data != NULL) {
-        data_020f4f74.unkfunc_0204a6f0(0, data, data_020f4f74.unkfunc_0204a634(pattern24Block_), data_020f4f74.unkfunc_0204a640(pattern24Block_), 0);
+        data_020f4f74.transferToVram(0, data, data_020f4f74.getTexVramAddr(pattern24Block_), data_020f4f74.getTexVramSize(pattern24Block_), 0);
     }
     animCounter24++;
     if (animCounter24 >= ANIM_PATTERN24) {
@@ -527,7 +527,7 @@ THUMB void fld::FieldData::nextAnimation24()
 
 THUMB void fld::FieldData::draw()
 {
-    if (unkfunc_0204ccd0() & 1) {
+    if (getDisplayFrame() & 1) {
         setFieldCamera();
         drawSymbol();
         drawBlock();
@@ -747,15 +747,15 @@ THUMB bool fld::FieldData::isCollSymbol(int x, int y)
 THUMB void fld::FieldData::setPaletteRate(int flag, dss::Fix32Vector3& rate)
 {
     dss::memcpy(blockPalette_, blockPaletteOrg_, blockTexture_->unkfunc_0204a1dc());
-    unkfunc_02049208(3, rate);
-    unkfunc_020492a0(blockPalette_, blockTexture_->unkfunc_0204a1dc(), rate);
-    data_020f4f74.unkfunc_0204a6f0(1, blockPalette_, blockTexture_->unkfunc_0204a1cc(), blockTexture_->unkfunc_0204a1dc(), 0);
+    setPaletteRgbRate(3, rate);
+    applyPaletteRgbRate(blockPalette_, blockTexture_->unkfunc_0204a1dc(), rate);
+    data_020f4f74.transferToVram(1, blockPalette_, blockTexture_->unkfunc_0204a1cc(), blockTexture_->unkfunc_0204a1dc(), 0);
     for (int i = 0; i < SYMBOL_TEXTURE_NUM; i++) {
         if (flag != 0 || s_symbolLoad[i] != 0) {
             MI_CpuCopyU8((void*)symbolTexture_[i]->unkfunc_0204a1d4(), symbolPalette_[i], symbolTexture_[i]->unkfunc_0204a1dc());
-            unkfunc_02049208(3, rate);
-            unkfunc_020492a0(symbolPalette_[i], symbolTexture_[i]->unkfunc_0204a1dc(), rate);
-            data_020f4f74.unkfunc_0204a6f0(1, symbolPalette_[i], symbolTexture_[i]->unkfunc_0204a1cc(), symbolTexture_[i]->unkfunc_0204a1dc(), 0);
+            setPaletteRgbRate(3, rate);
+            applyPaletteRgbRate(symbolPalette_[i], symbolTexture_[i]->unkfunc_0204a1dc(), rate);
+            data_020f4f74.transferToVram(1, symbolPalette_[i], symbolTexture_[i]->unkfunc_0204a1cc(), symbolTexture_[i]->unkfunc_0204a1dc(), 0);
         }
     }
 }

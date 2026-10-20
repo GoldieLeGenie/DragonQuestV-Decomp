@@ -1,56 +1,56 @@
 #pragma ipa file
-#include "ov006/mp/UnkMPExchange.hpp"
+#include "ov006/mp/MPExchange.hpp"
 #include "main/debug/UnkDebugPrint.hpp"
 #include "main/dss/DssUtils.hpp"
 #include "main/dss/Pad.hpp"
 #include "main/text/TextAPI.hpp"
 
-ARM void UnkMPExchange::unkfunc_02129990()
+ARM void MPExchange::updateFinishReady()
 {
-    if (unkfunc_02121f50() == WH_SYSSTATE_IDLE) {
-        unkfunc_02122998();
-        unkfunc_0212a750(SYSMODE_FINISH_WAIT);
+    if (getWhSysState() == WH_SYSSTATE_IDLE) {
+        endWh();
+        setMode(SYSMODE_FINISH_WAIT);
     }
 }
 
-ARM void UnkMPExchange::unkfunc_021299b8()
+ARM void MPExchange::updateSelectRole()
 {
-    if (unkfunc_02121f50() != WH_SYSSTATE_IDLE) {
+    if (getWhSysState() != WH_SYSSTATE_IDLE) {
         return;
     }
     if (unk_1c != 0) {
-        unkfunc_0212a750(SYSMODE_FINISH_READY);
+        setMode(SYSMODE_FINISH_READY);
         return;
     }
-    int role = role_.unkfunc_0212ae1c();
+    int role = role_.getNextRole();
     if (role == 2) {
         unk_f8 = 0;
-        unkfunc_0212ac28(0, 90);
+        startParent(0, 90);
     }
     if (role == 1) {
         unk_f8 = 1;
         unk_40 = 1;
-        unkfunc_0212ac8c(1);
+        startScan(1);
     }
 }
 
-ARM void UnkMPExchange::unkfunc_02129a30()
+ARM void MPExchange::unkfunc_02129a30()
 {
-    unkfunc_0212a954(1);
-    unkfunc_020434c8(2, 1, "BEACON CNT %d", unkfunc_021229f0());
-    role_.unkfunc_0212afec();
+    updateGameInfo(1);
+    debugConsolePrintfIfEnabled(2, 1, "BEACON CNT %d", unkfunc_021229f0());
+    role_.printTable();
     if (unkfunc_021229f0() > 1 && unk_1c != 0) {
-        unkfunc_0212acc0();
+        finish();
         return;
     }
     if (unkfunc_021229f0() > 60) {
         SEND_PACKET->state_ = 0;
-        unkfunc_02122888();
-        unkfunc_0212a750(SYSMODE_SELECT_NEXT);
+        finalizeWh();
+        setMode(SYSMODE_SELECT_NEXT);
         return;
     }
     int count = 0;
-    u16 bitmap = unkfunc_02121f40();
+    u16 bitmap = getWhConnectBitmap();
     for (int i = 0; i < 16; i++) {
         if (bitmap & (1 << i)) {
             count++;
@@ -62,23 +62,23 @@ ARM void UnkMPExchange::unkfunc_02129a30()
             UnkMPExchangePacket* packet = RECV_PACKET(i);
             packet->state_ = 0;
         }
-        unkfunc_0212a954(0);
-        unkfunc_0212a750(SYSMODE_PARENT_EXEC);
+        updateGameInfo(0);
+        setMode(SYSMODE_PARENT_EXEC);
     }
-    if (role_.unkfunc_0212b0f0()) {
+    if (role_.isTimedOut()) {
         SEND_PACKET->state_ = 0;
-        unkfunc_02122888();
-        unkfunc_0212a750(SYSMODE_SELECT_NEXT);
+        finalizeWh();
+        setMode(SYSMODE_SELECT_NEXT);
     }
 }
 
-ARM void UnkMPExchange::unkfunc_02129b64()
+ARM void MPExchange::unkfunc_02129b64()
 {
     if (counter_ > 60) {
-        unkfunc_0212a750(SYSMODE_LIGHT_ERRORINIT);
+        setMode(SYSMODE_LIGHT_ERRORINIT);
     }
     if (unk_1c != 0) {
-        unkfunc_0212acc0();
+        finish();
         return;
     }
     if (RECV_PACKET(0)->state_ == 1) {
@@ -87,97 +87,97 @@ ARM void UnkMPExchange::unkfunc_02129b64()
             UnkMPExchangePacket* packet = RECV_PACKET(i);
             packet->state_ = 0;
         }
-        unkfunc_0212a750(SYSMODE_CHILD_EXEC);
+        setMode(SYSMODE_CHILD_EXEC);
     }
 }
 
-ARM void UnkMPExchange::unkfunc_02129bec()
+ARM void MPExchange::updateChildScan()
 {
     char buf[0x20];
-    unkfunc_020434c8(2, 1, "CHANNEL %d", unk_40);
-    role_.unkfunc_0212afec();
+    debugConsolePrintfIfEnabled(2, 1, "CHANNEL %d", unk_40);
+    role_.printTable();
     if (unk_1c != 0) {
-        if (unkfunc_02121f50() == WH_SYSSTATE_SCANNING) {
-            unkfunc_021218f4();
+        if (getWhSysState() == WH_SYSSTATE_SCANNING) {
+            endWhScan();
         }
-        unkfunc_0212acc0();
+        finish();
         return;
     }
     if (parentCount_ > 0) {
         dss::sprintf_s(buf, sizeof(buf), "%2d %08x", 0, bssDesc_[0].gameInfo.ggid);
-        unkfunc_0204348c(1, 2, buf);
-        if (unkfunc_02121f50() == WH_SYSSTATE_SCANNING) {
-            unkfunc_021218f4();
+        debugConsolePrint(1, 2, buf);
+        if (getWhSysState() == WH_SYSSTATE_SCANNING) {
+            endWhScan();
         }
-        unkfunc_0212a750(SYSMODE_CHILD_CONNECT);
+        setMode(SYSMODE_CHILD_CONNECT);
         return;
     }
-    if (role_.unkfunc_0212b0f0()) {
-        if (unkfunc_02121f50() == WH_SYSSTATE_SCANNING) {
-            unkfunc_021218f4();
+    if (role_.isTimedOut()) {
+        if (getWhSysState() == WH_SYSSTATE_SCANNING) {
+            endWhScan();
         }
-        unkfunc_0212a750(SYSMODE_SELECT_SCAN);
+        setMode(SYSMODE_SELECT_SCAN);
     }
 }
 
-ARM void UnkMPExchange::unkfunc_02129cec()
+ARM void MPExchange::updateSelectScan()
 {
-    unkfunc_020434c8(2, 1, "CHANNEL %d", unk_40);
-    role_.unkfunc_0212afec();
-    if (unkfunc_02121f50() != WH_SYSSTATE_IDLE) {
+    debugConsolePrintfIfEnabled(2, 1, "CHANNEL %d", unk_40);
+    role_.printTable();
+    if (getWhSysState() != WH_SYSSTATE_IDLE) {
         return;
     }
     if (unk_1c != 0) {
-        unkfunc_0212acc0();
+        finish();
         return;
     }
-    role_.unkfunc_0212b0d8();
+    role_.restartTimer();
     switch (unk_40) {
     case 1:
         unk_40 = 7;
-        unkfunc_0212ac8c(7);
+        startScan(7);
         break;
     case 7:
         unk_40 = 13;
-        unkfunc_0212ac8c(13);
+        startScan(13);
         break;
     case 13:
-        unkfunc_02122888();
-        unkfunc_0212a750(SYSMODE_SELECT_NEXT);
+        finalizeWh();
+        setMode(SYSMODE_SELECT_NEXT);
         break;
     }
 }
 
-ARM void UnkMPExchange::unkfunc_02129d9c()
+ARM void MPExchange::updateChildConnect()
 {
-    if (unkfunc_02121f50() == WH_SYSSTATE_IDLE) {
-        unkfunc_02122740(5, &bssDesc_[0]);
-        unkfunc_0212a750(SYSMODE_CHILD_READY);
+    if (getWhSysState() == WH_SYSSTATE_IDLE) {
+        connectWhChild(5, &bssDesc_[0]);
+        setMode(SYSMODE_CHILD_READY);
     }
 }
 
-ARM void UnkMPExchange::unkfunc_02129dd0()
+ARM void MPExchange::unkfunc_02129dd0()
 {
     unkfunc_0212a1b4();
     dss::memcpy(&SEND_PACKET->data_, sendData_, 0xdc);
-    if (unkfunc_02121f40() == 1) {
-        unkfunc_0212acc0();
+    if (getWhConnectBitmap() == 1) {
+        finish();
         return;
     }
     if (unk_3c == 4) {
-        unkfunc_0212acc0();
+        finish();
         return;
     }
     if (unk_3c == 6) {
-        unkfunc_0212acc0();
+        finish();
         return;
     }
     if (unk_1c != 0) {
-        unkfunc_0212acc0();
+        finish();
         return;
     }
     if (RECV_PACKET(0)->state_ == 2) {
-        unkfunc_0212acc0();
+        finish();
         return;
     }
     for (int i = 0; i < 2; i++) {
@@ -192,44 +192,44 @@ ARM void UnkMPExchange::unkfunc_02129dd0()
     }
 }
 
-ARM void UnkMPExchange::unkfunc_02129ec4()
+ARM void MPExchange::unkfunc_02129ec4()
 {
     unkfunc_0212a1b4();
     dss::memcpy(&SEND_PACKET->data_, sendData_, 0xdc);
     if (unk_3c == 5) {
-        unkfunc_0212acc0();
+        finish();
         return;
     }
     if (unk_3c == 6) {
         if (unk_fc == 1) {
-            unkfunc_0212acc0();
+            finish();
         }
         return;
     }
     if (unk_1c != 0) {
-        unkfunc_0212acc0();
+        finish();
         return;
     }
     if (RECV_PACKET(0)->state_ == 2) {
-        unkfunc_0212acc0();
+        finish();
     }
 }
 
-ARM void UnkMPExchange::unkfunc_02129f58()
+ARM void MPExchange::updateSelectNext()
 {
-    role_.unkfunc_0212afec();
-    if (unkfunc_02121f50() == WH_SYSSTATE_IDLE) {
-        unkfunc_0212a750(SYSMODE_SELECT_ROLE);
+    role_.printTable();
+    if (getWhSysState() == WH_SYSSTATE_IDLE) {
+        setMode(SYSMODE_SELECT_ROLE);
     }
 }
 
-ARM void UnkMPExchange::unkfunc_02129f84()
+ARM void MPExchange::unkfunc_02129f84()
 {
-    if (unkfunc_02121f50() == WH_SYSSTATE_DATASHARING) {
+    if (getWhSysState() == WH_SYSSTATE_DATASHARING) {
         if (unkfunc_021227ec(sendBuffer_)) {
             int i;
             for (i = 0; i < 2; i++) {
-                void* data = unkfunc_021227cc(i);
+                void* data = getWhSharedData(i);
                 UnkMPExchangePacket* packet = RECV_PACKET(i);
                 if (data != NULL) {
                     MI_CpuCopyU8(data, packet, 0xdc);
@@ -270,7 +270,7 @@ ARM void UnkMPExchange::unkfunc_02129f84()
     }
 }
 
-ARM void UnkMPExchange::unkfunc_0212a10c()
+ARM void MPExchange::unkfunc_0212a10c()
 {
     if (unk_34 != 0) {
         return;

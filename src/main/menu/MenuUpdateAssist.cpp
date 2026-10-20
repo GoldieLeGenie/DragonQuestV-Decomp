@@ -3,7 +3,7 @@
 #include "ov019/townmenu/TownMenu_ROOT.hpp"
 #include "globaldefs.h"
 
-THUMB int MenuUpdate_Assist::isPageFlip(menu::MenuItem& item, UnkCursorMoveBase& cursor, int& active)
+THUMB int MenuUpdate_Assist::isPageFlip(menu::MenuItem& item, CursorMoveBase& cursor, int& active)
 {
     item.execInput();
     if (item.result_ == 1 || item.result_ == 2) {
@@ -19,7 +19,7 @@ THUMB int MenuUpdate_Assist::isPageFlip(menu::MenuItem& item, UnkCursorMoveBase&
     return 0;
 }
 
-THUMB int MenuUpdate_Assist::isPageFlipOne(menu::MenuItem& item, UnkCursorMoveBase& cursor, int& active)
+THUMB int MenuUpdate_Assist::isPageFlipOne(menu::MenuItem& item, CursorMoveBase& cursor, int& active)
 {
     item.execInput();
     if (item.result_ == 1 || item.result_ == 2) {
@@ -53,7 +53,7 @@ THUMB int MenuUpdate_Assist::isCancel(menu::MenuItem& item)
     return 0;
 }
 
-THUMB int MenuUpdate_Assist::menuSelect(menu::MenuItem& item, UnkCursorMoveBase& cursor)
+THUMB int MenuUpdate_Assist::menuSelect(menu::MenuItem& item, CursorMoveBase& cursor)
 {
     int ret = 0;
     item.execInput();

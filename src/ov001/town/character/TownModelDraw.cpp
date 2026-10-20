@@ -191,7 +191,7 @@ void twn::TownModelDraw::setPaletteRate(dss::Fix32 r, dss::Fix32 g, dss::Fix32 b
 {
     unkfunc_020491f8(model_.unk_1cc.unk_08);
     dss::Fix32Vector3 rate(r, g, b);
-    unkfunc_02049228(model_.unk_1cc.unk_08, rate);
+    applyModelPaletteRgbRate(model_.unk_1cc.unk_08, rate);
 }
 
 void twn::TownModelDraw::setPaletteRate(unsigned char r, unsigned char g, unsigned char b, dss::Fix32 rate)

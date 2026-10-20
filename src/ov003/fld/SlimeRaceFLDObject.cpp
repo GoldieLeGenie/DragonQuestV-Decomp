@@ -2,7 +2,7 @@
 #include "ov003/fld/SlimeRaceColl.hpp"
 #include "main/fld/FldStage.hpp"
 #include "main/object/DSSAObject.hpp"
-#include "main/dss/UnkVramTransfer.hpp"
+#include "main/dss/VramTransferManager.hpp"
 #include "nitro/g3.hpp"
 #include "nitro/gx.hpp"
 #include "nitro/fx/fx_trig.h"

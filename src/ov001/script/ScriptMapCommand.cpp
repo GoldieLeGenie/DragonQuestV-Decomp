@@ -551,9 +551,9 @@ void FurnitureRotate::initialize(char* scriptParam)
     end.vx.value = param->endX;
     end.vy.value = param->endY;
     end.vz.value = param->endZ;
-    end.vx.value = unkfunc_0204f3d0(end.vx);
-    end.vy.value = unkfunc_0204f3d0(end.vy);
-    end.vz.value = unkfunc_0204f3d0(end.vz);
+    end.vx.value = degreeToAngle(end.vx);
+    end.vy.value = degreeToAngle(end.vy);
+    end.vz.value = degreeToAngle(end.vz);
     index = twn::TownFurnitureControlManager::getSingleton().setFurnitureRotate(param->target, param->frame, end);
     twn::TownFurnitureControlManager::getSingleton().setGarbageCorrect(index, false);
 }
@@ -598,9 +598,9 @@ void FurnitureGroupRotate::initialize(char* scriptParam)
     speed.vx.value = param->speedX;
     speed.vy.value = param->speedY;
     speed.vz.value = param->speedZ;
-    speed.vx.value = unkfunc_0204f3d0(speed.vx);
-    speed.vy.value = unkfunc_0204f3d0(speed.vy);
-    speed.vz.value = unkfunc_0204f3d0(speed.vz);
+    speed.vx.value = degreeToAngle(speed.vx);
+    speed.vy.value = degreeToAngle(speed.vy);
+    speed.vz.value = degreeToAngle(speed.vz);
     index = twn::TownFurnitureControlManager::getSingleton().setFurnitureGroupRotate(param->target, param->frame, speed);
     twn::TownFurnitureControlManager::getSingleton().setGarbageCorrect(index, false);
 }
@@ -1010,7 +1010,7 @@ bool cmdSetShipInfo(void* scriptParam)
     pos.vz.value = param->posZ;
     dss::Fix32 deg;
     deg.value = param->idx;
-    short idx = unkfunc_0204f3d0(deg);
+    short idx = degreeToAngle(deg);
     twn::TownPlayerManager::getSingleton().player_.townActionShip_.setShipDataByScript(param->name, pos, idx);
     return true;
 }

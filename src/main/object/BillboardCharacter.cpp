@@ -17,8 +17,8 @@ struct PositionWeakVtable : UnkPositionInterface {
 #include "main/dss/UnkArchive.hpp"
 #include "main/dss/UnkMatrix43.hpp"
 #include "main/dss/UnkPaletteEffect.hpp"
-#include "main/dss/UnkShadowPolygon.hpp"
-#include "main/dss/UnkTextureObject.hpp"
+#include "main/dss/ShadowPolygon.hpp"
+#include "main/dss/TextureObject.hpp"
 #include "nitro/fx/fx_atan.h"
 #include "nitro/fx/fx_trig.h"
 #include "nitro/os.hpp"
@@ -78,7 +78,7 @@ UnkBillboardAnimation BillboardCharacter::animation_[] = {
     { 1, 12 },
     { -1, -1 },
 };
-static UnkTextureObject* s_shadowTexture;
+static TextureObject* s_shadowTexture;
 static dss::Vector3<dss::Fix16> s_shadowVertexRightTop(1.0f, 0.0f, 1.0f);
 
 inline dss::Vector2<dss::Fix16>::Vector2(dss::Fix16 x, dss::Fix16 y)
@@ -130,7 +130,7 @@ ARM void BillboardCharacter::unkfunc_0205568c(void* data)
 {
     textureNum_ = unkfunc_0204c860(data);
     for (int i = 0; i < textureNum_; i++) {
-        textures_[i] = unkfunc_0204c878(data, i);
+        textures_[i] = getArchiveFile(data, i);
     }
     OS_Wait();
     dss::Fix16 right;
@@ -170,7 +170,7 @@ ARM void BillboardCharacter::unkfunc_02055a34()
 
 ARM void DisplayCharacter::unkfunc_02055a60()
 {
-    ((UnkTextureObject*)UnkRenderObject::texture_)->unkfunc_02049f90();
+    ((TextureObject*)RenderObject::texture_)->unkfunc_02049f90();
 }
 
 ARM void* BillboardCharacter::unkfunc_02055a70(int index)
@@ -224,7 +224,7 @@ ARM void BillboardCharacter::draw()
     unkfunc_020561d0(s_scale);
     setCameraDirection(&baseCamera_->getDirection());
     if (flag_ & FLAG_ANIM_PALLET) {
-        unkfunc_02049ad8((UnkTextureObject*)texture_, unk_0fc);
+        unkfunc_02049ad8((TextureObject*)texture_, unk_0fc);
     }
     execute();
     if (flag_ & FLAG_SHADOW) {
@@ -232,7 +232,7 @@ ARM void BillboardCharacter::draw()
         shadow_.draw();
     }
     if (!(flag_ & FLAG_SHADOW_ONLY)) {
-        UnkBillboard::draw();
+        Billboard::draw();
     }
     flag_ &= ~FLAG_DRAW_RESET;
 }
@@ -369,7 +369,7 @@ static dss::Vector3<short> s_unused;
 static dss::Vector3<dss::Fix16> s_sideVertex[4];
 static dss::Fix32Vector3 s_sideDirection[32];
 static UnkPolygonVertex s_side;
-static UnkShadowPolygon s_shadowPolygons[32];
+static ShadowPolygon s_shadowPolygons[32];
 
 ARM void BillboardCharacter::setPosition(const dss::Fix32Vector3& position)
 {
@@ -561,7 +561,7 @@ ARM void BillboardCharacter::unkfunc_0205646c()
 ARM void BillboardCharacter::unkfunc_0205647c()
 {
     s_shadowData.setup("data/common.tex", 0, 0);
-    s_shadowTexture = (UnkTextureObject*)s_shadowData.getAddr();
+    s_shadowTexture = (TextureObject*)s_shadowData.getAddr();
     s_shadowTexture->unkfunc_02049e9c(1);
     dss::UnkMatrix43 matrix;
     dss::Fix32Vector3 direction;
@@ -632,7 +632,7 @@ ARM void UnkCharacterShadow::draw()
         fx32 c = FX_CosIdx(unk_28.vy);
         position_.vx.value += s / 16;
         position_.vz.value += c / 16;
-        UnkPolygonObject::draw();
+        PolygonObject::draw();
         position_.vx.value = x;
         position_.vz.value = z;
         return;

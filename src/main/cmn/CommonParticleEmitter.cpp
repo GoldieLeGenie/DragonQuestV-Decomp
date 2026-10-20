@@ -46,7 +46,7 @@ static dss::Vector2<dss::Fix16> xyRightBottom(0.24f, -0.24f);
 static dss::Vector2<dss::Fix16> xyRightTop(0.24f, 0.24f);
 static dss::Vector2<dss::Fix16> xyLeftTop(-0.24f, 0.24f);
 static twn::UnkBillboardCorners xy(xyLeftBottom, xyRightBottom, xyRightTop, xyLeftTop);
-static UnkTextureObject* unk_020f3590[3];
+static TextureObject* unk_020f3590[3];
 static DataObject unk_020f35d0[3];
 static int s_maxAnim[3];
 static int s_maxPattern;
@@ -124,7 +124,7 @@ static void unkfunc_02044e08(int type)
             break;
     }
     for (int i = 0; i < s_maxPattern + 1; i++) {
-        unk_020f3590[i] = (UnkTextureObject*)unk_020f35d0[i].getAddr();
+        unk_020f3590[i] = (TextureObject*)unk_020f35d0[i].getAddr();
         unk_020f3590[i]->unkfunc_02049e9c(1);
     }
 }
@@ -453,9 +453,9 @@ void cmn::CommonParticleEmitter::draw()
     }
     int screen;
     if (data_02101c88.unkfunc_02051818(4)) {
-        screen = (unkfunc_0204ccd0() & 1) == 0 ? 1 : 0;
+        screen = (getDisplayFrame() & 1) == 0 ? 1 : 0;
     } else {
-        screen = unkfunc_0204ccd0() & 1;
+        screen = getDisplayFrame() & 1;
     }
     unk_020f355c = (VecFx32*)&(screen == 0 ? &unk_00->unk_004 : &unk_00->unk_074)->unk_3c;
     for (int i = 0; i < count_; i++) {

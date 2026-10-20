@@ -1,10 +1,10 @@
 #pragma once
 #include <globaldefs.h>
 #include "main/dss/Position.hpp"
-#include "main/dss/UnkTextureObject.hpp"
+#include "main/dss/TextureObject.hpp"
 #include "main/data/DataObject.hpp"
 #include "main/object/DSSAObject.hpp"
-#include "main/dss/UnkCharacterPalette.hpp"
+#include "main/dss/CharacterPalette.hpp"
 
 // streaming of a DSSA animation split in numbered files, double buffered in the animations 0 and 1
 struct UnkDSSAStream {
@@ -22,8 +22,8 @@ struct DSSACharacter : Position {
     int nextAnimationIndex_;                    // 0x03C
     int firstAnimationIndex_;                   // 0x040
     DSSAObjectWithCamera dssaObject_[17];       // 0x044
-    UnkTextureObject* unk_ae4;                  // 0xAE4 texture
-    UnkCharacterPalette palette_;               // 0xAE8
+    TextureObject* unk_ae4;                  // 0xAE4 texture
+    CharacterPalette palette_;               // 0xAE8
     DataObject* dataObject_;                    // 0xEFC
     dss::Flag flag_;                            // 0xF00
     long flagCount_;                            // 0xF04
@@ -33,8 +33,8 @@ struct DSSACharacter : Position {
     DSSACharacter();
     ~DSSACharacter();
     void unkfunc_0205248c(DataObject* texture, DataObject* animation);
-    void unkfunc_020524c8(UnkTextureObject* texture, DataObject* animation);
-    void unkfunc_02052594(UnkTextureObject* texture, const char* format, int count);
+    void unkfunc_020524c8(TextureObject* texture, DataObject* animation);
+    void unkfunc_02052594(TextureObject* texture, const char* format, int count);
     void cleanup();
     void unkfunc_02052754();
     void draw();

@@ -8,8 +8,8 @@ THUMB UnkMenuSpriteDisplay::UnkMenuSpriteDisplay()
 THUMB void UnkMenuSpriteDisplay::setup(int id)
 {
     id_ = id;
-    unkfunc_020646c8();
-    unkfunc_0206477c(2);
+    reset();
+    setType(2);
 }
 
 THUMB void UnkMenuSpriteDisplay::update(UnkOamBuffer* main, UnkOamBuffer* sub)

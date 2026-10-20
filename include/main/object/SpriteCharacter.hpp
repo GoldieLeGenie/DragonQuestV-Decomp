@@ -2,10 +2,10 @@
 #include <globaldefs.h>
 #include "main/data/DataObject.hpp"
 #include "main/dss/DssUtils.hpp"
-#include "main/dss/UnkSprite2D.hpp"
+#include "main/dss/Sprite2D.hpp"
 
 /* vtable 0x0209a760 */
-struct SpriteShadow : UnkSprite2D {
+struct SpriteShadow : Sprite2D {
     virtual void draw();
 
     SpriteShadow();
@@ -16,7 +16,7 @@ struct SpriteShadow : UnkSprite2D {
 };
 
 /* vtable 0x0209a780 */
-struct SpriteCharacter : UnkSprite2D {
+struct SpriteCharacter : Sprite2D {
     enum {
         FLAG_ENABLE = 1,
         FLAG_DISPLAY = 2,
@@ -33,9 +33,9 @@ struct SpriteCharacter : UnkSprite2D {
     int unk_40;                                 // 0x40
     DataObject data_;                           // 0x44
     int textureNum_;                            // 0x54
-    UnkTextureObject* unk_58;                   // 0x58 texture shown
+    TextureObject* unk_58;                   // 0x58 texture shown
     int unk_5c[7];                              // 0x5C
-    UnkTextureObject* unk_78[8];                // 0x78 textures of the file, one per direction
+    TextureObject* unk_78[8];                // 0x78 textures of the file, one per direction
     short direction_;                           // 0x98
     short dispDirection_;                       // 0x9A
     int unk_9c;                                 // 0x9C width

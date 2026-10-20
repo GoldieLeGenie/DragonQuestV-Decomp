@@ -1,7 +1,7 @@
 #pragma once
 #include <globaldefs.h>
 #include "main/data/DataObject.hpp"
-#include "main/dss/UnkTextureObject.hpp"
+#include "main/dss/TextureObject.hpp"
 
 namespace fld
 {
@@ -13,7 +13,7 @@ namespace fld
         FieldSymbolAnimation();
         ~FieldSymbolAnimation();
         void setup(const char* filename);
-        void calcAnim(UnkTextureObject* texture);
+        void calcAnim(TextureObject* texture);
         void cleanup();
     };
 } // namespace fld

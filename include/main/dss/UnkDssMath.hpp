@@ -11,4 +11,4 @@ extern const dss::Fix32 data_0209a354;                // 8
 extern const dss::Fix32 data_0209a36c;                // pi
 
 int unkfunc_0204f3bc(int r, int g, int b, int a);  // RGBA8
-int unkfunc_0204f3d0(dss::Fix32 degree);           // degree -> 16-bit angle
+int degreeToAngle(dss::Fix32 degree);           // degree -> 16-bit angle

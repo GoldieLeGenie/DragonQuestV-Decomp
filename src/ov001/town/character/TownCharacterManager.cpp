@@ -87,7 +87,7 @@ THUMB void TownCharacterManager::terminate()
 
 THUMB void TownCharacterManager::execute()
 {
-    unkfunc_0204ccd0();
+    getDisplayFrame();
     for (int i = 0; i < TOWN_CHARACTER_MAX; i++) {
         if (character_[i]) {
             character_[i]->execute();

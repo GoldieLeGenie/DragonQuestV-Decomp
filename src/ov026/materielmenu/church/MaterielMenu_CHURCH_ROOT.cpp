@@ -155,7 +155,7 @@ THUMB void MaterielMenu_CHURCH_ROOT::menuExecute()
 THUMB void MaterielMenu_CHURCH_ROOT::menuDraw()
 {
     if (activeCommand_ != 7) {
-        unkfunc_0217bf94(activeCommand_, firstFlag_);
+        drawChurchScreen(activeCommand_, firstFlag_);
         if (activeCommand_ == -1 && firstFlag_ == 0 && gTownMenu_MESSAGE.isMessageWAITPROG()) {
             menuItem_.drawActive();
         }

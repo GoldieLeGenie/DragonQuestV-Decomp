@@ -2,38 +2,38 @@
 #include "main/data/FileLoader.hpp"
 #include "main/dss/DssUtils.hpp"
 
-THUMB void UnkMsgFile::unkfunc_0206b848()
+THUMB void MsgFile::init()
 {
     m_addr = (unsigned char*)unkfunc_0204c504(&data_020fd24c, 0x404, -4);
     m_size = 0x400;
     unk_80c = 0;
 }
 
-THUMB void UnkMsgFile::unkfunc_0206b874()
+THUMB void MsgFile::cleanup()
 {
     unkfunc_0204c5c8(&data_020fd24c, m_addr);
     m_addr = 0;
     m_size = 0;
 }
 
-THUMB int UnkMsgFile::unkfunc_0206b88c(unsigned int msg_id, int lang)
+THUMB int MsgFile::hasMessage(unsigned int msg_id, int lang)
 {
-    MsgData* data = unkfunc_0206cd30(msg_id);
+    MsgData* data = findMsgData(msg_id);
     if (data == 0) {
         return 0;
     }
-    if (data->unkfunc_0206ba0c(msg_id, lang) == 0) {
+    if (data->loadBlock(msg_id, lang) == 0) {
         return 0;
     }
-    if (unkfunc_0204c89c(data->m_addr, msg_id) != 0) {
+    if (findMessage(data->m_addr, msg_id) != 0) {
         return 1;
     }
     return 0;
 }
 
-THUMB int UnkMsgFile::unkfunc_0206b8c4(unsigned int msg_id, int lang)
+THUMB int MsgFile::readMessage(unsigned int msg_id, int lang)
 {
-    if (unkfunc_0206b88c(msg_id, lang) == 0) {
+    if (hasMessage(msg_id, lang) == 0) {
         return 0;
     }
     unsigned char* src = data_020fe6ac;
@@ -48,21 +48,21 @@ THUMB int UnkMsgFile::unkfunc_0206b8c4(unsigned int msg_id, int lang)
     return 1;
 }
 
-THUMB int UnkMsgFile::unkfunc_0206b910(unsigned int msg_id, int lang)
+THUMB int MsgFile::loadMessage(unsigned int msg_id, int lang)
 {
     m_msg_id = msg_id;
-    unk_80c = unkfunc_0206b8c4(msg_id, lang);
+    unk_80c = readMessage(msg_id, lang);
     if (unk_80c == 0) {
         return unk_80c;
     }
-    unk_80c = m_meta.unkfunc_0206bafc(m_addr, msg_id, lang);
+    unk_80c = m_meta.parse(m_addr, msg_id, lang);
     return unk_80c;
 }
 
-THUMB unsigned char* UnkMsgFile::unkfunc_0206b948(int index)
+THUMB unsigned char* MsgFile::getField(int index)
 {
     if (unk_80c != 0) {
-        return m_meta.unkfunc_0206bc38(index);
+        return m_meta.getField(index);
     }
     if (index == 10) {
         return (unsigned char*)"";
@@ -93,7 +93,7 @@ THUMB void MsgData::msg_setup(int msg_base_id, int arg1, int size, int count)
     unk_14 = count;
 }
 
-THUMB void MsgData::unkfunc_0206b9d4()
+THUMB void MsgData::cleanup()
 {
     unkfunc_0204c5c8(&data_020fd24c, m_addr);
     m_addr = 0;
@@ -104,7 +104,7 @@ THUMB void MsgData::unkfunc_0206b9d4()
     unk_18 = -1;
 }
 
-THUMB int MsgData::unkfunc_0206b9f8(unsigned int msg_id)
+THUMB int MsgData::containsId(unsigned int msg_id)
 {
     if (m_msg_base_id <= msg_id && msg_id <= unk_0c) {
         return 1;
@@ -112,7 +112,7 @@ THUMB int MsgData::unkfunc_0206b9f8(unsigned int msg_id)
     return 0;
 }
 
-THUMB int MsgData::unkfunc_0206ba0c(unsigned int msg_id, int lang)
+THUMB int MsgData::loadBlock(unsigned int msg_id, int lang)
 {
     char path[0x80];
     if (unk_18 != lang) {
@@ -163,7 +163,7 @@ THUMB int MsgData::unkfunc_0206ba0c(unsigned int msg_id, int lang)
     return 1;
 }
 
-THUMB int UnkMsgMeta::unkfunc_0206bafc(const unsigned char* src, int msg_id, int lang)
+THUMB int MsgMeta::parse(const unsigned char* src, int msg_id, int lang)
 {
     unsigned char* p = 0;
     m_meta[0][0] = 0;
@@ -244,7 +244,7 @@ THUMB int UnkMsgMeta::unkfunc_0206bafc(const unsigned char* src, int msg_id, int
     return 1;
 }
 
-THUMB unsigned char* UnkMsgMeta::unkfunc_0206bc38(int index)
+THUMB unsigned char* MsgMeta::getField(int index)
 {
     switch (index) {
         case 0:

@@ -71,8 +71,8 @@ THUMB void MaterielMenu_INN_ROOT::menuDraw()
 {
     if (unk_20 != 0) {
         MenuStatusInfo::setMode(MenuStatusInfo::BATTLE_MODE);
-        unkfunc_0201b1cc(-1, -1, 0);
-        unkfunc_0201b158();
+        drawMoneyWindow(-1, -1, 0);
+        drawPartyStatusWindows();
     }
 }
 

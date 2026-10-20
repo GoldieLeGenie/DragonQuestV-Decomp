@@ -530,7 +530,7 @@ src/main/menu/CommonMenu_YESNO.cpp:
     .text       start:0x0201adac end:0x0201af04
     .data       start:0x02094504 end:0x02094540
 
-src/main/menu/UnkCursorMoveGridLoop.cpp:
+src/main/menu/CursorMoveGridLoop.cpp:
     complete
     .text       start:0x0201af04 end:0x0201b0f8
     .data       start:0x02094540 end:0x02094558
@@ -670,7 +670,7 @@ src/main/debug/UnkDebugDisplay.cpp:
     .text       start:0x02026ffc end:0x020271e0
     .bss        start:0x020c2cac end:0x020c2ce4
 
-src/main/debug/UnkDebugBattleInfo.cpp:
+src/main/debug/DebugBattleInfo.cpp:
     complete
     .text       start:0x020271e0 end:0x020278bc
     .init       start:0x0208b6a8 end:0x0208b6b8
@@ -679,7 +679,7 @@ src/main/debug/UnkDebugBattleInfo.cpp:
     .data       start:0x02095cb0 end:0x02095fb0
     .bss        start:0x020c2ce4 end:0x020c2d00
 
-src/main/debug/UnkDebugInfo.cpp:
+src/main/debug/DebugInfo.cpp:
     complete
     .text       start:0x020278bc end:0x020282e8
     .init       start:0x0208b6b8 end:0x0208b6d8
@@ -701,7 +701,7 @@ src/main/window/UnkRiremitoEffect.cpp:
     .rodata     start:0x0208d980 end:0x0208d98c
     .data       start:0x0209619c end:0x020961b0
 
-src/main/window/UnkRanarutaScreenEffect.cpp:
+src/main/window/ScreenEffectRanaruta.cpp:
     complete
     .text       start:0x02028cb4 end:0x020291a0
     .init       start:0x0208b8a4 end:0x0208b8f4
@@ -717,13 +717,13 @@ src/main/window/ScreenEffectManager.cpp:
     .ctor       start:0x02092ea0 end:0x02092ea4
     .bss        start:0x020c33a4 end:0x020c3520
 
-src/main/window/UnkBattleEffect.cpp:
+src/main/window/ScreenEffectBattle.cpp:
     complete
     .text       start:0x02029548 end:0x02029828
     .rodata     start:0x0208d99c end:0x0208d9ac
     .data       start:0x020961d8 end:0x020961ec
 
-src/main/window/UnkTabiEffect.cpp:
+src/main/window/ScreenEffectTravelDoor.cpp:
     complete
     .text       start:0x02029828 end:0x02029bcc
     .rodata     start:0x0208d9ac end:0x0208d9b8
@@ -1730,7 +1730,7 @@ src/main/town/GimmickGridGlobalData.cpp:
     .ctor       start:0x02092f58 end:0x02092f5c
     .bss        start:0x020f3db8 end:0x020f3e30
 
-src/main/object/UnkModelAnimation.cpp:
+src/main/object/ModelAnimation.cpp:
     complete
     .text       start:0x020465e0 end:0x020466d8
 
@@ -1751,7 +1751,7 @@ src/main/dss/UnkModelMember.cpp:
     .text       start:0x02046c2c end:0x02046f50
     .bss        start:0x020f3e84 end:0x020f3e8c
 
-src/main/dss/UnkRenderObject.cpp:
+src/main/dss/RenderObject.cpp:
     complete
     .text       start:0x02046f50 end:0x02048848
     .init       start:0x0208c4a4 end:0x0208c590
@@ -1778,15 +1778,15 @@ src/main/dss/UnkPaletteEffect.cpp:
     .ctor       start:0x02092f64 end:0x02092f68
     .bss        start:0x020f3f54 end:0x020f4f68
 
-src/main/dss/UnkTextureObject.cpp:
+src/main/dss/TextureObject.cpp:
     complete
     .text       start:0x02049e94 end:0x0204a3d8
 
-src/main/dss/UnkCharacterPalette.cpp:
+src/main/dss/CharacterPalette.cpp:
     complete
     .text       start:0x0204a3d8 end:0x0204a50c
 
-src/main/dss/UnkVramTransfer.cpp:
+src/main/dss/VramTransferManager.cpp:
     complete
     .text       start:0x0204a50c end:0x0204a7e4
     .init       start:0x0208c5b0 end:0x0208c5dc
@@ -1936,7 +1936,7 @@ src/main/dss/DssUtils.cpp:
     .text       start:0x02050478 end:0x0205071c
     .bss        start:0x02101658 end:0x02101a58
 
-src/main/dss/UnkTextureBillboard.cpp:
+src/main/dss/TextureBillboard.cpp:
     complete
     .text       start:0x0205071c end:0x02050784
 
@@ -1956,12 +1956,12 @@ src/main/object/ModelObjectWithCamera.cpp:
     .data       start:0x0209a3a8 end:0x0209a3c8
     .bss        start:0x02101a5c end:0x02101a68
 
-src/main/object/UnkPaletteAnimationObject.cpp:
+src/main/object/PaletteAnimationObject.cpp:
     complete
     .text       start:0x02051304 end:0x02051658
     .bss        start:0x02101a68 end:0x02101c68
 
-src/main/global/UnkApplication.cpp:
+src/main/global/DssApplication.cpp:
     complete
     .text       start:0x02051658 end:0x020516b4
 
@@ -2153,7 +2153,7 @@ src/main/menu/UnkMenuDisplayManager.cpp:
     .ctor       start:0x02092fd4 end:0x02092fd8
     .bss        start:0x02114dd4 end:0x0211b148
 
-src/main/menu/UnkMenuFrameDisplay.cpp:
+src/main/menu/MenuFrameDisplay.cpp:
     complete
     .text       start:0x020641dc end:0x0206434c
     .data       start:0x0209a940 end:0x0209a958
@@ -2162,7 +2162,7 @@ src/main/menu/UnkMenuFrameQueue.cpp:
     complete
     .text       start:0x0206434c end:0x020646b4
 
-src/main/menu/UnkMenuDisplay.cpp:
+src/main/menu/MenuDisplay.cpp:
     complete
     .text       start:0x020646b4 end:0x020647b0
     .data       start:0x0209a958 end:0x0209a970
@@ -2172,27 +2172,27 @@ src/main/menu/UnkMenuDummyDisplay.cpp:
     .text       start:0x020647b0 end:0x020647e4
     .data       start:0x0209a970 end:0x0209a988
 
-src/main/menu/UnkMenuArrowDisplay.cpp:
+src/main/menu/MenuArrowDisplay.cpp:
     complete
     .text       start:0x020647e4 end:0x020649fc
     .data       start:0x0209a988 end:0x0209a9f0
 
-src/main/menu/UnkMenuFaceDisplay.cpp:
+src/main/menu/MenuFaceDisplay.cpp:
     complete
     .text       start:0x020649fc end:0x02064d20
     .data       start:0x0209a9f0 end:0x0209aa74
 
-src/main/menu/UnkMenuIconDisplay.cpp:
+src/main/menu/MenuIconDisplay.cpp:
     complete
     .text       start:0x02064d20 end:0x02065098
     .data       start:0x0209aa74 end:0x0209aa8c
 
-src/main/menu/UnkMenuWindowFrame.cpp:
+src/main/menu/MenuWindowFrame.cpp:
     complete
     .text       start:0x02065098 end:0x020658c8
     .data       start:0x0209aa8c end:0x0209aaa4
 
-src/main/menu/UnkHoppingNumber.cpp:
+src/main/menu/HoppingNumberDisplay.cpp:
     complete
     .text       start:0x020658c8 end:0x02065af0
     .rodata     start:0x0208ddd0 end:0x0208de6c
@@ -2203,7 +2203,7 @@ src/main/menu/UnkMenuSpriteDisplay.cpp:
     .text       start:0x02065af0 end:0x02065b70
     .data       start:0x0209aac0 end:0x0209aad8
 
-src/main/menu/UnkMessageWindow.cpp:
+src/main/menu/MessageWindow.cpp:
     complete
     .text       start:0x02065b70 end:0x02066bf0
     .data       start:0x0209aad8 end:0x0209ae6c

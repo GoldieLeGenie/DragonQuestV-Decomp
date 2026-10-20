@@ -13,12 +13,12 @@ THUMB void UnkMenuYesNoDisplay::setup(int id)
     id_ = id;
     unkfunc_0204e558(&yesChar_, yesData_, 6, 2);
     unkfunc_0204e558(&noChar_, noData_, 6, 2);
-    unkfunc_020646c8();
-    unkfunc_0206477c(2);
+    reset();
+    setType(2);
     transfer_ = 0;
     cursor_ = 0;
-    unkfunc_0206478c(192, 208);
-    unkfunc_02064794(64, 56);
+    setPosition(192, 208);
+    setSize(64, 56);
 }
 
 THUMB void UnkMenuYesNoDisplay::update(UnkOamBuffer* main, UnkOamBuffer* sub)
@@ -46,13 +46,13 @@ THUMB void UnkMenuYesNoDisplay::draw(UnkOamBuffer* main, UnkOamBuffer* sub)
         return;
     }
     int y = y_ % 192;
-    UnkMenuWindowFrame* frame = &data_02114dd4.windowFrame2_;
-    frame->unkfunc_0206529c(0);
-    frame->unkfunc_0206478c(x_, y_);
-    frame->unkfunc_02064794(w_, h_);
+    MenuWindowFrame* frame = &data_02114dd4.windowFrame2_;
+    frame->setNameWidth(0);
+    frame->setPosition(x_, y_);
+    frame->setSize(w_, h_);
     frame->unkfunc_020652bc(x_ + 10, y + 16 + cursor_ * 24, 1);
-    frame->unkfunc_020652c4(1);
-    frame->unkfunc_02064780(1);
+    frame->setFrameType(1);
+    frame->setEnable(1);
     G2_SetOBJAttr(sub->unkfunc_0204dbc4(), x_ + 14, y + 10, 0, GX_OAM_MODE_NORMAL, 0, GX_OAM_EFFECT_NONE,
                   GX_OAM_SHAPE_32x16, GX_OAM_COLORMODE_16, id_, 15, 0);
     G2_SetOBJAttr(sub->unkfunc_0204dbc4(), x_ + 46, y + 10, 0, GX_OAM_MODE_NORMAL, 0, GX_OAM_EFFECT_NONE,

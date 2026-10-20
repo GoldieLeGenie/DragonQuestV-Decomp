@@ -16,7 +16,7 @@
 #include "main/menu/MenuUpdateAssist.hpp"
 #include "main/menu/TownMenu_MESSAGE.hpp"
 #include "main/menu/UiMsg.hpp"
-#include "main/menu/UnkMessageWindow.hpp"
+#include "main/menu/MessageWindow.hpp"
 #include "main/profile/SaveLoad.hpp"
 #include "main/sound/SoundManager.hpp"
 #include "main/status/CharacterStatus.hpp"

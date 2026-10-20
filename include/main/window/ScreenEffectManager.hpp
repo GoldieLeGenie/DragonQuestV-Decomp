@@ -75,7 +75,7 @@ namespace window {
     };
 
     // ranaruta day/night switch effect
-    struct UnkRanarutaScreenEffect : UnkScreenEffect {
+    struct ScreenEffectRanaruta : UnkScreenEffect {
         int unk_20;                             // 0x20
         int counter_;                           // 0x24
         int waveSpeed_;                         // 0x28
@@ -91,7 +91,7 @@ namespace window {
     };
 
     // tabi (travel door) effect
-    struct UnkTabiEffect : UnkScreenEffect {
+    struct ScreenEffectTravelDoor : UnkScreenEffect {
         int travelBack_;                        // 0x20
         int counter_;                           // 0x24
         int angle_;                             // 0x28
@@ -104,7 +104,7 @@ namespace window {
     };
 
     // battle start effect
-    struct UnkBattleEffect : UnkScreenEffect {
+    struct ScreenEffectBattle : UnkScreenEffect {
         int counter_;                           // 0x20
         int unk_24;                             // 0x24
         int unk_28;                             // 0x28
@@ -138,10 +138,10 @@ namespace window {
         int oldFlag_;                           // 0x10
         UnkScreenEffect* effect_;               // 0x14
         UnkScreenEffect unk_18;                 // 0x18
-        UnkRanarutaScreenEffect ranarutaEffect_; // 0x38
+        ScreenEffectRanaruta ranarutaEffect_; // 0x38
         UnkRiremitoEffect riremitoEffect_;      // 0xA4
-        UnkTabiEffect tabiEffect_;              // 0x104
-        UnkBattleEffect battleEffect_;          // 0x134
+        ScreenEffectTravelDoor tabiEffect_;              // 0x104
+        ScreenEffectBattle battleEffect_;          // 0x134
 
         static int travelFlag_;
 

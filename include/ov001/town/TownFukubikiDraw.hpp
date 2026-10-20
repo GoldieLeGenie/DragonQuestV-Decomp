@@ -3,13 +3,13 @@
 #include "main/data/DataObject.hpp"
 #include "main/object/DSSAObject.hpp"
 
-struct UnkTextureObject;
+struct TextureObject;
 
 namespace twn
 {
     struct TownFukubikiDraw {
         DataObject lotteryTextureData_;         // 0x000
-        UnkTextureObject* lotteryTexture_;      // 0x010
+        TextureObject* lotteryTexture_;      // 0x010
         DataObject lotteryAnimData_;            // 0x014
         DSSAObject2D lotteryAnim_;              // 0x024
         DataObject lotteryStopAnimData_;        // 0x0C0

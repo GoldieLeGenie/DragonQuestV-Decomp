@@ -310,7 +310,7 @@ static UnkMenuParts s_goldParts[] = {
     PARTS_END,
 };
 
-THUMB void unkfunc_0201b0f8(int x, int y, int w, int h, int lineY)
+THUMB void drawMenuFrame(int x, int y, int w, int h, int lineY)
 {
     s_frameParts[0].x_ = x;
     s_frameParts[0].y_ = y;
@@ -318,11 +318,11 @@ THUMB void unkfunc_0201b0f8(int x, int y, int w, int h, int lineY)
     s_frameParts[0].h_ = h;
     unkfunc_0206297c(s_frameParts, NULL);
     if (lineY > 0) {
-        unkfunc_0201b128(x, lineY, w);
+        drawMenuFrameLine(x, lineY, w);
     }
 }
 
-THUMB void unkfunc_0201b128(int x, int y, int w)
+THUMB void drawMenuFrameLine(int x, int y, int w)
 {
     UnkMenuParts parts[] = {
         {0x16, 0x00, (short)0xf000, 0, 0x00, 0x00, 0x00, 0x00},
@@ -334,14 +334,14 @@ THUMB void unkfunc_0201b128(int x, int y, int w)
     unkfunc_0206297c(parts, NULL);
 }
 
-THUMB void unkfunc_0201b158()
+THUMB void drawPartyStatusWindows()
 {
     unsigned int mode = menu::MenuStatusInfo::getMode();
     menu::MenuStatusInfo::setMode(menu::MenuStatusInfo::BATTLE_MODE);
     int count = menu::MenuStatusInfo::getPartyCount(menu::MenuStatusInfo::COUNT_CARRIAGE_OUT);
     for (int i = 0; i < count; i++) {
         unkfunc_0201c188(i, i);
-        unkfunc_0201b0f8(i * 0x40, 0, 0x40, 0x50, 0x18);
+        drawMenuFrame(i * 0x40, 0, 0x40, 0x50, 0x18);
     }
     menu::MenuStatusInfo::setMode(mode);
 }
@@ -357,7 +357,7 @@ THUMB int getActorConditionColor(int actor)
     return color;
 }
 
-THUMB void unkfunc_0201b1cc(int x, int y, int type)
+THUMB void drawMoneyWindow(int x, int y, int type)
 {
     UnkMenuParts* parts = s_goldParts;
     int param[2] = {0, 0xe0000071};
@@ -382,18 +382,18 @@ THUMB void unkfunc_0201b1cc(int x, int y, int type)
         }
         unkfunc_02061c5c(0, 0);
         unkfunc_020629a4(parts, param, data_02094dd4[0]);
-        unkfunc_0201b0f8(0xb0, 0xa0, 0x50, 0x20, -1);
+        drawMenuFrame(0xb0, 0xa0, 0x50, 0x20, -1);
     } else {
         parts[0].x_ = x + 6;
         if (type != 1) {
             parts[0].w_ = 0x38;
         }
         unkfunc_020629a4(parts, param, data_02094dd4[0]);
-        unkfunc_0201b0f8(x, y, 0x50, 0x20, -1);
+        drawMenuFrame(x, y, 0x50, 0x20, -1);
     }
 }
 
-THUMB void unkfunc_0201b2a8(int activeChara, int mode)
+THUMB void drawCharaStatusWindow(int activeChara, int mode)
 {
     UnkMenuParts* parts = s_statusParts;
     int x = 0;
@@ -429,7 +429,7 @@ THUMB void unkfunc_0201b2a8(int activeChara, int mode)
     }
     unkfunc_020629b4(s_statusBigParts, param, x, y, data_02094dd4[getActorConditionColor(activeChara)]);
     unkfunc_020629b4(parts, level, x, y, data_02094dd4[getActorConditionColor(activeChara)]);
-    unkfunc_0201b0f8(frameX, frameY, 0x70, 0x68, lineY);
+    drawMenuFrame(frameX, frameY, 0x70, 0x68, lineY);
 }
 
 THUMB void unkfunc_0201b3c8(int icon, int x, int y)
@@ -560,7 +560,7 @@ THUMB void unkfunc_0201b4d4(int activeChara, int flag, int ctrl)
     param[17] = level;
     unkfunc_020629a4(s_statusDetailParts, param, data_02094dd4[color]);
     unkfunc_02062990(s_faceParts, &icon, 6, 0x28);
-    unkfunc_0201b0f8(0, 0, 0x98, 0x70, 0x18);
+    drawMenuFrame(0, 0, 0x98, 0x70, 0x18);
 }
 
 THUMB void unkfunc_0201b6b4(int activeChara, int ctrl)
@@ -594,7 +594,7 @@ THUMB void unkfunc_0201b6b4(int activeChara, int ctrl)
             unkfunc_020629b4(s_abilityParts, param, 0, i * 0xe, data_02094dd4[getActorConditionColor(activeChara)]);
         }
     }
-    unkfunc_0201b0f8(0x98, 0, 0x68, 0x70, -1);
+    drawMenuFrame(0x98, 0, 0x68, 0x70, -1);
 }
 
 THUMB void unkfunc_0201b7dc(int activeChara, int mode)
@@ -661,10 +661,10 @@ THUMB void unkfunc_0201b7dc(int activeChara, int mode)
         frameH = frameH + ((count - 1) << 4);
     }
     if (mode == 1) {
-        unkfunc_0201b0f8(0x68, frameY, 0x98, frameH, -1);
+        drawMenuFrame(0x68, frameY, 0x98, frameH, -1);
         return;
     }
-    unkfunc_0201b0f8(0, frameY, 0x98, frameH, -1);
+    drawMenuFrame(0, frameY, 0x98, frameH, -1);
     param[0] = 0xe0000124;
     param[1] = (int)"\xff\xfe\xa8\x24";
     unkfunc_020629a4(s_attackParts, param, data_02094dd4[getActorConditionColor(activeChara)]);
@@ -676,8 +676,8 @@ THUMB void unkfunc_0201b7dc(int activeChara, int mode)
         param[0] = 0;
     }
     unkfunc_020629a4(s_goldParts2, param, data_02094dd4[getActorConditionColor(activeChara)]);
-    unkfunc_0201b0f8(0x98, 0xa0, 0x68, 0x20, -1);
-    unkfunc_0201b0f8(0x98, 0x80, 0x68, 0x20, -1);
+    drawMenuFrame(0x98, 0xa0, 0x68, 0x20, -1);
+    drawMenuFrame(0x98, 0x80, 0x68, 0x20, -1);
 }
 
 THUMB void unkfunc_0201ba48(int activeChara, int mode)
@@ -712,9 +712,9 @@ THUMB void unkfunc_0201ba48(int activeChara, int mode)
     }
     status::HaveAction::setActionMode(actionMode);
     if (mode == 1) {
-        unkfunc_0201b0f8(0, 0, 0x100, 0xc0, 0x28);
+        drawMenuFrame(0, 0, 0x100, 0xc0, 0x28);
     } else {
-        unkfunc_0201b0f8(0, 0, 0x100, 0x70, 0x28);
+        drawMenuFrame(0, 0, 0x100, 0x70, 0x28);
     }
 }
 
@@ -743,8 +743,8 @@ THUMB void unkfunc_0201bbb4()
     param[6] = minute % 10;
     unkfunc_020629a4(s_moneyParts, money, data_02094dd4[0]);
     unkfunc_020629a4(s_timeParts, param, data_02094dd4[0]);
-    unkfunc_0201b0f8(0, 0, 0x100, 0x70, 0x28);
-    unkfunc_0201b128(0, 0x50, 0x100);
+    drawMenuFrame(0, 0, 0x100, 0x70, 0x28);
+    drawMenuFrameLine(0, 0x50, 0x100);
 }
 
 THUMB void unkfunc_0201bcc8(int mode)
@@ -767,31 +767,31 @@ THUMB void unkfunc_0201bcc8(int mode)
     }
     if (count < 5) {
         if (mode == 1) {
-            unkfunc_0201b0f8(0, 0, 0x40, 0x70, -1);
+            drawMenuFrame(0, 0, 0x40, 0x70, -1);
             return;
         }
-        unkfunc_0201b0f8(0, 0, count << 6, 0x70, -1);
+        drawMenuFrame(0, 0, count << 6, 0x70, -1);
         return;
     }
-    unkfunc_0201b0f8(0, 0, 0x100, 0x70, -1);
+    drawMenuFrame(0, 0, 0x100, 0x70, -1);
     unkfunc_02061c5c(0, 0);
     int rest = count - 4;
     if (rest > 4) {
         for (int i = 0; i < 4; i++) {
             unkfunc_0201c218(i + 4, i << 6, 0x60);
         }
-        unkfunc_0201b0f8(0, 0x60, 0x100, 0x60, -1);
+        drawMenuFrame(0, 0x60, 0x100, 0x60, -1);
         int rest2 = count - 8;
         for (int i = 0; i < rest2; i++) {
             unkfunc_0201c218(i + 8, i << 6, 0);
         }
-        unkfunc_0201b0f8(0, 0, (rest2 - 4) << 6, 0x60, -1);
+        drawMenuFrame(0, 0, (rest2 - 4) << 6, 0x60, -1);
         return;
     }
     for (int i = 0; i < rest; i++) {
         unkfunc_0201c218(i + 4, i << 6, 0x60);
     }
-    unkfunc_0201b0f8(0, 0x60, rest << 6, 0x60, -1);
+    drawMenuFrame(0, 0x60, rest << 6, 0x60, -1);
 }
 
 THUMB void unkfunc_0201be24(int mode)
@@ -815,13 +815,13 @@ THUMB void unkfunc_0201be24(int mode)
     }
     if (count < 5) {
         if (mode == 1) {
-            unkfunc_0201b0f8(0, 0, 0x40, 0x70, -1);
+            drawMenuFrame(0, 0, 0x40, 0x70, -1);
             return;
         }
-        unkfunc_0201b0f8(0, 0, count << 6, 0x70, -1);
+        drawMenuFrame(0, 0, count << 6, 0x70, -1);
         return;
     }
-    unkfunc_0201b0f8(0, 0, 0x100, 0x70, -1);
+    drawMenuFrame(0, 0, 0x100, 0x70, -1);
     unkfunc_02061c5c(0, 0);
     int rest = count - 4;
     if (rest > 4) {
@@ -829,21 +829,21 @@ THUMB void unkfunc_0201be24(int mode)
             unkfunc_0201c29c(i + 4, i << 6, 0x60);
             unkfunc_0201c300(i + 4, i, 0x40, 0xa8);
         }
-        unkfunc_0201b0f8(0, 0x60, 0x100, 0x60, -1);
+        drawMenuFrame(0, 0x60, 0x100, 0x60, -1);
         count = menu::MenuStatusInfo::getPartyCount(menu::MenuStatusInfo::COUNT_ALL) - 8;
         for (int i = 0; i < count; i++) {
             int index = i + 8;
             unkfunc_0201c29c(index, i << 6, 0);
             unkfunc_0201c300(index, i, 0x40, 0x48);
         }
-        unkfunc_0201b0f8(0, 0, (count - 4) << 6, 0x60, -1);
+        drawMenuFrame(0, 0, (count - 4) << 6, 0x60, -1);
         return;
     }
     for (int i = 0; i < rest; i++) {
         unkfunc_0201c29c(i + 4, i << 6, 0x60);
         unkfunc_0201c300(i + 4, i, 0x40, 0xa8);
     }
-    unkfunc_0201b0f8(0, 0x60, rest << 6, 0x60, -1);
+    drawMenuFrame(0, 0x60, rest << 6, 0x60, -1);
 }
 
 THUMB void unkfunc_0201bfbc(int activeChara)
@@ -863,7 +863,7 @@ THUMB void unkfunc_0201bfbc(int activeChara)
             unkfunc_020629b4(s_itemParts, &param, x, y, data_02094dd4[getActorConditionColor(activeChara)]);
         }
     }
-    unkfunc_0201b0f8(0, 0, 0xf0, 0x60, -1);
+    drawMenuFrame(0, 0, 0xf0, 0x60, -1);
 }
 
 THUMB void unkfunc_0201c084(int activeChara, int ctrl)
@@ -886,7 +886,7 @@ THUMB void unkfunc_0201c084(int activeChara, int ctrl)
             unkfunc_020629b4(s_actionListParts, &param, (i % 3) * 0x50, (i / 3) * 0xc, data_02094dd4[color]);
         }
     }
-    unkfunc_0201b0f8(0, 0x60, 0x100, 0x60, -1);
+    drawMenuFrame(0, 0x60, 0x100, 0x60, -1);
 }
 
 THUMB void unkfunc_0201c188(int activeChara, int pos)

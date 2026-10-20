@@ -4,7 +4,7 @@
 #include "ov018/btl/BattleMonsterDraw2.hpp"
 #include "main/btl/MonsterData.hpp"
 #include "main/window/UnkMapPoint.hpp"
-#include "main/dss/UnkRenderObject.hpp"
+#include "main/dss/RenderObject.hpp"
 
 inline btl::BattleMonster& btl::BattleMonsterDraw2::getMonster(int index) { return monsters_[index]; }
 
@@ -99,7 +99,7 @@ THUMB void btl::BattleMonsterMask::draw()
             targetPos[i] = getTargetPos(i);
         }
     }
-    unkfunc_020481fc();
+    setupOrtho2DFine();
     for (int j = 0; j < MASK_MAX; j++) {
         for (int i = 0; i < MONSTER_MAX; i++) {
             if (select_ == status::g_Monster.getMonsterGroup(i) && status::g_Monster.getMonsterStatus(i).isBattleEnable()) {

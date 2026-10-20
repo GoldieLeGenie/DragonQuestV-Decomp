@@ -18,7 +18,7 @@
 #include "main/dss/UnkMemory.hpp"
 #include "main/dss/UnkSystemText.hpp"
 #include "main/dss/UnkTextConvert.hpp"
-#include "main/dss/UnkVramTransfer.hpp"
+#include "main/dss/VramTransferManager.hpp"
 #include "main/leveldata/LevelData.hpp"
 #include "main/menu/UnkMenuSystem.hpp"
 #include "main/object/GameMonsterData.hpp"
@@ -309,27 +309,27 @@ ARM UnkGameApplication::~UnkGameApplication()
 {
 }
 
-ARM void UnkApplication::vf14()
+ARM void DssApplication::vf14()
 {
 }
 
-ARM int UnkApplication::vf10()
+ARM int DssApplication::vf10()
 {
     return 0;
 }
 
-ARM void UnkApplication::vf0c()
+ARM void DssApplication::vf0c()
 {
 }
 
-ARM void UnkApplication::vf08()
+ARM void DssApplication::vf08()
 {
 }
 
-ARM void UnkApplication::vf04()
+ARM void DssApplication::vf04()
 {
 }
 
-ARM void UnkApplication::vf00()
+ARM void DssApplication::vf00()
 {
 }

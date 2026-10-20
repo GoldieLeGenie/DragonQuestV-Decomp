@@ -8,7 +8,7 @@ struct MaterielMenu_SUGOROKU_GETITEM : menu::MenuBase {
     short meCount_;                         // 0x1E
     char mode_;                             // 0x20
     menu::MenuItem menuItem_;               // 0x24
-    UnkCursorMoveGridLoop navigator_;       // 0x88
+    CursorMoveGridLoop navigator_;       // 0x88
 
     virtual void menuSetup();
     virtual void menuExecute();

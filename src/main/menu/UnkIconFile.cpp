@@ -23,7 +23,7 @@ THUMB void* UnkIconFile::unkfunc_0206dc68(int index)
 {
     char* data = NULL;
     if (file_ != NULL) {
-        data = unkfunc_0204c89c((char*)data_.getAddr(), index);
+        data = findMessage((char*)data_.getAddr(), index);
     }
     if (data != NULL) {
         return data;
@@ -33,7 +33,7 @@ THUMB void* UnkIconFile::unkfunc_0206dc68(int index)
         if (data != NULL) {
             return data;
         }
-        char* entry = unkfunc_0204c89c((char*)header_, index);
+        char* entry = findMessage((char*)header_, index);
         if (entry != NULL) {
             int maxAge = 0;
             int minAge = 99999999;

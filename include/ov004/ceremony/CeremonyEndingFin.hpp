@@ -2,10 +2,10 @@
 #include <globaldefs.h>
 #include "main/data/DataObject.hpp"
 #include "main/dss/GameSystemManager.hpp"
-#include "main/dss/UnkSprite2D.hpp"
-#include "main/dss/UnkTextureObject.hpp"
+#include "main/dss/Sprite2D.hpp"
+#include "main/dss/TextureObject.hpp"
 #include "main/object/DSSAObject.hpp"
-#include "main/object/UnkPaletteAnimationObject.hpp"
+#include "main/object/PaletteAnimationObject.hpp"
 
 namespace ceremony {
     // "The end" screen of the japanese version
@@ -17,11 +17,11 @@ namespace ceremony {
         UnkMenuSprite endSprite_[2];            // 0x0B0
         unsigned short palette_[256];           // 0x150
         DataObject pamData_;                    // 0x350
-        UnkPaletteAnimationObject pam_;         // 0x360
+        PaletteAnimationObject pam_;         // 0x360
         DataObject penData_;                    // 0x380
         DSSAObject2D penDssa_;                  // 0x390
         DataObject penTextureData_;             // 0x42C
-        UnkTextureObject* penTexture_;          // 0x43C
+        TextureObject* penTexture_;          // 0x43C
 
         CeremonyEndingFin();
         ~CeremonyEndingFin();

@@ -16,7 +16,7 @@ THUMB void fld::FieldSymbolAnimation::setup(const char* filename)
     animId_ = 0;
 }
 
-THUMB void fld::FieldSymbolAnimation::calcAnim(UnkTextureObject* texture)
+THUMB void fld::FieldSymbolAnimation::calcAnim(TextureObject* texture)
 {
     if (enable_ != 0 && texture != NULL) {
         int frame = animId_ / 8;
@@ -25,7 +25,7 @@ THUMB void fld::FieldSymbolAnimation::calcAnim(UnkTextureObject* texture)
             return;
         }
         if (animId_ % 8 == 0) {
-            texture->unkfunc_0204a114((UnkTextureObject*)unkfunc_0204c878(data_.getAddr(), frame), 0);
+            texture->unkfunc_0204a114((TextureObject*)getArchiveFile(data_.getAddr(), frame), 0);
         }
         animId_++;
     }

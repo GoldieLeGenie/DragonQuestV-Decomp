@@ -5,7 +5,7 @@
 // casino prize exchange: choose who gets the prize
 struct MaterielMenu_CHANGEGIFT_SELECTCHARA : menu::MenuBase {
     menu::MenuItem menuItem_;               // 0x1C
-    UnkCursorMoveGridLoop navigator_;       // 0x80
+    CursorMoveGridLoop navigator_;       // 0x80
     char maxCharaCount_;                    // 0x8C
 
     virtual void menuSetup();

@@ -8,7 +8,7 @@
 #include "main/dss/UnkOverlaySlot.hpp"
 #include "main/dss/UnkSleep.hpp"
 #include "main/dss/UnkTextConvert.hpp"
-#include "main/dss/UnkVramTransfer.hpp"
+#include "main/dss/VramTransferManager.hpp"
 #include "main/global/Global.hpp"
 #include "main/global/StageLink.hpp"
 #include "main/menu/TownMenu_MESSAGE.hpp"
@@ -92,7 +92,7 @@ THUMB void MPExchangePart::onExecutePart()
             if (exchange_.mode_ == SYSMODE_FATAL_ERROR) {
                 unkfunc_02043370(8);
             } else if (exchange_.mode_ == SYSMODE_READY) {
-                exchange_.unkfunc_0212a404();
+                exchange_.startRoleSelection();
                 unkfunc_02043370(3);
             }
             break;
@@ -239,7 +239,7 @@ THUMB void MPExchangePart::onExecutePart()
 
 THUMB void MPExchangePart::onDebugPart()
 {
-    exchange_.unkfunc_0212a6a4();
+    exchange_.updateDataSharing();
 }
 
 THUMB void MPExchangePart::unkfunc_02043370(int state)

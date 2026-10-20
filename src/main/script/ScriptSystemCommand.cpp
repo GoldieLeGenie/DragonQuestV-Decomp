@@ -795,9 +795,9 @@ bool cmd_save_last_party()
 
 bool cmd_map_black(void* scriptParam)
 {
-    NNSG3dResTex* tex = unkfunc_02046f40();
+    NNSG3dResTex* tex = getLastModelTexture();
     dss::Fix32Vector3 rate(0, 0, 0);
-    unkfunc_02049228(tex, rate);
+    applyModelPaletteRgbRate(tex, rate);
     return true;
 }
 
@@ -876,9 +876,9 @@ bool cmdCharcter3DRotate(void* scriptParam)
     rotX.value = param->rotX;
     rotY.value = param->rotY;
     rotZ.value = param->rotZ;
-    rot.vx = unkfunc_0204f3d0(rotX);
-    rot.vy = unkfunc_0204f3d0(rotY);
-    rot.vz = unkfunc_0204f3d0(rotZ);
+    rot.vx = degreeToAngle(rotX);
+    rot.vy = degreeToAngle(rotY);
+    rot.vz = degreeToAngle(rotZ);
     int ctrl = getPlacementCtrlId();
     TownCharacterManager::getSingleton()->setRotate(ctrl, rot);
     return true;

@@ -1,6 +1,6 @@
 #pragma ipa file
 #include "ov001/town/TownImageShoplist.hpp"
-#include "main/dss/UnkRenderObject.hpp"
+#include "main/dss/RenderObject.hpp"
 #include "main/status/StageAttribute.hpp"
 
 twn::TownImageShoplist twn::gTownImageShoplist;
@@ -99,9 +99,9 @@ THUMB void twn::TownImageShoplist::checkData()
 THUMB void twn::TownImageShoplist::draw()
 {
     if (isEnable_) {
-        unkfunc_0204813c();
+        setupOrtho2D();
         shop_.unkfunc_02051b68();
-        unkfunc_020481fc();
+        setupOrtho2DFine();
         black_.unkfunc_02051b68();
     }
 }

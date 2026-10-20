@@ -46,7 +46,7 @@ struct UnkModelObjectBase : UnkModelInterface {
     void unkfunc_02049144(dss::Vector3<short> rotation);
 };
 
-struct UnkModelAnimation {
+struct ModelAnimation {
     int flag_;                              /* 0x00  1: loop, 2: end */
     void* resource_;                        /* 0x04 */
     void* anm_;                             /* 0x08 */
@@ -78,7 +78,7 @@ struct ModelObject : UnkStaticModelObject {
     virtual void cleanup(int flag);
 
     DataObject animData_[6];                /* 0x1D8 */
-    UnkModelAnimation animation_[6];        /* 0x238 */
+    ModelAnimation animation_[6];        /* 0x238 */
     int m_play_flag;                        /* 0x2F8 */
     int m_pause_flag;                       /* 0x2FC */
     int m_animation_index;                  /* 0x300 */

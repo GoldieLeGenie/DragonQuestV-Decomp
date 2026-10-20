@@ -2,12 +2,12 @@
 #include <globaldefs.h>
 
 // Status windows of the town menus drawn with menu parts (frames, names, HP/MP, equipment, magic, money)
-void unkfunc_0201b0f8(int x, int y, int w, int h, int lineY);  // window frame (+ separator line)
-void unkfunc_0201b128(int x, int y, int w);                     // separator line
-void unkfunc_0201b158();                                        // frames of the party members
+void drawMenuFrame(int x, int y, int w, int h, int lineY);  // window frame (+ separator line)
+void drawMenuFrameLine(int x, int y, int w);                     // separator line
+void drawPartyStatusWindows();                                        // frames of the party members
 int getActorConditionColor(int actor);                          // 0 normal, 1 near death, 2 dead
-void unkfunc_0201b1cc(int x, int y, int type);                  // gold (0), coins (1) or medals (2)
-void unkfunc_0201b2a8(int activeChara, int mode);               // status of one member
+void drawMoneyWindow(int x, int y, int type);                  // gold (0), coins (1) or medals (2)
+void drawCharaStatusWindow(int activeChara, int mode);               // status of one member
 void unkfunc_0201b3c8(int icon, int x, int y);                  // character icon
 void unkfunc_0201b3e4(int activeChara, int x, int y);           // character icon with its condition marks
 void unkfunc_0201b4d4(int activeChara, int flag, int ctrl);     // detailed status

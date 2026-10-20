@@ -1,7 +1,7 @@
 #pragma once
 #include <globaldefs.h>
 #include "main/menu/MenuBase.hpp"
-#include "main/menu/UnkCursorMoveGridLoop.hpp"
+#include "main/menu/CursorMoveGridLoop.hpp"
 
 // town spell menu: spell list of the caster
 struct TownMenu_MAGIC_ROOT : menu::MenuBase {
@@ -10,7 +10,7 @@ struct TownMenu_MAGIC_ROOT : menu::MenuBase {
     char targetCount_;                          // 0x22
     char soundCount_;                           // 0x23
     menu::MenuItem menuItem_;                   // 0x24
-    UnkCursorMoveGridLoop navigator_;           // 0x88
+    CursorMoveGridLoop navigator_;           // 0x88
 
     virtual void menuSetup();
     virtual void menuExecute();

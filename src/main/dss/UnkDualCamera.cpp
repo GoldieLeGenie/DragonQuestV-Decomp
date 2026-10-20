@@ -26,7 +26,7 @@ THUMB dss::UnkDualCameraBase::UnkDualCameraBase()
 
 THUMB void dss::UnkDualCameraBase::unkfunc_02051c88()
 {
-    if (unkfunc_0204ccd0() & 1) {
+    if (getDisplayFrame() & 1) {
         unk_0e4 = 0;
     } else {
         unk_0e4 = 1;

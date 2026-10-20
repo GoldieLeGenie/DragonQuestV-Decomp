@@ -1,6 +1,6 @@
 #pragma once
 #include <globaldefs.h>
-#include "main/dss/UnkPolygonObject.hpp"
+#include "main/dss/PolygonObject.hpp"
 #include "main/data/DataObject.hpp"
 #include "main/object/DSSAObject.hpp"
 
@@ -9,7 +9,7 @@ namespace twn {
     struct TownSugorokuDraw {
         static const int PANEL_TYPE_MAX = 70;
 
-        UnkPolygonObject polygon_;                  // 0x000
+        PolygonObject polygon_;                  // 0x000
         DataObject data_;                           // 0x084
         void* texture_;                             // 0x094
         UnkPolygonVertex xy_;                       // 0x098
@@ -49,7 +49,7 @@ namespace twn {
         int counter_;                               // 0x000
         dss::Vector3<unsigned short> rot_;          // 0x004
         int animFrame_;                             // 0x00C
-        UnkPolygonObject polygon_;                  // 0x010
+        PolygonObject polygon_;                  // 0x010
         DataObject arrowData_;                      // 0x094
         void* texture_;                             // 0x0A4
         UnkPolygonVertex xy_;                       // 0x0A8

@@ -84,7 +84,7 @@ THUMB void MaterielMenu_CHURCH_OMEN::menuExecute()
 
 THUMB void MaterielMenu_CHURCH_OMEN::menuDraw()
 {
-    unkfunc_0217bf94(0, 0);
+    drawChurchScreen(0, 0);
 }
 
 THUMB void MaterielMenu_CHURCH_OMEN::menuUpdate()

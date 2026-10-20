@@ -50,7 +50,7 @@ THUMB void TownMenu_ITEM_CHECKTARGET::menuSetup()
 THUMB void TownMenu_ITEM_CHECKTARGET::menuDraw()
 {
     MenuStatusInfo::setMode(MenuStatusInfo::PLAYER_MODE);
-    unkfunc_0201b158();
+    drawPartyStatusWindows();
 }
 
 THUMB void TownMenu_ITEM_CHECKTARGET::menuUpdate()

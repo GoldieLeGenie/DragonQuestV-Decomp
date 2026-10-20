@@ -12,7 +12,7 @@ struct ScriptCommandWeakVtable : ScriptCommand {
 #include "main/cmn/CommonCalculate.hpp"
 #include "main/cmn/CommonPartyInfo.hpp"
 #include "main/cmn/GameManager.hpp"
-#include "main/dss/UnkRenderObject.hpp"
+#include "main/dss/RenderObject.hpp"
 #include "ov005/fld/FieldActionCalculate.hpp"
 #include "ov005/fld/FieldPlayerManager.hpp"
 #include "ov005/fld/FieldStage.hpp"
@@ -180,7 +180,7 @@ THUMB void FieldGoldOrbEvent::initialize(char* scriptParam)
 
 THUMB void FieldGoldOrbEvent::execute()
 {
-    unkfunc_020482b8();
+    setupOrtho2DBackground();
     unk_14.unkfunc_02051b40(orbPosX_, orbPosY_);
     unk_14.unkfunc_02051b68();
     unk_64.unkfunc_02051b40(orbPosX_, orbPosY_);

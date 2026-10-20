@@ -1,12 +1,12 @@
 #pragma once
 #include <globaldefs.h>
-#include "main/global/UnkApplication.hpp"
+#include "main/global/DssApplication.hpp"
 #include "main/data/DataObject.hpp"
 #include <string.h>
 
 // Application object of the game: system/graphics init, system fonts and graphics, part registration
 /* vtable 0x02093440 */
-struct UnkGameApplication : UnkApplication {
+struct UnkGameApplication : DssApplication {
     virtual void vf00();                        // system init: heap, files, language, resources, sound
     virtual void vf04();                        // graphics init
     virtual void vf08();

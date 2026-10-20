@@ -5,7 +5,7 @@
 #include "ov009/materielmenu/MaterielMenu_PICTUREBOOK_DETAIL.hpp"
 #include "ov009/materielmenu/MaterielMenu_PICTUREBOOK_ROOT.hpp"
 #include "main/dss/DssUtils.hpp"
-#include "main/dss/UnkRenderObject.hpp"
+#include "main/dss/RenderObject.hpp"
 #include "main/leveldata/EffectParam.hpp"
 #include "main/leveldata/MonsterAnim.hpp"
 #include "main/object/DSSAObject.hpp"
@@ -73,6 +73,6 @@ THUMB void book::BookSystem::draw()
     if (gMaterielMenu_PICTUREBOOK_DETAIL.isOpen_) {
         BookMonsterDraw::getSingleton().draw();
     }
-    unkfunc_020482b8();
+    setupOrtho2DBackground();
     sprite_.unkfunc_02051b68();
 }

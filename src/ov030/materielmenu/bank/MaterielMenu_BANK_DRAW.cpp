@@ -40,11 +40,11 @@ THUMB void MaterielMenu_BANK_DRAW::menuDraw()
 {
     MenuStatusInfo::setMode(MenuStatusInfo::PLAYER_MODE);
     if (mode_ == DRAW_START) {
-        unkfunc_0217c504();
+        drawMoneyAndPartyWindows();
         return;
     }
     int open = gTownMenu_MESSAGE.isOpen();
-    unkfunc_0217c000(open, 0, drawMoney_);
+    drawBankAmountScreen(open, 0, drawMoney_);
     if (open == 0) {
         menuItem_.drawActive();
     }

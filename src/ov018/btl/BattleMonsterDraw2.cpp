@@ -7,7 +7,7 @@
 
 #define FX32_CONST_INT(x) ((fx32)(((x) > 0) ? ((x) * 4096 + 0.5f) : ((x) * 4096 - 0.5f)))
 
-inline UnkPaletteAnimation::~UnkPaletteAnimation() {}
+inline PaletteAnimation::~PaletteAnimation() {}
 inline bool btl::BattleMonster::isEnable() { return flag_.check(FLAG_ENABLE); }
 inline bool btl::BattleMonster::isAirMonster() { return flag_.check(FLAG_AIR_MONSTER); }
 inline void btl::BattleMonster::setAirMonster(bool flag)

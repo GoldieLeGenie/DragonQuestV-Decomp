@@ -39,11 +39,11 @@ THUMB void MaterielMenu_BANK_PUTIN::menuDraw()
 {
     MenuStatusInfo::setMode(MenuStatusInfo::PLAYER_MODE);
     if (mode_ == PUTIN_START) {
-        unkfunc_0217c504();
+        drawMoneyAndPartyWindows();
         return;
     }
     int open = gTownMenu_MESSAGE.isOpen();
-    unkfunc_0217c000(open, 1, putinMoney_);
+    drawBankAmountScreen(open, 1, putinMoney_);
     if (open == 0) {
         menuItem_.drawActive();
     }

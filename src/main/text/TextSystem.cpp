@@ -3,9 +3,9 @@
 MsgData g_msg_data_default;
 MsgData g_msg_data[11];
 TextEnv g_text_env;
-UnkTextExtractor g_text_extractor;
+TextExtractor g_text_extractor;
 UnkBadWordList g_bad_word_list;
-UnkMsgFile g_msg_file;
+MsgFile g_msg_file;
 
 THUMB void TextAPI::unkfunc_0206cb34()
 {
@@ -25,7 +25,7 @@ THUMB void TextAPI::Init()
     g_msg_data[8].msg_setup(1006000, 0, 0x1000, 1000);
     g_msg_data[9].msg_setup(1007000, 0, 0x7400, 1000);
     g_msg_data[10].msg_setup(1010000, 0, 0x2000, 1000);
-    g_msg_file.unkfunc_0206b848();
+    g_msg_file.init();
 }
 
 THUMB void TextAPI::unkfunc_0206cc94()
@@ -34,19 +34,19 @@ THUMB void TextAPI::unkfunc_0206cc94()
 
 THUMB void TextAPI::unkfunc_0206cc98()
 {
-    g_msg_data_default.unkfunc_0206b9d4();
-    g_msg_data[0].unkfunc_0206b9d4();
-    g_msg_data[1].unkfunc_0206b9d4();
-    g_msg_data[2].unkfunc_0206b9d4();
-    g_msg_data[3].unkfunc_0206b9d4();
-    g_msg_data[4].unkfunc_0206b9d4();
-    g_msg_data[5].unkfunc_0206b9d4();
-    g_msg_data[6].unkfunc_0206b9d4();
-    g_msg_data[7].unkfunc_0206b9d4();
-    g_msg_data[8].unkfunc_0206b9d4();
-    g_msg_data[9].unkfunc_0206b9d4();
-    g_msg_data[10].unkfunc_0206b9d4();
-    g_msg_file.unkfunc_0206b874();
+    g_msg_data_default.cleanup();
+    g_msg_data[0].cleanup();
+    g_msg_data[1].cleanup();
+    g_msg_data[2].cleanup();
+    g_msg_data[3].cleanup();
+    g_msg_data[4].cleanup();
+    g_msg_data[5].cleanup();
+    g_msg_data[6].cleanup();
+    g_msg_data[7].cleanup();
+    g_msg_data[8].cleanup();
+    g_msg_data[9].cleanup();
+    g_msg_data[10].cleanup();
+    g_msg_file.cleanup();
 }
 
 THUMB void TextAPI::unkfunc_0206cd20()
@@ -62,43 +62,43 @@ THUMB void TextAPI::unkfunc_0206cd2c()
 {
 }
 
-THUMB MsgData* unkfunc_0206cd30(int msg_id)
+THUMB MsgData* findMsgData(int msg_id)
 {
     MsgData* msg = 0;
-    if (g_msg_data_default.unkfunc_0206b9f8(msg_id)) {
+    if (g_msg_data_default.containsId(msg_id)) {
         msg = &g_msg_data_default;
     }
-    if (g_msg_data[0].unkfunc_0206b9f8(msg_id)) {
+    if (g_msg_data[0].containsId(msg_id)) {
         msg = &g_msg_data[0];
     }
-    if (g_msg_data[1].unkfunc_0206b9f8(msg_id)) {
+    if (g_msg_data[1].containsId(msg_id)) {
         msg = &g_msg_data[1];
     }
-    if (g_msg_data[2].unkfunc_0206b9f8(msg_id)) {
+    if (g_msg_data[2].containsId(msg_id)) {
         msg = &g_msg_data[2];
     }
-    if (g_msg_data[3].unkfunc_0206b9f8(msg_id)) {
+    if (g_msg_data[3].containsId(msg_id)) {
         msg = &g_msg_data[3];
     }
-    if (g_msg_data[4].unkfunc_0206b9f8(msg_id)) {
+    if (g_msg_data[4].containsId(msg_id)) {
         msg = &g_msg_data[4];
     }
-    if (g_msg_data[5].unkfunc_0206b9f8(msg_id)) {
+    if (g_msg_data[5].containsId(msg_id)) {
         msg = &g_msg_data[5];
     }
-    if (g_msg_data[6].unkfunc_0206b9f8(msg_id)) {
+    if (g_msg_data[6].containsId(msg_id)) {
         msg = &g_msg_data[6];
     }
-    if (g_msg_data[7].unkfunc_0206b9f8(msg_id)) {
+    if (g_msg_data[7].containsId(msg_id)) {
         msg = &g_msg_data[7];
     }
-    if (g_msg_data[8].unkfunc_0206b9f8(msg_id)) {
+    if (g_msg_data[8].containsId(msg_id)) {
         msg = &g_msg_data[8];
     }
-    if (g_msg_data[9].unkfunc_0206b9f8(msg_id)) {
+    if (g_msg_data[9].containsId(msg_id)) {
         msg = &g_msg_data[9];
     }
-    if (g_msg_data[10].unkfunc_0206b9f8(msg_id)) {
+    if (g_msg_data[10].containsId(msg_id)) {
         msg = &g_msg_data[10];
     }
     return msg;
@@ -106,27 +106,27 @@ THUMB MsgData* unkfunc_0206cd30(int msg_id)
 
 THUMB int unkfunc_0206ce14(int msg_id, int lang)
 {
-    return g_msg_file.unkfunc_0206b88c(msg_id, lang);
+    return g_msg_file.hasMessage(msg_id, lang);
 }
 
 THUMB int unkfunc_0206ce28(int msg_id, int lang)
 {
-    return g_msg_file.unkfunc_0206b910(msg_id, lang);
+    return g_msg_file.loadMessage(msg_id, lang);
 }
 
 THUMB char* msg_get_head()
 {
-    return (char*)g_msg_file.unkfunc_0206b948(10);
+    return (char*)g_msg_file.getField(10);
 }
 
 THUMB char* msg_get_body()
 {
-    return (char*)g_msg_file.unkfunc_0206b948(11);
+    return (char*)g_msg_file.getField(11);
 }
 
 THUMB unsigned char msg_get_sound()
 {
-    return *g_msg_file.unkfunc_0206b948(12);
+    return *g_msg_file.getField(12);
 }
 
 THUMB int CheckBadWord(char* name)

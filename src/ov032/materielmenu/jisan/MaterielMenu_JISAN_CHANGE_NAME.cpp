@@ -113,7 +113,7 @@ THUMB void MaterielMenu_JISAN_CHANGE_NAME::menuDraw()
     int open = gTownMenu_MESSAGE.isOpen();
     if (cmn::g_cmnSoundManager.isPlaySound() == 1) {
         int active = menuItem_.active_;
-        unkfunc_0217a450(active % 6 * 40 + 12, active / 6 * 40 + 60);
+        drawCommandCursor(active % 6 * 40 + 12, active / 6 * 40 + 60);
     }
     else if (open == 0) {
         menuItem_.drawActive();

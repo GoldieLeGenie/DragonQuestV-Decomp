@@ -1,9 +1,9 @@
 #pragma once
 #include <globaldefs.h>
-#include "main/menu/UnkMenuDisplay.hpp"
+#include "main/menu/MenuDisplay.hpp"
 
 // Display object drawing nothing (data_02114dd4.dummy_)
-struct UnkMenuDummyDisplay : UnkMenuDisplay {
+struct UnkMenuDummyDisplay : MenuDisplay {
     UnkMenuDummyDisplay();
     virtual void setup(int id);
     virtual void update(UnkOamBuffer* main, UnkOamBuffer* sub);

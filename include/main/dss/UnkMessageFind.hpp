@@ -25,4 +25,4 @@ extern int data_0209a2e8;                       // last found message id
 extern int data_0209a2ec;                       // last found message size
 extern unsigned char* data_020fe6ac;            // last found message
 
-char* unkfunc_0204c89c(char* addr, unsigned int msg_id);    // find a message (NULL: not found)
+char* findMessage(char* addr, unsigned int msg_id);    // find a message (NULL: not found)

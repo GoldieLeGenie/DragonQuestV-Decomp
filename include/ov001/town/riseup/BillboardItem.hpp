@@ -1,6 +1,6 @@
 #pragma once
 #include <globaldefs.h>
-#include "main/dss/UnkTextureBillboard.hpp"
+#include "main/dss/TextureBillboard.hpp"
 #include "main/data/DataObject.hpp"
 
 namespace twn {
@@ -11,7 +11,7 @@ namespace twn {
     };
 }
 
-struct BillboardItem : UnkTextureBillboard {
+struct BillboardItem : TextureBillboard {
     DataObject unk_b8;                          // 0xB8 texture file
 
     BillboardItem();

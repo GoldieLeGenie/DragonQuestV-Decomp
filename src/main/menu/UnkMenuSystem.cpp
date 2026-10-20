@@ -16,7 +16,7 @@ extern "C" THUMB void func_020624b0()
 
 extern "C" THUMB void func_020624bc()
 {
-    unkfunc_02063c00();
+    setupMenuDisplays();
     unkfunc_02063414();
 }
 

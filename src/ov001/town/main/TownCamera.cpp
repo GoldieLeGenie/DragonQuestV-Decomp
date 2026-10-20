@@ -58,7 +58,7 @@ inline VecFx32* twn::TownStageManager::GetCameraUpFX32(int no)
 
 inline bool isEven()
 {
-    return (unkfunc_0204ccd0() & 1) == 0;
+    return (getDisplayFrame() & 1) == 0;
 }
 
 inline void BillboardCharacter::setChangeCameraAngle(bool flag)
@@ -292,14 +292,14 @@ THUMB void TownCamera::draw()
     int no1 = twn::TownStageManager::getSingleton()->stage_.m_fld.m_camera_no[1];
     if (no0 == 0 && no1 == 0) {
         camera_.unkfunc_02051cbc();
-        if (unkfunc_0204ccd0() & 1) {
-            ((unkfunc_0204ccd0() & 1) == 0 ? &camera_.unk_004 : &camera_.unk_074)->unkfunc_02046934();
+        if (getDisplayFrame() & 1) {
+            ((getDisplayFrame() & 1) == 0 ? &camera_.unk_004 : &camera_.unk_074)->unkfunc_02046934();
         } else {
-            ((unkfunc_0204ccd0() & 1) == 0 ? &camera_.unk_004 : &camera_.unk_074)->unkfunc_02046934();
+            ((getDisplayFrame() & 1) == 0 ? &camera_.unk_004 : &camera_.unk_074)->unkfunc_02046934();
         }
     } else {
-        dss::Camera* cam = (unkfunc_0204ccd0() & 1) == 0 ? &camera_.unk_004 : &camera_.unk_074;
-        int no = unkfunc_0204ccd0() & 1;
+        dss::Camera* cam = (getDisplayFrame() & 1) == 0 ? &camera_.unk_004 : &camera_.unk_074;
+        int no = getDisplayFrame() & 1;
         cam->m_pos.vx.value = twn::TownStageManager::getSingleton()->GetCameraPosFX32(no)->x;
         cam->m_pos.vy.value = twn::TownStageManager::getSingleton()->GetCameraPosFX32(no)->y;
         cam->m_pos.vz.value = twn::TownStageManager::getSingleton()->GetCameraPosFX32(no)->z;
@@ -348,7 +348,7 @@ THUMB bool TownCamera::rotateL()
         }
     } else if (limitL != dss::Fix32(0L)) {
         if (cmn::g_cmnPartyInfo.cameraRot_ == 1) {
-            angle.vy = dss::clamp<int>(angle.vy, -unkfunc_0204f3d0(limitR), unkfunc_0204f3d0(limitL));
+            angle.vy = dss::clamp<int>(angle.vy, -degreeToAngle(limitR), degreeToAngle(limitL));
         }
     }
     int ry = angle.vy;
@@ -376,7 +376,7 @@ THUMB bool TownCamera::rotateR()
         }
     } else if (limitR != dss::Fix32(0L)) {
         if (cmn::g_cmnPartyInfo.cameraRot_ == 1) {
-            angle.vy = dss::clamp<int>(angle.vy, -unkfunc_0204f3d0(limitR), unkfunc_0204f3d0(limitL));
+            angle.vy = dss::clamp<int>(angle.vy, -degreeToAngle(limitR), degreeToAngle(limitL));
         }
     }
     int ry = angle.vy;
@@ -402,8 +402,8 @@ THUMB void TownCamera::setLimitL(dss::Fix32 left)
             camera_.setRotXYZ(changeDefaultAngle_);
             return;
         }
-        if (angle.vy > (short)unkfunc_0204f3d0(limitL)) {
-            angle.vy = unkfunc_0204f3d0(limitL);
+        if (angle.vy > (short)degreeToAngle(limitL)) {
+            angle.vy = degreeToAngle(limitL);
         }
         camera_.setRotXYZ(angle);
     }
@@ -419,8 +419,8 @@ THUMB void TownCamera::setLimitR(dss::Fix32 right)
             camera_.setRotXYZ(changeDefaultAngle_);
             return;
         }
-        if (angle.vy < (short)-unkfunc_0204f3d0(limitR)) {
-            angle.vy = -unkfunc_0204f3d0(limitR);
+        if (angle.vy < (short)-degreeToAngle(limitR)) {
+            angle.vy = -degreeToAngle(limitR);
         }
         camera_.setRotXYZ(angle);
     }

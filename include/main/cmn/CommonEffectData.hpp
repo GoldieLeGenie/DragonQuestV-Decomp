@@ -1,7 +1,7 @@
 #pragma once
 #include <globaldefs.h>
 #include "main/data/DataObject.hpp"
-#include "main/dss/UnkTextureObject.hpp"
+#include "main/dss/TextureObject.hpp"
 
 namespace cmn {
     struct CommonEffectData {

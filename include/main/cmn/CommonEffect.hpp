@@ -3,7 +3,7 @@
 #include "main/dss/DssUtils.hpp"
 #include "main/cmn/CommonEffectData.hpp"
 #include "main/object/DSSAObject.hpp"
-#include "main/object/UnkPaletteAnimationObject.hpp"
+#include "main/object/PaletteAnimationObject.hpp"
 #include "main/object/ModelObject.hpp"
 
 
@@ -30,7 +30,7 @@ namespace cmn {
 
     struct CommonEffectFlat : CommonEffectSimple {
         void* texture_;                     /* 0x0C */
-        UnkPaletteAnimationObject paletteAnim_; /* 0x10 */
+        PaletteAnimationObject paletteAnim_; /* 0x10 */
         DSSAObjectWithCamera dssaEffect_;   /* 0x30 */
 
         CommonEffectFlat();
@@ -49,7 +49,7 @@ namespace cmn {
 
     struct CommonEffectOrtho : CommonEffectSimple {
         void* texture_;                     /* 0x0C */
-        UnkPaletteAnimationObject paletteAnim_; /* 0x10 */
+        PaletteAnimationObject paletteAnim_; /* 0x10 */
         DSSAObject2D dssaEffect_;           /* 0x30 */
 
         CommonEffectOrtho();

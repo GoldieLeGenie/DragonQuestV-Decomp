@@ -17,7 +17,7 @@ void GameMonster::setup(int index)
 {
     index_ = index;
     dssaCharacterData_ = gameMonsterData_.setup(index_);
-    UnkTextureObject* texture = (UnkTextureObject*)((DSSACharacterData*)dssaCharacterData_)->textureData_.getAddr();
+    TextureObject* texture = (TextureObject*)((DSSACharacterData*)dssaCharacterData_)->textureData_.getAddr();
     DSSACharacter::unkfunc_020524c8(texture, &((DSSACharacterData*)dssaCharacterData_)->animationData_);
 }
 

@@ -1,10 +1,10 @@
 #pragma once
 #include <globaldefs.h>
-#include "main/menu/UnkMenuDisplay.hpp"
+#include "main/menu/MenuDisplay.hpp"
 #include "main/dss/UnkBgBuffer.hpp"
 
 // One line of text drawn as sprites (data_02114dd4.texts_: message window lines and name plate)
-struct UnkMenuTextDisplay : UnkMenuDisplay {
+struct UnkMenuTextDisplay : MenuDisplay {
     unsigned char charWidths_[0x100];           // 0x030
     unsigned short unk_130[0x100];              // 0x130 char codes of the text
     char unk_330[0x62];                         // 0x330 copy of the text

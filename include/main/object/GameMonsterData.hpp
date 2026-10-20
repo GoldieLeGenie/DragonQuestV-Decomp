@@ -1,7 +1,7 @@
 #pragma once
 #include <globaldefs.h>
 #include "main/data/DataObject.hpp"
-#include "main/dss/UnkTextureObject.hpp"
+#include "main/dss/TextureObject.hpp"
 
 struct DSSACharacterData {
     UnkLZDataObject textureData_;               // 0x00
@@ -37,7 +37,7 @@ struct DataCache {
 
 /* vtable 0x0209a704 */
 struct UnkTextureDataCache : DataCache {
-    UnkTextureObject texture_[4];               // 0xE8
+    TextureObject texture_[4];               // 0xE8
 
     virtual void* getAddr();
     virtual void unkfunc_02057f24(int index);   // copies the texture and loads it in VRAM

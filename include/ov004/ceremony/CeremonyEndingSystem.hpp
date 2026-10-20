@@ -2,8 +2,8 @@
 #include <globaldefs.h>
 #include "main/data/DataObject.hpp"
 #include "main/dss/GameSystemManager.hpp"
-#include "main/dss/UnkSprite2D.hpp"
-#include "main/dss/UnkTextureObject.hpp"
+#include "main/dss/Sprite2D.hpp"
+#include "main/dss/TextureObject.hpp"
 #include "main/object/DSSAObject.hpp"
 
 namespace ceremony {
@@ -22,15 +22,15 @@ namespace ceremony {
 
         int lineY_[128];                        // 0x004
         int pageY_[DIVISION];                   // 0x204
-        UnkSprite2D rollSprite_[DIVISION];      // 0x210
+        Sprite2D rollSprite_[DIVISION];      // 0x210
         UnkLZDataObject rollData_[DIVISION];    // 0x2B8
-        UnkTextureObject* rollTexture_[DIVISION];   // 0x2E8
+        TextureObject* rollTexture_[DIVISION];   // 0x2E8
         int rollStart_[6];                      // 0x2F4
         int rollEnd_[6];                        // 0x30C
         DataObject petalData_[MAX_PETAL];       // 0x324
         DSSAObject2D petalDssa_[MAX_PETAL];     // 0x354
         DataObject petalTextureData_;           // 0x528
-        UnkTextureObject* petalTexture_;        // 0x538
+        TextureObject* petalTexture_;        // 0x538
         int index_;                             // 0x53C
         int lineCount_;                         // 0x540
         int phase_;                             // 0x544

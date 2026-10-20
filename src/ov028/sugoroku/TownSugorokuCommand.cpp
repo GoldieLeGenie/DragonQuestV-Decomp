@@ -1629,9 +1629,9 @@ int twn::SugorokuSystemTreasurePreRoom::nextState()
 
 void twn::SugorokuSystemBattleEnd::setup()
 {
-    NNSG3dResTex* tex = unkfunc_02046f40();
+    NNSG3dResTex* tex = getLastModelTexture();
     dss::Fix32Vector3 rate(0, 0, 0);
-    unkfunc_02049228(tex, rate);
+    applyModelPaletteRgbRate(tex, rate);
     TownPlayerManager::getSingleton().setLock(true);
     cmn::g_extraMapLink.setExtraLinkTown(g_SugorokuInfo.getEndMapNameId(), g_SugorokuInfo.getEndMapPosition(), g_SugorokuInfo.getEndMapDirIdx());
 }

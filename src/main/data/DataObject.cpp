@@ -57,9 +57,9 @@ ARM void UnkLZDataObject::setup(const char* filename, int a, int b)
     m_flag |= 1;
     m_addr = dss::g_File.unkfunc_0204b29c(filename, b, (dss::File::LoadSwitch)a);
     m_size = dss::g_File.size_;
-    if (unkfunc_0204c230(m_addr)) {
-        m_size = unkfunc_0204c214(m_addr);
-        void* data = unkfunc_0204c278(m_addr);
+    if (isCompressed(m_addr)) {
+        m_size = getUncompressedSize(m_addr);
+        void* data = uncompressAlloc(m_addr);
         unkfunc_0204c5c8(&data_020fd24c, m_addr);
         m_addr = data;
     }

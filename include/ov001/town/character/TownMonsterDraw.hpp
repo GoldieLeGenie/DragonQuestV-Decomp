@@ -2,13 +2,13 @@
 #include <globaldefs.h>
 #include "ov001/town/character/TownCharacterBase.hpp"
 #include "main/object/DSSACharacter.hpp"
-#include "main/dss/UnkTextureObject.hpp"
+#include "main/dss/TextureObject.hpp"
 #include "main/data/DataObject.hpp"
 
 namespace twn {
     struct TownMonsterDraw : TownCharacterBase {
         DSSACharacter monster_;                 // 0x015C
-        UnkTextureObject texture_;              // 0x106C
+        TextureObject texture_;              // 0x106C
         UnkFileDataObject textureData_;         // 0x10DC
         UnkFileDataObject animData_;            // 0x10EC
         int display_;                           // 0x10FC

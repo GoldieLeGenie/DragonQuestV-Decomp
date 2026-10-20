@@ -29,7 +29,7 @@ struct MaterielMenu_LOAD : menu::MenuBase {
     menu::MenuItem rootItem_;                   // 0x1C
     menu::MenuItem dataItem_;                   // 0x80
     menu::MenuItem resumeItem_;                 // 0xE4
-    UnkCursorMoveGridLoop navigator_;           // 0x148
+    CursorMoveGridLoop navigator_;           // 0x148
     LOAD_STATUS status_;                        // 0x154
     int menuMode_;                              // 0x158
     int messageCounter_;                        // 0x15C

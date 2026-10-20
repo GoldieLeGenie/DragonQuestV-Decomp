@@ -1,9 +1,9 @@
 #pragma ipa file
 #include "main/object/DSSAObject.hpp"
-#include "main/dss/UnkRenderObject.hpp"
+#include "main/dss/RenderObject.hpp"
 #include "main/dss/UnkDisplay.hpp"
-#include "main/dss/UnkCharacterPalette.hpp"
-#include "main/dss/UnkSprite2D.hpp"
+#include "main/dss/CharacterPalette.hpp"
+#include "main/dss/Sprite2D.hpp"
 #include "nitro/g3.hpp"
 #include "nitro/fx/fx_trig.h"
 #include "main/dss/UnkMemory.hpp"
@@ -213,10 +213,10 @@ ARM void DSSAObject::setTexture(void* texture)
     if (hue == 0) {
         return;
     }
-    UnkTextureObject* tex = (UnkTextureObject*)dssaData_.texture_;
+    TextureObject* tex = (TextureObject*)dssaData_.texture_;
     if (tex->unk_14 & 1) {
         unkfunc_02049868((unsigned short*)tex->unkfunc_0204a1d4(), tex->unkfunc_0204a1dc(), hue);
-        ((UnkTextureObject*)dssaData_.texture_)->unkfunc_0204a090(0);
+        ((TextureObject*)dssaData_.texture_)->unkfunc_0204a090(0);
     } else {
         unkfunc_02049868((unsigned short*)((int)dssaData_.texture_ + tex->unkfunc_0204a1d4()), tex->unkfunc_0204a1dc(), hue);
     }
@@ -276,13 +276,13 @@ ARM void DSSAObject::draw()
         trans_ = (dss::Fix32(trans_) * alpha_).value >> 12;
         REG_GFX_FIFO_POLYGON_ATTR = (priority_ << 24) | 0xc0 | (trans_ << 16);
         if (parts.getAlpha()) {
-            ((UnkTextureObject*)dssaData_.texture_)->unkfunc_0204a290();
-            ((UnkTextureObject*)dssaData_.texture_)->unkfunc_0204a300();
+            ((TextureObject*)dssaData_.texture_)->unkfunc_0204a290();
+            ((TextureObject*)dssaData_.texture_)->unkfunc_0204a300();
         } else {
-            ((UnkTextureObject*)dssaData_.texture_)->unkfunc_0204a1e4();
-            ((UnkTextureObject*)dssaData_.texture_)->unkfunc_0204a264();
+            ((TextureObject*)dssaData_.texture_)->unkfunc_0204a1e4();
+            ((TextureObject*)dssaData_.texture_)->unkfunc_0204a264();
             if (palette_) {
-                ((UnkCharacterPalette*)palette_)->unkfunc_0204a4d4();
+                ((CharacterPalette*)palette_)->unkfunc_0204a4d4();
             }
         }
         if (trans_ != 0) {
@@ -304,7 +304,7 @@ ARM void DSSAObject::execute()
     if (flag_ & 1) {
         return;
     }
-    if (!(unkfunc_0204ccd0() & 1)) {
+    if (!(getDisplayFrame() & 1)) {
         return;
     }
     frame_++;
@@ -423,8 +423,8 @@ ARM void DSSAObject::setupDraw()
     func_020802dc();
     func_02082604();
     if (dssaData_.texture_) {
-        ((UnkTextureObject*)dssaData_.texture_)->unkfunc_0204a1e4();
-        ((UnkTextureObject*)dssaData_.texture_)->unkfunc_0204a264();
+        ((TextureObject*)dssaData_.texture_)->unkfunc_0204a1e4();
+        ((TextureObject*)dssaData_.texture_)->unkfunc_0204a264();
     }
     if (calcType_) {
         baseScale_.vx = defaultScale2_ * scale_.vx;
@@ -440,7 +440,7 @@ ARM void DSSAObject::setupRoot()
     DSSAParts* root = dssaData_.getParts(0);
     int x = root->getPosX() / 4096;
     int y = root->getPosY() / 4096;
-    unkfunc_02047d38();
+    loadBillboardMatrix();
     if (calcType_) {
         G3_Scale(defaultScale_.value, defaultScale_.value, FX32_ONE);
     } else {
@@ -545,8 +545,8 @@ ARM void DSSAObject2D::setupDraw()
     VecFx32 target = { 0, 0, 0 };
     func_02076118(&camPos, &camUp, &target, 1, NULL);
     if (dssaData_.texture_) {
-        ((UnkTextureObject*)dssaData_.texture_)->unkfunc_0204a1e4();
-        ((UnkTextureObject*)dssaData_.texture_)->unkfunc_0204a1e4();
+        ((TextureObject*)dssaData_.texture_)->unkfunc_0204a1e4();
+        ((TextureObject*)dssaData_.texture_)->unkfunc_0204a1e4();
     }
     baseScale_.vx = 1L;
     baseScale_.vy = 1L;

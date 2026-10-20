@@ -37,11 +37,11 @@ extern UnkTouchPanel data_0211a5d4;
 extern void* data_020fd244[2];                  // compressed data, uncompressed data
 extern UnkHeap data_020fd24c;
 
-void unkfunc_0204c1ac(void* src);               // set the compressed data
-void unkfunc_0204c1bc(void* dst);               // uncompress
-unsigned int unkfunc_0204c214(void* src);       // uncompressed size
-int unkfunc_0204c230(void* data);               // is compressed
-void* unkfunc_0204c278(void* data);             // uncompress (allocates)
+void setCompressedData(void* src);               // set the compressed data
+void uncompressData(void* dst);               // uncompress
+unsigned int getUncompressedSize(void* src);       // uncompressed size
+int isCompressed(void* data);               // is compressed
+void* uncompressAlloc(void* data);             // uncompress (allocates)
 void unkfunc_0204c2b0(UnkHeap* heap, unsigned int size0, unsigned int size1, unsigned int size2, int mode);    // init
 int unkfunc_0204c49c(int value, int alignment);  // round up
 void unkfunc_0204c4b0(UnkHeap* heap, void* p);  // free (system heap)

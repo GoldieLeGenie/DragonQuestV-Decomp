@@ -2,7 +2,7 @@
 #include <globaldefs.h>
 #include "main/data/DataObject.hpp"
 #include "main/dss/GameSystemManager.hpp"
-#include "main/dss/UnkTextureObject.hpp"
+#include "main/dss/TextureObject.hpp"
 #include "main/object/DSSAObject.hpp"
 
 namespace ceremony {
@@ -24,7 +24,7 @@ namespace ceremony {
         DataObject logo4Data_;                  // 0x15C
         DSSAObject2D logo4Dssa_;                // 0x16C
         UnkLZDataObject textureData_;           // 0x208
-        UnkTextureObject* texture_;             // 0x218
+        TextureObject* texture_;             // 0x218
         int phase_;                             // 0x21C
         int counter_;                           // 0x220
 

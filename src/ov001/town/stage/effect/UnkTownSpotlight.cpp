@@ -1,5 +1,5 @@
 #include "ov001/town/stage/effect/UnkTownSpotlight.hpp"
-#include "main/dss/UnkRenderObject.hpp"
+#include "main/dss/RenderObject.hpp"
 
 #pragma thumb on
 
@@ -128,7 +128,7 @@ void twn::UnkTownSpotlight::unkfunc_0212e900()
 void twn::UnkTownSpotlight::unkfunc_0212e920()
 {
     if (enable_) {
-        unkfunc_020481fc();
+        setupOrtho2DFine();
         for (int screen = 0; screen < 2; screen++) {
             for (int i = 0; i < LIGHT_MAX; i++) {
                 light_[i].unkfunc_0212e758(screen);

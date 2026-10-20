@@ -16,7 +16,7 @@ struct ScriptCommandWeakVtable : ScriptCommand {
 #include "main/global/Global.hpp"
 #include "main/global/GlobalGamePart.hpp"
 #include "main/sound/UnkSoundPlayer.hpp"
-#include "main/dss/UnkRenderObject.hpp"
+#include "main/dss/RenderObject.hpp"
 #include "main/dss/UnkDssMath.hpp"
 #include "main/dss/UnkDisplayPlugin.hpp"
 #include "ov001/leveldata/FloorBackColor.hpp"
@@ -180,7 +180,7 @@ inline twn::TOWN_PLAYER_ACTION_TYPE twn::TownPlayerManager::getActionType()
     return player_.actionType_;
 }
 
-inline void UnkSpriteFade::flashWhite(int r, int g, int b, int frames)
+inline void GlobalSpriteFade::flashWhite(int r, int g, int b, int frames)
 {
     state_ = FadeEffector::FADE_IN_WHITE;
     count_ = 0;
@@ -739,7 +739,7 @@ THUMB void MapCameraAngle::initialize(char* param)
     PARAM_MAP_CAMERA_ANGLE* data = (PARAM_MAP_CAMERA_ANGLE*)param;
     dss::Fix32 deg;
     deg.value = data->angle;
-    short dataAngle = unkfunc_0204f3d0(deg);
+    short dataAngle = degreeToAngle(deg);
     dss::Vector3<short> angle;
     twn::TownActionCalculate::setAngle(data->axis, dataAngle, angle);
     endFlag_ = data->endFlag;
@@ -1002,7 +1002,7 @@ THUMB void Cmd_set_camera_angle_abs::initialize(char* scriptParam)
     dss::Vector3<short> angle;
     dss::Fix32 fx;
     fx.value = data->angleY;
-    angle.set(x, unkfunc_0204f3d0(fx), z);
+    angle.set(x, degreeToAngle(fx), z);
     TownCamera::getSingleton()->setRotTo(angle, data->frame, true);
     endFlag_ = data->endFlag;
 }
@@ -1119,7 +1119,7 @@ THUMB bool cmd_map_camera_default_angle(void* scriptParam)
     fx.vx.value = param->angleX;
     fx.vy.value = param->angleY;
     fx.vz.value = param->angleZ;
-    angle.set(unkfunc_0204f3d0(fx.vx), unkfunc_0204f3d0(fx.vy), unkfunc_0204f3d0(fx.vz));
+    angle.set(degreeToAngle(fx.vx), degreeToAngle(fx.vy), degreeToAngle(fx.vz));
     TownCamera::getSingleton()->setDefaultAngle(angle);
     return true;
 }

@@ -20,13 +20,13 @@ void unkfunc_0204afd8();
 void unkfunc_0204afdc();
 int unkfunc_0204afe0();                         // tick count
 void unkfunc_0204afe8(const char* format, ...); // debug print
-void unkfunc_0204b080();                        // V-blank interrupt
-void unkfunc_0204b09c(int exArena);             // OS/system init
-void unkfunc_0204b15c();                        // clear the VRAM, OAM and palettes
+void dssVBlankIntr();                        // V-blank interrupt
+void initSystem(int exArena);             // OS/system init
+void clearVram();                        // clear the VRAM, OAM and palettes
 unsigned int unkfunc_0204b360(unsigned int value, unsigned int align);  // round down
 void unkfunc_0204b50c();                        // reset the BG/OBJ VRAM
-void unkfunc_0204b53c(int brightness);          // main screen master brightness
-void unkfunc_0204b554(int brightness);          // sub screen master brightness
+void setMainBrightness(int brightness);          // main screen master brightness
+void setSubBrightness(int brightness);          // sub screen master brightness
 
 extern "C" {
     unsigned long long func_020885e0(void);     // OS_GetTick

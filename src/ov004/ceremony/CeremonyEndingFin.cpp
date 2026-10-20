@@ -2,7 +2,7 @@
 #include "ov004/ceremony/CeremonyEndingFin.hpp"
 #include "main/dss/DssUtils.hpp"
 #include "main/dss/UnkDisplay.hpp"
-#include "main/dss/UnkRenderObject.hpp"
+#include "main/dss/RenderObject.hpp"
 
 inline DSSAObject2D::DSSAObject2D()
 {
@@ -12,11 +12,11 @@ inline DSSAObject2D::~DSSAObject2D()
 {
 }
 
-inline UnkPaletteAnimation::~UnkPaletteAnimation()
+inline PaletteAnimation::~PaletteAnimation()
 {
 }
 
-inline UnkPaletteAnimationObject::UnkPaletteAnimationObject()
+inline PaletteAnimationObject::PaletteAnimationObject()
 {
     texture_ = 0;
 }
@@ -44,7 +44,7 @@ THUMB void ceremony::CeremonyEndingFin::initialize()
     char path[128];
     dss::sprintf_s(path, sizeof(path), "data/ending/the_end/pen.tex");
     penTextureData_.setup(path, 0, 0);
-    penTexture_ = (UnkTextureObject*)penTextureData_.getAddr();
+    penTexture_ = (TextureObject*)penTextureData_.getAddr();
     penTexture_->unkfunc_02049e9c(1);
     dss::sprintf_s(path, sizeof(path), "data/ending/the_end/pen.dssa");
     penData_.setup(path, 0, 0);
@@ -102,12 +102,12 @@ THUMB void ceremony::CeremonyEndingFin::execute()
 
 THUMB void ceremony::CeremonyEndingFin::draw()
 {
-    unkfunc_0204813c();
+    setupOrtho2D();
     for (int i = 0; i < 2; i++) {
         theSprite_[i].unkfunc_02051b68();
         endSprite_[i].unkfunc_02051b68();
     }
-    if ((unkfunc_0204ccd0() & 1) && !penDssa_.isEnd()) {
+    if ((getDisplayFrame() & 1) && !penDssa_.isEnd()) {
         penDssa_.draw();
     }
 }

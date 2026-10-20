@@ -1,6 +1,6 @@
 #include "main/dss/UnkDisplay.hpp"
 #include "main/dss/DssUtils.hpp"
-#include "main/dss/UnkVramTransfer.hpp"
+#include "main/dss/VramTransferManager.hpp"
 #include "nitro/g2.hpp"
 
 inline int dss::UnkDisplayPlugin::getType()
@@ -73,7 +73,7 @@ THUMB void unkfunc_0204ca6c()
 {
     UnkDisplay* display = &data_020fe6b0;
     if (unkfunc_0204cca8()) {
-        int odd = unkfunc_0204ccd0() & 1;
+        int odd = getDisplayFrame() & 1;
         int bg = unkfunc_0204ced8(odd * 192);
         if (bg != -1) {
             unkfunc_0204dca8(unkfunc_0204de5c(bg), 0, display->screenData_[odd], sizeof(display->screenData_[0]));
@@ -90,8 +90,8 @@ THUMB void unkfunc_0204ca6c()
     display->plugin_->update(display->frame_);
     display->plugin_->updateDisplayText();
     display->frame_++;
-    unkfunc_0204cd8c(1)->unkfunc_0204dbe8(0, 0, display->backColor_);
-    unkfunc_0204cd8c(5)->unkfunc_0204dbe8(0, 0, display->backColor_);
+    getBgPaletteBuffer(1)->unkfunc_0204dbe8(0, 0, display->backColor_);
+    getBgPaletteBuffer(5)->unkfunc_0204dbe8(0, 0, display->backColor_);
     display->bgPalette_[0].unkfunc_0204dbd4(0xf);
     display->bgPalette_[1].unkfunc_0204dbd4(0x1f);
     display->objPalette_[0].unkfunc_0204dbd4(0xe);
@@ -101,7 +101,7 @@ THUMB void unkfunc_0204ca6c()
     G2_SetWndOutsidePlane(0x1f, 1);
     int window0 = display->windowEnable_[0];
     int window1 = display->windowEnable_[1];
-    if (display->plugin_ == &dss::g_DISPLAYPLUGIN_DOUBLE3D && (unkfunc_0204ccd0() & 1) == 1) {
+    if (display->plugin_ == &dss::g_DISPLAYPLUGIN_DOUBLE3D && (getDisplayFrame() & 1) == 1) {
         window0 = 0;
         window1 = 0;
     }
@@ -137,7 +137,7 @@ THUMB int unkfunc_0204cca8()
     return display->plugin_ == display->nextPlugin_;
 }
 
-THUMB int unkfunc_0204ccd0()
+THUMB int getDisplayFrame()
 {
     return data_020fe6b0.frame_;
 }
@@ -179,7 +179,7 @@ THUMB void unkfunc_0204ccf4(int mode)
     }
 }
 
-THUMB UnkPaletteBuffer* unkfunc_0204cd8c(int bg)
+THUMB UnkPaletteBuffer* getBgPaletteBuffer(int bg)
 {
     UnkDisplay* display = &data_020fe6b0;
     switch (bg) {
@@ -203,7 +203,7 @@ THUMB UnkPaletteBuffer* unkfunc_0204cd8c(int bg)
     return NULL;
 }
 
-THUMB UnkPaletteBuffer* unkfunc_0204cdf0(int screen)
+THUMB UnkPaletteBuffer* getObjPaletteBuffer(int screen)
 {
     UnkDisplay* display = &data_020fe6b0;
     switch (screen) {
@@ -257,7 +257,7 @@ THUMB UnkOamBuffer* unkfunc_0204ce40(int y)
         }
         break;
     case 3:
-        if ((unkfunc_0204ccd0() & 1) == 0) {
+        if ((getDisplayFrame() & 1) == 0) {
             if (y >= 192) {
                 return NULL;
             }
@@ -305,7 +305,7 @@ THUMB int unkfunc_0204ced8(int y)
         ret = y < 192 ? display->text_.screen2_ : display->text_.screen1_;
         break;
     case 3:
-        if ((unkfunc_0204ccd0() & 1) == 0) {
+        if ((getDisplayFrame() & 1) == 0) {
             if (y >= 192) {
                 return -1;
             }
@@ -347,7 +347,7 @@ THUMB int unkfunc_0204cf7c(int y)
         ret = y < 192 ? display->text_.unk_10 : display->text_.unk_0c;
         break;
     case 3:
-        if ((unkfunc_0204ccd0() & 1) == 0) {
+        if ((getDisplayFrame() & 1) == 0) {
             if (y >= 192) {
                 return -1;
             }
@@ -377,12 +377,12 @@ THUMB int unkfunc_0204d03c()
     return data_020fe6b0.text_.unk_14;
 }
 
-THUMB UnkScreenBuffer* unkfunc_0204d048()
+THUMB UnkScreenBuffer* getDebugScreenBuffer()
 {
     return &data_020fe6b0.screen_;
 }
 
-THUMB void unkfunc_0204d050(int counter)
+THUMB void setDisplayTextCounter(int counter)
 {
     if (data_020fe6b0.plugin_ != NULL) {
         data_020fe6b0.plugin_->setDisplayText(counter);
@@ -443,22 +443,22 @@ THUMB void unkfunc_0204d0f4()
     GX_ResetBankForSubObj();
     switch (display->captureStep_) {
     case 0:
-        data_020f4f74.unkfunc_0204a6f0(0, (void*)0x06860000, 0, 0x8000, 0);
+        data_020f4f74.transferToVram(0, (void*)0x06860000, 0, 0x8000, 0);
         break;
     case 1:
-        data_020f4f74.unkfunc_0204a6f0(0, (void*)0x06868000, 0x8000, 0x8000, 0);
+        data_020f4f74.transferToVram(0, (void*)0x06868000, 0x8000, 0x8000, 0);
         break;
     case 2:
-        data_020f4f74.unkfunc_0204a6f0(0, (void*)0x06870000, 0x10000, 0x8000, 0);
+        data_020f4f74.transferToVram(0, (void*)0x06870000, 0x10000, 0x8000, 0);
         break;
     case 3:
-        data_020f4f74.unkfunc_0204a6f0(0, (void*)0x06840000, 0x20000, 0x8000, 0);
+        data_020f4f74.transferToVram(0, (void*)0x06840000, 0x20000, 0x8000, 0);
         break;
     case 4:
-        data_020f4f74.unkfunc_0204a6f0(0, (void*)0x06848000, 0x28000, 0x8000, 0);
+        data_020f4f74.transferToVram(0, (void*)0x06848000, 0x28000, 0x8000, 0);
         break;
     case 5:
-        data_020f4f74.unkfunc_0204a6f0(0, (void*)0x06850000, 0x30000, 0x8000, 0);
+        data_020f4f74.transferToVram(0, (void*)0x06850000, 0x30000, 0x8000, 0);
         break;
     }
     if (display->captureStep_ < 6) {

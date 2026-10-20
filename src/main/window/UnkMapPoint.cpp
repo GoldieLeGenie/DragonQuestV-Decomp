@@ -14,13 +14,13 @@ void unkfunc_02052150(int index, dss::Fix32Vector3& pos)
 
 dss::Vector2<int>* unkfunc_02052164(int index)
 {
-    return &s_pointScreenPos[index][unkfunc_0204ccd0() & 1];
+    return &s_pointScreenPos[index][getDisplayFrame() & 1];
 }
 
 extern "C" void func_02052180(void)
 {
     if (data_02101da4) {
-        int screen = (unkfunc_0204ccd0() & 1) ? 1 : 0;
+        int screen = (getDisplayFrame() & 1) ? 1 : 0;
         for (int i = 0; i < 64; i++) {
             if (func_02082a0c((VecFx32*)&s_pointPos[i], &s_pointScreenPos[i][screen].vx, &s_pointScreenPos[i][screen].vy) == -1) {
                 s_pointScreenPos[i][screen].vx = -1;

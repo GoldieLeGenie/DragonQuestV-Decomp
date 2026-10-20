@@ -7,7 +7,7 @@
 #include "main/dss/UnkMemory.hpp"
 #include "main/dss/UnkModelMember.hpp"
 #include "main/dss/UnkPaletteEffect.hpp"
-#include "main/dss/UnkRenderObject.hpp"
+#include "main/dss/RenderObject.hpp"
 #include "main/data/FileLoader.hpp"
 #include "main/object/DSSAObject.hpp"
 #include "nitro/fx.hpp"
@@ -121,7 +121,7 @@ void FldStage::setup(bool flag)
         unkfunc_0206a898();
     }
     dss::Fix32Vector3 scale(1, 1, 1);
-    unkfunc_02049208(0, scale);
+    setPaletteRgbRate(0, scale);
     int color = m_fld.m_scene->backColor;
     unkfunc_020485cc((color & 0xff) >> 3, ((color >> 8) & 0xff) >> 3, ((color >> 16) & 0xff) >> 3);
     if (m_fld.m_coll) {
@@ -158,11 +158,11 @@ void FldStage::load(const char* name)
     char ss[0x80];
     dss::sprintf_s(ss, sizeof(ss), "%s/%s.lz", path_, name);
     m_data.setup(ss, 1, 1);
-    m_texture.setup(unkfunc_0204c878(m_data.getAddr(), 0));
+    m_texture.setup(getArchiveFile(m_data.getAddr(), 0));
     if (unkfunc_0204c868(m_data.getAddr(), 1)) {
-        m_coll.setup(unkfunc_0204c878(m_data.getAddr(), 1));
+        m_coll.setup(getArchiveFile(m_data.getAddr(), 1));
     }
-    m_model.setup(unkfunc_0204c878(m_data.getAddr(), 2));
+    m_model.setup(getArchiveFile(m_data.getAddr(), 2));
     if (m_coll.getAddr()) {
         collisionFlag_ = 1;
     }
@@ -190,7 +190,7 @@ void FldStage::setSepiarEnable(int flag)
 void FldStage::setSepiarExecute()
 {
     if (flag_ & 1) {
-        unkfunc_02049c30(unkfunc_02046f40());
+        unkfunc_02049c30(getLastModelTexture());
         m_fld.SetSepia();
         m_fld.unkfunc_02061798(0x7fff);
         flag_ &= ~1;
@@ -261,7 +261,7 @@ int FldStage::eventAnim(int event, int objID)
         m_fld.unkfunc_0206092c(event);
         return 1;
     }
-    if (m_fld.unkfunc_020611b8(objID) == m_fld.unkfunc_02061224(objID)) {
+    if (m_fld.getMapObjAnimFrame(objID) == m_fld.getMapObjAnimFrameMax(objID)) {
         m_fld.unkfunc_0206092c(event);
         return 1;
     }

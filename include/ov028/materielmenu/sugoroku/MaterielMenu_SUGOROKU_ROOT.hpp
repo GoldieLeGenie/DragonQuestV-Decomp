@@ -5,7 +5,7 @@
 // sugoroku: dice / status / quit menu
 struct MaterielMenu_SUGOROKU_ROOT : menu::MenuBase {
     menu::MenuItem menuItem_;               // 0x1C
-    UnkCursorMoveGridLoop navigator_;       // 0x80
+    CursorMoveGridLoop navigator_;       // 0x80
 
     virtual void menuSetup();
     virtual void menuExecute();

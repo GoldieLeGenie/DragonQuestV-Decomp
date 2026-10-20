@@ -1001,7 +1001,7 @@ void CharaRot::initialize(char* scriptParam)
     int ctrl = getPlacementCtrlId();
     dss::Fix32 idx;
     idx.value = param->idx;
-    TownCharacterManager::getSingleton()->setRotFrame(ctrl, param->frame, unkfunc_0204f3d0(idx), param->rotFlag, param->endFlag);
+    TownCharacterManager::getSingleton()->setRotFrame(ctrl, param->frame, degreeToAngle(idx), param->rotFlag, param->endFlag);
 }
 
 int CharaRot::isEnd()

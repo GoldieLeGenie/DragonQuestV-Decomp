@@ -7,7 +7,7 @@
 #include "main/dss/UnkMemory.hpp"
 #include "main/dss/UnkOverlaySlot.hpp"
 #include "main/dss/UnkRandom.hpp"
-#include "main/dss/UnkVramTransfer.hpp"
+#include "main/dss/VramTransferManager.hpp"
 #include "main/global/Global.hpp"
 #include "main/menu/MaterielMenuWindowManager.hpp"
 #include "main/menu/RaceData.hpp"

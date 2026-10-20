@@ -30,7 +30,7 @@ struct UnkMenuIconSlot {
 };
 
 // Queued icon draw
-struct UnkMenuIconRequest {
+struct MenuIconRequest {
     int enable_;                                // 0x00
     int x_;                                     // 0x04
     int y_;                                     // 0x08
@@ -39,7 +39,7 @@ struct UnkMenuIconRequest {
     int type_;                                  // 0x14
     int index_;                                 // 0x18
 
-    int unkfunc_02063734(int x, int y, int w, int h, int type, int index);
+    int set(int x, int y, int w, int h, int type, int index);
 };
 
 // Sub screen icon BG with its VRAM character cache (data_02108518)
@@ -48,7 +48,7 @@ struct UnkMenuIconBg {
     UnkScreenBuffer screen_;                    // 0x0004
     unsigned short screenData_[0x600];          // 0x0018
     UnkMenuIconSlot slots_[28];                 // 0x0C18
-    UnkMenuIconRequest requests_[56];           // 0x0D68
+    MenuIconRequest requests_[56];           // 0x0D68
     int requestCount_;                          // 0x1388
 
     UnkMenuIconBg();
@@ -69,7 +69,7 @@ struct UnkMenuIconBg {
 };
 
 // Sub screen back BG with a color fade (data_020facbc)
-struct UnkMenuBackBg {
+struct MenuBackBg {
     UnkScreenBuffer screen_;                    // 0x000
     unsigned short screenData_[0x600];          // 0x014
     int enable_;                                // 0xC14
@@ -83,15 +83,15 @@ struct UnkMenuBackBg {
     int unk_c34;                                // 0xC34
 
     void unkfunc_02063574();
-    UnkScreenBuffer* unkfunc_020635a8();
-    void unkfunc_020635ac(int r, int g, int b, int frame);
+    UnkScreenBuffer* getScreenBuffer();
+    void startFade(int r, int g, int b, int frame);
     void unkfunc_020635d4();
 };
 
 // Sub screen menu BGs (data_02106178)
 struct UnkMenuBg {
     int transferCount_;                         // 0x0000  frames left to transfer the BGs
-    UnkMenuBackBg back_;                        // 0x0004
+    MenuBackBg back_;                        // 0x0004
     UnkMenuWindowBg window_;                    // 0x0C3C
     UnkMenuIconBg icon_;                        // 0xD860
 };

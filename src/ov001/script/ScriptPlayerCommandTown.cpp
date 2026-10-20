@@ -482,7 +482,7 @@ void PlayerRot::initialize(char* scriptParam)
     PARAM_PLAYER_ROT* param = (PARAM_PLAYER_ROT*)scriptParam;
     dss::Fix32 idx;
     idx.value = param->idx;
-    twn::TownPlayerManager::getSingleton().setScriptRot(param->frame, unkfunc_0204f3d0(idx), param->rotFlag);
+    twn::TownPlayerManager::getSingleton().setScriptRot(param->frame, degreeToAngle(idx), param->rotFlag);
     endFlag_ = param->endFlag;
 }
 

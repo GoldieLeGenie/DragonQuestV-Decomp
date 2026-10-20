@@ -1,12 +1,12 @@
 #pragma ipa file
 #include "main/object/SpriteCharacter.hpp"
 #include "main/dss/UnkArchive.hpp"
-#include "main/dss/UnkTextureObject.hpp"
+#include "main/dss/TextureObject.hpp"
 
 #pragma thumb on
 
 dss::BitFlag<unsigned char> SpriteCharacter::allFlag_(SpriteCharacter::FLAG_ANIM);
-static UnkTextureObject* s_shadowTexture;
+static TextureObject* s_shadowTexture;
 static DataObject s_commonTex;
 static int s_shadowDraw = 1;
 
@@ -28,7 +28,7 @@ void SpriteCharacter::unkfunc_0205833c(int width, int height)
 {
     textureNum_ = unkfunc_0204c860(data_.getAddr());
     for (int i = 0; i < textureNum_; i++) {
-        unk_78[i] = (UnkTextureObject*)unkfunc_0204c878(data_.getAddr(), i);
+        unk_78[i] = (TextureObject*)getArchiveFile(data_.getAddr(), i);
     }
     unk_58 = unk_78[0];
     unk_58->unkfunc_02049e9c(1);
@@ -60,7 +60,7 @@ void SpriteCharacter::unkfunc_020583ec()
 
 void SpriteCharacter::setAlpha(int alpha)
 {
-    UnkRenderObject::setAlpha(alpha);
+    RenderObject::setAlpha(alpha);
     shadow_.setAlpha((unsigned char)((unsigned int)alpha >> 1));
 }
 
@@ -70,7 +70,7 @@ void SpriteCharacter::draw()
         return;
     }
     execute();
-    UnkSprite2D::draw();
+    Sprite2D::draw();
     if (flag_.check(FLAG_SHADOW)) {
         shadow_.draw();
     }
@@ -222,7 +222,7 @@ SpriteShadow::~SpriteShadow()
 void SpriteCharacter::unkfunc_0205870c()
 {
     s_commonTex.setup("data/common.tex", 0, 0);
-    s_shadowTexture = (UnkTextureObject*)s_commonTex.getAddr();
+    s_shadowTexture = (TextureObject*)s_commonTex.getAddr();
     s_shadowTexture->unkfunc_02049e9c(1);
 }
 
@@ -257,7 +257,7 @@ void SpriteShadow::unkfunc_020587b4()
 void SpriteShadow::draw()
 {
     if (s_shadowDraw) {
-        UnkSprite2D::draw();
+        Sprite2D::draw();
     }
 }
 

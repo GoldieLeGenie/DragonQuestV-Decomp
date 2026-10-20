@@ -183,7 +183,7 @@ ARM int dss::Pad::edge()
     return trig_ & mask_;
 }
 
-ARM int dss::Pad::unkfunc_0204bc00()
+ARM int dss::Pad::repeat()
 {
     return repeat_ & mask_;
 }
@@ -292,7 +292,7 @@ ARM void dss::Pad::unkfunc_0204be8c()
     recordCount_ = 0;
 }
 
-ARM void dss::Pad::unkfunc_0204be98(unsigned short keys, int count)
+ARM void dss::Pad::addRecordKeys(unsigned short keys, int count)
 {
     for (int i = 0; i < count; i++) {
         data_020f9918[recordCount_++] = keys;
@@ -300,10 +300,10 @@ ARM void dss::Pad::unkfunc_0204be98(unsigned short keys, int count)
     data_020f9918[recordCount_] = 0xffff;
 }
 
-ARM void dss::Pad::unkfunc_0204bef0(unsigned short keys, int count)
+ARM void dss::Pad::addRecordPresses(unsigned short keys, int count)
 {
     for (int i = 0; i < count; i++) {
-        unkfunc_0204be98(keys, 10);
-        unkfunc_0204be98(0, 10);
+        addRecordKeys(keys, 10);
+        addRecordKeys(0, 10);
     }
 }
