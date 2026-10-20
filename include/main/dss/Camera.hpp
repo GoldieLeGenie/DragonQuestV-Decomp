@@ -31,7 +31,7 @@ namespace dss {
         virtual void update();
         virtual void calcPosition();
         void setup();
-        void unkfunc_02046934();
+        void calcLookDirection();
         void applyCamera();
         void setPosition(const Fix32Vector3& pos);
         Fix32Vector3& getPosition();

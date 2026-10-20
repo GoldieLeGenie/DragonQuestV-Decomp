@@ -61,7 +61,7 @@ THUMB void ceremony::CeremonyOpeningSystem::initialize()
         dss::sprintf_s(path, sizeof(path), "data/opening/jp/logo.tex.lz");
         textureData_.setup(path, 0, 1);
         texture_ = (TextureObject*)textureData_.getAddr();
-        texture_->unkfunc_02049e9c(1);
+        texture_->loadToVram(1);
         dss::sprintf_s(path, sizeof(path), "data/opening/jp/logo1.dssa");
         logo1Data_.setup(path, 0, 0);
         logo1Dssa_.setup(logo1Data_.getAddr());
@@ -111,7 +111,7 @@ THUMB void ceremony::CeremonyOpeningSystem::initialize()
         dss::sprintf_s(path, sizeof(path), "data/opening/%s/%s/logo_%s_%s.tex.lz", area, lang, area, lang);
         textureData_.setup(path, 0, 1);
         texture_ = (TextureObject*)textureData_.getAddr();
-        texture_->unkfunc_02049e9c(1);
+        texture_->loadToVram(1);
         dss::sprintf_s(path, sizeof(path), "data/opening/%s/%s/logo_%s_%s1.dssa", area, lang, area, lang);
         logo1Data_.setup(path, 0, 0);
         logo1Dssa_.setup(logo1Data_.getAddr());
@@ -136,7 +136,7 @@ THUMB void ceremony::CeremonyOpeningSystem::initialize()
 THUMB void ceremony::CeremonyOpeningSystem::terminate()
 {
     Sound::unkfunc_02068908(0xf);
-    texture_->unkfunc_02049f90();
+    texture_->freeVram();
     textureData_.cleanup();
     logo1Dssa_.cleanup();
     logo1Data_.cleanup();

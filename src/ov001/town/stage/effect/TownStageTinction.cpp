@@ -195,7 +195,7 @@ void twn::TownStageTinction::setBackcolor(int index)
     color8[0] = p[21];
     color8[1] = p[22];
     color8[2] = p[23];
-    unkfunc_02048640(color5, color6, color7, color8, color1, color2, color3, color4);
+    setBackgroundGradient(color5, color6, color7, color8, color1, color2, color3, color4);
 }
 
 void twn::TownStageTinction::setRGBRate(dss::Fix32Vector3& rate, int realTime)

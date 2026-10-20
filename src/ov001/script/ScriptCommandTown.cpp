@@ -507,7 +507,7 @@ THUMB void MapBackGroundColor::execute()
     for (int i = 0; i < rgb_corner * 3; i++) {
         rgbArray[i] = ((one - ratio) * currentColor[i] + ratio * nextColor[i]).value / 0x1000;
     }
-    unkfunc_02048640(&rgbArray[12], &rgbArray[15], &rgbArray[18], &rgbArray[21], &rgbArray[0], &rgbArray[3], &rgbArray[6], &rgbArray[9]);
+    setBackgroundGradient(&rgbArray[12], &rgbArray[15], &rgbArray[18], &rgbArray[21], &rgbArray[0], &rgbArray[3], &rgbArray[6], &rgbArray[9]);
 }
 
 THUMB int MapBackGroundColor::isEnd()
@@ -545,7 +545,7 @@ THUMB void MapBackGroundColorInit::execute()
     for (int i = 0; i < rgb_corner * 3; i++) {
         rgbArray[i] = ((one - ratio) * nextColor[i] + ratio * currentColor[i]).value / 0x1000;
     }
-    unkfunc_02048640(&rgbArray[12], &rgbArray[15], &rgbArray[18], &rgbArray[21], &rgbArray[0], &rgbArray[3], &rgbArray[6], &rgbArray[9]);
+    setBackgroundGradient(&rgbArray[12], &rgbArray[15], &rgbArray[18], &rgbArray[21], &rgbArray[0], &rgbArray[3], &rgbArray[6], &rgbArray[9]);
 }
 
 THUMB int MapBackGroundColorInit::isEnd()

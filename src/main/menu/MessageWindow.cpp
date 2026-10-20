@@ -69,7 +69,7 @@ THUMB void MessageWindow::execute(UnkOamBuffer* main, UnkOamBuffer* sub)
 THUMB void MessageWindow::draw(UnkOamBuffer* main, UnkOamBuffer* sub)
 {
     if (!enable_) {
-        unkfunc_0204d068(0);
+        setWindow0Enable(0);
     }
     if (!unkfunc_02064730(main, sub) || state_ == 0) {
         return;
@@ -99,7 +99,7 @@ THUMB void MessageWindow::draw(UnkOamBuffer* main, UnkOamBuffer* sub)
         }
     }
     int type;
-    switch (unkfunc_0204d0b8()) {
+    switch (getDisplayPluginType()) {
     case 1:
         type = 0x14;
         break;
@@ -114,8 +114,8 @@ THUMB void MessageWindow::draw(UnkOamBuffer* main, UnkOamBuffer* sub)
         break;
     }
     if (type) {
-        unkfunc_0204d068(1);
-        unkfunc_0204d080(type, x_ + 2 + shakeX_, y_ - 0xbe + shakeY_, width_ - 4, height_ - 4);
+        setWindow0Enable(1);
+        setWindow0(type, x_ + 2 + shakeX_, y_ - 0xbe + shakeY_, width_ - 4, height_ - 4);
     }
 }
 
@@ -140,7 +140,7 @@ THUMB void MessageWindow::appendText(const char* text)
     int length = dss::strlen(buf);
     int maxWidth = config_->width_ - config_->margin_ * 2;
     int x = 0;
-    unkfunc_0204e478(config_->font_);
+    setBgTextFontSize(config_->font_);
     UnkUtf8Iterator src;
     src.setText(text);
     UnkUtf8Iterator dst;
@@ -177,7 +177,7 @@ THUMB void MessageWindow::appendText(const char* text)
             }
             x = 0;
         } else if (c != '\n') {
-            int width = unkfunc_0204e1a0(NULL, 0, 0, 0, c);
+            int width = drawBgChar(NULL, 0, 0, 0, c);
             dst.putChar(c);
             if (c == ' ' || c == '-' || c == 0x3220) {
                 wordPos = src.pos_;

@@ -23,8 +23,8 @@ struct Sprite2D : RenderObject {
 
     Sprite2D();
     void unkfunc_02047e88(int x, int y);
-    void unkfunc_02047e9c(dss::Fix32 x, dss::Fix32 y);
-    void unkfunc_02047ec0(int w, int h);
+    void setPositionFix32(dss::Fix32 x, dss::Fix32 y);
+    void setSize(int w, int h);
     void unkfunc_02047ecc(int u0, int v0, int u1, int v1);
     void setColor(int r, int g, int b);
     void setColor(int color);

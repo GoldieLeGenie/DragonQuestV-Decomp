@@ -155,8 +155,8 @@ THUMB int MsgData::loadBlock(unsigned int msg_id, int lang)
         if (dss::g_File.isExist(path, dss::File::None) == 0) {
             return 0;
         }
-        dss::g_File.unkfunc_0204b32c(path, dss::File::Switching);
-        dss::g_File.unkfunc_0204b21c(path, m_addr, 1);
+        dss::g_File.getFileSize(path, dss::File::Switching);
+        dss::g_File.loadToBuffer(path, m_addr, 1);
     }
     m_loaded_msg_id = msg_id;
     m_loaded_lang = lang;

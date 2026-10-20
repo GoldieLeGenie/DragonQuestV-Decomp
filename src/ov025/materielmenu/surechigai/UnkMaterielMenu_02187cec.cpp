@@ -37,7 +37,7 @@ THUMB void UnkMaterielMenu_02187cec::menuSetup()
         gTownMenu_MESSAGE.addMessageNOWAIT(0xcc63f);
         gTownMenu_MESSAGE.addMessageWAITKEY();
     }
-    unkfunc_0204c9bc(-4, 0);
+    setCaptureOffset(-4, 0);
 }
 
 THUMB void UnkMaterielMenu_02187cec::menuExecute()
@@ -69,7 +69,7 @@ THUMB void UnkMaterielMenu_02187cec::menuUpdate()
             }
             if (result == 2 || result == 3) {
                 MaterielMenu_WINDOW_MANAGER::getSingleton()->closeMaterielWindow();
-                unkfunc_0204c9c8();
+                resetCaptureOffset();
             }
             redraw_ = 1;
             return;
@@ -78,7 +78,7 @@ THUMB void UnkMaterielMenu_02187cec::menuUpdate()
         if (stat == MENUBASE_STAT_OK || stat == MENUBASE_STAT_CANCEL) {
             gTownMenu_MESSAGE.close();
             MaterielMenu_WINDOW_MANAGER::getSingleton()->closeMaterielWindow();
-            unkfunc_0204c9c8();
+            resetCaptureOffset();
         }
     }
 }

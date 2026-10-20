@@ -24,8 +24,8 @@ ARM void ceremony::CeremonyPart::initialize()
     GX_ResetBankForSubBg();
     GX_SetBankForTex(GX_VRAM_AB);
     data_020f4f74.initVramManagers(0x40000, 0x4000);
-    unkfunc_0204c9d8(&dss::g_DISPLAYPLUGIN_DOUBLE3D);
-    unkfunc_02048728(0);
+    changeDisplayPlugin(&dss::g_DISPLAYPLUGIN_DOUBLE3D);
+    setBackgroundGradientEnable(0);
     loadOverlay((int)&OVERLAY_4_ID);
     ov004_entry();
     loadOverlay((int)&OVERLAY_19_ID);
@@ -40,7 +40,7 @@ ARM void ceremony::CeremonyPart::terminate()
     CeremonySystem::getSingleton()->terminate();
     unloadOverlay((int)&OVERLAY_4_ID);
     unloadOverlay((int)&OVERLAY_19_ID);
-    dss::g_Pad.unkfunc_0204bc24(0);
+    dss::g_Pad.setMaskL(0);
     data_020f4f74.onPartTerminate();
 }
 

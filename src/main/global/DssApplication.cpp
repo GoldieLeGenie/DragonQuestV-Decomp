@@ -7,7 +7,7 @@ ARM void DssApplication::unkfunc_02051658(int arg)
 {
     initSystem(arg);
     clearVram();
-    unkfunc_0204b50c();
+    resetBgObjVram();
     unkfunc_0204afd8();
     initSleep();
     UnkDssRand::initSeed();

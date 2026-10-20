@@ -142,9 +142,9 @@ THUMB int CheckBadWord(char* name)
 
 THUMB int unkfunc_0206cea4(char* name)
 {
-    unkfunc_0204e478(10);
-    unkfunc_0204dfbc(NULL, 0, 0, 0, name, 0);
-    if (unkfunc_0204e540() > 0x30) {
+    setBgTextFontSize(10);
+    drawBgTextWrapped(NULL, 0, 0, 0, name, 0);
+    if (getBgTextWidth() > 0x30) {
         return 1;
     }
     return 0;

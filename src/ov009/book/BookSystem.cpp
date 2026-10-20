@@ -33,7 +33,7 @@ THUMB void book::BookSystem::initialize()
     DSSAObject::setPriority(1);
     dq5::level::EffectParam::setup();
     dq5::level::MonsterAnim::setup();
-    render_.unkfunc_02048860();
+    render_.setup();
     BookCamera::getSingleton().initialize();
     BookMonsterDraw::getSingleton().initialize();
     monsterNo_ = 0;
@@ -53,7 +53,7 @@ THUMB void book::BookSystem::terminate()
 {
     BookMonsterDraw::getSingleton().terminate();
     BookCamera::getSingleton().terminate();
-    render_.unkfunc_020488b4();
+    render_.cleanup();
     sprite_.unload();
     dq5::level::EffectParam::cleanup();
     dq5::level::MonsterAnim::cleanup();

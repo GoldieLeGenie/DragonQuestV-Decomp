@@ -80,7 +80,7 @@ THUMB void twn::TownFukubikiDraw::initialize()
     dss::sprintf_s(path, sizeof(path), "data/fukubiki/fukubiki.tex");
     lotteryTextureData_.setup(path, 0, 0);
     lotteryTexture_ = (TextureObject*)lotteryTextureData_.getAddr();
-    lotteryTexture_->unkfunc_02049e9c(1);
+    lotteryTexture_->loadToVram(1);
 }
 
 THUMB void twn::TownFukubikiDraw::setup(int number)
@@ -110,7 +110,7 @@ THUMB void twn::TownFukubikiDraw::cleanup()
 
 THUMB void twn::TownFukubikiDraw::terminate()
 {
-    lotteryTexture_->unkfunc_02049f90();
+    lotteryTexture_->freeVram();
     lotteryTextureData_.cleanup();
 }
 

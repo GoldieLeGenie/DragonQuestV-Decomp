@@ -76,7 +76,7 @@ THUMB void fld::FieldDragonDraw::setDepth(int depth)
 
 THUMB void fld::FieldDragonDraw::setShadowWH(int w, int h)
 {
-    shadow_.shadow_.unkfunc_02047ec0(w, h);
+    shadow_.shadow_.setSize(w, h);
 }
 
 THUMB void fld::FieldDragonDraw::setDisplayEnable(int flag)

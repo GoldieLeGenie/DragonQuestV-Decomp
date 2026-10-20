@@ -22,7 +22,7 @@ inline void menu::MenuPlayerControl::setActiveItem(short item)
 THUMB void MaterielMenu_SHOP_BUYMENU::menuSetup()
 {
     MenuStatusInfo::setMode(MenuStatusInfo::PLAYER_MODE);
-    unkfunc_0204c9bc(-4, 0);
+    setCaptureOffset(-4, 0);
     menuItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD_CANCEL, menu::MenuItem::CURSORTYPE_ACTIVE);
     menuItem_.active_ = menu::MaterielMenuPlayerControl::getSingleton()->activeItem_;
     navigator_.setupBase();
@@ -55,7 +55,7 @@ THUMB void MaterielMenu_SHOP_BUYMENU::menuUpdate()
         if (stat == MENUBASE_STAT_OK || stat == MENUBASE_STAT_CANCEL) {
             gTownMenu_MESSAGE.close();
             if (mode_ == MODE_NEXT) {
-                unkfunc_0204c9c8();
+                resetCaptureOffset();
                 close();
                 gMaterielMenu_SHOP_WHOSE.open();
             }

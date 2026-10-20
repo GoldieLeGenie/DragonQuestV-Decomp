@@ -27,10 +27,10 @@ THUMB void casino::PokerCard::unkfunc_021282f0(dss::Fix32 scale)
 
 THUMB void casino::PokerCard::unkfunc_02128350(const UnkPolygonVertex* vertex)
 {
-    m_front_polygon.unkfunc_0204709c(vertex);
-    m_back_polygon.unkfunc_0204709c(vertex);
-    m_shine_polygon.unkfunc_0204709c(vertex);
-    m_glow_polygon.unkfunc_0204709c(vertex);
+    m_front_polygon.setVertex(vertex);
+    m_back_polygon.setVertex(vertex);
+    m_shine_polygon.setVertex(vertex);
+    m_glow_polygon.setVertex(vertex);
 }
 
 THUMB void casino::PokerCard::setPosition(dss::Fix32Vector3& pos)
@@ -55,17 +55,17 @@ THUMB void casino::PokerCard::setAngle(int angle)
 
 THUMB void casino::PokerCard::unkfunc_02128400(const UnkBillboardTexCoord* texCoord)
 {
-    m_front_polygon.unkfunc_02047138(texCoord);
+    m_front_polygon.setTexCoord(texCoord);
 }
 
 THUMB void casino::PokerCard::unkfunc_02128408(const UnkBillboardTexCoord* texCoord)
 {
-    m_back_polygon.unkfunc_02047138(texCoord);
+    m_back_polygon.setTexCoord(texCoord);
 }
 
 THUMB void casino::PokerCard::unkfunc_02128414(const UnkBillboardTexCoord* texCoord)
 {
-    m_shine_polygon.unkfunc_02047138(texCoord);
+    m_shine_polygon.setTexCoord(texCoord);
     m_shine_polygon.setAlpha(12);
     unk_230.v[0].vx = texCoord->v[0].vx;
     unk_230.v[0].vy = texCoord->v[0].vy;
@@ -79,7 +79,7 @@ THUMB void casino::PokerCard::unkfunc_02128414(const UnkBillboardTexCoord* texCo
 
 THUMB void casino::PokerCard::unkfunc_021284a0(const UnkBillboardTexCoord* texCoord)
 {
-    m_glow_polygon.unkfunc_02047138(texCoord);
+    m_glow_polygon.setTexCoord(texCoord);
 }
 
 THUMB void casino::PokerCard::unkfunc_021284b0(void* texture)
@@ -121,7 +121,7 @@ THUMB void casino::PokerCard::draw()
         texCoord.v[1].vy.value = unk_230.v[1].vy.value + m_shine_scroll_speed * m_effect_frame;
         texCoord.v[2].vy.value = unk_230.v[2].vy.value + m_shine_scroll_speed * m_effect_frame;
         texCoord.v[3].vy.value = unk_230.v[3].vy.value + m_shine_scroll_speed * m_effect_frame;
-        m_shine_polygon.unkfunc_02047138(&texCoord);
+        m_shine_polygon.setTexCoord(&texCoord);
         m_shine_polygon.draw();
         m_effect_frame++;
     }

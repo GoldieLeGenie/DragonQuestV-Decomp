@@ -154,7 +154,7 @@ THUMB void MenuAPI::openFriendMenu()
 
 THUMB void MenuAPI::setBattleBackDrop(unsigned short backDrop)
 {
-    unkfunc_0204ccdc(backDrop);
+    setBackdropColor(backDrop);
 }
 
 THUMB void MenuAPI::openBattleStadiumAbort()

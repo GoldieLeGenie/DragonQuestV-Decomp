@@ -12,7 +12,7 @@ extern int data_0209a288;                       // array warnings enabled
 extern int data_020fd180;                       // number of array warnings
 extern UnkArrayWarning data_020fd184[16];
 
-void unkfunc_0204c0b4(int enable);
+void setArrayErrorEnabled(int enable);
 void addArrayError(int index, int size, unsigned int caller);   // add a warning
 UnkArrayWarning* getArrayError(int index);
 int getArrayErrorCount();                         // number of array warnings

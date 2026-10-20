@@ -193,7 +193,7 @@ THUMB void unkfunc_020627f8(char* dst, const char* src, int width, int lines, in
 {
     int length = dss::strlen(src);
     int x = 0;
-    unkfunc_0204e478(font);
+    setBgTextFontSize(font);
     UnkUtf8Iterator in;
     in.setText(src);
     UnkUtf8Iterator out;
@@ -230,7 +230,7 @@ THUMB void unkfunc_020627f8(char* dst, const char* src, int width, int lines, in
             }
             x = 0;
         } else if (c != '\n') {
-            int w = unkfunc_0204e1a0(NULL, 0, 0, 0, c);
+            int w = drawBgChar(NULL, 0, 0, 0, c);
             out.putChar(c);
             if (c == ' ' || c == '-' || c == 0x3220) {
                 breakPos = in.pos_;

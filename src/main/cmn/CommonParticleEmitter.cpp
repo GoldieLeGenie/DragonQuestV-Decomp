@@ -125,14 +125,14 @@ static void unkfunc_02044e08(int type)
     }
     for (int i = 0; i < s_maxPattern + 1; i++) {
         unk_020f3590[i] = (TextureObject*)unk_020f35d0[i].getAddr();
-        unk_020f3590[i]->unkfunc_02049e9c(1);
+        unk_020f3590[i]->loadToVram(1);
     }
 }
 
 static void unkfunc_02044fb0()
 {
     for (int i = 0; i < s_maxPattern + 1; i++) {
-        unk_020f3590[i]->unkfunc_02049f90();
+        unk_020f3590[i]->freeVram();
         unk_020f35d0[i].cleanup();
     }
 }

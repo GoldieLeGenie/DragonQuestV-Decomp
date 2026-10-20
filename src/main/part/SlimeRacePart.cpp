@@ -53,7 +53,7 @@ THUMB void race::SlimeRacePart::initialize()
     GX_ResetBankForSubBg();
     GX_SetBankForTex(GX_VRAM_AB);
     data_020f4f74.initVramManagers(0x40000, 0x4000);
-    unkfunc_0204c9d8(&dss::g_DISPLAYPLUGIN_DOUBLE3D);
+    changeDisplayPlugin(&dss::g_DISPLAYPLUGIN_DOUBLE3D);
     func_02062480(5, 0x1f, 0x10, 0x1f);
     func_02062480(6, 6, 0x19, 0x1f);
     func_02062480(7, 0x10, 0x1f, 0x10);
@@ -61,7 +61,7 @@ THUMB void race::SlimeRacePart::initialize()
     func_02062480(9, 0x1f, 8, 8);
     func_02062480(10, 8, 0xb, 0x1f);
     func_02062480(11, 0x1f, 0x1f, 0);
-    unkfunc_0204afe0();
+    getTick();
     loadOverlay((int)&OVERLAY_3_ID);
     loadOverlay((int)&OVERLAY_19_ID);
     ov019_entry();
@@ -98,7 +98,7 @@ THUMB void race::SlimeRacePart::initialize()
 
 THUMB void race::SlimeRacePart::terminate()
 {
-    dss::g_Pad.unkfunc_0204bc24(0);
+    dss::g_Pad.setMaskL(0);
     SlimeRaceTerm();
     dssFree(&data_020fd24c, s_work);
     s_work = NULL;

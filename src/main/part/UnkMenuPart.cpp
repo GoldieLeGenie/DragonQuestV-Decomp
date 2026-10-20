@@ -27,8 +27,8 @@ THUMB void UnkMenuPart::initialize()
     GX_ResetBankForSubBg();
     GX_SetBankForTex(GX_VRAM_AB);
     data_020f4f74.initVramManagers(0x40000, 0x4000);
-    unkfunc_0204c9d8(&dss::g_DISPLAYPLUGIN_DOUBLE3D);
-    s_render.unkfunc_02048860();
+    changeDisplayPlugin(&dss::g_DISPLAYPLUGIN_DOUBLE3D);
+    s_render.setup();
     if (getGameRegion() == 1) {
         s_logo[0].loadFile("data/2d/sqex_logo.tex", 0);
     }
@@ -64,7 +64,7 @@ THUMB void UnkMenuPart::terminate()
 {
     s_logo[0].unload();
     s_logo[1].unload();
-    s_render.unkfunc_020488b4();
+    s_render.cleanup();
     data_020f4f74.onPartTerminate();
 }
 

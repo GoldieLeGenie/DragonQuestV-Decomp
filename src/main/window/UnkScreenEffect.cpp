@@ -100,7 +100,7 @@ THUMB bool window::UnkScreenEffect::unkfunc_020284cc()
         data_020c32a0 = (UnkScreenEffectPanel*)ov020_entry();
     }
     unk_18 = 0;
-    unkfunc_0204d0cc();
+    requestScreenCapture();
     for (int i = 0; i < unk_0c; i++) {
         for (int j = 0; j < unk_10; j++) {
             int index = j + i * unk_10;
@@ -153,7 +153,7 @@ THUMB void window::UnkScreenEffect::execute()
             return;
         }
     }
-    if (unkfunc_0204d1f4()) {
+    if (isScreenCaptureDone()) {
         if (isReady() == false) {
             if (unk_14 >= 2) {
                 flag_ |= FLAG_READY;

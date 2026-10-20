@@ -34,24 +34,24 @@ struct TextureObject {
 
     TextureObject();
     ~TextureObject();
-    void unkfunc_02049e9c(int flag);            // relocate, allocate the VRAM and transfer
-    void unkfunc_02049ef0();                    // relocate the texture and palette offsets
-    void unkfunc_02049f90();                    // free the VRAM
-    void unkfunc_0204a004();                    // allocate the VRAM
-    void unkfunc_0204a090(int flag);            // transfer to the VRAM
-    void unkfunc_0204a114(TextureObject* src, int flag);    // transfer the data of another texture
-    int unkfunc_0204a1bc();                     // texture address
-    int unkfunc_0204a1c4();                     // texture data
-    int unkfunc_0204a1cc();                     // palette address
-    int unkfunc_0204a1d4();                     // palette data
-    int unkfunc_0204a1dc();                     // palette size
-    void unkfunc_0204a1e4();                    // G3 texture parameters (repeat)
-    void unkfunc_0204a21c();                    // G3 texture parameters
-    void unkfunc_0204a264();                    // G3 palette base
-    void unkfunc_0204a290();                    // G3 texture parameters of the second texture
-    void unkfunc_0204a300();                    // G3 palette base of the second palette
-    int unkfunc_0204a340();                     // width
-    int unkfunc_0204a38c();                     // height
+    void loadToVram(int flag);            // relocate, allocate the VRAM and transfer
+    void relocate();                    // relocate the texture and palette offsets
+    void freeVram();                    // free the VRAM
+    void allocVram();                    // allocate the VRAM
+    void transferToVram(int flag);            // transfer to the VRAM
+    void transferFrom(TextureObject* src, int flag);    // transfer the data of another texture
+    int getTexAddr();                     // texture address
+    int getTexData();                     // texture data
+    int getPlttAddr();                     // palette address
+    int getPlttData();                     // palette data
+    int getPlttSize();                     // palette size
+    void applyTexImageParam();                    // G3 texture parameters (repeat)
+    void applyTexImageParamOpaque();                    // G3 texture parameters
+    void applyPlttBase();                    // G3 palette base
+    void applySubTexImageParam();                    // G3 texture parameters of the second texture
+    void applySubPlttBase();                    // G3 palette base of the second palette
+    int getWidth();                     // width
+    int getHeight();                     // height
 };
 
 void disableTexture();                        // G3 no texture

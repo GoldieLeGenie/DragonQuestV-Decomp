@@ -15,7 +15,7 @@ THUMB UnkBattleMapList::~UnkBattleMapList()
 
 THUMB void UnkBattleMapList::unkfunc_0206da18(const char* filename)
 {
-    unkfunc_02052248(filename, 1);
+    load(filename, 1);
     group_ = 0;
     map_ = 0;
     unk_28 = 0;

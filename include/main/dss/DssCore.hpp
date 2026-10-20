@@ -4,12 +4,12 @@
 // debug text 
 struct UnkDebugConsole {
     UnkDebugConsole();
-    void unkfunc_0204aff0();                    // init
-    void unkfunc_0204aff4();                    // clear
-    void unkfunc_0204affc();                    // clear
-    void unkfunc_0204b00c(int x, int y, int w, int h);  // clear a rect
-    void unkfunc_0204b034(int x, int y, const char* str);
-    void unkfunc_0204b04c(int x, int y, const char* format, ...);
+    void init();                    // init
+    void reset();                    // clear
+    void clear();                    // clear
+    void clearRect(int x, int y, int w, int h);  // clear a rect
+    void print(int x, int y, const char* str);
+    void printf(int x, int y, const char* format, ...);
 };
 
 extern UnkDebugConsole data_020f6f9c;
@@ -18,13 +18,13 @@ extern unsigned char data_020f6fe0[0x2800] __attribute__((aligned(32)));  // rea
 
 void unkfunc_0204afd8();
 void unkfunc_0204afdc();
-int unkfunc_0204afe0();                         // tick count
-void unkfunc_0204afe8(const char* format, ...); // debug print
+int getTick();                         // tick count
+void debugPrintfStub(const char* format, ...); // debug print
 void dssVBlankIntr();                        // V-blank interrupt
 void initSystem(int exArena);             // OS/system init
 void clearVram();                        // clear the VRAM, OAM and palettes
-unsigned int unkfunc_0204b360(unsigned int value, unsigned int align);  // round down
-void unkfunc_0204b50c();                        // reset the BG/OBJ VRAM
+unsigned int roundDown(unsigned int value, unsigned int align);  // round down
+void resetBgObjVram();                        // reset the BG/OBJ VRAM
 void setMainBrightness(int brightness);          // main screen master brightness
 void setSubBrightness(int brightness);          // sub screen master brightness
 

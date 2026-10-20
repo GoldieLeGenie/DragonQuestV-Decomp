@@ -10,7 +10,7 @@ namespace dss {
         unsigned short mode_;                   // 0x06 0: none, 1: record, 2: play
         unsigned short recordCount_;            // 0x08
         unsigned short playIndex_;              // 0x0A
-        int unk_0c;                             // 0x0C record buffer full: unkfunc_0204bc44 instead of stopping
+        int unk_0c;                             // 0x0C record buffer full: onRecordFull instead of stopping
         int unk_10;                             // 0x10 play the record file block by block
         int unk_14;                             // 0x14 next block of the record file
         char fileName_[0x80];                   // 0x18 record file
@@ -27,25 +27,25 @@ namespace dss {
         int maskL_;                             // 0xE0
 
         Pad();
-        void unkfunc_0204b640();                // init
-        void unkfunc_0204b660();                // read the keys
-        void unkfunc_0204baec();                // update
+        void init();                // init
+        void readKeys();                // read the keys
+        void update();                // update
         int pad();                              // held keys & enable mask
         int padDir();                           // direction
         int edge();                             // triggered keys & enable mask
         int repeat();                 // repeat keys & enable mask
-        int unkfunc_0204bc10();                 // L+R+SELECT+START held
-        void unkfunc_0204bc24(int flag);        // flag != 0: mask out the L button
-        void unkfunc_0204bc44();                // record buffer full
-        void unkfunc_0204bc48();                // stop recording
-        int unkfunc_0204bc78();                 // load the next block of the record file
-        void unkfunc_0204bd50(unsigned short playMask);    // start playing, keeping playMask keys
-        void unkfunc_0204bd74();                // start playing
-        void unkfunc_0204bd98();                // play again
-        unsigned short unkfunc_0204bdb8();      // next played keys
-        void unkfunc_0204be10(unsigned short keys);     // record keys
-        void unkfunc_0204be48();                // stop playing
-        void unkfunc_0204be8c();                // clear the record
+        int isResetComboHeld();                 // L+R+SELECT+START held
+        void setMaskL(int flag);        // flag != 0: mask out the L button
+        void onRecordFull();                // record buffer full
+        void stopRecord();                // stop recording
+        int loadRecordBlock();                 // load the next block of the record file
+        void startPlayWithMask(unsigned short playMask);    // start playing, keeping playMask keys
+        void startPlay();                // start playing
+        void restartPlay();                // play again
+        unsigned short getPlayKeys();      // next played keys
+        void recordKeys(unsigned short keys);     // record keys
+        void stopPlay();                // stop playing
+        void clearRecord();                // clear the record
         void addRecordKeys(unsigned short keys, int count);  // record keys count times
         void addRecordPresses(unsigned short keys, int count);  // record count presses of keys
     };

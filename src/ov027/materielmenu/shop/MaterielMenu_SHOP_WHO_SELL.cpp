@@ -22,7 +22,7 @@ inline void menu::MenuPlayerControl::setActiveChara(short chara)
 THUMB void MaterielMenu_SHOP_WHO_SELL::menuSetup()
 {
     MenuStatusInfo::setMode(MenuStatusInfo::PLAYER_MODE);
-    unkfunc_0204c9c8();
+    resetCaptureOffset();
     menuItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD_CANCEL, menu::MenuItem::CURSORTYPE_ACTIVE);
     menuItem_.active_ = menu::MaterielMenuPlayerControl::getSingleton()->activeChara_;
     navigator_.setupBase();

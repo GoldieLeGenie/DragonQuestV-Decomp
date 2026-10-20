@@ -21,7 +21,7 @@ inline void menu::MenuPlayerControl::setActiveItem(short item)
 THUMB void MaterielMenu_CHANGEGIFT_SELECTGIFT::menuSetup()
 {
     MenuStatusInfo::setMode(MenuStatusInfo::PLAYER_MODE);
-    unkfunc_0204c9bc(-4, 0);
+    setCaptureOffset(-4, 0);
     menuItem_.setup(menu::MenuItem::MENUITEM_TYPE_TOUCH_PAD_CANCEL, menu::MenuItem::CURSORTYPE_ACTIVE);
     navigator_.setupBase();
     itemCount_ = MaterielMenu_SHOP_MANAGER::getSingleton()->getSellItemCount();
@@ -58,7 +58,7 @@ THUMB void MaterielMenu_CHANGEGIFT_SELECTGIFT::menuUpdate()
             if (mode_ == MODE_SELECT) {
                 close();
                 gMaterielMenu_CHANGEGIFT_SELECTCHARA.open();
-                unkfunc_0204c9c8();
+                resetCaptureOffset();
             }
         }
         return;

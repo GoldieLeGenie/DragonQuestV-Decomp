@@ -215,10 +215,10 @@ ARM void DSSAObject::setTexture(void* texture)
     }
     TextureObject* tex = (TextureObject*)dssaData_.texture_;
     if (tex->flags_ & 1) {
-        applyPaletteTone((unsigned short*)tex->unkfunc_0204a1d4(), tex->unkfunc_0204a1dc(), hue);
-        ((TextureObject*)dssaData_.texture_)->unkfunc_0204a090(0);
+        applyPaletteTone((unsigned short*)tex->getPlttData(), tex->getPlttSize(), hue);
+        ((TextureObject*)dssaData_.texture_)->transferToVram(0);
     } else {
-        applyPaletteTone((unsigned short*)((int)dssaData_.texture_ + tex->unkfunc_0204a1d4()), tex->unkfunc_0204a1dc(), hue);
+        applyPaletteTone((unsigned short*)((int)dssaData_.texture_ + tex->getPlttData()), tex->getPlttSize(), hue);
     }
 }
 
@@ -276,13 +276,13 @@ ARM void DSSAObject::draw()
         trans_ = (dss::Fix32(trans_) * alpha_).value >> 12;
         REG_GFX_FIFO_POLYGON_ATTR = (priority_ << 24) | 0xc0 | (trans_ << 16);
         if (parts.getAlpha()) {
-            ((TextureObject*)dssaData_.texture_)->unkfunc_0204a290();
-            ((TextureObject*)dssaData_.texture_)->unkfunc_0204a300();
+            ((TextureObject*)dssaData_.texture_)->applySubTexImageParam();
+            ((TextureObject*)dssaData_.texture_)->applySubPlttBase();
         } else {
-            ((TextureObject*)dssaData_.texture_)->unkfunc_0204a1e4();
-            ((TextureObject*)dssaData_.texture_)->unkfunc_0204a264();
+            ((TextureObject*)dssaData_.texture_)->applyTexImageParam();
+            ((TextureObject*)dssaData_.texture_)->applyPlttBase();
             if (palette_) {
-                ((CharacterPalette*)palette_)->unkfunc_0204a4d4();
+                ((CharacterPalette*)palette_)->applyPlttBase();
             }
         }
         if (trans_ != 0) {
@@ -423,8 +423,8 @@ ARM void DSSAObject::setupDraw()
     func_020802dc();
     func_02082604();
     if (dssaData_.texture_) {
-        ((TextureObject*)dssaData_.texture_)->unkfunc_0204a1e4();
-        ((TextureObject*)dssaData_.texture_)->unkfunc_0204a264();
+        ((TextureObject*)dssaData_.texture_)->applyTexImageParam();
+        ((TextureObject*)dssaData_.texture_)->applyPlttBase();
     }
     if (calcType_) {
         baseScale_.vx = defaultScale2_ * scale_.vx;
@@ -545,8 +545,8 @@ ARM void DSSAObject2D::setupDraw()
     VecFx32 target = { 0, 0, 0 };
     func_02076118(&camPos, &camUp, &target, 1, NULL);
     if (dssaData_.texture_) {
-        ((TextureObject*)dssaData_.texture_)->unkfunc_0204a1e4();
-        ((TextureObject*)dssaData_.texture_)->unkfunc_0204a1e4();
+        ((TextureObject*)dssaData_.texture_)->applyTexImageParam();
+        ((TextureObject*)dssaData_.texture_)->applyTexImageParam();
     }
     baseScale_.vx = 1L;
     baseScale_.vy = 1L;

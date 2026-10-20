@@ -52,36 +52,36 @@ struct UnkDisplay {
 
 extern UnkDisplay data_020fe6b0;
 
-void unkfunc_0204c9ac(int* x, int* y);          // capture position
-void unkfunc_0204c9bc(int x, int y);
-void unkfunc_0204c9c8();
-void unkfunc_0204c9d8(dss::UnkDisplayPlugin* plugin);  // change the plugin now
-void unkfunc_0204ca54();                        // clear the OAM buffers
-void unkfunc_0204ca6c();                        // update
-void unkfunc_0204cc9c(dss::UnkDisplayPlugin* plugin);  // change the plugin
-int unkfunc_0204cca8();                         // plugin changed and text shown
+void getCaptureOffset(int* x, int* y);          // capture position
+void setCaptureOffset(int x, int y);
+void resetCaptureOffset();
+void changeDisplayPlugin(dss::UnkDisplayPlugin* plugin);  // change the plugin now
+void clearOamBuffers();                        // clear the OAM buffers
+void updateDisplay();                        // update
+void requestDisplayPlugin(dss::UnkDisplayPlugin* plugin);  // change the plugin
+int isDisplayTextReady();                         // plugin changed and text shown
 int getDisplayFrame();                         // frame counter
-void unkfunc_0204ccdc(unsigned short color);    // backdrop color
+void setBackdropColor(unsigned short color);    // backdrop color
 void unkfunc_0204cce8(unsigned short value);
-void unkfunc_0204ccf4(int mode);                // blend mode
+void setDisplayBlendMode(int mode);                // blend mode
 UnkPaletteBuffer* getBgPaletteBuffer(int bg);     // BG palette (0-3 main, 4-7 sub)
 UnkPaletteBuffer* getObjPaletteBuffer(int screen); // OBJ palette
-UnkOamBuffer* unkfunc_0204ce18(int screen);     // OAM buffer
-UnkOamBuffer* unkfunc_0204ce40(int y);          // OAM buffer of a position (0: main screen, 192: sub screen)
-int unkfunc_0204ced8(int y);                    // text BG of a position
-int unkfunc_0204cf7c(int y);
-void unkfunc_0204d020(int type, int screen1, int screen2, int unk_0c, int unk_10, int unk_14);
-int unkfunc_0204d03c();
+UnkOamBuffer* getOamBuffer(int screen);     // OAM buffer
+UnkOamBuffer* getOamBufferAtY(int y);          // OAM buffer of a position (0: main screen, 192: sub screen)
+int getTextBgAtY(int y);                    // text BG of a position
+int getTextBackBgAtY(int y);
+void setDisplayTextBgs(int type, int screen1, int screen2, int unk_0c, int unk_10, int unk_14);
+int isDisplayIconEnabled();
 UnkScreenBuffer* getDebugScreenBuffer();            // debug screen
 void setDisplayTextCounter(int counter);             // show the text
-void unkfunc_0204d068(int enable);              // window 0
-void unkfunc_0204d074(int enable);              // window 1
-void unkfunc_0204d080(int plane, int x, int y, int w, int h);
-void unkfunc_0204d098(int plane, int x, int y, int w, int h);
-int unkfunc_0204d0b8();                         // plugin type
-void unkfunc_0204d0cc();                        // request a screen capture
-void unkfunc_0204d0f4();                        // capture step
-int unkfunc_0204d1f4();                         // screen capture done
+void setWindow0Enable(int enable);              // window 0
+void setWindow1Enable(int enable);              // window 1
+void setWindow0(int plane, int x, int y, int w, int h);
+void setWindow1(int plane, int x, int y, int w, int h);
+int getDisplayPluginType();                         // plugin type
+void requestScreenCapture();                        // request a screen capture
+void updateScreenCapture();                        // capture step
+int isScreenCaptureDone();                         // screen capture done
 
 extern "C" {
     void func_02075aa0(unsigned int* reg, int plane, int brightness);   // brightness blend

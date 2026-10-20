@@ -14,20 +14,20 @@ ARM CharacterPalette::~CharacterPalette()
 {
 }
 
-ARM void CharacterPalette::unkfunc_0204a3f4(TextureObject* texture, int flag)
+ARM void CharacterPalette::loadFromTexture(TextureObject* texture, int flag)
 {
-    int data = texture->unkfunc_0204a1d4();
-    int size = texture->unkfunc_0204a1dc();
+    int data = texture->getPlttData();
+    int size = texture->getPlttSize();
     dss::memcpy(palette_, (void*)data, size);
     size_ = size;
     handle_ = data_020f4f74.allocPlttVram(size);
     address_ = data_020f4f74.getPlttVramAddr(handle_);
-    unkfunc_02086d78(flag);
+    transferToVram(flag);
     texFormat_ = texture->unk_20;
     enable_ = 0;
 }
 
-ARM void CharacterPalette::unkfunc_0204a474()
+ARM void CharacterPalette::freeVram()
 {
     if (handle_ != 0) {
         data_020f4f74.freePlttVram(handle_);
@@ -35,12 +35,12 @@ ARM void CharacterPalette::unkfunc_0204a474()
     }
 }
 
-ARM void CharacterPalette::unkfunc_02086d78(int flag)
+ARM void CharacterPalette::transferToVram(int flag)
 {
     data_020f4f74.transferToVram(1, palette_, address_, size_, flag);
 }
 
-ARM void CharacterPalette::unkfunc_0204a4d4()
+ARM void CharacterPalette::applyPlttBase()
 {
     if (enable_ == 0) {
         return;

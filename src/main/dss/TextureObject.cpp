@@ -10,22 +10,22 @@ ARM TextureObject::~TextureObject()
 {
 }
 
-ARM void TextureObject::unkfunc_02049e9c(int flag)
+ARM void TextureObject::loadToVram(int flag)
 {
     if (flags_ & 1) {
         return;
     }
     flags_ |= 1;
-    unkfunc_02049ef0();
-    unkfunc_0204a004();
+    relocate();
+    allocVram();
     if (flag != 0) {
-        unkfunc_0204a090(1);
+        transferToVram(1);
     } else {
-        unkfunc_0204a090(0);
+        transferToVram(0);
     }
 }
 
-ARM void TextureObject::unkfunc_02049ef0()
+ARM void TextureObject::relocate()
 {
     texData_ = (int)((unsigned char*)this + texData_);
     plttData_ = (int)((unsigned char*)this + plttData_);
@@ -44,7 +44,7 @@ ARM unsigned int unkfunc_02049f7c(unsigned int value, unsigned int align)
     return (value + (align - 1)) & ~(align - 1);
 }
 
-ARM void TextureObject::unkfunc_02049f90()
+ARM void TextureObject::freeVram()
 {
     if (!(flags_ & 1)) {
         return;
@@ -63,7 +63,7 @@ ARM void TextureObject::unkfunc_02049f90()
     }
 }
 
-ARM void TextureObject::unkfunc_0204a004()
+ARM void TextureObject::allocVram()
 {
     flags_ |= 1;
     texVramKey_ = data_020f4f74.allocTexVram(texSize_);
@@ -76,7 +76,7 @@ ARM void TextureObject::unkfunc_0204a004()
     }
 }
 
-ARM void TextureObject::unkfunc_0204a090(int flag)
+ARM void TextureObject::transferToVram(int flag)
 {
     data_020f4f74.transferToVram(0, (void*)texData_, texAddr_, texSize_, flag);
     data_020f4f74.transferToVram(1, (void*)plttData_, plttAddr_, plttSize_, flag);
@@ -85,7 +85,7 @@ ARM void TextureObject::unkfunc_0204a090(int flag)
     }
 }
 
-ARM void TextureObject::unkfunc_0204a114(TextureObject* src, int flag)
+ARM void TextureObject::transferFrom(TextureObject* src, int flag)
 {
     if (src->flags_ & 1) {
         data_020f4f74.transferToVram(0, (void*)texData_, texAddr_, texSize_, flag);
@@ -96,37 +96,37 @@ ARM void TextureObject::unkfunc_0204a114(TextureObject* src, int flag)
     }
 }
 
-ARM int TextureObject::unkfunc_0204a1bc()
+ARM int TextureObject::getTexAddr()
 {
     return texAddr_;
 }
 
-ARM int TextureObject::unkfunc_0204a1c4()
+ARM int TextureObject::getTexData()
 {
     return texData_;
 }
 
-ARM int TextureObject::unkfunc_0204a1cc()
+ARM int TextureObject::getPlttAddr()
 {
     return plttAddr_;
 }
 
-ARM int TextureObject::unkfunc_0204a1d4()
+ARM int TextureObject::getPlttData()
 {
     return plttData_;
 }
 
-ARM int TextureObject::unkfunc_0204a1dc()
+ARM int TextureObject::getPlttSize()
 {
     return plttSize_;
 }
 
-ARM void TextureObject::unkfunc_0204a1e4()
+ARM void TextureObject::applyTexImageParam()
 {
     G3_TexImageParam(unk_20, GX_TEXGEN_TEXCOORD, unk_24, unk_28, GX_TEXREPEAT_NONE, GX_TEXFLIP_NONE, GX_TEXPLTTCOLOR0_TRNS, texAddr_);
 }
 
-ARM void TextureObject::unkfunc_0204a21c()
+ARM void TextureObject::applyTexImageParamOpaque()
 {
     G3_TexImageParam(unk_20, GX_TEXGEN_TEXCOORD, unk_24, unk_28, GX_TEXREPEAT_NONE, GX_TEXFLIP_NONE, GX_TEXPLTTCOLOR0_USE, texAddr_);
 }
@@ -136,12 +136,12 @@ ARM void disableTexture()
     *(volatile unsigned int*)0x040004a8 = 0x60000000;
 }
 
-ARM void TextureObject::unkfunc_0204a264()
+ARM void TextureObject::applyPlttBase()
 {
     *(volatile unsigned int*)0x040004ac = (unsigned int)plttAddr_ >> (4 - (unk_20 == 2));
 }
 
-ARM void TextureObject::unkfunc_0204a290()
+ARM void TextureObject::applySubTexImageParam()
 {
     if (type_ == 1) {
         G3_TexImageParam(GX_TEXFMT_A3I5, GX_TEXGEN_TEXCOORD, unk_24, unk_28, GX_TEXREPEAT_NONE, GX_TEXFLIP_NONE, GX_TEXPLTTCOLOR0_TRNS, texAddr_);
@@ -151,7 +151,7 @@ ARM void TextureObject::unkfunc_0204a290()
     }
 }
 
-ARM void TextureObject::unkfunc_0204a300()
+ARM void TextureObject::applySubPlttBase()
 {
     if (type_ == 1) {
         *(volatile unsigned int*)0x040004ac = (unsigned int)subPlttAddr_ >> 4;
@@ -161,7 +161,7 @@ ARM void TextureObject::unkfunc_0204a300()
     }
 }
 
-ARM int TextureObject::unkfunc_0204a340()
+ARM int TextureObject::getWidth()
 {
     int width = 0;
     if (unk_24 == 0) {
@@ -191,7 +191,7 @@ ARM int TextureObject::unkfunc_0204a340()
     return width;
 }
 
-ARM int TextureObject::unkfunc_0204a38c()
+ARM int TextureObject::getHeight()
 {
     int height = 0;
     if (unk_28 == 0) {

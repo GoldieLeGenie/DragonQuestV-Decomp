@@ -47,7 +47,7 @@ THUMB void ceremony::CeremonyStaffSystem::initialize()
         dss::sprintf_s(path, sizeof(path), "data/opening/jp/staff.tex.lz");
         textureData_.setup(path, 0, 1);
         texture_ = (TextureObject*)textureData_.getAddr();
-        texture_->unkfunc_02049e9c(1);
+        texture_->loadToVram(1);
         dss::sprintf_s(path, sizeof(path), "data/opening/jp/staff_u.dssa");
         staffUpData_.setup(path, 0, 0);
         staffUpDssa_.setup(staffUpData_.getAddr());
@@ -90,7 +90,7 @@ THUMB void ceremony::CeremonyStaffSystem::initialize()
         dss::sprintf_s(path, sizeof(path), "data/opening/%s/%s/staff_%s_%s.tex.lz", area, lang, area, lang);
         textureData_.setup(path, 0, 1);
         texture_ = (TextureObject*)textureData_.getAddr();
-        texture_->unkfunc_02049e9c(1);
+        texture_->loadToVram(1);
         dss::sprintf_s(path, sizeof(path), "data/opening/%s/%s/staff_%s_%s_u.dssa", area, lang, area, lang);
         staffUpData_.setup(path, 0, 0);
         staffUpDssa_.setup(staffUpData_.getAddr());
@@ -106,7 +106,7 @@ THUMB void ceremony::CeremonyStaffSystem::initialize()
 THUMB void ceremony::CeremonyStaffSystem::terminate()
 {
     Sound::unkfunc_02068908(0xf);
-    texture_->unkfunc_02049f90();
+    texture_->freeVram();
     textureData_.cleanup();
     staffUpDssa_.cleanup();
     staffUpData_.cleanup();

@@ -37,7 +37,7 @@ ARM void* ExcelBinaryData::getRecord(int index, void* addr, const char* fname, d
 ARM void ExcelBinaryData::setupHeader(const char* fname, dss::File::LoadSwitch loadSwitch)
 {
     ExcelBinaryHeader header;
-    dss::g_File.unkfunc_0204b250(fname, &header, 0, sizeof(header), loadSwitch);
+    dss::g_File.loadPartToBuffer(fname, &header, 0, sizeof(header), loadSwitch);
     id_ = header.id_;
     record_ = header.record_;
     size_ = header.size_;
@@ -61,7 +61,7 @@ ARM void ExcelBinaryData::readRecord(void* addr, const char* fname, unsigned int
         seek = record_ - cashsize;
     }
     current_ = seek;
-    dss::g_File.unkfunc_0204b250(fname, addr, seek * size_ + sizeof(ExcelBinaryHeader), cashsize * size_, loadSwitch);
+    dss::g_File.loadPartToBuffer(fname, addr, seek * size_ + sizeof(ExcelBinaryHeader), cashsize * size_, loadSwitch);
 }
 
 ARM void ExcelBinaryData::clearRecord(void* addr)

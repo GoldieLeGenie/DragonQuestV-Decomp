@@ -293,9 +293,9 @@ THUMB void TownCamera::draw()
     if (no0 == 0 && no1 == 0) {
         camera_.applyCamera();
         if (getDisplayFrame() & 1) {
-            ((getDisplayFrame() & 1) == 0 ? &camera_.unk_004 : &camera_.unk_074)->unkfunc_02046934();
+            ((getDisplayFrame() & 1) == 0 ? &camera_.unk_004 : &camera_.unk_074)->calcLookDirection();
         } else {
-            ((getDisplayFrame() & 1) == 0 ? &camera_.unk_004 : &camera_.unk_074)->unkfunc_02046934();
+            ((getDisplayFrame() & 1) == 0 ? &camera_.unk_004 : &camera_.unk_074)->calcLookDirection();
         }
     } else {
         dss::Camera* cam = (getDisplayFrame() & 1) == 0 ? &camera_.unk_004 : &camera_.unk_074;

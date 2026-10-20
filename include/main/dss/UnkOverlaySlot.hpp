@@ -20,6 +20,6 @@ void unkfunc_02018eac();                        // unload the window overlay
 void loadOverlay(int id);                  // FS_LoadOverlay
 void unloadOverlay(int id);                  // FS_UnloadOverlay
 void setPadLock(int flag);                // flag != 0: set bit 15 of data_0209a238
-int unkfunc_0204b61c();                         // data_0209a238 has bit 15 set
+int isPadInputBlocked();                         // data_0209a238 has bit 15 set
 
 extern unsigned int data_0209a238;

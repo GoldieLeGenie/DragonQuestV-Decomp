@@ -4,7 +4,7 @@
 
 UnkBgText data_021011f0;
 
-THUMB void unkfunc_0204df4c()
+THUMB void initBgText()
 {
     data_021011f0.count_ = 0;
     data_021011f0.font_ = NULL;
@@ -12,31 +12,31 @@ THUMB void unkfunc_0204df4c()
     data_021011f0.mode_ = 1;
 }
 
-THUMB void unkfunc_0204df60(void* data, void* subData)
+THUMB void loadBgFont12(void* data, void* subData)
 {
     data_021011f0.font12_.load(data, 12);
     data_021011f0.subFont12_.load(subData, 12);
 }
 
-THUMB void unkfunc_0204df84(void* data, void* subData)
+THUMB void loadBgFont10(void* data, void* subData)
 {
     data_021011f0.font10_.load(data, 10);
     data_021011f0.subFont10_.load(subData, 10);
 }
 
-THUMB int unkfunc_0204dfa8(UnkCharBuffer* buffer, int x, int y, int color, const char* text)
+THUMB int drawBgText(UnkCharBuffer* buffer, int x, int y, int color, const char* text)
 {
-    return unkfunc_0204dfbc(buffer, x, y, color, text, 0);
+    return drawBgTextWrapped(buffer, x, y, color, text, 0);
 }
 
-THUMB int unkfunc_0204dfbc(UnkCharBuffer* buffer, int x, int y, int color, const char* text, int wrap)
+THUMB int drawBgTextWrapped(UnkCharBuffer* buffer, int x, int y, int color, const char* text, int wrap)
 {
     UnkBgText* work = &data_021011f0;
     UnkG2dCanvas canvas;
     UnkG2dCanvas* pCanvas = NULL;
     work->count_ = 0;
     if (buffer != NULL) {
-        void* chr = unkfunc_0204e564(buffer, x / 8, y / 8);
+        void* chr = getCharBufferTile(buffer, x / 8, y / 8);
         x %= 8;
         y %= 8;
         pCanvas = &canvas;
@@ -96,7 +96,7 @@ THUMB int unkfunc_0204dfbc(UnkCharBuffer* buffer, int x, int y, int color, const
             break;
         case '$':
             if (wrap) {
-                lineWidth += unkfunc_0204e1a0(pCanvas, x, y, color, '-');
+                lineWidth += drawBgChar(pCanvas, x, y, color, '-');
                 if (maxWidth < lineWidth) {
                     maxWidth = lineWidth;
                 }
@@ -113,10 +113,10 @@ THUMB int unkfunc_0204dfbc(UnkCharBuffer* buffer, int x, int y, int color, const
             w = 0;
             break;
         default:
-            w = unkfunc_0204e1a0(NULL, x, y, color, c);
+            w = drawBgChar(NULL, x, y, color, c);
             if (w != 0) {
                 if (x + w < 0x100) {
-                    w = unkfunc_0204e1a0(pCanvas, x, y, color, c);
+                    w = drawBgChar(pCanvas, x, y, color, c);
                 }
             }
             break;
@@ -136,7 +136,7 @@ THUMB int unkfunc_0204dfbc(UnkCharBuffer* buffer, int x, int y, int color, const
     return 0;
 }
 
-THUMB int unkfunc_0204e1a0(UnkG2dCanvas* canvas, int x, int y, int color, unsigned short c)
+THUMB int drawBgChar(UnkG2dCanvas* canvas, int x, int y, int color, unsigned short c)
 {
     UnkBgText* work = &data_021011f0;
     UnkFont* font = work->font_;
@@ -305,23 +305,23 @@ THUMB int unkfunc_0204e1a0(UnkG2dCanvas* canvas, int x, int y, int color, unsign
     return font->drawChar(canvas, x, y, color, c);
 }
 
-THUMB void unkfunc_0204e478(int size)
+THUMB void setBgTextFontSize(int size)
 {
     UnkBgText* work = &data_021011f0;
     if (size == 12) {
         work->font_ = &work->font12_;
         work->subFont_ = &work->subFont12_;
-        work->lineHeight_ = unkfunc_0204e4c8(12);
+        work->lineHeight_ = getBgTextLineHeight(12);
     }
     if (size == 10) {
         work->font_ = &work->font10_;
         work->subFont_ = &work->subFont10_;
-        work->lineHeight_ = unkfunc_0204e4c8(10);
+        work->lineHeight_ = getBgTextLineHeight(10);
     }
     work->size_ = size;
 }
 
-THUMB int unkfunc_0204e4c8(int size)
+THUMB int getBgTextLineHeight(int size)
 {
     switch (size) {
     case 12:
@@ -332,7 +332,7 @@ THUMB int unkfunc_0204e4c8(int size)
     return 0;
 }
 
-THUMB int unkfunc_0204e4dc(unsigned char* widths, int max)
+THUMB int getBgTextCharWidths(unsigned char* widths, int max)
 {
     if (max < data_021011f0.count_) {
         return -1;
@@ -344,7 +344,7 @@ THUMB int unkfunc_0204e4dc(unsigned char* widths, int max)
     return max;
 }
 
-THUMB int unkfunc_0204e50c(unsigned short* codes, int size)
+THUMB int getBgTextCharCodes(unsigned short* codes, int size)
 {
     if (size < data_021011f0.count_) {
         return -1;
@@ -356,7 +356,7 @@ THUMB int unkfunc_0204e50c(unsigned short* codes, int size)
     return size;
 }
 
-THUMB int unkfunc_0204e540()
+THUMB int getBgTextWidth()
 {
     return data_021011f0.width_;
 }

@@ -85,7 +85,7 @@ THUMB void fld::FieldShipDraw::setDepth(int d)
 
 THUMB void fld::FieldShipDraw::setShadowWH(int x, int y)
 {
-    ship_.shadow_.unkfunc_02047ec0(x, y);
+    ship_.shadow_.setSize(x, y);
 }
 
 THUMB void fld::FieldShipDraw::setDisplayEnable(int flag)

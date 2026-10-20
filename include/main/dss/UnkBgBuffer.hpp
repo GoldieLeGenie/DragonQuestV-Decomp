@@ -20,12 +20,12 @@ struct UnkScreenBuffer {
     int pitch_;                                 // 0x10
 };
 
-void unkfunc_0204e558(UnkCharBuffer* buffer, void* buf, int width, int height);
-void* unkfunc_0204e564(UnkCharBuffer* buffer, int x, int y);            // tile address
-void unkfunc_0204e574(UnkCharBuffer* buffer, unsigned int pattern);     // fill
-void unkfunc_0204e58c(UnkCharBuffer* buffer, int x, int y, int w, int h, unsigned int pattern);  // fill tiles
-void unkfunc_0204e5ec(UnkCharBuffer* buffer, int x, int y, int color);  // set a pixel
-void unkfunc_0204e60c(UnkCharBuffer* buffer, int x, int y, int flip, int bank, unsigned short chr);   // copy a system tile
+void initCharBuffer(UnkCharBuffer* buffer, void* buf, int width, int height);
+void* getCharBufferTile(UnkCharBuffer* buffer, int x, int y);            // tile address
+void fillCharBuffer(UnkCharBuffer* buffer, unsigned int pattern);     // fill
+void fillCharBufferRect(UnkCharBuffer* buffer, int x, int y, int w, int h, unsigned int pattern);  // fill tiles
+void setCharBufferPixel(UnkCharBuffer* buffer, int x, int y, int color);  // set a pixel
+void drawCharBufferSystemTile(UnkCharBuffer* buffer, int x, int y, int flip, int bank, unsigned short chr);   // copy a system tile
 void initScreenBuffer(UnkScreenBuffer* buffer, void* buf, int width, int height);
 void initScreenBufferWithPitch(UnkScreenBuffer* buffer, void* buf, int width, int height, int pitch);
 unsigned short* getScreenBufferCell(UnkScreenBuffer* buffer, int x, int y);    // cell address

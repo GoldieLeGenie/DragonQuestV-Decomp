@@ -20,13 +20,13 @@ THUMB void debugConsolePrintf(int x, int y, const char* fmt, ...)
     va_list args;
     va_start(args, fmt);
     vsnprintf(buf, 0x80, fmt, args);
-    data_020f6f9c.unkfunc_0204b034(x, y, buf);
+    data_020f6f9c.print(x, y, buf);
 }
 
 THUMB void debugPrint(int x, int y, const char* str)
 {
     if (!MenuManager::isRequesting()) {
-        data_020f6f9c.unkfunc_0204b034(x, y, str);
+        data_020f6f9c.print(x, y, str);
     }
 }
 
@@ -54,7 +54,7 @@ THUMB void unkfunc_020270dc()
     if (display != NULL) {
         display->initialize();
     }
-    data_020f6f9c.unkfunc_0204affc();
+    data_020f6f9c.clear();
 }
 
 THUMB void unkfunc_0202711c()
@@ -76,7 +76,7 @@ THUMB void unkfunc_0202711c()
     }
     if (s_messageTime != 0) {
         if (s_messageTime & 1) {
-            data_020f6f9c.unkfunc_0204b034(0, 0x18, s_message);
+            data_020f6f9c.print(0, 0x18, s_message);
         }
         s_messageTime--;
     }

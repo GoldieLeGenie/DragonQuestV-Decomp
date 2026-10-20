@@ -16,8 +16,8 @@ struct UnkRenderModel {
 
     Render* render_;                            // 0x04
 
-    void unkfunc_02048cc4(Render* render);      // setRender
-    void unkfunc_02048ce0();                    // removeRender
+    void setRender(Render* render);      // setRender
+    void removeRender();                    // removeRender
 };
 
 // BattleSystem2::render_ (type Render)
@@ -31,19 +31,19 @@ struct Render {
     int unk_604;                                // 0x604
 
     Render();
-    void unkfunc_02048860();
-    void unkfunc_020488b4();
+    void setup();
+    void cleanup();
     void unkfunc_02048908();                    // draw everything
-    void unkfunc_02048a7c(UnkRenderModel* model);
-    void unkfunc_02048aa4(UnkRenderModel* model);
-    void unkfunc_02048ad0();
-    void unkfunc_02048ae8();
-    void unkfunc_02048b24(RenderObject* object);
-    void unkfunc_02048b4c(RenderObject* object);
-    void unkfunc_02048b80();
-    void unkfunc_02048bb8();
-    void unkfunc_02048bfc();
-    void unkfunc_02048c2c(RenderObject* object);    // add to the first free slot of sprites_
-    void unkfunc_02048c54(RenderObject* object);    // remove
-    void unkfunc_02048c88();
+    void addScene(UnkRenderModel* model);
+    void removeScene(UnkRenderModel* model);
+    void applyCamera();
+    void drawScenes();
+    void addObject(RenderObject* object);
+    void removeObject(RenderObject* object);
+    void drawObjects();
+    void drawCameraObjects();
+    void updateAnimations();
+    void addSprite(RenderObject* object);    // add to the first free slot of sprites_
+    void removeSprite(RenderObject* object);    // remove
+    void drawSprites();
 };

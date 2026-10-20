@@ -18,7 +18,7 @@ ARM Render::Render()
     unk_604 = 0;
 }
 
-ARM void Render::unkfunc_02048860()
+ARM void Render::setup()
 {
     camera_ = NULL;
     for (int i = 0; i < 32; i++) {
@@ -32,7 +32,7 @@ ARM void Render::unkfunc_02048860()
     }
 }
 
-ARM void Render::unkfunc_020488b4()
+ARM void Render::cleanup()
 {
     camera_ = NULL;
     for (int i = 0; i < 32; i++) {
@@ -57,27 +57,27 @@ ARM void Render::unkfunc_02048908()
     dss::g_Pad.edge();
     data_020f3f04[0] = func_020885e0() - start;
     setupOrtho2DBackground();
-    unkfunc_02048370();
+    drawBackgroundGradient();
     data_020f3f04[1] = func_020885e0() - start;
-    unkfunc_02048c88();
+    drawSprites();
     data_020f3f04[2] = func_020885e0() - start;
-    unkfunc_02048ad0();
+    applyCamera();
     data_020f3f04[3] = func_020885e0() - start;
-    unkfunc_02048ae8();
+    drawScenes();
     data_020f3f04[4] = func_020885e0() - start;
     func_020802dc();
     func_02082604();
-    unkfunc_02048b80();
-    unkfunc_02048bb8();
+    drawObjects();
+    drawCameraObjects();
     data_020f3f04[5] = func_020885e0() - start;
-    unkfunc_02048738();
+    drawSubScreenShade();
     data_020f3f04[6] = func_020885e0() - start;
-    unkfunc_02048bfc();
+    updateAnimations();
     data_020f3f04[7] = func_020885e0() - start;
     func_02082604();
 }
 
-ARM void Render::unkfunc_02048a7c(UnkRenderModel* model)
+ARM void Render::addScene(UnkRenderModel* model)
 {
     for (int i = 0; i < 32; i++) {
         if (unk_004[i] == NULL) {
@@ -87,7 +87,7 @@ ARM void Render::unkfunc_02048a7c(UnkRenderModel* model)
     }
 }
 
-ARM void Render::unkfunc_02048aa4(UnkRenderModel* model)
+ARM void Render::removeScene(UnkRenderModel* model)
 {
     for (int i = 0; i < 32; i++) {
         if (unk_004[i] == model) {
@@ -97,14 +97,14 @@ ARM void Render::unkfunc_02048aa4(UnkRenderModel* model)
     }
 }
 
-ARM void Render::unkfunc_02048ad0()
+ARM void Render::applyCamera()
 {
     if (camera_ != NULL) {
         camera_->applyCamera();
     }
 }
 
-ARM void Render::unkfunc_02048ae8()
+ARM void Render::drawScenes()
 {
     for (int i = 0; i < 32; i++) {
         if (unk_004[i] != NULL) {
@@ -114,7 +114,7 @@ ARM void Render::unkfunc_02048ae8()
     func_02082604();
 }
 
-ARM void Render::unkfunc_02048b24(RenderObject* object)
+ARM void Render::addObject(RenderObject* object)
 {
     for (int i = 0; i < 64; i++) {
         if (objects_[i] == NULL) {
@@ -124,7 +124,7 @@ ARM void Render::unkfunc_02048b24(RenderObject* object)
     }
 }
 
-ARM void Render::unkfunc_02048b4c(RenderObject* object)
+ARM void Render::removeObject(RenderObject* object)
 {
     for (int i = 0; i < 64; i++) {
         if (objects_[i] != NULL && objects_[i] == object) {
@@ -134,7 +134,7 @@ ARM void Render::unkfunc_02048b4c(RenderObject* object)
     }
 }
 
-ARM void Render::unkfunc_02048b80()
+ARM void Render::drawObjects()
 {
     for (int i = 0; i < 64; i++) {
         if (objects_[i] != NULL) {
@@ -143,7 +143,7 @@ ARM void Render::unkfunc_02048b80()
     }
 }
 
-ARM void Render::unkfunc_02048bb8()
+ARM void Render::drawCameraObjects()
 {
     if (camera_ == NULL) {
         return;
@@ -155,7 +155,7 @@ ARM void Render::unkfunc_02048bb8()
     }
 }
 
-ARM void Render::unkfunc_02048bfc()
+ARM void Render::updateAnimations()
 {
     for (int i = 0; i < 128; i++) {
         if (animations_[i] != NULL) {
@@ -164,7 +164,7 @@ ARM void Render::unkfunc_02048bfc()
     }
 }
 
-ARM void Render::unkfunc_02048c2c(RenderObject* object)
+ARM void Render::addSprite(RenderObject* object)
 {
     for (int i = 0; i < 128; i++) {
         if (sprites_[i] == NULL) {
@@ -174,7 +174,7 @@ ARM void Render::unkfunc_02048c2c(RenderObject* object)
     }
 }
 
-ARM void Render::unkfunc_02048c54(RenderObject* object)
+ARM void Render::removeSprite(RenderObject* object)
 {
     for (int i = 0; i < 128; i++) {
         if (sprites_[i] != NULL) {
@@ -186,7 +186,7 @@ ARM void Render::unkfunc_02048c54(RenderObject* object)
     }
 }
 
-ARM void Render::unkfunc_02048c88()
+ARM void Render::drawSprites()
 {
     setupOrtho2D();
     for (int i = 0; i < 128; i++) {
@@ -196,16 +196,16 @@ ARM void Render::unkfunc_02048c88()
     }
 }
 
-ARM void UnkRenderModel::unkfunc_02048cc4(Render* render)
+ARM void UnkRenderModel::setRender(Render* render)
 {
     render_ = render;
-    render->unkfunc_02048a7c(this);
+    render->addScene(this);
 }
 
-ARM void UnkRenderModel::unkfunc_02048ce0()
+ARM void UnkRenderModel::removeRender()
 {
     if (render_ != NULL) {
-        render_->unkfunc_02048aa4(this);
+        render_->removeScene(this);
         render_ = NULL;
     }
 }

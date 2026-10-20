@@ -31,7 +31,7 @@ void SpriteCharacter::unkfunc_0205833c(int width, int height)
         unk_78[i] = (TextureObject*)getArchiveFile(data_.getAddr(), i);
     }
     unk_58 = unk_78[0];
-    unk_58->unkfunc_02049e9c(1);
+    unk_58->loadToVram(1);
     texture_ = unk_58;
     unkfunc_02047e88(0, 0);
     anmIndex_ = 0;
@@ -46,14 +46,14 @@ void SpriteCharacter::unkfunc_0205833c(int width, int height)
 
 void SpriteCharacter::cleanup()
 {
-    unk_58->unkfunc_02049f90();
+    unk_58->freeVram();
     data_.cleanup();
     shadow_.unkfunc_020587b4();
 }
 
 void SpriteCharacter::unkfunc_020583ec()
 {
-    unkfunc_02047ec0(frameWidth_, frameHeight_);
+    setSize(frameWidth_, frameHeight_);
     unkfunc_02047ecc(0, 0, frameWidth_, frameHeight_);
     screens_ = 1;
 }
@@ -108,7 +108,7 @@ void SpriteCharacter::unkfunc_0205853c(int dir)
     if (dispDirection_ == dir && !flag_.check(FLAG_RELOAD)) {
         return;
     }
-    unk_58->unkfunc_0204a114(unk_78[dir], 0);
+    unk_58->transferFrom(unk_78[dir], 0);
     dispDirection_ = dir;
 }
 
@@ -223,19 +223,19 @@ void SpriteCharacter::unkfunc_0205870c()
 {
     s_commonTex.setup("data/common.tex", 0, 0);
     s_shadowTexture = (TextureObject*)s_commonTex.getAddr();
-    s_shadowTexture->unkfunc_02049e9c(1);
+    s_shadowTexture->loadToVram(1);
 }
 
 void SpriteCharacter::unkfunc_02058738()
 {
-    s_shadowTexture->unkfunc_02049f90();
+    s_shadowTexture->freeVram();
     s_commonTex.cleanup();
 }
 
 void SpriteCharacter::unkfunc_02058754()
 {
     if (s_shadowTexture) {
-        s_shadowTexture->unkfunc_0204a090(0);
+        s_shadowTexture->transferToVram(0);
     }
 }
 
@@ -243,7 +243,7 @@ void SpriteShadow::unkfunc_0205876c()
 {
     texture_ = s_shadowTexture;
     unkfunc_02047e88(0, 0);
-    unkfunc_02047ec0(0x12, 0xc);
+    setSize(0x12, 0xc);
     unkfunc_02047ecc(0, 0, 0x20, 0x20);
     screens_ = 1;
     depth_ = 4;

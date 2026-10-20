@@ -106,12 +106,12 @@ inline twn::UnkTownSystemRender::~UnkTownSystemRender()
 
 THUMB void twn::UnkTownSystemRender::initialize()
 {
-    unkfunc_02048860();
+    setup();
 }
 
 THUMB void twn::UnkTownSystemRender::terminate()
 {
-    unkfunc_020488b4();
+    cleanup();
 }
 
 THUMB void twn::UnkTownSystemRender::execute()

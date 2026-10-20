@@ -37,7 +37,7 @@ THUMB void cmn::CommonEffectData::setup(int index)
 
 THUMB void cmn::CommonEffectData::setupTexture()
 {
-    ((TextureObject*)(getTextureData()))->unkfunc_02049e9c(0);
+    ((TextureObject*)(getTextureData()))->loadToVram(0);
 }
 
 THUMB void cmn::CommonEffectData::cleanup()
@@ -52,7 +52,7 @@ THUMB void cmn::CommonEffectData::cleanup()
 
 THUMB void cmn::CommonEffectData::cleanupTexture()
 {
-    ((TextureObject*)(getTextureData()))->unkfunc_02049f90();
+    ((TextureObject*)(getTextureData()))->freeVram();
 }
 
 THUMB void* cmn::CommonEffectData::getTextureData()

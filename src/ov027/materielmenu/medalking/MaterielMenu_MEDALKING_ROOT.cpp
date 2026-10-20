@@ -24,7 +24,7 @@ THUMB void MaterielMenu_MEDALKING_ROOT::menuSetup()
     MenuStatusInfo::setMode(MenuStatusInfo::PLAYER_MODE);
     menu::MaterielMenuPlayerControl::getSingleton()->initialize();
     m_mode = MODE_START;
-    unkfunc_0204c9c8();
+    resetCaptureOffset();
     if (MenuStatusInfo::getMedal() == 0) {
         MaterielMenuMedalKingManager::showMessage(1, 0x14, 0);
         m_mode = MODE_END;

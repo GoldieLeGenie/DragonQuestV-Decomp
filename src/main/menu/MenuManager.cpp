@@ -43,20 +43,20 @@ THUMB void MenuManager::setMenuDisplay(int mode)
     if (mode == MENUDISPLAY_OFF) {
         setDisplayTextCounter(4);
         data_02106178.icon_.unkfunc_0206375c(0);
-        unkfunc_0204cc9c(&dss::g_DISPLAYPLUGIN_DOUBLE3D);
+        requestDisplayPlugin(&dss::g_DISPLAYPLUGIN_DOUBLE3D);
     }
     if (mode == MENUDISPLAY_NORMAL) {
         setDisplayTextCounter(4);
         data_02106178.icon_.unkfunc_0206375c(0);
-        unkfunc_0204cc9c(&dss::g_DISPLAYPLUGIN_DOUBLE3D);
+        requestDisplayPlugin(&dss::g_DISPLAYPLUGIN_DOUBLE3D);
     }
     if (mode == MENUDISPLAY_EXTRA) {
         setDisplayTextCounter(4);
-        unkfunc_0204cc9c(&dss::g_DISPLAYPLUGIN_CAPTURE);
+        requestDisplayPlugin(&dss::g_DISPLAYPLUGIN_CAPTURE);
         data_02106178.icon_.unkfunc_0206375c(1);
     }
     clearMenuAll();
-    data_020f6f9c.unkfunc_0204affc();
+    data_020f6f9c.clear();
     s_currentMenu->m_update = 1;
 }
 
@@ -111,17 +111,17 @@ THUMB void MenuManager::execute()
     if (s_currentMenu->m_update) {
         s_redraw = 1;
     }
-    int time = unkfunc_0204afe0();
+    int time = getTick();
     unkfunc_02061bd8(s_redraw);
     s_currentMenu->draw(0, 0xC0);
     s_currentMenu->m_update = 0;
-    int drawTime = unkfunc_0204afe0() - time;
+    int drawTime = getTick() - time;
     if (s_redraw) {
         unkfunc_02063568();
     }
-    time = unkfunc_0204afe0();
+    time = getTick();
     s_currentMenu->update();
-    int updateTime = unkfunc_0204afe0() - time;
+    int updateTime = getTick() - time;
     if (s_redraw) {
         s_redraw = 0;
         s_redrawTime = drawTime;

@@ -15,11 +15,11 @@ struct Billboard : UnkRenderObject3D {
 
     Billboard();                                // C2 0x02083da8
     void unkfunc_02047a20(const UnkBillboardVertex* vertex);       // setVertex
-    UnkBillboardVertex* unkfunc_02047a8c();                        // getVertex
+    UnkBillboardVertex* getVertex();                        // getVertex
     void unkfunc_02047a94(const UnkBillboardTexCoord* texCoord);   // setTexCoord
-    UnkBillboardTexCoord* unkfunc_02047b00();                      // getTexCoord
-    void unkfunc_02047b08(const dss::Vector2<dss::Fix32>* offset);  // setTexCoordOffset
-    void unkfunc_02047b2c();                                    // calc the draw vertex/texcoord
+    UnkBillboardTexCoord* getTexCoord();                      // getTexCoord
+    void setTexCoordOffset(const dss::Vector2<dss::Fix32>* offset);  // setTexCoordOffset
+    void calcDrawVertex();                                    // calc the draw vertex/texcoord
     void unkfunc_02047c10(int color);                           // setColor
 };
 

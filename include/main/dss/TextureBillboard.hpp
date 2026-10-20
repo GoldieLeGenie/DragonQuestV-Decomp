@@ -9,6 +9,6 @@ struct TextureBillboard : Billboard {
     void* texture_;                             // 0xB4
 
     void unkfunc_0205071c(const UnkBillboardVertex* vertex, const UnkBillboardTexCoord* texCoord, void* texture);
-    void unkfunc_02050760();
-    void unkfunc_02050770(int a);
+    void releaseTexture();
+    void changeTexture(int a);
 };

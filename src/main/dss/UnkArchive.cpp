@@ -5,7 +5,7 @@ ARM int unkfunc_0204c860(void* archive)
     return ((int*)archive)[4];
 }
 
-ARM int unkfunc_0204c868(void* archive, int index)
+ARM int getArchiveFileSize(void* archive, int index)
 {
     return ((int*)archive)[index * 2 + 9];
 }

@@ -62,7 +62,7 @@ ARM void initHeap(UnkHeap* heap, unsigned int size0, unsigned int size1, unsigne
     memory0 = OS_AllocFromArenaLo(0, size0, 0x20);
     memory1 = OS_AllocFromArenaLo(0, size1, 0x20);
     int lo = roundUp((int)OS_GetArenaLo(0), 0x20);
-    size = unkfunc_0204b360((unsigned int)OS_GetArenaHi(0), 0x20) - lo;
+    size = roundDown((unsigned int)OS_GetArenaHi(0), 0x20) - lo;
     switch (mode) {
     case 0:
         memory2 = OS_AllocFromArenaLo(0, size, 0x20);
@@ -93,7 +93,7 @@ ARM void initHeap(UnkHeap* heap, unsigned int size0, unsigned int size1, unsigne
     heap->free1_ = getSystemHeapFreeSize(heap);
     heap->free2_ = getAppHeapFreeSize(heap);
     if ((unsigned int)memory0 - 0x02000000 > 0x100000) {
-        unkfunc_0204afe8("Program Memory Over!!!! : 0x%08x\n", (unsigned int)memory0 - 0x02000000);
+        debugPrintfStub("Program Memory Over!!!! : 0x%08x\n", (unsigned int)memory0 - 0x02000000);
     }
     heap->unk_54 = (int)memory0 - 0x02000000;
     data_020fd6a4.initialize();

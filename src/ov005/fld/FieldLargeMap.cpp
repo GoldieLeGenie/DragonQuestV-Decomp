@@ -78,7 +78,7 @@ THUMB int fld::FieldLargeMap::unkfunc_02133df4(int x, int y, void* buffer)
         for (int i = 0; i < 4; i++) {
             if (x == s_castleBlock[i].vx && y == s_castleBlock[i].vy) {
                 dss::g_File.readOffset_ = i << 10;
-                dss::g_File.unkfunc_0204b21c("data/field/large/castle.bin", buffer, 0);
+                dss::g_File.loadToBuffer("data/field/large/castle.bin", buffer, 0);
                 return 1;
             }
         }
@@ -86,7 +86,7 @@ THUMB int fld::FieldLargeMap::unkfunc_02133df4(int x, int y, void* buffer)
     if (g_AreaFlag.check(0x82)) {
         if (s_bridgeBlock.vx == x && s_bridgeBlock.vy == y) {
             dss::g_File.readOffset_ = 0;
-            dss::g_File.unkfunc_0204b21c("data/field/large/bridge.bin", buffer, 0);
+            dss::g_File.loadToBuffer("data/field/large/bridge.bin", buffer, 0);
             return 1;
         }
     }
@@ -94,7 +94,7 @@ THUMB int fld::FieldLargeMap::unkfunc_02133df4(int x, int y, void* buffer)
         for (int i = 0; i < 4; i++) {
             if (x == s_magmaBlock[i].vx && y == s_magmaBlock[i].vy) {
                 dss::g_File.readOffset_ = i << 10;
-                dss::g_File.unkfunc_0204b21c("data/field/large/magma.bin", buffer, 0);
+                dss::g_File.loadToBuffer("data/field/large/magma.bin", buffer, 0);
                 return 1;
             }
         }
@@ -103,7 +103,7 @@ THUMB int fld::FieldLargeMap::unkfunc_02133df4(int x, int y, void* buffer)
         for (int i = 0; i < 4; i++) {
             if (x == s_suimonBlock[i].vx && y == s_suimonBlock[i].vy) {
                 dss::g_File.readOffset_ = i << 10;
-                dss::g_File.unkfunc_0204b21c("data/field/large/suimon.bin", buffer, 0);
+                dss::g_File.loadToBuffer("data/field/large/suimon.bin", buffer, 0);
                 return 1;
             }
         }
@@ -140,7 +140,7 @@ THUMB void fld::FieldLargeMap::unkfunc_02133f00(int x, int y)
             dss::g_File.readSize_ = 0x400;
             if (unkfunc_02133df4(bx, by, buffer[i]) == 0) {
                 dss::g_File.readOffset_ = (bx << 10) + (by << 15);
-                dss::g_File.unkfunc_0204b21c("data/field/large/largemap.bin", buffer[i], 0);
+                dss::g_File.loadToBuffer("data/field/large/largemap.bin", buffer[i], 0);
             }
             src[i] = (char*)buffer[i];
         }

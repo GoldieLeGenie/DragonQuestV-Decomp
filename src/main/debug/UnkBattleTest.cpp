@@ -135,9 +135,9 @@ THUMB void UnkBattleTest::unkfunc_02026b68()
                     g_Global.startBattle();
                     state_ = 2;
                     counter_ = -1;
-                    dss::g_Pad.unkfunc_0204be8c();
+                    dss::g_Pad.clearRecord();
                     dss::g_Pad.addRecordPresses(1, 4);
-                    dss::g_Pad.unkfunc_0204bd50(0x300);
+                    dss::g_Pad.startPlayWithMask(0x300);
                 } else {
                     state_ = 4;
                     counter_ = -1;
@@ -153,9 +153,9 @@ THUMB void UnkBattleTest::unkfunc_02026b68()
                 g_Global.directStartBattle();
                 state_ = 2;
                 counter_ = -1;
-                dss::g_Pad.unkfunc_0204be8c();
+                dss::g_Pad.clearRecord();
                 dss::g_Pad.addRecordPresses(1, 4);
-                dss::g_Pad.unkfunc_0204bd50(0x300);
+                dss::g_Pad.startPlayWithMask(0x300);
             }
         }
         break;
@@ -169,12 +169,12 @@ THUMB void UnkBattleTest::unkfunc_02026b68()
         if (data_02101c88.unkfunc_02051810() != 5) {
             state_ = 4;
             counter_ = -1;
-            dss::g_Pad.unkfunc_0204be48();
+            dss::g_Pad.stopPlay();
         } else {
             int turn = status::g_BattleResult.battleTurnCount_ + 1;
-            data_020f6f9c.unkfunc_0204b04c(0, 0x16, "TURN%2d/%2d/%2d  ACT=%d", turn, noDamageTurn_, endTurn_, act_);
-            data_020f6f9c.unkfunc_0204b04c(0xc, 0x17, "PLAY%2d/%2d", play_, playCount_);
-            data_020f6f9c.unkfunc_0204b04c(0, 0x17, "TILE%3d/%3d", tile_, lastTile_);
+            data_020f6f9c.printf(0, 0x16, "TURN%2d/%2d/%2d  ACT=%d", turn, noDamageTurn_, endTurn_, act_);
+            data_020f6f9c.printf(0xc, 0x17, "PLAY%2d/%2d", play_, playCount_);
+            data_020f6f9c.printf(0, 0x17, "TILE%3d/%3d", tile_, lastTile_);
             if (turn > noDamageTurn_) {
                 status::PartyStatusUtility::setNoDamageEnableForMonster(false);
                 int count = status::g_Monster.getCount();
@@ -190,7 +190,7 @@ THUMB void UnkBattleTest::unkfunc_02026b68()
                 }
                 state_ = 4;
                 counter_ = -1;
-                dss::g_Pad.unkfunc_0204be48();
+                dss::g_Pad.stopPlay();
             }
         }
         break;
@@ -212,7 +212,7 @@ THUMB void UnkBattleTest::unkfunc_02026b68()
                 if (play_ == playCount_) {
                     state_ = 5;
                     counter_ = -1;
-                    dss::g_Pad.unkfunc_0204be48();
+                    dss::g_Pad.stopPlay();
                 } else {
                     state_ = 1;
                     counter_ = -1;

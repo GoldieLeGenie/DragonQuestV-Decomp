@@ -72,8 +72,8 @@ ARM void DisplayCharacter::setup(const char* name, dss::File::LoadSwitch loadSwi
 {
     unkfunc_02055a88(name, loadSwitch);
 
-    UnkBillboardVertex vertex = *unkfunc_02047a8c();
-    UnkBillboardTexCoord texCoord = *unkfunc_02047b00();
+    UnkBillboardVertex vertex = *getVertex();
+    UnkBillboardTexCoord texCoord = *getTexCoord();
     vertex.v[0].vy = vertex.v[3].vy * 7 / 16;
     vertex.v[1].vy = vertex.v[2].vy * 7 / 16;
     texCoord.v[0].vy = texCoord.v[0].vy * 9 / 16;
@@ -84,8 +84,8 @@ ARM void DisplayCharacter::setup(const char* name, dss::File::LoadSwitch loadSwi
     head_.setScale(workScale_);
     head_.setPolygonID(1);
 
-    UnkBillboardVertex bodyVertex = *unkfunc_02047a8c();
-    UnkBillboardTexCoord bodyTexCoord = *unkfunc_02047b00();
+    UnkBillboardVertex bodyVertex = *getVertex();
+    UnkBillboardTexCoord bodyTexCoord = *getTexCoord();
     bodyVertex.v[3].vy = bodyVertex.v[3].vy * 1 / 2;
     bodyVertex.v[2].vy = bodyVertex.v[2].vy * 1 / 2;
     bodyTexCoord.v[2].vy = bodyTexCoord.v[0].vy * 1 / 2;
@@ -178,7 +178,7 @@ ARM void DisplayCharacter::draw()
     } else {
         BillboardCharacter::draw();
         if (headEnable_ && !(flag_ & FLAG_SHADOW_ONLY)) {
-            head_.unkfunc_02047b08(&uvOffset);
+            head_.setTexCoordOffset(&uvOffset);
             head_.draw();
         }
     }
@@ -198,8 +198,8 @@ ARM void DisplayCharacter::drawSleepCharacter()
     }
     dss::Fix32Vector3 position = *head_.getPosition() + sleepOffset_[(direction_ / 0x2000) & 7];
 
-    UnkBillboardVertex* vertex = unkfunc_02047a8c();
-    UnkBillboardTexCoord texCoord = *unkfunc_02047b00();
+    UnkBillboardVertex* vertex = getVertex();
+    UnkBillboardTexCoord texCoord = *getTexCoord();
     dss::Vector2<dss::Fix32> offset = uvOffset;
     for (int i = 0; i < 4; i++) {
         texCoord.v[i].vx += offset.vx;
@@ -207,8 +207,8 @@ ARM void DisplayCharacter::drawSleepCharacter()
     }
     drawSleep(position, *vertex, texCoord);
 
-    UnkBillboardVertex* headVertex = head_.unkfunc_02047a8c();
-    UnkBillboardTexCoord headTexCoord = *head_.unkfunc_02047b00();
+    UnkBillboardVertex* headVertex = head_.getVertex();
+    UnkBillboardTexCoord headTexCoord = *head_.getTexCoord();
     dss::Vector2<dss::Fix32> headOffset = uvOffset;
     for (int i = 0; i < 4; i++) {
         headTexCoord.v[i].vx += headOffset.vx;
@@ -224,13 +224,13 @@ ARM void DisplayCharacter::drawSleep(dss::Fix32Vector3& position, UnkBillboardVe
     loadBillboardMatrix();
     G3_Scale(scale_.vx.value, scale_.vx.value, scale_.vx.value);
     if (RenderObject::texture_) {
-        ((TextureObject*)RenderObject::texture_)->unkfunc_0204a1e4();
-        ((TextureObject*)RenderObject::texture_)->unkfunc_0204a264();
+        ((TextureObject*)RenderObject::texture_)->applyTexImageParam();
+        ((TextureObject*)RenderObject::texture_)->applyPlttBase();
     } else {
         disableTexture();
     }
-    unkfunc_02046fe8();
-    unkfunc_02047b2c();
+    applyPolygonAttr();
+    calcDrawVertex();
     G3_PushMtx();
     unsigned short angle = 0xa000 - dispDirection_;
     func_020761dc(FX_SinIdx(angle), FX_CosIdx(angle));
@@ -322,16 +322,16 @@ ARM void DisplayCharacter::setHueChange(int type, int frame)
         }
         unsigned short* palette;
         if (texture->flags_ & 1) {
-            palette = (unsigned short*)texture->unkfunc_0204a1d4();
+            palette = (unsigned short*)texture->getPlttData();
         } else {
-            palette = (unsigned short*)((char*)texture + texture->unkfunc_0204a1d4());
+            palette = (unsigned short*)((char*)texture + texture->getPlttData());
         }
         if (i != textureIndex_) {
-            applyPaletteTone(palette, texture->unkfunc_0204a1dc(), type);
+            applyPaletteTone(palette, texture->getPlttSize(), type);
         } else {
-            dss::memcpy(unk_288, palette, texture->unkfunc_0204a1dc());
-            dss::memcpy(unk_268, palette, texture->unkfunc_0204a1dc());
-            applyPaletteTone(unk_268, texture->unkfunc_0204a1dc(), type);
+            dss::memcpy(unk_288, palette, texture->getPlttSize());
+            dss::memcpy(unk_268, palette, texture->getPlttSize());
+            applyPaletteTone(unk_268, texture->getPlttSize(), type);
         }
     }
     unk_2a8 = textureIndex_;
@@ -355,9 +355,9 @@ ARM void DisplayCharacter::execHueChange()
     TextureObject* texture = (TextureObject*)unkfunc_02055a70(unk_2a8);
     unsigned short* palette;
     if (texture->flags_ & 1) {
-        palette = (unsigned short*)texture->unkfunc_0204a1d4();
+        palette = (unsigned short*)texture->getPlttData();
     } else {
-        palette = (unsigned short*)((char*)texture + texture->unkfunc_0204a1d4());
+        palette = (unsigned short*)((char*)texture + texture->getPlttData());
     }
     dss::Fix32 rate;
     dss::Fix32 inv;
@@ -372,7 +372,7 @@ ARM void DisplayCharacter::execHueChange()
         palette[i] = r + (g << 5) + (b << 10);
     }
     DC_CleanAll();
-    data_020f4f74.transferToVram(1, palette, ((TextureObject*)unkfunc_02055a70(0))->unkfunc_0204a1cc(), ((TextureObject*)unkfunc_02055a70(0))->unkfunc_0204a1dc(), 0);
+    data_020f4f74.transferToVram(1, palette, ((TextureObject*)unkfunc_02055a70(0))->getPlttAddr(), ((TextureObject*)unkfunc_02055a70(0))->getPlttSize(), 0);
     unk_266++;
 }
 

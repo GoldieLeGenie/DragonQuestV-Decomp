@@ -45,7 +45,7 @@ THUMB void ceremony::CeremonyEndingFin::initialize()
     dss::sprintf_s(path, sizeof(path), "data/ending/the_end/pen.tex");
     penTextureData_.setup(path, 0, 0);
     penTexture_ = (TextureObject*)penTextureData_.getAddr();
-    penTexture_->unkfunc_02049e9c(1);
+    penTexture_->loadToVram(1);
     dss::sprintf_s(path, sizeof(path), "data/ending/the_end/pen.dssa");
     penData_.setup(path, 0, 0);
     penDssa_.setup(penData_.getAddr());
@@ -89,7 +89,7 @@ THUMB void ceremony::CeremonyEndingFin::terminate()
     endSprite_[1].unload();
     pamData_.cleanup();
     pam_.unkfunc_02051648();
-    penTexture_->unkfunc_02049f90();
+    penTexture_->freeVram();
     penTextureData_.cleanup();
     penDssa_.cleanup();
     penData_.cleanup();

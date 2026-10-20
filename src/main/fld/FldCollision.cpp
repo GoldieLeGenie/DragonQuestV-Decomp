@@ -75,7 +75,7 @@ ARM dss::Fix32Vector3 FldCollision::compute(dss::Fix32Vector3& oldPos, dss::Fix3
     if (*collisionFlag_ == 0) {
         return newPos;
     }
-    g_floor_ret = unkfunc_0204afe0();
+    g_floor_ret = getTick();
     floorPolygonNo_ = -1;
     polyIndex_ = -1;
     playerDirFlag_ = 0;
@@ -91,7 +91,7 @@ ARM dss::Fix32Vector3 FldCollision::compute(dss::Fix32Vector3& oldPos, dss::Fix3
     computeCollFloor(correctedPosition, radius, fixYPos);
     correctedPosition.vy = oldPos.vy;
     height = fixYPos.vy - oldPos.vy;
-    g_floor_ret = unkfunc_0204afe0() - g_floor_ret;
+    g_floor_ret = getTick() - g_floor_ret;
     return correctedPosition;
 }
 

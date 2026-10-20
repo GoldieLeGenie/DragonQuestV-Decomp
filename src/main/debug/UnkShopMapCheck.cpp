@@ -107,7 +107,7 @@ void UnkShopMapCheck::unkfunc_02038148()
     dss::strcpy_s(floor, 0x20, event->getFloor());
     char name[0x20];
     for (int i = 0; i < 0x20; i++) {
-        name[i] = dss::unkfunc_0205051c(floor[i]);
+        name[i] = dss::toLower(floor[i]);
     }
     dq5::level::EventList::cleanup();
     char path[0x80];

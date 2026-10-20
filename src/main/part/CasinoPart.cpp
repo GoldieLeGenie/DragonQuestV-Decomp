@@ -23,8 +23,8 @@ THUMB void casino::CasinoPart::initialize()
     GX_ResetBankForSubBg();
     GX_SetBankForTex(GX_VRAM_AB);
     data_020f4f74.initVramManagers(0x40000, 0x4000);
-    unkfunc_0204c9d8(&dss::g_DISPLAYPLUGIN_DOUBLE3D);
-    unkfunc_0204afe0();
+    changeDisplayPlugin(&dss::g_DISPLAYPLUGIN_DOUBLE3D);
+    getTick();
     loadOverlay((int)&OVERLAY_12_ID);
     ov012_entry();
     loadOverlay((int)&OVERLAY_19_ID);
@@ -37,7 +37,7 @@ THUMB void casino::CasinoPart::initialize()
 
 THUMB void casino::CasinoPart::terminate()
 {
-    dss::g_Pad.unkfunc_0204bc24(0);
+    dss::g_Pad.setMaskL(0);
     CasinoSystem::getSingleton()->terminate();
     unloadOverlay((int)&OVERLAY_12_ID);
     unloadOverlay((int)&OVERLAY_19_ID);

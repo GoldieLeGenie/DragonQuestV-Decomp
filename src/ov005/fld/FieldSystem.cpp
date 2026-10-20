@@ -86,7 +86,7 @@ THUMB void fld::FieldSystem::initialize()
     g_Global.updateArea();
     cmn::GameManager::getSingleton().initialize();
     cmn::GameManager::getSingleton().setPlayerManager(&FieldPlayerManager::getSingleton());
-    render_.unkfunc_02048860();
+    render_.setup();
     SpriteCharacter::unkfunc_0205870c();
     cmn::g_cmnSoundManager.initialize();
     args::GameSystemManager::getSingleton().clear();
@@ -157,7 +157,7 @@ THUMB void fld::FieldSystem::terminate()
     cmn::GameManager::getSingleton().terminate();
     args::GameSystemManager::getSingleton().terminate();
     SpriteCharacter::unkfunc_02058738();
-    render_.unkfunc_020488b4();
+    render_.cleanup();
     status::g_StageInfo.setReliveCheckFlag(true);
     status::Status::setFlagShopExec();
     dq5::level::levelData.cleanupField();

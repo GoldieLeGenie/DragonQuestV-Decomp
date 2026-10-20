@@ -28,7 +28,7 @@ THUMB casino::CasinoSystem* casino::CasinoSystem::getSingleton()
 
 THUMB void casino::CasinoSystem::initialize()
 {
-    render_.unkfunc_02048860();
+    render_.setup();
     if (g_Global.getMinigame() == 0) {
         minigame = CasinoPoker::getSingleton();
     } else {
@@ -46,7 +46,7 @@ THUMB void casino::CasinoSystem::terminate()
     minigame->terminate();
     CasinoStage::getSingleton()->terminate();
     CasinoCamera::getSingleton()->terminate();
-    render_.unkfunc_020488b4();
+    render_.cleanup();
 }
 
 THUMB void casino::CasinoSystem::execute()

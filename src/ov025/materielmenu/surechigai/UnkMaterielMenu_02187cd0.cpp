@@ -112,7 +112,7 @@ THUMB void UnkMaterielMenu_02187cd0::menuUpdate()
         gTownMenu_MESSAGE.setYesNo();
         unk_98 = 1;
         unk_1c = 1;
-        unkfunc_0204c9bc(-4, 0);
+        setCaptureOffset(-4, 0);
     }
     redraw_ = 1;
 }
@@ -121,7 +121,7 @@ THUMB void UnkMaterielMenu_02187cd0::unkfunc_02187928()
 {
     switch (unk_98) {
         case 0:
-            unkfunc_0204c9c8();
+            resetCaptureOffset();
             break;
         case 1:
             status::g_MuseumStatus.deleteOthersTaishi(navigator_.getIndex(menuItem_.active_));
@@ -145,7 +145,7 @@ THUMB void UnkMaterielMenu_02187cd0::unkfunc_02187928()
             gTownMenu_MESSAGE.addMessageWAITKEY();
             close();
             data_ov019_02184d4c.open();
-            unkfunc_0204c9c8();
+            resetCaptureOffset();
             break;
     }
 }
@@ -160,7 +160,7 @@ THUMB void UnkMaterielMenu_02187cd0::unkfunc_021879ec()
             gTownMenu_MESSAGE.openMessageForTALK();
             gTownMenu_MESSAGE.addMessage(0xcc62d);
             unk_98 = 2;
-            unkfunc_0204c9c8();
+            resetCaptureOffset();
             break;
         case 2:
             break;

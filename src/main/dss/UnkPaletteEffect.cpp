@@ -134,9 +134,9 @@ ARM float minFloat(float a, float b)
 
 ARM void applyTexturePaletteRgbRate(TextureObject* texture, dss::Fix32Vector3& rgb)
 {
-    int data = texture->unkfunc_0204a1d4();
-    int address = texture->unkfunc_0204a1cc();
-    int size = texture->unkfunc_0204a1dc();
+    int data = texture->getPlttData();
+    int address = texture->getPlttAddr();
+    int size = texture->getPlttSize();
     MI_CpuCopyU8((void*)data, data_020f3f68, size);
     applyPaletteRgbRate(data_020f3f68, size, rgb);
     DC_CleanAll();

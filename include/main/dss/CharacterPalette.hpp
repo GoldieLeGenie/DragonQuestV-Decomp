@@ -13,8 +13,8 @@ struct CharacterPalette {
 
     CharacterPalette();
     ~CharacterPalette();
-    void unkfunc_0204a3f4(TextureObject* texture, int flag);    // copy the palette of a texture
-    void unkfunc_0204a474();                    // free the VRAM
-    void unkfunc_02086d78(int flag);            // transfer to the VRAM
-    void unkfunc_0204a4d4();                    // G3 palette base
+    void loadFromTexture(TextureObject* texture, int flag);    // copy the palette of a texture
+    void freeVram();                    // free the VRAM
+    void transferToVram(int flag);            // transfer to the VRAM
+    void applyPlttBase();                    // G3 palette base
 };

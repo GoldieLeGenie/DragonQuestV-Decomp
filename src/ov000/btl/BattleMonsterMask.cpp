@@ -35,7 +35,7 @@ THUMB void btl::BattleMonsterMask::initialize()
     sprite_.depth_ = 0;
     sprite_.setAlpha(10);
     sprite_.unkfunc_02047e88(0, 0);
-    sprite_.unkfunc_02047ec0(0x80, 0x80);
+    sprite_.setSize(0x80, 0x80);
     sprite_.enable_ = 0;
     sprite_.setColor(0, 0, 0);
     mask_[0].loadFile("data/mask/en02.tex", 0);

@@ -112,7 +112,7 @@ THUMB void ceremony::CeremonyEndingSystem::initialize()
     dss::sprintf_s(path, sizeof(path), "data/ending/animation/hanabira.tex");
     petalTextureData_.setup(path, 0, 0);
     petalTexture_ = (TextureObject*)petalTextureData_.getAddr();
-    petalTexture_->unkfunc_02049e9c(0);
+    petalTexture_->loadToVram(0);
     for (int i = 0; i < MAX_PETAL; i++) {
         dss::sprintf_s(path, sizeof(path), "data/ending/animation/hanabira_%d.dssa", i + 1);
         petalData_[i].setup(path, 0, 0);
@@ -126,11 +126,11 @@ THUMB void ceremony::CeremonyEndingSystem::terminate()
 {
     for (int i = 0; i < DIVISION; i++) {
         if (rollData_[i].getAddr() != NULL) {
-            rollTexture_[i]->unkfunc_02049f90();
+            rollTexture_[i]->freeVram();
             rollData_[i].cleanup();
         }
     }
-    petalTexture_->unkfunc_02049f90();
+    petalTexture_->freeVram();
     petalTextureData_.cleanup();
     for (int i = 0; i < MAX_PETAL; i++) {
         petalData_[i].cleanup();
@@ -173,20 +173,20 @@ THUMB void ceremony::CeremonyEndingSystem::execute()
                     UnkLZDataObject data;
                     data.setup(path, 0, 1);
                     TextureObject* texture = (TextureObject*)data.getAddr();
-                    dss::memcpy((void*)rollTexture_[page]->unkfunc_0204a1c4(), (char*)texture + texture->unkfunc_0204a1c4(), 0x6000);
-                    dss::memcpy((void*)rollTexture_[page]->unkfunc_0204a1d4(), (char*)texture + texture->unkfunc_0204a1d4(), 0x20);
-                    rollTexture_[page]->unkfunc_0204a090(0);
+                    dss::memcpy((void*)rollTexture_[page]->getTexData(), (char*)texture + texture->getTexData(), 0x6000);
+                    dss::memcpy((void*)rollTexture_[page]->getPlttData(), (char*)texture + texture->getPlttData(), 0x20);
+                    rollTexture_[page]->transferToVram(0);
                     data.cleanup();
                 } else {
                     rollData_[page].setup(path, 0, 1);
                     rollTexture_[page] = (TextureObject*)rollData_[page].getAddr();
                     rollSprite_[page].texture_ = rollTexture_[page];
                     rollSprite_[page].enable_ = 1;
-                    rollTexture_[page]->unkfunc_02049e9c(0);
+                    rollTexture_[page]->loadToVram(0);
                 }
                 rollSprite_[page].screens_ = 3;
                 rollSprite_[page].unkfunc_02047ecc(0, 0, 0x100, 0xc0);
-                rollSprite_[page].unkfunc_02047ec0(0x100, 0xc0);
+                rollSprite_[page].setSize(0x100, 0xc0);
             }
             lineY_[i]--;
         }

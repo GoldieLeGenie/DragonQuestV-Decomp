@@ -88,7 +88,7 @@ THUMB void dss::Camera::calcPosition()
     m_direction.normalize();
 }
 
-THUMB void dss::Camera::unkfunc_02046934()
+THUMB void dss::Camera::calcLookDirection()
 {
     unk_3c.vx.value = m_target_pos.vx.value - m_pos.vx.value;
     unk_3c.vy.value = m_target_pos.vy.value - m_pos.vy.value;

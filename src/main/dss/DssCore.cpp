@@ -10,7 +10,7 @@
 
 inline UnkDebugConsole::UnkDebugConsole()
 {
-    unkfunc_0204aff0();
+    init();
 }
 
 THUMB void unkfunc_0204afd8()
@@ -21,40 +21,40 @@ THUMB void unkfunc_0204afdc()
 {
 }
 
-THUMB int unkfunc_0204afe0()
+THUMB int getTick()
 {
     return func_020885e0();
 }
 
-THUMB void unkfunc_0204afe8(const char* format, ...)
+THUMB void debugPrintfStub(const char* format, ...)
 {
 }
 
-THUMB void UnkDebugConsole::unkfunc_0204aff0()
+THUMB void UnkDebugConsole::init()
 {
 }
 
-THUMB void UnkDebugConsole::unkfunc_0204aff4()
+THUMB void UnkDebugConsole::reset()
 {
-    unkfunc_0204affc();
+    clear();
 }
 
-THUMB void UnkDebugConsole::unkfunc_0204affc()
+THUMB void UnkDebugConsole::clear()
 {
     clearScreenBuffer(getDebugScreenBuffer(), -1);
 }
 
-THUMB void UnkDebugConsole::unkfunc_0204b00c(int x, int y, int w, int h)
+THUMB void UnkDebugConsole::clearRect(int x, int y, int w, int h)
 {
     clearScreenBufferRect(getDebugScreenBuffer(), x, y, w, h, -1);
 }
 
-THUMB void UnkDebugConsole::unkfunc_0204b034(int x, int y, const char* str)
+THUMB void UnkDebugConsole::print(int x, int y, const char* str)
 {
     drawScreenBufferText(getDebugScreenBuffer(), x, y, str);
 }
 
-THUMB void UnkDebugConsole::unkfunc_0204b04c(int x, int y, const char* format, ...)
+THUMB void UnkDebugConsole::printf(int x, int y, const char* format, ...)
 {
     char buf[0x41];
     va_list args;
@@ -103,20 +103,20 @@ ARM void clearVram()
     MI_CpuFill(0, (void*)0x05000400, 0x400);
 }
 
-ARM void dss::File::unkfunc_0204b1cc(int)
+ARM void dss::File::init(int)
 {
-    unkfunc_0204b1e8();
+    loadFsTable();
     readOffset_ = 0;
     readSize_ = 0;
 }
 
-ARM void dss::File::unkfunc_0204b1e8()
+ARM void dss::File::loadFsTable()
 {
     unsigned int size = FS_TryLoadTable(NULL, 0);
     FS_TryLoadTable(allocAppHeap(&data_020fd24c, size, 0x20), size);
 }
 
-ARM int dss::File::unkfunc_0204b21c(const char* fname, void* dst, int a)
+ARM int dss::File::loadToBuffer(const char* fname, void* dst, int a)
 {
     int size;
     if (a == 0) {
@@ -130,33 +130,33 @@ ARM int dss::File::unkfunc_0204b21c(const char* fname, void* dst, int a)
     return size;
 }
 
-ARM int dss::File::unkfunc_0204b250(const char* fname, void* dst, int offset, int size, int a)
+ARM int dss::File::loadPartToBuffer(const char* fname, void* dst, int offset, int size, int a)
 {
     readOffset_ = offset;
     readSize_ = size;
-    return unkfunc_0204b21c(fname, dst, a);
+    return loadToBuffer(fname, dst, a);
 }
 
 ARM int dss::File::unkfunc_0204b26c(const char* fname, void* dst)
 {
-    int size = unkfunc_0204b370(fname, dst);
+    int size = readRomFile(fname, dst);
     DC_CleanAll();
     return size;
 }
 
 ARM int dss::File::unkfunc_0204b284(const char* fname, void* dst)
 {
-    int size = unkfunc_0204b370(fname, dst);
+    int size = readRomFile(fname, dst);
     DC_CleanAll();
     return size;
 }
 
-ARM void* dss::File::unkfunc_0204b29c(const char* fname, int a, LoadSwitch sw)
+ARM void* dss::File::allocAndLoad(const char* fname, int a, LoadSwitch sw)
 {
     int size = 0;
     void* archive = 0;
     if (archive == 0) {
-        size = unkfunc_0204b4c8(fname);
+        size = getRomFileSize(fname);
     }
     size_ = size;
     void* p;
@@ -165,40 +165,40 @@ ARM void* dss::File::unkfunc_0204b29c(const char* fname, int a, LoadSwitch sw)
     } else {
         p = dssAlloc(&data_020fd24c, size, 0x20);
     }
-    unkfunc_0204b21c(fname, p, 0);
+    loadToBuffer(fname, p, 0);
     return p;
 }
 
-ARM void* dss::File::unkfunc_0204b310(const char* fname, LoadSwitch sw)
+ARM void* dss::File::loadCompressed(const char* fname, LoadSwitch sw)
 {
     void* p = 0;
     if (p == 0) {
-        p = unkfunc_0204b418(fname);
+        p = readCompressedFile(fname);
     }
     return p;
 }
 
-ARM int dss::File::unkfunc_0204b32c(const char* fname, LoadSwitch sw)
+ARM int dss::File::getFileSize(const char* fname, LoadSwitch sw)
 {
     int size = 0;
     void* archive = 0;
     if (archive == 0) {
-        size = unkfunc_0204b4c8(fname);
+        size = getRomFileSize(fname);
     }
     return size;
 }
 
 ARM bool dss::File::isExist(const char* fname, LoadSwitch sw)
 {
-    return unkfunc_0204b32c(fname, sw) != 0;
+    return getFileSize(fname, sw) != 0;
 }
 
-ARM unsigned int unkfunc_0204b360(unsigned int value, unsigned int align)
+ARM unsigned int roundDown(unsigned int value, unsigned int align)
 {
     return value & ~(align - 1);
 }
 
-ARM int dss::File::unkfunc_0204b370(const char* fname, void* dst)
+ARM int dss::File::readRomFile(const char* fname, void* dst)
 {
     func_02073868(&file_);
     int ok = func_02073a3c(&file_, fname);
@@ -222,7 +222,7 @@ ARM int dss::File::unkfunc_0204b370(const char* fname, void* dst)
     return size_;
 }
 
-ARM void* dss::File::unkfunc_0204b418(const char* fname)
+ARM void* dss::File::readCompressedFile(const char* fname)
 {
     unsigned char* buf = data_020f6fe0;
     MIUncompContextLZ context;
@@ -239,7 +239,7 @@ ARM void* dss::File::unkfunc_0204b418(const char* fname)
     return dst;
 }
 
-ARM int dss::File::unkfunc_0204b4c8(const char* fname)
+ARM int dss::File::getRomFileSize(const char* fname)
 {
     FSFile file;
     func_02073868(&file);
@@ -249,7 +249,7 @@ ARM int dss::File::unkfunc_0204b4c8(const char* fname)
     return file.endRomOffset - file.startRomOffset;
 }
 
-ARM void unkfunc_0204b50c()
+ARM void resetBgObjVram()
 {
     func_02075b38();
     func_02075cd8();

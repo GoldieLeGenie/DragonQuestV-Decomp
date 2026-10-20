@@ -118,9 +118,9 @@ ARM void args::GameSystemManager::execute()
         if (defExclusion_[i] && !execExclusion_[i]) {
             continue;
         }
-        int tick = unkfunc_0204afe0();
+        int tick = getTick();
         gameSystem_[i]->execute();
-        execTime_[i] = unkfunc_0204afe0() - tick;
+        execTime_[i] = getTick() - tick;
     }
 }
 
@@ -133,9 +133,9 @@ ARM void args::GameSystemManager::draw()
         if (defExclusion_[i] && !drawExclusion_[i]) {
             continue;
         }
-        int tick = unkfunc_0204afe0();
+        int tick = getTick();
         drawSystem_[i]->draw();
-        drawTime_[i] = unkfunc_0204afe0() - tick;
+        drawTime_[i] = getTick() - tick;
     }
 }
 

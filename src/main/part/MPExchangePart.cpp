@@ -29,7 +29,7 @@ THUMB void MPExchangePart::initialize()
     loadOverlay((int)&OVERLAY_6_ID);
     ov006_entry();
     data_020f4f74.initVramManagers(0x40000, 0x4000);
-    unkfunc_0204c9d8(&dss::g_DISPLAYPLUGIN_SINGLE3D);
+    changeDisplayPlugin(&dss::g_DISPLAYPLUGIN_SINGLE3D);
     lcdCounter_ = 0;
     g_Global.fadeIn(30);
     switch (data_0211b27c.state_) {

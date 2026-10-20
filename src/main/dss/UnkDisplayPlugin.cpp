@@ -20,7 +20,7 @@ static dss::UnkDisplayPlugin* const s_pluginTable[] = {
 
 THUMB void dss::UnkDisplayPlugin::drawCaptureObjs(int chr)
 {
-    UnkOamBuffer* oam = unkfunc_0204ce18(1);
+    UnkOamBuffer* oam = getOamBuffer(1);
     REG32(0x04001000) = (REG32(0x04001000) & ~0x60) | 0x20;
     for (int y = 0; y < 192; y += 64) {
         for (int x = 0; x < 256; x += 64) {
@@ -36,7 +36,7 @@ THUMB void dss::UnkDisplayPlugin::setupDisplayText(int textType, int screen1, in
     if (palette) {
         loadSystemTextPalettes(textType, screen1, screen2);
     }
-    unkfunc_0204d020(textType, screen1, screen2, bg0, bg1, unk_10);
+    setDisplayTextBgs(textType, screen1, screen2, bg0, bg1, unk_10);
     displayTextCounter_ = 2;
 }
 
@@ -105,13 +105,13 @@ THUMB void dss::UnkDisplayPluginCapture::update(int frame)
     G2S_SetBG1Priority(0);
     G2S_SetBG2Priority(0);
     G2S_SetBG3Priority(3);
-    unkfunc_0204ccf4(3);
+    setDisplayBlendMode(3);
     GX_SetVisibleWnd(7);
     G2_SetWndOBJInsidePlane(0x1e, 1);
     G2_SetWndOutsidePlane(0x1f, 1);
     int x;
     int y;
-    unkfunc_0204c9ac(&x, &y);
+    getCaptureOffset(&x, &y);
     MtxFx22 mtx;
     func_02088958(&mtx);
     func_020759d4((volatile void*)0x04000030, &mtx, 128, 96, x, y);
@@ -212,7 +212,7 @@ THUMB void dss::UnkDisplayPluginDouble3d::update(int frame)
     GX_SetVisibleWnd(7);
     G2_SetWndOBJInsidePlane(0x1b, 1);
     G2_SetWndOutsidePlane(0x1f, 1);
-    unkfunc_0204ccf4(2);
+    setDisplayBlendMode(2);
 }
 
 #pragma pop
@@ -276,10 +276,10 @@ THUMB void dss::UnkDisplayPluginSingle3d::update(int frame)
     GX_SetVisibleWnd(7);
     G2_SetWndOBJInsidePlane(0x1b, 1);
     G2_SetWndOutsidePlane(0x1f, 1);
-    unkfunc_0204ccf4(2);
+    setDisplayBlendMode(2);
     int x;
     int y;
-    unkfunc_0204c9ac(&x, &y);
+    getCaptureOffset(&x, &y);
     MtxFx22 mtx;
     func_02088958(&mtx);
     func_020759d4((volatile void*)0x04000030, &mtx, 128, 96, x, y);
@@ -343,5 +343,5 @@ THUMB void dss::UnkDisplayPluginTextonly::update(int frame)
     GX_SetVisibleWnd(7);
     G2_SetWndOBJInsidePlane(0x1b, 1);
     G2_SetWndOutsidePlane(0x1f, 1);
-    unkfunc_0204ccf4(2);
+    setDisplayBlendMode(2);
 }

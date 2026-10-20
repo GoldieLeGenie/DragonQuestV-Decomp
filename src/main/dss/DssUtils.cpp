@@ -59,7 +59,7 @@ ARM void* dss::memcpy(void* dst, void* src, int n)
     return dst;
 }
 
-ARM int dss::unkfunc_0205051c(int c)
+ARM int dss::toLower(int c)
 {
     if (c >= 'A' && c <= 'Z') {
         c += 'a' - 'A';

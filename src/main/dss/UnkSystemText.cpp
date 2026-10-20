@@ -46,7 +46,7 @@ THUMB void loadSystemTextChars(int type, int screen1, int screen2)
     requestVramCopy(getBgCharVramType(screen1), 0, getSystemTextData(0), 0x1000);
     UnkCharBuffer buffer;
     void* chr = getSystemTextData(3);
-    unkfunc_0204e558(&buffer, chr, 0x20, 8);
+    initCharBuffer(&buffer, chr, 0x20, 8);
     requestVramCopy(0x13, 0x2000, chr, 0x2000);
     if (sub) {
         requestVramCopy(getBgCharVramType(screen1), 0x8000, getSystemTextData(0), 0x1000);

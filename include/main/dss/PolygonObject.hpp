@@ -14,7 +14,7 @@ struct PolygonObject : UnkRenderObject3D {
     UnkBillboardTexCoord texCoord_;                // 0x60
     dss::Vector3<char> unk_80;                  // 0x80 color (r, g, b)
 
-    void unkfunc_0204709c(const UnkPolygonVertex* vertex);         // setVertex
-    void unkfunc_02047138(const UnkBillboardTexCoord* texCoord);   // setTexCoord
-    void unkfunc_020471b0();                                    // draw the textured quad
+    void setVertex(const UnkPolygonVertex* vertex);         // setVertex
+    void setTexCoord(const UnkBillboardTexCoord* texCoord);   // setTexCoord
+    void drawQuad();                                    // draw the textured quad
 };

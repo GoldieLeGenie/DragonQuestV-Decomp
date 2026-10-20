@@ -23,16 +23,16 @@ struct UnkBgText {
 
 extern UnkBgText data_021011f0;
 
-void unkfunc_0204df4c();                        // init
-void unkfunc_0204df60(void* data, void* subData);   // load the 12 dots fonts
-void unkfunc_0204df84(void* data, void* subData);   // load the 10 dots fonts
-int unkfunc_0204dfa8(UnkCharBuffer* buffer, int x, int y, int color, const char* text);   // draw a text (NULL: measure)
-int unkfunc_0204dfbc(UnkCharBuffer* buffer, int x, int y, int color, const char* text, int wrap);
-int unkfunc_0204e1a0(UnkG2dCanvas* canvas, int x, int y, int color, unsigned short c);    // draw a char (NULL: width)
-void unkfunc_0204e478(int size);                // set the font size
-int unkfunc_0204e4c8(int size);                 // line height
-int unkfunc_0204e4dc(unsigned char* widths, int max);   // char widths of the last text
-int unkfunc_0204e540();                         // width of the last text
-int unkfunc_0204e50c(unsigned short* codes, int size);  // char codes of the last text
+void initBgText();                        // init
+void loadBgFont12(void* data, void* subData);   // load the 12 dots fonts
+void loadBgFont10(void* data, void* subData);   // load the 10 dots fonts
+int drawBgText(UnkCharBuffer* buffer, int x, int y, int color, const char* text);   // draw a text (NULL: measure)
+int drawBgTextWrapped(UnkCharBuffer* buffer, int x, int y, int color, const char* text, int wrap);
+int drawBgChar(UnkG2dCanvas* canvas, int x, int y, int color, unsigned short c);    // draw a char (NULL: width)
+void setBgTextFontSize(int size);                // set the font size
+int getBgTextLineHeight(int size);                 // line height
+int getBgTextCharWidths(unsigned char* widths, int max);   // char widths of the last text
+int getBgTextWidth();                         // width of the last text
+int getBgTextCharCodes(unsigned short* codes, int size);  // char codes of the last text
 
 extern "C" void func_0204e54c(int mode);           // set the full-width digits glyphs mode

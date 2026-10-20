@@ -44,8 +44,8 @@ THUMB void disableMenuDisplays()
 
 THUMB void unkfunc_02063d94()
 {
-    UnkOamBuffer* main = unkfunc_0204ce40(0);
-    UnkOamBuffer* sub = unkfunc_0204ce40(192);
+    UnkOamBuffer* main = getOamBufferAtY(0);
+    UnkOamBuffer* sub = getOamBufferAtY(192);
     data_02114dd4.message_.update(main, sub);
     data_02114dd4.yesNo_.update(main, sub);
     data_02114dd4.face_.update(main, sub);
@@ -65,8 +65,8 @@ THUMB void unkfunc_02063d94()
 
 THUMB void unkfunc_02063e98()
 {
-    UnkOamBuffer* main = unkfunc_0204ce40(0);
-    UnkOamBuffer* sub = unkfunc_0204ce40(192);
+    UnkOamBuffer* main = getOamBufferAtY(0);
+    UnkOamBuffer* sub = getOamBufferAtY(192);
     data_02114dd4.message_.execute(main, sub);
     data_02114dd4.yesNo_.execute(main, sub);
     data_02114dd4.face_.execute(main, sub);
@@ -86,8 +86,8 @@ THUMB void unkfunc_02063e98()
 
 THUMB void unkfunc_02063f9c()
 {
-    UnkOamBuffer* main = unkfunc_0204ce40(0);
-    UnkOamBuffer* sub = unkfunc_0204ce40(192);
+    UnkOamBuffer* main = getOamBufferAtY(0);
+    UnkOamBuffer* sub = getOamBufferAtY(192);
     data_02114dd4.face_.draw(main, sub);
     data_02114dd4.icon_.draw(main, sub);
     data_02114dd4.sprite_.draw(main, sub);

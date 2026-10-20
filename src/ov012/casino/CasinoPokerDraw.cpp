@@ -39,7 +39,7 @@ THUMB void casino::CasinoPokerDraw::initialize()
     cardObject[5].setup("data/minigame/poker/hikari.tex", 0, 0);
     for (int i = 0; i < MAX_CARD_TYPE; i++) {
         cardTexture_[i] = (TextureObject*)cardObject[i].getAddr();
-        cardTexture_[i]->unkfunc_02049e9c(1);
+        cardTexture_[i]->loadToVram(1);
     }
     s_vertex.v[0] = s_vertexLeftTop;
     s_vertex.v[1] = s_vertexRightTop;
@@ -104,7 +104,7 @@ THUMB void casino::CasinoPokerDraw::setHighLowPosition()
 THUMB void casino::CasinoPokerDraw::terminate()
 {
     for (int i = 0; i < MAX_CARD_TYPE; i++) {
-        cardTexture_[i]->unkfunc_02049f90();
+        cardTexture_[i]->freeVram();
         cardObject[i].cleanup();
     }
 }
@@ -247,12 +247,12 @@ THUMB void casino::PokerCardPolygon::draw()
     G3_MaterialColorDiffAmb(0x7fff, 0x4210, 1);
     G3_MaterialColorSpecEmi(0x4210, 0, 0);
     if (texture_) {
-        ((TextureObject*)texture_)->unkfunc_0204a1e4();
-        ((TextureObject*)texture_)->unkfunc_0204a264();
+        ((TextureObject*)texture_)->applyTexImageParam();
+        ((TextureObject*)texture_)->applyPlttBase();
     } else {
         disableTexture();
     }
-    unkfunc_02046fe8();
+    applyPolygonAttr();
     G3_Begin(1);
     for (int i = 0; i < 4; i++) {
         G3_Color(0x7fff);

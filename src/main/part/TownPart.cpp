@@ -27,14 +27,14 @@ ARM void twn::TownPart::initialize()
     GX_ResetBankForSubBg();
     GX_SetBankForTex(GX_VRAM_AB);
     data_020f4f74.initVramManagers(0x40000, 0x4000);
-    unkfunc_0204c9d8(&dss::g_DISPLAYPLUGIN_DOUBLE3D);
+    changeDisplayPlugin(&dss::g_DISPLAYPLUGIN_DOUBLE3D);
     data_02101584.unkfunc_0205027c();
-    unkfunc_0204afe0();
+    getTick();
     loadOverlay((int)&OVERLAY_1_ID);
     ov001_entry();
     unkfunc_02018e6c(1);
     ov019_entry();
-    unkfunc_0204afe0();
+    getTick();
     twn::TownSystem::getSingleton().initialize();
     twn::TownWindowSystem::getSingleton().initialize();
     func_02082654(1);
@@ -50,7 +50,7 @@ ARM void twn::TownPart::terminate()
     twn::TownWindowSystem::getSingleton().terminate();
     twn::TownSystem::getSingleton().terminate();
     data_02101584.unkfunc_0205027c();
-    unkfunc_0204afe0();
+    getTick();
     data_020a29f4.unload();
     unkfunc_02018eac();
     unloadOverlay((int)&OVERLAY_1_ID);

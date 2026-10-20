@@ -11,8 +11,8 @@ THUMB UnkMenuYesNoDisplay::UnkMenuYesNoDisplay()
 THUMB void UnkMenuYesNoDisplay::setup(int id)
 {
     id_ = id;
-    unkfunc_0204e558(&yesChar_, yesData_, 6, 2);
-    unkfunc_0204e558(&noChar_, noData_, 6, 2);
+    initCharBuffer(&yesChar_, yesData_, 6, 2);
+    initCharBuffer(&noChar_, noData_, 6, 2);
     reset();
     setType(2);
     transfer_ = 0;
@@ -40,7 +40,7 @@ inline void UnkMenuYesNoDisplay::transferRow(int row)
 THUMB void UnkMenuYesNoDisplay::draw(UnkOamBuffer* main, UnkOamBuffer* sub)
 {
     if (!enable_) {
-        unkfunc_0204d074(0);
+        setWindow1Enable(0);
     }
     if (!unkfunc_02064730(main, sub)) {
         return;
@@ -67,7 +67,7 @@ THUMB void UnkMenuYesNoDisplay::draw(UnkOamBuffer* main, UnkOamBuffer* sub)
         }
     }
     int type;
-    switch (unkfunc_0204d0b8()) {
+    switch (getDisplayPluginType()) {
     case 1:
         type = 0x14;
         break;
@@ -82,8 +82,8 @@ THUMB void UnkMenuYesNoDisplay::draw(UnkOamBuffer* main, UnkOamBuffer* sub)
         break;
     }
     if (type) {
-        unkfunc_0204d074(1);
-        unkfunc_0204d098(type, x_ + 2, y_ - 0xbe, w_ - 4, h_ - 4);
+        setWindow1Enable(1);
+        setWindow1(type, x_ + 2, y_ - 0xbe, w_ - 4, h_ - 4);
     }
 }
 
@@ -95,13 +95,13 @@ THUMB void UnkMenuYesNoDisplay::unkfunc_02067570(int yesMessageId, int noMessage
 {
     char yes[0x200];
     char no[0x200];
-    unkfunc_0204e478(10);
-    unkfunc_0204e574(&yesChar_, 0);
-    unkfunc_0204e574(&noChar_, 0);
+    setBgTextFontSize(10);
+    fillCharBuffer(&yesChar_, 0);
+    fillCharBuffer(&noChar_, 0);
     g_text_extractor.extractText(yes, sizeof(yes), yesMessageId);
     g_text_extractor.extractText(no, sizeof(no), noMessageId);
-    unkfunc_0204dfa8(&yesChar_, 0, 0, 1, yes);
-    unkfunc_0204dfa8(&noChar_, 0, 0, 1, no);
+    drawBgText(&yesChar_, 0, 0, 1, yes);
+    drawBgText(&noChar_, 0, 0, 1, no);
     transfer_ = 1;
 }
 

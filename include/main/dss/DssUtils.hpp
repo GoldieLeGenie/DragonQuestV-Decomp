@@ -276,7 +276,7 @@ namespace dss{
     char* strchr(const char* str, int c);
     void* memset(void* dst, int c, int n);
     void* memcpy(void* dst, void* src, int n);
-    int unkfunc_0205051c(int c);                    // to lower case
+    int toLower(int c);                    // to lower case
     int sprintf_s(char* dst, size_t size, const char* fmt, ...);  
     int strcpy_s(char* dst, size_t size, const char* src);
     int strcat_s(char* dst, size_t size, const char* src);

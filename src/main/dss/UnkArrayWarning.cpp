@@ -5,7 +5,7 @@ int data_0209a288 = 1;
 int data_020fd180;
 UnkArrayWarning data_020fd184[16];
 
-ARM void unkfunc_0204c0b4(int enable)
+ARM void setArrayErrorEnabled(int enable)
 {
     data_0209a288 = enable;
 }

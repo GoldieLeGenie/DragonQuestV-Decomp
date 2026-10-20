@@ -24,7 +24,7 @@ ARM void btl::BattlePart::initialize()
     GX_ResetBankForSubBg();
     GX_SetBankForTex(GX_VRAM_ABCD);
     data_020f4f74.initVramManagers(0x80000, 0x4000);
-    unkfunc_0204c9d8(&dss::g_DISPLAYPLUGIN_SINGLE3D);
+    changeDisplayPlugin(&dss::g_DISPLAYPLUGIN_SINGLE3D);
     loadOverlay((int)&OVERLAY_0_ID);
     ov000_entry();
     unkfunc_02018e6c(2);
@@ -34,13 +34,13 @@ ARM void btl::BattlePart::initialize()
     UnkBattleSystem::getSingleton()->initialize();
     func_02082654(1);
     g_Global.fadeIn(30);
-    dss::g_Pad.unkfunc_0204bc24(0);
+    dss::g_Pad.setMaskL(0);
     unkfunc_020270dc();
 }
 
 ARM void btl::BattlePart::terminate()
 {
-    dss::g_Pad.unkfunc_0204bc24(0);
+    dss::g_Pad.setMaskL(0);
     UnkBattleSystem::getSingleton()->terminate();
     BattleSystem::getSingleton()->terminate();
     unkfunc_02018eac();

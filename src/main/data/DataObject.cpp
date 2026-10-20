@@ -16,7 +16,7 @@ ARM DataObject::~DataObject()
 ARM void DataObject::setup(const char* filename, int a, int b)
 {
     m_flag |= 1;
-    m_addr = dss::g_File.unkfunc_0204b29c(filename, b, (dss::File::LoadSwitch)a);
+    m_addr = dss::g_File.allocAndLoad(filename, b, (dss::File::LoadSwitch)a);
     m_size = dss::g_File.size_;
     s_dataCount++;
 }
@@ -49,13 +49,13 @@ ARM long DataObject::getSize()
 
 ARM int DataObject::unkfunc_0206e1fc(const char* filename, int a)
 {
-    return dss::g_File.unkfunc_0204b21c(filename, m_addr, a);
+    return dss::g_File.loadToBuffer(filename, m_addr, a);
 }
 
 ARM void UnkLZDataObject::setup(const char* filename, int a, int b)
 {
     m_flag |= 1;
-    m_addr = dss::g_File.unkfunc_0204b29c(filename, b, (dss::File::LoadSwitch)a);
+    m_addr = dss::g_File.allocAndLoad(filename, b, (dss::File::LoadSwitch)a);
     m_size = dss::g_File.size_;
     if (isCompressed(m_addr)) {
         m_size = getUncompressedSize(m_addr);
@@ -75,7 +75,7 @@ ARM void UnkLZDataObject::setup(void* addr)
 ARM void DataObject::unkfunc_0206e2c4(const char* filename, dss::File::LoadSwitch sw)
 {
     m_flag |= 1;
-    m_addr = dss::g_File.unkfunc_0204b310(filename, sw);
+    m_addr = dss::g_File.loadCompressed(filename, sw);
     m_size = dss::g_File.size_;
     s_dataCount++;
 }

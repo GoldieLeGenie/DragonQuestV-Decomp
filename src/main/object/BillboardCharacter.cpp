@@ -170,7 +170,7 @@ ARM void BillboardCharacter::unkfunc_02055a34()
 
 ARM void DisplayCharacter::unkfunc_02055a60()
 {
-    ((TextureObject*)RenderObject::texture_)->unkfunc_02049f90();
+    ((TextureObject*)RenderObject::texture_)->freeVram();
 }
 
 ARM void* BillboardCharacter::unkfunc_02055a70(int index)
@@ -207,7 +207,7 @@ ARM void BillboardCharacter::unkfunc_02055ab0()
 ARM void BillboardCharacter::cleanup()
 {
     removeRender();
-    unkfunc_02050760();
+    releaseTexture();
     data_.cleanup();
     shadow_.unkfunc_02056824();
     enable_ = 0;
@@ -288,7 +288,7 @@ ARM void BillboardCharacter::unkfunc_02055db8(int index)
         return;
     }
     textureIndex_ = index;
-    unkfunc_02050770((int)textures_[index]);
+    changeTexture((int)textures_[index]);
     flag_ &= ~FLAG_RELOAD;
 }
 
@@ -562,7 +562,7 @@ ARM void BillboardCharacter::unkfunc_0205647c()
 {
     s_shadowData.setup("data/common.tex", 0, 0);
     s_shadowTexture = (TextureObject*)s_shadowData.getAddr();
-    s_shadowTexture->unkfunc_02049e9c(1);
+    s_shadowTexture->loadToVram(1);
     dss::UnkMatrix43 matrix;
     dss::Fix32Vector3 direction;
     dss::Fix32Vector3 work;
@@ -593,23 +593,23 @@ ARM void BillboardCharacter::unkfunc_0205647c()
         s_side.v[1] = s_sideVertex[1];
         s_side.v[2] = s_sideVertex[2];
         s_side.v[3] = s_sideVertex[3];
-        s_shadowPolygons[i].unkfunc_0204709c(&s_side);
+        s_shadowPolygons[i].setVertex(&s_side);
         s_shadowPolygons[i].setScale(s_shadowScale);
-        s_shadowPolygons[0].unkfunc_02047670(i, &s_side);
+        s_shadowPolygons[0].setVolumeVertex(i, &s_side);
     }
 }
 
 ARM void BillboardCharacter::unkfunc_0205678c()
 {
-    s_shadowTexture->unkfunc_02049f90();
+    s_shadowTexture->freeVram();
     s_shadowData.cleanup();
 }
 
 ARM void UnkCharacterShadow::unkfunc_020567b0(int type)
 {
     s_shadowType = type;
-    unkfunc_0204709c(&s_shadowVertex);
-    unkfunc_02047138(&s_shadowTexCoord);
+    setVertex(&s_shadowVertex);
+    setTexCoord(&s_shadowTexCoord);
     texture_ = s_shadowTexture;
     setAlpha(12);
     position_.vy.value = 0x400;
@@ -639,7 +639,7 @@ ARM void UnkCharacterShadow::draw()
     }
     s_shadowPolygons[0].setRotationIdx(unk_28);
     s_shadowPolygons[0].setPosition(position_);
-    s_shadowPolygons[0].unkfunc_0204748c();
+    s_shadowPolygons[0].drawVolume();
 }
 
 ARM void UnkCharacterShadow::unkfunc_02056900(int type)

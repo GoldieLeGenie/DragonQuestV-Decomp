@@ -37,8 +37,8 @@ void twn::TownSugorokuDraw::unkfunc_0214d3ac(const UnkPolygonVertex* xy)
 {
     data_.setup("data/sugoroku/sgpall.tex", 0, 0);
     texture_ = data_.getAddr();
-    ((TextureObject*)texture_)->unkfunc_02049e9c(1);
-    int width = ((TextureObject*)texture_)->unkfunc_0204a340() / 32;
+    ((TextureObject*)texture_)->loadToVram(1);
+    int width = ((TextureObject*)texture_)->getWidth() / 32;
     dss::Vector2<dss::Fix32> leftTop;
     dss::Vector2<dss::Fix32> rightTop;
     dss::Vector2<dss::Fix32> rightBottom;
@@ -58,19 +58,19 @@ void twn::TownSugorokuDraw::unkfunc_0214d3ac(const UnkPolygonVertex* xy)
     }
     xy_ = *xy;
     polygon_.RenderObject::texture_ = texture_;
-    polygon_.unkfunc_0204709c(&xy_);
+    polygon_.setVertex(&xy_);
 }
 
 void twn::TownSugorokuDraw::unkfunc_0214d568(int type, dss::Fix32Vector3& pos)
 {
-    polygon_.unkfunc_02047138(&uv_[type]);
+    polygon_.setTexCoord(&uv_[type]);
     polygon_.setPosition(pos);
     polygon_.draw();
 }
 
 void twn::TownSugorokuDraw::cleanup()
 {
-    ((TextureObject*)texture_)->unkfunc_02049f90();
+    ((TextureObject*)texture_)->freeVram();
     data_.cleanup();
 }
 
@@ -88,7 +88,7 @@ void twn::TownSugorokuDice::setup()
     dss::sprintf_s(path, sizeof(path), "data/sugoroku/dice.pack");
     diceData_.setup(path, 0, 0);
     texture_ = getArchiveFile(diceData_.getAddr(), 0);
-    ((TextureObject*)texture_)->unkfunc_02049e9c(1);
+    ((TextureObject*)texture_)->loadToVram(1);
     for (int i = 0; i < DICE_ANIM_MAX; i++) {
         diceAnim_[i].setup(getArchiveFile(diceData_.getAddr(), i + 1));
         diceAnim_[i].setTexture(texture_);
@@ -130,7 +130,7 @@ void twn::TownSugorokuDice::cleanup()
     for (int i = 0; i < DICE_ANIM_MAX; i++) {
         diceAnim_[i].cleanup();
     }
-    ((TextureObject*)texture_)->unkfunc_02049f90();
+    ((TextureObject*)texture_)->freeVram();
     diceData_.cleanup();
 }
 
@@ -146,7 +146,7 @@ void twn::TownSugorokuArrow::setup(const UnkPolygonVertex* xy)
 {
     arrowData_.setup("data/sugoroku/arrow.tex", 0, 0);
     texture_ = arrowData_.getAddr();
-    ((TextureObject*)texture_)->unkfunc_02049e9c(1);
+    ((TextureObject*)texture_)->loadToVram(1);
     dss::Vector2<dss::Fix32> leftTop;
     dss::Vector2<dss::Fix32> rightTop;
     dss::Vector2<dss::Fix32> rightBottom;
@@ -164,7 +164,7 @@ void twn::TownSugorokuArrow::setup(const UnkPolygonVertex* xy)
     }
     xy_ = *xy;
     polygon_.RenderObject::texture_ = texture_;
-    polygon_.unkfunc_0204709c(&xy_);
+    polygon_.setVertex(&xy_);
     counter_ = 0;
     animFrame_ = 8;
 }
@@ -172,7 +172,7 @@ void twn::TownSugorokuArrow::setup(const UnkPolygonVertex* xy)
 void twn::TownSugorokuArrow::draw(dss::Fix32Vector3& pos)
 {
     polygon_.setRotationIdx(rot_);
-    polygon_.unkfunc_02047138(&uv_[counter_ / animFrame_ % ARROW_ANIM_MAX]);
+    polygon_.setTexCoord(&uv_[counter_ / animFrame_ % ARROW_ANIM_MAX]);
     polygon_.setPosition(pos);
     polygon_.draw();
     counter_++;
@@ -180,7 +180,7 @@ void twn::TownSugorokuArrow::draw(dss::Fix32Vector3& pos)
 
 void twn::TownSugorokuArrow::cleanup()
 {
-    ((TextureObject*)texture_)->unkfunc_02049f90();
+    ((TextureObject*)texture_)->freeVram();
     arrowData_.cleanup();
 }
 

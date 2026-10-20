@@ -94,7 +94,7 @@ THUMB void MaterielMenu_SHOP_ROOT::menuUpdate()
         return;
     }
     if (mode_ == SHOP_START) {
-        unkfunc_0204c9c8();
+        resetCaptureOffset();
         gTownMenu_MESSAGE.openMessageForTALK();
         gTownMenu_MESSAGE.addMessageNOWAIT(MaterielMenu_SHOP_MESSAGE_MANAGER::getSingleton()->idle());
         gTownMenu_MESSAGE.addMessageWAITKEY();
@@ -115,7 +115,7 @@ THUMB void MaterielMenu_SHOP_ROOT::execConduct()
         }
     }
     if (mode_ == SHOP_NEXT) {
-        unkfunc_0204c9c8();
+        resetCaptureOffset();
         MaterielMenu_SHOP_MANAGER::getSingleton()->initialize();
         MaterielMenu_WINDOW_MANAGER::getSingleton()->closeMaterielWindow();
     }

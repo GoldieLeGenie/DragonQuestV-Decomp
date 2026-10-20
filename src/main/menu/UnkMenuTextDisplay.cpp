@@ -11,7 +11,7 @@ THUMB UnkMenuTextDisplay::UnkMenuTextDisplay()
 THUMB void UnkMenuTextDisplay::setup(int id)
 {
     id_ = id;
-    unkfunc_0204e558(&char_, charData_, 32, 2);
+    initCharBuffer(&char_, charData_, 32, 2);
     enable_ = 0;
     xlu_ = 1;
     timer_ = 0;
@@ -153,17 +153,17 @@ THUMB void UnkMenuTextDisplay::unkfunc_02066ef4(UnkOamBuffer* oam, int x, int y,
 THUMB void UnkMenuTextDisplay::unkfunc_02066fe4(int font, const char* text, int x, int y, int clear, int center)
 {
     unkfunc_02067324(text);
-    unkfunc_0204e478(font);
+    setBgTextFontSize(font);
     int offset = 0;
     if (center) {
-        unkfunc_0204dfa8(NULL, 0, 0, 0, text);
-        offset = (240 - unkfunc_0204e540()) / 2;
+        drawBgText(NULL, 0, 0, 0, text);
+        offset = (240 - getBgTextWidth()) / 2;
     }
-    unkfunc_0204e574(&char_, 0);
-    unkfunc_0204dfa8(&char_, x + offset, y, 1, text);
-    count_ = unkfunc_0204e4dc(charWidths_, 0x100);
-    unkfunc_0204e50c(unk_130, 0x200);
-    width_ = unkfunc_0204e540();
+    fillCharBuffer(&char_, 0);
+    drawBgText(&char_, x + offset, y, 1, text);
+    count_ = getBgTextCharWidths(charWidths_, 0x100);
+    getBgTextCharCodes(unk_130, 0x200);
+    width_ = getBgTextWidth();
     visibleCount_ = 0;
     visibleWidth_ = 0;
     unkfunc_02067180(0);
@@ -178,7 +178,7 @@ THUMB void UnkMenuTextDisplay::unkfunc_02066fe4(int font, const char* text, int 
     timer_ = 1;
     if (clear) {
         for (int i = 0; i < width_ + 1; i++) {
-            unkfunc_0204e5ec(&char_, i, 15, 1);
+            setCharBufferPixel(&char_, i, 15, 1);
         }
     }
 }
@@ -186,9 +186,9 @@ THUMB void UnkMenuTextDisplay::unkfunc_02066fe4(int font, const char* text, int 
 THUMB int UnkMenuTextDisplay::unkfunc_020670f4(int font, const char* text, int priority, int flag)
 {
     unkfunc_02067324(text);
-    unkfunc_0204e478(10);
-    unkfunc_0204dfa8(NULL, 0, 0, 0, text);
-    int width = unkfunc_0204e540();
+    setBgTextFontSize(10);
+    drawBgText(NULL, 0, 0, 0, text);
+    int width = getBgTextWidth();
     unkfunc_02066fe4(font, text, 4, 2, 0, 0);
     palette_ = flag ? 15 : 14;
     frame_ = 1;
@@ -244,7 +244,7 @@ THUMB void UnkMenuTextDisplay::unkfunc_020671e8(int scroll)
     if (scroll > 0) {
         int size = scroll * 4;
         do {
-            dst = (char*)unkfunc_0204e564(&char_, 0, row);
+            dst = (char*)getCharBufferTile(&char_, 0, row);
             if (scroll > 8) {
                 MI_CpuFill(0, dst, 0x400);
             } else {

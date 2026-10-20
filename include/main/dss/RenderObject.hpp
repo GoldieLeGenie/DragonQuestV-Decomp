@@ -21,9 +21,9 @@ struct RenderObject {
     int enable_;                                // 0x10
 
     RenderObject();                             // C2 0x02083658
-    void unkfunc_02046fe8();                    // polygon attributes
-    void unkfunc_02047010();                    // shadow mask polygon attributes
-    void unkfunc_02047028();                    // shadow polygon attributes
+    void applyPolygonAttr();                    // polygon attributes
+    void applyShadowMaskAttr();                    // shadow mask polygon attributes
+    void applyShadowDrawAttr();                    // shadow polygon attributes
 };
 
 /* vtable 0x020c1c88 */
@@ -49,11 +49,11 @@ void loadBillboardMatrix();                        // billboard: keep only the t
 void setupOrtho2D();                        // 2D projection (256x192, depth 1)
 void setupOrtho2DFine();                        // 2D projection (256x192, depth 1/64), used by the battle monster mask and the sprites drawn over a 2D map
 void setupOrtho2DBackground();                        // 2D projection (256x192, depth 1024)
-void unkfunc_02048370();                        // draw the background gradient
-void unkfunc_020485cc(int r, int g, int b);     // background gradient: one color everywhere
-void unkfunc_02048640(unsigned char* bottomUpLeft, unsigned char* bottomUpRight, unsigned char* bottomDownLeft, unsigned char* bottomDownRight,
+void drawBackgroundGradient();                        // draw the background gradient
+void setBackgroundColor(int r, int g, int b);     // background gradient: one color everywhere
+void setBackgroundGradient(unsigned char* bottomUpLeft, unsigned char* bottomUpRight, unsigned char* bottomDownLeft, unsigned char* bottomDownRight,
                       unsigned char* topUpLeft, unsigned char* topUpRight, unsigned char* topDownLeft, unsigned char* topDownRight);
-void unkfunc_02048640(unsigned char* bottomUpLeft, unsigned char* bottomUpRight, unsigned char* bottomDownLeft, unsigned char* bottomDownRight,
+void setBackgroundGradient(unsigned char* bottomUpLeft, unsigned char* bottomUpRight, unsigned char* bottomDownLeft, unsigned char* bottomDownRight,
                       unsigned char* topUpLeft, unsigned char* topUpRight, unsigned char* topDownLeft, unsigned char* topDownRight);
-void unkfunc_02048728(int enable);              // background gradient on/off
-void unkfunc_02048738();
+void setBackgroundGradientEnable(int enable);              // background gradient on/off
+void drawSubScreenShade();

@@ -47,7 +47,7 @@ ARM void setPadLock(int flag)
     }
 }
 
-ARM int unkfunc_0204b61c()
+ARM int isPadInputBlocked()
 {
     return data_0209a238 == 0x1200f1fe;
 }

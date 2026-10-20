@@ -103,10 +103,10 @@ THUMB void fld::FieldData::setupBlock(int map)
     worldData_.setup(dataObject_.getAddr());
     symbolData_.setup(worldData_.m_sym_data);
     TextureObject* texture = (TextureObject*)blockData_.getAddr();
-    texture->unkfunc_02049e9c(1);
+    texture->loadToVram(1);
     dss::memcpy(&blockTextureObject_, texture, sizeof(TextureObject));
     blockTexture_ = &blockTextureObject_;
-    dss::memcpy(blockPaletteOrg_, (void*)blockTexture_->unkfunc_0204a1d4(), blockTexture_->unkfunc_0204a1dc());
+    dss::memcpy(blockPaletteOrg_, (void*)blockTexture_->getPlttData(), blockTexture_->getPlttSize());
     if (map != 2) {
         blockData_.cleanup();
     }
@@ -130,8 +130,8 @@ THUMB void fld::FieldData::setupBlock(int map)
     }
     pattern8_.setup(path8, 0, 0);
     pattern24_.setup(path24, 0, 0);
-    pattern8Block_ = data_020f4f74.allocTexVram(unkfunc_0204c868(pattern8_.getAddr(), 0));
-    pattern24Block_ = data_020f4f74.allocTexVram(unkfunc_0204c868(pattern24_.getAddr(), 0));
+    pattern8Block_ = data_020f4f74.allocTexVram(getArchiveFileSize(pattern8_.getAddr(), 0));
+    pattern24Block_ = data_020f4f74.allocTexVram(getArchiveFileSize(pattern24_.getAddr(), 0));
     nextAnimation8();
     nextAnimation24();
 }
@@ -147,14 +147,14 @@ THUMB void fld::FieldData::setupSymbol(int flag)
             symbolTexture_[i] = NULL;
         } else {
             symbolTexture_[i] = (TextureObject*)getArchiveFile(symbolPack_.getAddr(), i);
-            symbolTexture_[i]->unkfunc_02049e9c(1);
+            symbolTexture_[i]->loadToVram(1);
         }
     }
     for (int i = 0; i < SYMBOL_MAX; i++) {
         if (i < symbolData_.m_ndata) {
             WorldSymbolData* data = &symbolData_.m_data[i];
             m_symbol[i].texture_ = symbolTexture_[data->id];
-            m_symbol[i].unkfunc_02047ec0(data->w, data->h);
+            m_symbol[i].setSize(data->w, data->h);
             m_symbol[i].unkfunc_02047ecc(0, 0, data->w, data->h);
             m_symbol[i].screens_ = 1;
             m_symbol[i].depth_ = 1;
@@ -163,7 +163,7 @@ THUMB void fld::FieldData::setupSymbol(int flag)
             }
         } else {
             m_symbol[i].unkfunc_02047e88(0x100, 0xc0);
-            m_symbol[i].unkfunc_02047ec0(8, 8);
+            m_symbol[i].setSize(8, 8);
             m_symbol[i].unkfunc_02047ecc(0, 0, 8, 8);
             m_symbol[i].screens_ = 1;
             m_symbol[i].texture_ = symbolTexture_[0];
@@ -200,12 +200,12 @@ THUMB void fld::FieldData::setupSymbol(int flag)
 
 THUMB void fld::FieldData::reload()
 {
-    ((TextureObject*)blockData_.getAddr())->unkfunc_0204a090(0);
+    ((TextureObject*)blockData_.getAddr())->transferToVram(0);
     nextAnimation8();
     nextAnimation24();
     for (int i = 0; i < SYMBOL_TEXTURE_NUM; i++) {
         if (symbolTexture_[i] != NULL) {
-            symbolTexture_[i]->unkfunc_0204a090(0);
+            symbolTexture_[i]->transferToVram(0);
         }
     }
 }
@@ -218,11 +218,11 @@ THUMB void fld::FieldData::cleanup(int map)
     pattern24_.cleanup();
     for (int i = 0; i < SYMBOL_TEXTURE_NUM; i++) {
         if (map != 0 || s_symbolLoad[i] != 0) {
-            symbolTexture_[i]->unkfunc_02049f90();
+            symbolTexture_[i]->freeVram();
         }
     }
     symbolPack_.cleanup();
-    blockTextureObject_.unkfunc_02049f90();
+    blockTextureObject_.freeVram();
     if (map == 2) {
         blockData_.cleanup();
     }
@@ -298,8 +298,8 @@ THUMB void fld::FieldData::drawBlock()
     int num;
     unsigned short no;
     G3_PushMtx();
-    blockTexture_->unkfunc_0204a1e4();
-    blockTexture_->unkfunc_0204a264();
+    blockTexture_->applyTexImageParam();
+    blockTexture_->applyPlttBase();
     x = baseBlock_.vx - 4;
     y = baseBlock_.vy - 4;
     address = 0;
@@ -322,7 +322,7 @@ THUMB void fld::FieldData::drawBlock()
             data = &worldData_.m_tex[num];
             uv_tbl = worldData_.getUV(nx, ny);
             if (data->aflag == 0) {
-                address = blockTexture_->unkfunc_0204a1bc();
+                address = blockTexture_->getTexAddr();
                 no = data->no;
             } else {
                 if (data->aflag == 8) {
@@ -481,19 +481,19 @@ THUMB void fld::FieldData::drawSymbol()
                 if (data->uid == 0x1e) {
                     if (!g_AreaFlag.check(0xde)) {
                         fx.value -= 0x5000;
-                        m_symbol[i].unkfunc_02047e9c(fx, fy);
-                        m_symbol[i].unkfunc_02047ec0(data->w * 3 / 2 + 1, data->h);
+                        m_symbol[i].setPositionFix32(fx, fy);
+                        m_symbol[i].setSize(data->w * 3 / 2 + 1, data->h);
                         m_symbol[i].draw();
                     }
                 } else if (data->uid == 0x1f) {
                     if (g_AreaFlag.check(0xde)) {
                         fx.value -= 0x5000;
-                        m_symbol[i].unkfunc_02047e9c(fx, fy);
-                        m_symbol[i].unkfunc_02047ec0(data->w * 3 / 2 + 1, data->h);
+                        m_symbol[i].setPositionFix32(fx, fy);
+                        m_symbol[i].setSize(data->w * 3 / 2 + 1, data->h);
                         m_symbol[i].draw();
                     }
                 } else {
-                    m_symbol[i].unkfunc_02047e9c(fx, fy);
+                    m_symbol[i].setPositionFix32(fx, fy);
                     m_symbol[i].draw();
                 }
             }
@@ -746,16 +746,16 @@ THUMB bool fld::FieldData::isCollSymbol(int x, int y)
 
 THUMB void fld::FieldData::setPaletteRate(int flag, dss::Fix32Vector3& rate)
 {
-    dss::memcpy(blockPalette_, blockPaletteOrg_, blockTexture_->unkfunc_0204a1dc());
+    dss::memcpy(blockPalette_, blockPaletteOrg_, blockTexture_->getPlttSize());
     setPaletteRgbRate(3, rate);
-    applyPaletteRgbRate(blockPalette_, blockTexture_->unkfunc_0204a1dc(), rate);
-    data_020f4f74.transferToVram(1, blockPalette_, blockTexture_->unkfunc_0204a1cc(), blockTexture_->unkfunc_0204a1dc(), 0);
+    applyPaletteRgbRate(blockPalette_, blockTexture_->getPlttSize(), rate);
+    data_020f4f74.transferToVram(1, blockPalette_, blockTexture_->getPlttAddr(), blockTexture_->getPlttSize(), 0);
     for (int i = 0; i < SYMBOL_TEXTURE_NUM; i++) {
         if (flag != 0 || s_symbolLoad[i] != 0) {
-            MI_CpuCopyU8((void*)symbolTexture_[i]->unkfunc_0204a1d4(), symbolPalette_[i], symbolTexture_[i]->unkfunc_0204a1dc());
+            MI_CpuCopyU8((void*)symbolTexture_[i]->getPlttData(), symbolPalette_[i], symbolTexture_[i]->getPlttSize());
             setPaletteRgbRate(3, rate);
-            applyPaletteRgbRate(symbolPalette_[i], symbolTexture_[i]->unkfunc_0204a1dc(), rate);
-            data_020f4f74.transferToVram(1, symbolPalette_[i], symbolTexture_[i]->unkfunc_0204a1cc(), symbolTexture_[i]->unkfunc_0204a1dc(), 0);
+            applyPaletteRgbRate(symbolPalette_[i], symbolTexture_[i]->getPlttSize(), rate);
+            data_020f4f74.transferToVram(1, symbolPalette_[i], symbolTexture_[i]->getPlttAddr(), symbolTexture_[i]->getPlttSize(), 0);
         }
     }
 }

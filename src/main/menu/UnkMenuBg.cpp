@@ -11,7 +11,7 @@ THUMB void unkfunc_02063414()
 {
     data_02106178.back_.unkfunc_02063574();
     data_02106178.window_.unkfunc_020636e0();
-    data_02106178.icon_.unkfunc_0206375c(unkfunc_0204d03c());
+    data_02106178.icon_.unkfunc_0206375c(isDisplayIconEnabled());
 }
 
 THUMB void unkfunc_0206343c()
@@ -28,15 +28,15 @@ UnkMenuBg data_02106178;
 THUMB void unkfunc_02063450()
 {
     UnkMenuBg* bg = &data_02106178;
-    if (!unkfunc_0204cca8() || bg->transferCount_ == 0) {
+    if (!isDisplayTextReady() || bg->transferCount_ == 0) {
         return;
     }
     int frame = getDisplayFrame() & 1;
     int line = frame * 192;
-    int index = unkfunc_0204ced8(line);
+    int index = getTextBgAtY(line);
     if (index != -1) {
         int y = frame * 24;
-        void* chr = unkfunc_0204e564(bg->window_.unkfunc_02063708(), 0, y);
+        void* chr = getCharBufferTile(bg->window_.unkfunc_02063708(), 0, y);
         requestVramCopy(getBgCharVramType(index), 0x1000, chr, 0x6000);
         UnkScreenBuffer* window = bg->window_.unkfunc_0206370c();
         UnkScreenBuffer* screen = getDebugScreenBuffer();
@@ -50,7 +50,7 @@ THUMB void unkfunc_02063450()
             src++;
         }
     }
-    index = unkfunc_0204cf7c(line);
+    index = getTextBackBgAtY(line);
     if (index != -1) {
         unsigned short* back = getScreenBufferCell(bg->back_.getScreenBuffer(), 0, frame * 24);
         requestVramCopy(getBgScreenVramType(index), 0, back, 0x600);
@@ -108,7 +108,7 @@ THUMB void MenuBackBg::unkfunc_020635d4()
 
 THUMB void UnkMenuWindowBg::unkfunc_020636e0()
 {
-    unkfunc_0204e558(&char_, charData_, 32, 48);
+    initCharBuffer(&char_, charData_, 32, 48);
     initScreenBuffer(&screen_, screenData_, 32, 48);
 }
 

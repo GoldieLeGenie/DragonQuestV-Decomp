@@ -2,19 +2,19 @@
 #include "main/dss/DssUtils.hpp"
 #include "main/dss/UnkMemory.hpp"
 
-THUMB void CsvRow::unkfunc_020521e0()
+THUMB void CsvRow::clear()
 {
     for (int i = 0; i < 8; i++) {
         column_[i] = -1;
     }
 }
 
-THUMB void CsvRow::unkfunc_020521f0(int index, int offset)
+THUMB void CsvRow::setColumn(int index, int offset)
 {
     column_[index] = offset;
 }
 
-THUMB short CsvRow::unkfunc_020521f8(int index)
+THUMB short CsvRow::getColumn(int index)
 {
     return column_[index];
 }
@@ -27,38 +27,38 @@ THUMB CsvData::~CsvData()
 {
 }
 
-THUMB void CsvData::unkfunc_02052224(const char* filename, int a)
+THUMB void CsvData::loadText(const char* filename, int a)
 {
     data_.setup(filename, a, 1);
     text_ = (char*)data_.getAddr();
     size_ = data_.getSize();
 }
 
-THUMB void CsvData::unkfunc_02052248(const char* filename, int a)
+THUMB void CsvData::load(const char* filename, int a)
 {
-    unkfunc_02052224(filename, a);
+    loadText(filename, a);
     row_ = (CsvRow*)dssAlloc(&data_020fd24c, 0x3840, -0x20);
     for (int i = 0; i < 0x384; i++) {
-        row_[i].unkfunc_020521e0();
+        row_[i].clear();
     }
     int pos = 0;
     int row = 0;
     int column = 0;
-    row_[row].unkfunc_020521f0(column, pos);
+    row_[row].setColumn(column, pos);
     char* text = text_;
     do {
         if (text[pos] == ',') {
             text[pos] = 0;
             pos++;
             column++;
-            row_[row].unkfunc_020521f0(column, pos);
+            row_[row].setColumn(column, pos);
         } else if (text[pos] == '\r' && text[pos + 1] == '\n') {
             text[pos] = 0;
             text[pos + 1] = 0;
             pos += 2;
             row++;
             column = 0;
-            row_[row].unkfunc_020521f0(column, pos);
+            row_[row].setColumn(column, pos);
         } else {
             pos++;
         }
@@ -75,8 +75,8 @@ THUMB char* CsvData::unkfunc_02052314(int row, int column)
     if (rowCount_ <= row) {
         return 0;
     }
-    if (row_[row].unkfunc_020521f8(column) == -1) {
+    if (row_[row].getColumn(column) == -1) {
         return 0;
     }
-    return text_ + row_[row].unkfunc_020521f8(column);
+    return text_ + row_[row].getColumn(column);
 }

@@ -106,7 +106,7 @@ UnkBattleMapList data_0209ce6c;
 ARM void UnkGameApplication::vf00()
 {
     initHeap(&data_020fd24c, 0x20000, 0x8000, 0x280000, 0);
-    dss::g_File.unkfunc_0204b1cc(0);
+    dss::g_File.init(0);
     vf04();
     bgChar_.setup("data/G2D/SYSTEM/bg.bgc", 0, 0);
     bgChar2_.setup("data/G2D/SYSTEM/bg.bgc", 0, 0);
@@ -118,13 +118,13 @@ ARM void UnkGameApplication::vf00()
     font12Half_.setup("data/G2D/FONT/han12.nftr", 0, 0);
     font10_.setup("data/G2D/FONT/zen10.nftr", 0, 0);
     font10Half_.setup("data/G2D/FONT/han10.nftr", 0, 0);
-    unkfunc_0204df4c();
-    unkfunc_0204df60(font12_.getAddr(), font12Half_.getAddr());
-    unkfunc_0204df84(font10_.getAddr(), font10Half_.getAddr());
+    initBgText();
+    loadBgFont12(font12_.getAddr(), font12Half_.getAddr());
+    loadBgFont10(font10_.getAddr(), font10Half_.getAddr());
     table81_.setup("DATA/G2D/BIN/81_9F.bin", 0, 0);
     tableE0_.setup("DATA/G2D/BIN/E0_EF.bin", 0, 0);
     initSjisTables((unsigned short*)table81_.getAddr(), table81_.getSize(), (unsigned short*)tableE0_.getAddr(), tableE0_.getSize());
-    data_020f6f9c.unkfunc_0204aff4();
+    data_020f6f9c.reset();
     unkfunc_0206c6bc("MESS5", "MENULIST");
     func_020624a8();
     TextAPI::unkfunc_0206cb34();
@@ -179,7 +179,7 @@ ARM void UnkGameApplication::vf00()
     vf0c();
     vf08();
     unkfunc_02008d5c();
-    unkfunc_0204c0b4(2);
+    setArrayErrorEnabled(2);
 }
 
 ARM void UnkGameApplication::vf04()
@@ -243,7 +243,7 @@ ARM void UnkGameApplication::unkfunc_02008d5c()
 {
     GameMonsterData::unkfunc_02058098(LinkList);
     data_0209ce6c.unkfunc_0206da18("data/btlmap/_list.txt");
-    unkfunc_0204c9d8(&dss::g_DISPLAYPLUGIN_SINGLE3D);
+    changeDisplayPlugin(&dss::g_DISPLAYPLUGIN_SINGLE3D);
     dq5::level::levelData.setup();
     status::PlayerDataAll::initialize(true);
     const char* name = "BAG";

@@ -3,18 +3,18 @@
 ARM void TextureBillboard::unkfunc_0205071c(const UnkBillboardVertex* vertex, const UnkBillboardTexCoord* texCoord, void* texture)
 {
     texture_ = texture;
-    ((TextureObject*)texture)->unkfunc_02049e9c(1);
+    ((TextureObject*)texture)->loadToVram(1);
     unkfunc_02047a20(vertex);
     unkfunc_02047a94(texCoord);
     RenderObject::texture_ = texture_;
 }
 
-ARM void TextureBillboard::unkfunc_02050760()
+ARM void TextureBillboard::releaseTexture()
 {
-    ((TextureObject*)texture_)->unkfunc_02049f90();
+    ((TextureObject*)texture_)->freeVram();
 }
 
-ARM void TextureBillboard::unkfunc_02050770(int a)
+ARM void TextureBillboard::changeTexture(int a)
 {
-    ((TextureObject*)texture_)->unkfunc_0204a114((TextureObject*)(void*)a, 0);
+    ((TextureObject*)texture_)->transferFrom((TextureObject*)(void*)a, 0);
 }

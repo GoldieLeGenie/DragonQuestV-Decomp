@@ -141,7 +141,7 @@ THUMB void unkfunc_02062a04(UnkMenuParts* part, int* param, int x, int y, int de
             mapCharBufferToScreen(data_02105f3c, px / 8, py / 8, w / 8, h / 8, palette);
             for (int j = 0; j < h / 8; j++) {
                 for (int i = 0; i < w / 8; i++) {
-                    unkfunc_0204e60c(data_02105f40, px / 8 + i, py / 8 + j, vflip, hflip, index);
+                    drawCharBufferSystemTile(data_02105f40, px / 8 + i, py / 8 + j, vflip, hflip, index);
                 }
             }
             return;
@@ -392,16 +392,16 @@ THUMB void unkfunc_02062a04(UnkMenuParts* part, int* param, int x, int y, int de
             }
             mapCharBufferToScreen(data_02105f3c, px / 8, py / 8, w / 8, 1, palette);
             for (int i = 1; i < w / 8 - 1; i++) {
-                unkfunc_0204e60c(data_02105f40, px / 8 + i, py / 8, 0, 0, middle);
+                drawCharBufferSystemTile(data_02105f40, px / 8 + i, py / 8, 0, 0, middle);
             }
-            unkfunc_0204e60c(data_02105f40, px / 8, py / 8, 0, 0, left);
-            unkfunc_0204e60c(data_02105f40, px / 8 + w / 8 - 1, py / 8, 0, 0, end);
+            drawCharBufferSystemTile(data_02105f40, px / 8, py / 8, 0, 0, left);
+            drawCharBufferSystemTile(data_02105f40, px / 8 + w / 8 - 1, py / 8, 0, 0, end);
             return;
         }
         break;
     case 24:
         if (data_02105f34 == 1) {
-            unkfunc_0204e58c(data_02105f40, px / 8, py / 8, w / 8, h / 8,
+            fillCharBufferRect(data_02105f40, px / 8, py / 8, w / 8, h / 8,
                           color | (color << 4) | (color << 8) | (color << 12) | (color << 16) | (color << 20) |
                               (color << 24) | (color << 28));
             fillScreenBufferTilesFlipped(data_02105f3c, px / 8, py / 8, w / 8, h / 8, 15, 0, 0, 0);

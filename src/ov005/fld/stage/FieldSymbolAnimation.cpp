@@ -25,7 +25,7 @@ THUMB void fld::FieldSymbolAnimation::calcAnim(TextureObject* texture)
             return;
         }
         if (animId_ % 8 == 0) {
-            texture->unkfunc_0204a114((TextureObject*)getArchiveFile(data_.getAddr(), frame), 0);
+            texture->transferFrom((TextureObject*)getArchiveFile(data_.getAddr(), frame), 0);
         }
         animId_++;
     }

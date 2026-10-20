@@ -48,7 +48,7 @@ void twn::TownMonsterDraw::setup(TOWN_CHARACTER& chara)
     dss::sprintf_s(path, 0x80, "data/chr/h%03d.tex.lz", data_.charaIndex);
     textureData_.setup(path, dq5::level::CharaData::loadSwitch_, 1);
     TextureObject* texture = (TextureObject*)textureData_.getAddr();
-    texture->unkfunc_02049e9c(1);
+    texture->loadToVram(1);
     dss::memcpy(&texture_, texture, 0x70);
     if (data_.charaIndex == 0x204 || data_.charaIndex == 0x205 || data_.charaIndex == 0x219) {
         textureData_.cleanup();

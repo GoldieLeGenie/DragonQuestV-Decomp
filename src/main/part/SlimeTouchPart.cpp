@@ -49,8 +49,8 @@ THUMB void touch::SlimeTouchPart::initialize()
     GX_ResetBankForSubBg();
     GX_SetBankForTex(GX_VRAM_AB);
     data_020f4f74.initVramManagers(0x40000, 0x4000);
-    unkfunc_0204c9d8(&dss::g_DISPLAYPLUGIN_DOUBLE3D);
-    unkfunc_0204afe0();
+    changeDisplayPlugin(&dss::g_DISPLAYPLUGIN_DOUBLE3D);
+    getTick();
     loadOverlay((int)&OVERLAY_2_ID);
     loadOverlay((int)&OVERLAY_19_ID);
     ov019_entry();
@@ -69,7 +69,7 @@ THUMB void touch::SlimeTouchPart::initialize()
 
 THUMB void touch::SlimeTouchPart::terminate()
 {
-    dss::g_Pad.unkfunc_0204bc24(0);
+    dss::g_Pad.setMaskL(0);
     SlimeTouchTerm();
     dssFree(&data_020fd24c, s_work);
     s_work = NULL;

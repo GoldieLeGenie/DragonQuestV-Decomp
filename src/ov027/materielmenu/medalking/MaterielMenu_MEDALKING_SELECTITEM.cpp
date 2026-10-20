@@ -25,7 +25,7 @@ THUMB void MaterielMenu_MEDALKING_SELECTITEM::menuSetup()
     menuItem_.active_ = 0;
     navigator_.setupBase();
     m_mode = MODE_ITEM_SELECT;
-    unkfunc_0204c9bc(-4, 0);
+    setCaptureOffset(-4, 0);
 }
 
 THUMB void MaterielMenu_MEDALKING_SELECTITEM::menuExecute()
@@ -57,12 +57,12 @@ THUMB void MaterielMenu_MEDALKING_SELECTITEM::menuUpdate()
                     m_mode = MODE_ITEM_SELECT;
                     break;
                 case MODE_NEXT:
-                    unkfunc_0204c9c8();
+                    resetCaptureOffset();
                     close();
                     gMaterielMenu_MEDALKING_SELECTCHARA.open();
                     break;
                 case MODE_END:
-                    unkfunc_0204c9c8();
+                    resetCaptureOffset();
                     MaterielMenu_WINDOW_MANAGER::getSingleton()->closeMaterielWindow();
                     break;
             }

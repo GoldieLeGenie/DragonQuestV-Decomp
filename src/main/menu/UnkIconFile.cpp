@@ -48,7 +48,7 @@ THUMB void* UnkIconFile::unkfunc_0206dc68(int index)
                     oldest = i;
                 }
             }
-            dss::g_File.unkfunc_0204b250(streamFile_, cache_ + oldest * entrySize_, entry - (char*)header_, data_0209a2ec, 0);
+            dss::g_File.loadPartToBuffer(streamFile_, cache_ + oldest * entrySize_, entry - (char*)header_, data_0209a2ec, 0);
             data = cache_ + oldest * entrySize_;
             keys_[oldest] = index;
             ages_[oldest] = maxAge + 1;
@@ -84,7 +84,7 @@ THUMB void UnkIconFile::unkfunc_0206dd54(int entrySize, int cacheNum)
     int size = file->unk_14 + file->unk_18;
     header.cleanup();
     header_ = allocAppHeap(&data_020fd24c, size, 0x20);
-    dss::g_File.unkfunc_0204b250(streamFile_, header_, 0, size, 0);
+    dss::g_File.loadPartToBuffer(streamFile_, header_, 0, size, 0);
 }
 
 THUMB char* UnkIconFile::unkfunc_0206dde4(int index)

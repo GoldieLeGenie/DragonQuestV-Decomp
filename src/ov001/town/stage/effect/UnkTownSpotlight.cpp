@@ -87,7 +87,7 @@ void twn::UnkTownSpotlight::unkfunc_0212e850()
     blind_.depth_ = 0;
     blind_.setAlpha(0x1e);
     blind_.unkfunc_02047e88(0, 0);
-    blind_.unkfunc_02047ec0(0x80, 0x80);
+    blind_.setSize(0x80, 0x80);
     blind_.setColor(0, 0, 0);
     blind_.setPolygonID(0x3c);
     UnkTownSpotlightLight::unkfunc_0212e6c8();

@@ -109,7 +109,7 @@ void FldStage::setup()
 void FldStage::setup(bool flag)
 {
     if (m_render) {
-        unkfunc_02048cc4(m_render);
+        setRender(m_render);
     }
     m_anim.setModelFile(m_model.getAddr());
     void* model = m_model.getAddr();
@@ -123,7 +123,7 @@ void FldStage::setup(bool flag)
     dss::Fix32Vector3 scale(1, 1, 1);
     setPaletteRgbRate(0, scale);
     int color = m_fld.m_scene->backColor;
-    unkfunc_020485cc((color & 0xff) >> 3, ((color >> 8) & 0xff) >> 3, ((color >> 16) & 0xff) >> 3);
+    setBackgroundColor((color & 0xff) >> 3, ((color >> 8) & 0xff) >> 3, ((color >> 16) & 0xff) >> 3);
     if (m_fld.m_coll) {
         extraObjectNum_ = 0;
     }
@@ -131,8 +131,8 @@ void FldStage::setup(bool flag)
 
 void FldStage::cleanup()
 {
-    unkfunc_020485cc(0, 0, 0);
-    unkfunc_02048ce0();
+    setBackgroundColor(0, 0, 0);
+    removeRender();
     m_fld.Final();
     m_model.cleanup();
     m_texture.cleanup();
@@ -159,7 +159,7 @@ void FldStage::load(const char* name)
     dss::sprintf_s(ss, sizeof(ss), "%s/%s.lz", path_, name);
     m_data.setup(ss, 1, 1);
     m_texture.setup(getArchiveFile(m_data.getAddr(), 0));
-    if (unkfunc_0204c868(m_data.getAddr(), 1)) {
+    if (getArchiveFileSize(m_data.getAddr(), 1)) {
         m_coll.setup(getArchiveFile(m_data.getAddr(), 1));
     }
     m_model.setup(getArchiveFile(m_data.getAddr(), 2));
@@ -199,7 +199,7 @@ void FldStage::setSepiarExecute()
 
 void FldStage::draw()
 {
-    s_drawTick = unkfunc_0204afe0();
+    s_drawTick = getTick();
     unkfunc_0206a99c();
     m_fld.unkfunc_0205f404();
     unkfunc_0206a99c();
@@ -208,7 +208,7 @@ void FldStage::draw()
         m_fld.unkfunc_0205f85c();
     }
     unkfunc_0206a99c();
-    s_drawTick = unkfunc_0204afe0() - s_drawTick;
+    s_drawTick = getTick() - s_drawTick;
 }
 
 void FldStage::resettingTexture()

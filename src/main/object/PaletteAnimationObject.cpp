@@ -54,7 +54,7 @@ ARM void PaletteAnimationObject::unkfunc_020513c0()
     wait_ = 0;
     frame_ = 0;
     dss::memcpy(data_02101a68, anim_.getColor(frame_), anim_.getColorCount() * 2);
-    data_020f4f74.transferToVram(1, data_02101a68, texture_->unkfunc_0204a1cc(), texture_->unkfunc_0204a1dc(), 0);
+    data_020f4f74.transferToVram(1, data_02101a68, texture_->getPlttAddr(), texture_->getPlttSize(), 0);
 }
 
 ARM void PaletteAnimationObject::unkfunc_02051440()
@@ -69,7 +69,7 @@ ARM void PaletteAnimationObject::unkfunc_02051440()
         frame_ = 0;
     }
     dss::memcpy(data_02101a68, anim_.getColor(frame_), anim_.getColorCount() * 2);
-    data_020f4f74.transferToVram(1, data_02101a68, texture_->unkfunc_0204a1cc(), texture_->unkfunc_0204a1dc(), 0);
+    data_020f4f74.transferToVram(1, data_02101a68, texture_->getPlttAddr(), texture_->getPlttSize(), 0);
 }
 
 ARM void PaletteAnimationObject::unkfunc_0205150c(int address, int size)

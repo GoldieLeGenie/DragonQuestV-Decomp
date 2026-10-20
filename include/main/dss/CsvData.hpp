@@ -5,9 +5,9 @@
 struct CsvRow {
     short column_[8];                           // 0x00
 
-    void unkfunc_020521e0();
-    void unkfunc_020521f0(int index, int offset);
-    short unkfunc_020521f8(int index);
+    void clear();
+    void setColumn(int index, int offset);
+    short getColumn(int index);
 };
 
 struct CsvData {
@@ -19,7 +19,7 @@ struct CsvData {
 
     CsvData();
     ~CsvData();
-    void unkfunc_02052224(const char* filename, int a);
-    void unkfunc_02052248(const char* filename, int a);
+    void loadText(const char* filename, int a);
+    void load(const char* filename, int a);
     char* unkfunc_02052314(int row, int column);
 };

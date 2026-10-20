@@ -39,7 +39,7 @@ THUMB void btl::BattleSystem::initialize()
     DSSAObject::setDefaultScale(scale);
     DSSAObject::setPriority(1);
     dq5::level::levelData.setupBattle();
-    render_.unkfunc_02048860();
+    render_.setup();
     BattleStage::getSingleton()->initialize();
     BattleCamera::getSingleton()->initialize();
     BattleEffectManager::getSingleton()->initialize();
@@ -64,7 +64,7 @@ THUMB void btl::BattleSystem::terminate()
     BattleCamera::getSingleton()->terminate();
     BattleStage::getSingleton()->terminate();
     BattleMonsterMask::getSingleton()->terminate();
-    render_.unkfunc_020488b4();
+    render_.cleanup();
     dq5::level::levelData.cleanupBattle();
     g_Global.partChangeFlag_ = 0;
 }

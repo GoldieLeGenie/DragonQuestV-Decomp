@@ -20,7 +20,7 @@ ARM DSSACharacter::~DSSACharacter()
 ARM void DSSACharacter::unkfunc_0205248c(DataObject* texture, DataObject* animation)
 {
     TextureObject* textureObject = (TextureObject*)texture->getAddr();
-    textureObject->unkfunc_02049e9c(1);
+    textureObject->loadToVram(1);
     unk_034 = 1;
     unkfunc_020524c8(textureObject, animation);
 }
@@ -29,7 +29,7 @@ ARM void DSSACharacter::unkfunc_020524c8(TextureObject* texture, DataObject* ani
 {
     flag_.clear();
     unk_ae4 = texture;
-    palette_.unkfunc_0204a3f4(texture, 0);
+    palette_.loadFromTexture(texture, 0);
     dataObject_ = animation;
     currentAnimationIndex_ = -1;
     for (int i = 0; i < unkfunc_0204c860(dataObject_->getAddr()); i++) {
@@ -50,7 +50,7 @@ ARM void DSSACharacter::unkfunc_02052594(TextureObject* texture, const char* for
     char filename[0x20];
     flag_.clear();
     unk_ae4 = texture;
-    palette_.unkfunc_0204a3f4(texture, 0);
+    palette_.loadFromTexture(texture, 0);
     flag_.set(0x40);
     dss::strcpy(s_format, format);
     sprintf(filename, s_format, 0);
@@ -73,9 +73,9 @@ ARM void DSSACharacter::unkfunc_02052594(TextureObject* texture, const char* for
 
 ARM void DSSACharacter::cleanup()
 {
-    palette_.unkfunc_0204a474();
+    palette_.freeVram();
     if (unk_034 != 0) {
-        unk_ae4->unkfunc_02049f90();
+        unk_ae4->freeVram();
     }
     for (int i = 0; i < 17; i++) {
         if (dssaObject_[i].isEnable()) {
@@ -261,7 +261,7 @@ ARM bool DSSACharacter::isEnable(int index)
     if (dataObject_ == 0) {
         return false;
     }
-    if (unkfunc_0204c868(dataObject_->getAddr(), index) != 0) {
+    if (getArchiveFileSize(dataObject_->getAddr(), index) != 0) {
         return true;
     }
     return false;

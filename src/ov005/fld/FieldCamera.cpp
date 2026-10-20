@@ -95,5 +95,5 @@ THUMB void fld::FieldCamera::draw()
     target.vy.value = 0;
     camera_.unk_004.setTarget(target);
     camera_.applyCamera();
-    camera_.unk_074.unkfunc_02046934();
+    camera_.unk_074.calcLookDirection();
 }

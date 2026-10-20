@@ -115,7 +115,7 @@ THUMB void MaterielMenu_MEDALKING_SELECTCHARA::selectYes()
             gMaterielMenu_MEDALKING_SELECTITEM.open();
             break;
         case MODE_END:
-            unkfunc_0204c9c8();
+            resetCaptureOffset();
             MaterielMenu_WINDOW_MANAGER::getSingleton()->closeMaterielWindow();
             break;
     }

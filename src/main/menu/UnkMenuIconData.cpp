@@ -36,7 +36,7 @@ THUMB void setItemIconType(int type)
             path = "DATA/G2D/icon/sure32.mptp";
         }
         if (path != NULL) {
-            dss::g_File.unkfunc_0204b21c(path, s_item32.data_.getAddr(), 1);
+            dss::g_File.loadToBuffer(path, s_item32.data_.getAddr(), 1);
             data_02106178.icon_.unkfunc_020637ac();
         }
     }

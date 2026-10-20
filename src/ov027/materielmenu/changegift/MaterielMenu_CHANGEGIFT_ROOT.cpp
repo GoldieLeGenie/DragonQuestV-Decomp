@@ -62,7 +62,7 @@ THUMB void MaterielMenu_CHANGEGIFT_ROOT::menuUpdate()
         gTownMenu_MESSAGE.openMessageForTALK();
         gTownMenu_MESSAGE.addMessage(getMessageNo(1));
         checkCoin();
-        unkfunc_0204c9c8();
+        resetCaptureOffset();
     }
 }
 
@@ -92,7 +92,7 @@ THUMB void MaterielMenu_CHANGEGIFT_ROOT::selectYes()
             gMaterielMenu_CHANGEGIFT_SELECTGIFT.open();
             break;
         case CHANGEGIFT_END:
-            unkfunc_0204c9c8();
+            resetCaptureOffset();
             MaterielMenu_WINDOW_MANAGER::getSingleton()->closeMaterielWindow();
             break;
     }

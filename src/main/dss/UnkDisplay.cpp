@@ -12,8 +12,8 @@ THUMB UnkDisplay::UnkDisplay()
 {
     oam_[0].init();
     oam_[1].init();
-    unkfunc_0204c9d8(NULL);
-    unkfunc_0204ccdc(0);
+    changeDisplayPlugin(NULL);
+    setBackdropColor(0);
     unkfunc_0204cce8(0x7c0f);
     data_020fe6b0.capture_ = 0;
     data_020fe6b0.captureStep_ = 0;
@@ -25,25 +25,25 @@ THUMB UnkDisplay::UnkDisplay()
 
 UnkDisplay data_020fe6b0;
 
-THUMB void unkfunc_0204c9ac(int* x, int* y)
+THUMB void getCaptureOffset(int* x, int* y)
 {
     *x = data_020fe6b0.captureX_;
     *y = data_020fe6b0.captureY_;
 }
 
-THUMB void unkfunc_0204c9bc(int x, int y)
+THUMB void setCaptureOffset(int x, int y)
 {
     data_020fe6b0.captureX_ = x;
     data_020fe6b0.captureY_ = y;
 }
 
-THUMB void unkfunc_0204c9c8()
+THUMB void resetCaptureOffset()
 {
     data_020fe6b0.captureX_ = -4;
     data_020fe6b0.captureY_ = -4;
 }
 
-THUMB void unkfunc_0204c9d8(dss::UnkDisplayPlugin* plugin)
+THUMB void changeDisplayPlugin(dss::UnkDisplayPlugin* plugin)
 {
     UnkDisplay* display = &data_020fe6b0;
     initScreenBuffer(&data_020fe6b0.screen_, data_020fe6b0.screenData_, 32, 48);
@@ -51,8 +51,8 @@ THUMB void unkfunc_0204c9d8(dss::UnkDisplayPlugin* plugin)
     data_020fe6b0.plugin_ = plugin;
     data_020fe6b0.frame_ = 0;
     data_020fe6b0.blendMode_ = 0;
-    unkfunc_0204ccf4(2);
-    unkfunc_0204ccdc(0);
+    setDisplayBlendMode(2);
+    setBackdropColor(0);
     if (plugin == NULL) {
         return;
     }
@@ -63,18 +63,18 @@ THUMB void unkfunc_0204c9d8(dss::UnkDisplayPlugin* plugin)
     display->oam_[1].clear();
 }
 
-THUMB void unkfunc_0204ca54()
+THUMB void clearOamBuffers()
 {
     data_020fe6b0.oam_[0].clear();
     data_020fe6b0.oam_[1].clear();
 }
 
-THUMB void unkfunc_0204ca6c()
+THUMB void updateDisplay()
 {
     UnkDisplay* display = &data_020fe6b0;
-    if (unkfunc_0204cca8()) {
+    if (isDisplayTextReady()) {
         int odd = getDisplayFrame() & 1;
-        int bg = unkfunc_0204ced8(odd * 192);
+        int bg = getTextBgAtY(odd * 192);
         if (bg != -1) {
             requestVramCopy(getBgScreenVramType(bg), 0, display->screenData_[odd], sizeof(display->screenData_[0]));
         }
@@ -83,9 +83,9 @@ THUMB void unkfunc_0204ca6c()
         if (display->plugin_ != NULL) {
             display->plugin_->finalize();
         }
-        unkfunc_0204d068(0);
-        unkfunc_0204d074(0);
-        unkfunc_0204c9d8(display->nextPlugin_);
+        setWindow0Enable(0);
+        setWindow1Enable(0);
+        changeDisplayPlugin(display->nextPlugin_);
     }
     display->plugin_->update(display->frame_);
     display->plugin_->updateDisplayText();
@@ -123,12 +123,12 @@ THUMB void unkfunc_0204ca6c()
     }
 }
 
-THUMB void unkfunc_0204cc9c(dss::UnkDisplayPlugin* plugin)
+THUMB void requestDisplayPlugin(dss::UnkDisplayPlugin* plugin)
 {
     data_020fe6b0.nextPlugin_ = plugin;
 }
 
-THUMB int unkfunc_0204cca8()
+THUMB int isDisplayTextReady()
 {
     UnkDisplay* display = &data_020fe6b0;
     if (display->text_.type_ == 0) {
@@ -142,7 +142,7 @@ THUMB int getDisplayFrame()
     return data_020fe6b0.frame_;
 }
 
-THUMB void unkfunc_0204ccdc(unsigned short color)
+THUMB void setBackdropColor(unsigned short color)
 {
     data_020fe6b0.backColor_ = color;
 }
@@ -152,7 +152,7 @@ THUMB void unkfunc_0204cce8(unsigned short value)
     data_020fe6b0.unk_0e = value;
 }
 
-THUMB void unkfunc_0204ccf4(int mode)
+THUMB void setDisplayBlendMode(int mode)
 {
     UnkDisplay* display = &data_020fe6b0;
     *(volatile unsigned short*)0x04000050 = 0;
@@ -215,7 +215,7 @@ THUMB UnkPaletteBuffer* getObjPaletteBuffer(int screen)
     return NULL;
 }
 
-THUMB UnkOamBuffer* unkfunc_0204ce18(int screen)
+THUMB UnkOamBuffer* getOamBuffer(int screen)
 {
     UnkDisplay* display = &data_020fe6b0;
     switch (screen) {
@@ -227,7 +227,7 @@ THUMB UnkOamBuffer* unkfunc_0204ce18(int screen)
     return NULL;
 }
 
-THUMB UnkOamBuffer* unkfunc_0204ce40(int y)
+THUMB UnkOamBuffer* getOamBufferAtY(int y)
 {
     UnkDisplay* display = &data_020fe6b0;
     int screen = 0;
@@ -278,7 +278,7 @@ THUMB UnkOamBuffer* unkfunc_0204ce40(int y)
     return NULL;
 }
 
-THUMB int unkfunc_0204ced8(int y)
+THUMB int getTextBgAtY(int y)
 {
     UnkDisplay* display = &data_020fe6b0;
     int ret = 0;
@@ -320,7 +320,7 @@ THUMB int unkfunc_0204ced8(int y)
     return ret;
 }
 
-THUMB int unkfunc_0204cf7c(int y)
+THUMB int getTextBackBgAtY(int y)
 {
     UnkDisplay* display = &data_020fe6b0;
     int ret = 0;
@@ -362,7 +362,7 @@ THUMB int unkfunc_0204cf7c(int y)
     return ret;
 }
 
-THUMB void unkfunc_0204d020(int type, int screen1, int screen2, int unk_0c, int unk_10, int unk_14)
+THUMB void setDisplayTextBgs(int type, int screen1, int screen2, int unk_0c, int unk_10, int unk_14)
 {
     data_020fe6b0.text_.type_ = type;
     data_020fe6b0.text_.screen1_ = screen1;
@@ -372,7 +372,7 @@ THUMB void unkfunc_0204d020(int type, int screen1, int screen2, int unk_0c, int 
     data_020fe6b0.text_.unk_14 = unk_14;
 }
 
-THUMB int unkfunc_0204d03c()
+THUMB int isDisplayIconEnabled()
 {
     return data_020fe6b0.text_.unk_14;
 }
@@ -389,17 +389,17 @@ THUMB void setDisplayTextCounter(int counter)
     }
 }
 
-THUMB void unkfunc_0204d068(int enable)
+THUMB void setWindow0Enable(int enable)
 {
     data_020fe6b0.windowEnable_[0] = enable;
 }
 
-THUMB void unkfunc_0204d074(int enable)
+THUMB void setWindow1Enable(int enable)
 {
     data_020fe6b0.windowEnable_[1] = enable;
 }
 
-THUMB void unkfunc_0204d080(int plane, int x, int y, int w, int h)
+THUMB void setWindow0(int plane, int x, int y, int w, int h)
 {
     data_020fe6b0.window_[0].plane_ = plane;
     data_020fe6b0.window_[0].x_ = x;
@@ -408,7 +408,7 @@ THUMB void unkfunc_0204d080(int plane, int x, int y, int w, int h)
     data_020fe6b0.window_[0].h_ = h;
 }
 
-THUMB void unkfunc_0204d098(int plane, int x, int y, int w, int h)
+THUMB void setWindow1(int plane, int x, int y, int w, int h)
 {
     data_020fe6b0.window_[1].plane_ = plane;
     data_020fe6b0.window_[1].x_ = x;
@@ -417,7 +417,7 @@ THUMB void unkfunc_0204d098(int plane, int x, int y, int w, int h)
     data_020fe6b0.window_[1].h_ = h;
 }
 
-THUMB int unkfunc_0204d0b8()
+THUMB int getDisplayPluginType()
 {
     if (data_020fe6b0.plugin_ == NULL) {
         return 0;
@@ -425,7 +425,7 @@ THUMB int unkfunc_0204d0b8()
     return data_020fe6b0.plugin_->getType();
 }
 
-THUMB void unkfunc_0204d0cc()
+THUMB void requestScreenCapture()
 {
     data_020fe6b0.capture_ = 1;
     data_020fe6b0.captureStep_ = 0;
@@ -433,7 +433,7 @@ THUMB void unkfunc_0204d0cc()
     dss::g_DISPLAYPLUGIN_DOUBLE3D.SetBlur(0, 0x10);
 }
 
-THUMB void unkfunc_0204d0f4()
+THUMB void updateScreenCapture()
 {
     UnkDisplay* display = &data_020fe6b0;
     if (data_020fe6b0.capture_ == 0) {
@@ -469,7 +469,7 @@ THUMB void unkfunc_0204d0f4()
     }
 }
 
-THUMB int unkfunc_0204d1f4()
+THUMB int isScreenCaptureDone()
 {
     return data_020fe6b0.captureStep_ == 6;
 }

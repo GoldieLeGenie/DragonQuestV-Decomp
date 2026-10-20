@@ -62,7 +62,7 @@ THUMB void UnkMaterielMenu_02187c7c::menuUpdate()
 {
     MenuStatusInfo::setMode(MenuStatusInfo::PLAYER_MODE);
     if (unk_28 == 1) {
-        unkfunc_0204c9bc(-4, 0);
+        setCaptureOffset(-4, 0);
         unk_28 = 0;
     }
     if (gTownMenu_MESSAGE.isOpen()) {
@@ -80,7 +80,7 @@ THUMB void UnkMaterielMenu_02187c7c::menuUpdate()
                     close();
                     data_ov019_0218616c.unk_af = 1;
                     data_ov019_0218616c.open();
-                    unkfunc_0204c9c8();
+                    resetCaptureOffset();
                     break;
                 case 4:
                     status::g_MuseumStatus.recoveryTaishi();
@@ -89,7 +89,7 @@ THUMB void UnkMaterielMenu_02187c7c::menuUpdate()
                     if (unk_24 == 1) {
                         data_ov019_021854d4.unk_24 = 1;
                     }
-                    unkfunc_0204c9c8();
+                    resetCaptureOffset();
                     break;
             }
         } else if (stat == MENUBASE_STAT_CANCEL) {
