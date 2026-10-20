@@ -16,7 +16,7 @@ inline char* casino::CasinoSlot::getStageName()
 
 inline void dss::UnkDualCamera::setAngle(Vector3<short> angle)
 {
-    unk_004.setAngle(angle);
+    m_camera0.setAngle(angle);
 }
 
 inline int casino::Casino_SlotMachine::getEffectLamp(int cnt)
@@ -55,15 +55,15 @@ THUMB void casino::CasinoSlot::initialize()
     dss::Vector3<short> slot_angle(cameraAngleX, cameraAngleY, cameraAngleZ);
     dss::Fix32 distance(cameraDistance);
     CasinoCamera* camera = CasinoCamera::getSingleton();
-    camera->camera_.unk_004.setDistance(distance);
-    camera->camera_.unk_074.setDistance(distance);
+    camera->camera_.m_camera0.setDistance(distance);
+    camera->camera_.m_camera1.setDistance(distance);
     CasinoCamera::getSingleton()->camera_.setAngle(slot_angle);
-    CasinoCamera::getSingleton()->camera_.unk_0e4 = 1;
+    CasinoCamera::getSingleton()->camera_.m_cameraNo = 1;
     CasinoCamera::getSingleton()->camera_.unk_0e8 = 0;
     CasinoCamera::getSingleton()->camera_.unk_0ec = 0;
     camera = CasinoCamera::getSingleton();
-    camera->camera_.unk_004.setFOV2(12);
-    camera->camera_.unk_074.setFOV2(12);
+    camera->camera_.m_camera0.setFOV2(12);
+    camera->camera_.m_camera1.setFOV2(12);
     setLampReelOff();
     bingoType_ = 2;
     MaterielMenu_WINDOW_MANAGER::getSingleton()->openMaterielWindow(0x2c);

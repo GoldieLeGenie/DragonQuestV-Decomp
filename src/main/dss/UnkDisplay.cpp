@@ -341,10 +341,10 @@ THUMB int getTextBackBgAtY(int y)
         ret = -1;
         break;
     case 1:
-        ret = y < 192 ? display->text_.unk_0c : display->text_.unk_10;
+        ret = y < 192 ? display->text_.backScreen1_ : display->text_.backScreen2_;
         break;
     case 2:
-        ret = y < 192 ? display->text_.unk_10 : display->text_.unk_0c;
+        ret = y < 192 ? display->text_.backScreen2_ : display->text_.backScreen1_;
         break;
     case 3:
         if ((getDisplayFrame() & 1) == 0) {
@@ -356,7 +356,7 @@ THUMB int getTextBackBgAtY(int y)
                 return -1;
             }
         }
-        ret = display->text_.unk_0c;
+        ret = display->text_.backScreen1_;
         break;
     }
     return ret;
@@ -367,14 +367,14 @@ THUMB void setDisplayTextBgs(int type, int screen1, int screen2, int unk_0c, int
     data_020fe6b0.text_.type_ = type;
     data_020fe6b0.text_.screen1_ = screen1;
     data_020fe6b0.text_.screen2_ = screen2;
-    data_020fe6b0.text_.unk_0c = unk_0c;
-    data_020fe6b0.text_.unk_10 = unk_10;
-    data_020fe6b0.text_.unk_14 = unk_14;
+    data_020fe6b0.text_.backScreen1_ = unk_0c;
+    data_020fe6b0.text_.backScreen2_ = unk_10;
+    data_020fe6b0.text_.iconEnabled_ = unk_14;
 }
 
 THUMB int isDisplayIconEnabled()
 {
-    return data_020fe6b0.text_.unk_14;
+    return data_020fe6b0.text_.iconEnabled_;
 }
 
 THUMB UnkScreenBuffer* getDebugScreenBuffer()

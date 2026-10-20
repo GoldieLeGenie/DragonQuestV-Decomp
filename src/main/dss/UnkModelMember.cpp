@@ -8,8 +8,8 @@ int data_020f3e88;
 
 ARM UnkModelMember::UnkModelMember()
 {
-    unk_00 = NULL;
-    unk_04 = NULL;
+    modelFile_ = NULL;
+    model_ = NULL;
 }
 
 ARM void UnkModelMember::setModelFile(void* data)
@@ -30,18 +30,18 @@ ARM void UnkModelMember::reloadTextures()
 
 ARM void UnkModelMember::bindModelFile(void* data)
 {
-    unk_00 = data;
+    modelFile_ = data;
     if (data_020f3e88 != 0) {
         data_020f3e88 = 0;
     } else {
         loadTextures();
     }
-    unk_04 = NNS_G3dGetMdlByIdx(func_02083268(unk_00), 0);
-    NNSG3dResMdlSet* mdlSet = func_02083268(unk_00);
+    model_ = NNS_G3dGetMdlByIdx(func_02083268(modelFile_), 0);
+    NNSG3dResMdlSet* mdlSet = func_02083268(modelFile_);
     for (int i = 0; i < mdlSet->dict.numEntry; i++) {
-        unk_04 = NNS_G3dGetMdlByIdx(func_02083268(unk_00), i);
+        model_ = NNS_G3dGetMdlByIdx(func_02083268(modelFile_), i);
         func_020803d0(0, 0, 2, 0, 0x1f, 0x8000);
-        func_02082e1c(unk_04, 0, 0x8000);
+        func_02082e1c(model_, 0, 0x8000);
     }
 }
 
@@ -52,13 +52,13 @@ ARM void UnkModelMember::releaseModelFile()
 
 ARM void UnkModelMember::loadTextures()
 {
-    NNSG3dResMdlSet* mdlSet = func_02083268(unk_00);
-    NNSG3dResTex* tex = func_02083270(unk_00);
+    NNSG3dResMdlSet* mdlSet = func_02083268(modelFile_);
+    NNSG3dResTex* tex = func_02083270(modelFile_);
     if (tex == NULL) {
         return;
     }
     data_020f3e84 = tex;
-    unk_08 = tex;
+    texture_ = tex;
     int texSize = func_0207fc2c(tex);
     func_0207fc3c(tex);
     int plttSize = func_0207fd08(tex);
@@ -77,8 +77,8 @@ ARM void UnkModelMember::loadTextures()
 
 ARM void UnkModelMember::releaseTextures()
 {
-    NNSG3dResMdlSet* mdlSet = func_02083268(unk_00);
-    NNSG3dResTex* tex = func_02083270(unk_00);
+    NNSG3dResMdlSet* mdlSet = func_02083268(modelFile_);
+    NNSG3dResTex* tex = func_02083270(modelFile_);
     if (tex == NULL) {
         return;
     }
@@ -94,17 +94,17 @@ ARM void UnkModelMember::releaseTextures()
         data_020f4f74.freeTexVram(texKey);
     }
     data_020f3e84 = NULL;
-    unk_08 = NULL;
+    texture_ = NULL;
 }
 
 ARM void* UnkModelMember::getModelFile()
 {
-    return unk_00;
+    return modelFile_;
 }
 
 ARM NNSG3dResMdl* UnkModelMember::getModel()
 {
-    return unk_04;
+    return model_;
 }
 
 ARM NNSG3dResTex* getLastModelTexture()

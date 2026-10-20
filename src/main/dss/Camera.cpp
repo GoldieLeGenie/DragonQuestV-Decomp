@@ -50,7 +50,7 @@ int data_02099a44[40][2] = {
 
 THUMB dss::Camera::Camera()
 {
-    unk_6c = 0;
+    m_noUpdate = 0;
     m_perspective.m_fovySin = 0x424;
     m_perspective.m_fovyCos = 0xf74;
     m_perspective.m_aspect = 0x1555;
@@ -90,15 +90,15 @@ THUMB void dss::Camera::calcPosition()
 
 THUMB void dss::Camera::calcLookDirection()
 {
-    unk_3c.vx.value = m_target_pos.vx.value - m_pos.vx.value;
-    unk_3c.vy.value = m_target_pos.vy.value - m_pos.vy.value;
-    unk_3c.vz.value = m_target_pos.vz.value - m_pos.vz.value;
-    func_0208a330((VecFx32*)&unk_3c, (VecFx32*)&unk_3c);
+    m_lookDir.vx.value = m_target_pos.vx.value - m_pos.vx.value;
+    m_lookDir.vy.value = m_target_pos.vy.value - m_pos.vy.value;
+    m_lookDir.vz.value = m_target_pos.vz.value - m_pos.vz.value;
+    func_0208a330((VecFx32*)&m_lookDir, (VecFx32*)&m_lookDir);
 }
 
 THUMB void dss::Camera::applyCamera()
 {
-    if (unk_6c == 0) {
+    if (m_noUpdate == 0) {
         update();
     }
     calcPosition();

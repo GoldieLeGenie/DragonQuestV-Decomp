@@ -450,7 +450,7 @@ void twn::TownActionCalculate::normalMove(dss::Fix32Vector3& position, short& di
         if (TownStageManager::getSingleton()->getHitSurfaceIdByType(14) != -1) {
             dirInput = (short)((short)((dirInput + (dirInput < 0 ? -0x2000 : 0x2000)) / 0x4000) * 0x4000);
         }
-        dss::Fix32Vector3 direction(TownCamera::getSingleton()->camera_.unk_004.getDirection());
+        dss::Fix32Vector3 direction(TownCamera::getSingleton()->camera_.m_camera0.getDirection());
         direction.vy = 0L;
         direction.normalize();
         dss::UnkMatrix43 mat;
@@ -458,7 +458,7 @@ void twn::TownActionCalculate::normalMove(dss::Fix32Vector3& position, short& di
         direction = mat * direction;
         direction.vy = 0L;
         position = position + direction * speed;
-        dirIdx = 0x8000 - dirInput + TownCamera::getSingleton()->camera_.unk_004.getAngle().vy;
+        dirIdx = 0x8000 - dirInput + TownCamera::getSingleton()->camera_.m_camera0.getAngle().vy;
         dirIdx = (unsigned short&)dirIdx;
     }
 }

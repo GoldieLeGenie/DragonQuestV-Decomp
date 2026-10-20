@@ -13,7 +13,7 @@ struct UnkVramTransferTask {
 struct VramTransferManager {
     int unk_00;                                 // 0x00
     int plttUsed_;                                 // 0x04 palette VRAM in use
-    unsigned int unk_08;                        // 0x08 texture VRAM size
+    unsigned int texVramFree_;                        // 0x08 texture VRAM size
     int texSize_;                               // 0x0C
     UnkVramTransferTask tasks_[0x80];           // 0x10
     int unk_810;                                // 0x810

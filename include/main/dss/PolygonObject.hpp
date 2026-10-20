@@ -12,7 +12,7 @@ struct PolygonObject : UnkRenderObject3D {
 
     UnkPolygonVertex vertex_;                      // 0x48
     UnkBillboardTexCoord texCoord_;                // 0x60
-    dss::Vector3<char> unk_80;                  // 0x80 color (r, g, b)
+    dss::Vector3<char> color_;                  // 0x80 color (r, g, b)
 
     void setVertex(const UnkPolygonVertex* vertex);         // setVertex
     void setTexCoord(const UnkBillboardTexCoord* texCoord);   // setTexCoord

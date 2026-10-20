@@ -771,14 +771,14 @@ bool twn::SugorokuSystemPlayerMove::sugorokuMoveSet()
     int padInput = TownPlayerManager::getSingleton().getPadInput();
     if (padInput != 0) {
         unsigned short dirInput = TownPlayerManager::getSingleton().getDirInput();
-        dss::Fix32Vector3 direction = TownCamera::getSingleton()->camera_.unk_004.getDirection();
+        dss::Fix32Vector3 direction = TownCamera::getSingleton()->camera_.m_camera0.getDirection();
         direction.vy = 0L;
         direction.normalize();
         dss::UnkMatrix43 mat;
         mat.setRotY(-dirInput);
         direction = mat * direction;
         direction.vy = 0L;
-        dss::Vector3<short>& angle = TownCamera::getSingleton()->camera_.unk_004.getAngle();
+        dss::Vector3<short>& angle = TownCamera::getSingleton()->camera_.m_camera0.getAngle();
         int idx = (short)(0x8000 - dirInput + angle.vy);
         short dirIdx = TownActionCalculate::getParamDir4ByIdx(idx);
         PanelData* data = g_SugorokuInfo.getNowPane();

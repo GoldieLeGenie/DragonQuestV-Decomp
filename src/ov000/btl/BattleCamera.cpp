@@ -38,7 +38,7 @@ THUMB void btl::BattleCamera::initialize()
     normalCamera_.setFOV(0x6c3, 0xe80);
     normalCamera_.setFar(0x400000);
     normalCamera_.setFOV2(0x32);
-    normalCamera_.unk_6c = 1;
+    normalCamera_.m_noUpdate = 1;
     dss::Fix32 scaleW;
     scaleW.value = 0x1000;
     normalCamera_.setScaleW(scaleW);
@@ -50,7 +50,7 @@ THUMB void btl::BattleCamera::initialize()
     unk_070.setFOV(0x6c3, 0xe80);
     unk_070.setFar(0x400000);
     unk_070.setFOV2(0x32);
-    unk_070.unk_6c = 1;
+    unk_070.m_noUpdate = 1;
     unk_070.setScaleW(scaleW);
     dss::Vector3<short> angle;
     dss::Fix32Vector3 position2;

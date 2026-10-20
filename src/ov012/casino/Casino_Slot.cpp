@@ -5,7 +5,7 @@
 
 inline void dss::UnkDualCamera::setAngle(Vector3<short> angle)
 {
-    unk_004.setAngle(angle);
+    m_camera0.setAngle(angle);
 }
 
 inline int casino::Casino_SlotMachine::getEffectLamp(int cnt)

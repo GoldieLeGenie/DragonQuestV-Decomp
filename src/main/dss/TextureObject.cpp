@@ -32,9 +32,9 @@ ARM void TextureObject::relocate()
     texSize_ = unkfunc_02049f7c(texSize_, 0x400);
     plttSize_ = unkfunc_02049f7c(plttSize_, 0x20);
     if (type_ == 1 || type_ == 2) {
-        unk_54 = (int)((unsigned char*)this + unk_54);
+        subTexData_ = (int)((unsigned char*)this + subTexData_);
         subPlttData_ = (int)((unsigned char*)this + subPlttData_);
-        unk_50 = unkfunc_02049f7c(unk_50, 0x400);
+        subTexSize_ = unkfunc_02049f7c(subTexSize_, 0x400);
         subPlttSize_ = unkfunc_02049f7c(subPlttSize_, 0x20);
     }
 }
@@ -123,12 +123,12 @@ ARM int TextureObject::getPlttSize()
 
 ARM void TextureObject::applyTexImageParam()
 {
-    G3_TexImageParam(unk_20, GX_TEXGEN_TEXCOORD, unk_24, unk_28, GX_TEXREPEAT_NONE, GX_TEXFLIP_NONE, GX_TEXPLTTCOLOR0_TRNS, texAddr_);
+    G3_TexImageParam(texFormat_, GX_TEXGEN_TEXCOORD, sizeS_, sizeT_, GX_TEXREPEAT_NONE, GX_TEXFLIP_NONE, GX_TEXPLTTCOLOR0_TRNS, texAddr_);
 }
 
 ARM void TextureObject::applyTexImageParamOpaque()
 {
-    G3_TexImageParam(unk_20, GX_TEXGEN_TEXCOORD, unk_24, unk_28, GX_TEXREPEAT_NONE, GX_TEXFLIP_NONE, GX_TEXPLTTCOLOR0_USE, texAddr_);
+    G3_TexImageParam(texFormat_, GX_TEXGEN_TEXCOORD, sizeS_, sizeT_, GX_TEXREPEAT_NONE, GX_TEXFLIP_NONE, GX_TEXPLTTCOLOR0_USE, texAddr_);
 }
 
 ARM void disableTexture()
@@ -138,16 +138,16 @@ ARM void disableTexture()
 
 ARM void TextureObject::applyPlttBase()
 {
-    *(volatile unsigned int*)0x040004ac = (unsigned int)plttAddr_ >> (4 - (unk_20 == 2));
+    *(volatile unsigned int*)0x040004ac = (unsigned int)plttAddr_ >> (4 - (texFormat_ == 2));
 }
 
 ARM void TextureObject::applySubTexImageParam()
 {
     if (type_ == 1) {
-        G3_TexImageParam(GX_TEXFMT_A3I5, GX_TEXGEN_TEXCOORD, unk_24, unk_28, GX_TEXREPEAT_NONE, GX_TEXFLIP_NONE, GX_TEXPLTTCOLOR0_TRNS, texAddr_);
+        G3_TexImageParam(GX_TEXFMT_A3I5, GX_TEXGEN_TEXCOORD, sizeS_, sizeT_, GX_TEXREPEAT_NONE, GX_TEXFLIP_NONE, GX_TEXPLTTCOLOR0_TRNS, texAddr_);
     }
     if (type_ == 2) {
-        G3_TexImageParam(GX_TEXFMT_A5I3, GX_TEXGEN_TEXCOORD, unk_24, unk_28, GX_TEXREPEAT_NONE, GX_TEXFLIP_NONE, GX_TEXPLTTCOLOR0_TRNS, texAddr_);
+        G3_TexImageParam(GX_TEXFMT_A5I3, GX_TEXGEN_TEXCOORD, sizeS_, sizeT_, GX_TEXREPEAT_NONE, GX_TEXFLIP_NONE, GX_TEXPLTTCOLOR0_TRNS, texAddr_);
     }
 }
 
@@ -164,28 +164,28 @@ ARM void TextureObject::applySubPlttBase()
 ARM int TextureObject::getWidth()
 {
     int width = 0;
-    if (unk_24 == 0) {
+    if (sizeS_ == 0) {
         width = 8;
     }
-    if (unk_24 == 1) {
+    if (sizeS_ == 1) {
         width = 0x10;
     }
-    if (unk_24 == 2) {
+    if (sizeS_ == 2) {
         width = 0x20;
     }
-    if (unk_24 == 3) {
+    if (sizeS_ == 3) {
         width = 0x40;
     }
-    if (unk_24 == 4) {
+    if (sizeS_ == 4) {
         width = 0x80;
     }
-    if (unk_24 == 5) {
+    if (sizeS_ == 5) {
         width = 0x100;
     }
-    if (unk_24 == 6) {
+    if (sizeS_ == 6) {
         width = 0x200;
     }
-    if (unk_24 == 7) {
+    if (sizeS_ == 7) {
         width = 0x400;
     }
     return width;
@@ -194,28 +194,28 @@ ARM int TextureObject::getWidth()
 ARM int TextureObject::getHeight()
 {
     int height = 0;
-    if (unk_28 == 0) {
+    if (sizeT_ == 0) {
         height = 8;
     }
-    if (unk_28 == 1) {
+    if (sizeT_ == 1) {
         height = 0x10;
     }
-    if (unk_28 == 2) {
+    if (sizeT_ == 2) {
         height = 0x20;
     }
-    if (unk_28 == 3) {
+    if (sizeT_ == 3) {
         height = 0x40;
     }
-    if (unk_28 == 4) {
+    if (sizeT_ == 4) {
         height = 0x80;
     }
-    if (unk_28 == 5) {
+    if (sizeT_ == 5) {
         height = 0x100;
     }
-    if (unk_28 == 6) {
+    if (sizeT_ == 6) {
         height = 0x200;
     }
-    if (unk_28 == 7) {
+    if (sizeT_ == 7) {
         height = 0x400;
     }
     return height;

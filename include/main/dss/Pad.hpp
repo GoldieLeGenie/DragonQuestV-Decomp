@@ -10,11 +10,11 @@ namespace dss {
         unsigned short mode_;                   // 0x06 0: none, 1: record, 2: play
         unsigned short recordCount_;            // 0x08
         unsigned short playIndex_;              // 0x0A
-        int unk_0c;                             // 0x0C record buffer full: onRecordFull instead of stopping
-        int unk_10;                             // 0x10 play the record file block by block
-        int unk_14;                             // 0x14 next block of the record file
+        int keepRecording_;                             // 0x0C record buffer full: onRecordFull instead of stopping
+        int playFromFile_;                             // 0x10 play the record file block by block
+        int recordBlock_;                             // 0x14 next block of the record file
         char fileName_[0x80];                   // 0x18 record file
-        int unk_98;                             // 0x98 nonzero: do not read the record file
+        int noFileLoad_;                             // 0x98 nonzero: do not read the record file
         unsigned short trig_;                   // 0x9C
         unsigned short cont_;                   // 0x9E
         unsigned short repeat_;                 // 0xA0

@@ -5,7 +5,7 @@ THUMB UnkBattleMapList::UnkBattleMapList()
 {
     group_ = 0;
     map_ = 0;
-    unk_28 = 0;
+    mapIndex_ = 0;
     loaded_ = 0;
 }
 
@@ -18,7 +18,7 @@ THUMB void UnkBattleMapList::unkfunc_0206da18(const char* filename)
     load(filename, 1);
     group_ = 0;
     map_ = 0;
-    unk_28 = 0;
+    mapIndex_ = 0;
     loaded_ = 1;
 }
 
@@ -42,7 +42,7 @@ THUMB void UnkBattleMapList::nextGroup()
         }
         if (dss::strcmp(name, getText(group_ + map_ + i, 1)) != 0) {
             map_ += i;
-            unk_28 = 0;
+            mapIndex_ = 0;
             return;
         }
         i++;
@@ -71,7 +71,7 @@ THUMB void UnkBattleMapList::prevGroup()
         if (dss::strcmp(name, text) != 0) {
             if (dss::strcmp(prev, text) == 0) {
                 map_ = offset;
-                unk_28 = 0;
+                mapIndex_ = 0;
                 return;
             }
             offset += i;
@@ -93,19 +93,19 @@ THUMB void UnkBattleMapList::prevGroup()
 
 THUMB char* UnkBattleMapList::getMapName()
 {
-    return getText(group_ + map_ + unk_28, 2);
+    return getText(group_ + map_ + mapIndex_, 2);
 }
 
 THUMB void UnkBattleMapList::nextMap()
 {
     getText(group_, 0);
     char* name = getText(group_ + map_, 1);
-    if (getText(group_ + map_ + unk_28 + 1, 2) == NULL) {
+    if (getText(group_ + map_ + mapIndex_ + 1, 2) == NULL) {
         return;
     }
-    char* next = getText(group_ + map_ + unk_28 + 1, 2);
+    char* next = getText(group_ + map_ + mapIndex_ + 1, 2);
     if (dss::strncmp(name, next, dss::strlen(name)) == 0) {
-        unk_28++;
+        mapIndex_++;
     }
 }
 
@@ -113,12 +113,12 @@ THUMB void UnkBattleMapList::prevMap()
 {
     getText(group_, 0);
     char* name = getText(group_ + map_, 1);
-    int row = group_ + map_ + unk_28 - 1;
+    int row = group_ + map_ + mapIndex_ - 1;
     if (row < 0) {
         return;
     }
     char* prev = getText(row, 2);
     if (dss::strncmp(name, prev, dss::strlen(name)) == 0) {
-        unk_28--;
+        mapIndex_--;
     }
 }

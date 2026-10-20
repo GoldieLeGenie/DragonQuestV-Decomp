@@ -233,7 +233,7 @@ THUMB void twn::TownImageMap::setOverview()
     dss::Fix32 distance(0L);
     dss::Vector3<short> angle;
     dss::Fix32Vector3 pos;
-    camera_ = TownCamera::getSingleton()->camera_.unk_004;
+    camera_ = TownCamera::getSingleton()->camera_.m_camera0;
     camera_.setTarget(target);
     int index = dq5::level::g_LevelDataUtility.getOverviewArea(g_Global.getNowAreaNo());
     if (index >= 0) {

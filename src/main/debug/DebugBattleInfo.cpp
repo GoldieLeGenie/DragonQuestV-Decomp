@@ -15,7 +15,7 @@ THUMB DebugBattleInfo::DebugBattleInfo()
 {
     type_ = 0;
     index_ = 0;
-    unk_10 = 1;
+    showStatusChange_ = 1;
     showHeap_ = 0;
     showLog_ = 0;
 }
@@ -78,7 +78,7 @@ THUMB void DebugBattleInfo::draw()
         }
     }
     drawDebugWindow(13, 1, 18, 19);
-    if (unk_10 == 1) {
+    if (showStatusChange_ == 1) {
         drawDebugWindow(13, 25, 18, 19);
     }
 }
@@ -88,7 +88,7 @@ THUMB void DebugBattleInfo::unkfunc_020273fc(int x, int y)
     debugConsolePrintf(x, y, "HEAP");
     debugConsolePrintf(x, y + 1, "%3dK", getAppHeapFreeSize(&data_020fd24c) >> 10);
     debugConsolePrintf(x, y + 2, "VRAM");
-    debugConsolePrintf(x, y + 3, "%3dk", data_020f4f74.unk_08 >> 10);
+    debugConsolePrintf(x, y + 3, "%3dk", data_020f4f74.texVramFree_ >> 10);
     drawDebugWindow(x, y, 4, 4);
 }
 
@@ -123,7 +123,7 @@ THUMB void DebugBattleInfo::drawStatusInfo(int x, int y, status::HaveStatusInfo*
     debugConsolePrintf(x, y + 12, "SPTARGET CNT   %3d", specialTargetCount);
     debugConsolePrintf(x, y + 13, "DAMAGE MIN     %3d", damageMin);
     debugConsolePrintf(x, y + 14, "DAMAGE MAX     %3d", damageMax);
-    if (unk_10 == 1) {
+    if (showStatusChange_ == 1) {
         char mark[] = {'X', 'O'};
         status::StatusChange& statusChange = info->statusChange_;
         debugConsolePrintf(x, 25, "ASTORON          %c", mark[statusChange.isEnable(dq5::level::ActionParam::ACTIONTYPE_ASTORON) ? 1 : 0]);

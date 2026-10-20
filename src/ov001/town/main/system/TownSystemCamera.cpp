@@ -44,7 +44,7 @@ void twn::TownSystemCamera::execute()
 void twn::TownSystemCamera::draw()
 {
     TownCamera::getSingleton()->draw();
-    bool flag = TownCamera::getSingleton()->camera_.unk_0e4 == 0;
+    bool flag = TownCamera::getSingleton()->camera_.m_cameraNo == 0;
     if (flag == true) {
         TownStageManager::getSingleton()->setMainCameraFlag(true);
     } else {

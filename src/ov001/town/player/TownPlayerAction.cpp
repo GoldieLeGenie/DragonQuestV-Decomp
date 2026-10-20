@@ -140,7 +140,7 @@ THUMB void twn::TownPlayerAction::setup()
             pos.vy.value = dss::Fix32Vector3(cmn::g_cmnPartyInfo.startPos_).vy.value;
             pos.vz.value = 0x7000;
         }
-        TownCamera::getSingleton()->camera_.unk_004.setTarget(pos);
+        TownCamera::getSingleton()->camera_.m_camera0.setTarget(pos);
         pos.vy.value = 0x5000;
         cmn::g_cmnPartyInfo.startPos_ = pos;
         cmn::g_cmnPartyInfo.setDirIdx(0);

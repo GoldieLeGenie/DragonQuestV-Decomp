@@ -19,13 +19,13 @@ namespace dss {
         Fix32Vector3 m_pos;                     // 0x18
         Fix32Vector3 m_direction;               // 0x24
         Fix32Vector3 m_up;                      // 0x30
-        Fix32Vector3 unk_3c;                    // 0x3C normalized target - position
+        Fix32Vector3 m_lookDir;                    // 0x3C normalized target - position
         Fix32 m_distance;                       // 0x48
         Fix32 m_distanceSq;                     // 0x4C
         int m_fov2;                             // 0x50
         Fix32 m_scaleW;                         // 0x54
         UnkCameraPerspective m_perspective;     // 0x58
-        int unk_6c;                             // 0x6C
+        int m_noUpdate;                             // 0x6C
 
         Camera();
         virtual void update();
@@ -56,9 +56,9 @@ namespace dss {
     // Cameras of the two screens (main 0x02051bd4)
     struct UnkDualCameraBase {
         // vtable                               // 0x000
-        Camera unk_004;                         // 0x004
-        Camera unk_074;                         // 0x074
-        int unk_0e4;                            // 0x0E4 current screen camera
+        Camera m_camera0;                         // 0x004
+        Camera m_camera1;                         // 0x074
+        int m_cameraNo;                            // 0x0E4 current screen camera
 
         UnkDualCameraBase();
         virtual void update();
@@ -72,8 +72,8 @@ namespace dss {
     struct UnkDualCamera : UnkDualCameraBase {
         int unk_0e8;                            // 0x0E8
         int unk_0ec;                            // 0x0EC
-        Fix32 unk_0f0;                          // 0x0F0 offset
-        short unk_0f4;                          // 0x0F4 direction offset
+        Fix32 m_offset;                          // 0x0F0 offset
+        short m_dirOffset;                          // 0x0F4 direction offset
         Vector3<short> unk_0f6;                 // 0x0F6
         Vector3<short> unk_0fc;                 // 0x0FC
         unsigned char unk_102[0x108 - 0x102];   // 0x102

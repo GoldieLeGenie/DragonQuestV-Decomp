@@ -266,13 +266,13 @@ THUMB void twn::TownPlayerManager::setup()
     searchAction_ = 0;
     BillboardCharacter::setAllCharaAnim(true);
     if (player_.actionType_ != ACTION_TYPE_FALL) {
-        TownCamera::getSingleton()->camera_.unk_004.setTarget(cmn::g_cmnPartyInfo.position_);
-        dss::Fix32Vector3 povPos(TownCamera::getSingleton()->camera_.unk_004.getPosition());
-        dss::Fix32Vector3 target(TownCamera::getSingleton()->camera_.unk_004.getTarget());
-        dss::Vector3<short>& now = TownCamera::getSingleton()->camera_.unk_004.getAngle();
+        TownCamera::getSingleton()->camera_.m_camera0.setTarget(cmn::g_cmnPartyInfo.position_);
+        dss::Fix32Vector3 povPos(TownCamera::getSingleton()->camera_.m_camera0.getPosition());
+        dss::Fix32Vector3 target(TownCamera::getSingleton()->camera_.m_camera0.getTarget());
+        dss::Vector3<short>& now = TownCamera::getSingleton()->camera_.m_camera0.getAngle();
         dss::Vector3<short> angle(now.vx, now.vy, now.vz);
         TownCamera::getSingleton()->calcPositionFromAngle(angle, povPos, target);
-        TownCamera::getSingleton()->camera_.unk_004.setPosition(povPos);
+        TownCamera::getSingleton()->camera_.m_camera0.setPosition(povPos);
     }
 }
 

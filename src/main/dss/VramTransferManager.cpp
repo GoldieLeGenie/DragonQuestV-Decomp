@@ -27,7 +27,7 @@ ARM void VramTransferManager::initVramManagers(int texSize, int plttSize)
     texSize_ = texSize;
     unk_00 = 0;
     plttUsed_ = 0;
-    unk_08 = texSize;
+    texVramFree_ = texSize;
     func_02086aa4(texSize, 0, data_020f5f8c, func_02086aa0(0x80), 1);
     if (texSize_ == 0x40000) {
         int handle1 = allocTexVram(0x20000);

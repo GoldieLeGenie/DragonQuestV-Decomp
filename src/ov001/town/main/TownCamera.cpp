@@ -15,30 +15,30 @@
 
 inline void dss::UnkDualCamera::setOffset(Fix32 offset)
 {
-    unk_0f0 = offset;
+    m_offset = offset;
 }
 
 inline void dss::UnkDualCamera::setRotXYZ(Vector3<short> angle)
 {
-    unk_004.setAngle(angle);
+    m_camera0.setAngle(angle);
 }
 
 inline void dss::UnkDualCamera::setDistance(Fix32 distance)
 {
-    unk_004.setDistance(distance);
-    unk_074.setDistance(distance);
+    m_camera0.setDistance(distance);
+    m_camera1.setDistance(distance);
 }
 
 inline void dss::UnkDualCamera::setFOV2(int fovy)
 {
-    unk_004.setFOV2(fovy);
-    unk_074.setFOV2(fovy);
+    m_camera0.setFOV2(fovy);
+    m_camera1.setFOV2(fovy);
 }
 
 inline void dss::UnkDualCamera::setScaleW(Fix32 scaleW)
 {
-    unk_004.setScaleW(scaleW);
-    unk_074.setScaleW(scaleW);
+    m_camera0.setScaleW(scaleW);
+    m_camera1.setScaleW(scaleW);
 }
 
 inline VecFx32* twn::TownStageManager::GetCameraPosFX32(int no)
@@ -93,14 +93,14 @@ THUMB TownCamera* TownCamera::getSingleton()
 
 THUMB void TownCamera::initialize()
 {
-    camera_.unk_004.setup();
-    camera_.unk_074.setup();
+    camera_.m_camera0.setup();
+    camera_.m_camera1.setup();
     camera_.setTarget(position, 0);
     camera_.setDistance(distance);
     camera_.setRotXYZ(default_angle);
     camera_.setOffset(offset);
-    camera_.unk_0f4 = dir_offset;
-    camera_.unk_0e4 = 1;
+    camera_.m_dirOffset = dir_offset;
+    camera_.m_cameraNo = 1;
     camera_.unk_0e8 = 0;
     camera_.unk_0ec = 0;
     camera_.setFOV2(fov);
@@ -128,11 +128,11 @@ THUMB void TownCamera::terminate()
 {
     if (changeDefaultAngleFlag_ == 1) {
         dss::Vector3<short> angle(default_angle.vx, default_angle.vy, default_angle.vz);
-        angle.vy = camera_.unk_004.getAngle().vy;
-        camera_.unk_004.setAngle(angle);
+        angle.vy = camera_.m_camera0.getAngle().vy;
+        camera_.m_camera0.setAngle(angle);
     }
     if (endCameraReset_ == 1 || g_Global.nextMapNameId == 999) {
-        camera_.unk_004.setAngle(default_angle);
+        camera_.m_camera0.setAngle(default_angle);
     }
     restore();
 }
@@ -140,7 +140,7 @@ THUMB void TownCamera::terminate()
 THUMB void TownCamera::execute()
 {
     if (cameraLock_ == 0) {
-        camera_.unk_004.setTarget(cmn::g_cmnPartyInfo.position_);
+        camera_.m_camera0.setTarget(cmn::g_cmnPartyInfo.position_);
         saveFlag_ = 0;
     } else {
         gazeMove();
@@ -151,8 +151,8 @@ THUMB void TownCamera::execute()
         lockUpdate();
         notEqualPreAngle_ = 0;
     }
-    if (preAngle_.vy != camera_.unk_004.getAngle().vy || preAngle_.vx != camera_.unk_004.getAngle().vx ||
-        preAngle_.vz != camera_.unk_004.getAngle().vz) {
+    if (preAngle_.vy != camera_.m_camera0.getAngle().vy || preAngle_.vx != camera_.m_camera0.getAngle().vx ||
+        preAngle_.vz != camera_.m_camera0.getAngle().vz) {
         notEqualPreAngle_ = 1;
     }
     if (notEqualPreAngle_ > 2) {
@@ -160,7 +160,7 @@ THUMB void TownCamera::execute()
     } else {
         BillboardCharacter::setChangeCameraAngle(true);
     }
-    dss::Vector3<short>& now = camera_.unk_004.getAngle();
+    dss::Vector3<short>& now = camera_.m_camera0.getAngle();
     short y = now.vy;
     short z = now.vz;
     preAngle_.set(now.vx, y, z);
@@ -173,19 +173,19 @@ THUMB void TownCamera::gazeMove()
     case MOVE_NONE:
         break;
     case MOVE_TARGET_PLAYER:
-        camera_.unk_004.setTarget(cmn::g_cmnPartyInfo.position_);
+        camera_.m_camera0.setTarget(cmn::g_cmnPartyInfo.position_);
         break;
     case MOVE_TARGET_CHARA:
-        camera_.unk_004.setTarget(TownCharacterManager::getSingleton()->getPosition(targetChara_));
+        camera_.m_camera0.setTarget(TownCharacterManager::getSingleton()->getPosition(targetChara_));
         break;
     case MOVE_AREA:
         checkArea();
-        camera_.unk_004.setTarget(target_);
+        camera_.m_camera0.setTarget(target_);
         break;
     default:
-        dss::Fix32Vector3 pos = camera_.unk_004.getTarget();
+        dss::Fix32Vector3 pos = camera_.m_camera0.getTarget();
         cameraMove_.execMove(pos);
-        camera_.unk_004.setTarget(pos);
+        camera_.m_camera0.setTarget(pos);
         cameraMove_.moveUpdate();
         break;
     }
@@ -194,10 +194,10 @@ THUMB void TownCamera::gazeMove()
 THUMB void TownCamera::angleRot()
 {
     if (changeAngle_ == 1) {
-        dss::Vector3<short>& now = camera_.unk_004.getAngle();
+        dss::Vector3<short>& now = camera_.m_camera0.getAngle();
         dss::Vector3<short> angle(now.vx, now.vy, now.vz);
         cameraMove_.execRot(angle);
-        camera_.unk_004.setAngle(angle);
+        camera_.m_camera0.setAngle(angle);
         if (cameraMove_.rotUpdate() == 1) {
             changeAngle_ = 0;
         }
@@ -213,9 +213,9 @@ THUMB void TownCamera::changeDistance()
         }
         if (counter_ < frame_) {
             distance_ = startDistance_ + addDistance_ * counter_ / frame_;
-            camera_.unk_004.setDistance(distance_);
+            camera_.m_camera0.setDistance(distance_);
         } else {
-            camera_.unk_004.setDistance(endDistance_);
+            camera_.m_camera0.setDistance(endDistance_);
         }
         counter_++;
     }
@@ -229,9 +229,9 @@ THUMB void TownCamera::effectAction()
         } else {
             effecter_.setMoveLock(false);
         }
-        dss::Fix32Vector3 effpos = camera_.unk_004.getTarget();
+        dss::Fix32Vector3 effpos = camera_.m_camera0.getTarget();
         effecter_.execMove(effpos);
-        camera_.unk_004.setTarget(effpos);
+        camera_.m_camera0.setTarget(effpos);
         if (effecter_.moveUpdate()) {
             effect_ = 0;
         }
@@ -241,12 +241,12 @@ THUMB void TownCamera::effectAction()
 THUMB void TownCamera::viewMove()
 {
     if (povLock_ == 1) {
-        dss::Fix32Vector3 povPos = camera_.unk_004.getPosition();
+        dss::Fix32Vector3 povPos = camera_.m_camera0.getPosition();
         switch (remote_) {
         case MOVE_TARGET_CHARA:
         case MOVE_TARGET_PLAYER:
-            dss::Fix32Vector3 target = camera_.unk_004.getTarget();
-            dss::Vector3<short>& now = camera_.unk_004.getAngle();
+            dss::Fix32Vector3 target = camera_.m_camera0.getTarget();
+            dss::Vector3<short>& now = camera_.m_camera0.getAngle();
             dss::Vector3<short> angle(now.vx, now.vy, now.vz);
             calcPositionFromAngle(angle, povPos, target);
             povPos += povOffset_;
@@ -260,10 +260,10 @@ THUMB void TownCamera::viewMove()
                 isPovMove_ = 0;
             }
         }
-        camera_.unk_004.setPosition(povPos);
-        dss::Fix32Vector3& dirVec = camera_.unk_004.getDirection();
-        dirVec = camera_.unk_004.getTarget() - camera_.unk_004.getPosition();
-        camera_.unk_004.setDistance(dirVec.length());
+        camera_.m_camera0.setPosition(povPos);
+        dss::Fix32Vector3& dirVec = camera_.m_camera0.getDirection();
+        dirVec = camera_.m_camera0.getTarget() - camera_.m_camera0.getPosition();
+        camera_.m_camera0.setDistance(dirVec.length());
         dirVec.normalize();
     }
 }
@@ -293,12 +293,12 @@ THUMB void TownCamera::draw()
     if (no0 == 0 && no1 == 0) {
         camera_.applyCamera();
         if (getDisplayFrame() & 1) {
-            ((getDisplayFrame() & 1) == 0 ? &camera_.unk_004 : &camera_.unk_074)->calcLookDirection();
+            ((getDisplayFrame() & 1) == 0 ? &camera_.m_camera0 : &camera_.m_camera1)->calcLookDirection();
         } else {
-            ((getDisplayFrame() & 1) == 0 ? &camera_.unk_004 : &camera_.unk_074)->calcLookDirection();
+            ((getDisplayFrame() & 1) == 0 ? &camera_.m_camera0 : &camera_.m_camera1)->calcLookDirection();
         }
     } else {
-        dss::Camera* cam = (getDisplayFrame() & 1) == 0 ? &camera_.unk_004 : &camera_.unk_074;
+        dss::Camera* cam = (getDisplayFrame() & 1) == 0 ? &camera_.m_camera0 : &camera_.m_camera1;
         int no = getDisplayFrame() & 1;
         cam->m_pos.vx.value = twn::TownStageManager::getSingleton()->GetCameraPosFX32(no)->x;
         cam->m_pos.vy.value = twn::TownStageManager::getSingleton()->GetCameraPosFX32(no)->y;
@@ -310,9 +310,9 @@ THUMB void TownCamera::draw()
         cam->m_target_pos.vy.value = twn::TownStageManager::getSingleton()->GetCameraCentFX32(no)->y;
         cam->m_target_pos.vz.value = twn::TownStageManager::getSingleton()->GetCameraCentFX32(no)->z;
         camera_.applyG3d();
-        BillboardCharacter::setCamera(!isEven() ? &camera_.unk_004 : &camera_.unk_074);
+        BillboardCharacter::setCamera(!isEven() ? &camera_.m_camera0 : &camera_.m_camera1);
     }
-    DSSAObjectWithCamera::camera_ = !isEven() ? &camera_.unk_004 : &camera_.unk_074;
+    DSSAObjectWithCamera::camera_ = !isEven() ? &camera_.m_camera0 : &camera_.m_camera1;
     flagRotateL = 0;
     flagRotateR = 0;
 }
@@ -320,7 +320,7 @@ THUMB void TownCamera::draw()
 THUMB bool TownCamera::setAngleNorth(short& retAngle)
 {
     bool ret = false;
-    dss::Vector3<short>& now = camera_.unk_004.getAngle();
+    dss::Vector3<short>& now = camera_.m_camera0.getAngle();
     dss::Vector3<short> target(now.vx, now.vy, now.vz);
     short dy = target.vy > 0 ? -0x200 : 0x200;
     if (target.vy < 0x200 && target.vy > -0x200) {
@@ -338,7 +338,7 @@ THUMB bool TownCamera::setAngleNorth(short& retAngle)
 
 THUMB bool TownCamera::rotateL()
 {
-    dss::Vector3<short>& now = camera_.unk_004.getAngle();
+    dss::Vector3<short>& now = camera_.m_camera0.getAngle();
     dss::Vector3<short> angle(now.vx, now.vy, now.vz);
     int prev = angle.vy;
     angle.vy = prev + 0x100;
@@ -366,7 +366,7 @@ THUMB bool TownCamera::rotateL()
 
 THUMB bool TownCamera::rotateR()
 {
-    dss::Vector3<short>& now = camera_.unk_004.getAngle();
+    dss::Vector3<short>& now = camera_.m_camera0.getAngle();
     dss::Vector3<short> angle(now.vx, now.vy, now.vz);
     int prev = angle.vy;
     angle.vy = prev - 0x100;
@@ -395,7 +395,7 @@ THUMB bool TownCamera::rotateR()
 THUMB void TownCamera::setLimitL(dss::Fix32 left)
 {
     limitL = left;
-    dss::Vector3<short>& now = camera_.unk_004.getAngle();
+    dss::Vector3<short>& now = camera_.m_camera0.getAngle();
     dss::Vector3<short> angle(now.vx, now.vy, now.vz);
     if (limitL != dss::Fix32(0L)) {
         if (limitL == dss::Fix32(-1L)) {
@@ -412,7 +412,7 @@ THUMB void TownCamera::setLimitL(dss::Fix32 left)
 THUMB void TownCamera::setLimitR(dss::Fix32 right)
 {
     limitR = right;
-    dss::Vector3<short>& now = camera_.unk_004.getAngle();
+    dss::Vector3<short>& now = camera_.m_camera0.getAngle();
     dss::Vector3<short> angle(now.vx, now.vy, now.vz);
     if (limitR != dss::Fix32(0L)) {
         if (limitR == dss::Fix32(-1L)) {
@@ -429,11 +429,11 @@ THUMB void TownCamera::setLimitR(dss::Fix32 right)
 THUMB void TownCamera::resetAngle()
 {
     notEqualPreAngle_ = 1;
-    dss::Vector3<short>& pre = camera_.unk_004.getAngle();
+    dss::Vector3<short>& pre = camera_.m_camera0.getAngle();
     short y = pre.vy;
     short z = pre.vz;
     preAngle_.set(pre.vx, y, z);
-    dss::Vector3<short>& now = camera_.unk_004.getAngle();
+    dss::Vector3<short>& now = camera_.m_camera0.getAngle();
     dss::Vector3<short> angle(now.vx, now.vy, now.vz);
     angle.vy = 0;
     camera_.setRotXYZ(angle);
@@ -441,7 +441,7 @@ THUMB void TownCamera::resetAngle()
 
 THUMB void TownCamera::store()
 {
-    dss::Vector3<short>& now = camera_.unk_004.getAngle();
+    dss::Vector3<short>& now = camera_.m_camera0.getAngle();
     short y = now.vy;
     short z = now.vz;
     preAngle_.set(now.vx, y, z);
@@ -454,14 +454,14 @@ THUMB void TownCamera::store()
 
 THUMB void TownCamera::restore()
 {
-    dss::Vector3<short>& now = camera_.unk_004.getAngle();
+    dss::Vector3<short>& now = camera_.m_camera0.getAngle();
     dss::Vector3<short> angle(now.vx, now.vy, now.vz);
     status::g_StageInfo.pushCameraAngle(angle);
 }
 
 THUMB void TownCamera::setMoveTo(dss::Fix32Vector3& target, int frame, bool absFlag)
 {
-    dss::Fix32Vector3 pos = camera_.unk_004.getTarget();
+    dss::Fix32Vector3 pos = camera_.m_camera0.getTarget();
     dss::Fix32Vector3 tTarget;
     tTarget = absFlag ? target : target + pos;
     cameraMove_.setActionMove(pos, tTarget);
@@ -470,7 +470,7 @@ THUMB void TownCamera::setMoveTo(dss::Fix32Vector3& target, int frame, bool absF
     }
     if (saveFlag_ == 0) {
         savePos_ = pos;
-        dss::Vector3<short>& now = camera_.unk_004.getAngle();
+        dss::Vector3<short>& now = camera_.m_camera0.getAngle();
         saveAngle_.vx = now.vx;
         saveAngle_.vy = now.vy;
         saveAngle_.vz = now.vz;
@@ -486,7 +486,7 @@ THUMB void TownCamera::setRotTo(dss::Vector3<short>& angle, int frame, bool absF
         camera_.setRotXYZ(angle);
         return;
     }
-    dss::Vector3<short>& now = camera_.unk_004.getAngle();
+    dss::Vector3<short>& now = camera_.m_camera0.getAngle();
     dss::Vector3<short> angleNow(now.vx, now.vy, now.vz);
     if (!absFlag) {
         angle.vx += angleNow.vx;
@@ -500,7 +500,7 @@ THUMB void TownCamera::setRotTo(dss::Vector3<short>& angle, int frame, bool absF
         cameraMove_.setRotSpeedY(100);
     }
     if (saveFlag_ == 0) {
-        savePos_ = camera_.unk_004.getTarget();
+        savePos_ = camera_.m_camera0.getTarget();
         saveAngle_.vx = angleNow.vx;
         saveAngle_.vy = angleNow.vy;
         saveAngle_.vz = angleNow.vz;
@@ -511,15 +511,15 @@ THUMB void TownCamera::setRotTo(dss::Vector3<short>& angle, int frame, bool absF
 
 THUMB void TownCamera::resetCameraMove(int frame)
 {
-    dss::Fix32Vector3 pos = camera_.unk_004.getTarget();
+    dss::Fix32Vector3 pos = camera_.m_camera0.getTarget();
     dss::Fix32Vector3 target = twn::TownPlayerManager::getSingleton().getPosition();
     if (dss::abs<long>((pos - target).lengthsq().value) > 100) {
         cameraMove_.setActionMove(pos, target);
         cameraMove_.setMoveFrame(frame);
     } else {
-        camera_.unk_004.setTarget(target);
+        camera_.m_camera0.setTarget(target);
     }
-    dss::Vector3<short>& now = camera_.unk_004.getAngle();
+    dss::Vector3<short>& now = camera_.m_camera0.getAngle();
     dss::Vector3<short> angleNow(now.vx, now.vy, now.vz);
     dss::Vector3<short> angle(0, 0, 0);
     if (changeDefaultAngleFlag_ == 0) {
@@ -545,7 +545,7 @@ THUMB void TownCamera::resetCameraMove(int frame)
 
 THUMB void TownCamera::setShake(int type, int count)
 {
-    dss::Fix32Vector3 targetPos = camera_.unk_004.getTarget();
+    dss::Fix32Vector3 targetPos = camera_.m_camera0.getTarget();
     dss::Fix32Vector3 startPos = targetPos;
     int endframe = count << 3;
     dss::Fix32 len;
@@ -553,7 +553,7 @@ THUMB void TownCamera::setShake(int type, int count)
     switch (type) {
     case 0: {
         dss::Fix32Vector3 vec;
-        twn::TownActionCalculate::getDirByIdx((short)(camera_.unk_004.getAngle().vy + 0x4000), vec);
+        twn::TownActionCalculate::getDirByIdx((short)(camera_.m_camera0.getAngle().vy + 0x4000), vec);
         targetPos += vec * len;
         effecter_.setRandomShake(startPos, targetPos, count);
         break;
@@ -584,10 +584,10 @@ THUMB void TownCamera::setChangeDistance(int frame, dss::Fix32 end)
     frame_ = frame;
     endDistance_ = end;
     changeDistance_ = 1;
-    distance_ = (camera_.unk_004.getTarget() - camera_.unk_004.getPosition()).length();
-    camera_.unk_004.setDistance(distance_);
-    dss::Fix32Vector3& dirVec = camera_.unk_004.getDirection();
-    dirVec = camera_.unk_004.getTarget() - camera_.unk_004.getPosition();
+    distance_ = (camera_.m_camera0.getTarget() - camera_.m_camera0.getPosition()).length();
+    camera_.m_camera0.setDistance(distance_);
+    dss::Fix32Vector3& dirVec = camera_.m_camera0.getDirection();
+    dirVec = camera_.m_camera0.getTarget() - camera_.m_camera0.getPosition();
     dirVec.normalize();
     addDistance_ = endDistance_ - distance_;
     startDistance_ = distance_;
@@ -601,7 +601,7 @@ THUMB void TownCamera::resetDistance(int frame)
     }
     counter_ = 0;
     endDistance_ = distance;
-    distance_ = (camera_.unk_004.getTarget() - camera_.unk_004.getPosition()).lengthsq();
+    distance_ = (camera_.m_camera0.getTarget() - camera_.m_camera0.getPosition()).lengthsq();
     if (dss::abs<long>((distance_ - distance * distance).value) <= 0x1000) {
         camera_.setDistance(distance);
         return;
@@ -610,8 +610,8 @@ THUMB void TownCamera::resetDistance(int frame)
     frame_ = frame;
     changeDistance_ = 1;
     camera_.setDistance(distance_);
-    dss::Fix32Vector3& dirVec = camera_.unk_004.getDirection();
-    dirVec = camera_.unk_004.getTarget() - camera_.unk_004.getPosition();
+    dss::Fix32Vector3& dirVec = camera_.m_camera0.getDirection();
+    dirVec = camera_.m_camera0.getTarget() - camera_.m_camera0.getPosition();
     dirVec.normalize();
     addDistance_ = endDistance_ - distance_;
     startDistance_ = distance_;
@@ -624,7 +624,7 @@ THUMB bool TownCamera::isEndChangeDistance()
 
 THUMB void TownCamera::setPovMove(dss::Fix32Vector3 target, int frame, int flag)
 {
-    dss::Fix32Vector3 start = camera_.unk_004.getPosition();
+    dss::Fix32Vector3 start = camera_.m_camera0.getPosition();
     if (flag) {
         target += start;
     }
@@ -637,11 +637,11 @@ THUMB void TownCamera::calcPositionFromAngle(dss::Vector3<short>& angle, dss::Fi
 {
     dss::UnkMatrix43 rotX;
     dss::UnkMatrix43 rotY;
-    dss::Fix32Vector3& dirVec = camera_.unk_004.getDirection();
+    dss::Fix32Vector3& dirVec = camera_.m_camera0.getDirection();
     rotX.setRotX(angle.vx);
     rotY.setRotY(angle.vy);
     dirVec.setFix32(0, 0, 1);
-    dirVec *= camera_.unk_004.getDistance();
+    dirVec *= camera_.m_camera0.getDistance();
     dirVec = rotX * dirVec;
     dirVec = rotY * dirVec;
     pos = target + dirVec;
@@ -681,11 +681,11 @@ THUMB void TownCamera::setCameraLock(int flag)
 
 THUMB void TownCamera::angleCalc()
 {
-    dss::Fix32 len = (camera_.unk_004.getPosition() - camera_.unk_004.getTarget()).length();
-    camera_.unk_004.setDistance(len);
+    dss::Fix32 len = (camera_.m_camera0.getPosition() - camera_.m_camera0.getTarget()).length();
+    camera_.m_camera0.setDistance(len);
     dss::Vector3<short> angle;
-    dss::Fix32Vector3 vec = camera_.unk_004.getTarget() - camera_.unk_004.getPosition();
-    angle = camera_.unk_004.getAngle();
+    dss::Fix32Vector3 vec = camera_.m_camera0.getTarget() - camera_.m_camera0.getPosition();
+    angle = camera_.m_camera0.getAngle();
     dss::Fix32Vector3 tvec;
     tvec = vec * -1;
     if (tvec.vz > dss::Fix32(0L)) {
@@ -712,8 +712,8 @@ THUMB void TownCamera::angleCalc()
         twn::TownActionCalculate::getIdxByVec(angle.vx, tvec);
         angle.vx *= -1;
     }
-    camera_.unk_004.setAngle(angle);
-    dss::Fix32Vector3& dir = camera_.unk_004.getDirection();
+    camera_.m_camera0.setAngle(angle);
+    dss::Fix32Vector3& dir = camera_.m_camera0.getDirection();
     dir = vec;
 }
 
@@ -731,9 +731,9 @@ THUMB void TownCamera::setDefaultAngle(dss::Vector3<short>& angle)
 {
     dss::Vector3<short> temp(angle.vx, angle.vy, angle.vz);
     if (temp.vy == 0) {
-        temp.vy = camera_.unk_004.getAngle().vy;
+        temp.vy = camera_.m_camera0.getAngle().vy;
     }
-    camera_.unk_004.setAngle(temp);
+    camera_.m_camera0.setAngle(temp);
     changeDefaultAngle_ = angle;
     changeDefaultAngleFlag_ = 1;
 }

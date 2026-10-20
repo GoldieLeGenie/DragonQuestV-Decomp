@@ -332,7 +332,7 @@ THUMB void fld::FieldData::drawBlock()
                 }
                 no = data->ano;
             }
-            G3_TexImageParam(blockTexture_->unk_20, GX_TEXGEN_TEXCOORD, blockTexture_->unk_24, blockTexture_->unk_28, GX_TEXREPEAT_NONE, GX_TEXFLIP_NONE, GX_TEXPLTTCOLOR0_TRNS, address);
+            G3_TexImageParam(blockTexture_->texFormat_, GX_TEXGEN_TEXCOORD, blockTexture_->sizeS_, blockTexture_->sizeT_, GX_TEXREPEAT_NONE, GX_TEXFLIP_NONE, GX_TEXPLTTCOLOR0_TRNS, address);
             G3_PolygonAttr(0, 0, 0xc0, 0, 31, 0);
             draw2DField(px, y << 4, (no & 0xf) * 16, (no / 16) * 16, uv_tbl);
             x++;

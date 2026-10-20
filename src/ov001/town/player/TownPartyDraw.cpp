@@ -135,7 +135,7 @@ THUMB void twn::TownPartyDraw::setBashaDraw()
         }
         }
         dss::sprintf_s(path, sizeof(path), "data/chr/h%03d.pack", charaIndex_[i]);
-        BillboardCharacter::setCamera(&TownCamera::getSingleton()->camera_.unk_004);
+        BillboardCharacter::setCamera(&TownCamera::getSingleton()->camera_.m_camera0);
         setPlayerSize(i, charaIndex_[i]);
         partyCharacter_[i].setup(path, dq5::level::CharaData::loadSwitch_);
         partyCharacter_[i].setPosition(defaultPosition);
@@ -167,7 +167,7 @@ THUMB void twn::TownPartyDraw::setup()
         if (dq5::level::CharaData::getRecord(charaparam)->getWidth() < 0x20) {
             dq5::level::CharaData::getRecord(charaparam)->setWidth(0x20);
         }
-        BillboardCharacter::setCamera(&TownCamera::getSingleton()->camera_.unk_004);
+        BillboardCharacter::setCamera(&TownCamera::getSingleton()->camera_.m_camera0);
         taimatsu_.setCharacterSize(dq5::level::CharaData::getRecord(charaparam)->getWidth(), dq5::level::CharaData::getRecord(charaparam)->getHeight());
         dss::sprintf_s(path, sizeof(path), "data/chr/h%03d.pack", 0x8b);
         taimatsu_.setup(path, dq5::level::CharaData::loadSwitch_);
@@ -192,7 +192,7 @@ THUMB void twn::TownPartyDraw::setup()
                 charaIndex_[i] = 0x59;
             }
             dss::sprintf_s(path, sizeof(path), "data/chr/h%03d.pack", charaIndex_[i]);
-            BillboardCharacter::setCamera(&TownCamera::getSingleton()->camera_.unk_004);
+            BillboardCharacter::setCamera(&TownCamera::getSingleton()->camera_.m_camera0);
             int charaparam = dq5::level::g_LevelDataUtility.getCharaParamIndex(charaIndex_[i]);
             if (dq5::level::CharaData::getRecord(charaparam)->getWidth() < 0x20) {
                 dq5::level::CharaData::getRecord(charaparam)->setWidth(0x20);
@@ -235,7 +235,7 @@ THUMB void twn::TownPartyDraw::separateSetup()
                 charaIndex = 0x59;
             }
             dss::sprintf_s(path, sizeof(path), "data/chr/h%03d.pack", charaIndex);
-            BillboardCharacter::setCamera(&TownCamera::getSingleton()->camera_.unk_004);
+            BillboardCharacter::setCamera(&TownCamera::getSingleton()->camera_.m_camera0);
             int charaparam = dq5::level::g_LevelDataUtility.getCharaParamIndex(charaIndex);
             if (dq5::level::CharaData::getRecord(charaparam)->getWidth() < 0x20) {
                 dq5::level::CharaData::getRecord(charaparam)->setWidth(0x20);

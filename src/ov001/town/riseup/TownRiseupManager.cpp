@@ -25,7 +25,7 @@ THUMB void twn::TownRiseupManager::initialize()
     for (int i = 0; i < RISEUP_MAX; i++) {
         riseup_[i] = NULL;
     }
-    TownRiseupBase::setCamera(&TownCamera::getSingleton()->camera_.unk_004);
+    TownRiseupBase::setCamera(&TownCamera::getSingleton()->camera_.m_camera0);
     riseupCounter_ = 0;
 }
 

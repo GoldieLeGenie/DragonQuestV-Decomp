@@ -22,7 +22,7 @@ ARM void Render::setup()
 {
     camera_ = NULL;
     for (int i = 0; i < 32; i++) {
-        unk_004[i] = NULL;
+        scenes_[i] = NULL;
     }
     for (int i = 0; i < 64; i++) {
         objects_[i] = NULL;
@@ -36,7 +36,7 @@ ARM void Render::cleanup()
 {
     camera_ = NULL;
     for (int i = 0; i < 32; i++) {
-        unk_004[i] = NULL;
+        scenes_[i] = NULL;
     }
     for (int i = 0; i < 64; i++) {
         objects_[i] = NULL;
@@ -80,8 +80,8 @@ ARM void Render::unkfunc_02048908()
 ARM void Render::addScene(UnkRenderModel* model)
 {
     for (int i = 0; i < 32; i++) {
-        if (unk_004[i] == NULL) {
-            unk_004[i] = model;
+        if (scenes_[i] == NULL) {
+            scenes_[i] = model;
             return;
         }
     }
@@ -90,8 +90,8 @@ ARM void Render::addScene(UnkRenderModel* model)
 ARM void Render::removeScene(UnkRenderModel* model)
 {
     for (int i = 0; i < 32; i++) {
-        if (unk_004[i] == model) {
-            unk_004[i] = NULL;
+        if (scenes_[i] == model) {
+            scenes_[i] = NULL;
             return;
         }
     }
@@ -107,8 +107,8 @@ ARM void Render::applyCamera()
 ARM void Render::drawScenes()
 {
     for (int i = 0; i < 32; i++) {
-        if (unk_004[i] != NULL) {
-            unk_004[i]->draw();
+        if (scenes_[i] != NULL) {
+            scenes_[i]->draw();
         }
     }
     func_02082604();
@@ -149,8 +149,8 @@ ARM void Render::drawCameraObjects()
         return;
     }
     for (int i = 0; i < 32; i++) {
-        if (unk_184[i] != NULL) {
-            unk_184[i]->draw();
+        if (cameraObjects_[i] != NULL) {
+            cameraObjects_[i]->draw();
         }
     }
 }

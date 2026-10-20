@@ -90,7 +90,7 @@ void twn::TownMonsterDraw::draw()
         DSSAObject::calcType_ = false;
         int no = (getDisplayFrame() & 1) ? 0 : 1;
         TownCamera* camera = TownCamera::getSingleton();
-        monster_.setCamera(no == 0 ? &camera->camera_.unk_004 : &camera->camera_.unk_074);
+        monster_.setCamera(no == 0 ? &camera->camera_.m_camera0 : &camera->camera_.m_camera1);
         monster_.draw();
         dss::Fix32Vector3 pos = *monster_.getPosition();
         DSSAObject::calcType_ = true;

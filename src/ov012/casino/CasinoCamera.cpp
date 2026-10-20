@@ -13,30 +13,30 @@ static short fov = 10;
 
 inline void dss::UnkDualCamera::setup()
 {
-    unk_004.setup();
-    unk_074.setup();
+    m_camera0.setup();
+    m_camera1.setup();
 }
 
 inline void dss::UnkDualCamera::setDistance(Fix32 distance)
 {
-    unk_004.setDistance(distance);
-    unk_074.setDistance(distance);
+    m_camera0.setDistance(distance);
+    m_camera1.setDistance(distance);
 }
 
 inline void dss::UnkDualCamera::setAngle(Vector3<short> angle)
 {
-    unk_004.setAngle(angle);
+    m_camera0.setAngle(angle);
 }
 
 inline void dss::UnkDualCamera::setOffset(Fix32 offset)
 {
-    unk_0f0 = offset;
+    m_offset = offset;
 }
 
 inline void dss::UnkDualCamera::setFOV2(int fovy)
 {
-    unk_004.setFOV2(fovy);
-    unk_074.setFOV2(fovy);
+    m_camera0.setFOV2(fovy);
+    m_camera1.setFOV2(fovy);
 }
 
 THUMB casino::CasinoCamera::CasinoCamera()
@@ -60,8 +60,8 @@ THUMB void casino::CasinoCamera::initialize()
     camera_.setDistance(distance);
     camera_.setAngle(default_angle);
     camera_.setOffset(offset);
-    camera_.unk_0f4 = dir_offset;
-    camera_.unk_0e4 = 1;
+    camera_.m_dirOffset = dir_offset;
+    camera_.m_cameraNo = 1;
     camera_.unk_0e8 = 0;
     camera_.unk_0ec = 0;
     camera_.setFOV2(fov);

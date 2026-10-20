@@ -95,7 +95,7 @@ ARM void initHeap(UnkHeap* heap, unsigned int size0, unsigned int size1, unsigne
     if ((unsigned int)memory0 - 0x02000000 > 0x100000) {
         debugPrintfStub("Program Memory Over!!!! : 0x%08x\n", (unsigned int)memory0 - 0x02000000);
     }
-    heap->unk_54 = (int)memory0 - 0x02000000;
+    heap->programSize_ = (int)memory0 - 0x02000000;
     data_020fd6a4.initialize();
 }
 

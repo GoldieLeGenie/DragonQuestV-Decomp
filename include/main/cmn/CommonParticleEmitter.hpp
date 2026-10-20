@@ -27,7 +27,7 @@ namespace cmn
     };
 
     struct CommonParticleEmitter {
-        dss::UnkDualCamera* unk_00;             // 0x00 camera
+        dss::UnkDualCamera* camera_;             // 0x00 camera
         int enable_;                            // 0x04
         int stop_;                              // 0x08
         int count_;                             // 0x0C

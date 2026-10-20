@@ -23,9 +23,9 @@ struct UnkRenderModel {
 // BattleSystem2::render_ (type Render)
 struct Render {
     dss::Camera* camera_;                       // 0x000 camera
-    UnkRenderModel* unk_004[32];                // 0x004 3D scenes
+    UnkRenderModel* scenes_[32];                // 0x004 3D scenes
     RenderObject* objects_[64];                  // 0x084 3D objects
-    RenderObject* unk_184[32];                  // 0x184 3D objects drawn with a camera only
+    RenderObject* cameraObjects_[32];                  // 0x184 3D objects drawn with a camera only
     ModelAnimation* animations_[128];            // 0x204 animations
     RenderObject* sprites_[128];                 // 0x404 2D sprites
     int unk_604;                                // 0x604

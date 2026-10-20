@@ -18,7 +18,7 @@ inline dss::Camera* getCamera()
 {
     bool even = isEven();
     dss::UnkDualCameraBase* camera = BillboardCharacter::camera_;
-    return !even ? &camera->unk_004 : &camera->unk_074;
+    return !even ? &camera->m_camera0 : &camera->m_camera1;
 }
 
 dss::Fix32 DisplayCharacter::workScale_(2.0f);
@@ -143,7 +143,7 @@ ARM bool DisplayCharacter::isOutOfView()
     vec.x = position_.vx.value - cameraPosition.vx.value;
     vec.y = position_.vy.value - cameraPosition.vy.value;
     vec.z = position_.vz.value - cameraPosition.vz.value;
-    fx32 dot = func_0208a210((VecFx32*)&getCamera()->unk_3c, &vec);
+    fx32 dot = func_0208a210((VecFx32*)&getCamera()->m_lookDir, &vec);
     return dot <= FX_Mul(func_0208a2d0(&vec), 0xfc2);
 }
 

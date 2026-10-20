@@ -141,9 +141,9 @@ void twn::TownMotionlessDraw::setAnimation(int flag)
 
 void twn::TownMotionlessDraw::setPaletteRate(dss::Fix32 r, dss::Fix32 g, dss::Fix32 b)
 {
-    setPaletteEffectTexture(motionless_.unk_1cc.unk_08);
+    setPaletteEffectTexture(motionless_.unk_1cc.texture_);
     dss::Fix32Vector3 rate(r, g, b);
-    applyModelPaletteRgbRate(motionless_.unk_1cc.unk_08, rate);
+    applyModelPaletteRgbRate(motionless_.unk_1cc.texture_, rate);
 }
 
 void twn::TownMotionlessDraw::setPaletteRate(unsigned char r, unsigned char g, unsigned char b, dss::Fix32 rate)
@@ -152,7 +152,7 @@ void twn::TownMotionlessDraw::setPaletteRate(unsigned char r, unsigned char g, u
     int gg = dss::clamp<unsigned int>(0, g, 0x1f);
     int bb = dss::clamp<unsigned int>(0, b, 0x1f);
     rate.value = dss::clamp<int>(0, rate.value, basePalletRate_.value);
-    blendModelPaletteToColor(motionless_.unk_1cc.unk_08, rr, gg, bb, rate);
+    blendModelPaletteToColor(motionless_.unk_1cc.texture_, rr, gg, bb, rate);
 }
 
 void twn::TownMotionlessDraw::setDir(int dir)

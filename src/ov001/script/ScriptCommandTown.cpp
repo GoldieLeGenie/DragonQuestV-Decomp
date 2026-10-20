@@ -893,8 +893,8 @@ THUMB bool cmd_camera_near(void* scriptParam)
 {
     PARAM_MAP_CAMERA_NEAR* param = (PARAM_MAP_CAMERA_NEAR*)scriptParam;
     TownCamera* camera = TownCamera::getSingleton();
-    camera->camera_.unk_004.setNear(param->_near);
-    camera->camera_.unk_074.setNear(param->_near);
+    camera->camera_.m_camera0.setNear(param->_near);
+    camera->camera_.m_camera1.setNear(param->_near);
     return true;
 }
 
@@ -996,7 +996,7 @@ Cmd_ikada_move_player_get_on gCmd_ikada_move_player_get_on;
 THUMB void Cmd_set_camera_angle_abs::initialize(char* scriptParam)
 {
     PARAM_SET_CAMERA_ANGLE_ABS* data = (PARAM_SET_CAMERA_ANGLE_ABS*)scriptParam;
-    dss::Vector3<short>& nowAngle = TownCamera::getSingleton()->camera_.unk_004.getAngle();
+    dss::Vector3<short>& nowAngle = TownCamera::getSingleton()->camera_.m_camera0.getAngle();
     short x = nowAngle.vx;
     short z = nowAngle.vz;
     dss::Vector3<short> angle;

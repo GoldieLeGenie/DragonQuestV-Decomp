@@ -268,8 +268,8 @@ ARM void BillboardCharacter::execute()
 ARM void BillboardCharacter::startAnimation(int index)
 {
     uvOffset.vx.value = (width_ * animation_[index].index) << 12;
-    unk_a8.vx.value = uvOffset.vx.value;
-    unk_a8.vy.value = uvOffset.vy.value;
+    texCoordOffset_.vx.value = uvOffset.vx.value;
+    texCoordOffset_.vy.value = uvOffset.vy.value;
 }
 
 ARM void BillboardCharacter::setRotate(unsigned short direction)
@@ -628,8 +628,8 @@ ARM void UnkCharacterShadow::draw()
     if (s_shadowType == 0) {
         fx32 x = position_.vx.value;
         fx32 z = position_.vz.value;
-        fx32 s = FX_SinIdx(unk_28.vy);
-        fx32 c = FX_CosIdx(unk_28.vy);
+        fx32 s = FX_SinIdx(rotationIdx_.vy);
+        fx32 c = FX_CosIdx(rotationIdx_.vy);
         position_.vx.value += s / 16;
         position_.vz.value += c / 16;
         PolygonObject::draw();
@@ -637,7 +637,7 @@ ARM void UnkCharacterShadow::draw()
         position_.vz.value = z;
         return;
     }
-    s_shadowPolygons[0].setRotationIdx(unk_28);
+    s_shadowPolygons[0].setRotationIdx(rotationIdx_);
     s_shadowPolygons[0].setPosition(position_);
     s_shadowPolygons[0].drawVolume();
 }

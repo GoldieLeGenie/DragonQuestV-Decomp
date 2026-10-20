@@ -7,7 +7,7 @@ struct UnkShopMapCheck : UnkDebugTask {
     int waitFrame_;                             // 0x10
     int startIndex_;                            // 0x14
     int endIndex_;                              // 0x18
-    int unk_1c;                                 // 0x1C
+    int maxIndex_;                                 // 0x1C
     int index_;                                 // 0x20
 
     UnkShopMapCheck();

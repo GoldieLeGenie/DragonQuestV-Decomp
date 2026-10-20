@@ -76,7 +76,7 @@ void twn::TownActionRura::execute()
     tempPos_ = position_;
     position_ = startPos_;
     if (counter_ == 0) {
-        if (data_020f4f74.unk_08 >= 0x1000) {
+        if (data_020f4f74.texVramFree_ >= 0x1000) {
             sprite_ = true;
         } else {
             sprite_ = false;

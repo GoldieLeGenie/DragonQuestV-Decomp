@@ -24,7 +24,7 @@ ARM inline void Position::setScale(dss::Fix32 scale)
 
 ARM inline void Position::setRotationIdx(const dss::Vector3<unsigned short>& rotation)
 {
-    unk_28 = rotation;
+    rotationIdx_ = rotation;
 }
 
 ARM inline void Position::setRotation(const dss::Fix32Vector3& rotation)
@@ -243,7 +243,7 @@ ARM void PolygonObject::drawQuad()
     func_02082604();
     G3_PushMtx();
     G3_Translate(position_.vx.value, position_.vy.value, position_.vz.value);
-    func_020761a0(FX_SinIdx(unk_28.vy), FX_CosIdx(unk_28.vy));
+    func_020761a0(FX_SinIdx(rotationIdx_.vy), FX_CosIdx(rotationIdx_.vy));
     G3_Scale(scale_.vx.value, scale_.vy.value, scale_.vz.value);
     G3_MaterialColorDiffAmb(0x7fff, 0x4210, 1);
     G3_MaterialColorSpecEmi(0x4210, 0, 0);
@@ -273,7 +273,7 @@ ARM void ShadowPolygon::draw()
     func_02082604();
     G3_PushMtx();
     G3_Translate(position_.vx.value, position_.vy.value, position_.vz.value);
-    func_020761a0(FX_SinIdx(unk_28.vy), FX_CosIdx(unk_28.vy));
+    func_020761a0(FX_SinIdx(rotationIdx_.vy), FX_CosIdx(rotationIdx_.vy));
     G3_Scale(scale_.vx.value, scale_.vy.value, scale_.vz.value);
     disableTexture();
     if (data_020f3e8c == 0) {
@@ -286,7 +286,7 @@ ARM void ShadowPolygon::draw()
         applyShadowDrawAttr();
     }
     G3_Begin(1);
-    G3_Color(unk_80.vx | (unk_80.vy << 5) | (unk_80.vz << 10));
+    G3_Color(color_.vx | (color_.vy << 5) | (color_.vz << 10));
     for (int i = 0; i < 4; i++) {
         G3_Vtx(vertex_.v[i].vx.value, vertex_.v[i].vy.value, vertex_.v[i].vz.value);
     }
@@ -303,17 +303,17 @@ ARM void ShadowPolygon::drawVolume()
     func_02082604();
     G3_PushMtx();
     G3_Translate(position_.vx.value, position_.vy.value, position_.vz.value);
-    func_020761a0(FX_SinIdx(unk_28.vy), FX_CosIdx(unk_28.vy));
+    func_020761a0(FX_SinIdx(rotationIdx_.vy), FX_CosIdx(rotationIdx_.vy));
     G3_Scale(scale_.vx.value, scale_.vy.value, scale_.vz.value);
     disableTexture();
     G3_MaterialColorDiffAmb(0, 0, 0);
     G3_MaterialColorSpecEmi(0, 0, 0);
     applyShadowMaskAttr();
     G3_Begin(1);
-    G3_Color(unk_80.vx | (unk_80.vy << 5) | (unk_80.vz << 10));
+    G3_Color(color_.vx | (color_.vy << 5) | (color_.vz << 10));
     for (int j = 0; j < 8; j++) {
         for (int i = 0; i < 4; i++) {
-            G3_Vtx(unk_84[j].v[i].vx.value, unk_84[j].v[i].vy.value, unk_84[j].v[i].vz.value);
+            G3_Vtx(volumeVertex_[j].v[i].vx.value, volumeVertex_[j].v[i].vy.value, volumeVertex_[j].v[i].vz.value);
         }
     }
     G3_End();
@@ -321,10 +321,10 @@ ARM void ShadowPolygon::drawVolume()
     G3_MaterialColorSpecEmi(0, 0, 0);
     applyShadowDrawAttr();
     G3_Begin(1);
-    G3_Color(unk_80.vx | (unk_80.vy << 5) | (unk_80.vz << 10));
+    G3_Color(color_.vx | (color_.vy << 5) | (color_.vz << 10));
     for (int j = 0; j < 8; j++) {
         for (int i = 0; i < 4; i++) {
-            G3_Vtx(unk_84[j].v[i].vx.value, unk_84[j].v[i].vy.value, unk_84[j].v[i].vz.value);
+            G3_Vtx(volumeVertex_[j].v[i].vx.value, volumeVertex_[j].v[i].vy.value, volumeVertex_[j].v[i].vz.value);
         }
     }
     G3_End();
@@ -333,7 +333,7 @@ ARM void ShadowPolygon::drawVolume()
 
 ARM void ShadowPolygon::setVolumeVertex(int index, const UnkPolygonVertex* vertex)
 {
-    unk_84[index] = *vertex;
+    volumeVertex_[index] = *vertex;
 }
 
 ARM Billboard::Billboard()
@@ -364,15 +364,15 @@ ARM UnkBillboardTexCoord* Billboard::getTexCoord()
 
 ARM void Billboard::setTexCoordOffset(const dss::Vector2<dss::Fix32>* offset)
 {
-    unk_a8 = *offset;
+    texCoordOffset_ = *offset;
 }
 
 ARM void Billboard::calcDrawVertex()
 {
     drawVertex_ = vertex_;
     for (int i = 0; i < 4; i++) {
-        drawTexCoord_.v[i].vx = texCoord_.v[i].vx + unk_a8.vx;
-        drawTexCoord_.v[i].vy = texCoord_.v[i].vy + unk_a8.vy;
+        drawTexCoord_.v[i].vx = texCoord_.v[i].vx + texCoordOffset_.vx;
+        drawTexCoord_.v[i].vy = texCoord_.v[i].vy + texCoordOffset_.vy;
     }
 }
 

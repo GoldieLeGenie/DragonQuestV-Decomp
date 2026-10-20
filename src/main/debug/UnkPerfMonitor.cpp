@@ -213,7 +213,7 @@ THUMB void UnkPerfMonitor::measure()
         }
     }
     int heap = (int)getAppHeapFreeSize(&data_020fd24c) / 1024;
-    int vram = (int)data_020f4f74.unk_08 / 1024;
+    int vram = (int)data_020f4f74.texVramFree_ / 1024;
     if (freeHeap_ > heap) {
         freeHeap_ = heap;
     }

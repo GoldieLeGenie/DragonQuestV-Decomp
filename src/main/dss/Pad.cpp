@@ -53,7 +53,7 @@ ARM void dss::Pad::readKeys()
             if (mode_ == 1) {
                 recordKeys(keys);
                 if (recordCount_ == 7200) {
-                    if (unk_0c != 0) {
+                    if (keepRecording_ != 0) {
                         onRecordFull();
                         return;
                     }
@@ -216,16 +216,16 @@ ARM void dss::Pad::stopRecord()
 ARM int dss::Pad::loadRecordBlock()
 {
     int size = 0;
-    if (unk_10 == 0) {
+    if (playFromFile_ == 0) {
         stopPlay();
         return size;
     }
     dss::memset(data_020f9918, 0xff, sizeof(data_020f9918));
-    int offset = unk_14 * 0x3840;
-    if (unk_98 == 0) {
+    int offset = recordBlock_ * 0x3840;
+    if (noFileLoad_ == 0) {
         size = dss::g_File.loadPartToBuffer(fileName_, data_020f9918, offset, 0x3840, 0);
     }
-    unk_14++;
+    recordBlock_++;
     if (data_020f9918[0] == 0xffff) {
         stopPlay();
         return 0;
@@ -264,7 +264,7 @@ ARM unsigned short dss::Pad::getPlayKeys()
 {
     unsigned short keys = data_020f9918[playIndex_++];
     if (keys == 0xffff) {
-        if (unk_10 != 0) {
+        if (playFromFile_ != 0) {
             loadRecordBlock();
             return 0;
         }

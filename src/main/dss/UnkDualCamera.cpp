@@ -11,25 +11,25 @@ static const dss::Fix32 s_unk4(-4L);
 
 THUMB dss::UnkDualCameraBase::UnkDualCameraBase()
 {
-    unk_004.m_pos.setFix32(0, 0, 1);
-    unk_004.m_up.setFix32(0, 1, 0);
-    unk_004.m_angle.set(0x2000, 0, 0);
-    unk_004.m_distance = 8L;
-    unk_004.m_fov2 = 5;
-    unk_074.m_pos.setFix32(0, 0, 1);
-    unk_074.m_up.setFix32(0, 1, 0);
-    unk_074.m_angle.set(0x2000, 0, 0);
-    unk_074.m_distance = 8L;
-    unk_074.m_fov2 = 5;
-    unk_0e4 = 1;
+    m_camera0.m_pos.setFix32(0, 0, 1);
+    m_camera0.m_up.setFix32(0, 1, 0);
+    m_camera0.m_angle.set(0x2000, 0, 0);
+    m_camera0.m_distance = 8L;
+    m_camera0.m_fov2 = 5;
+    m_camera1.m_pos.setFix32(0, 0, 1);
+    m_camera1.m_up.setFix32(0, 1, 0);
+    m_camera1.m_angle.set(0x2000, 0, 0);
+    m_camera1.m_distance = 8L;
+    m_camera1.m_fov2 = 5;
+    m_cameraNo = 1;
 }
 
 THUMB void dss::UnkDualCameraBase::updateCameraNo()
 {
     if (getDisplayFrame() & 1) {
-        unk_0e4 = 0;
+        m_cameraNo = 0;
     } else {
-        unk_0e4 = 1;
+        m_cameraNo = 1;
     }
 }
 
@@ -40,7 +40,7 @@ THUMB void dss::UnkDualCameraBase::update()
 THUMB void dss::UnkDualCameraBase::calcPosition()
 {
     updateCameraNo();
-    unk_004.calcPosition();
+    m_camera0.calcPosition();
 }
 
 THUMB void dss::UnkDualCameraBase::applyCamera()
@@ -54,10 +54,10 @@ THUMB void dss::UnkDualCameraBase::applyG3d()
 {
     updateCameraNo();
     Camera* camera;
-    if (unk_0e4 != 0) {
-        camera = &unk_074;
+    if (m_cameraNo != 0) {
+        camera = &m_camera1;
     } else {
-        camera = &unk_004;
+        camera = &m_camera0;
     }
     UnkCameraPerspective perspective = camera->m_perspective;
     Fix32Vector3 pos = camera->m_pos;
@@ -82,18 +82,18 @@ THUMB void dss::UnkDualCameraBase::applyG3d()
 THUMB void dss::UnkDualCameraBase::setTarget(const Fix32Vector3& target, int screen)
 {
     if (screen == 0) {
-        unk_004.setTarget(target);
+        m_camera0.setTarget(target);
     } else {
-        unk_074.setTarget(target);
+        m_camera1.setTarget(target);
     }
 }
 
 THUMB dss::UnkDualCamera::UnkDualCamera()
 {
     setTarget(Fix32Vector3(0, 0, 0), 0);
-    unk_0f0 = 0.0f;
-    unk_0e4 = 1;
-    unk_0f4 = 0;
+    m_offset = 0.0f;
+    m_cameraNo = 1;
+    m_dirOffset = 0;
     m_pursue = 1;
 }
 
@@ -106,29 +106,29 @@ THUMB void dss::UnkDualCamera::calcPosition()
     if (m_pursue == 1) {
         UnkDualCameraBase::calcPosition();
     } else {
-        Fix32Vector3 direction = unk_004.getTarget() - unk_004.getPosition();
+        Fix32Vector3 direction = m_camera0.getTarget() - m_camera0.getPosition();
         direction.normalize();
-        unk_004.m_direction = direction;
+        m_camera0.m_direction = direction;
     }
     UnkMatrix43 rotX;
     UnkMatrix43 rotY;
-    rotX.setRotX(unk_004.m_angle.vx);
-    rotY.setRotY(unk_004.m_angle.vy);
+    rotX.setRotX(m_camera0.m_angle.vx);
+    rotY.setRotY(m_camera0.m_angle.vy);
     Fix32Vector3 up(0, 1, 0);
     Fix32Vector3 offset;
     up = rotX * up;
     up = rotY * up;
-    offset = up * unk_0f0;
-    unk_074.setPosition(unk_004.getPosition() + offset);
-    unk_074.setTarget(unk_004.getTarget() + offset);
-    unk_074.setDistance(unk_004.getDistance());
-    unk_074.setAngle(unk_004.getAngle());
-    offset = unk_074.m_target_pos - unk_074.m_pos;
-    rotX.setRotX(unk_0f4);
-    rotY.setRotY(-unk_074.m_angle.vy);
+    offset = up * m_offset;
+    m_camera1.setPosition(m_camera0.getPosition() + offset);
+    m_camera1.setTarget(m_camera0.getTarget() + offset);
+    m_camera1.setDistance(m_camera0.getDistance());
+    m_camera1.setAngle(m_camera0.getAngle());
+    offset = m_camera1.m_target_pos - m_camera1.m_pos;
+    rotX.setRotX(m_dirOffset);
+    rotY.setRotY(-m_camera1.m_angle.vy);
     offset = rotY * offset;
     offset = rotX * offset;
-    rotY.setRotY(unk_074.m_angle.vy);
+    rotY.setRotY(m_camera1.m_angle.vy);
     offset = rotY * offset;
-    unk_074.m_target_pos = unk_074.m_pos + offset;
+    m_camera1.m_target_pos = m_camera1.m_pos + offset;
 }

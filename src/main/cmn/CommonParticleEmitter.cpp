@@ -305,11 +305,11 @@ cmn::CommonParticleEmitter* cmn::CommonParticleEmitter::getSingleton()
 void cmn::CommonParticleEmitter::initialize()
 {
     if (data_02101c88.isCurrentPart(4)) {
-        unk_00 = &TownCamera::getSingleton()->camera_;
+        camera_ = &TownCamera::getSingleton()->camera_;
     } else {
-        unk_00 = &fld::FieldCamera::getSingleton().camera_;
+        camera_ = &fld::FieldCamera::getSingleton().camera_;
     }
-    int fov = unk_00->unk_004.getFOV2();
+    int fov = camera_->m_camera0.getFOV2();
     unk_020f3568.value = FX_CosIdx(fov * 0x10000 / 360);
 }
 
@@ -457,12 +457,12 @@ void cmn::CommonParticleEmitter::draw()
     } else {
         screen = getDisplayFrame() & 1;
     }
-    unk_020f355c = (VecFx32*)&(screen == 0 ? &unk_00->unk_004 : &unk_00->unk_074)->unk_3c;
+    unk_020f355c = (VecFx32*)&(screen == 0 ? &camera_->m_camera0 : &camera_->m_camera1)->m_lookDir;
     for (int i = 0; i < count_; i++) {
-        particle_[i].loopBack(&unk_00->unk_004);
+        particle_[i].loopBack(&camera_->m_camera0);
     }
     for (int i = 0; i < count_; i++) {
-        if (particle_[i].isInView(screen == 0 ? &unk_00->unk_004 : &unk_00->unk_074)) {
+        if (particle_[i].isInView(screen == 0 ? &camera_->m_camera0 : &camera_->m_camera1)) {
             particle_[i].setPolygonID(polygonID & 0x3f);
             particle_[i].draw();
             polygonID++;

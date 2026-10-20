@@ -31,7 +31,7 @@ THUMB void book::BookCamera::initialize()
     camera_.setFOV(0x6c3, 0xe80);
     camera_.setFar(0x400000);
     camera_.setFOV2(0x32);
-    camera_.unk_6c = 1;
+    camera_.m_noUpdate = 1;
     dss::Fix32 scaleW;
     scaleW.value = 0x1000;
     camera_.setScaleW(dss::Fix32(scaleW));

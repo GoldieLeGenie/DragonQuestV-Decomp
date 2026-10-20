@@ -81,7 +81,7 @@ THUMB void UnkIconFile::setupCache(int entrySize, int cacheNum)
     DataObject header;
     header.setup(streamFile_, 1, 0);
     UnkMessageFile* file = (UnkMessageFile*)header.getAddr();
-    int size = file->unk_14 + file->unk_18;
+    int size = file->entriesOffset_ + file->entriesSize_;
     header.cleanup();
     header_ = allocAppHeap(&data_020fd24c, size, 0x20);
     dss::g_File.loadPartToBuffer(streamFile_, header_, 0, size, 0);

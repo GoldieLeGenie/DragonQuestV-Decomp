@@ -109,7 +109,7 @@ THUMB int TownCharacterManager::setup(TOWN_CHARACTER& chara)
             character_[i] = characterStorage.getContainer(dq5::level::CharaData::getRecord(charaparam)->getType());
             character_[i]->charaParamIndex_ = charaparam;
             character_[i]->render_ = &twn::TownSystem::getSingleton().townSystemRender_;
-            character_[i]->cmr_ = &TownCamera::getSingleton()->camera_.unk_004;
+            character_[i]->cmr_ = &TownCamera::getSingleton()->camera_.m_camera0;
             character_[i]->setup(chara);
             character_[i]->type_ = dq5::level::CharaData::getRecord(charaparam)->getType() == 1 ? 0 : dq5::level::CharaData::getRecord(charaparam)->getType();
             character_[i]->data_.ctrlNo = i;

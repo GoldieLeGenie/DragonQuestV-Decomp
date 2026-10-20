@@ -23,7 +23,7 @@ ARM void CharacterPalette::loadFromTexture(TextureObject* texture, int flag)
     handle_ = data_020f4f74.allocPlttVram(size);
     address_ = data_020f4f74.getPlttVramAddr(handle_);
     transferToVram(flag);
-    texFormat_ = texture->unk_20;
+    texFormat_ = texture->texFormat_;
     enable_ = 0;
 }
 

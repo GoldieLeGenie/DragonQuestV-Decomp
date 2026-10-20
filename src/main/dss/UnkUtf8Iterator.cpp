@@ -105,7 +105,7 @@ unsigned short data_02099f64[2][85] = {
 
 THUMB UnkTextIterator::UnkTextIterator()
 {
-    unk_04 = 0;
+    encoding_ = 0;
     buf_ = NULL;
     pos_ = 0;
     count_ = 0;
@@ -177,7 +177,7 @@ THUMB void UnkTextIterator::truncate(int pos)
 
 THUMB UnkUtf16Iterator::UnkUtf16Iterator()
 {
-    unk_04 = 2;
+    encoding_ = 2;
 }
 
 THUMB unsigned short UnkUtf16Iterator::getChar()
@@ -244,7 +244,7 @@ THUMB int UnkUtf16Iterator::getByteLength()
 
 THUMB UnkUtf8Iterator::UnkUtf8Iterator()
 {
-    unk_04 = 1;
+    encoding_ = 1;
 }
 
 THUMB unsigned short UnkUtf8Iterator::getChar()

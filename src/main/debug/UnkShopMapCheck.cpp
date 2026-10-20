@@ -49,7 +49,7 @@ UnkShopMapCheck::UnkShopMapCheck()
     waitFrame_ = 0x3c;
     startIndex_ = 0;
     endIndex_ = 0x15a;
-    unk_1c = 0x15a;
+    maxIndex_ = 0x15a;
     requestState_ = 1;
     state_ = 0;
 }
@@ -81,7 +81,7 @@ void UnkShopMapCheck::nextShop()
     if (index > endIndex_) {
         requestState_ = 1;
         state_ = 0;
-    } else if (index > unk_1c) {
+    } else if (index > maxIndex_) {
         requestState_ = 1;
         state_ = 0;
     } else {

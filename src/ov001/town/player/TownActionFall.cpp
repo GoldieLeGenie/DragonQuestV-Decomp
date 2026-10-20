@@ -91,7 +91,7 @@ int twn::TownActionFall::setup()
         cameraPos_ = position_;
         cameraPos_ = TownStageManager::getSingleton()->compute(cameraPos_, cameraPos_, TownPlayerAction::collR, TownPlayerAction::collR, TownPlayerAction::townCharaPreR, height);
         cameraPos_.vy += height - TownPlayerAction::fixR;
-        TownCamera::getSingleton()->camera_.unk_004.setTarget(cameraPos_);
+        TownCamera::getSingleton()->camera_.m_camera0.setTarget(cameraPos_);
         startPos.vy += fallStartFix;
         position_ = startPos;
         cmn::gMoveToTarget.setAction(startPos, cameraPos_, fallSpeed, 1, 0, 0);

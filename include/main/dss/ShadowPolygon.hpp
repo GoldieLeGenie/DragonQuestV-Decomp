@@ -6,9 +6,9 @@
 /* vtable 0x020c447c */
 struct ShadowPolygon : PolygonObject {
     virtual void draw();                        // 0x020839bc
-    virtual void drawVolume();            // draw unk_84
+    virtual void drawVolume();            // draw volumeVertex_
 
-    UnkPolygonVertex unk_84[8];                    // 0x84
+    UnkPolygonVertex volumeVertex_[8];                    // 0x84
 
     void setVolumeVertex(int index, const UnkPolygonVertex* vertex);
 };
