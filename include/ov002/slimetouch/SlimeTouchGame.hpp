@@ -369,11 +369,11 @@ void** getMgHeap();
 void initTouchPanel();
 void readTouchPanel();
 void unkfunc_02128268();
-void unkfunc_0212826c(int mode, GXRgb col, fx32 frames);
-void unkfunc_0212829c(fx32 passFrame);
-BOOL unkfunc_02128314();
-void unkfunc_02128334();
-void unkfunc_02128394(int upScreen);
+void startMgFade(int mode, GXRgb col, fx32 frames);
+void updateMgFade(fx32 passFrame);
+BOOL isMgFadeEnd();
+void setMgFadeOrthoProjection();
+void drawMgFade(int upScreen);
 
 // miniGame0
 void set_pMGArg(ST_MG_ARG* pMGArg);
@@ -382,25 +382,25 @@ int getPlayerSprite();
 
 // miniGame2
 void bg_manage(BG_MANAGE bgManage);
-void unkfunc_0212873c();
+void setupCamera();
 int unkfunc_021287f4();
 BOOL chk_touchPad(int* x, int* y);
 bool MiniGame2(MG2_STATE* pMG2State);
 
 // miniGameSystem
 int unkfunc_02128c04();
-void unkfunc_02128c0c();
+void initMgAllocator();
 NNSFndAllocator* getMgAllocator();
-void* unkfunc_02128c5c(u32 size);
-void unkfunc_02128c78(void* memBlock);
+void* mgAlloc(u32 size);
+void mgFree(void* memBlock);
 void* MG_LoadFile(const char* _path, u32* size);
 void mgLoadModel(const char* path, void** pFile, NNSG3dResMdl** pMdl);
-u64 unkfunc_02128d7c();
+u64 initMgRand();
 u32 rand32_min_max(u32 min, u32 max);
 int randSel_intTable(int* pProbability, int num);
 bool MG_IsUpScreen();
 void set_drawFin();
-void unkfunc_02128f68();
+void updatePad();
 void unkfunc_02128fc4();
 
 // side_info
@@ -486,22 +486,22 @@ void bssa_draw_3D(BSSA_DATA* bssa, int frame, int xpos, int ypos, int zpos, fx32
 BSSA_DATA* bssa_init(void* data);
 
 // VRAM and 3D helpers
-void unkfunc_0212d458();
-void unkfunc_0212d470();
-int unkfunc_0212d4f4(u32 texKey, void* src, int task);
-int unkfunc_0212d564(u32 plttKey, void* src, int task);
-u32 unkfunc_0212d5d4(u32 size);
-int unkfunc_0212d5e8(u32 key);
-u32 unkfunc_0212d5f4(u32 size);
-int unkfunc_0212d608(u32 key);
-u32 unkfunc_0212d614(void* data, u32 size, int load);
-u32 unkfunc_0212d6b4(void* data, u32 size, int load);
+void initVramCache();
+void releaseVramCache();
+int mgLoadTexVram(u32 texKey, void* src, int task);
+int mgLoadPlttVram(u32 plttKey, void* src, int task);
+u32 mgAllocTexVram(u32 size);
+int mgFreeTexVram(u32 key);
+u32 mgAllocPlttVram(u32 size);
+int mgFreePlttVram(u32 key);
+u32 allocCachedTexVram(void* data, u32 size, int load);
+u32 allocCachedPlttVram(void* data, u32 size, int load);
 void loadResPltt(NNSG3dResTex* tex, int exec);
 void loadResTex(NNSG3dResTex* tex, int exec);
 BOOL setupG3dRes(void* pResData);
-void unkfunc_0212da5c();
-int unkfunc_0212dac0(VecFx32* pos, fx32* px, fx32* py, fx32* pz);
-void unkfunc_0212dca0(NNSG2dCharacterData* chr);
-BOOL unkfunc_0212dcb0(void* file, NNSG2dCharacterData** ppChr);
-void unkfunc_0212dcec(NNSG2dPaletteData* pltt);
+void setOrthoProjection();
+int worldToScreen(VecFx32* pos, fx32* px, fx32* py, fx32* pz);
+void unpackCharData(NNSG2dCharacterData* chr);
+BOOL getUnpackedCharData(void* file, NNSG2dCharacterData** ppChr);
+void unpackPaletteData(NNSG2dPaletteData* pltt);
 BOOL getUnpackedPaletteData(void* file, NNSG2dPaletteData** ppPltt);

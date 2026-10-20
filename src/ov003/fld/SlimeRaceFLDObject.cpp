@@ -425,8 +425,8 @@ ARM int FLDObject::Setup(void* mdl, void* data, void* coll, int heap)
         calcRaceMapObjRender(obj, NULL);
     }
 
-    unkfunc_0212c54c();
-    m_tex = unkfunc_0212f428();
+    sortMapObjOrder();
+    m_tex = createPlttTexCopy();
 
     UnkFldLight* l;
     unsigned int mdlNum;
@@ -493,7 +493,7 @@ ARM static int compareRaceObjPriority(void* a, void* b)
     return ((FLD_OBJ_UID*)a)->uid - ((FLD_OBJ_UID*)b)->uid;
 }
 
-ARM void FLDObject::unkfunc_0212c54c()
+ARM void FLDObject::sortMapObjOrder()
 {
     int i;
     unsigned char stack[0x100];
@@ -677,7 +677,7 @@ ARM void FLDObject::SetCameraUp(fx32 x, fx32 y, fx32 z, int screen)
     m_x32_camera_vec[screen].z = z;
 }
 
-ARM void FLDObject::unkfunc_0212cd00(int screen)
+ARM void FLDObject::updateCameraAnim(int screen)
 {
     UnkFldResTbl* camera = m_camera_anim;
     int no = m_camera_no[screen];
@@ -761,7 +761,7 @@ ARM static int applyRaceObjKeyRotOffset(void* key0, void* key1, fx32 rate, void*
     return 0;
 }
 
-ARM void FLDObject::unkfunc_0212d328(int no)
+ARM void FLDObject::updateMapObjAnim(int no)
 {
     short index = m_map->index[no];
     FLD_MAP_OBJ* obj = &m_map->obj[index];
@@ -793,14 +793,14 @@ ARM void FLDObject::unkfunc_0212d328(int no)
     }
 }
 
-ARM void FLDObject::unkfunc_0212d400()
+ARM void FLDObject::updateMapObjAnims()
 {
     FLD_MAP* map = m_map;
     if (m_anim == NULL) {
         return;
     }
     for (int i = 0; i < map->obj_num; i++) {
-        unkfunc_0212d328(i);
+        updateMapObjAnim(i);
     }
 }
 
@@ -1076,7 +1076,7 @@ ARM static void morphDlAll(fx32 rate, unsigned int size, unsigned int* dld, unsi
     }
 }
 
-ARM void FLDObject::unkfunc_0212dd2c(FLD_MAP_OBJ* obj)
+ARM void FLDObject::updateMapObjSeq(FLD_MAP_OBJ* obj)
 {
     UnkFldSeq* seq;
     UnkFldAnim* anim;
@@ -1141,7 +1141,7 @@ ARM void FLDObject::unkfunc_0212dd2c(FLD_MAP_OBJ* obj)
     anim->key_num = num;
 }
 
-ARM void FLDObject::unkfunc_0212df34(FLD_MAP_OBJ* obj)
+ARM void FLDObject::applyMapObjShapeMorph(FLD_MAP_OBJ* obj)
 {
     if (m_seq == NULL) {
         return;
@@ -1155,7 +1155,7 @@ ARM void FLDObject::unkfunc_0212df34(FLD_MAP_OBJ* obj)
     applyRaceShapeMorph(obj->render->key0, obj->render->key1, obj->render->rate, obj);
 }
 
-ARM void FLDObject::unkfunc_0212df80()
+ARM void FLDObject::updatePlttAnims()
 {
     int i;
     UnkFldPlttTbl* pltt = m_pltt;
@@ -1177,14 +1177,14 @@ ARM void FLDObject::unkfunc_0212df80()
             }
             index = 0;
         }
-        unkfunc_0212e10c(entry, set, index);
+        copyPlttAnimFrame(entry, set, index);
     }
     if (m_event_anim_id > 0) {
         for (i = 0; i < pltt->num; i++) {
             entry = &pltt->entry[i];
             if (entry->event == m_event_anim_id) {
                 set = (UnkFldPlttSet*)anim->res[entry->anim];
-                unkfunc_0212e10c(entry, set, set->index);
+                copyPlttAnimFrame(entry, set, set->index);
             }
         }
     }
@@ -1207,7 +1207,7 @@ ARM void FLDObject::unkfunc_0212df80()
     m_flag |= 0x80;
 }
 
-ARM void FLDObject::unkfunc_0212e10c(UnkFldPlttEntry* entry, UnkFldPlttSet* set, int index)
+ARM void FLDObject::copyPlttAnimFrame(UnkFldPlttEntry* entry, UnkFldPlttSet* set, int index)
 {
     int ofs = m_tex->plttInfo.sizePltt;
     unsigned short* src;
@@ -1293,7 +1293,7 @@ ARM static int applyRaceLightKey(void* key0, void* key1, fx32 rate, void* work)
     return 0;
 }
 
-ARM void FLDObject::unkfunc_0212e304()
+ARM void FLDObject::updateLightAnims()
 {
     UnkFldResTbl* light = m_light;
     if (light == NULL) {
@@ -1305,7 +1305,7 @@ ARM void FLDObject::unkfunc_0212e304()
     }
 }
 
-ARM void FLDObject::unkfunc_0212e354()
+ARM void FLDObject::calc()
 {
     if (!(m_flag & 1)) {
         return;
@@ -1319,9 +1319,9 @@ ARM void FLDObject::unkfunc_0212e354()
     } else {
         s_frameStep = 0;
     }
-    unkfunc_0212cd00(0);
+    updateCameraAnim(0);
     if (m_camera_no[0] != m_camera_no[1]) {
-        unkfunc_0212cd00(1);
+        updateCameraAnim(1);
     } else {
         m_x32_camera_pos[1].x = m_x32_camera_pos[0].x;
         m_x32_camera_pos[1].y = m_x32_camera_pos[0].y;
@@ -1333,17 +1333,17 @@ ARM void FLDObject::unkfunc_0212e354()
         m_x32_camera_vec[1].y = m_x32_camera_vec[0].y;
         m_x32_camera_vec[1].z = m_x32_camera_vec[0].z;
     }
-    unkfunc_0212d400();
-    unkfunc_0212df80();
-    unkfunc_0212e304();
+    updateMapObjAnims();
+    updatePlttAnims();
+    updateLightAnims();
     if (m_flag & 0x100) {
         return;
     }
     if (m_flag & 0x40) {
-        unkfunc_0212f67c();
+        applyRgbRateToPltt();
     }
     if (m_flag & 0xc0) {
-        unkfunc_0212f738();
+        transferPltt();
     }
 }
 
@@ -1449,7 +1449,7 @@ inline void* OS_GetITCMArenaLo()
     return OS_GetArenaLo(3);
 }
 
-ARM void FLDObject::unkfunc_0212e7ac()
+ARM void FLDObject::draw()
 {
     MtxFx43 saved;
     MtxFx33 rot;
@@ -1543,14 +1543,14 @@ ARM void FLDObject::unkfunc_0212e7ac()
                 calcRaceMapObjRender(obj, NULL);
             }
             if (!(m_flag & 4)) {
-                unkfunc_0212dd2c(obj);
+                updateMapObjSeq(obj);
             }
             if (flag & 0x2000000) {
                 continue;
             }
             if (isRaceMapObjInView(obj->render, far2)) {
                 if (!(m_flag & 4)) {
-                    unkfunc_0212df34(obj);
+                    applyMapObjShapeMorph(obj);
                 }
                 work[count++] = obj;
             }
@@ -1575,14 +1575,14 @@ ARM void FLDObject::unkfunc_0212e7ac()
                 calcRaceMapObjRender(obj, NULL);
             }
             if (!(m_flag & 4)) {
-                unkfunc_0212dd2c(obj);
+                updateMapObjSeq(obj);
             }
             if (flag & 0x2000000) {
                 continue;
             }
             if (boxTestRaceMapObj(&obj->render->trans, &obj->render->rot, &obj->render->scale, (VecFx32*)&obj->render->box_x, obj->render->box_scale)) {
                 if (!(m_flag & 4)) {
-                    unkfunc_0212df34(obj);
+                    applyMapObjShapeMorph(obj);
                 }
                 work[count++] = obj;
             }
@@ -1661,7 +1661,7 @@ ARM void FLDObject::Final()
     init();
 }
 
-ARM int FLDObject::unkfunc_0212f050(int id)
+ARM int FLDObject::setEventAnimation(int id)
 {
     int i;
     int j;
@@ -1681,16 +1681,16 @@ ARM int FLDObject::unkfunc_0212f050(int id)
     if (id == 0) {
         end = m_map->uid_num;
         for (i = 0; i < end; i++) {
-            unkfunc_0212f318(i, i);
+            setMapObjIndex(i, i);
         }
         if (m_map->extra != 0) {
-            unkfunc_0212f318(i - 1, -1);
+            setMapObjIndex(i - 1, -1);
         }
         for (; i < m_map->obj_num; i++) {
-            unkfunc_0212f318(i, -1);
+            setMapObjIndex(i, -1);
         }
         if (m_map->extra != 0) {
-            unkfunc_0212f318(i - 1, m_map->obj_num - 1);
+            setMapObjIndex(i - 1, m_map->obj_num - 1);
         }
     } else {
         start = m_event->event[id - 1].start;
@@ -1700,14 +1700,14 @@ ARM int FLDObject::unkfunc_0212f050(int id)
             num--;
         }
         for (i = start; i < end; i++) {
-            unkfunc_0212f318(i, i);
-            unkfunc_0212f354(i);
+            setMapObjIndex(i, i);
+            resetMapObjAnim(i);
             if (m_anim != NULL) {
-                unkfunc_0212d328(i);
+                updateMapObjAnim(i);
             }
             for (j = 0; j < num; j++) {
                 if (m_map->obj[i].uid != 0 && m_map->obj[i].uid == m_map->obj[j].uid) {
-                    unkfunc_0212f318(j, -1);
+                    setMapObjIndex(j, -1);
                 }
             }
         }
@@ -1743,7 +1743,7 @@ ARM int FLDObject::unkfunc_0212f050(int id)
     return 1;
 }
 
-ARM void FLDObject::unkfunc_0212f318(short obj, short index)
+ARM void FLDObject::setMapObjIndex(short obj, short index)
 {
     if (obj < 0) {
         return;
@@ -1755,7 +1755,7 @@ ARM void FLDObject::unkfunc_0212f318(short obj, short index)
     m_map->index[obj] = index;
 }
 
-ARM void FLDObject::unkfunc_0212f354(int obj)
+ARM void FLDObject::resetMapObjAnim(int obj)
 {
     if (obj <= -1) {
         return;
@@ -1791,7 +1791,7 @@ ARM void FLDObject::unkfunc_0212f354(int obj)
     }
 }
 
-ARM NNSG3dResTex* FLDObject::unkfunc_0212f428()
+ARM NNSG3dResTex* FLDObject::createPlttTexCopy()
 {
     NNSG3dResTex* tex;
     int plttNum;
@@ -1858,7 +1858,7 @@ ARM NNSG3dResTex* FLDObject::unkfunc_0212f428()
     return buf;
 }
 
-ARM void FLDObject::unkfunc_0212f5dc(unsigned short* src, unsigned short* dst, int num)
+ARM void FLDObject::applyRgbRate(unsigned short* src, unsigned short* dst, int num)
 {
     fx32 rateR;
     fx32 rateG;
@@ -1883,7 +1883,7 @@ ARM void FLDObject::unkfunc_0212f5dc(unsigned short* src, unsigned short* dst, i
     }
 }
 
-ARM void FLDObject::unkfunc_0212f67c()
+ARM void FLDObject::applyRgbRateToPltt()
 {
     unsigned char* pltt;
     int size;
@@ -1912,12 +1912,12 @@ ARM void FLDObject::unkfunc_0212f67c()
             len = size * 8 - ofs;
         }
         if ((unsigned int)len <= 0x200) {
-            unkfunc_0212f5dc((unsigned short*)(src + ofs), (unsigned short*)(pltt + ofs), len / 2);
+            applyRgbRate((unsigned short*)(src + ofs), (unsigned short*)(pltt + ofs), len / 2);
         }
     }
 }
 
-ARM void FLDObject::unkfunc_0212f738()
+ARM void FLDObject::transferPltt()
 {
     NNSG3dResTex* tex = m_tex;
     DC_CleanRange((unsigned char*)tex + tex->plttInfo.ofsPlttData, tex->plttInfo.sizePltt * 8);

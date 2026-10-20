@@ -30,12 +30,12 @@ void SlimeRaceDraw()
 
 void SlimeRaceExec()
 {
-    unkfunc_021295e0();
+    releaseVramCache();
 }
 
 void SlimeRaceTerm()
 {
-    unkfunc_021295e0();
+    releaseVramCache();
     slimeRace_Final();
     sprite_all_free();
     func_0207e7cc(getMgHeap()->handle);

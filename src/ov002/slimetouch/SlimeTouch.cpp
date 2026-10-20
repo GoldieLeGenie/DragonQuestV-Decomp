@@ -27,12 +27,12 @@ void SlimeTouchDraw()
 
 void SlimeTouchExec()
 {
-    unkfunc_0212d470();
+    releaseVramCache();
 }
 
 void SlimeTouchTerm()
 {
-    unkfunc_0212d470();
+    releaseVramCache();
     slime_cg_Release_all();
     sprite_all_free();
     func_0207e7cc(*getMgHeap());

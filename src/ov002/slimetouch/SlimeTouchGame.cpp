@@ -484,7 +484,7 @@ void unkfunc_02128268()
 {
 }
 
-void unkfunc_0212826c(int mode, GXRgb col, fx32 frames)
+void startMgFade(int mode, GXRgb col, fx32 frames)
 {
     s_fadeQuad.col = col;
     s_fadeMode = mode;
@@ -493,7 +493,7 @@ void unkfunc_0212826c(int mode, GXRgb col, fx32 frames)
     s_fadeFrames = frames;
 }
 
-void unkfunc_0212829c(fx32 passFrame)
+void updateMgFade(fx32 passFrame)
 {
     if (s_fadeFrames <= s_fadeCount) {
         s_fadeCount = s_fadeFrames;
@@ -509,7 +509,7 @@ void unkfunc_0212829c(fx32 passFrame)
     s_fadeCount += passFrame;
 }
 
-BOOL unkfunc_02128314()
+BOOL isMgFadeEnd()
 {
     BOOL end = FALSE;
     if (s_fadeState == 0 || s_fadeState == 3) {
@@ -518,14 +518,14 @@ BOOL unkfunc_02128314()
     return end;
 }
 
-void unkfunc_02128334()
+void setMgFadeOrthoProjection()
 {
     func_020760b4(0, 0xc0000, 0, 0x100000, -0x100000, 0x100000, FX32_ONE, 1, NULL);
     G3_StoreMtx(0);
     G3_MtxMode(1);
 }
 
-void unkfunc_02128394(int upScreen)
+void drawMgFade(int upScreen)
 {
     if (s_fadeState == 0) {
         return;
@@ -534,9 +534,9 @@ void unkfunc_02128394(int upScreen)
     if (alpha != 0) {
         func_0207ec9c(5);
         if (upScreen == 0) {
-            unkfunc_0212da5c();
+            setOrthoProjection();
         } else {
-            unkfunc_02128334();
+            setMgFadeOrthoProjection();
         }
         REG_GFX_FIFO_TEXTURE_PARAM = 0;
         REG_GFX_FIFO_MATRIX_IDENTITY = 0;
@@ -625,10 +625,10 @@ void bg_manage(BG_MANAGE bgManage)
 
 static void MiniGame2_init()
 {
-    unkfunc_02128c0c();
+    initMgAllocator();
     initTouchPanel();
-    unkfunc_0212d458();
-    unkfunc_02128d7c();
+    initVramCache();
+    initMgRand();
     unkfunc_0212e168();
     s_pause = 0;
     s_passFrame = FX32_ONE;
@@ -646,7 +646,7 @@ static void MiniGame2_init()
     func_02080350(0, 0, -FX32_ONE, 0);
     func_02080380(0, 0x7fff);
     func_02075ecc(0, 31, 0x7fff, 0, 0);
-    unkfunc_02128f68();
+    updatePad();
     int bgm = 31;
     if (get_pMGArg()->slTouch.dbStage > 99) {
         bgm = 28;
@@ -654,7 +654,7 @@ static void MiniGame2_init()
     SoundManager::play(bgm, 15);
 }
 
-void unkfunc_0212873c()
+void setupCamera()
 {
     func_02089e40(0x60000, -0x60000, -0x80000, 0x80000, -0x400000, 0x400000, FX32_ONE, &data_02124bb4.projMtx);
     data_02124bb4.flag &= ~0x50;
@@ -699,20 +699,20 @@ bool MiniGame2(MG2_STATE* pMG2State)
         *pMG2State = MG2_gameStart;
         func_020885e0();
     }
-    unkfunc_02128f68();
+    updatePad();
     if (unkfunc_021287f4()) {
         return true;
     }
-    unkfunc_0212873c();
+    setupCamera();
     if (s_pause == 0) {
         int side = get_sideUp();
         MG2_STATE state = *pMG2State;
         if (state == MG2_fadeIn) {
-            unkfunc_0212826c(0, 0, 0x3c000);
+            startMgFade(0, 0, 0x3c000);
             *pMG2State = MG2_wait_end_fadeIn;
         } else if (state == MG2_wait_end_fadeIn) {
-            unkfunc_0212829c(s_passFrame);
-            if (unkfunc_02128314()) {
+            updateMgFade(s_passFrame);
+            if (isMgFadeEnd()) {
                 *pMG2State = MG2_gameStart;
             }
         } else if (state == MG2_gameStart) {
@@ -759,11 +759,11 @@ bool MiniGame2(MG2_STATE* pMG2State)
                 slime_cg_Release(pSlime);
             }
         } else if (state == MG2_fadeOut) {
-            unkfunc_0212826c(1, 0, 0x3c000);
+            startMgFade(1, 0, 0x3c000);
             *pMG2State = MG2_wait_end_fadeOut;
         } else if (state == MG2_wait_end_fadeOut) {
-            unkfunc_0212829c(s_passFrame);
-            if (unkfunc_02128314()) {
+            updateMgFade(s_passFrame);
+            if (isMgFadeEnd()) {
                 int side = get_sideUp();
                 ST_SIDE_INFO* pSideInfo = get_pSideInfo(side);
                 get_pMGArg()->slTouch.score = pSideInfo->tokuten;
@@ -788,7 +788,7 @@ bool MiniGame2(MG2_STATE* pMG2State)
             sideInfo_draw(*pMG2State);
             sideInfo_slime_draw();
             ssa_eff_update(MG_IsUpScreen());
-            unkfunc_02128394(0);
+            drawMgFade(0);
             set_drawFin();
         }
     }
@@ -806,7 +806,7 @@ int unkfunc_02128c04()
     return 0;
 }
 
-void unkfunc_02128c0c()
+void initMgAllocator()
 {
     void* heap = *getMgHeap();
     func_0207ebe4(&s_allocator, (int)heap, 32);
@@ -819,12 +819,12 @@ NNSFndAllocator* getMgAllocator()
     return s_pAllocator;
 }
 
-void* unkfunc_02128c5c(u32 size)
+void* mgAlloc(u32 size)
 {
     return func_0207ebcc(s_pAllocator, size);
 }
 
-void unkfunc_02128c78(void* memBlock)
+void mgFree(void* memBlock)
 {
     func_0207ebd8(s_pAllocator, memBlock);
 }
@@ -838,10 +838,10 @@ void* MG_LoadFile(const char* _path, u32* size)
     func_02073868(&file);
     if (func_02073a3c(&file, path)) {
         u32 len = file.endRomOffset - file.startRomOffset;
-        data = unkfunc_02128c5c(len);
+        data = mgAlloc(len);
         if (data) {
             if (len != func_02073b58(&file, data, len)) {
-                unkfunc_02128c78(data);
+                mgFree(data);
                 data = NULL;
             }
         }
@@ -865,7 +865,7 @@ void mgLoadModel(const char* path, void** pFile, NNSG3dResMdl** pMdl)
     }
 }
 
-u64 unkfunc_02128d7c()
+u64 initMgRand()
 {
     unsigned int buffer[8];
     u64 digest[2];
@@ -916,7 +916,7 @@ void set_drawFin()
     s_drawFin = 1;
 }
 
-void unkfunc_02128f68()
+void updatePad()
 {
     u16 cont = PAD_Read();
     s_pad.trg = cont & (cont ^ s_pad.cont);
@@ -2666,14 +2666,14 @@ int sprite_data_load_sub(int spr_id, int pal_id, int keep)
         file = MG_LoadFile(path, &size);
         if (file) {
             NNSG2dCharacterData* chr;
-            unkfunc_0212dcb0(file, &chr);
+            getUnpackedCharData(file, &chr);
             unkSetTexParam(&data->tex, chr);
             data->width = 8 << data->tex.sizeS;
             data->height = 8 << data->tex.sizeT;
-            data->texKey = unkfunc_0212d5d4(chr->szByte);
+            data->texKey = mgAllocTexVram(chr->szByte);
             data->texFile = NULL;
-            unkfunc_0212d4f4(data->texKey, chr->pRawData, 0);
-            unkfunc_02128c78(file);
+            mgLoadTexVram(data->texKey, chr->pRawData, 0);
+            mgFree(file);
         }
     } else {
         *data = *found;
@@ -2683,10 +2683,10 @@ int sprite_data_load_sub(int spr_id, int pal_id, int keep)
     if (file) {
         NNSG2dPaletteData* pltt;
         getUnpackedPaletteData(file, &pltt);
-        data->plttKey = unkfunc_0212d5f4(pltt->szByte);
+        data->plttKey = mgAllocPlttVram(pltt->szByte);
         data->texFile = NULL;
-        unkfunc_0212d564(data->plttKey, pltt->pRawData, 0);
-        unkfunc_02128c78(file);
+        mgLoadPlttVram(data->plttKey, pltt->pRawData, 0);
+        mgFree(file);
     }
     return ret;
 }
@@ -2708,12 +2708,12 @@ void freeSpriteDataSub(int spr_id)
         SPRITE_DATA* data = &g_sprite_data[i];
         if (data->spr_id && (data->spr_id == spr_id || spr_id == -1)) {
             if (data->texFile) {
-                unkfunc_02128c78(data->texFile);
+                mgFree(data->texFile);
             } else {
                 func_02086b40(data->texKey);
             }
             if (data->plttFile) {
-                unkfunc_02128c78(data->plttFile);
+                mgFree(data->plttFile);
             } else {
                 func_02086d84(data->plttKey);
             }
@@ -2750,7 +2750,7 @@ static void sprite_init(SPRITE* spr)
 
 SPRITE* sprite_create(int data_id)
 {
-    SPRITE* spr = (SPRITE*)unkfunc_02128c5c(sizeof(SPRITE));
+    SPRITE* spr = (SPRITE*)mgAlloc(sizeof(SPRITE));
     sprite_init(spr);
     spr->data_id = data_id;
     return spr;
@@ -2758,7 +2758,7 @@ SPRITE* sprite_create(int data_id)
 
 void sprite_term(SPRITE* spr)
 {
-    unkfunc_02128c78(spr);
+    mgFree(spr);
 }
 
 void sprite_set_anim(SPRITE* spr, int ssa_id, int frame)
@@ -2773,7 +2773,7 @@ void sprite_draw_start()
     REG_GFX_FIFO_MATERIAL_DIFFUSE_AMBIENT = 0xffff;
     REG_GFX_FIFO_MATERIAL_SPECULAR_EMISSION = 0;
     REG_GFX_FIFO_POLYGON_ATTR = 0x1f00c0;
-    unkfunc_0212da5c();
+    setOrthoProjection();
     func_0207ec9c(10);
     REG_GFX_FIFO_MATRIX_PUSH = 0;
     REG_GFX_FIFO_MATRIX_IDENTITY = 0;
@@ -2790,10 +2790,10 @@ void sprite_activate(int data_id)
     u32 texAddr = (data->texKey & 0xffff) << 3;
     u32 plttAddr = (data->plttKey & 0xffff) << 3;
     if (data->texFile) {
-        texAddr = (u16)unkfunc_0212d614(data->texFile, ((data->texKey & 0x7fff0000) >> 16) << 4, 1) << 3;
+        texAddr = (u16)allocCachedTexVram(data->texFile, ((data->texKey & 0x7fff0000) >> 16) << 4, 1) << 3;
     }
     if (data->plttFile) {
-        plttAddr = (u16)unkfunc_0212d6b4(data->plttFile, ((data->plttKey & 0xffff0000) >> 16) << 3, 1) << 3;
+        plttAddr = (u16)allocCachedPlttVram(data->plttFile, ((data->plttKey & 0xffff0000) >> 16) << 3, 1) << 3;
     }
     G3_TexImageParam(data->tex.texFmt, GX_TEXGEN_TEXCOORD, data->tex.sizeS, data->tex.sizeT, GX_TEXREPEAT_NONE, GX_TEXFLIP_NONE, data->tex.plttColor0, texAddr);
     REG_GFX_FIFO_TEXTURE_PALETTE = plttAddr >> (4 - (data->tex.texFmt == 2));
@@ -2848,7 +2848,7 @@ static void chara_draw(SPRITE* spr)
 void ssa_sprite_draw(SPRITE* spr)
 {
     BSSA_DATA* bssa = ssa_eff_get_bssa(spr->ssa_id);
-    unkfunc_0212da5c();
+    setOrthoProjection();
     sprite_activate(spr->data_id);
     bssa_draw(bssa, spr->frame, spr->x, spr->y, spr->z, spr->sclX);
 }
@@ -3081,12 +3081,12 @@ void sprite_all_free()
     for (int i = 0; i < 48; i++) {
         SPRITE_DATA* data = &g_sprite_data[i];
         if (data->texFile) {
-            unkfunc_02128c78(data->texFile);
+            mgFree(data->texFile);
         } else if (data->texKey) {
             func_02086b40(data->texKey);
         }
         if (data->plttFile) {
-            unkfunc_02128c78(data->plttFile);
+            mgFree(data->plttFile);
         } else if (data->plttKey) {
             func_02086d84(data->plttKey);
         }
@@ -3122,7 +3122,7 @@ int ssa_eff_get_nframe(int eff_id)
 
 void ssa_eff_draw(int eff_id, int frame, int x, int y, int z, fx32 scale)
 {
-    unkfunc_0212da5c();
+    setOrthoProjection();
     sprite_activate(g_bssa[eff_id]->tex_id);
     bssa_draw(g_bssa[eff_id], frame, x, y, z, scale);
 }
@@ -3271,7 +3271,7 @@ void bssa_draw_3D(BSSA_DATA* bssa, int frame, int xpos, int ypos, int zpos, fx32
     fx32 x;
     fx32 y;
     fx32 z;
-    unkfunc_0212dac0(&pos, &x, &y, &z);
+    worldToScreen(&pos, &x, &y, &z);
     MtxFx44 trans;
     func_02089e40(0, 0xc0000, 0, 0x100000, 0, 0x1100, FX32_ONE, &trans);
     G3_MtxMode(0);
@@ -3327,26 +3327,26 @@ BSSA_DATA* bssa_init(void* data)
 // ---------------------------------------------------------------------------
 // VRAM
 
-void unkfunc_0212d458()
+void initVramCache()
 {
     s_texCacheCount = 0;
     s_plttCacheCount = 0;
 }
 
-void unkfunc_0212d470()
+void releaseVramCache()
 {
     int i;
     for (i = 0; i < s_texCacheCount; i++) {
-        unkfunc_0212d5e8(s_texCache[i].key);
+        mgFreeTexVram(s_texCache[i].key);
     }
     s_texCacheCount = 0;
     for (i = 0; i < s_plttCacheCount; i++) {
-        unkfunc_0212d608(s_plttCache[i].key);
+        mgFreePlttVram(s_plttCache[i].key);
     }
     s_plttCacheCount = 0;
 }
 
-int unkfunc_0212d4f4(u32 texKey, void* src, int task)
+int mgLoadTexVram(u32 texKey, void* src, int task)
 {
     u32 addr = (texKey & 0xffff) << 3;
     u32 size = ((texKey & 0x7fff0000) >> 16) << 4;
@@ -3360,7 +3360,7 @@ int unkfunc_0212d4f4(u32 texKey, void* src, int task)
     return 1;
 }
 
-int unkfunc_0212d564(u32 plttKey, void* src, int task)
+int mgLoadPlttVram(u32 plttKey, void* src, int task)
 {
     u32 addr = (plttKey & 0xffff) << 3;
     u32 size = ((plttKey & 0xffff0000) >> 16) << 3;
@@ -3374,27 +3374,27 @@ int unkfunc_0212d564(u32 plttKey, void* src, int task)
     return 1;
 }
 
-u32 unkfunc_0212d5d4(u32 size)
+u32 mgAllocTexVram(u32 size)
 {
     return func_02086adc(size, 0, 1);
 }
 
-int unkfunc_0212d5e8(u32 key)
+int mgFreeTexVram(u32 key)
 {
     return func_02086b40(key);
 }
 
-u32 unkfunc_0212d5f4(u32 size)
+u32 mgAllocPlttVram(u32 size)
 {
     return func_02086d00(size, 0, 1);
 }
 
-int unkfunc_0212d608(u32 key)
+int mgFreePlttVram(u32 key)
 {
     return func_02086d84(key);
 }
 
-u32 unkfunc_0212d614(void* data, u32 size, int load)
+u32 allocCachedTexVram(void* data, u32 size, int load)
 {
     for (int i = 0; i < s_texCacheCount; i++) {
         if (s_texCache[i].data == data) {
@@ -3406,12 +3406,12 @@ u32 unkfunc_0212d614(void* data, u32 size, int load)
     s_texCache[s_texCacheCount].key = key;
     s_texCacheCount++;
     if (load) {
-        unkfunc_0212d4f4(key, data, 1);
+        mgLoadTexVram(key, data, 1);
     }
     return key;
 }
 
-u32 unkfunc_0212d6b4(void* data, u32 size, int load)
+u32 allocCachedPlttVram(void* data, u32 size, int load)
 {
     for (int i = 0; i < s_plttCacheCount; i++) {
         if (s_plttCache[i].data == data) {
@@ -3423,7 +3423,7 @@ u32 unkfunc_0212d6b4(void* data, u32 size, int load)
     s_plttCache[s_plttCacheCount].key = key;
     s_plttCacheCount++;
     if (load) {
-        unkfunc_0212d564(key, data, 1);
+        mgLoadPlttVram(key, data, 1);
     }
     return key;
 }
@@ -3535,7 +3535,7 @@ BOOL setupG3dRes(void* pResData)
     }
 }
 
-void unkfunc_0212da5c()
+void setOrthoProjection()
 {
     func_020760b4(0, 0xc0000, 0, 0x100000, -0x400000, 0x400000, FX32_ONE, 1, NULL);
     G3_StoreMtx(0);
@@ -3545,7 +3545,7 @@ void unkfunc_0212da5c()
 /* not original: at -O4 the three roundings are not interleaved */
 #pragma push
 #pragma optimization_level 3
-int unkfunc_0212dac0(VecFx32* world, fx32* px, fx32* py, fx32* pz)
+int worldToScreen(VecFx32* world, fx32* px, fx32* py, fx32* pz)
 {
     int ret;
     int x1;
@@ -3600,16 +3600,16 @@ int unkfunc_0212dac0(VecFx32* world, fx32* px, fx32* py, fx32* pz)
 // ---------------------------------------------------------------------------
 // NNS G2D resources
 
-void unkfunc_0212dca0(NNSG2dCharacterData* chr)
+void unpackCharData(NNSG2dCharacterData* chr)
 {
     chr->pRawData = (u8*)chr->pRawData + (u32)chr;
 }
 
-BOOL unkfunc_0212dcb0(void* file, NNSG2dCharacterData** ppChr)
+BOOL getUnpackedCharData(void* file, NNSG2dCharacterData** ppChr)
 {
     NNSG2dBinaryBlockHeader* block = func_0207ebf8(file, 0x43484152);
     if (block) {
-        unkfunc_0212dca0((NNSG2dCharacterData*)(block + 1));
+        unpackCharData((NNSG2dCharacterData*)(block + 1));
         *ppChr = (NNSG2dCharacterData*)(block + 1);
         return TRUE;
     }
@@ -3617,7 +3617,7 @@ BOOL unkfunc_0212dcb0(void* file, NNSG2dCharacterData** ppChr)
     return FALSE;
 }
 
-void unkfunc_0212dcec(NNSG2dPaletteData* pltt)
+void unpackPaletteData(NNSG2dPaletteData* pltt)
 {
     pltt->pRawData = (u8*)pltt->pRawData + (u32)pltt;
 }
@@ -3626,7 +3626,7 @@ BOOL getUnpackedPaletteData(void* file, NNSG2dPaletteData** ppPltt)
 {
     NNSG2dBinaryBlockHeader* block = func_0207ebf8(file, 0x504c5454);
     if (block) {
-        unkfunc_0212dcec((NNSG2dPaletteData*)(block + 1));
+        unpackPaletteData((NNSG2dPaletteData*)(block + 1));
         *ppPltt = (NNSG2dPaletteData*)(block + 1);
         return TRUE;
     }

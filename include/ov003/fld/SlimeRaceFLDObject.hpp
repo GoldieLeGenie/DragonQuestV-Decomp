@@ -51,28 +51,28 @@ struct FLDObject
     ~FLDObject();
     void init();
     int Setup(void* mdl, void* data, void* coll, int heap);
-    void unkfunc_0212c54c();
+    void sortMapObjOrder();
     void SetCameraPos(fx32 x, fx32 y, fx32 z, int screen);
     void SetCameraCent(fx32 x, fx32 y, fx32 z, int screen);
     void SetCameraUp(fx32 x, fx32 y, fx32 z, int screen);
-    void unkfunc_0212cd00(int screen);
-    void unkfunc_0212d328(int obj);
-    void unkfunc_0212d400();
-    void unkfunc_0212dd2c(fld::FLD_MAP_OBJ* obj);
-    void unkfunc_0212df34(fld::FLD_MAP_OBJ* obj);
-    void unkfunc_0212df80();
-    void unkfunc_0212e10c(fld::UnkFldPlttEntry* entry, fld::UnkFldPlttSet* set, int index);
-    void unkfunc_0212e304();
-    void unkfunc_0212e354();                                    // calc
-    void unkfunc_0212e7ac();                                    // draw
+    void updateCameraAnim(int screen);
+    void updateMapObjAnim(int obj);
+    void updateMapObjAnims();
+    void updateMapObjSeq(fld::FLD_MAP_OBJ* obj);
+    void applyMapObjShapeMorph(fld::FLD_MAP_OBJ* obj);
+    void updatePlttAnims();
+    void copyPlttAnimFrame(fld::UnkFldPlttEntry* entry, fld::UnkFldPlttSet* set, int index);
+    void updateLightAnims();
+    void calc();                                    // calc
+    void draw();                                    // draw
     void Final();
-    int unkfunc_0212f050(int id);                               // event animation
-    void unkfunc_0212f318(short obj, short index);
-    void unkfunc_0212f354(int obj);
-    NNSG3dResTex* unkfunc_0212f428();
-    void unkfunc_0212f5dc(unsigned short* src, unsigned short* dst, int num);
-    void unkfunc_0212f67c();
-    void unkfunc_0212f738();
+    int setEventAnimation(int id);                               // event animation
+    void setMapObjIndex(short obj, short index);
+    void resetMapObjAnim(int obj);
+    NNSG3dResTex* createPlttTexCopy();
+    void applyRgbRate(unsigned short* src, unsigned short* dst, int num);
+    void applyRgbRateToPltt();
+    void transferPltt();
     void* allocWork(int size);           // allocate from the work memory
     void freeWork(void* p);             // free (nothing to do)
 };
