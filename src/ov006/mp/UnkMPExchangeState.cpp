@@ -238,14 +238,14 @@ ARM void MPExchange::unkfunc_02129f84()
                         if (i == 1) {
                             dss::memcpy(receiveData_, &packet->data_, 0xdc);
                             receiveCount_++;
-                            unkfunc_0204afa8(((status::TAISHI_DATA*)receiveData_)->taishiName_);
-                            unkfunc_0204afa8(((status::TAISHI_DATA*)receiveData_)->message_);
+                            convertUtf8ToSjisWork(((status::TAISHI_DATA*)receiveData_)->taishiName_);
+                            convertUtf8ToSjisWork(((status::TAISHI_DATA*)receiveData_)->message_);
                         }
                     } else if (i == 0) {
                         dss::memcpy(receiveData_, &packet->data_, 0xdc);
                         receiveCount_++;
-                        unkfunc_0204afa8(((status::TAISHI_DATA*)receiveData_)->taishiName_);
-                        unkfunc_0204afa8(((status::TAISHI_DATA*)receiveData_)->message_);
+                        convertUtf8ToSjisWork(((status::TAISHI_DATA*)receiveData_)->taishiName_);
+                        convertUtf8ToSjisWork(((status::TAISHI_DATA*)receiveData_)->message_);
                     }
                 } else {
                     packet->linkLevel_ = 0;

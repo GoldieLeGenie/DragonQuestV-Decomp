@@ -364,13 +364,13 @@ THUMB bool MenuAPI::judgeRepeatWord(unsigned char* name)
     }
     int count = 0;
     UnkUtf8Iterator it;
-    it.unkfunc_0204a800((const char*)name);
-    unsigned short first = it.unkfunc_0204a990();
+    it.setText((const char*)name);
+    unsigned short first = it.getChar();
     if (first != 0) {
         unsigned short c;
         do {
-            c = it.unkfunc_0204a990();
-            it.unkfunc_0204a9ec();
+            c = it.getChar();
+            it.nextChar();
             if (c != first) {
                 break;
             }

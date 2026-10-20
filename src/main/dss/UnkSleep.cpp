@@ -13,15 +13,15 @@ UnkPmSleepCallback data_020fd174;
 ARM void initSleep()
 {
     data_020fd15c = 1;
-    data_020fd168.func_ = unkfunc_02089578;
+    data_020fd168.func_ = onPreSleep;
     data_020fd168.arg_ = &data_020fd160;
-    data_020fd174.func_ = unkfunc_0208957c;
+    data_020fd174.func_ = onPostSleep;
     data_020fd174.arg_ = NULL;
     func_0207927c(&data_020fd168);
     func_0207929c(&data_020fd174);
 }
 
-ARM void unkfunc_0204bfa4()
+ARM void updateSleep()
 {
     if (data_020fd15c == 1 && PAD_DetectFold() == TRUE) {
         data_020fd164 = 0;
@@ -50,20 +50,20 @@ ARM void unkfunc_0204bfa4()
     }
 }
 
-ARM void unkfunc_0204c08c(int enable)
+ARM void setSleepEnabled(int enable)
 {
     data_020fd15c = enable;
 }
 
-ARM int unkfunc_02089568()
+ARM int isSleepEnabled()
 {
     return data_020fd15c;
 }
 
-ARM void unkfunc_02089578(void* arg)
+ARM void onPreSleep(void* arg)
 {
 }
 
-ARM void unkfunc_0208957c(void* arg)
+ARM void onPostSleep(void* arg)
 {
 }

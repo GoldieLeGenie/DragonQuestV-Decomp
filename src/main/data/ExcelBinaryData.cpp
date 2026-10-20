@@ -47,12 +47,12 @@ ARM void ExcelBinaryData::setupHeader(const char* fname, dss::File::LoadSwitch l
 
 ARM void* ExcelBinaryData::allocRecord(unsigned int size)
 {
-    return unkfunc_0204c5bc(&data_020fd24c, size * size_, 0x20);
+    return dssAlloc(&data_020fd24c, size * size_, 0x20);
 }
 
 ARM void ExcelBinaryData::freeRecord(void* addr)
 {
-    unkfunc_0204c5c8(&data_020fd24c, addr);
+    dssFree(&data_020fd24c, addr);
 }
 
 ARM void ExcelBinaryData::readRecord(void* addr, const char* fname, unsigned int seek, unsigned int cashsize, dss::File::LoadSwitch loadSwitch)

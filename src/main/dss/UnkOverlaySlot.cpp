@@ -11,15 +11,15 @@ ARM UnkOverlaySlot::~UnkOverlaySlot()
 {
 }
 
-ARM void UnkOverlaySlot::unkfunc_0204b580(int id)
+ARM void UnkOverlaySlot::load(int id)
 {
-    unkfunc_0204b5a8();
+    unload();
     FS_LoadOverlay(NULL, id);
     loaded_ = 1;
     id_ = id;
 }
 
-ARM void UnkOverlaySlot::unkfunc_0204b5a8()
+ARM void UnkOverlaySlot::unload()
 {
     if (loaded_ == 0) {
         return;
@@ -28,19 +28,19 @@ ARM void UnkOverlaySlot::unkfunc_0204b5a8()
     loaded_ = 0;
 }
 
-ARM void unkfunc_0204b5d4(int id)
+ARM void loadOverlay(int id)
 {
     FS_LoadOverlay(NULL, id);
 }
 
-ARM void unkfunc_0204b5e8(int id)
+ARM void unloadOverlay(int id)
 {
     FS_UnloadOverlay(NULL, id);
 }
 
 unsigned int data_0209a238 = 0x120071fe;
 
-ARM void unkfunc_0204b5fc(int flag)
+ARM void setPadLock(int flag)
 {
     if (flag != 0) {
         data_0209a238 |= 0x8000;

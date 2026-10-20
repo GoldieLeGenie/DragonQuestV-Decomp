@@ -43,10 +43,10 @@ THUMB void book::BookSystem::initialize()
     DSSAObject::setDefaultScale(scl);
     DSSAObject::setPriority(1);
     dss::sprintf_s(path, sizeof(path), "data/2d/map/encyclopedia.tex");
-    sprite_.unkfunc_02051a50(path, 0);
-    sprite_.unkfunc_02051b78();
-    sprite_.unkfunc_02051b90(0x1f);
-    sprite_.unkfunc_02051ba0(0x20);
+    sprite_.loadFile(path, 0);
+    sprite_.setMainScreen();
+    sprite_.setAlpha(0x1f);
+    sprite_.setPolygonID(0x20);
 }
 
 THUMB void book::BookSystem::terminate()
@@ -54,7 +54,7 @@ THUMB void book::BookSystem::terminate()
     BookMonsterDraw::getSingleton().terminate();
     BookCamera::getSingleton().terminate();
     render_.unkfunc_020488b4();
-    sprite_.unkfunc_02051ac4();
+    sprite_.unload();
     dq5::level::EffectParam::cleanup();
     dq5::level::MonsterAnim::cleanup();
 }
@@ -74,5 +74,5 @@ THUMB void book::BookSystem::draw()
         BookMonsterDraw::getSingleton().draw();
     }
     setupOrtho2DBackground();
-    sprite_.unkfunc_02051b68();
+    sprite_.draw();
 }

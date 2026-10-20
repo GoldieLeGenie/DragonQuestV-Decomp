@@ -11,33 +11,33 @@ THUMB UnkMenuSprite::~UnkMenuSprite()
 {
 }
 
-THUMB void UnkMenuSprite::unkfunc_02051a20()
+THUMB void UnkMenuSprite::freeVram()
 {
     ((TextureObject*)texture_)->unkfunc_02049f90();
 }
 
-THUMB void UnkMenuSprite::unkfunc_02051a2c()
+THUMB void UnkMenuSprite::transferToVram()
 {
     ((TextureObject*)texture_)->unkfunc_0204a090(0);
 }
 
-THUMB void UnkMenuSprite::unkfunc_02051a38()
+THUMB void UnkMenuSprite::allocVram()
 {
     ((TextureObject*)texture_)->unkfunc_0204a004();
 }
 
-THUMB int UnkMenuSprite::unkfunc_02051a44()
+THUMB int UnkMenuSprite::getTextureData()
 {
     return ((TextureObject*)texture_)->unkfunc_0204a1c4();
 }
 
-THUMB void UnkMenuSprite::unkfunc_02051a50(const char* filename, int a)
+THUMB void UnkMenuSprite::loadFile(const char* filename, int a)
 {
     data_.setup(filename, a, 0);
-    unkfunc_02051a68();
+    setupTexture();
 }
 
-THUMB void UnkMenuSprite::unkfunc_02051a68()
+THUMB void UnkMenuSprite::setupTexture()
 {
     texture_ = data_.getAddr();
     ((TextureObject*)texture_)->unkfunc_02049e9c(1);
@@ -47,20 +47,20 @@ THUMB void UnkMenuSprite::unkfunc_02051a68()
     sprite_.unkfunc_02047ecc(0, 0, ((TextureObject*)texture_)->unkfunc_0204a340(), ((TextureObject*)texture_)->unkfunc_0204a38c());
 }
 
-THUMB void UnkMenuSprite::unkfunc_02051ac4()
+THUMB void UnkMenuSprite::unload()
 {
     ((TextureObject*)texture_)->unkfunc_02049f90();
     data_.cleanup();
     texture_ = 0;
 }
 
-THUMB void UnkMenuSprite::unkfunc_02051adc(Render* render)
+THUMB void UnkMenuSprite::attachRender(Render* render)
 {
     render_ = render;
     render->unkfunc_02048c2c(&sprite_);
 }
 
-THUMB void UnkMenuSprite::unkfunc_02051af0()
+THUMB void UnkMenuSprite::detachRender()
 {
     render_->unkfunc_02048c54(&sprite_);
     render_ = 0;
@@ -74,77 +74,77 @@ THUMB int UnkMenuSprite::unkfunc_02051b04()
     return 0;
 }
 
-THUMB void UnkMenuSprite::unkfunc_02051b14(int x, int y)
+THUMB void UnkMenuSprite::setPosition(int x, int y)
 {
     sprite_.unkfunc_02047e88(x, y);
 }
 
-THUMB void UnkMenuSprite::unkfunc_02051b20(int w, int h)
+THUMB void UnkMenuSprite::setSize(int w, int h)
 {
     sprite_.unkfunc_02047ec0(w, h);
 }
 
-THUMB void UnkMenuSprite::unkfunc_02051b2c(int u0, int v0, int u1, int v1)
+THUMB void UnkMenuSprite::setTexCoords(int u0, int v0, int u1, int v1)
 {
     sprite_.unkfunc_02047ecc(u0, v0, u1, v1);
 }
 
-THUMB void UnkMenuSprite::unkfunc_02051b40(dss::Fix32 x, dss::Fix32 y)
+THUMB void UnkMenuSprite::setPositionFix32(dss::Fix32 x, dss::Fix32 y)
 {
     sprite_.unkfunc_02047e9c(x, y);
 }
 
-THUMB void UnkMenuSprite::unkfunc_02051b68()
+THUMB void UnkMenuSprite::draw()
 {
     sprite_.draw();
 }
 
-THUMB void UnkMenuSprite::unkfunc_02051b74(int enable)
+THUMB void UnkMenuSprite::setEnabled(int enable)
 {
     sprite_.enable_ = enable;
 }
 
-THUMB void UnkMenuSprite::unkfunc_02051b78()
+THUMB void UnkMenuSprite::setMainScreen()
 {
     sprite_.screens_ = 1;
 }
 
-THUMB void UnkMenuSprite::unkfunc_02051b80()
+THUMB void UnkMenuSprite::setSubScreen()
 {
     sprite_.screens_ = 2;
 }
 
-THUMB void UnkMenuSprite::unkfunc_02051b88()
+THUMB void UnkMenuSprite::setBothScreens()
 {
     sprite_.screens_ = 3;
 }
 
-THUMB void UnkMenuSprite::unkfunc_02051b90(int a)
+THUMB void UnkMenuSprite::setAlpha(int a)
 {
     sprite_.setAlpha((unsigned char)a);
 }
 
-THUMB void UnkMenuSprite::unkfunc_02051ba0(int polygonID)
+THUMB void UnkMenuSprite::setPolygonID(int polygonID)
 {
     sprite_.setPolygonID((unsigned char)polygonID);
 }
 
-THUMB void UnkMenuSprite::unkfunc_02051bb0(int a)
+THUMB void UnkMenuSprite::setDepth(int a)
 {
     sprite_.depth_ = a;
 }
 
-THUMB void UnkMenuSprite::unkfunc_02051bb4(int a)
+THUMB void UnkMenuSprite::setRotation(int a)
 {
     sprite_.rotation_ = a;
 }
 
-THUMB void UnkMenuSprite::unkfunc_02051bbc(unsigned char r, unsigned char g, unsigned char b)
+THUMB void UnkMenuSprite::setColor(unsigned char r, unsigned char g, unsigned char b)
 {
     sprite_.setColor(r, g, b);
 }
 
-THUMB void UnkMenuSprite::unkfunc_02051bc8(int color)
+THUMB void UnkMenuSprite::setColor555(int color)
 {
     sprite_.setColor(color);
 }

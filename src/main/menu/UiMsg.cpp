@@ -195,68 +195,68 @@ THUMB void unkfunc_020627f8(char* dst, const char* src, int width, int lines, in
     int x = 0;
     unkfunc_0204e478(font);
     UnkUtf8Iterator in;
-    in.unkfunc_0204a800(src);
+    in.setText(src);
     UnkUtf8Iterator out;
-    out.unkfunc_0204a814(dst, 0x400);
-    unsigned short c = in.unkfunc_0204a990();
+    out.setBuffer(dst, 0x400);
+    unsigned short c = in.getChar();
     int breakPos = -1;
     int breakLength = -1;
     int line = 0;
     while (c != 0) {
-        c = in.unkfunc_0204a990();
-        in.unkfunc_0204a9ec();
+        c = in.getChar();
+        in.nextChar();
         if (c == 0x1b) {
-            out.unkfunc_0204a9a0(c);
-            c = in.unkfunc_0204a990();
-            in.unkfunc_0204a9ec();
-            out.unkfunc_0204a9a0(c);
-            c = in.unkfunc_0204a990();
-            in.unkfunc_0204a9ec();
+            out.putChar(c);
+            c = in.getChar();
+            in.nextChar();
+            out.putChar(c);
+            c = in.getChar();
+            in.nextChar();
         }
         if (c == '\r') {
-            out.unkfunc_0204a9a0(c);
-            c = in.unkfunc_0204a990();
-            in.unkfunc_0204a9ec();
+            out.putChar(c);
+            c = in.getChar();
+            in.nextChar();
         }
         if (c == 0x3221) {
-            in.unkfunc_0204a9ec();
+            in.nextChar();
             int n = lines - line;
             if (line == 0 && x == 0) {
                 n = 0;
             }
             for (; n != 0; n--) {
-                out.unkfunc_0204a9a0('\n');
+                out.putChar('\n');
                 line++;
             }
             x = 0;
         } else if (c != '\n') {
             int w = unkfunc_0204e1a0(NULL, 0, 0, 0, c);
-            out.unkfunc_0204a9a0(c);
+            out.putChar(c);
             if (c == ' ' || c == '-' || c == 0x3220) {
                 breakPos = in.pos_;
-                breakLength = out.unkfunc_0204a864();
+                breakLength = out.getLength();
             }
             x += w;
             if (x > width) {
                 if (breakPos != -1) {
                     in.pos_ = breakPos;
                     breakPos = -1;
-                    out.unkfunc_0204a880(breakLength);
+                    out.truncate(breakLength);
                     breakLength = -1;
                 }
-                out.unkfunc_0204a9a0('\n');
+                out.putChar('\n');
                 x = 0;
                 line++;
             }
         } else {
-            out.unkfunc_0204a9a0(c);
+            out.putChar(c);
             x = 0;
             line++;
         }
-        if (line == lines && in.unkfunc_0204a990()) {
-            out.unkfunc_0204a9a0(0x328a);
+        if (line == lines && in.getChar()) {
+            out.putChar(0x328a);
             line = 0;
         }
     }
-    out.unkfunc_0204a9a0(0);
+    out.putChar(0);
 }

@@ -9,15 +9,15 @@ struct UnkModelMember {
     NNSG3dResTex* unk_08;                       // 0x08 textures
 
     UnkModelMember();
-    void unkfunc_02046c3c(void* data);          // set the model file
-    void unkfunc_02046c48();                    // release
-    void unkfunc_02046c54();                    // reload the textures
-    void unkfunc_02046c6c(void* data);
-    void unkfunc_02046dbc();
-    void unkfunc_02046dc8();                    // load the textures
-    void unkfunc_02046e98();                    // release the textures
-    void* unkfunc_02046f30();
-    NNSG3dResMdl* unkfunc_02046f38();
+    void setModelFile(void* data);          // set the model file
+    void release();                    // release
+    void reloadTextures();                    // reload the textures
+    void bindModelFile(void* data);
+    void releaseModelFile();
+    void loadTextures();                    // load the textures
+    void releaseTextures();                    // release the textures
+    void* getModelFile();
+    NNSG3dResMdl* getModel();
 };
 
 extern NNSG3dResTex* data_020f3e84;             // last loaded textures

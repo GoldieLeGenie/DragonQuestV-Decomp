@@ -6,7 +6,7 @@ ARM dss::UnkMatrix43::UnkMatrix43()
     func_02088d40(this);
 }
 
-ARM void dss::UnkMatrix43::unkfunc_0204f428()
+ARM void dss::UnkMatrix43::setIdentity()
 {
     func_02088d40(this);
 }
@@ -31,17 +31,17 @@ ARM dss::Fix32Vector3 dss::UnkMatrix43::operator*(const Fix32Vector3& v) const
     return r;
 }
 
-ARM void dss::UnkMatrix43::unkfunc_0204f4b4(short angle)
+ARM void dss::UnkMatrix43::setRotX(short angle)
 {
     func_02088dd0(this, FX_SinIdx((unsigned short)angle), FX_CosIdx((unsigned short)angle));
 }
 
-ARM void dss::UnkMatrix43::unkfunc_0204f4ec(short angle)
+ARM void dss::UnkMatrix43::setRotY(short angle)
 {
     func_02088df0(this, FX_SinIdx((unsigned short)angle), FX_CosIdx((unsigned short)angle));
 }
 
-ARM void dss::UnkMatrix43::unkfunc_0204f524(short angle)
+ARM void dss::UnkMatrix43::setRotZ(short angle)
 {
     func_02088e0c(this, FX_SinIdx((unsigned short)angle), FX_CosIdx((unsigned short)angle));
 }

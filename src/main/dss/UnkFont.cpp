@@ -6,7 +6,7 @@ THUMB UnkFont::UnkFont()
     height_ = 0;
 }
 
-THUMB void UnkFont::unkfunc_0204deac(void* data, int height)
+THUMB void UnkFont::load(void* data, int height)
 {
     func_0207ed5c(&font_, data);
     unsigned short index = func_0207ed7c(&font_, '%');
@@ -16,7 +16,7 @@ THUMB void UnkFont::unkfunc_0204deac(void* data, int height)
     height_ = height;
 }
 
-THUMB int UnkFont::unkfunc_0204ded0(UnkG2dCanvas* canvas, int x, int y, int color, unsigned short c)
+THUMB int UnkFont::drawChar(UnkG2dCanvas* canvas, int x, int y, int color, unsigned short c)
 {
     if (canvas == NULL) {
         unsigned short index = func_0207ed7c(&font_, c);

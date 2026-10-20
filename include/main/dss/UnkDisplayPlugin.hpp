@@ -12,8 +12,8 @@ namespace dss {
         int displayTextCounter_;                // 0x04
         int type_;                              // 0x08
 
-        void unkfunc_0204d208(int chr);         // OAM of the captured screen
-        void unkfunc_0204d284(int textType, int screen1, int screen2, int bg0, int bg1, int unk_10, int palette);   // setup the text
+        void drawCaptureObjs(int chr);         // OAM of the captured screen
+        void setupDisplayText(int textType, int screen1, int screen2, int bg0, int bg1, int unk_10, int palette);   // setup the text
         void updateDisplayText();
         void setDisplayText(int counter);
         int getType();

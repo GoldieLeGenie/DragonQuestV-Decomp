@@ -434,14 +434,14 @@ THUMB char* MaterielMenu_NameEdit::getNameUTF8()
         length += unpackCharCode(s_code[i], &s_nameUTF8[length]);
     }
     s_nameUTF8[length] = 0;
-    unkfunc_0204afa8(s_nameUTF8);
+    convertUtf8ToSjisWork(s_nameUTF8);
     UnkUtf8Iterator src;
-    src.unkfunc_0204a800(s_nameUTF8);
+    src.setText(s_nameUTF8);
     UnkUtf8Iterator dst;
-    dst.unkfunc_0204a828(s_name, 0x89);
+    dst.initBuffer(s_name, 0x89);
     while (true) {
-        int c = src.unkfunc_0204a990();
-        src.unkfunc_0204a9ec();
+        int c = src.getChar();
+        src.nextChar();
         if (c == 0) {
             break;
         }
@@ -465,7 +465,7 @@ THUMB char* MaterielMenu_NameEdit::getNameUTF8()
                 c = 0x85;
                 break;
         }
-        dst.unkfunc_0204a9a0(c);
+        dst.putChar(c);
     }
     return s_name;
 }
@@ -533,7 +533,7 @@ THUMB void MaterielMenu_NameEdit::unkfunc_0202ac90(unsigned int code)
 
 THUMB int MaterielMenu_NameEdit::unkfunc_0202acc0()
 {
-    if (unkfunc_020464e8() == 1) {
+    if (getGameRegion() == 1) {
         return 4;
     }
     return 8;
@@ -544,7 +544,7 @@ THUMB void UnkNameKeyboard::unkfunc_0202acd4()
     index_ = 0;
     keyCount_ = 0x42;
     page_ = 0;
-    japanese_ = unkfunc_020464e8() == 1;
+    japanese_ = getGameRegion() == 1;
     if (japanese_) {
         dq5::level::KeyDataJH::setup();
         dq5::level::KeyDataJK::setup();

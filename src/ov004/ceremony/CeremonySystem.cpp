@@ -45,7 +45,7 @@ THUMB void ceremony::CeremonySystem::initialize()
         system_ = CeremonyEndingSystem::getSingleton();
         break;
     case 3:
-        if (unkfunc_020464e8() == 1) {
+        if (getGameRegion() == 1) {
             system_ = CeremonyEndingFin::getSingleton();
         } else {
             system_ = UnkCeremonyEndingFin::getSingleton();

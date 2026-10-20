@@ -14,14 +14,14 @@ THUMB void unkfunc_0204df4c()
 
 THUMB void unkfunc_0204df60(void* data, void* subData)
 {
-    data_021011f0.font12_.unkfunc_0204deac(data, 12);
-    data_021011f0.subFont12_.unkfunc_0204deac(subData, 12);
+    data_021011f0.font12_.load(data, 12);
+    data_021011f0.subFont12_.load(subData, 12);
 }
 
 THUMB void unkfunc_0204df84(void* data, void* subData)
 {
-    data_021011f0.font10_.unkfunc_0204deac(data, 10);
-    data_021011f0.subFont10_.unkfunc_0204deac(subData, 10);
+    data_021011f0.font10_.load(data, 10);
+    data_021011f0.subFont10_.load(subData, 10);
 }
 
 THUMB int unkfunc_0204dfa8(UnkCharBuffer* buffer, int x, int y, int color, const char* text)
@@ -54,10 +54,10 @@ THUMB int unkfunc_0204dfbc(UnkCharBuffer* buffer, int x, int y, int color, const
     int i = 0;
     int lineHeight = work->lineHeight_ + 2;
     UnkUtf8Iterator it;
-    it.unkfunc_0204a800(text);
+    it.setText(text);
     while (i < 0x100) {
-        unsigned short c = it.unkfunc_0204a990();
-        it.unkfunc_0204a9ec();
+        unsigned short c = it.getChar();
+        it.nextChar();
         if (c == 0xffff || c == 0) {
             break;
         }
@@ -302,7 +302,7 @@ THUMB int unkfunc_0204e1a0(UnkG2dCanvas* canvas, int x, int y, int color, unsign
     if ((c & 0xff00) == 0x3200) {
         font = work->subFont_;
     }
-    return font->unkfunc_0204ded0(canvas, x, y, color, c);
+    return font->drawChar(canvas, x, y, color, c);
 }
 
 THUMB void unkfunc_0204e478(int size)

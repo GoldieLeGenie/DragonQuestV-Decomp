@@ -775,7 +775,7 @@ bool twn::SugorokuSystemPlayerMove::sugorokuMoveSet()
         direction.vy = 0L;
         direction.normalize();
         dss::UnkMatrix43 mat;
-        mat.unkfunc_0204f4ec(-dirInput);
+        mat.setRotY(-dirInput);
         direction = mat * direction;
         direction.vy = 0L;
         dss::Vector3<short>& angle = TownCamera::getSingleton()->camera_.unk_004.getAngle();

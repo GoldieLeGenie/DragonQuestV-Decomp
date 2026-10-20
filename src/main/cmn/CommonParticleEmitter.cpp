@@ -376,7 +376,7 @@ void cmn::CommonParticleEmitter::setup(int type)
     stop_ = 0;
     enable_ = 1;
     CommonParticle particle;
-    particle_ = (CommonParticle*)unkfunc_0204c5bc(&data_020fd24c, sizeof(CommonParticle) * 196, 0x20);
+    particle_ = (CommonParticle*)dssAlloc(&data_020fd24c, sizeof(CommonParticle) * 196, 0x20);
     for (int i = 0; i < 196; i++) {
         dss::memcpy(&particle_[i], &particle, sizeof(CommonParticle));
         particle_[i].unkfunc_0204500c();
@@ -415,7 +415,7 @@ void cmn::CommonParticleEmitter::cleanup()
     for (int i = 0; i < 196; i++) {
         particle_[i].unkfunc_020455ec();
     }
-    unkfunc_0204c5c8(&data_020fd24c, particle_);
+    dssFree(&data_020fd24c, particle_);
     unkfunc_02044fb0();
     enable_ = 0;
 }

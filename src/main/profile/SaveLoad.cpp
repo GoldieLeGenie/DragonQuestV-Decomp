@@ -43,13 +43,13 @@ THUMB profile::CatalogView* profile::SaveLoad::getCatalogView()
     views[3] = &catalogView_[3];
     unsigned int seek = BANK_OFFSET(0);
     for (int i = 0; i < 4; i++) {
-        unsigned char* buff = (unsigned char*)unkfunc_0204c5bc(&data_020fd24c, BANK_SIZE, 0x20);
+        unsigned char* buff = (unsigned char*)dssAlloc(&data_020fd24c, BANK_SIZE, 0x20);
         if (buff == NULL) {
             return NULL;
         }
         if (!memoryload(seek, buff, BANK_SIZE)) {
             if (buff != NULL) {
-                unkfunc_0204c5c8(&data_020fd24c, buff);
+                dssFree(&data_020fd24c, buff);
             }
             return NULL;
         }
@@ -80,7 +80,7 @@ THUMB profile::CatalogView* profile::SaveLoad::getCatalogView()
         } else {
             views[i]->useFlag_ = 0;
         }
-        unkfunc_0204c5c8(&data_020fd24c, buff);
+        dssFree(&data_020fd24c, buff);
         seek += BANK_SIZE;
     }
     catalogRecent_ = getSaveBank();
@@ -97,14 +97,14 @@ THUMB bool profile::SaveLoad::loadbank(int bank)
     if (!isCardOK()) {
         return false;
     }
-    Profile* padr = (Profile*)unkfunc_0204c5bc(&data_020fd24c, sizeof(Profile), 0x20);
+    Profile* padr = (Profile*)dssAlloc(&data_020fd24c, sizeof(Profile), 0x20);
     if (padr == NULL) {
         return false;
     }
     padr->setup();
     memoryload(BANK_OFFSET(bank), &padr->profiledata_, BANK_SIZE);
     bool result = padr->deliverProfile(bank);
-    unkfunc_0204c5c8(&data_020fd24c, padr);
+    dssFree(&data_020fd24c, padr);
     return result;
 }
 
@@ -113,14 +113,14 @@ THUMB bool profile::SaveLoad::savebank(int bank, SAVETYPE type)
     if (!isCardOK()) {
         return false;
     }
-    Profile* padr = (Profile*)unkfunc_0204c5bc(&data_020fd24c, sizeof(Profile), 0x20);
+    Profile* padr = (Profile*)dssAlloc(&data_020fd24c, sizeof(Profile), 0x20);
     if (padr == NULL) {
         return false;
     }
     padr->setup();
     padr->collectProfile(bank, type);
     bool result = memorysave(BANK_OFFSET(bank), &padr->profiledata_, BANK_SIZE);
-    unkfunc_0204c5c8(&data_020fd24c, padr);
+    dssFree(&data_020fd24c, padr);
     if (bank < 3) {
         setSaveBank(bank);
     } else {
@@ -138,7 +138,7 @@ THUMB void profile::SaveLoad::savebankAsync(int bank, SAVETYPE type)
         asyncResult_ = 0;
         return;
     }
-    asyncBuff_ = (Profile*)unkfunc_0204c5bc(&data_020fd24c, sizeof(Profile), 0x20);
+    asyncBuff_ = (Profile*)dssAlloc(&data_020fd24c, sizeof(Profile), 0x20);
     if (asyncBuff_ == NULL) {
         asyncResult_ = 0;
         return;
@@ -159,7 +159,7 @@ THUMB int profile::SaveLoad::savebankAsyncWait()
 THUMB int profile::SaveLoad::savebankAsyncResult()
 {
     if (asyncBuff_ != NULL) {
-        unkfunc_0204c5c8(&data_020fd24c, asyncBuff_);
+        dssFree(&data_020fd24c, asyncBuff_);
         asyncBuff_ = NULL;
     }
     if (asyncResult_ == 0) {
@@ -176,10 +176,10 @@ THUMB int profile::SaveLoad::savebankAsyncResult()
 
 THUMB bool profile::SaveLoad::killbank(int bank)
 {
-    unsigned char* addr = (unsigned char*)unkfunc_0204c5bc(&data_020fd24c, BANK_SIZE, 0x20);
+    unsigned char* addr = (unsigned char*)dssAlloc(&data_020fd24c, BANK_SIZE, 0x20);
     dss::memset(addr, 0xe5, BANK_SIZE);
     bool result = memorysave(BANK_OFFSET(bank), addr, 0x200);
-    unkfunc_0204c5c8(&data_020fd24c, addr);
+    dssFree(&data_020fd24c, addr);
     return result;
 }
 
@@ -188,7 +188,7 @@ THUMB bool profile::SaveLoad::unkfunc_02041078(int bank)
     if (!isCardOK()) {
         return false;
     }
-    Profile* padr = (Profile*)unkfunc_0204c5bc(&data_020fd24c, sizeof(Profile), 0x20);
+    Profile* padr = (Profile*)dssAlloc(&data_020fd24c, sizeof(Profile), 0x20);
     if (padr == NULL) {
         return false;
     }
@@ -196,20 +196,20 @@ THUMB bool profile::SaveLoad::unkfunc_02041078(int bank)
     if (padr->isValidData()) {
         result = padr->calcCheckSum();
     }
-    unkfunc_0204c5c8(&data_020fd24c, padr);
+    dssFree(&data_020fd24c, padr);
     return result;
 }
 
 THUMB bool profile::SaveLoad::memorysave(unsigned int seek, void* buff, unsigned int size)
 {
-    int sleep = unkfunc_02089568();
-    unkfunc_0204c08c(0);
+    int sleep = isSleepEnabled();
+    setSleepEnabled(0);
     CARD_LockBackup(BACKUP_LOCK_ID);
     CARD_IdentifyBackup(CARD_BACKUP_TYPE_EEPROM_512KBITS);
     CARD_ReadWriteBackupAsync((u32)buff, (void*)seek, size, NULL, NULL, 0, 8, 10, 2);
     int result = CARD_GetResultCode();
     CARD_UnlockBackup(BACKUP_LOCK_ID);
-    unkfunc_0204c08c(sleep);
+    setSleepEnabled(sleep);
     if (result == 0) {
         return true;
     }
@@ -218,8 +218,8 @@ THUMB bool profile::SaveLoad::memorysave(unsigned int seek, void* buff, unsigned
 
 THUMB void profile::SaveLoad::memorysaveAsync(unsigned int seek, void* buff, unsigned int size)
 {
-    lastSleep_ = unkfunc_02089568();
-    unkfunc_0204c08c(0);
+    lastSleep_ = isSleepEnabled();
+    setSleepEnabled(0);
     CARD_LockBackup(BACKUP_LOCK_ID);
     CARD_IdentifyBackup(CARD_BACKUP_TYPE_EEPROM_512KBITS);
     CARD_ReadWriteBackupAsync((u32)buff, (void*)seek, size, NULL, NULL, 1, 8, 10, 2);
@@ -234,7 +234,7 @@ THUMB bool profile::SaveLoad::memorysaveAsyncResult()
 {
     int result = CARD_GetResultCode();
     CARD_UnlockBackup(BACKUP_LOCK_ID);
-    unkfunc_0204c08c(lastSleep_);
+    setSleepEnabled(lastSleep_);
     if (result == 0) {
         return true;
     }
@@ -269,7 +269,7 @@ THUMB void profile::SaveLoad::setCatalogMacro(CatalogView* view)
     TextAPI::setMACRO0(0x18, 0xd0000000, 1);
     TextAPI::setMACRO0(0x5e, 0xf0000000, level);
     dss::sprintf_s(text, sizeof(text), "%4d:%02d", playTime / (60 * 60 * 60), playTime % (60 * 60 * 60) / (60 * 60));
-    unkfunc_0204aed0(data_0209a0b8[0], data_0209a0b8[1], time, sizeof(time), text);
+    translateText(data_0209a0b8[0], data_0209a0b8[1], time, sizeof(time), text);
     TextAPI::setUserString(0, view->name_);
     TextAPI::setUserString(1, time);
 }

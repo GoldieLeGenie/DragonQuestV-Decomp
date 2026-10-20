@@ -30,34 +30,34 @@ void twn::UnkTownSpotlightLight::unkfunc_0212e6c0()
 
 void twn::UnkTownSpotlightLight::unkfunc_0212e6c8()
 {
-    sprite_[0].unkfunc_02051a50("data/mask/en02.tex", 0);
-    sprite_[1].unkfunc_02051a50("data/mask/en01.tex", 0);
+    sprite_[0].loadFile("data/mask/en02.tex", 0);
+    sprite_[1].loadFile("data/mask/en01.tex", 0);
     for (int i = 0; i < 2; i++) {
-        sprite_[i].unkfunc_02051b88();
-        sprite_[i].unkfunc_02051ba0(0x3e);
-        sprite_[i].unkfunc_02051bb0(0);
-        sprite_[i].unkfunc_02051b14(0, 0);
-        sprite_[i].unkfunc_02051b20(0, 0);
-        sprite_[i].unkfunc_02051b90(1);
-        sprite_[i].unkfunc_02051ba0(0x3c);
+        sprite_[i].setBothScreens();
+        sprite_[i].setPolygonID(0x3e);
+        sprite_[i].setDepth(0);
+        sprite_[i].setPosition(0, 0);
+        sprite_[i].setSize(0, 0);
+        sprite_[i].setAlpha(1);
+        sprite_[i].setPolygonID(0x3c);
     }
 }
 
 void twn::UnkTownSpotlightLight::unkfunc_0212e73c()
 {
     for (int i = 0; i < 2; i++) {
-        sprite_[i].unkfunc_02051ac4();
+        sprite_[i].unload();
     }
 }
 
 void twn::UnkTownSpotlightLight::unkfunc_0212e758(int screen)
 {
     if (enable_ && x_ >= 0 && y_ >= 0) {
-        sprite_[screen].unkfunc_02051b14(x_ / 2, y_ * 2 / 3);
-        sprite_[screen].unkfunc_02051b20(size_ / 2, size_ * 2 / 3);
-        sprite_[screen].unkfunc_02051b90(alpha_);
-        sprite_[screen].unkfunc_02051bc8(color_);
-        sprite_[screen].unkfunc_02051b68();
+        sprite_[screen].setPosition(x_ / 2, y_ * 2 / 3);
+        sprite_[screen].setSize(size_ / 2, size_ * 2 / 3);
+        sprite_[screen].setAlpha(alpha_);
+        sprite_[screen].setColor555(color_);
+        sprite_[screen].draw();
     }
 }
 

@@ -46,6 +46,6 @@ struct UnkFont {
     int height_;                                // 0x0C
 
     UnkFont();
-    void unkfunc_0204deac(void* data, int height);
-    int unkfunc_0204ded0(UnkG2dCanvas* canvas, int x, int y, int color, unsigned short c);    // draw a char (NULL: width)
+    void load(void* data, int height);
+    int drawChar(UnkG2dCanvas* canvas, int x, int y, int color, unsigned short c);    // draw a char (NULL: width)
 };

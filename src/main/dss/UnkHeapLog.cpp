@@ -5,7 +5,7 @@
 char data_020fd2a4[0x400];
 UnkHeapLog data_020fd6a4;
 
-ARM void UnkHeapLog::unkfunc_0204c654()
+ARM void UnkHeapLog::initialize()
 {
     UnkHeapLogEntry* entry = entries_;
     for (int i = 0; i < 256; i++) {
@@ -19,7 +19,7 @@ ARM void UnkHeapLog::unkfunc_0204c654()
     unk_1004 = 0;
 }
 
-ARM void UnkHeapLog::unkfunc_0204c690(const char* name, void* addr, int size, void* caller, void** heap)
+ARM void UnkHeapLog::recordAlloc(const char* name, void* addr, int size, void* caller, void** heap)
 {
     func_0207e908(*heap);
     func_0207e920(*heap, 4);
@@ -37,10 +37,10 @@ ARM void UnkHeapLog::unkfunc_0204c690(const char* name, void* addr, int size, vo
         }
         entry++;
     }
-    unkfunc_0204c794();
+    getLogText();
 }
 
-ARM void UnkHeapLog::unkfunc_0204c710(const char* name, void* addr, void* caller, void** heap)
+ARM void UnkHeapLog::recordFree(const char* name, void* addr, void* caller, void** heap)
 {
     func_0207e908(*heap);
     func_0207e920(*heap, 4);
@@ -58,10 +58,10 @@ ARM void UnkHeapLog::unkfunc_0204c710(const char* name, void* addr, void* caller
         }
         entry++;
     }
-    unkfunc_0204c794();
+    getLogText();
 }
 
-ARM char* UnkHeapLog::unkfunc_0204c794()
+ARM char* UnkHeapLog::getLogText()
 {
     data_020fd2a4[0] = 0;
     UnkHeapLogEntry* entry = entries_;
@@ -77,7 +77,7 @@ ARM char* UnkHeapLog::unkfunc_0204c794()
     return data_020fd2a4;
 }
 
-ARM void UnkHeapLog::unkfunc_0204c828()
+ARM void UnkHeapLog::markLoggedEntries()
 {
     if (enabled_ == 0) {
         return;

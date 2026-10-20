@@ -212,7 +212,7 @@ THUMB void UnkPerfMonitor::measure()
             collisionTick1_ = collision;
         }
     }
-    int heap = (int)unkfunc_0204c5f4(&data_020fd24c) / 1024;
+    int heap = (int)getAppHeapFreeSize(&data_020fd24c) / 1024;
     int vram = (int)data_020f4f74.unk_08 / 1024;
     if (freeHeap_ > heap) {
         freeHeap_ = heap;

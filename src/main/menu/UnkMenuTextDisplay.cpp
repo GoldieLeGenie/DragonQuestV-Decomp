@@ -56,7 +56,7 @@ THUMB void UnkMenuTextDisplay::draw(UnkOamBuffer* main, UnkOamBuffer* sub)
             if (visibleWidth_ < width_ && x + 32 > visibleWidth_) {
                 unkfunc_02066ef4(sub, x_ + visibleWidth_, y, x + 32 - visibleWidth_, 14);
             }
-            G2_SetOBJAttr(sub->unkfunc_0204dbc4(), x_ + x, y, priority_, GX_OAM_MODE_NORMAL, 0, GX_OAM_EFFECT_NONE,
+            G2_SetOBJAttr(sub->allocEntry(), x_ + x, y, priority_, GX_OAM_MODE_NORMAL, 0, GX_OAM_EFFECT_NONE,
                           GX_OAM_SHAPE_32x16, GX_OAM_COLORMODE_16, chr, palette_, 0);
         }
     }
@@ -99,10 +99,10 @@ THUMB void UnkMenuTextDisplay::draw(UnkOamBuffer* main, UnkOamBuffer* sub)
             if (pos + 16 >= frameWidth_) {
                 back = pos + 16 - frameWidth_;
             }
-            GXOamAttr* oam = sub->unkfunc_0204dbc4();
+            GXOamAttr* oam = sub->allocEntry();
             G2_SetOBJAttr(oam, x_ + pos - back, y_, priority_, GX_OAM_MODE_XLU, 0, GX_OAM_EFFECT_NONE, GX_OAM_SHAPE_16x8,
                           GX_OAM_COLORMODE_16, 0x101, 15, 0);
-            oam = sub->unkfunc_0204dbc4();
+            oam = sub->allocEntry();
             G2_SetOBJAttr(oam, x_ + pos - back, y_ + 6, priority_, GX_OAM_MODE_XLU, 0, GX_OAM_EFFECT_NONE, GX_OAM_SHAPE_16x8,
                           GX_OAM_COLORMODE_16, 0x101, 15, 0);
         }
@@ -140,13 +140,13 @@ THUMB void UnkMenuTextDisplay::unkfunc_02066ef4(UnkOamBuffer* oam, int x, int y,
         return;
     }
     int mode = xlu_ ? 1 : 0;
-    GXOamAttr* obj = oam->unkfunc_0204dbc4();
+    GXOamAttr* obj = oam->allocEntry();
     G2_SetOBJAttr(obj, x, y, 0, mode, 0, GX_OAM_EFFECT_NONE, shape, GX_OAM_COLORMODE_16, chr, 15, 0);
-    obj = oam->unkfunc_0204dbc4();
+    obj = oam->allocEntry();
     G2_SetOBJAttr(obj, x, y2, 0, mode, 0, GX_OAM_EFFECT_NONE, shape, GX_OAM_COLORMODE_16, chr, 15, 0);
-    obj = oam->unkfunc_0204dbc4();
+    obj = oam->allocEntry();
     G2_SetOBJAttr(obj, x + size - (size * 2 - width), y, 0, mode, 0, GX_OAM_EFFECT_NONE, shape, GX_OAM_COLORMODE_16, chr, 15, 0);
-    obj = oam->unkfunc_0204dbc4();
+    obj = oam->allocEntry();
     G2_SetOBJAttr(obj, x + size - (size * 2 - width), y2, 0, mode, 0, GX_OAM_EFFECT_NONE, shape, GX_OAM_COLORMODE_16, chr, 15, 0);
 }
 
@@ -169,7 +169,7 @@ THUMB void UnkMenuTextDisplay::unkfunc_02066fe4(int font, const char* text, int 
     unkfunc_02067180(0);
     unk_398 = offset;
     width_ += offset;
-    unkfunc_0204dca8(0x13, id_ << 5, charData_, 0x800);
+    requestVramCopy(0x13, id_ << 5, charData_, 0x800);
     palette_ = 15;
     frame_ = 0;
     frameWidth_ = 0;
@@ -258,7 +258,7 @@ THUMB void UnkMenuTextDisplay::unkfunc_020671e8(int scroll)
             row++;
         } while (scroll > 0);
     }
-    unkfunc_0204dca8(0x13, id_ << 5, charData_, 0x800);
+    requestVramCopy(0x13, id_ << 5, charData_, 0x800);
 }
 
 THUMB void UnkMenuTextDisplay::unkfunc_02067268(int flag)
@@ -268,21 +268,21 @@ THUMB void UnkMenuTextDisplay::unkfunc_02067268(int flag)
 
 THUMB void UnkMenuTextDisplay::unkfunc_02067270(UnkOamBuffer* oam, int x, int y, int chr)
 {
-    GXOamAttr* obj = oam->unkfunc_0204dbc4();
+    GXOamAttr* obj = oam->allocEntry();
     G2_SetOBJAttr(obj, x, y, priority_, GX_OAM_MODE_NORMAL, 0, GX_OAM_EFFECT_NONE, GX_OAM_SHAPE_32x16, GX_OAM_COLORMODE_16,
                   chr, palette_, 0);
 }
 
 THUMB void UnkMenuTextDisplay::unkfunc_020672ac(UnkOamBuffer* oam, int x, int y, int chr)
 {
-    GXOamAttr* obj = oam->unkfunc_0204dbc4();
+    GXOamAttr* obj = oam->allocEntry();
     G2_SetOBJAttr(obj, x, y, priority_, GX_OAM_MODE_NORMAL, 0, GX_OAM_EFFECT_NONE, GX_OAM_SHAPE_16x16, GX_OAM_COLORMODE_16,
                   chr, palette_, 0);
 }
 
 THUMB void UnkMenuTextDisplay::unkfunc_020672e8(UnkOamBuffer* oam, int x, int y, int chr)
 {
-    GXOamAttr* obj = oam->unkfunc_0204dbc4();
+    GXOamAttr* obj = oam->allocEntry();
     G2_SetOBJAttr(obj, x, y, priority_, GX_OAM_MODE_NORMAL, 0, GX_OAM_EFFECT_NONE, GX_OAM_SHAPE_8x16, GX_OAM_COLORMODE_16,
                   chr, palette_, 0);
 }

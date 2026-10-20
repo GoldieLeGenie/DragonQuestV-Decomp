@@ -15,11 +15,11 @@ struct UnkHeapLog {
     int enabled_;                               // 0x1000
     int unk_1004;                               // 0x1004
 
-    void unkfunc_0204c654();                    // init
-    void unkfunc_0204c690(const char* name, void* addr, int size, void* caller, void** heap);   // add a block
-    void unkfunc_0204c710(const char* name, void* addr, void* caller, void** heap);             // remove a block
-    char* unkfunc_0204c794();                   // text of the allocated blocks
-    void unkfunc_0204c828();                    // mark the allocated blocks
+    void initialize();                    // init
+    void recordAlloc(const char* name, void* addr, int size, void* caller, void** heap);   // add a block
+    void recordFree(const char* name, void* addr, void* caller, void** heap);             // remove a block
+    char* getLogText();                   // text of the allocated blocks
+    void markLoggedEntries();                    // mark the allocated blocks
 };
 
 extern char data_020fd2a4[0x400];

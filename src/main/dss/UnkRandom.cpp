@@ -4,7 +4,7 @@
 UnkDssRand::UnkRandom UnkDssRand::UnkDssRand;
 
 
-ARM void UnkDssRand::unkfunc_0204f328()
+ARM void UnkDssRand::initSeed()
 {
     unsigned int buffer[8];
     unsigned int seed = 0;

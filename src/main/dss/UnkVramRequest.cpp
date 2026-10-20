@@ -2,11 +2,11 @@
 #include "main/dss/DssUtils.hpp"
 #include "main/dss/UnkMemory.hpp"
 
-THUMB void UnkOamBuffer::unkfunc_0204db88()
+THUMB void UnkOamBuffer::init()
 {
 }
 
-THUMB void UnkOamBuffer::unkfunc_0204db8c()
+THUMB void UnkOamBuffer::clear()
 {
     func_02070224(0xc0, oam_, sizeof(oam_));
     prevCount_ = count_;
@@ -14,29 +14,29 @@ THUMB void UnkOamBuffer::unkfunc_0204db8c()
     unk_408 = 0;
 }
 
-THUMB void UnkOamBuffer::unkfunc_0204dbb0(int type)
+THUMB void UnkOamBuffer::requestTransfer(int type)
 {
-    unkfunc_0204dca8(type, 0, oam_, sizeof(oam_));
+    requestVramCopy(type, 0, oam_, sizeof(oam_));
 }
 
-THUMB GXOamAttr* UnkOamBuffer::unkfunc_0204dbc4()
+THUMB GXOamAttr* UnkOamBuffer::allocEntry()
 {
     GXOamAttr* oam = &oam_[count_];
     count_++;
     return oam;
 }
 
-THUMB void UnkPaletteBuffer::unkfunc_0204dbd4(int type)
+THUMB void UnkPaletteBuffer::requestTransfer(int type)
 {
-    unkfunc_0204dca8(type, 0, color_, sizeof(color_));
+    requestVramCopy(type, 0, color_, sizeof(color_));
 }
 
-THUMB void UnkPaletteBuffer::unkfunc_0204dbe8(int index, int color, unsigned short rgb)
+THUMB void UnkPaletteBuffer::setColor(int index, int color, unsigned short rgb)
 {
     color_[index * 16 + color] = rgb;
 }
 
-THUMB void UnkPaletteBuffer::unkfunc_0204dbf4(int index, int color, const void* src, int count)
+THUMB void UnkPaletteBuffer::loadColors(int index, int color, const void* src, int count)
 {
     MI_CpuCopyU32(src, &color_[index * 16 + color], count * 2);
 }
@@ -52,7 +52,7 @@ THUMB UnkVramRequestQueue::UnkVramRequestQueue()
 
 UnkVramRequestQueue data_021003e8;
 
-THUMB void unkfunc_0204dc28()
+THUMB void flushVramRequests()
 {
     int start;
     int size;
@@ -63,7 +63,7 @@ THUMB void unkfunc_0204dc28()
     request = data_021003e8.request_;
     for (i = 0; i < 128; i++, request++) {
         if (request->active_ == 1) {
-            size += data_021003e8.unkfunc_0204dde4(request);
+            size += data_021003e8.executeRequest(request);
         }
     }
     int end = *(volatile unsigned short*)0x04000006;
@@ -71,24 +71,24 @@ THUMB void unkfunc_0204dc28()
     data_021003e8.lines_ = end - start;
 }
 
-THUMB UnkVramRequest* unkfunc_0204dc6c(int type, int offset, void* data, int size)
+THUMB UnkVramRequest* requestCompressedVramCopy(int type, int offset, void* data, int size)
 {
     void* buffer = uncompressAlloc(data);
-    UnkVramRequest* request = unkfunc_0204dca8(type, offset, buffer, getUncompressedSize(data));
+    UnkVramRequest* request = requestVramCopy(type, offset, buffer, getUncompressedSize(data));
     if (request == NULL) {
-        unkfunc_0204c5c8(&data_020fd24c, buffer);
+        dssFree(&data_020fd24c, buffer);
         return NULL;
     }
     request->buffer_ = buffer;
     return request;
 }
 
-THUMB UnkVramRequest* unkfunc_0204dca8(int type, int offset, const void* src, int size)
+THUMB UnkVramRequest* requestVramCopy(int type, int offset, const void* src, int size)
 {
     for (int i = 0; i < 128; i++) {
         UnkVramRequest* request = &data_021003e8.request_[i];
         if (request->active_ == 0) {
-            void* base = data_021003e8.unkfunc_0204dcec(type);
+            void* base = data_021003e8.getDestination(type);
             request->active_ = 1;
             request->type_ = type;
             request->offset_ = offset;
@@ -102,7 +102,7 @@ THUMB UnkVramRequest* unkfunc_0204dca8(int type, int offset, const void* src, in
     return NULL;
 }
 
-THUMB void* UnkVramRequestQueue::unkfunc_0204dcec(int type)
+THUMB void* UnkVramRequestQueue::getDestination(int type)
 {
     switch (type) {
     case 4:
@@ -157,17 +157,17 @@ THUMB void* UnkVramRequestQueue::unkfunc_0204dcec(int type)
     return NULL;
 }
 
-THUMB int UnkVramRequestQueue::unkfunc_0204dde4(UnkVramRequest* request)
+THUMB int UnkVramRequestQueue::executeRequest(UnkVramRequest* request)
 {
-    MI_CpuCopyU32(request->src_, (unsigned char*)unkfunc_0204dcec(request->type_) + request->offset_, request->size_);
+    MI_CpuCopyU32(request->src_, (unsigned char*)getDestination(request->type_) + request->offset_, request->size_);
     if (request->buffer_ != NULL) {
-        unkfunc_0204c5c8(&data_020fd24c, request->buffer_);
+        dssFree(&data_020fd24c, request->buffer_);
     }
     request->active_ = 0;
     return request->size_;
 }
 
-THUMB int unkfunc_0204de14(int bg)
+THUMB int getBgCharVramType(int bg)
 {
     switch (bg) {
     case 0:
@@ -190,7 +190,7 @@ THUMB int unkfunc_0204de14(int bg)
     return -1;
 }
 
-THUMB int unkfunc_0204de5c(int bg)
+THUMB int getBgScreenVramType(int bg)
 {
     switch (bg) {
     case 0:

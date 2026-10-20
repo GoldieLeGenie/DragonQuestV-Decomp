@@ -135,7 +135,7 @@ void twn::TownMonsterDraw::setPaletteRate(dss::Fix32 r, dss::Fix32 g, dss::Fix32
 {
     TextureObject* texture = monster_.unk_ae4;
     dss::Fix32Vector3 rate(r, g, b);
-    unkfunc_02049ad8(texture, rate);
+    applyTexturePaletteRgbRate(texture, rate);
 }
 
 void twn::TownMonsterDraw::setMotion(int motion, bool flag)

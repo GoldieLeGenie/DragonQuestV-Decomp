@@ -454,7 +454,7 @@ void twn::TownActionCalculate::normalMove(dss::Fix32Vector3& position, short& di
         direction.vy = 0L;
         direction.normalize();
         dss::UnkMatrix43 mat;
-        mat.unkfunc_0204f4ec(-dirInput);
+        mat.setRotY(-dirInput);
         direction = mat * direction;
         direction.vy = 0L;
         position = position + direction * speed;

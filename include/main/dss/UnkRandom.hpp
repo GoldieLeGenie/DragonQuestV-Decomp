@@ -10,7 +10,7 @@ public:
         unsigned int increment;  // Offset +8 (0x0211a7cc)
     };
 
-    static void unkfunc_0204f328();     // seed from OS_GetLowEntropyData (MATH_InitRand32-like)
+    static void initSeed();     // seed from OS_GetLowEntropyData (MATH_InitRand32-like)
     static int rand(int n);
     static UnkRandom UnkDssRand; 
 };

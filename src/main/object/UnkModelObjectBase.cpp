@@ -5,7 +5,7 @@
 ARM void UnkModelObjectBase::unkfunc_02048d08(UnkModelMember* member)
 {
     member_ = member;
-    NNSG3dResMdlSet* mdlSet = func_02083268(member->unkfunc_02046f30());
+    NNSG3dResMdlSet* mdlSet = func_02083268(member->getModelFile());
     func_02080350(0, 0x93d, -0x93d, -0x93d);
     func_02080350(1, -0x93d, 0x93d, 0x93d);
     func_02080350(2, 0x93d, -0x93d, -0x93d);
@@ -19,7 +19,7 @@ ARM void UnkModelObjectBase::unkfunc_02048d08(UnkModelMember* member)
     func_020803d0(0xf, 0, 2, 0, 0x1c, 0x800);
     count_ = mdlSet->dict.numEntry;
     for (int i = 0; i < count_; i++) {
-        NNSG3dResMdl* mdl = NNS_G3dGetMdlByIdx(func_02083268(member->unkfunc_02046f30()), i);
+        NNSG3dResMdl* mdl = NNS_G3dGetMdlByIdx(func_02083268(member->getModelFile()), i);
         func_0207fa78(&renderObj_[i], mdl);
         func_02082db0(mdl, 1, 0x40);
         func_02082db0(mdl, 1, 0x80);
@@ -39,7 +39,7 @@ ARM void UnkModelObjectBase::vf00()
     m_scl.setFix32(1, 1, 1);
     m_pos.setFix32(0, 0, 0);
     m_rgb.setFix32(0, 0, 0);
-    m_matrix.unkfunc_0204f428();
+    m_matrix.setIdentity();
 }
 
 ARM void UnkModelObjectBase::vf04()
@@ -122,9 +122,9 @@ ARM void UnkModelObjectBase::unkfunc_02049144(dss::Vector3<short> rotation)
     dss::UnkMatrix43 rotY;
     dss::UnkMatrix43 rotZ;
     m_rot = rotation;
-    rotX.unkfunc_0204f4b4(m_rot.vx);
-    rotY.unkfunc_0204f4ec(m_rot.vy);
-    rotZ.unkfunc_0204f524(m_rot.vz);
+    rotX.setRotX(m_rot.vx);
+    rotY.setRotY(m_rot.vy);
+    rotZ.setRotZ(m_rot.vz);
     m_matrix = rotX * rotY * rotZ;
 }
 

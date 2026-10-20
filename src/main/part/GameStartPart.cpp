@@ -20,7 +20,7 @@ THUMB void GameStartPart::initialize()
     Sound::unkfunc_02068908(0);
     SoundManager::stop(0);
     g_Global.fadeIn(30);
-    unkfunc_0204b5d4((int)&OVERLAY_19_ID);
+    loadOverlay((int)&OVERLAY_19_ID);
     cardcheck_ = profile::SaveLoad::isCardOK();
     if (cardcheck_ == 0) {
         return;
@@ -34,7 +34,7 @@ THUMB void GameStartPart::initialize()
 THUMB void GameStartPart::terminate()
 {
     SoundManager::stop(0);
-    unkfunc_0204b5e8((int)&OVERLAY_19_ID);
+    unloadOverlay((int)&OVERLAY_19_ID);
 }
 
 THUMB void GameStartPart::onExecutePart()

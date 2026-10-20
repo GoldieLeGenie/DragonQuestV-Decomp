@@ -137,7 +137,7 @@ THUMB int TextHook::extractDefaultTextString(char* text, int size, int id, int p
                 low = high;
             }
             dss::sprintf_s(number, sizeof(number), "%d-%d", low, max);
-            unkfunc_0204aed0(data_0209a0b8[0], data_0209a0b8[1], text, size, number);
+            translateText(data_0209a0b8[0], data_0209a0b8[1], text, size, number);
             return 1;
         }
         case 0x7a:

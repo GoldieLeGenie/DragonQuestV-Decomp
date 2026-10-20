@@ -9,7 +9,7 @@ const dss::Fix32 data_0209a358(0x10000);
 const dss::Fix32 data_0209a354(0x8000);
 static const int s_unused[2] = {0};      // not original: unreferenced (stripped) item, fixes the .data order
 
-ARM int unkfunc_0204f3bc(int r, int g, int b, int a)
+ARM int packRgba(int r, int g, int b, int a)
 {
     return (r << 24) | (g << 16) | (b << 8) | a;
 }

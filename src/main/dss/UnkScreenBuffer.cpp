@@ -2,12 +2,12 @@
 #include "main/dss/DssUtils.hpp"
 #include "main/dss/UnkSystemText.hpp"
 
-THUMB void unkfunc_0204e83c(UnkScreenBuffer* buffer, void* buf, int width, int height)
+THUMB void initScreenBuffer(UnkScreenBuffer* buffer, void* buf, int width, int height)
 {
-    unkfunc_0204e848(buffer, buf, width, height, width);
+    initScreenBufferWithPitch(buffer, buf, width, height, width);
 }
 
-THUMB void unkfunc_0204e848(UnkScreenBuffer* buffer, void* buf, int width, int height, int pitch)
+THUMB void initScreenBufferWithPitch(UnkScreenBuffer* buffer, void* buf, int width, int height, int pitch)
 {
     buffer->buf_ = (unsigned short*)buf;
     buffer->base_ = (unsigned short*)buf;
@@ -16,50 +16,50 @@ THUMB void unkfunc_0204e848(UnkScreenBuffer* buffer, void* buf, int width, int h
     buffer->pitch_ = pitch;
 }
 
-THUMB unsigned short* unkfunc_0204e858(UnkScreenBuffer* buffer, int x, int y)
+THUMB unsigned short* getScreenBufferCell(UnkScreenBuffer* buffer, int x, int y)
 {
     return buffer->buf_ + (y * buffer->pitch_ + x);
 }
 
-THUMB void unkfunc_0204e868(UnkScreenBuffer* buffer, unsigned short value)
+THUMB void fillScreenBuffer(UnkScreenBuffer* buffer, unsigned short value)
 {
     if (buffer->width_ == buffer->pitch_) {
         MI_CpuFillU16(value, buffer->buf_, buffer->width_ * buffer->height_ * 2);
         return;
     }
     for (int y = 0; y < buffer->height_; y++) {
-        MI_CpuFillU16(value, unkfunc_0204e858(buffer, 0, y), buffer->width_ * 2);
+        MI_CpuFillU16(value, getScreenBufferCell(buffer, 0, y), buffer->width_ * 2);
     }
 }
 
-THUMB void unkfunc_0204e8b0(UnkScreenBuffer* buffer, int x, int y, int w, int h, unsigned short value)
+THUMB void fillScreenBufferRect(UnkScreenBuffer* buffer, int x, int y, int w, int h, unsigned short value)
 {
-    unsigned short* p = unkfunc_0204e858(buffer, x, y);
+    unsigned short* p = getScreenBufferCell(buffer, x, y);
     if (w == buffer->pitch_) {
         MI_CpuFillU16(value, p, w * h * 2);
         return;
     }
     for (int i = 0; i < h; i++) {
-        MI_CpuFillU16(value, unkfunc_0204e858(buffer, x, y + i), w * 2);
+        MI_CpuFillU16(value, getScreenBufferCell(buffer, x, y + i), w * 2);
     }
 }
 
-THUMB void unkfunc_0204e90c(UnkScreenBuffer* buffer, int x, int y, int w, int h, int palette, unsigned short chr)
+THUMB void fillScreenBufferTiles(UnkScreenBuffer* buffer, int x, int y, int w, int h, int palette, unsigned short chr)
 {
-    unkfunc_0204e8b0(buffer, x, y, w, h, chr | (palette << 12));
+    fillScreenBufferRect(buffer, x, y, w, h, chr | (palette << 12));
 }
 
-THUMB void unkfunc_0204e92c(UnkScreenBuffer* buffer, int x, int y, int w, int h, int palette, int vflip, int hflip, unsigned short chr)
+THUMB void fillScreenBufferTilesFlipped(UnkScreenBuffer* buffer, int x, int y, int w, int h, int palette, int vflip, int hflip, unsigned short chr)
 {
-    unkfunc_0204e8b0(buffer, x, y, w, h, chr | (hflip << 10) | (vflip << 11) | (palette << 12));
+    fillScreenBufferRect(buffer, x, y, w, h, chr | (hflip << 10) | (vflip << 11) | (palette << 12));
 }
 
-THUMB void unkfunc_0204e958(UnkScreenBuffer* buffer, int x, int y, unsigned short value)
+THUMB void setScreenBufferCell(UnkScreenBuffer* buffer, int x, int y, unsigned short value)
 {
-    *unkfunc_0204e858(buffer, x, y) = value;
+    *getScreenBufferCell(buffer, x, y) = value;
 }
 
-THUMB void unkfunc_0204e964(UnkScreenBuffer* buffer, int x, int y, int w, int h, int palette)
+THUMB void mapCharBufferToScreen(UnkScreenBuffer* buffer, int x, int y, int w, int h, int palette)
 {
     if (x > buffer->width_ || y > buffer->height_) {
         return;
@@ -83,7 +83,7 @@ THUMB void unkfunc_0204e964(UnkScreenBuffer* buffer, int x, int y, int w, int h,
     unsigned int left = offset % buffer->pitch_;
     unsigned int top = offset / buffer->pitch_;
     for (int j = 0; j < h; j++) {
-        unsigned short* p = unkfunc_0204e858(buffer, x, y + j);
+        unsigned short* p = getScreenBufferCell(buffer, x, y + j);
         unsigned short chr;
         int step;
         unsigned short pal;
@@ -104,12 +104,12 @@ THUMB void unkfunc_0204e964(UnkScreenBuffer* buffer, int x, int y, int w, int h,
     }
 }
 
-THUMB void unkfunc_0204ea5c(UnkScreenBuffer* buffer, int x, int y, const char* text)
+THUMB void drawScreenBufferText(UnkScreenBuffer* buffer, int x, int y, const char* text)
 {
     if (buffer->buf_ == NULL) {
         return;
     }
-    unsigned short* p = unkfunc_0204e858(buffer, x, y);
+    unsigned short* p = getScreenBufferCell(buffer, x, y);
     while (*text != '\0') {
         if (x >= 0x20) {
             return;
@@ -119,72 +119,72 @@ THUMB void unkfunc_0204ea5c(UnkScreenBuffer* buffer, int x, int y, const char* t
     }
 }
 
-THUMB void unkfunc_0204ea94(UnkScreenBuffer* buffer, int palette)
+THUMB void clearScreenBuffer(UnkScreenBuffer* buffer, int palette)
 {
     if (palette == -1) {
         palette = 15;
     }
-    unkfunc_0204e868(buffer, palette << 12);
+    fillScreenBuffer(buffer, palette << 12);
 }
 
-THUMB void unkfunc_0204eaac(UnkScreenBuffer* buffer, int x, int y, int w, int h, int palette)
+THUMB void clearScreenBufferRect(UnkScreenBuffer* buffer, int x, int y, int w, int h, int palette)
 {
     if (palette == -1) {
         palette = 15;
     }
-    unkfunc_0204e8b0(buffer, x, y, w, h, palette << 12);
+    fillScreenBufferRect(buffer, x, y, w, h, palette << 12);
 }
 
-THUMB void unkfunc_0204ead4(UnkScreenBuffer* buffer, int x, int y, int w, int h, int palette)
+THUMB void fillWindowBackRect(UnkScreenBuffer* buffer, int x, int y, int w, int h, int palette)
 {
     if (palette == -1) {
         palette = 15;
     }
-    unkfunc_0204e8b0(buffer, x, y, w, h, (palette << 12) | 7);
+    fillScreenBufferRect(buffer, x, y, w, h, (palette << 12) | 7);
 }
 
-THUMB void unkfunc_0204eb00(UnkScreenBuffer* buffer, int x, int y, int w, int h, int palette)
-{
-    if (palette == -1) {
-        palette = 15;
-    }
-    int pal = palette << 12;
-    unkfunc_0204e8b0(buffer, x + 1, y + 1, w - 1, h - 1, pal | 7);
-    unkfunc_0204e958(buffer, x, y, pal | 4);
-    unkfunc_0204e958(buffer, x, y + (h - 1), pal | 4 | 0x800);
-    unkfunc_0204e958(buffer, x + (w - 1), y, pal | 4 | 0x400);
-    unkfunc_0204e958(buffer, x + (w - 1), y + (h - 1), pal | 4 | 0xc00);
-    for (int i = 1; i < w - 1; i++) {
-        unkfunc_0204e958(buffer, x + i, y, pal | 5);
-        unkfunc_0204e958(buffer, x + i, y + (h - 1), pal | 5 | 0x800);
-    }
-    for (int i = 1; i < h - 1; i++) {
-        unkfunc_0204e958(buffer, x, y + i, pal | 6);
-        unkfunc_0204e958(buffer, x + (w - 1), y + i, pal | 6 | 0x400);
-    }
-}
-
-THUMB void unkfunc_0204ec48(UnkScreenBuffer* buffer, int x, int y, int w, int h, int palette)
+THUMB void drawWindowBack(UnkScreenBuffer* buffer, int x, int y, int w, int h, int palette)
 {
     if (palette == -1) {
         palette = 15;
     }
     int pal = palette << 12;
-    unkfunc_0204e958(buffer, x, y, pal | 0x10);
-    unkfunc_0204e958(buffer, x + (w - 1), y, pal | 0xf);
-    unkfunc_0204e958(buffer, x, y + (h - 1), pal | 0xe);
-    unkfunc_0204e958(buffer, x + (w - 1), y + (h - 1), pal | 0xd);
+    fillScreenBufferRect(buffer, x + 1, y + 1, w - 1, h - 1, pal | 7);
+    setScreenBufferCell(buffer, x, y, pal | 4);
+    setScreenBufferCell(buffer, x, y + (h - 1), pal | 4 | 0x800);
+    setScreenBufferCell(buffer, x + (w - 1), y, pal | 4 | 0x400);
+    setScreenBufferCell(buffer, x + (w - 1), y + (h - 1), pal | 4 | 0xc00);
     for (int i = 1; i < w - 1; i++) {
-        unkfunc_0204e958(buffer, x + i, y, pal | 0x11);
-        unkfunc_0204e958(buffer, x + i, y + (h - 1), pal | 0x18);
+        setScreenBufferCell(buffer, x + i, y, pal | 5);
+        setScreenBufferCell(buffer, x + i, y + (h - 1), pal | 5 | 0x800);
     }
     for (int i = 1; i < h - 1; i++) {
-        unkfunc_0204e958(buffer, x, y + i, pal | 0x12);
-        unkfunc_0204e958(buffer, x + (w - 1), y + i, pal | 0x19);
+        setScreenBufferCell(buffer, x, y + i, pal | 6);
+        setScreenBufferCell(buffer, x + (w - 1), y + i, pal | 6 | 0x400);
     }
 }
 
-THUMB void unkfunc_0204ed5c(UnkScreenBuffer* buffer, int x, int y, int w, int palette, int type)
+THUMB void drawWindowBorder(UnkScreenBuffer* buffer, int x, int y, int w, int h, int palette)
+{
+    if (palette == -1) {
+        palette = 15;
+    }
+    int pal = palette << 12;
+    setScreenBufferCell(buffer, x, y, pal | 0x10);
+    setScreenBufferCell(buffer, x + (w - 1), y, pal | 0xf);
+    setScreenBufferCell(buffer, x, y + (h - 1), pal | 0xe);
+    setScreenBufferCell(buffer, x + (w - 1), y + (h - 1), pal | 0xd);
+    for (int i = 1; i < w - 1; i++) {
+        setScreenBufferCell(buffer, x + i, y, pal | 0x11);
+        setScreenBufferCell(buffer, x + i, y + (h - 1), pal | 0x18);
+    }
+    for (int i = 1; i < h - 1; i++) {
+        setScreenBufferCell(buffer, x, y + i, pal | 0x12);
+        setScreenBufferCell(buffer, x + (w - 1), y + i, pal | 0x19);
+    }
+}
+
+THUMB void drawScreenBufferHLine(UnkScreenBuffer* buffer, int x, int y, int w, int palette, int type)
 {
     int left;
     int mid;
@@ -217,14 +217,14 @@ THUMB void unkfunc_0204ed5c(UnkScreenBuffer* buffer, int x, int y, int w, int pa
         right = mid = left = 0xc;
         break;
     }
-    unkfunc_0204e958(buffer, x, y, left | (palette << 12));
-    unkfunc_0204e958(buffer, x + (w - 1), y, right | (palette << 12));
+    setScreenBufferCell(buffer, x, y, left | (palette << 12));
+    setScreenBufferCell(buffer, x + (w - 1), y, right | (palette << 12));
     for (int i = 1; i < w - 1; i++) {
-        unkfunc_0204e958(buffer, x + i, y, mid | (palette << 12));
+        setScreenBufferCell(buffer, x + i, y, mid | (palette << 12));
     }
 }
 
-THUMB void unkfunc_0204ee0c(void* tile, int x, int y, int color)
+THUMB void setTilePixel(void* tile, int x, int y, int color)
 {
     unsigned int* p = (unsigned int*)tile;
     x *= 4;
@@ -233,7 +233,7 @@ THUMB void unkfunc_0204ee0c(void* tile, int x, int y, int color)
     p[y] = (v & ~(0xf << x)) | color;
 }
 
-THUMB void unkfunc_0204ee28(void* tile, const void* src)
+THUMB void flipTileHorizontal(void* tile, const void* src)
 {
     if (src == NULL) {
         src = tile;

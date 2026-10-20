@@ -18,23 +18,23 @@ static dss::UnkDisplayPlugin* const s_pluginTable[] = {
     &dss::g_DISPLAYPLUGIN_TEXTONLY,
 };
 
-THUMB void dss::UnkDisplayPlugin::unkfunc_0204d208(int chr)
+THUMB void dss::UnkDisplayPlugin::drawCaptureObjs(int chr)
 {
     UnkOamBuffer* oam = unkfunc_0204ce18(1);
     REG32(0x04001000) = (REG32(0x04001000) & ~0x60) | 0x20;
     for (int y = 0; y < 192; y += 64) {
         for (int x = 0; x < 256; x += 64) {
-            G2_SetOBJAttr(oam->unkfunc_0204dbc4(), x, y, 3, 3, 0, GX_OAM_EFFECT_NONE, GX_OAM_SHAPE_64x64, GX_OAM_COLORMODE_16,
+            G2_SetOBJAttr(oam->allocEntry(), x, y, 3, 3, 0, GX_OAM_EFFECT_NONE, GX_OAM_SHAPE_64x64, GX_OAM_COLORMODE_16,
                           chr + (y / 8) * 32 + x / 8, 15, 0);
         }
     }
 }
 
-THUMB void dss::UnkDisplayPlugin::unkfunc_0204d284(int textType, int screen1, int screen2, int bg0, int bg1, int unk_10, int palette)
+THUMB void dss::UnkDisplayPlugin::setupDisplayText(int textType, int screen1, int screen2, int bg0, int bg1, int unk_10, int palette)
 {
-    unkfunc_0204e6b0(textType, screen1, screen2);
+    loadSystemTextChars(textType, screen1, screen2);
     if (palette) {
-        unkfunc_0204e74c(textType, screen1, screen2);
+        loadSystemTextPalettes(textType, screen1, screen2);
     }
     unkfunc_0204d020(textType, screen1, screen2, bg0, bg1, unk_10);
     displayTextCounter_ = 2;
@@ -55,7 +55,7 @@ THUMB void dss::UnkDisplayPlugin::setDisplayText(int counter)
 THUMB void dss::UnkDisplayPluginCapture::initialize()
 {
     type_ = 1;
-    unkfunc_0204d284(2, 1, 5, 0, 4, 1, 0);
+    setupDisplayText(2, 1, 5, 0, 4, 1, 0);
     displayTextCounter_ = 0;
 }
 
@@ -94,7 +94,7 @@ THUMB void dss::UnkDisplayPluginCapture::update(int frame)
     } else {
         GXS_SetVisiblePlane(plane & 0x13);
     }
-    unkfunc_0204d208(0);
+    drawCaptureObjs(0);
     G2S_SetBG0Control(0, 0, 0xf, 0, 0);
     G2S_SetBG1Control(0, 0, 0xe, 0, 0);
     G2_SetBG0Priority(2);
@@ -120,7 +120,7 @@ THUMB void dss::UnkDisplayPluginCapture::update(int frame)
 THUMB void dss::UnkDisplayPluginDouble3d::initialize()
 {
     type_ = 3;
-    unkfunc_0204d284(3, 1, 5, 2, 6, 0, 1);
+    setupDisplayText(3, 1, 5, 2, 6, 0, 1);
     blur_ = 0;
     eva_ = 0x10;
     evb_ = 0;
@@ -199,7 +199,7 @@ THUMB void dss::UnkDisplayPluginDouble3d::update(int frame)
     } else {
         GXS_SetGraphicsMode(3);
         GXS_SetVisiblePlane(0x10);
-        unkfunc_0204d208(0);
+        drawCaptureObjs(0);
     }
     G2_SetBG0Priority(3);
     G2_SetBG1Priority(0);
@@ -231,7 +231,7 @@ THUMB void dss::UnkDisplayPluginDouble3d::SetBlur(int eva, int evb)
 THUMB void dss::UnkDisplayPluginSingle3d::initialize()
 {
     type_ = 2;
-    unkfunc_0204d284(2, 1, 5, 2, 6, 1, 1);
+    setupDisplayText(2, 1, 5, 2, 6, 1, 1);
 }
 
 THUMB void dss::UnkDisplayPluginSingle3d::finalize()
@@ -288,7 +288,7 @@ THUMB void dss::UnkDisplayPluginSingle3d::update(int frame)
 THUMB void dss::UnkDisplayPluginStop::initialize()
 {
     type_ = 0;
-    unkfunc_0204d284(1, 1, 5, 2, 6, 0, 1);
+    setupDisplayText(1, 1, 5, 2, 6, 0, 1);
 }
 
 THUMB void dss::UnkDisplayPluginStop::finalize()
@@ -302,7 +302,7 @@ THUMB void dss::UnkDisplayPluginStop::update(int frame)
 THUMB void dss::UnkDisplayPluginTextonly::initialize()
 {
     type_ = 4;
-    unkfunc_0204d284(2, 1, 5, 2, 6, 0, 1);
+    setupDisplayText(2, 1, 5, 2, 6, 0, 1);
 }
 
 THUMB void dss::UnkDisplayPluginTextonly::finalize()

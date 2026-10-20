@@ -14,7 +14,7 @@ ARM VramTransferManager::~VramTransferManager()
 {
 }
 
-ARM void VramTransferManager::unkfunc_0204a528()
+ARM void VramTransferManager::initTransferQueue()
 {
     func_02086778(tasks_, 0x80);
 }
@@ -22,7 +22,7 @@ ARM void VramTransferManager::unkfunc_0204a528()
 unsigned char data_020f578c[0x800];
 unsigned char data_020f5f8c[0x800];
 
-ARM void VramTransferManager::unkfunc_0204a53c(int texSize, int plttSize)
+ARM void VramTransferManager::initVramManagers(int texSize, int plttSize)
 {
     texSize_ = texSize;
     unk_00 = 0;
@@ -38,7 +38,7 @@ ARM void VramTransferManager::unkfunc_0204a53c(int texSize, int plttSize)
     func_02086cc8(plttSize, data_020f578c, func_02086cc4(0x80), 1);
 }
 
-ARM void VramTransferManager::unkfunc_0204a5f0()
+ARM void VramTransferManager::onPartTerminate()
 {
 }
 

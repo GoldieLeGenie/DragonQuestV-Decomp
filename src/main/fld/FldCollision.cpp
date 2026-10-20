@@ -261,7 +261,7 @@ ARM bool FldCollision::checkSignPoly(const dss::Fix32Vector3& newPos, dss::Fix32
                 playerDir_.vy.value = 0;
                 playerDir_.vz.value = FX32_ONE;
                 dss::UnkMatrix43 mat;
-                mat.unkfunc_0204f4ec(playerIdx_);
+                mat.setRotY(playerIdx_);
                 playerDir_ = mat * playerDir_;
                 playerDirFlag_ = 1;
             }

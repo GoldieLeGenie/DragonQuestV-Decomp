@@ -9,19 +9,19 @@ struct UnkOamBuffer {
     int prevCount_;                             // 0x404
     int unk_408;                                // 0x408
 
-    void unkfunc_0204db88();                    // init
-    void unkfunc_0204db8c();                    // clear
-    void unkfunc_0204dbb0(int type);            // queue the transfer
-    GXOamAttr* unkfunc_0204dbc4();              // next free entry
+    void init();                    // init
+    void clear();                    // clear
+    void requestTransfer(int type);            // queue the transfer
+    GXOamAttr* allocEntry();              // next free entry
 };
 
 // palette shadow buffer (16 palettes of 16 colors)
 struct UnkPaletteBuffer {
     unsigned short color_[0x100];               // 0x000
 
-    void unkfunc_0204dbd4(int type);            // queue the transfer
-    void unkfunc_0204dbe8(int index, int color, unsigned short rgb);
-    void unkfunc_0204dbf4(int index, int color, const void* src, int count);
+    void requestTransfer(int type);            // queue the transfer
+    void setColor(int index, int color, unsigned short rgb);
+    void loadColors(int index, int color, const void* src, int count);
 };
 
 // queued copy to the VRAM, OAM or palettes
@@ -41,17 +41,17 @@ struct UnkVramRequestQueue {
     int lines_;                                 // 0xE04 lines spent by the last update
 
     UnkVramRequestQueue();
-    void* unkfunc_0204dcec(int type);           // destination of a type
-    int unkfunc_0204dde4(UnkVramRequest* request);  // copy
+    void* getDestination(int type);           // destination of a type
+    int executeRequest(UnkVramRequest* request);  // copy
 };
 
 extern UnkVramRequestQueue data_021003e8;
 
-void unkfunc_0204dc28();                        // copy all the queued requests
-UnkVramRequest* unkfunc_0204dc6c(int type, int offset, void* data, int size);   // queue compressed data
-UnkVramRequest* unkfunc_0204dca8(int type, int offset, const void* src, int size);  // queue
-int unkfunc_0204de14(int bg);                   // BG character type (0-3 main, 4-7 sub)
-int unkfunc_0204de5c(int bg);                   // BG screen type (0-3 main, 4-7 sub)
+void flushVramRequests();                        // copy all the queued requests
+UnkVramRequest* requestCompressedVramCopy(int type, int offset, void* data, int size);   // queue compressed data
+UnkVramRequest* requestVramCopy(int type, int offset, const void* src, int size);  // queue
+int getBgCharVramType(int bg);                   // BG character type (0-3 main, 4-7 sub)
+int getBgScreenVramType(int bg);                   // BG screen type (0-3 main, 4-7 sub)
 
 extern "C" {
     void func_02070224(unsigned int value, void* dest, unsigned int size);  // fill

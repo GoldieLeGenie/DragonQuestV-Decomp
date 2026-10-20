@@ -142,70 +142,70 @@ THUMB void MessageWindow::appendText(const char* text)
     int x = 0;
     unkfunc_0204e478(config_->font_);
     UnkUtf8Iterator src;
-    src.unkfunc_0204a800(text);
+    src.setText(text);
     UnkUtf8Iterator dst;
-    dst.unkfunc_0204a814(buf + length, sizeof(text_));
-    unsigned short c = src.unkfunc_0204a990();
+    dst.setBuffer(buf + length, sizeof(text_));
+    unsigned short c = src.getChar();
     int wordPos = -1;
     int wordLength = -1;
     int line = 0;
     while (c != 0) {
-        c = src.unkfunc_0204a990();
-        src.unkfunc_0204a9ec();
+        c = src.getChar();
+        src.nextChar();
         if (c == 0x1b) {
-            dst.unkfunc_0204a9a0(c);
-            c = src.unkfunc_0204a990();
-            src.unkfunc_0204a9ec();
-            dst.unkfunc_0204a9a0(c);
-            c = src.unkfunc_0204a990();
-            src.unkfunc_0204a9ec();
+            dst.putChar(c);
+            c = src.getChar();
+            src.nextChar();
+            dst.putChar(c);
+            c = src.getChar();
+            src.nextChar();
         }
         if (c == 0xd) {
-            dst.unkfunc_0204a9a0(c);
-            c = src.unkfunc_0204a990();
-            src.unkfunc_0204a9ec();
+            dst.putChar(c);
+            c = src.getChar();
+            src.nextChar();
         }
         if (c == 0x3221) {
-            src.unkfunc_0204a9ec();
+            src.nextChar();
             int count = lineCount_ - line;
             if (line == 0 && x == 0) {
                 count = 0;
             }
             for (; count != 0; count--) {
-                dst.unkfunc_0204a9a0('\n');
+                dst.putChar('\n');
                 line++;
             }
             x = 0;
         } else if (c != '\n') {
             int width = unkfunc_0204e1a0(NULL, 0, 0, 0, c);
-            dst.unkfunc_0204a9a0(c);
+            dst.putChar(c);
             if (c == ' ' || c == '-' || c == 0x3220) {
                 wordPos = src.pos_;
-                wordLength = dst.unkfunc_0204a864();
+                wordLength = dst.getLength();
             }
             x += width;
             if (x > maxWidth) {
                 if (wordPos != -1) {
                     src.pos_ = wordPos;
                     wordPos = -1;
-                    dst.unkfunc_0204a880(wordLength);
+                    dst.truncate(wordLength);
                     wordLength = -1;
                 }
-                dst.unkfunc_0204a9a0('\n');
+                dst.putChar('\n');
                 x = 0;
                 line++;
             }
         } else {
-            dst.unkfunc_0204a9a0(c);
+            dst.putChar(c);
             x = 0;
             line++;
         }
-        if (line == lineCount_ && src.unkfunc_0204a990() != 0) {
-            dst.unkfunc_0204a9a0(0x328a);
+        if (line == lineCount_ && src.getChar() != 0) {
+            dst.putChar(0x328a);
             line = 0;
         }
     }
-    dst.unkfunc_0204a9a0(0);
+    dst.putChar(0);
 }
 int data_0209ab10[8] = { -2, 0, 0, 0, -2, 0, 0, 0 };
 int data_0209aaf0[8] = { 0, 0, -2, 0, 0, 0, -2, 0 };
@@ -280,7 +280,7 @@ THUMB void MessageWindow::startWindow()
     setPosition(config_->x_, config_->y_);
     intervalCursor_ = config_->intervalCursor_ ? 1 : 0;
     lastCursor_ = config_->lastCursor_ ? 1 : 0;
-    iterator_.unkfunc_0204a800(text_);
+    iterator_.setText(text_);
     state_ = 1;
     shake_ = 0;
     shakeRepeat_ = 0;
@@ -380,16 +380,16 @@ THUMB void MessageWindow::unkfunc_020662dc()
 THUMB void MessageWindow::unkfunc_020662e0()
 {
     char buf[0x800];
-    int c = getIterator()->unkfunc_0204a990();
+    int c = getIterator()->getChar();
     if (unkfunc_02066918(c)) {
         state_ = 4;
         unk_9c4 = -1;
         return;
     }
     if (c == 0x1b) {
-        getIterator()->unkfunc_0204a9ec();
-        c = getIterator()->unkfunc_0204a990();
-        getIterator()->unkfunc_0204a9ec();
+        getIterator()->nextChar();
+        c = getIterator()->getChar();
+        getIterator()->nextChar();
         if (sound_ != -1) {
             if (c == '0') {
                 sound_ = 0;
@@ -412,14 +412,14 @@ THUMB void MessageWindow::unkfunc_020662e0()
     if (c == 0x328a) {
         state_ = 4;
         unk_9c4 = -1;
-        getIterator()->unkfunc_0204a9ec();
-        if (getIterator()->unkfunc_0204a990()) {
-            getIterator()->unkfunc_0204aa18();
+        getIterator()->nextChar();
+        if (getIterator()->getChar()) {
+            getIterator()->prevChar();
         }
         return;
     }
     if (c == 0x328d) {
-        getIterator()->unkfunc_0204a9ec();
+        getIterator()->nextChar();
         state_ = 5;
         unkfunc_02066be8(1);
         return;
@@ -433,21 +433,21 @@ THUMB void MessageWindow::unkfunc_020662e0()
         waitLine_ = line;
     }
     UnkUtf8Iterator writer;
-    writer.unkfunc_0204a828(buf, sizeof(buf));
+    writer.initBuffer(buf, sizeof(buf));
     while (true) {
-        c = getIterator()->unkfunc_0204a990();
+        c = getIterator()->getChar();
         unsigned char* p = (unsigned char*)iterator_.buf_ + iterator_.pos_;
         if (p[0] == '%') {
             if (p[1] == '3') {
                 unk_038 = 1;
-                getIterator()->unkfunc_0204a9ec();
-                getIterator()->unkfunc_0204a9ec();
+                getIterator()->nextChar();
+                getIterator()->nextChar();
                 continue;
             }
             if (p[1] == '4') {
                 unk_038 = 2;
-                getIterator()->unkfunc_0204a9ec();
-                getIterator()->unkfunc_0204a9ec();
+                getIterator()->nextChar();
+                getIterator()->nextChar();
                 continue;
             }
         }
@@ -458,8 +458,8 @@ THUMB void MessageWindow::unkfunc_020662e0()
             unkfunc_02066968(getIterator());
             break;
         }
-        getIterator()->unkfunc_0204a9ec();
-        writer.unkfunc_0204a9a0(c);
+        getIterator()->nextChar();
+        writer.putChar(c);
     }
     line->unkfunc_02066fe4(config_->font_, buf, 0, 0, 0, unk_038);
     if (unk_038 == 2) {
@@ -535,14 +535,14 @@ THUMB void MessageWindow::unkfunc_0206668c()
         waitProgFlag_--;
         return;
     }
-    if (unkfunc_02066918(getIterator()->unkfunc_0204a990())) {
+    if (unkfunc_02066918(getIterator()->getChar())) {
         keyWait_ = 0;
         keySound_ = 0;
         state_ = 6;
         return;
     }
     if (unk_9c4 == 0) {
-        getIterator()->unkfunc_0204a9ec();
+        getIterator()->nextChar();
         unkfunc_02066968(getIterator());
         frame_->setCursor(0);
         waitLine_ = NULL;
@@ -692,8 +692,8 @@ THUMB int MessageWindow::isControlCode(int c)
 
 THUMB void MessageWindow::unkfunc_02066968(UnkTextIterator* it)
 {
-    while (isNewlineChar(it->unkfunc_0204a990())) {
-        it->unkfunc_0204a9ec();
+    while (isNewlineChar(it->getChar())) {
+        it->nextChar();
     }
 }
 
@@ -708,7 +708,7 @@ THUMB void MessageWindow::openWindow(int type, const char* name, const char* tex
 THUMB void MessageWindow::addText(const char* text)
 {
     appendText(text);
-    iterator_.unkfunc_0204a800(text_);
+    iterator_.setText(text_);
 }
 
 THUMB void MessageWindow::addWaitKey()

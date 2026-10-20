@@ -53,7 +53,7 @@ THUMB void ceremony::CeremonyEndingSystem::initialize()
 {
     char path[128];
     dq5::level::PetalData::setup();
-    if (unkfunc_020464e8() == 1) {
+    if (getGameRegion() == 1) {
         rollStart_[0] = 0;
         rollEnd_[0] = 3;
         rollStart_[1] = 4;
@@ -66,7 +66,7 @@ THUMB void ceremony::CeremonyEndingSystem::initialize()
         rollEnd_[4] = 23;
         rollStart_[5] = 24;
         rollEnd_[5] = 61;
-    } else if (unkfunc_020464e8() == 2) {
+    } else if (getGameRegion() == 2) {
         rollStart_[0] = 0;
         rollEnd_[0] = 3;
         rollStart_[1] = 4;
@@ -153,17 +153,17 @@ THUMB void ceremony::CeremonyEndingSystem::execute()
             if (lineY_[i] == 0x180) {
                 int page = i % DIVISION;
                 if (rollStart_[index_] + i <= rollEnd_[index_]) {
-                    if (unkfunc_020464e8() == 1) {
+                    if (getGameRegion() == 1) {
                         dss::sprintf_s(path, sizeof(path), "data/ending/jp/endroll%02d.tex.lz", rollStart_[index_] + i);
-                    } else if (unkfunc_020464e8() == 2) {
+                    } else if (getGameRegion() == 2) {
                         dss::sprintf_s(path, sizeof(path), "data/ending/na/endroll%02d.tex.lz", rollStart_[index_] + i);
                     } else {
                         dss::sprintf_s(path, sizeof(path), "data/ending/eu/endroll%02d.tex.lz", rollStart_[index_] + i);
                     }
                 } else {
-                    if (unkfunc_020464e8() == 1) {
+                    if (getGameRegion() == 1) {
                         dss::sprintf_s(path, sizeof(path), "data/ending/jp/dummy.tex.lz");
-                    } else if (unkfunc_020464e8() == 2) {
+                    } else if (getGameRegion() == 2) {
                         dss::sprintf_s(path, sizeof(path), "data/ending/na/dummy.tex.lz");
                     } else {
                         dss::sprintf_s(path, sizeof(path), "data/ending/eu/dummy.tex.lz");
@@ -199,7 +199,7 @@ THUMB void ceremony::CeremonyEndingSystem::execute()
         }
         if (lineY_[lineCount_ - 1] <= 0xc0 && index_ == 5) {
             rollSprite_[(lineCount_ - 3) % DIVISION].setAlpha(0);
-            if (unkfunc_020464e8() == 1) {
+            if (getGameRegion() == 1) {
                 setNextPhase(ENDING_PHASE_LASTROLL);
                 endStaff_ = 0;
             } else {

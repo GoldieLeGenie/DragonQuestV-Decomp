@@ -36,7 +36,7 @@ unsigned short data_02099e94[2][52] = {
     },
 };
 
-// Unicode tables of the Shift-JIS lead bytes 0x81-0x9F and 0xE0-0xEF (file data, set by unkfunc_0204acc4)
+// Unicode tables of the Shift-JIS lead bytes 0x81-0x9F and 0xE0-0xEF (file data, set by initSjisTables)
 int s_size81;
 int s_sizeE0;
 unsigned short* s_table81;
@@ -115,7 +115,7 @@ THUMB UnkTextIterator::UnkTextIterator()
     lengthValid_ = 0;
 }
 
-THUMB void UnkTextIterator::unkfunc_0204a800(const char* text)
+THUMB void UnkTextIterator::setText(const char* text)
 {
     buf_ = (char*)text;
     pos_ = 0;
@@ -126,7 +126,7 @@ THUMB void UnkTextIterator::unkfunc_0204a800(const char* text)
     size_ = 0;
 }
 
-THUMB void UnkTextIterator::unkfunc_0204a814(char* text, int size)
+THUMB void UnkTextIterator::setBuffer(char* text, int size)
 {
     buf_ = text;
     pos_ = 0;
@@ -137,7 +137,7 @@ THUMB void UnkTextIterator::unkfunc_0204a814(char* text, int size)
     size_ = size;
 }
 
-THUMB void UnkTextIterator::unkfunc_0204a828(char* buf, int size)
+THUMB void UnkTextIterator::initBuffer(char* buf, int size)
 {
     buf_ = buf;
     pos_ = 0;
@@ -150,25 +150,25 @@ THUMB void UnkTextIterator::unkfunc_0204a828(char* buf, int size)
     buf_[pos_ + 1] = 0;
 }
 
-THUMB int UnkTextIterator::unkfunc_0204a848()
+THUMB int UnkTextIterator::getCount()
 {
     if (countValid_ == 0) {
-        count_ = unkfunc_0204aa4c();
+        count_ = countChars();
         countValid_ = 1;
     }
     return count_;
 }
 
-THUMB int UnkTextIterator::unkfunc_0204a864()
+THUMB int UnkTextIterator::getLength()
 {
     if (lengthValid_ == 0) {
-        length_ = unkfunc_0204aa84();
+        length_ = getByteLength();
         lengthValid_ = 1;
     }
     return length_;
 }
 
-THUMB void UnkTextIterator::unkfunc_0204a880(int pos)
+THUMB void UnkTextIterator::truncate(int pos)
 {
     buf_[pos] = 0;
     countValid_ = 0;
@@ -180,15 +180,15 @@ THUMB UnkUtf16Iterator::UnkUtf16Iterator()
     unk_04 = 2;
 }
 
-THUMB unsigned short UnkUtf16Iterator::unkfunc_0204a990()
+THUMB unsigned short UnkUtf16Iterator::getChar()
 {
     return (unsigned short)(((unsigned char)buf_[pos_ + 1] << 8) | (unsigned char)buf_[pos_]);
 }
 
-THUMB int UnkUtf16Iterator::unkfunc_0204a9a0(int c)
+THUMB int UnkUtf16Iterator::putChar(int c)
 {
-    unkfunc_0204a848();
-    int length = unkfunc_0204a864();
+    getCount();
+    int length = getLength();
     if (length + 4 > (unsigned int)size_) {
         return 0;
     }
@@ -201,16 +201,16 @@ THUMB int UnkUtf16Iterator::unkfunc_0204a9a0(int c)
     return 1;
 }
 
-THUMB int UnkUtf16Iterator::unkfunc_0204a9ec()
+THUMB int UnkUtf16Iterator::nextChar()
 {
-    if (UnkUtf16Iterator::unkfunc_0204a990() == 0) {
+    if (UnkUtf16Iterator::getChar() == 0) {
         return 0;
     }
     pos_ += 2;
     return 1;
 }
 
-THUMB int UnkUtf16Iterator::unkfunc_0204aa18()
+THUMB int UnkUtf16Iterator::prevChar()
 {
     if (pos_ == 0) {
         return 0;
@@ -219,7 +219,7 @@ THUMB int UnkUtf16Iterator::unkfunc_0204aa18()
     return 1;
 }
 
-THUMB int UnkUtf16Iterator::unkfunc_0204aa4c()
+THUMB int UnkUtf16Iterator::countChars()
 {
     if (buf_ == NULL) {
         return 0;
@@ -227,19 +227,19 @@ THUMB int UnkUtf16Iterator::unkfunc_0204aa4c()
     int pos = pos_;
     int count = 0;
     pos_ = 0;
-    while (unkfunc_0204a9ec()) {
+    while (nextChar()) {
         count++;
     }
     pos_ = pos;
     return count;
 }
 
-THUMB int UnkUtf16Iterator::unkfunc_0204aa84()
+THUMB int UnkUtf16Iterator::getByteLength()
 {
     if (buf_ == NULL) {
         return 0;
     }
-    return UnkUtf16Iterator::unkfunc_0204aa4c() * 2;
+    return UnkUtf16Iterator::countChars() * 2;
 }
 
 THUMB UnkUtf8Iterator::UnkUtf8Iterator()
@@ -247,19 +247,19 @@ THUMB UnkUtf8Iterator::UnkUtf8Iterator()
     unk_04 = 1;
 }
 
-THUMB unsigned short UnkUtf8Iterator::unkfunc_0204a990()
+THUMB unsigned short UnkUtf8Iterator::getChar()
 {
-    return unkfunc_0204aae8((unsigned char*)buf_ + pos_);
+    return decodeChar((unsigned char*)buf_ + pos_);
 }
 
-THUMB int UnkUtf8Iterator::unkfunc_0204a9a0(int c)
+THUMB int UnkUtf8Iterator::putChar(int c)
 {
-    unkfunc_0204a848();
-    int length = unkfunc_0204a864();
+    getCount();
+    int length = getLength();
     if (length + 4 > (unsigned int)size_) {
         return 0;
     }
-    int size = unkfunc_0204ab60((unsigned char*)buf_ + length, c);
+    int size = encodeChar((unsigned char*)buf_ + length, c);
     if (length_ + size < (unsigned int)size_) {
         count_++;
         length_ += size;
@@ -269,9 +269,9 @@ THUMB int UnkUtf8Iterator::unkfunc_0204a9a0(int c)
     return 0;
 }
 
-THUMB int UnkUtf8Iterator::unkfunc_0204a9ec()
+THUMB int UnkUtf8Iterator::nextChar()
 {
-    int size = unkfunc_0204aab8((unsigned char*)buf_ + pos_);
+    int size = getCharSize((unsigned char*)buf_ + pos_);
     if (size == -1) {
         return 0;
     }
@@ -282,37 +282,37 @@ THUMB int UnkUtf8Iterator::unkfunc_0204a9ec()
     return 1;
 }
 
-THUMB int UnkUtf8Iterator::unkfunc_0204aa18()
+THUMB int UnkUtf8Iterator::prevChar()
 {
     if (pos_ == 0) {
         return 0;
     }
     while (pos_ != 0) {
         pos_--;
-        if (unkfunc_0204aaa4((unsigned char*)buf_ + pos_) == 1) {
+        if (isLeadByte((unsigned char*)buf_ + pos_) == 1) {
             break;
         }
     }
     return 1;
 }
 
-THUMB int UnkUtf8Iterator::unkfunc_0204aa4c()
+THUMB int UnkUtf8Iterator::countChars()
 {
     if (buf_ == NULL) {
         return 0;
     }
     int pos = pos_;
-    unkfunc_0204aab8((unsigned char*)buf_);
+    getCharSize((unsigned char*)buf_);
     int count = 0;
     pos_ = 0;
-    while (unkfunc_0204a9ec()) {
+    while (nextChar()) {
         count++;
     }
     pos_ = pos;
     return count;
 }
 
-THUMB int UnkUtf8Iterator::unkfunc_0204aa84()
+THUMB int UnkUtf8Iterator::getByteLength()
 {
     if (buf_ == NULL) {
         return 0;
@@ -324,12 +324,12 @@ THUMB int UnkUtf8Iterator::unkfunc_0204aa84()
     return length;
 }
 
-THUMB int UnkUtf8Iterator::unkfunc_0204aaa4(const unsigned char* p)
+THUMB int UnkUtf8Iterator::isLeadByte(const unsigned char* p)
 {
     return (*p & 0xc0) != 0x80;
 }
 
-THUMB int UnkUtf8Iterator::unkfunc_0204aab8(const unsigned char* p)
+THUMB int UnkUtf8Iterator::getCharSize(const unsigned char* p)
 {
     unsigned char c = *p;
     if (c == 0) {
@@ -347,9 +347,9 @@ THUMB int UnkUtf8Iterator::unkfunc_0204aab8(const unsigned char* p)
     return -1;
 }
 
-THUMB unsigned short UnkUtf8Iterator::unkfunc_0204aae8(const unsigned char* p)
+THUMB unsigned short UnkUtf8Iterator::decodeChar(const unsigned char* p)
 {
-    int size = unkfunc_0204aab8(p);
+    int size = getCharSize(p);
     if (size == 0) {
         return 0;
     }
@@ -374,7 +374,7 @@ THUMB unsigned short UnkUtf8Iterator::unkfunc_0204aae8(const unsigned char* p)
     return 0xffff;
 }
 
-THUMB int UnkUtf8Iterator::unkfunc_0204ab60(unsigned char* p, int c)
+THUMB int UnkUtf8Iterator::encodeChar(unsigned char* p, int c)
 {
     if ((unsigned int)c <= 0x7f) {
         p[0] = c & 0x7f;
@@ -427,35 +427,35 @@ static inline int isSeparator(int c)
     return separator;
 }
 
-THUMB int unkfunc_0204abcc(UnkTextIterator* src, char* buf, int size)
+THUMB int readNextWord(UnkTextIterator* src, char* buf, int size)
 {
     int found = 0;
     UnkUtf8Iterator dst;
-    dst.unkfunc_0204a828(buf, size);
+    dst.initBuffer(buf, size);
     while (true) {
-        int c = src->unkfunc_0204a990();
+        int c = src->getChar();
         if (c == 0 || c == 0xffff) {
             break;
         }
         if (!isSeparator(c)) {
             break;
         }
-        src->unkfunc_0204a9ec();
+        src->nextChar();
     }
     while (true) {
-        int c = src->unkfunc_0204a990();
-        src->unkfunc_0204a9ec();
+        int c = src->getChar();
+        src->nextChar();
         if (c == 0 || c == 0xffff || c == 9 || c == 0x20 || c == 0xd || c == 0xa || c == 0x3000 || c == 0xff0e ||
             c == 0x2026 || c == 0xff1f || c == 0xff01) {
             break;
         }
-        dst.unkfunc_0204a9a0(c);
+        dst.putChar(c);
         found = 1;
     }
     return found;
 }
 
-THUMB void unkfunc_0204acc4(unsigned short* table81, int size81, unsigned short* tableE0, int sizeE0)
+THUMB void initSjisTables(unsigned short* table81, int size81, unsigned short* tableE0, int sizeE0)
 {
     s_table81 = table81;
     s_tableE0 = tableE0;
@@ -467,24 +467,24 @@ THUMB void unkfunc_0204acc4(unsigned short* table81, int size81, unsigned short*
 THUMB int convertUtf16ToUtf8(char* dst, int size, const char* src)
 {
     UnkUtf8Iterator out;
-    out.unkfunc_0204a828(dst, size);
+    out.initBuffer(dst, size);
     UnkUtf16Iterator in;
-    in.unkfunc_0204a800(src);
+    in.setText(src);
     while (true) {
-        int c = in.unkfunc_0204a990();
-        in.unkfunc_0204a9ec();
+        int c = in.getChar();
+        in.nextChar();
         if (c == 0) {
             break;
         }
         if (c == 0xffff) {
             return 0;
         }
-        out.unkfunc_0204a9a0(c);
+        out.putChar(c);
     }
     return 1;
 }
 
-THUMB unsigned short unkfunc_0204ad44(unsigned short c)
+THUMB unsigned short unicodeToSjis(unsigned short c)
 {
     unsigned short* table;
     unsigned int n;
@@ -515,21 +515,21 @@ THUMB unsigned short unkfunc_0204ad44(unsigned short c)
     return 0x3f;
 }
 
-THUMB int unkfunc_0204adb8(char* dst, unsigned int size, const char* src)
+THUMB int convertUtf8ToSjis(char* dst, unsigned int size, const char* src)
 {
     UnkUtf8Iterator in;
-    in.unkfunc_0204a800(src);
+    in.setText(src);
     unsigned int length = 0;
     while (true) {
-        unsigned short c = in.unkfunc_0204a990();
-        in.unkfunc_0204a9ec();
+        unsigned short c = in.getChar();
+        in.nextChar();
         if (c == 0) {
             break;
         }
         if (c == 0xffff) {
             return 0;
         }
-        unsigned short code = unkfunc_0204ad44(c);
+        unsigned short code = unicodeToSjis(c);
         if (code <= 0xff) {
             *dst++ = code;
             length++;
@@ -550,11 +550,11 @@ THUMB int unkfunc_0204adb8(char* dst, unsigned int size, const char* src)
 THUMB int convertSjisToUtf8(char* dst, int size, const char* src)
 {
     UnkUtf8Iterator out;
-    out.unkfunc_0204a828(dst, size);
+    out.initBuffer(dst, size);
     const unsigned char* p = (const unsigned char*)src;
     while (*p != 0) {
         if (*p <= 0x7f) {
-            out.unkfunc_0204a9a0(*p++);
+            out.putChar(*p++);
         } else {
             unsigned char lead = *p++;
             unsigned char trail = *p++;
@@ -568,14 +568,14 @@ THUMB int convertSjisToUtf8(char* dst, int size, const char* src)
                 table = s_tableE0;
             }
             if (table != NULL && table[trail + (lead << 8)] != 0) {
-                out.unkfunc_0204a9a0(table[trail + (lead << 8)]);
+                out.putChar(table[trail + (lead << 8)]);
             }
         }
     }
     return 1;
 }
 
-THUMB int unkfunc_0204aeb4(unsigned short* from, unsigned short* to, int c)
+THUMB int translateChar(unsigned short* from, unsigned short* to, int c)
 {
     while (*to != 0) {
         if (c == *to) {
@@ -587,53 +587,53 @@ THUMB int unkfunc_0204aeb4(unsigned short* from, unsigned short* to, int c)
     return c;
 }
 
-THUMB int unkfunc_0204aed0(unsigned short* from, unsigned short* to, char* dst, int size, const char* src)
+THUMB int translateText(unsigned short* from, unsigned short* to, char* dst, int size, const char* src)
 {
     UnkUtf8Iterator in;
-    in.unkfunc_0204a800(src);
+    in.setText(src);
     UnkUtf8Iterator out;
-    out.unkfunc_0204a828(dst, size);
+    out.initBuffer(dst, size);
     while (true) {
-        int c = in.unkfunc_0204a990();
+        int c = in.getChar();
         if (c == 0) {
             break;
         }
         if (c == 0xffff) {
             return 0;
         }
-        in.unkfunc_0204a9ec();
-        out.unkfunc_0204a9a0(unkfunc_0204aeb4(from, to, c));
+        in.nextChar();
+        out.putChar(translateChar(from, to, c));
     }
     return 1;
 }
 
-THUMB int unkfunc_0204af38(unsigned short* from, unsigned short* to, char* dst, int size, const char* src, int count)
+THUMB int translateTextPrefix(unsigned short* from, unsigned short* to, char* dst, int size, const char* src, int count)
 {
     UnkUtf8Iterator in;
-    in.unkfunc_0204a800(src);
+    in.setText(src);
     UnkUtf8Iterator out;
-    out.unkfunc_0204a828(dst, size);
+    out.initBuffer(dst, size);
     while (true) {
-        int c = in.unkfunc_0204a990();
+        int c = in.getChar();
         if (c == 0) {
             break;
         }
         if (c == 0xffff) {
             return 0;
         }
-        in.unkfunc_0204a9ec();
+        in.nextChar();
         if (count > 0) {
-            c = unkfunc_0204aeb4(from, to, c);
+            c = translateChar(from, to, c);
             count--;
         }
-        out.unkfunc_0204a9a0(c);
+        out.putChar(c);
     }
     return 1;
 }
 
-THUMB char* unkfunc_0204afa8(const char* src)
+THUMB char* convertUtf8ToSjisWork(const char* src)
 {
-    unkfunc_0204adb8((char*)data_020f679c, sizeof(data_020f679c), src);
+    convertUtf8ToSjis((char*)data_020f679c, sizeof(data_020f679c), src);
     for (int i = 0; data_020f679c[i] != 0; i++) {
         if (data_020f679c[i] == 0xa) {
             data_020f679c[i] = 0x7c;

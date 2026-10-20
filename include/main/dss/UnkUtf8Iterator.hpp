@@ -1,15 +1,15 @@
 #pragma once
 #include <globaldefs.h>
 
-// Text cursor over a char buffer: read (unkfunc_0204a800 + unkfunc_0204a990/unkfunc_0204a9ec) or write (unkfunc_0204a828 +
-// unkfunc_0204a9a0)
+// Text cursor over a char buffer: read (setText + getChar/nextChar) or write (initBuffer +
+// putChar)
 struct UnkTextIterator {
-    virtual unsigned short unkfunc_0204a990() = 0;  // current char
-    virtual int unkfunc_0204a9a0(int c) = 0;    // append a char
-    virtual int unkfunc_0204a9ec() = 0;         // next char
-    virtual int unkfunc_0204aa18() = 0;         // previous char
-    virtual int unkfunc_0204aa4c() = 0;         // char count
-    virtual int unkfunc_0204aa84() = 0;         // byte length
+    virtual unsigned short getChar() = 0;  // current char
+    virtual int putChar(int c) = 0;    // append a char
+    virtual int nextChar() = 0;         // next char
+    virtual int prevChar() = 0;         // previous char
+    virtual int countChars() = 0;         // char count
+    virtual int getByteLength() = 0;         // byte length
 
     int unk_04;                                 // 0x04
     char* buf_;                                 // 0x08
@@ -21,38 +21,38 @@ struct UnkTextIterator {
     int lengthValid_;                           // 0x20
 
     UnkTextIterator();
-    void unkfunc_0204a800(const char* text);
-    void unkfunc_0204a814(char* text, int size);
-    void unkfunc_0204a828(char* buf, int size);
-    int unkfunc_0204a848();                     // cached char count
-    int unkfunc_0204a864();                     // cached byte length
-    void unkfunc_0204a880(int pos);             // cut the text
+    void setText(const char* text);
+    void setBuffer(char* text, int size);
+    void initBuffer(char* buf, int size);
+    int getCount();                     // cached char count
+    int getLength();                     // cached byte length
+    void truncate(int pos);             // cut the text
 };
 
 // UTF-16 text (2 bytes per char)
 struct UnkUtf16Iterator : UnkTextIterator {
     UnkUtf16Iterator();
-    virtual unsigned short unkfunc_0204a990();
-    virtual int unkfunc_0204a9a0(int c);
-    virtual int unkfunc_0204a9ec();
-    virtual int unkfunc_0204aa18();
-    virtual int unkfunc_0204aa4c();
-    virtual int unkfunc_0204aa84();
+    virtual unsigned short getChar();
+    virtual int putChar(int c);
+    virtual int nextChar();
+    virtual int prevChar();
+    virtual int countChars();
+    virtual int getByteLength();
 };
 
 // UTF-8 text (1 to 3 bytes per char)
 struct UnkUtf8Iterator : UnkTextIterator {
     UnkUtf8Iterator();
-    virtual unsigned short unkfunc_0204a990();
-    virtual int unkfunc_0204a9a0(int c);
-    virtual int unkfunc_0204a9ec();
-    virtual int unkfunc_0204aa18();
-    virtual int unkfunc_0204aa4c();
-    virtual int unkfunc_0204aa84();
-    int unkfunc_0204aaa4(const unsigned char* p);   // first byte of a char
-    int unkfunc_0204aab8(const unsigned char* p);   // char size (-1: invalid)
-    unsigned short unkfunc_0204aae8(const unsigned char* p);    // decode
-    int unkfunc_0204ab60(unsigned char* p, int c);  // encode
+    virtual unsigned short getChar();
+    virtual int putChar(int c);
+    virtual int nextChar();
+    virtual int prevChar();
+    virtual int countChars();
+    virtual int getByteLength();
+    int isLeadByte(const unsigned char* p);   // first byte of a char
+    int getCharSize(const unsigned char* p);   // char size (-1: invalid)
+    unsigned short decodeChar(const unsigned char* p);    // decode
+    int encodeChar(unsigned char* p, int c);  // encode
 };
 
-int unkfunc_0204abcc(UnkTextIterator* src, char* buf, int size);   // read the next word
+int readNextWord(UnkTextIterator* src, char* buf, int size);   // read the next word

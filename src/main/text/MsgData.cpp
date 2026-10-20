@@ -4,14 +4,14 @@
 
 THUMB void MsgFile::init()
 {
-    m_addr = (unsigned char*)unkfunc_0204c504(&data_020fd24c, 0x404, -4);
+    m_addr = (unsigned char*)allocAppHeap(&data_020fd24c, 0x404, -4);
     m_size = 0x400;
     m_is_loaded = 0;
 }
 
 THUMB void MsgFile::cleanup()
 {
-    unkfunc_0204c5c8(&data_020fd24c, m_addr);
+    dssFree(&data_020fd24c, m_addr);
     m_addr = 0;
     m_size = 0;
 }
@@ -80,7 +80,7 @@ THUMB MsgData::MsgData()
 
 THUMB void MsgData::msg_setup(int msg_base_id, int arg1, int size, int count)
 {
-    m_addr = (char*)unkfunc_0204c504(&data_020fd24c, size, -4);
+    m_addr = (char*)allocAppHeap(&data_020fd24c, size, -4);
     m_size = size;
     m_msg_base_id = msg_base_id;
     if (arg1 == 0) {
@@ -95,7 +95,7 @@ THUMB void MsgData::msg_setup(int msg_base_id, int arg1, int size, int count)
 
 THUMB void MsgData::cleanup()
 {
-    unkfunc_0204c5c8(&data_020fd24c, m_addr);
+    dssFree(&data_020fd24c, m_addr);
     m_addr = 0;
     m_size = 0;
     m_msg_base_id = -1;

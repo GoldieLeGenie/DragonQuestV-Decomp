@@ -36,17 +36,17 @@ THUMB void MenuFaceDisplay::draw(UnkOamBuffer* main, UnkOamBuffer* sub)
     }
     int y = y_ % 192;
     if (mode_ == 1) {
-        GXOamAttr* obj = sub->unkfunc_0204dbc4();
+        GXOamAttr* obj = sub->allocEntry();
         G2_SetOBJAttr(obj, x_, y, priority_, GX_OAM_MODE_NORMAL, 0, GX_OAM_EFFECT_NONE, GX_OAM_SHAPE_32x32,
                       GX_OAM_COLORMODE_256, 0x114, 0, 0);
-        obj = sub->unkfunc_0204dbc4();
+        obj = sub->allocEntry();
         G2_SetOBJAttr(obj, x_ + 32, y, priority_, GX_OAM_MODE_NORMAL, 0, GX_OAM_EFFECT_NONE, GX_OAM_SHAPE_16x32,
                       GX_OAM_COLORMODE_256, 0x11c, 0, 0);
         y += 32;
-        obj = sub->unkfunc_0204dbc4();
+        obj = sub->allocEntry();
         G2_SetOBJAttr(obj, x_, y, priority_, GX_OAM_MODE_NORMAL, 0, GX_OAM_EFFECT_NONE, GX_OAM_SHAPE_32x16,
                       GX_OAM_COLORMODE_256, 0x194, 0, 0);
-        obj = sub->unkfunc_0204dbc4();
+        obj = sub->allocEntry();
         G2_SetOBJAttr(obj, x_ + 32, y, priority_, GX_OAM_MODE_NORMAL, 0, GX_OAM_EFFECT_NONE, GX_OAM_SHAPE_16x16,
                       GX_OAM_COLORMODE_256, 0x19c, 0, 0);
         return;
@@ -80,7 +80,7 @@ THUMB void MenuFaceDisplay::draw(UnkOamBuffer* main, UnkOamBuffer* sub)
         chr = 0x19c;
     }
     if (chr) {
-        GXOamAttr* obj = sub->unkfunc_0204dbc4();
+        GXOamAttr* obj = sub->allocEntry();
         G2_SetOBJAttr(obj, x_, y, priority_, GX_OAM_MODE_NORMAL, 0, GX_OAM_EFFECT_NONE, GX_OAM_SHAPE_16x16,
                       GX_OAM_COLORMODE_256, chr, 0, 0);
     }
@@ -132,7 +132,7 @@ THUMB void MenuFaceDisplay::unkfunc_02064bc8(UnkOamBuffer* oam, int x, int y, in
     default:
         return;
     }
-    GXOamAttr* obj = oam->unkfunc_0204dbc4();
+    GXOamAttr* obj = oam->allocEntry();
     G2_SetOBJAttr(obj, x, y, priority_, GX_OAM_MODE_NORMAL, 0, GX_OAM_EFFECT_NONE, GX_OAM_SHAPE_16x16,
                   GX_OAM_COLORMODE_256, chr, 0, 0);
 }
@@ -175,10 +175,10 @@ THUMB void MenuFaceDisplay::loadIcon(int type, int index)
     char* src = (char*)getMenuIconData(type, index);
     int dst = 0x2280;
     for (int i = 0; i < 6; i++) {
-        unkfunc_0204dca8(0x13, dst, src, 0x180);
+        requestVramCopy(0x13, dst, src, 0x180);
         dst += 0x400;
         src += 0x180;
     }
-    getObjPaletteBuffer(0)->unkfunc_0204dbf4(0, 0, getMenuIconData(type, 9999), 0xa0);
+    getObjPaletteBuffer(0)->loadColors(0, 0, getMenuIconData(type, 9999), 0xa0);
     priority_ = 1;
 }

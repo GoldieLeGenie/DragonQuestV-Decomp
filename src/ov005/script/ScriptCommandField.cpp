@@ -166,14 +166,14 @@ THUMB void FieldGoldOrbEvent::initialize(char* scriptParam)
     PARAM_DRAW_GOLD_ORB* param = (PARAM_DRAW_GOLD_ORB*)scriptParam;
     orbPosX_ = 0x78L;
     orbPosY_ = (long)(param->endY - param->high);
-    unk_14.unkfunc_02051a50("data/field/symbol/glob.tex", 1);
-    unk_14.unkfunc_02051b40(orbPosX_, orbPosY_);
-    unk_14.unkfunc_02051bb0(0x10);
-    unk_14.unkfunc_02051b78();
-    unk_64.unkfunc_02051a50("data/field/symbol/glob2.tex", 1);
-    unk_64.unkfunc_02051b40(orbPosX_, orbPosY_);
-    unk_64.unkfunc_02051bb0(0x12);
-    unk_64.unkfunc_02051b78();
+    unk_14.loadFile("data/field/symbol/glob.tex", 1);
+    unk_14.setPositionFix32(orbPosX_, orbPosY_);
+    unk_14.setDepth(0x10);
+    unk_14.setMainScreen();
+    unk_64.loadFile("data/field/symbol/glob2.tex", 1);
+    unk_64.setPositionFix32(orbPosX_, orbPosY_);
+    unk_64.setDepth(0x12);
+    unk_64.setMainScreen();
     orbEndPosY_ = param->endY;
     orbSpeed_.value = param->speed;
 }
@@ -181,18 +181,18 @@ THUMB void FieldGoldOrbEvent::initialize(char* scriptParam)
 THUMB void FieldGoldOrbEvent::execute()
 {
     setupOrtho2DBackground();
-    unk_14.unkfunc_02051b40(orbPosX_, orbPosY_);
-    unk_14.unkfunc_02051b68();
-    unk_64.unkfunc_02051b40(orbPosX_, orbPosY_);
-    unk_64.unkfunc_02051b68();
+    unk_14.setPositionFix32(orbPosX_, orbPosY_);
+    unk_14.draw();
+    unk_64.setPositionFix32(orbPosX_, orbPosY_);
+    unk_64.draw();
     orbPosY_.value += orbSpeed_.value;
 }
 
 THUMB int FieldGoldOrbEvent::isEnd()
 {
     if (orbPosY_.value == orbEndPosY_ << 12) {
-        unk_14.unkfunc_02051ac4();
-        unk_64.unkfunc_02051ac4();
+        unk_14.unload();
+        unk_64.unload();
         return true;
     }
     return false;

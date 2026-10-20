@@ -99,7 +99,7 @@ THUMB void btl::BattleRoot::draw()
 
 THUMB void btl::BattleRoot::setupBattle()
 {
-    backupPartyStatus_ = (status::PartyStatus*)unkfunc_0204c5bc(&data_020fd24c, sizeof(status::PartyStatus), 0x20);
+    backupPartyStatus_ = (status::PartyStatus*)dssAlloc(&data_020fd24c, sizeof(status::PartyStatus), 0x20);
     BattleActorManager::getSingleton()->initialize();
     eventEncount_ = Encount::getSingleton()->encountData_.eventEncount_;
     int escapeDisable = Encount::getSingleton()->encountData_.escapeDisable_;
@@ -160,7 +160,7 @@ THUMB void btl::BattleRoot::cleanupBattle()
         status::PartyStatusUtility::recoveryBattleEnd();
     }
     status::g_BattleResult.setDisablePlayerDemolition(false);
-    unkfunc_0204c5c8(&data_020fd24c, backupPartyStatus_);
+    dssFree(&data_020fd24c, backupPartyStatus_);
 }
 
 THUMB void btl::BattleRoot::setupMonster()

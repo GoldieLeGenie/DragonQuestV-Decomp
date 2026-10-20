@@ -105,7 +105,7 @@ UnkBattleMapList data_0209ce6c;
 
 ARM void UnkGameApplication::vf00()
 {
-    unkfunc_0204c2b0(&data_020fd24c, 0x20000, 0x8000, 0x280000, 0);
+    initHeap(&data_020fd24c, 0x20000, 0x8000, 0x280000, 0);
     dss::g_File.unkfunc_0204b1cc(0);
     vf04();
     bgChar_.setup("data/G2D/SYSTEM/bg.bgc", 0, 0);
@@ -113,7 +113,7 @@ ARM void UnkGameApplication::vf00()
     bgPltt_.setup("data/G2D/SYSTEM/bg.bgp", 0, 0);
     objChar_.setup("data/G2D/SYSTEM/obj.bgc", 0, 0);
     objPltt_.setup("data/G2D/SYSTEM/obj.bgp", 0, 0);
-    unkfunc_0204e654(bgChar_.getAddr(), bgChar2_.getAddr(), bgPltt_.getAddr(), objChar_.getAddr(), objPltt_.getAddr());
+    initSystemText(bgChar_.getAddr(), bgChar2_.getAddr(), bgPltt_.getAddr(), objChar_.getAddr(), objPltt_.getAddr());
     font12_.setup("data/G2D/FONT/zen12.nftr", 0, 0);
     font12Half_.setup("data/G2D/FONT/han12.nftr", 0, 0);
     font10_.setup("data/G2D/FONT/zen10.nftr", 0, 0);
@@ -123,14 +123,14 @@ ARM void UnkGameApplication::vf00()
     unkfunc_0204df84(font10_.getAddr(), font10Half_.getAddr());
     table81_.setup("DATA/G2D/BIN/81_9F.bin", 0, 0);
     tableE0_.setup("DATA/G2D/BIN/E0_EF.bin", 0, 0);
-    unkfunc_0204acc4((unsigned short*)table81_.getAddr(), table81_.getSize(), (unsigned short*)tableE0_.getAddr(), tableE0_.getSize());
+    initSjisTables((unsigned short*)table81_.getAddr(), table81_.getSize(), (unsigned short*)tableE0_.getAddr(), tableE0_.getSize());
     data_020f6f9c.unkfunc_0204aff4();
     unkfunc_0206c6bc("MESS5", "MENULIST");
     func_020624a8();
     TextAPI::unkfunc_0206cb34();
     g_text_env.m_text_hook = &gTextHook;
     g_text_extractor.unkfunc_0206d9ec(&data_020ef2e0);
-    int region = unkfunc_020464e8();
+    int region = getGameRegion();
     OSOwnerInfo info;
     func_020887c8(&info);
     if (region == 1) {
@@ -175,7 +175,7 @@ ARM void UnkGameApplication::vf00()
             break;
         }
     }
-    SoundManager::initialize((void*)"data/sound/sound_data.sdat", unkfunc_0204c5bc(&data_020fd24c, 0xb0400, 0x20), 0xb0400, 0, 0x5a, 0x5b, data_02093480);
+    SoundManager::initialize((void*)"data/sound/sound_data.sdat", dssAlloc(&data_020fd24c, 0xb0400, 0x20), 0xb0400, 0, 0x5a, 0x5b, data_02093480);
     vf0c();
     vf08();
     unkfunc_02008d5c();
@@ -203,8 +203,8 @@ ARM void UnkGameApplication::vf04()
     G2S_SetBG3ControlText(0, 0, 7, 0);
     *(vu16*)0x04000060 = (u16)((*(vu16*)0x04000060 & ~0x3000) | 8);
     func_02075ecc(0, 31, 0x7fff, 63, 1);
-    unkfunc_02046ab0();
-    data_020f4f74.unkfunc_0204a528();
+    initFog();
+    data_020f4f74.initTransferQueue();
     GX_DispOn();
     GXS_DispOn();
     GX_SetDispSelect(0);

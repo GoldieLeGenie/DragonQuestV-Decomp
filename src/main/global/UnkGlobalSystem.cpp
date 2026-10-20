@@ -24,7 +24,7 @@ ARM UnkGlobalSystem::~UnkGlobalSystem()
 ARM void UnkGlobalSystem::unkfunc_020516e4(int partId)
 {
     part_id_ = partId;
-    unkfunc_0204c628(&data_020fd24c);
+    markHeapBlocks(&data_020fd24c);
     while (1) {
         int id = part_id_;
         if (id >= 24) {

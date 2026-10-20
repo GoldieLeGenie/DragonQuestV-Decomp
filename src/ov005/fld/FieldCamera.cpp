@@ -64,7 +64,7 @@ THUMB fld::FieldCamera& fld::FieldCamera::getSingleton()
 THUMB void fld::FieldCamera::initialize()
 {
     camera_.setup();
-    camera_.unkfunc_02051ddc(position, 0);
+    camera_.setTarget(position, 0);
     camera_.setDistance(distance);
     camera_.setAngle(default_angle);
     camera_.setOffset(offset);
@@ -94,6 +94,6 @@ THUMB void fld::FieldCamera::draw()
     target.vz.value = target.vy.value / 32;
     target.vy.value = 0;
     camera_.unk_004.setTarget(target);
-    camera_.unkfunc_02051cbc();
+    camera_.applyCamera();
     camera_.unk_074.unkfunc_02046934();
 }

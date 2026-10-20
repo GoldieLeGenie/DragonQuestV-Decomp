@@ -20,16 +20,16 @@ THUMB void twn::TownImageShoplist::setup()
 {
     checkData();
     if (isEnable_) {
-        shop_.unkfunc_02051a50("data/2d/map/shop.tex", 0);
-        shop_.unkfunc_02051b80();
-        shop_.unkfunc_02051b90(0);
-        shop_.unkfunc_02051ba0(0x3f);
+        shop_.loadFile("data/2d/map/shop.tex", 0);
+        shop_.setSubScreen();
+        shop_.setAlpha(0);
+        shop_.setPolygonID(0x3f);
         shop_.sprite_.color0Opaque_ = 1;
-        black_.unkfunc_02051b20(0x100, 0xc0);
-        black_.unkfunc_02051b90(0);
-        black_.unkfunc_02051b80();
-        black_.unkfunc_02051bbc(0, 0, 0);
-        black_.unkfunc_02051ba0(0x3f);
+        black_.setSize(0x100, 0xc0);
+        black_.setAlpha(0);
+        black_.setSubScreen();
+        black_.setColor(0, 0, 0);
+        black_.setPolygonID(0x3f);
     }
     map2d_ = 1;
 }
@@ -37,7 +37,7 @@ THUMB void twn::TownImageShoplist::setup()
 THUMB void twn::TownImageShoplist::cleanup()
 {
     if (isEnable_) {
-        shop_.unkfunc_02051ac4();
+        shop_.unload();
     }
     isEnable_ = false;
 }
@@ -50,35 +50,35 @@ THUMB void twn::TownImageShoplist::execute()
             frame_ = 0;
             break;
         case 1:
-            shop_.unkfunc_02051b74(true);
-            shop_.unkfunc_02051b90(frame_);
+            shop_.setEnabled(true);
+            shop_.setAlpha(frame_);
             frame_++;
             if (frame_ == 0x1f) {
-                black_.unkfunc_02051b90(0);
+                black_.setAlpha(0);
                 map2d_ = 2;
             }
             break;
         case 4:
-            shop_.unkfunc_02051b74(true);
-            shop_.unkfunc_02051b90(0x1f);
-            black_.unkfunc_02051b90(0x1f - frame_);
+            shop_.setEnabled(true);
+            shop_.setAlpha(0x1f);
+            black_.setAlpha(0x1f - frame_);
             frame_++;
             if (frame_ == 0x1f) {
-                black_.unkfunc_02051b90(0);
+                black_.setAlpha(0);
                 map2d_ = 2;
             }
             break;
         case 2:
             frame_ = 0x1f;
-            shop_.unkfunc_02051b90(0x1f);
-            shop_.unkfunc_02051b74(true);
+            shop_.setAlpha(0x1f);
+            shop_.setEnabled(true);
             break;
         case 3:
             frame_ = dss::clamp<int>(frame_, 0, 0x1f);
-            shop_.unkfunc_02051b90(frame_);
+            shop_.setAlpha(frame_);
             frame_--;
             if (frame_ <= 0) {
-                shop_.unkfunc_02051b74(false);
+                shop_.setEnabled(false);
                 map2d_ = 0;
                 cleanup();
             }
@@ -100,9 +100,9 @@ THUMB void twn::TownImageShoplist::draw()
 {
     if (isEnable_) {
         setupOrtho2D();
-        shop_.unkfunc_02051b68();
+        shop_.draw();
         setupOrtho2DFine();
-        black_.unkfunc_02051b68();
+        black_.draw();
     }
 }
 

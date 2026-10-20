@@ -396,7 +396,7 @@ void twn::TownSugorokuManager::draw()
     }
     if (shopSprite_.unkfunc_02051b04()) {
         setupOrtho2D();
-        shopSprite_.unkfunc_02051b68();
+        shopSprite_.draw();
     }
     if (flag_.flag_ & DRAW_ARROW1) {
         arrow_[0].setRotate(arrowIdx_[0]);
@@ -687,19 +687,19 @@ void twn::TownSugorokuManager::setShopDraw(int type)
         dss::sprintf_s(filename, sizeof(filename), "data/SUGOROKU/yorozu.tex");
         break;
     }
-    shopSprite_.unkfunc_02051a50(filename, 0);
-    shopSprite_.unkfunc_02051b78();
-    shopSprite_.unkfunc_02051b90(0x1f);
-    shopSprite_.unkfunc_02051ba0(0x3f);
-    shopSprite_.unkfunc_02051bb0(0x80);
+    shopSprite_.loadFile(filename, 0);
+    shopSprite_.setMainScreen();
+    shopSprite_.setAlpha(0x1f);
+    shopSprite_.setPolygonID(0x3f);
+    shopSprite_.setDepth(0x80);
     shopSprite_.sprite_.color0Opaque_ = 1;
-    shopSprite_.unkfunc_02051b14(0, 0);
+    shopSprite_.setPosition(0, 0);
 }
 
 void twn::TownSugorokuManager::clearShopDraw()
 {
     if (shopSprite_.unkfunc_02051b04()) {
-        shopSprite_.unkfunc_02051ac4();
+        shopSprite_.unload();
     }
 }
 

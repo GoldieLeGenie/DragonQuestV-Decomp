@@ -111,11 +111,11 @@ void FldStage::setup(bool flag)
     if (m_render) {
         unkfunc_02048cc4(m_render);
     }
-    m_anim.unkfunc_02046c3c(m_model.getAddr());
+    m_anim.setModelFile(m_model.getAddr());
     void* model = m_model.getAddr();
     void* texture = m_texture.getAddr();
     void* coll = m_coll.getAddr();
-    m_fld.Setup(model, texture, coll, (int)*unkfunc_0204c614(&data_020fd24c));
+    m_fld.Setup(model, texture, coll, (int)*getHeap0(&data_020fd24c));
     setSepiarExecute();
     if (flag) {
         unkfunc_0206a898();
@@ -137,7 +137,7 @@ void FldStage::cleanup()
     m_model.cleanup();
     m_texture.cleanup();
     m_coll.cleanup();
-    m_anim.unkfunc_02046c48();
+    m_anim.release();
     m_data.cleanup();
 }
 
@@ -173,7 +173,7 @@ void FldStage::unkfunc_0206a898()
     NNSG3dResFileHeader* header = (NNSG3dResFileHeader*)m_model.getAddr();
     NNSG3dResTex* tex = func_02083270(header);
     unsigned int size = tex->header.size;
-    func_0207e7f4(*unkfunc_0204c620(&data_020fd24c), m_data.getAddr(), m_data.getSize() - size);
+    func_0207e7f4(*getAppHeap(&data_020fd24c), m_data.getAddr(), m_data.getSize() - size);
     header->dataBlocks = 1;
     header->fileSize = (unsigned char*)tex - (unsigned char*)header;
 }
@@ -190,7 +190,7 @@ void FldStage::setSepiarEnable(int flag)
 void FldStage::setSepiarExecute()
 {
     if (flag_ & 1) {
-        unkfunc_02049c30(getLastModelTexture());
+        applyModelPaletteSepia(getLastModelTexture());
         m_fld.SetSepia();
         m_fld.unkfunc_02061798(0x7fff);
         flag_ &= ~1;
@@ -213,7 +213,7 @@ void FldStage::draw()
 
 void FldStage::resettingTexture()
 {
-    m_anim.unkfunc_02046c54();
+    m_anim.reloadTextures();
 }
 
 int FldStage::getDrawTick()
@@ -571,7 +571,7 @@ COLL_ADD_RESULT_TYPE FldStage::addBoxCollistion(dss::Fix32Vector3& center, short
         objectId = extraId;
     }
     dss::UnkMatrix43 matRot;
-    matRot.unkfunc_0204f4ec(dir);
+    matRot.setRotY(dir);
     dss::Fix32Vector3 vertexVec[4];
     dss::Fix32Vector3 normal;
     dss::Fix32Vector3 tempPos;

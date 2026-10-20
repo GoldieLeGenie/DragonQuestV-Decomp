@@ -20,7 +20,7 @@ inline PaletteAnimationObject::PaletteAnimationObject()
 
 inline void cmn::CommonEffectSimple::operator delete(void* p)
 {
-    unkfunc_0204c63c(p);
+    freeSystemMemory(p);
 }
 
 inline int cmn::CommonEffectFlat::getType()

@@ -224,7 +224,7 @@ ARM void BillboardCharacter::draw()
     unkfunc_020561d0(s_scale);
     setCameraDirection(&baseCamera_->getDirection());
     if (flag_ & FLAG_ANIM_PALLET) {
-        unkfunc_02049ad8((TextureObject*)texture_, paletteRgbRate_);
+        applyTexturePaletteRgbRate((TextureObject*)texture_, paletteRgbRate_);
     }
     execute();
     if (flag_ & FLAG_SHADOW) {
@@ -569,7 +569,7 @@ ARM void BillboardCharacter::unkfunc_0205647c()
     direction.set(1.0f, 0.0f, 0.0f);
     s_sideDirection[0] = direction;
     for (int i = 1, angle = 0x2000; i < 9; angle += 0x2000, i++) {
-        matrix.unkfunc_0204f4ec(angle);
+        matrix.setRotY(angle);
         s_sideDirection[i] = matrix * direction;
     }
     for (int i = 0; i < 8; i++) {

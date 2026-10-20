@@ -87,7 +87,7 @@ twn::TownStageTinction::~TownStageTinction()
 
 void twn::TownStageTinction::cleanup()
 {
-    unkfunc_02046bc4(false);
+    setFogEnable(false);
 }
 
 void twn::TownStageTinction::loadStage()
@@ -129,16 +129,16 @@ void twn::TownStageTinction::loadStage()
 void twn::TownStageTinction::setFloorfog(int index)
 {
     if (dq5::level::ColorCorrect::getRecord(index)->getFog()) {
-        unkfunc_02046bc4(true);
+        setFogEnable(true);
         dq5::level::FloorFog* fog = dq5::level::FloorFog::getRecord(dq5::level::ColorCorrect::getRecord(index)->getFog());
-        unkfunc_02046ba8(fog->colorR00, fog->colorG00, fog->colorB00);
-        unkfunc_02046ba8(fog->colorR01, fog->colorG01, fog->colorB01);
-        unkfunc_02046b34(0, dss::Fix32(fog->rate00));
-        unkfunc_02046b34(1, dss::Fix32(fog->rate01));
-        unkfunc_02046b28(0, fog->offset00);
-        unkfunc_02046b28(1, fog->offset01);
+        setFogColor(fog->colorR00, fog->colorG00, fog->colorB00);
+        setFogColor(fog->colorR01, fog->colorG01, fog->colorB01);
+        setFogRate(0, dss::Fix32(fog->rate00));
+        setFogRate(1, dss::Fix32(fog->rate01));
+        setFogOffset(0, fog->offset00);
+        setFogOffset(1, fog->offset01);
     } else {
-        unkfunc_02046bc4(false);
+        setFogEnable(false);
     }
 }
 

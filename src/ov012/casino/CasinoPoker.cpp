@@ -38,19 +38,19 @@ THUMB void casino::CasinoPoker::initialize()
     MaterielMenu_WINDOW_MANAGER::getSingleton()->openMaterielWindow(0x1c);
     char path[128];
     dss::sprintf_s(path, sizeof(path), "data/2d/map/casino_upper.tex");
-    sprite_.unkfunc_02051a50(path, 0);
-    sprite_.unkfunc_02051b80();
-    sprite_.unkfunc_02051ba0(0x3e);
-    sprite_.unkfunc_02051bb0(0);
+    sprite_.loadFile(path, 0);
+    sprite_.setSubScreen();
+    sprite_.setPolygonID(0x3e);
+    sprite_.setDepth(0);
     sprite_.sprite_.color0Opaque_ = 1;
-    sprite_.unkfunc_02051b2c(0, 0, 0x100, 0xc0);
-    sprite_.unkfunc_02051b20(0x100, 0xc0);
-    sprite_.unkfunc_02051adc(&CasinoSystem::getSingleton()->render_);
+    sprite_.setTexCoords(0, 0, 0x100, 0xc0);
+    sprite_.setSize(0x100, 0xc0);
+    sprite_.attachRender(&CasinoSystem::getSingleton()->render_);
 }
 
 THUMB void casino::CasinoPoker::terminate()
 {
-    sprite_.unkfunc_02051ac4();
+    sprite_.unload();
     CasinoPokerDraw::getSingleton()->terminate();
 }
 
@@ -62,5 +62,5 @@ THUMB void casino::CasinoPoker::draw()
 {
     CasinoPokerDraw::getSingleton()->draw();
     setupOrtho2D();
-    sprite_.unkfunc_02051b68();
+    sprite_.draw();
 }

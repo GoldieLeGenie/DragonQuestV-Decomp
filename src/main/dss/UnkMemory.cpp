@@ -48,12 +48,12 @@ ARM int isCompressed(void* data)
 ARM void* uncompressAlloc(void* data)
 {
     setCompressedData(data);
-    void* dst = unkfunc_0204c5bc(&data_020fd24c, getUncompressedSize(data), 4);
+    void* dst = dssAlloc(&data_020fd24c, getUncompressedSize(data), 4);
     uncompressData(dst);
     return dst;
 }
 
-ARM void unkfunc_0204c2b0(UnkHeap* heap, unsigned int size0, unsigned int size1, unsigned int size2, int mode)
+ARM void initHeap(UnkHeap* heap, unsigned int size0, unsigned int size1, unsigned int size2, int mode)
 {
     void* memory0;
     void* memory1;
@@ -61,7 +61,7 @@ ARM void unkfunc_0204c2b0(UnkHeap* heap, unsigned int size0, unsigned int size1,
     unsigned int size;
     memory0 = OS_AllocFromArenaLo(0, size0, 0x20);
     memory1 = OS_AllocFromArenaLo(0, size1, 0x20);
-    int lo = unkfunc_0204c49c((int)OS_GetArenaLo(0), 0x20);
+    int lo = roundUp((int)OS_GetArenaLo(0), 0x20);
     size = unkfunc_0204b360((unsigned int)OS_GetArenaHi(0), 0x20) - lo;
     switch (mode) {
     case 0:
@@ -89,100 +89,100 @@ ARM void unkfunc_0204c2b0(UnkHeap* heap, unsigned int size0, unsigned int size1,
     heap->size0_ = size0;
     heap->size1_ = size1;
     heap->size2_ = size;
-    heap->free0_ = unkfunc_0204c5d4(heap);
-    heap->free1_ = unkfunc_0204c5e4(heap);
-    heap->free2_ = unkfunc_0204c5f4(heap);
+    heap->free0_ = getHeap0FreeSize(heap);
+    heap->free1_ = getSystemHeapFreeSize(heap);
+    heap->free2_ = getAppHeapFreeSize(heap);
     if ((unsigned int)memory0 - 0x02000000 > 0x100000) {
         unkfunc_0204afe8("Program Memory Over!!!! : 0x%08x\n", (unsigned int)memory0 - 0x02000000);
     }
     heap->unk_54 = (int)memory0 - 0x02000000;
-    data_020fd6a4.unkfunc_0204c654();
+    data_020fd6a4.initialize();
 }
 
-ARM int unkfunc_0204c49c(int value, int alignment)
+ARM int roundUp(int value, int alignment)
 {
     return (value + (alignment - 1)) & ~(alignment - 1);
 }
 
-ARM void unkfunc_0204c4b0(UnkHeap* heap, void* p)
+ARM void freeSystemHeap(UnkHeap* heap, void* p)
 {
     register void* caller = 0;
     asm { mov caller, lr }
     func_0207e8dc(heap->heap1_, p);
-    data_020fd6a4.unkfunc_0204c710("SYS", p, caller, &heap->heap1_);
+    data_020fd6a4.recordFree("SYS", p, caller, &heap->heap1_);
 }
 
-ARM void* unkfunc_0204c504(UnkHeap* heap, int size, int align)
+ARM void* allocAppHeap(UnkHeap* heap, int size, int align)
 {
     register void* caller = 0;
     asm { mov caller, lr }
     register void* p = 0;
     p = func_0207e7d4(heap->heap2_, size, align);
-    data_020fd6a4.unkfunc_0204c690("APP", p, size, caller, &heap->heap2_);
+    data_020fd6a4.recordAlloc("APP", p, size, caller, &heap->heap2_);
     return p;
 }
 
-ARM void unkfunc_0204c568(UnkHeap* heap, void* p)
+ARM void freeAppHeap(UnkHeap* heap, void* p)
 {
     register void* caller = 0;
     asm { mov caller, lr }
     func_0207e8dc(heap->heap2_, p);
-    data_020fd6a4.unkfunc_0204c710("APP", p, caller, &heap->heap2_);
+    data_020fd6a4.recordFree("APP", p, caller, &heap->heap2_);
 }
 
-ARM void* unkfunc_0204c5bc(UnkHeap* heap, int size, int align)
+ARM void* dssAlloc(UnkHeap* heap, int size, int align)
 {
-    return unkfunc_0204c504(heap, size, align);
+    return allocAppHeap(heap, size, align);
 }
 
-ARM void unkfunc_0204c5c8(UnkHeap* heap, void* p)
+ARM void dssFree(UnkHeap* heap, void* p)
 {
-    unkfunc_0204c568(heap, p);
+    freeAppHeap(heap, p);
 }
 
-ARM unsigned int unkfunc_0204c5d4(UnkHeap* heap)
+ARM unsigned int getHeap0FreeSize(UnkHeap* heap)
 {
     return func_0207e908(heap->heap0_);
 }
 
-ARM unsigned int unkfunc_0204c5e4(UnkHeap* heap)
+ARM unsigned int getSystemHeapFreeSize(UnkHeap* heap)
 {
     return func_0207e908(heap->heap1_);
 }
 
-ARM unsigned int unkfunc_0204c5f4(UnkHeap* heap)
+ARM unsigned int getAppHeapFreeSize(UnkHeap* heap)
 {
     return func_0207e908(heap->heap2_);
 }
 
-ARM unsigned int unkfunc_0204c604(UnkHeap* heap)
+ARM unsigned int getAppHeapTotalFreeSize(UnkHeap* heap)
 {
     return func_0207e908(heap->heap2_);
 }
 
-ARM void** unkfunc_0204c614(UnkHeap* heap)
+ARM void** getHeap0(UnkHeap* heap)
 {
     return &heap->heap0_;
 }
 
-ARM void** unkfunc_0204c618(UnkHeap* heap)
+ARM void** getSystemHeap(UnkHeap* heap)
 {
     return &heap->heap1_;
 }
 
-ARM void** unkfunc_0204c620(UnkHeap* heap)
+ARM void** getAppHeap(UnkHeap* heap)
 {
     return &heap->heap2_;
 }
 
-ARM void unkfunc_0204c628(UnkHeap* heap)
+ARM void markHeapBlocks(UnkHeap* heap)
 {
-    data_020fd6a4.unkfunc_0204c828();
+    data_020fd6a4.markLoggedEntries();
 }
 
-ARM void unkfunc_0204c63c(void* p)
+ARM void freeSystemMemory(void* p)
 {
-    unkfunc_0204c4b0(&data_020fd24c, p);
+    freeSystemHeap(&data_020fd24c, p);
 }
 
 void* data_020fd244[2];

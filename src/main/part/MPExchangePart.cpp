@@ -26,9 +26,9 @@ THUMB MPExchangePart::MPExchangePart()
 
 THUMB void MPExchangePart::initialize()
 {
-    unkfunc_0204b5d4((int)&OVERLAY_6_ID);
+    loadOverlay((int)&OVERLAY_6_ID);
     ov006_entry();
-    data_020f4f74.unkfunc_0204a53c(0x40000, 0x4000);
+    data_020f4f74.initVramManagers(0x40000, 0x4000);
     unkfunc_0204c9d8(&dss::g_DISPLAYPLUGIN_SINGLE3D);
     lcdCounter_ = 0;
     g_Global.fadeIn(30);
@@ -46,15 +46,15 @@ THUMB void MPExchangePart::initialize()
     data_0211b27c.count_ = 0;
     data_0211b27c.frames_ = 30;
     data_02101d14.unkfunc_020519a8(&data_0211b27c);
-    unkfunc_0204c08c(0);
+    setSleepEnabled(0);
     unkfunc_02043370(0);
 }
 
 THUMB void MPExchangePart::terminate()
 {
-    unkfunc_0204c08c(1);
-    data_020f4f74.unkfunc_0204a5f0();
-    unkfunc_0204b5e8((int)&OVERLAY_6_ID);
+    setSleepEnabled(1);
+    data_020f4f74.onPartTerminate();
+    unloadOverlay((int)&OVERLAY_6_ID);
 }
 
 THUMB void MPExchangePart::onExecutePart()
@@ -81,9 +81,9 @@ THUMB void MPExchangePart::onExecutePart()
             exchange_.unkfunc_0212a310();
             status::TaishiBase taishi = status::g_MuseumStatus.playerTaishi_;
             data = (status::TAISHI_DATA*)&taishi;
-            unkfunc_0204afa8(data->taishiName_);
-            unkfunc_0204afa8(data->producer_);
-            unkfunc_0204afa8(data->message_);
+            convertUtf8ToSjisWork(data->taishiName_);
+            convertUtf8ToSjisWork(data->producer_);
+            convertUtf8ToSjisWork(data->message_);
             exchange_.unkfunc_0212a2b8(data);
             unkfunc_02043370(2);
             break;
@@ -164,9 +164,9 @@ THUMB void MPExchangePart::onExecutePart()
                 known_ = TRUE;
             }
             status::g_MuseumStatus.setSuccessTaishi(data, true);
-            unkfunc_0204afa8(data->taishiName_);
-            unkfunc_0204afa8(data->producer_);
-            unkfunc_0204afa8(data->message_);
+            convertUtf8ToSjisWork(data->taishiName_);
+            convertUtf8ToSjisWork(data->producer_);
+            convertUtf8ToSjisWork(data->message_);
             unkfunc_02043370(12);
             break;
         }
@@ -191,7 +191,7 @@ THUMB void MPExchangePart::onExecutePart()
                 }
                 if (gTownMenu_MESSAGE.stat_ == menu::MenuBase::MENUBASE_STAT_OK) {
                     gTownMenu_MESSAGE.close();
-                    unkfunc_0204c08c(0);
+                    setSleepEnabled(0);
                     unkfunc_02043370(4);
                 }
             }
@@ -288,7 +288,7 @@ THUMB void MPExchangePart::unkfunc_02043410()
     if (func_020791f4() == FALSE) {
         func_020791e0(TRUE);
     }
-    unkfunc_0204c08c(1);
+    setSleepEnabled(1);
 }
 
 THUMB void MPExchangePart::onWindowPart()

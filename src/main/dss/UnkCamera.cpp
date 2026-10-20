@@ -28,8 +28,8 @@ THUMB void UnkCamera::calcPosition()
     dss::UnkMatrix43 rotX;
     dss::UnkMatrix43 rotY;
     dss::UnkMatrix43 rot;
-    rotX.unkfunc_0204f4b4(m_angle.vx);
-    rotY.unkfunc_0204f4ec(m_angle.vy);
+    rotX.setRotX(m_angle.vx);
+    rotY.setRotY(m_angle.vy);
     m_up.vx.value = -FX_SinIdx(m_angle.vz + 0x8000);
     m_up.vy.value = -FX_CosIdx(m_angle.vz + 0x8000);
     rot = rotX * rotY;

@@ -239,7 +239,7 @@ ARM void MPExchange::updateGameInfo(int entry)
 {
     unk_1a++;
     childCount_ = func_0208a8dc(getWhConnectBitmap()) - 1;
-    u32 ggid = unkfunc_020465a0();
+    u32 ggid = getGgid();
     func_0207b270(unkfunc_0212a9c0, nickName_, 0x18, ggid, tgid_, entry ? 1 : 0);
 }
 
@@ -321,7 +321,7 @@ ARM void MPExchange::unkfunc_0212acf8()
     unkfunc_021229e0(onIndicationCallback);
     if (initWh()) {
         setWhJudgeAcceptFunc(NULL);
-        unkfunc_02121f10(unkfunc_020465a0());
+        unkfunc_02121f10(getGgid());
         setMode(SYSMODE_STOP_toREADY01);
     } else {
         setMode(SYSMODE_FATAL_ERROR);

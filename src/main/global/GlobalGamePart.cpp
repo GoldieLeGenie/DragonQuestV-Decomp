@@ -115,7 +115,7 @@ ARM void args::GamePart::vf08()
 
 ARM void args::GamePart::vf10()
 {
-    unkfunc_0204bfa4();
+    updateSleep();
     if (GX_GetVCount() > 180) {
         while (GX_GetVCount() > 180) {
         }
@@ -126,7 +126,7 @@ ARM void args::GamePart::vf10()
     func_02082604();
     onSwapBuffersPart();
     func_02052180();
-    unkfunc_02046be0();
+    updateFog();
     s_drawLine = GX_GetVCount();
     OS_Wait();
     updatePolygonOverflow();
@@ -137,7 +137,7 @@ ARM void args::GamePart::vf10()
     s_frameEndLine = GX_GetVCount();
     if (REG_GFX_VTX_RAM_COUNT == 0) {
         unkfunc_0204ca6c();
-        unkfunc_0204dc28();
+        flushVramRequests();
     }
     data_02101d14.unkfunc_02051958();
     s_endLine = GX_GetVCount();

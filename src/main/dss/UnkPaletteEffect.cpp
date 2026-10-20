@@ -25,7 +25,7 @@ int data_020f3f58;
 dss::Fix32Vector3 data_020f3f5c(1, 1, 1);
 unsigned short data_020f3f68[0x800];
 
-ARM void unkfunc_020491f8(NNSG3dResTex* tex)
+ARM void setPaletteEffectTexture(NNSG3dResTex* tex)
 {
     data_020f3f54 = tex;
 }
@@ -65,7 +65,7 @@ ARM void applyPaletteRgbRate(unsigned short* palette, int size, dss::Fix32Vector
     }
 }
 
-ARM void unkfunc_02049564(unsigned short* palette, int size, dss::Fix32Vector3& color, dss::Fix32 rate)
+ARM void blendPaletteToColor(unsigned short* palette, int size, dss::Fix32Vector3& color, dss::Fix32 rate)
 {
     for (int i = 0; i < size / 2; i++) {
         dss::Fix32 r;
@@ -84,7 +84,7 @@ ARM void unkfunc_02049564(unsigned short* palette, int size, dss::Fix32Vector3& 
     }
 }
 
-ARM void unkfunc_02049868(unsigned short* palette, unsigned int size, int mode)
+ARM void applyPaletteTone(unsigned short* palette, unsigned int size, int mode)
 {
     float cb;
     float cr;
@@ -132,7 +132,7 @@ ARM float minFloat(float a, float b)
     return (a < b) ? a : b;
 }
 
-ARM void unkfunc_02049ad8(TextureObject* texture, dss::Fix32Vector3& rgb)
+ARM void applyTexturePaletteRgbRate(TextureObject* texture, dss::Fix32Vector3& rgb)
 {
     int data = texture->unkfunc_0204a1d4();
     int address = texture->unkfunc_0204a1cc();
@@ -143,7 +143,7 @@ ARM void unkfunc_02049ad8(TextureObject* texture, dss::Fix32Vector3& rgb)
     data_020f4f74.transferToVram(1, data_020f3f68, address, size, 0);
 }
 
-ARM void unkfunc_02049b5c(NNSG3dResTex* tex, int r, int g, int b, dss::Fix32 rate)
+ARM void blendModelPaletteToColor(NNSG3dResTex* tex, int r, int g, int b, dss::Fix32 rate)
 {
     unsigned int size = tex->plttInfo.sizePltt << 3;
     unsigned int address = (tex->plttInfo.vramKey & 0xffff) << 3;
@@ -152,12 +152,12 @@ ARM void unkfunc_02049b5c(NNSG3dResTex* tex, int r, int g, int b, dss::Fix32 rat
     color.vx = (long)r;
     color.vy = dss::Fix32((long)g);
     color.vz = dss::Fix32((long)b);
-    unkfunc_02049564(data_020f3f68, size, color, rate);
+    blendPaletteToColor(data_020f3f68, size, color, rate);
     DC_CleanAll();
     data_020f4f74.transferToVram(1, data_020f3f68, address, size, 0);
 }
 
-ARM void unkfunc_02049c30(NNSG3dResTex* tex)
+ARM void applyModelPaletteSepia(NNSG3dResTex* tex)
 {
     unsigned int offset = tex->plttInfo.ofsPlttData;
     unsigned int size = tex->plttInfo.sizePltt << 3;

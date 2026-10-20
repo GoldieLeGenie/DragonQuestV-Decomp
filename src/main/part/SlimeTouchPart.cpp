@@ -48,17 +48,17 @@ THUMB void touch::SlimeTouchPart::initialize()
     GX_ResetBankForSubObj();
     GX_ResetBankForSubBg();
     GX_SetBankForTex(GX_VRAM_AB);
-    data_020f4f74.unkfunc_0204a53c(0x40000, 0x4000);
+    data_020f4f74.initVramManagers(0x40000, 0x4000);
     unkfunc_0204c9d8(&dss::g_DISPLAYPLUGIN_DOUBLE3D);
     unkfunc_0204afe0();
-    unkfunc_0204b5d4((int)&OVERLAY_2_ID);
-    unkfunc_0204b5d4((int)&OVERLAY_19_ID);
+    loadOverlay((int)&OVERLAY_2_ID);
+    loadOverlay((int)&OVERLAY_19_ID);
     ov019_entry();
     ST_ARG_SL_TOUCH arg;
     arg.player = 6;
     arg.dbStage = 1;
     arg.dbScore = 0;
-    s_work = unkfunc_0204c5bc(&data_020fd24c, 0x80000, 0x20);
+    s_work = dssAlloc(&data_020fd24c, 0x80000, 0x20);
     SlimeTouchInit(s_work, 0x80000, &arg);
     func_02082654(1);
     OS_Wait();
@@ -71,12 +71,12 @@ THUMB void touch::SlimeTouchPart::terminate()
 {
     dss::g_Pad.unkfunc_0204bc24(0);
     SlimeTouchTerm();
-    unkfunc_0204c5c8(&data_020fd24c, s_work);
+    dssFree(&data_020fd24c, s_work);
     s_work = NULL;
     status::g_Menu.setBooking(10);
-    unkfunc_0204b5e8((int)&OVERLAY_2_ID);
-    unkfunc_0204b5e8((int)&OVERLAY_19_ID);
-    data_020f4f74.unkfunc_0204a5f0();
+    unloadOverlay((int)&OVERLAY_2_ID);
+    unloadOverlay((int)&OVERLAY_19_ID);
+    data_020f4f74.onPartTerminate();
 }
 
 THUMB void touch::SlimeTouchPart::onExecutePart()

@@ -41,17 +41,17 @@ THUMB void UnkDebugConsole::unkfunc_0204aff4()
 
 THUMB void UnkDebugConsole::unkfunc_0204affc()
 {
-    unkfunc_0204ea94(getDebugScreenBuffer(), -1);
+    clearScreenBuffer(getDebugScreenBuffer(), -1);
 }
 
 THUMB void UnkDebugConsole::unkfunc_0204b00c(int x, int y, int w, int h)
 {
-    unkfunc_0204eaac(getDebugScreenBuffer(), x, y, w, h, -1);
+    clearScreenBufferRect(getDebugScreenBuffer(), x, y, w, h, -1);
 }
 
 THUMB void UnkDebugConsole::unkfunc_0204b034(int x, int y, const char* str)
 {
-    unkfunc_0204ea5c(getDebugScreenBuffer(), x, y, str);
+    drawScreenBufferText(getDebugScreenBuffer(), x, y, str);
 }
 
 THUMB void UnkDebugConsole::unkfunc_0204b04c(int x, int y, const char* format, ...)
@@ -60,7 +60,7 @@ THUMB void UnkDebugConsole::unkfunc_0204b04c(int x, int y, const char* format, .
     va_list args;
     va_start(args, format);
     vsnprintf(buf, sizeof(buf), format, args);
-    unkfunc_0204ea5c(getDebugScreenBuffer(), x, y, buf);
+    drawScreenBufferText(getDebugScreenBuffer(), x, y, buf);
 }
 
 ARM void dssVBlankIntr()
@@ -113,7 +113,7 @@ ARM void dss::File::unkfunc_0204b1cc(int)
 ARM void dss::File::unkfunc_0204b1e8()
 {
     unsigned int size = FS_TryLoadTable(NULL, 0);
-    FS_TryLoadTable(unkfunc_0204c504(&data_020fd24c, size, 0x20), size);
+    FS_TryLoadTable(allocAppHeap(&data_020fd24c, size, 0x20), size);
 }
 
 ARM int dss::File::unkfunc_0204b21c(const char* fname, void* dst, int a)
@@ -161,9 +161,9 @@ ARM void* dss::File::unkfunc_0204b29c(const char* fname, int a, LoadSwitch sw)
     size_ = size;
     void* p;
     if (a != 0) {
-        p = unkfunc_0204c5bc(&data_020fd24c, size, -0x20);
+        p = dssAlloc(&data_020fd24c, size, -0x20);
     } else {
-        p = unkfunc_0204c5bc(&data_020fd24c, size, 0x20);
+        p = dssAlloc(&data_020fd24c, size, 0x20);
     }
     unkfunc_0204b21c(fname, p, 0);
     return p;
@@ -230,7 +230,7 @@ ARM void* dss::File::unkfunc_0204b418(const char* fname)
     func_02073a3c(&file_, fname);
     func_02073b58(&file_, buf, 4);
     size_ = *(unsigned int*)buf >> 8;
-    void* dst = unkfunc_0204c5bc(&data_020fd24c, size_, 0x20);
+    void* dst = dssAlloc(&data_020fd24c, size_, 0x20);
     func_020708d4(&context, dst, buf);
     while (func_020708fc(&context, buf, func_02073b58(&file_, buf, 0x1400)) != 0) {
     }

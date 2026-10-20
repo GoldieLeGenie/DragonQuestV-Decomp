@@ -77,8 +77,8 @@ THUMB void dss::Camera::calcPosition()
 {
     dss::UnkMatrix43 rotX;
     dss::UnkMatrix43 rotY;
-    rotX.unkfunc_0204f4b4(m_angle.vx);
-    rotY.unkfunc_0204f4ec(m_angle.vy);
+    rotX.setRotX(m_angle.vx);
+    rotY.setRotY(m_angle.vy);
     m_direction.setFix32(0, 0, 1);
     m_direction *= m_distance;
     m_direction = rotX * m_direction;

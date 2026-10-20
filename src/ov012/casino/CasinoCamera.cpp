@@ -56,7 +56,7 @@ THUMB casino::CasinoCamera* casino::CasinoCamera::getSingleton()
 THUMB void casino::CasinoCamera::initialize()
 {
     camera_.setup();
-    camera_.unkfunc_02051ddc(position, 0);
+    camera_.setTarget(position, 0);
     camera_.setDistance(distance);
     camera_.setAngle(default_angle);
     camera_.setOffset(offset);
@@ -73,5 +73,5 @@ THUMB void casino::CasinoCamera::terminate()
 
 THUMB void casino::CasinoCamera::draw()
 {
-    camera_.unkfunc_02051cbc();
+    camera_.applyCamera();
 }

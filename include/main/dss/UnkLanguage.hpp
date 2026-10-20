@@ -6,8 +6,8 @@ struct UnkLanguage {
     UnkLanguage();
 };
 
-void unkfunc_020464f8();                        // set the game code of the region
-int unkfunc_020464e8();                         // game region (1: JP, 2: NA, 3: EU)
-int unkfunc_020465a0();                         // region code
+void setRegionGameCode();                        // set the game code of the region
+int getGameRegion();                         // game region (1: JP, 2: NA, 3: EU)
+int getGgid();                         // region code
 
 extern const char* data_02099a10;               // game code

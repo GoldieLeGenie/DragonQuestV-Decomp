@@ -86,7 +86,7 @@ THUMB void DebugBattleInfo::draw()
 THUMB void DebugBattleInfo::unkfunc_020273fc(int x, int y)
 {
     debugConsolePrintf(x, y, "HEAP");
-    debugConsolePrintf(x, y + 1, "%3dK", unkfunc_0204c5f4(&data_020fd24c) >> 10);
+    debugConsolePrintf(x, y + 1, "%3dK", getAppHeapFreeSize(&data_020fd24c) >> 10);
     debugConsolePrintf(x, y + 2, "VRAM");
     debugConsolePrintf(x, y + 3, "%3dk", data_020f4f74.unk_08 >> 10);
     drawDebugWindow(x, y, 4, 4);

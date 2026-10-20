@@ -119,7 +119,7 @@ ARM void DSSAData::setup(void* data)
     }
     boundingBox_ = (UnkDSSABoundingBox*)data;
     offset_ = (int*)(boundingBox_ + 1);
-    unkfunc_0204c49c(frame_, 2);
+    roundUp(frame_, 2);
     for (int i = 0; i < frame_; i++) {
         setParts(i);
     }
@@ -215,10 +215,10 @@ ARM void DSSAObject::setTexture(void* texture)
     }
     TextureObject* tex = (TextureObject*)dssaData_.texture_;
     if (tex->flags_ & 1) {
-        unkfunc_02049868((unsigned short*)tex->unkfunc_0204a1d4(), tex->unkfunc_0204a1dc(), hue);
+        applyPaletteTone((unsigned short*)tex->unkfunc_0204a1d4(), tex->unkfunc_0204a1dc(), hue);
         ((TextureObject*)dssaData_.texture_)->unkfunc_0204a090(0);
     } else {
-        unkfunc_02049868((unsigned short*)((int)dssaData_.texture_ + tex->unkfunc_0204a1d4()), tex->unkfunc_0204a1dc(), hue);
+        applyPaletteTone((unsigned short*)((int)dssaData_.texture_ + tex->unkfunc_0204a1d4()), tex->unkfunc_0204a1dc(), hue);
     }
 }
 

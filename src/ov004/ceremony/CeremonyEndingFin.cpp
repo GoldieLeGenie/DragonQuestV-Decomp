@@ -53,29 +53,29 @@ THUMB void ceremony::CeremonyEndingFin::initialize()
     penDssa_.pause(true);
     dss::Fix32Vector3 pos(0.0f, 18.0f, 0.0f);
     penDssa_.setPosition(pos);
-    theSprite_[0].unkfunc_02051a50("data/ending/the_end/the_u.tex", 0);
-    theSprite_[1].unkfunc_02051a50("data/ending/the_end/the_d.tex", 0);
-    endSprite_[0].unkfunc_02051a50("data/ending/the_end/end_u.tex", 0);
-    endSprite_[1].unkfunc_02051a50("data/ending/the_end/end_d.tex", 0);
+    theSprite_[0].loadFile("data/ending/the_end/the_u.tex", 0);
+    theSprite_[1].loadFile("data/ending/the_end/the_d.tex", 0);
+    endSprite_[0].loadFile("data/ending/the_end/end_u.tex", 0);
+    endSprite_[1].loadFile("data/ending/the_end/end_d.tex", 0);
     pamData_.setup("data/ending/the_end/end.pam", 0, 0);
     pam_.anim_.setup(pamData_.getAddr());
     m_frame = 0;
     m_pam_index = 0;
     dss::memcpy(palette_, pam_.anim_.getColor(m_pam_index), pam_.anim_.getColorCount() * 2);
     for (int i = 0; i < 2; i++) {
-        theSprite_[i].unkfunc_02051b90(0x1f);
+        theSprite_[i].setAlpha(0x1f);
         int depth = 0x3c - i;
-        theSprite_[i].unkfunc_02051ba0(depth);
-        theSprite_[i].unkfunc_02051b78();
-        theSprite_[i].unkfunc_02051b20(0x40, 0x40);
-        theSprite_[i].unkfunc_02051b2c(0, 0, 0x40, 0x40);
-        theSprite_[i].unkfunc_02051b14(0x40, 0x40);
-        endSprite_[i].unkfunc_02051b90(0x1f);
-        endSprite_[i].unkfunc_02051ba0(depth);
-        endSprite_[i].unkfunc_02051b78();
-        endSprite_[i].unkfunc_02051b20(0x40, 0x40);
-        endSprite_[i].unkfunc_02051b2c(0, 0, 0x40, 0x40);
-        endSprite_[i].unkfunc_02051b14(0x80, 0x40);
+        theSprite_[i].setPolygonID(depth);
+        theSprite_[i].setMainScreen();
+        theSprite_[i].setSize(0x40, 0x40);
+        theSprite_[i].setTexCoords(0, 0, 0x40, 0x40);
+        theSprite_[i].setPosition(0x40, 0x40);
+        endSprite_[i].setAlpha(0x1f);
+        endSprite_[i].setPolygonID(depth);
+        endSprite_[i].setMainScreen();
+        endSprite_[i].setSize(0x40, 0x40);
+        endSprite_[i].setTexCoords(0, 0, 0x40, 0x40);
+        endSprite_[i].setPosition(0x80, 0x40);
     }
     enable_ = 1;
     penDssa_.start(0);
@@ -83,10 +83,10 @@ THUMB void ceremony::CeremonyEndingFin::initialize()
 
 THUMB void ceremony::CeremonyEndingFin::terminate()
 {
-    theSprite_[0].unkfunc_02051ac4();
-    theSprite_[1].unkfunc_02051ac4();
-    endSprite_[0].unkfunc_02051ac4();
-    endSprite_[1].unkfunc_02051ac4();
+    theSprite_[0].unload();
+    theSprite_[1].unload();
+    endSprite_[0].unload();
+    endSprite_[1].unload();
     pamData_.cleanup();
     pam_.unkfunc_02051648();
     penTexture_->unkfunc_02049f90();
@@ -104,8 +104,8 @@ THUMB void ceremony::CeremonyEndingFin::draw()
 {
     setupOrtho2D();
     for (int i = 0; i < 2; i++) {
-        theSprite_[i].unkfunc_02051b68();
-        endSprite_[i].unkfunc_02051b68();
+        theSprite_[i].draw();
+        endSprite_[i].draw();
     }
     if ((getDisplayFrame() & 1) && !penDssa_.isEnd()) {
         penDssa_.draw();
@@ -128,7 +128,7 @@ THUMB void ceremony::CeremonyEndingFin::animTheEnd()
         }
         dss::memcpy(palette_, pam_.anim_.getColor(m_pam_index), pam_.anim_.getColorCount() * 2);
     }
-    unsigned char* data = (unsigned char*)theSprite_[0].unkfunc_02051a44();
+    unsigned char* data = (unsigned char*)theSprite_[0].getTextureData();
     for (int x = 0; x < 0x40; x++) {
         for (int y = 0; y < 0x40; y++) {
             if (palette_[data[x + y * 0x40]] == 0) {
@@ -136,7 +136,7 @@ THUMB void ceremony::CeremonyEndingFin::animTheEnd()
             }
         }
     }
-    data = (unsigned char*)endSprite_[0].unkfunc_02051a44();
+    data = (unsigned char*)endSprite_[0].getTextureData();
     for (int x = 0; x < 0x40; x++) {
         for (int y = 0; y < 0x40; y++) {
             if (palette_[data[x + y * 0x40]] == 0) {
@@ -144,12 +144,12 @@ THUMB void ceremony::CeremonyEndingFin::animTheEnd()
             }
         }
     }
-    theSprite_[0].unkfunc_02051a20();
-    theSprite_[0].unkfunc_02051a38();
-    theSprite_[0].unkfunc_02051a2c();
-    endSprite_[0].unkfunc_02051a20();
-    endSprite_[0].unkfunc_02051a38();
-    endSprite_[0].unkfunc_02051a2c();
+    theSprite_[0].freeVram();
+    theSprite_[0].allocVram();
+    theSprite_[0].transferToVram();
+    endSprite_[0].freeVram();
+    endSprite_[0].allocVram();
+    endSprite_[0].transferToVram();
 }
 
 THUMB bool ceremony::CeremonyEndingFin::isEnd()

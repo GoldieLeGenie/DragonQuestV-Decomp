@@ -2238,42 +2238,42 @@ UnkMenuParts s_parts_021805b0[] = {
 THUMB void unkfunc_0217b858(char* line1, char* line2, char* line3, char* message)
 {
     UnkUtf8Iterator src;
-    src.unkfunc_0204a800(message);
+    src.setText(message);
     UnkUtf8Iterator dst1;
-    dst1.unkfunc_0204a828(line1, 0x400);
+    dst1.initBuffer(line1, 0x400);
     UnkUtf8Iterator dst2;
-    dst2.unkfunc_0204a828(line2, 0x400);
+    dst2.initBuffer(line2, 0x400);
     UnkUtf8Iterator dst3;
-    dst3.unkfunc_0204a828(line3, 0x400);
+    dst3.initBuffer(line3, 0x400);
     for (int i = 0; ; i++) {
-        unsigned short c = src.unkfunc_0204a990();
-        src.unkfunc_0204a9ec();
+        unsigned short c = src.getChar();
+        src.nextChar();
         if (c == 0) {
             break;
         }
-        dst1.unkfunc_0204a9a0(c);
+        dst1.putChar(c);
         if (i == 14) {
             break;
         }
     }
     for (int i = 0; ; i++) {
-        unsigned short c = src.unkfunc_0204a990();
-        src.unkfunc_0204a9ec();
+        unsigned short c = src.getChar();
+        src.nextChar();
         if (c == 0) {
             break;
         }
-        dst2.unkfunc_0204a9a0(c);
+        dst2.putChar(c);
         if (i == 14) {
             break;
         }
     }
     for (int i = 0; ; i++) {
-        unsigned short c = src.unkfunc_0204a990();
-        src.unkfunc_0204a9ec();
+        unsigned short c = src.getChar();
+        src.nextChar();
         if (c == 0) {
             break;
         }
-        dst3.unkfunc_0204a9a0(c);
+        dst3.putChar(c);
         if (i == 14) {
             break;
         }

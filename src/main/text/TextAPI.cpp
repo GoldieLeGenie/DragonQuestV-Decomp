@@ -125,7 +125,7 @@ THUMB void TextAPI::getMonsterNamePlateTextImitation(char* text, int monsterInde
         opt = 2;
     }
     var.extract_var(work, 0x200, opt);
-    unkfunc_0204af38(data_02099e94[0], data_02099e94[1], upper, 0x200, work, 1);
+    translateTextPrefix(data_02099e94[0], data_02099e94[1], upper, 0x200, work, 1);
     g_text_extractor.extractText(name, 0x200, 0xf0000000, flag);
     if (flag == 1) {
         dss::sprintf(text, "%s", upper);
@@ -143,7 +143,7 @@ THUMB void TextAPI::getPlayerNamePlateTextImitation(char* text, int playerIndex,
 
     var.set(1, 0, 0x50000000, playerIndex, 1, -1);
     var.extract_var(work, 0x200, 0);
-    unkfunc_0204af38(data_02099e94[0], data_02099e94[1], upper, 0x200, work, 1);
+    translateTextPrefix(data_02099e94[0], data_02099e94[1], upper, 0x200, work, 1);
     g_text_extractor.extractText(name, 0x200, 0xf0000000, flag);
     if (flag == 1) {
         dss::sprintf(text, "%s", upper);
@@ -199,23 +199,23 @@ THUMB int TextAPI::isGermanMonsterException(int monsterIndex)
 THUMB bool TextAPI::isGirlieName(const char* name)
 {
     UnkUtf8Iterator it;
-    it.unkfunc_0204a800(name);
-    int count = it.unkfunc_0204a848();
+    it.setText(name);
+    int count = it.getCount();
     switch (count) {
     case 2:
         break;
     case 3:
-        it.unkfunc_0204a9ec();
+        it.nextChar();
         break;
     case 4:
-        it.unkfunc_0204a9ec();
-        it.unkfunc_0204a9ec();
+        it.nextChar();
+        it.nextChar();
         break;
     default:
         return false;
     }
     char* last2 = it.buf_ + it.pos_;
-    it.unkfunc_0204a9ec();
+    it.nextChar();
     char* last = it.buf_ + it.pos_;
     const char* ko = "\xe3\x81\x93";
     if (count == 3) {
@@ -293,28 +293,28 @@ THUMB int TextAPI::splitMessage(int msg_id, unsigned char* line0, unsigned char*
         line7[0] = 0;
     }
     getMessage(buf, 0x200, msg_id);
-    src.unkfunc_0204a800(buf);
-    dst.unkfunc_0204a814((char*)lines[count], 0x100);
+    src.setText(buf);
+    dst.setBuffer((char*)lines[count], 0x100);
     count++;
-    if (src.unkfunc_0204a990() != 0) {
+    if (src.getChar() != 0) {
         unsigned char** next = &lines[count];
         int c;
         do {
-            c = src.unkfunc_0204a990();
-            src.unkfunc_0204a9ec();
+            c = src.getChar();
+            src.nextChar();
             if (c != '\n') {
-                dst.unkfunc_0204a9a0(c);
+                dst.putChar(c);
             } else {
-                dst.unkfunc_0204a9a0(0xffff);
+                dst.putChar(0xffff);
                 if (*next == NULL) {
                     return count;
                 }
-                dst.unkfunc_0204a814((char*)*next, 0x100);
+                dst.setBuffer((char*)*next, 0x100);
                 next++;
                 count++;
             }
         } while (c != 0);
     }
-    dst.unkfunc_0204a9a0(0xffff);
+    dst.putChar(0xffff);
     return count;
 }

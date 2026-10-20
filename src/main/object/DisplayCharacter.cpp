@@ -327,11 +327,11 @@ ARM void DisplayCharacter::setHueChange(int type, int frame)
             palette = (unsigned short*)((char*)texture + texture->unkfunc_0204a1d4());
         }
         if (i != textureIndex_) {
-            unkfunc_02049868(palette, texture->unkfunc_0204a1dc(), type);
+            applyPaletteTone(palette, texture->unkfunc_0204a1dc(), type);
         } else {
             dss::memcpy(unk_288, palette, texture->unkfunc_0204a1dc());
             dss::memcpy(unk_268, palette, texture->unkfunc_0204a1dc());
-            unkfunc_02049868(unk_268, texture->unkfunc_0204a1dc(), type);
+            applyPaletteTone(unk_268, texture->unkfunc_0204a1dc(), type);
         }
     }
     unk_2a8 = textureIndex_;

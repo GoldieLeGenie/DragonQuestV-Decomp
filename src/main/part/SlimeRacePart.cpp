@@ -52,7 +52,7 @@ THUMB void race::SlimeRacePart::initialize()
     GX_ResetBankForSubObj();
     GX_ResetBankForSubBg();
     GX_SetBankForTex(GX_VRAM_AB);
-    data_020f4f74.unkfunc_0204a53c(0x40000, 0x4000);
+    data_020f4f74.initVramManagers(0x40000, 0x4000);
     unkfunc_0204c9d8(&dss::g_DISPLAYPLUGIN_DOUBLE3D);
     func_02062480(5, 0x1f, 0x10, 0x1f);
     func_02062480(6, 6, 0x19, 0x1f);
@@ -62,8 +62,8 @@ THUMB void race::SlimeRacePart::initialize()
     func_02062480(10, 8, 0xb, 0x1f);
     func_02062480(11, 0x1f, 0x1f, 0);
     unkfunc_0204afe0();
-    unkfunc_0204b5d4((int)&OVERLAY_3_ID);
-    unkfunc_0204b5d4((int)&OVERLAY_19_ID);
+    loadOverlay((int)&OVERLAY_3_ID);
+    loadOverlay((int)&OVERLAY_19_ID);
     ov019_entry();
     const RACE_BG_MAP map[2] = {RACE_BG_MAP_ev3, RACE_BG_MAP_ev5};
     ST_ARG_SL_RACE arg;
@@ -87,7 +87,7 @@ THUMB void race::SlimeRacePart::initialize()
         arg.nakamaSlime = NAKAMA_SLIME_entry_nonBet;
     }
     arg.unk_0c = 0;
-    s_work = unkfunc_0204c5bc(&data_020fd24c, 0x80000, 0x20);
+    s_work = dssAlloc(&data_020fd24c, 0x80000, 0x20);
     SlimeRaceInit(s_work, 0x80000, &arg);
     func_02082654(1);
     OS_Wait();
@@ -100,11 +100,11 @@ THUMB void race::SlimeRacePart::terminate()
 {
     dss::g_Pad.unkfunc_0204bc24(0);
     SlimeRaceTerm();
-    unkfunc_0204c5c8(&data_020fd24c, s_work);
+    dssFree(&data_020fd24c, s_work);
     s_work = NULL;
-    unkfunc_0204b5e8((int)&OVERLAY_3_ID);
-    unkfunc_0204b5e8((int)&OVERLAY_19_ID);
-    data_020f4f74.unkfunc_0204a5f0();
+    unloadOverlay((int)&OVERLAY_3_ID);
+    unloadOverlay((int)&OVERLAY_19_ID);
+    data_020f4f74.onPartTerminate();
 }
 
 THUMB void race::SlimeRacePart::onExecutePart()

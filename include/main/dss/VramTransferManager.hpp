@@ -21,9 +21,9 @@ struct VramTransferManager {
 
     VramTransferManager();
     ~VramTransferManager();
-    void unkfunc_0204a528();                        // init the transfer queue
-    void unkfunc_0204a53c(int texSize, int plttSize); // init the texture/palette VRAM managers
-    void unkfunc_0204a5f0();
+    void initTransferQueue();                        // init the transfer queue
+    void initVramManagers(int texSize, int plttSize); // init the texture/palette VRAM managers
+    void onPartTerminate();
     int allocTexVram(int size);                 // allocates a texture block, returns its handle
     void freeTexVram(unsigned int handle);     // frees a texture block
     int getTexVramAddr(unsigned int handle);      // address of a texture block

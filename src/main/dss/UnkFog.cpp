@@ -8,23 +8,23 @@ dss::Fix32 data_020f3e34[2];
 int data_020f3e3c[2];
 unsigned int data_020f3e44[2][8];
 
-THUMB void unkfunc_02046ab0()
+THUMB void initFog()
 {
     data_020f3e30 = 0;
     func_02075e00(0, 0, 10, 1000);
     for (signed char i = 0; i < 8; i++) {
-        data_020f3e44[0][i] = unkfunc_0204f3bc((unsigned char)(i * 16 + 12), (unsigned char)(i * 16 + 8), (unsigned char)(i * 16 + 4), (unsigned char)(i * 16));
+        data_020f3e44[0][i] = packRgba((unsigned char)(i * 16 + 12), (unsigned char)(i * 16 + 8), (unsigned char)(i * 16 + 4), (unsigned char)(i * 16));
     }
     func_02075eb8(data_020f3e44[0]);
     *(volatile unsigned int*)0x04000358 = 0x1f7fff;
 }
 
-THUMB void unkfunc_02046b28(int side, int offset)
+THUMB void setFogOffset(int side, int offset)
 {
     data_020f3e3c[side] = offset;
 }
 
-THUMB void unkfunc_02046b34(int side, dss::Fix32 rate)
+THUMB void setFogRate(int side, dss::Fix32 rate)
 {
     for (int i = 0; i < 8; i++) {
         int a = rate.value * (i * 16) >> 12;
@@ -35,22 +35,22 @@ THUMB void unkfunc_02046b34(int side, dss::Fix32 rate)
         if (i == 7) {
             r = 0x7f;
         }
-        data_020f3e44[side][i] = unkfunc_0204f3bc((unsigned char)r, (unsigned char)g, (unsigned char)b, (unsigned char)a);
+        data_020f3e44[side][i] = packRgba((unsigned char)r, (unsigned char)g, (unsigned char)b, (unsigned char)a);
     }
 }
 
-THUMB void unkfunc_02046ba8(int r, int g, int b)
+THUMB void setFogColor(int r, int g, int b)
 {
     *(volatile unsigned int*)0x04000358 = (unsigned short)(r | (g << 5) | (b << 10)) | 0x1f0000;
 }
 
-THUMB void unkfunc_02046bc4(int enable)
+THUMB void setFogEnable(int enable)
 {
     data_020f3e30 = enable;
     func_02075e00(0, 0, 10, 1000);
 }
 
-THUMB void unkfunc_02046be0()
+THUMB void updateFog()
 {
     if (data_020f3e30 == 0) {
         return;

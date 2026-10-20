@@ -290,7 +290,7 @@ THUMB void profile::Profile::collect_PROFILE_PLAYER()
             SAVE = true;
         }
         if (SAVE) {
-            unkfunc_0204afa8(playerdata.name_);
+            convertUtf8ToSjisWork(playerdata.name_);
             pP->PDA_INDEX = i;
             pP->PDA_FLAG = flg;
             pP->INDEX = playerdata.index_;

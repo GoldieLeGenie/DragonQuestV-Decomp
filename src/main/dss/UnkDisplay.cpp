@@ -10,8 +10,8 @@ inline int dss::UnkDisplayPlugin::getType()
 
 THUMB UnkDisplay::UnkDisplay()
 {
-    oam_[0].unkfunc_0204db88();
-    oam_[1].unkfunc_0204db88();
+    oam_[0].init();
+    oam_[1].init();
     unkfunc_0204c9d8(NULL);
     unkfunc_0204ccdc(0);
     unkfunc_0204cce8(0x7c0f);
@@ -46,7 +46,7 @@ THUMB void unkfunc_0204c9c8()
 THUMB void unkfunc_0204c9d8(dss::UnkDisplayPlugin* plugin)
 {
     UnkDisplay* display = &data_020fe6b0;
-    unkfunc_0204e83c(&data_020fe6b0.screen_, data_020fe6b0.screenData_, 32, 48);
+    initScreenBuffer(&data_020fe6b0.screen_, data_020fe6b0.screenData_, 32, 48);
     data_020fe6b0.nextPlugin_ = plugin;
     data_020fe6b0.plugin_ = plugin;
     data_020fe6b0.frame_ = 0;
@@ -59,14 +59,14 @@ THUMB void unkfunc_0204c9d8(dss::UnkDisplayPlugin* plugin)
     plugin->initialize();
     MI_CpuFill(0xc0, (void*)0x07000000, 0x400);
     MI_CpuFill(0xc0, (void*)0x07000400, 0x400);
-    display->oam_[0].unkfunc_0204db8c();
-    display->oam_[1].unkfunc_0204db8c();
+    display->oam_[0].clear();
+    display->oam_[1].clear();
 }
 
 THUMB void unkfunc_0204ca54()
 {
-    data_020fe6b0.oam_[0].unkfunc_0204db8c();
-    data_020fe6b0.oam_[1].unkfunc_0204db8c();
+    data_020fe6b0.oam_[0].clear();
+    data_020fe6b0.oam_[1].clear();
 }
 
 THUMB void unkfunc_0204ca6c()
@@ -76,7 +76,7 @@ THUMB void unkfunc_0204ca6c()
         int odd = getDisplayFrame() & 1;
         int bg = unkfunc_0204ced8(odd * 192);
         if (bg != -1) {
-            unkfunc_0204dca8(unkfunc_0204de5c(bg), 0, display->screenData_[odd], sizeof(display->screenData_[0]));
+            requestVramCopy(getBgScreenVramType(bg), 0, display->screenData_[odd], sizeof(display->screenData_[0]));
         }
     }
     if (!(display->frame_ & 1) && display->plugin_ != display->nextPlugin_) {
@@ -90,14 +90,14 @@ THUMB void unkfunc_0204ca6c()
     display->plugin_->update(display->frame_);
     display->plugin_->updateDisplayText();
     display->frame_++;
-    getBgPaletteBuffer(1)->unkfunc_0204dbe8(0, 0, display->backColor_);
-    getBgPaletteBuffer(5)->unkfunc_0204dbe8(0, 0, display->backColor_);
-    display->bgPalette_[0].unkfunc_0204dbd4(0xf);
-    display->bgPalette_[1].unkfunc_0204dbd4(0x1f);
-    display->objPalette_[0].unkfunc_0204dbd4(0xe);
-    display->objPalette_[1].unkfunc_0204dbd4(0x1e);
-    display->oam_[0].unkfunc_0204dbb0(0x12);
-    display->oam_[1].unkfunc_0204dbb0(0x22);
+    getBgPaletteBuffer(1)->setColor(0, 0, display->backColor_);
+    getBgPaletteBuffer(5)->setColor(0, 0, display->backColor_);
+    display->bgPalette_[0].requestTransfer(0xf);
+    display->bgPalette_[1].requestTransfer(0x1f);
+    display->objPalette_[0].requestTransfer(0xe);
+    display->objPalette_[1].requestTransfer(0x1e);
+    display->oam_[0].requestTransfer(0x12);
+    display->oam_[1].requestTransfer(0x22);
     G2_SetWndOutsidePlane(0x1f, 1);
     int window0 = display->windowEnable_[0];
     int window1 = display->windowEnable_[1];

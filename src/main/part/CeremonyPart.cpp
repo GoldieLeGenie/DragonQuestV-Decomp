@@ -23,12 +23,12 @@ ARM void ceremony::CeremonyPart::initialize()
     GX_ResetBankForSubObj();
     GX_ResetBankForSubBg();
     GX_SetBankForTex(GX_VRAM_AB);
-    data_020f4f74.unkfunc_0204a53c(0x40000, 0x4000);
+    data_020f4f74.initVramManagers(0x40000, 0x4000);
     unkfunc_0204c9d8(&dss::g_DISPLAYPLUGIN_DOUBLE3D);
     unkfunc_02048728(0);
-    unkfunc_0204b5d4((int)&OVERLAY_4_ID);
+    loadOverlay((int)&OVERLAY_4_ID);
     ov004_entry();
-    unkfunc_0204b5d4((int)&OVERLAY_19_ID);
+    loadOverlay((int)&OVERLAY_19_ID);
     ov019_entry();
     CeremonySystem::getSingleton()->initialize();
     g_Global.fadeIn(30);
@@ -38,10 +38,10 @@ ARM void ceremony::CeremonyPart::initialize()
 ARM void ceremony::CeremonyPart::terminate()
 {
     CeremonySystem::getSingleton()->terminate();
-    unkfunc_0204b5e8((int)&OVERLAY_4_ID);
-    unkfunc_0204b5e8((int)&OVERLAY_19_ID);
+    unloadOverlay((int)&OVERLAY_4_ID);
+    unloadOverlay((int)&OVERLAY_19_ID);
     dss::g_Pad.unkfunc_0204bc24(0);
-    data_020f4f74.unkfunc_0204a5f0();
+    data_020f4f74.onPartTerminate();
 }
 
 ARM void ceremony::CeremonyPart::onExecutePart()

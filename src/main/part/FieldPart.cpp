@@ -24,10 +24,10 @@ ARM void fld::FieldPart::initialize()
     GX_ResetBankForSubObj();
     GX_ResetBankForSubBg();
     GX_SetBankForTex(GX_VRAM_AB);
-    data_020f4f74.unkfunc_0204a53c(0x40000, 0x4000);
+    data_020f4f74.initVramManagers(0x40000, 0x4000);
     unkfunc_0204c9d8(&dss::g_DISPLAYPLUGIN_DOUBLE3D);
     unkfunc_02048728(0);
-    unkfunc_0204b5d4((int)&OVERLAY_5_ID);
+    loadOverlay((int)&OVERLAY_5_ID);
     ov005_entry();
     unkfunc_02018e6c(1);
     ov019_entry();
@@ -42,9 +42,9 @@ ARM void fld::FieldPart::terminate()
     FieldWindowSystem::getSingleton()->terminate();
     FieldSystem::getSingleton()->terminate();
     unkfunc_02018eac();
-    unkfunc_0204b5e8((int)&OVERLAY_5_ID);
+    unloadOverlay((int)&OVERLAY_5_ID);
     dss::g_Pad.unkfunc_0204bc24(0);
-    data_020f4f74.unkfunc_0204a5f0();
+    data_020f4f74.onPartTerminate();
 }
 
 ARM void fld::FieldPart::onExecutePart()

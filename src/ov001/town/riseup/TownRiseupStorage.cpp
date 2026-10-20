@@ -32,7 +32,7 @@ THUMB void twn::TownRiseupStorage::initialize()
         medal_[i].enable_ = false;
     }
     TownRiseupExhibit exhibit;
-    exhibit_ = (TownRiseupExhibit*)unkfunc_0204c5bc(&data_020fd24c, sizeof(TownRiseupExhibit) * RISEUP_EXHIBIT_MAX, 0x20);
+    exhibit_ = (TownRiseupExhibit*)dssAlloc(&data_020fd24c, sizeof(TownRiseupExhibit) * RISEUP_EXHIBIT_MAX, 0x20);
     for (unsigned int i = 0; i < RISEUP_EXHIBIT_MAX; i++) {
         dss::memcpy(&exhibit_[i], &exhibit, sizeof(TownRiseupExhibit));
         exhibit_[i].enable_ = false;
@@ -41,7 +41,7 @@ THUMB void twn::TownRiseupStorage::initialize()
 
 THUMB void twn::TownRiseupStorage::terminate()
 {
-    unkfunc_0204c5c8(&data_020fd24c, exhibit_);
+    dssFree(&data_020fd24c, exhibit_);
 }
 
 THUMB twn::TownRiseupBase* twn::TownRiseupStorage::getContainer(int type)

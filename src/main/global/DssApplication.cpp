@@ -10,7 +10,7 @@ ARM void DssApplication::unkfunc_02051658(int arg)
     unkfunc_0204b50c();
     unkfunc_0204afd8();
     initSleep();
-    UnkDssRand::unkfunc_0204f328();
+    UnkDssRand::initSeed();
     vf00();
 }
 

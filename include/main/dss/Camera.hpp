@@ -63,10 +63,10 @@ namespace dss {
         UnkDualCameraBase();
         virtual void update();
         virtual void calcPosition();
-        void unkfunc_02051c88();
-        void unkfunc_02051cbc();                // update, calc and apply the cameras
-        void unkfunc_02051cd8();                // apply the camera of the current screen
-        void unkfunc_02051ddc(const Fix32Vector3& target, int screen);
+        void updateCameraNo();
+        void applyCamera();                // update, calc and apply the cameras
+        void applyG3d();                // apply the camera of the current screen
+        void setTarget(const Fix32Vector3& target, int screen);
     };
 
     struct UnkDualCamera : UnkDualCameraBase {

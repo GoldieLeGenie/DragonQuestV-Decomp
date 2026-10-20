@@ -22,12 +22,12 @@ THUMB void casino::CasinoPart::initialize()
     GX_ResetBankForSubObj();
     GX_ResetBankForSubBg();
     GX_SetBankForTex(GX_VRAM_AB);
-    data_020f4f74.unkfunc_0204a53c(0x40000, 0x4000);
+    data_020f4f74.initVramManagers(0x40000, 0x4000);
     unkfunc_0204c9d8(&dss::g_DISPLAYPLUGIN_DOUBLE3D);
     unkfunc_0204afe0();
-    unkfunc_0204b5d4((int)&OVERLAY_12_ID);
+    loadOverlay((int)&OVERLAY_12_ID);
     ov012_entry();
-    unkfunc_0204b5d4((int)&OVERLAY_19_ID);
+    loadOverlay((int)&OVERLAY_19_ID);
     ov018_entry();
     CasinoSystem::getSingleton()->initialize();
     func_02082654(1);
@@ -39,9 +39,9 @@ THUMB void casino::CasinoPart::terminate()
 {
     dss::g_Pad.unkfunc_0204bc24(0);
     CasinoSystem::getSingleton()->terminate();
-    unkfunc_0204b5e8((int)&OVERLAY_12_ID);
-    unkfunc_0204b5e8((int)&OVERLAY_19_ID);
-    data_020f4f74.unkfunc_0204a5f0();
+    unloadOverlay((int)&OVERLAY_12_ID);
+    unloadOverlay((int)&OVERLAY_19_ID);
+    data_020f4f74.onPartTerminate();
 }
 
 THUMB void casino::CasinoPart::onExecutePart()

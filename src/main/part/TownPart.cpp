@@ -26,11 +26,11 @@ ARM void twn::TownPart::initialize()
     GX_ResetBankForSubObj();
     GX_ResetBankForSubBg();
     GX_SetBankForTex(GX_VRAM_AB);
-    data_020f4f74.unkfunc_0204a53c(0x40000, 0x4000);
+    data_020f4f74.initVramManagers(0x40000, 0x4000);
     unkfunc_0204c9d8(&dss::g_DISPLAYPLUGIN_DOUBLE3D);
     data_02101584.unkfunc_0205027c();
     unkfunc_0204afe0();
-    unkfunc_0204b5d4((int)&OVERLAY_1_ID);
+    loadOverlay((int)&OVERLAY_1_ID);
     ov001_entry();
     unkfunc_02018e6c(1);
     ov019_entry();
@@ -39,8 +39,8 @@ ARM void twn::TownPart::initialize()
     twn::TownWindowSystem::getSingleton().initialize();
     func_02082654(1);
     g_Global.fadeIn(33);
-    if (unkfunc_0204c604(&data_020fd24c) < s_minFreeSize) {
-        s_minFreeSize = unkfunc_0204c604(&data_020fd24c);
+    if (getAppHeapTotalFreeSize(&data_020fd24c) < s_minFreeSize) {
+        s_minFreeSize = getAppHeapTotalFreeSize(&data_020fd24c);
     }
     unkfunc_020270dc();
 }
@@ -51,10 +51,10 @@ ARM void twn::TownPart::terminate()
     twn::TownSystem::getSingleton().terminate();
     data_02101584.unkfunc_0205027c();
     unkfunc_0204afe0();
-    data_020a29f4.unkfunc_0204b5a8();
+    data_020a29f4.unload();
     unkfunc_02018eac();
-    unkfunc_0204b5e8((int)&OVERLAY_1_ID);
-    data_020f4f74.unkfunc_0204a5f0();
+    unloadOverlay((int)&OVERLAY_1_ID);
+    data_020f4f74.onPartTerminate();
 }
 
 ARM void twn::TownPart::onExecutePart()

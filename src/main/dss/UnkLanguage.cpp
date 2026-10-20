@@ -9,15 +9,15 @@ static int s_code;
 ARM UnkLanguage::UnkLanguage()
 {
     s_region = 3;
-    unkfunc_020464f8();
+    setRegionGameCode();
 }
 
-ARM int unkfunc_020464e8()
+ARM int getGameRegion()
 {
     return s_region;
 }
 
-ARM void unkfunc_020464f8()
+ARM void setRegionGameCode()
 {
     switch (s_region) {
     case 1:
@@ -39,7 +39,7 @@ ARM void unkfunc_020464f8()
     }
 }
 
-ARM int unkfunc_020465a0()
+ARM int getGgid()
 {
     return s_code;
 }

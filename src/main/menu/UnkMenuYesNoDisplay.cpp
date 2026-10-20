@@ -33,8 +33,8 @@ inline void UnkMenuYesNoDisplay::transferRow(int row)
 {
     int chr = id_ + row * 32;
     int tile = row * 6;
-    unkfunc_0204dca8(0x13, chr * 32, yesData_ + tile * 32, 0xc0);
-    unkfunc_0204dca8(0x13, (chr + 6) * 32, noData_ + tile * 32, 0xc0);
+    requestVramCopy(0x13, chr * 32, yesData_ + tile * 32, 0xc0);
+    requestVramCopy(0x13, (chr + 6) * 32, noData_ + tile * 32, 0xc0);
 }
 
 THUMB void UnkMenuYesNoDisplay::draw(UnkOamBuffer* main, UnkOamBuffer* sub)
@@ -53,13 +53,13 @@ THUMB void UnkMenuYesNoDisplay::draw(UnkOamBuffer* main, UnkOamBuffer* sub)
     frame->unkfunc_020652bc(x_ + 10, y + 16 + cursor_ * 24, 1);
     frame->setFrameType(1);
     frame->setEnable(1);
-    G2_SetOBJAttr(sub->unkfunc_0204dbc4(), x_ + 14, y + 10, 0, GX_OAM_MODE_NORMAL, 0, GX_OAM_EFFECT_NONE,
+    G2_SetOBJAttr(sub->allocEntry(), x_ + 14, y + 10, 0, GX_OAM_MODE_NORMAL, 0, GX_OAM_EFFECT_NONE,
                   GX_OAM_SHAPE_32x16, GX_OAM_COLORMODE_16, id_, 15, 0);
-    G2_SetOBJAttr(sub->unkfunc_0204dbc4(), x_ + 46, y + 10, 0, GX_OAM_MODE_NORMAL, 0, GX_OAM_EFFECT_NONE,
+    G2_SetOBJAttr(sub->allocEntry(), x_ + 46, y + 10, 0, GX_OAM_MODE_NORMAL, 0, GX_OAM_EFFECT_NONE,
                   GX_OAM_SHAPE_8x16, GX_OAM_COLORMODE_16, id_ + 4, 15, 0);
-    G2_SetOBJAttr(sub->unkfunc_0204dbc4(), x_ + 14, y + 34, 0, GX_OAM_MODE_NORMAL, 0, GX_OAM_EFFECT_NONE,
+    G2_SetOBJAttr(sub->allocEntry(), x_ + 14, y + 34, 0, GX_OAM_MODE_NORMAL, 0, GX_OAM_EFFECT_NONE,
                   GX_OAM_SHAPE_32x16, GX_OAM_COLORMODE_16, id_ + 6, 15, 0);
-    G2_SetOBJAttr(sub->unkfunc_0204dbc4(), x_ + 46, y + 34, 0, GX_OAM_MODE_NORMAL, 0, GX_OAM_EFFECT_NONE,
+    G2_SetOBJAttr(sub->allocEntry(), x_ + 46, y + 34, 0, GX_OAM_MODE_NORMAL, 0, GX_OAM_EFFECT_NONE,
                   GX_OAM_SHAPE_8x16, GX_OAM_COLORMODE_16, id_ + 10, 15, 0);
     if (transfer_ == 1) {
         for (int i = 0; i < 2; i++) {

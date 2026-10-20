@@ -52,31 +52,31 @@ THUMB void twn::TownImageMap::setup()
     checkData();
     map2d_ = 0;
     if (isEnable_) {
-        black_.unkfunc_02051b20(0x100, 0xc0);
-        black_.unkfunc_02051b90(0);
-        black_.unkfunc_02051b80();
-        black_.unkfunc_02051bbc(0, 0, 0);
-        black_.unkfunc_02051ba0(0x3f);
-        map_.unkfunc_02051a50(fileName_, 0);
-        map_.unkfunc_02051b80();
-        map_.unkfunc_02051b90(0);
-        map_.unkfunc_02051ba0(0x3f);
+        black_.setSize(0x100, 0xc0);
+        black_.setAlpha(0);
+        black_.setSubScreen();
+        black_.setColor(0, 0, 0);
+        black_.setPolygonID(0x3f);
+        map_.loadFile(fileName_, 0);
+        map_.setSubScreen();
+        map_.setAlpha(0);
+        map_.setPolygonID(0x3f);
         map_.sprite_.color0Opaque_ = 1;
-        point_.unkfunc_02051a50("data/field/2d/point_s.tex", 0);
-        point_.unkfunc_02051b80();
-        point_.unkfunc_02051b90(0);
-        point_.unkfunc_02051ba0(0x3d);
-        point_.unkfunc_02051bb0(0x18);
-        point_.unkfunc_02051b2c(0, 0, 0x10, 0x10);
-        point_.unkfunc_02051b20(0x10, 0x10);
+        point_.loadFile("data/field/2d/point_s.tex", 0);
+        point_.setSubScreen();
+        point_.setAlpha(0);
+        point_.setPolygonID(0x3d);
+        point_.setDepth(0x18);
+        point_.setTexCoords(0, 0, 0x10, 0x10);
+        point_.setSize(0x10, 0x10);
     }
 }
 
 THUMB void twn::TownImageMap::cleanup()
 {
     if (isEnable_) {
-        map_.unkfunc_02051ac4();
-        point_.unkfunc_02051ac4();
+        map_.unload();
+        point_.unload();
     }
     isEnable_ = false;
 }
@@ -91,40 +91,40 @@ THUMB void twn::TownImageMap::execute()
         case 1:
             data_02101da4 = true;
             calcTargetPos();
-            map_.unkfunc_02051b74(true);
+            map_.setEnabled(true);
             if (frame_ >= 2) {
-                point_.unkfunc_02051b74(true);
+                point_.setEnabled(true);
                 getTargetPos();
             }
             frame_++;
             if (frame_ == 0x1f) {
                 map2d_ = 2;
             }
-            map_.unkfunc_02051b90(frame_);
-            point_.unkfunc_02051b90(frame_);
+            map_.setAlpha(frame_);
+            point_.setAlpha(frame_);
             break;
         case 3:
             frame_--;
-            map_.unkfunc_02051b90(frame_);
-            point_.unkfunc_02051b90(frame_);
+            map_.setAlpha(frame_);
+            point_.setAlpha(frame_);
             if (frame_ <= 0) {
                 data_02101da4 = false;
-                map_.unkfunc_02051b74(false);
+                map_.setEnabled(false);
                 cleanup();
                 map2d_ = 0;
-                black_.unkfunc_02051b90(0);
+                black_.setAlpha(0);
             }
             break;
         case 5:
             frame_--;
-            black_.unkfunc_02051b90(0x1f - frame_);
+            black_.setAlpha(0x1f - frame_);
             if (frame_ <= 0) {
                 data_02101da4 = false;
-                map_.unkfunc_02051b74(false);
+                map_.setEnabled(false);
                 cleanup();
                 map2d_ = 0;
-                map_.unkfunc_02051b90(0);
-                point_.unkfunc_02051b90(0);
+                map_.setAlpha(0);
+                point_.setAlpha(0);
             }
             break;
         }
@@ -139,7 +139,7 @@ THUMB void twn::TownImageMap::execute()
         if (y < 0x10 && y > 0) {
             y = 0x10;
         }
-        point_.unkfunc_02051b14(x, y - 0x10);
+        point_.setPosition(x, y - 0x10);
     }
 }
 
@@ -173,10 +173,10 @@ THUMB void twn::TownImageMap::draw()
 {
     if (isEnable_) {
         setupOrtho2D();
-        map_.unkfunc_02051b68();
-        point_.unkfunc_02051b68();
+        map_.draw();
+        point_.draw();
         setupOrtho2DFine();
-        black_.unkfunc_02051b68();
+        black_.draw();
         camera_.applyCamera();
     }
 }

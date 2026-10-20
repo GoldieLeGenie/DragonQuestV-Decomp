@@ -42,7 +42,7 @@ THUMB void unkfunc_0204e58c(UnkCharBuffer* buffer, int x, int y, int w, int h, u
 
 THUMB void unkfunc_0204e5ec(UnkCharBuffer* buffer, int x, int y, int color)
 {
-    unkfunc_0204ee0c(unkfunc_0204e564(buffer, x >> 3, y >> 3), x & 7, y & 7, color);
+    setTilePixel(unkfunc_0204e564(buffer, x >> 3, y >> 3), x & 7, y & 7, color);
 }
 
 THUMB void unkfunc_0204e60c(UnkCharBuffer* buffer, int x, int y, int flip, int bank, unsigned short chr)

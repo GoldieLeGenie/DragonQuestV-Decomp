@@ -9,8 +9,8 @@ extern UnkPmSleepCallback data_020fd168;
 extern UnkPmSleepCallback data_020fd174;
 
 void initSleep();                        // init
-void unkfunc_0204bfa4();                        // update (sleep, LCD power)
-void unkfunc_0204c08c(int enable);              // lid-close sleep enable
-int unkfunc_02089568();
-void unkfunc_02089578(void* arg);               // pre-sleep callback
-void unkfunc_0208957c(void* arg);               // post-sleep callback
+void updateSleep();                        // update (sleep, LCD power)
+void setSleepEnabled(int enable);              // lid-close sleep enable
+int isSleepEnabled();
+void onPreSleep(void* arg);               // pre-sleep callback
+void onPostSleep(void* arg);               // post-sleep callback

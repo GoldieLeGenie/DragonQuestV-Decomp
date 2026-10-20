@@ -438,7 +438,7 @@ THUMB void Global::checkSave1()
 THUMB bool Global::checkSave2()
 {
     if (unkfunc_02086e24()) {
-        unkfunc_0204b5fc(1);
+        setPadLock(1);
         return true;
     }
     return false;

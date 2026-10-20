@@ -42,33 +42,33 @@ THUMB void fld::FieldLargeMap::unkfunc_02133d0c(Render* render)
 
 THUMB void fld::FieldLargeMap::unkfunc_02133d18()
 {
-    unk_54.unkfunc_02051af0();
-    unk_04.unkfunc_02051af0();
-    unk_54.unkfunc_02051ac4();
-    unk_04.unkfunc_02051ac4();
+    unk_54.detachRender();
+    unk_04.detachRender();
+    unk_54.unload();
+    unk_04.unload();
 }
 
 THUMB void fld::FieldLargeMap::unkfunc_02133d38()
 {
     char path[0x80];
-    unk_04.unkfunc_02051b2c(0, 0, 0x20, 0x20);
+    unk_04.setTexCoords(0, 0, 0x20, 0x20);
     dss::sprintf_s(path, sizeof(path), "data/field/large/largemap.tex");
-    unk_54.unkfunc_02051a50(path, 0);
-    unk_54.unkfunc_02051adc(render_);
-    unk_54.unkfunc_02051b80();
-    unk_54.unkfunc_02051ba0(0x3e);
-    unk_54.unkfunc_02051bb0(0x10);
-    unk_54.unkfunc_02051b90(0);
+    unk_54.loadFile(path, 0);
+    unk_54.attachRender(render_);
+    unk_54.setSubScreen();
+    unk_54.setPolygonID(0x3e);
+    unk_54.setDepth(0x10);
+    unk_54.setAlpha(0);
     dss::sprintf_s(path, sizeof(path), "data/field/2d/point.tex");
-    unk_04.unkfunc_02051a50(path, 0);
-    unk_04.unkfunc_02051adc(render_);
-    unk_04.unkfunc_02051b80();
-    unk_04.unkfunc_02051ba0(0x34);
-    unk_04.unkfunc_02051bb0(0x18);
-    unk_04.unkfunc_02051b90(0);
-    unk_04.unkfunc_02051b74(1);
-    unk_04.unkfunc_02051a20();
-    unk_54.unkfunc_02051a20();
+    unk_04.loadFile(path, 0);
+    unk_04.attachRender(render_);
+    unk_04.setSubScreen();
+    unk_04.setPolygonID(0x34);
+    unk_04.setDepth(0x18);
+    unk_04.setAlpha(0);
+    unk_04.setEnabled(1);
+    unk_04.freeVram();
+    unk_54.freeVram();
     unkfunc_02134004();
 }
 
@@ -115,9 +115,9 @@ THUMB void fld::FieldLargeMap::unkfunc_02133f00(int x, int y)
 {
     char* src[8];
     void* buffer[8];
-    char* dst = (char*)unk_54.unkfunc_02051a44();
+    char* dst = (char*)unk_54.getTextureData();
     for (int i = 0; i < 8; i++) {
-        buffer[i] = unkfunc_0204c5bc(&data_020fd24c, 0x400, 0x20);
+        buffer[i] = dssAlloc(&data_020fd24c, 0x400, 0x20);
     }
     int bx;
     int by;
@@ -154,7 +154,7 @@ THUMB void fld::FieldLargeMap::unkfunc_02133f00(int x, int y)
     }
     DC_CleanAll();
     for (int i = 0; i < 8; i++) {
-        unkfunc_0204c5c8(&data_020fd24c, buffer[i]);
+        dssFree(&data_020fd24c, buffer[i]);
     }
 }
 
@@ -165,27 +165,27 @@ THUMB void fld::FieldLargeMap::unkfunc_02134004()
     int y = (pos.vy.value + 0x40000) / 0x80000 - 3;
     unkfunc_02133f00(x, y);
     OS_Wait();
-    unk_54.unkfunc_02051a38();
-    unk_54.unkfunc_02051a2c();
+    unk_54.allocVram();
+    unk_54.transferToVram();
     int px = pos.vx.value - (x << 19);
     int py = pos.vy.value - (y << 19);
     px /= 0x4000;
     py /= 0x4000;
-    unk_04.unkfunc_02051a38();
-    unk_04.unkfunc_02051a2c();
-    unk_04.unkfunc_02051b20(0x20, 0x20);
-    unk_04.unkfunc_02051b14(px + s_markerOffsetX, s_markerOffsetY + (py - 0x20));
+    unk_04.allocVram();
+    unk_04.transferToVram();
+    unk_04.setSize(0x20, 0x20);
+    unk_04.setPosition(px + s_markerOffsetX, s_markerOffsetY + (py - 0x20));
     unk_a4 = px;
     unk_a8 = py;
 }
 
 THUMB void fld::FieldLargeMap::unkfunc_021340c8(unsigned char alpha)
 {
-    unk_54.unkfunc_02051b90(alpha);
-    unk_04.unkfunc_02051b90(alpha);
+    unk_54.setAlpha(alpha);
+    unk_04.setAlpha(alpha);
 }
 
 THUMB void fld::FieldLargeMap::unkfunc_021340e0()
 {
-    unk_04.unkfunc_02051b14(unk_a4 + s_markerOffsetX, s_markerOffsetY + (unk_a8 - 0x20));
+    unk_04.setPosition(unk_a4 + s_markerOffsetX, s_markerOffsetY + (unk_a8 - 0x20));
 }

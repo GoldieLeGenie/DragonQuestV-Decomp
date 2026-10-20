@@ -171,22 +171,22 @@ THUMB void fld::FieldData::setupSymbol(int flag)
         }
     }
     if (flag == 0) {
-        ruramoon_.unkfunc_02051a50("data/field/symbol/rulemoon.tex", 1);
-        ruramoon_.unkfunc_02051b78();
-        ruramoon_.unkfunc_02051bb0(2);
-        ruramoon_.unkfunc_02051ba0(0x29);
-        casinoShip_.unkfunc_02051a50("data/field/symbol/fune.tex", 1);
-        casinoShip_.unkfunc_02051b78();
-        casinoShip_.unkfunc_02051bb0(1);
-        smoke_.unkfunc_02051a50("data/field/symbol/kazankm1.tex", 1);
-        smoke_.unkfunc_02051b78();
-        smoke_.unkfunc_02051bb0(1);
-        magma_.unkfunc_02051a50("data/field/symbol/ygn01.tex", 1);
-        magma_.unkfunc_02051b78();
-        magma_.unkfunc_02051bb0(1);
-        sunkenFirmament_.unkfunc_02051a50("data/chr/tenkujo.tex", 1);
-        sunkenFirmament_.unkfunc_02051b78();
-        sunkenFirmament_.unkfunc_02051bb0(1);
+        ruramoon_.loadFile("data/field/symbol/rulemoon.tex", 1);
+        ruramoon_.setMainScreen();
+        ruramoon_.setDepth(2);
+        ruramoon_.setPolygonID(0x29);
+        casinoShip_.loadFile("data/field/symbol/fune.tex", 1);
+        casinoShip_.setMainScreen();
+        casinoShip_.setDepth(1);
+        smoke_.loadFile("data/field/symbol/kazankm1.tex", 1);
+        smoke_.setMainScreen();
+        smoke_.setDepth(1);
+        magma_.loadFile("data/field/symbol/ygn01.tex", 1);
+        magma_.setMainScreen();
+        magma_.setDepth(1);
+        sunkenFirmament_.loadFile("data/chr/tenkujo.tex", 1);
+        sunkenFirmament_.setMainScreen();
+        sunkenFirmament_.setDepth(1);
         for (int i = 0; i < 3; i++) {
             smokeCounter_[i] = i * 8;
         }
@@ -228,19 +228,19 @@ THUMB void fld::FieldData::cleanup(int map)
     }
     dataObject_.cleanup();
     if (ruramoon_.unkfunc_02051b04()) {
-        ruramoon_.unkfunc_02051ac4();
+        ruramoon_.unload();
     }
     if (smoke_.unkfunc_02051b04()) {
-        smoke_.unkfunc_02051ac4();
+        smoke_.unload();
     }
     if (magma_.unkfunc_02051b04()) {
-        magma_.unkfunc_02051ac4();
+        magma_.unload();
     }
     if (casinoShip_.unkfunc_02051b04()) {
-        casinoShip_.unkfunc_02051ac4();
+        casinoShip_.unload();
     }
     if (sunkenFirmament_.unkfunc_02051b04()) {
-        sunkenFirmament_.unkfunc_02051ac4();
+        sunkenFirmament_.unload();
     }
 }
 
@@ -363,7 +363,7 @@ THUMB void fld::FieldData::draw2DField(int x, int y, int u, int v, unsigned char
 THUMB void fld::FieldData::drawRuramonn()
 {
     if (ruramoon_.unkfunc_02051b04() && status::g_StageInfo.getTimeZone() == 4 && !g_AreaFlag.check(0xc7) && g_AreaFlag.check(0xc6)) {
-        ruramoon_.unkfunc_02051b68();
+        ruramoon_.draw();
     }
 }
 
@@ -377,8 +377,8 @@ THUMB void fld::FieldData::drawRuramoon(dss::Fix32 x, dss::Fix32 y)
         } else {
             alpha = 0x1f - (fcount % 0x7c) / 4;
         }
-        ruramoon_.unkfunc_02051b90(alpha);
-        ruramoon_.unkfunc_02051b40(x, y);
+        ruramoon_.setAlpha(alpha);
+        ruramoon_.setPositionFix32(x, y);
     }
 }
 
@@ -408,15 +408,15 @@ THUMB void fld::FieldData::drawSmoke(dss::Fix32 x, dss::Fix32 y)
             r2 = rand * 2;
             rest = count - *counter;
             size = *counter * scale / count;
-            smoke_.unkfunc_02051bb0(rest * 4 / count);
+            smoke_.setDepth(rest * 4 / count);
             w = r2;
             w += size;
             w += ofs;
-            smoke_.unkfunc_02051b20(w, w);
-            smoke_.unkfunc_02051b14(x.value / FX32_ONE + magmaOffsetX_ - (r2 + size + ofs) / 2 - rand, y.value / FX32_ONE + magmaOffsetY_ - *counter - rand);
-            smoke_.unkfunc_02051b90((unsigned char)(rest * 31 / count));
-            smoke_.unkfunc_02051ba0(i + 0x28);
-            smoke_.unkfunc_02051b68();
+            smoke_.setSize(w, w);
+            smoke_.setPosition(x.value / FX32_ONE + magmaOffsetX_ - (r2 + size + ofs) / 2 - rand, y.value / FX32_ONE + magmaOffsetY_ - *counter - rand);
+            smoke_.setAlpha((unsigned char)(rest * 31 / count));
+            smoke_.setPolygonID(i + 0x28);
+            smoke_.draw();
             counter++;
         }
     }
@@ -426,15 +426,15 @@ THUMB void fld::FieldData::drawMagma(dss::Fix32 x, dss::Fix32 y)
 {
     const int ofsX = 0xc000;
     const int ofsY = 0x2000;
-    magma_.unkfunc_02051b40(x + ofsX, y + ofsY);
-    magma_.unkfunc_02051b68();
+    magma_.setPositionFix32(x + ofsX, y + ofsY);
+    magma_.draw();
 }
 
 THUMB void fld::FieldData::drawCasinoShip(dss::Fix32 x, dss::Fix32 y)
 {
     if (casinoShip_.unkfunc_02051b04()) {
-        casinoShip_.unkfunc_02051b40(x, y);
-        casinoShip_.unkfunc_02051b68();
+        casinoShip_.setPositionFix32(x, y);
+        casinoShip_.draw();
     }
 }
 
@@ -445,9 +445,9 @@ THUMB void fld::FieldData::drawSunkenFirmament()
     const int margin = 0x1000;
     const int ctrl_id = 0x1f04;
     if (status::g_Story.isVehicleEnable(3) == false && sunkenFirmament_.unkfunc_02051b04()) {
-        sunkenFirmament_.unkfunc_02051b14(x - 0x20, y - 0x34);
-        sunkenFirmament_.unkfunc_02051b90(0x10);
-        sunkenFirmament_.unkfunc_02051b68();
+        sunkenFirmament_.setPosition(x - 0x20, y - 0x34);
+        sunkenFirmament_.setAlpha(0x10);
+        sunkenFirmament_.draw();
     }
 }
 

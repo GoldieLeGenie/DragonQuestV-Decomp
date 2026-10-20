@@ -56,7 +56,7 @@ THUMB void ceremony::CeremonyOpeningSystem::initialize()
     scl.value = 0x320;
     DSSAObject::setDefaultScale(scl);
     DSSAObject::setPriority(1);
-    if (unkfunc_020464e8() == 1) {
+    if (getGameRegion() == 1) {
         char path[128];
         dss::sprintf_s(path, sizeof(path), "data/opening/jp/logo.tex.lz");
         textureData_.setup(path, 0, 1);
@@ -81,10 +81,10 @@ THUMB void ceremony::CeremonyOpeningSystem::initialize()
         char area[3];
         char lang[3];
         char path[128];
-        if (unkfunc_020464e8() == 2) {
+        if (getGameRegion() == 2) {
             dss::sprintf_s(area, sizeof(area), "na");
         }
-        if (unkfunc_020464e8() == 3) {
+        if (getGameRegion() == 3) {
             dss::sprintf_s(area, sizeof(area), "eu");
         }
         if (status::g_Game.language_ == English) {
@@ -102,10 +102,10 @@ THUMB void ceremony::CeremonyOpeningSystem::initialize()
         if (status::g_Game.language_ == Spanish) {
             dss::sprintf_s(lang, sizeof(lang), "es");
         }
-        if (unkfunc_020464e8() == 2 && status::g_Game.language_ == German) {
+        if (getGameRegion() == 2 && status::g_Game.language_ == German) {
             dss::sprintf_s(lang, sizeof(lang), "en");
         }
-        if (unkfunc_020464e8() == 2 && status::g_Game.language_ == Italian) {
+        if (getGameRegion() == 2 && status::g_Game.language_ == Italian) {
             dss::sprintf_s(lang, sizeof(lang), "en");
         }
         dss::sprintf_s(path, sizeof(path), "data/opening/%s/%s/logo_%s_%s.tex.lz", area, lang, area, lang);

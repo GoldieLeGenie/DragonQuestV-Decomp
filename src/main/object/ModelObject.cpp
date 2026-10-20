@@ -12,7 +12,7 @@ dss::Fix32 ModelObject::defaultScale(FX32_ONE * 6);
 ARM void UnkStaticModelObject::setup(const char* name, int loadSwitch)
 {
     modelData_.setup(name, loadSwitch, 0);
-    unk_1cc.unkfunc_02046c3c(modelData_.getAddr());
+    unk_1cc.setModelFile(modelData_.getAddr());
     unkfunc_02048d08(&unk_1cc);
     vf00();
 }
@@ -26,13 +26,13 @@ ARM void UnkStaticModelObject::vf04()
 {
     UnkModelObjectBase::vf04();
     modelData_.cleanup();
-    unk_1cc.unkfunc_02046c48();
+    unk_1cc.release();
 }
 
 ARM void ModelObject::setup(const char* name, const char* animName, int loadSwitch)
 {
     modelData_.setup(name, loadSwitch, 0);
-    unk_1cc.unkfunc_02046c3c(modelData_.getAddr());
+    unk_1cc.setModelFile(modelData_.getAddr());
     unkfunc_02048d08(&unk_1cc);
 }
 
@@ -42,7 +42,7 @@ ARM void ModelObject::setup(void* model, int flag)
     if (flag == 0) {
         data_020f3e88 = 1;
     }
-    unk_1cc.unkfunc_02046c3c(modelData_.getAddr());
+    unk_1cc.setModelFile(modelData_.getAddr());
     unkfunc_02048d08(&unk_1cc);
     vf00();
 }
@@ -60,7 +60,7 @@ ARM void ModelObject::unkfunc_020508b8(const char* name, int index, int loadSwit
     if (data.getAddr() == 0) {
         return;
     }
-    animation_[index].unkfunc_020465e0(data.getAddr(), unk_1cc.unkfunc_02046f38());
+    animation_[index].unkfunc_020465e0(data.getAddr(), unk_1cc.getModel());
     unkfunc_02049104(animation_[index].obj_);
     if (index == 0) {
         animation_[index].obj_->ratio = FX32_ONE;
@@ -76,7 +76,7 @@ ARM void ModelObject::unkfunc_02050954(void* animation, int index)
     if (data.getAddr() == 0) {
         return;
     }
-    animation_[index].unkfunc_020465e0(data.getAddr(), unk_1cc.unkfunc_02046f38());
+    animation_[index].unkfunc_020465e0(data.getAddr(), unk_1cc.getModel());
     unkfunc_02049104(animation_[index].obj_);
 }
 
@@ -94,7 +94,7 @@ ARM void ModelObject::cleanup(int flag)
         animData_[i].cleanup();
     }
     if (flag) {
-        unk_1cc.unkfunc_02046c48();
+        unk_1cc.release();
     }
 }
 

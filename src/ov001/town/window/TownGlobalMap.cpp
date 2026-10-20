@@ -21,10 +21,10 @@ THUMB twn::TownGlobalMap& twn::TownGlobalMap::getSingleton()
 
 THUMB void twn::TownGlobalMap::setup()
 {
-    map_.unkfunc_02051a50("data/field/2d/dq5ds_wmap1.tex", 0);
-    map_.unkfunc_02051b80();
-    map_.unkfunc_02051b90(0);
-    map_.unkfunc_02051ba0(0x3f);
+    map_.loadFile("data/field/2d/dq5ds_wmap1.tex", 0);
+    map_.setSubScreen();
+    map_.setAlpha(0);
+    map_.setPolygonID(0x3f);
     map_.sprite_.color0Opaque_ = 1;
 }
 
@@ -32,9 +32,9 @@ THUMB void twn::TownGlobalMap::cleanup()
 {
     if (isEnable_) {
         cleanupPoint();
-        map_.unkfunc_02051ac4();
-        point_[0].unkfunc_02051b74(false);
-        point_[1].unkfunc_02051b74(false);
+        map_.unload();
+        point_[0].setEnabled(false);
+        point_[1].setEnabled(false);
     }
 }
 
@@ -63,9 +63,9 @@ THUMB void twn::TownGlobalMap::execute()
             }
             break;
         }
-        map_.unkfunc_02051b90((unsigned char)frame_);
-        point_[0].unkfunc_02051b90(frame_);
-        point_[1].unkfunc_02051b90(frame_);
+        map_.setAlpha((unsigned char)frame_);
+        point_[0].setAlpha(frame_);
+        point_[1].setAlpha(frame_);
     }
 }
 
@@ -73,29 +73,29 @@ THUMB void twn::TownGlobalMap::draw()
 {
     if (isEnable_) {
         setupOrtho2D();
-        map_.unkfunc_02051b68();
-        point_[0].unkfunc_02051b68();
-        point_[1].unkfunc_02051b68();
+        map_.draw();
+        point_[0].draw();
+        point_[1].draw();
     }
 }
 
 THUMB void twn::TownGlobalMap::setupPoint(int x, int y, int kind)
 {
     if (point_[kind].unkfunc_02051b04()) {
-        point_[kind].unkfunc_02051ac4();
+        point_[kind].unload();
     }
-    point_[kind].unkfunc_02051b74(true);
+    point_[kind].setEnabled(true);
     if (kind == 0) {
-        point_[kind].unkfunc_02051a50("data/field/2d/point_s.tex", 0);
+        point_[kind].loadFile("data/field/2d/point_s.tex", 0);
     } else {
-        point_[kind].unkfunc_02051a50("data/field/2d/point_s2.tex", 0);
+        point_[kind].loadFile("data/field/2d/point_s2.tex", 0);
     }
-    point_[kind].unkfunc_02051b80();
-    point_[kind].unkfunc_02051ba0(0x3d);
-    point_[kind].unkfunc_02051bb0(0x18);
-    point_[kind].unkfunc_02051b2c(0, 0, 0x10, 0x10);
-    point_[kind].unkfunc_02051b20(0x10, 0x10);
-    point_[kind].unkfunc_02051b14(x, y);
+    point_[kind].setSubScreen();
+    point_[kind].setPolygonID(0x3d);
+    point_[kind].setDepth(0x18);
+    point_[kind].setTexCoords(0, 0, 0x10, 0x10);
+    point_[kind].setSize(0x10, 0x10);
+    point_[kind].setPosition(x, y);
     unk_0f8 = 0;
     unk_0fc = 0;
 }
@@ -103,10 +103,10 @@ THUMB void twn::TownGlobalMap::setupPoint(int x, int y, int kind)
 THUMB void twn::TownGlobalMap::cleanupPoint()
 {
     if (point_[0].unkfunc_02051b04()) {
-        point_[0].unkfunc_02051ac4();
+        point_[0].unload();
     }
     if (point_[1].unkfunc_02051b04()) {
-        point_[1].unkfunc_02051ac4();
+        point_[1].unload();
     }
 }
 

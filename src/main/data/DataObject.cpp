@@ -30,7 +30,7 @@ ARM void DataObject::setup(void* addr)
 ARM void DataObject::cleanup()
 {
     if (m_flag & 1) {
-        unkfunc_0204c5c8(&data_020fd24c, m_addr);
+        dssFree(&data_020fd24c, m_addr);
     }
     m_flag = 0;
     m_addr = 0;
@@ -60,7 +60,7 @@ ARM void UnkLZDataObject::setup(const char* filename, int a, int b)
     if (isCompressed(m_addr)) {
         m_size = getUncompressedSize(m_addr);
         void* data = uncompressAlloc(m_addr);
-        unkfunc_0204c5c8(&data_020fd24c, m_addr);
+        dssFree(&data_020fd24c, m_addr);
         m_addr = data;
     }
     s_dataCount++;

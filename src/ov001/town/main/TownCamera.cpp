@@ -95,7 +95,7 @@ THUMB void TownCamera::initialize()
 {
     camera_.unk_004.setup();
     camera_.unk_074.setup();
-    camera_.unkfunc_02051ddc(position, 0);
+    camera_.setTarget(position, 0);
     camera_.setDistance(distance);
     camera_.setRotXYZ(default_angle);
     camera_.setOffset(offset);
@@ -291,7 +291,7 @@ THUMB void TownCamera::draw()
     int no0 = twn::TownStageManager::getSingleton()->stage_.m_fld.m_camera_no[0];
     int no1 = twn::TownStageManager::getSingleton()->stage_.m_fld.m_camera_no[1];
     if (no0 == 0 && no1 == 0) {
-        camera_.unkfunc_02051cbc();
+        camera_.applyCamera();
         if (getDisplayFrame() & 1) {
             ((getDisplayFrame() & 1) == 0 ? &camera_.unk_004 : &camera_.unk_074)->unkfunc_02046934();
         } else {
@@ -309,7 +309,7 @@ THUMB void TownCamera::draw()
         cam->m_target_pos.vx.value = twn::TownStageManager::getSingleton()->GetCameraCentFX32(no)->x;
         cam->m_target_pos.vy.value = twn::TownStageManager::getSingleton()->GetCameraCentFX32(no)->y;
         cam->m_target_pos.vz.value = twn::TownStageManager::getSingleton()->GetCameraCentFX32(no)->z;
-        camera_.unkfunc_02051cd8();
+        camera_.applyG3d();
         BillboardCharacter::setCamera(!isEven() ? &camera_.unk_004 : &camera_.unk_074);
     }
     DSSAObjectWithCamera::camera_ = !isEven() ? &camera_.unk_004 : &camera_.unk_074;
@@ -638,8 +638,8 @@ THUMB void TownCamera::unkfunc_021403a0(dss::Vector3<short>& angle, dss::Fix32Ve
     dss::UnkMatrix43 rotX;
     dss::UnkMatrix43 rotY;
     dss::Fix32Vector3& dirVec = camera_.unk_004.getDirection();
-    rotX.unkfunc_0204f4b4(angle.vx);
-    rotY.unkfunc_0204f4ec(angle.vy);
+    rotX.setRotX(angle.vx);
+    rotY.setRotY(angle.vy);
     dirVec.setFix32(0, 0, 1);
     dirVec *= camera_.unk_004.getDistance();
     dirVec = rotX * dirVec;

@@ -998,7 +998,7 @@ bool cmd_the_end(void* scriptParam)
 
 bool cmd_check_the_end(void* scriptParam)
 {
-    if (unkfunc_020464e8() == 1) {
+    if (getGameRegion() == 1) {
         return ceremony::CeremonyEndingFin::getSingleton()->isEnd();
     }
     return ceremony::UnkCeremonyEndingFin::getSingleton()->isEnd();

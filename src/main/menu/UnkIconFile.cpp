@@ -74,16 +74,16 @@ THUMB void UnkIconFile::unkfunc_0206dd54(int entrySize, int cacheNum)
 {
     entrySize_ = entrySize;
     cacheNum_ = cacheNum;
-    keys_ = (int*)unkfunc_0204c504(&data_020fd24c, cacheNum * 4, 0x20);
-    ages_ = (int*)unkfunc_0204c504(&data_020fd24c, cacheNum * 4, 0x20);
-    cache_ = (char*)unkfunc_0204c504(&data_020fd24c, entrySize * cacheNum, 0x20);
+    keys_ = (int*)allocAppHeap(&data_020fd24c, cacheNum * 4, 0x20);
+    ages_ = (int*)allocAppHeap(&data_020fd24c, cacheNum * 4, 0x20);
+    cache_ = (char*)allocAppHeap(&data_020fd24c, entrySize * cacheNum, 0x20);
     unkfunc_0206dd28();
     DataObject header;
     header.setup(streamFile_, 1, 0);
     UnkMessageFile* file = (UnkMessageFile*)header.getAddr();
     int size = file->unk_14 + file->unk_18;
     header.cleanup();
-    header_ = unkfunc_0204c504(&data_020fd24c, size, 0x20);
+    header_ = allocAppHeap(&data_020fd24c, size, 0x20);
     dss::g_File.unkfunc_0204b250(streamFile_, header_, 0, size, 0);
 }
 

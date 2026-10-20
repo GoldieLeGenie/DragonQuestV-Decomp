@@ -42,22 +42,22 @@ void uncompressData(void* dst);               // uncompress
 unsigned int getUncompressedSize(void* src);       // uncompressed size
 int isCompressed(void* data);               // is compressed
 void* uncompressAlloc(void* data);             // uncompress (allocates)
-void unkfunc_0204c2b0(UnkHeap* heap, unsigned int size0, unsigned int size1, unsigned int size2, int mode);    // init
-int unkfunc_0204c49c(int value, int alignment);  // round up
-void unkfunc_0204c4b0(UnkHeap* heap, void* p);  // free (system heap)
-void* unkfunc_0204c504(UnkHeap* heap, int size, int align);     // alloc
-void unkfunc_0204c568(UnkHeap* heap, void* p);  // free
-void* unkfunc_0204c5bc(UnkHeap* heap, int size, int align);     // alloc
-void unkfunc_0204c5c8(UnkHeap* heap, void* p);  // free
-unsigned int unkfunc_0204c5d4(UnkHeap* heap);   // free size of the heap 0
-unsigned int unkfunc_0204c5e4(UnkHeap* heap);   // free size of the system heap
-unsigned int unkfunc_0204c5f4(UnkHeap* heap);   // free size of the application heap
-unsigned int unkfunc_0204c604(UnkHeap* heap);   // free size of the application heap
-void** unkfunc_0204c614(UnkHeap* heap);         // heap 0
-void** unkfunc_0204c618(UnkHeap* heap);         // system heap
-void** unkfunc_0204c620(UnkHeap* heap);         // heap 2
-void unkfunc_0204c628(UnkHeap* heap);           // mark the allocated blocks
-void unkfunc_0204c63c(void* p);                 // free (system heap)
+void initHeap(UnkHeap* heap, unsigned int size0, unsigned int size1, unsigned int size2, int mode);    // init
+int roundUp(int value, int alignment);  // round up
+void freeSystemHeap(UnkHeap* heap, void* p);  // free (system heap)
+void* allocAppHeap(UnkHeap* heap, int size, int align);     // alloc
+void freeAppHeap(UnkHeap* heap, void* p);  // free
+void* dssAlloc(UnkHeap* heap, int size, int align);     // alloc
+void dssFree(UnkHeap* heap, void* p);  // free
+unsigned int getHeap0FreeSize(UnkHeap* heap);   // free size of the heap 0
+unsigned int getSystemHeapFreeSize(UnkHeap* heap);   // free size of the system heap
+unsigned int getAppHeapFreeSize(UnkHeap* heap);   // free size of the application heap
+unsigned int getAppHeapTotalFreeSize(UnkHeap* heap);   // free size of the application heap
+void** getHeap0(UnkHeap* heap);         // heap 0
+void** getSystemHeap(UnkHeap* heap);         // system heap
+void** getAppHeap(UnkHeap* heap);         // heap 2
+void markHeapBlocks(UnkHeap* heap);           // mark the allocated blocks
+void freeSystemMemory(void* p);                 // free (system heap)
 
 extern "C" {
     void func_02070620(const void* src, void* dst);         // MI_UncompressLZ8

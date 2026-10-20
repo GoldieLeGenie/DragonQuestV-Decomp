@@ -24,7 +24,7 @@ THUMB dss::UnkDualCameraBase::UnkDualCameraBase()
     unk_0e4 = 1;
 }
 
-THUMB void dss::UnkDualCameraBase::unkfunc_02051c88()
+THUMB void dss::UnkDualCameraBase::updateCameraNo()
 {
     if (getDisplayFrame() & 1) {
         unk_0e4 = 0;
@@ -39,20 +39,20 @@ THUMB void dss::UnkDualCameraBase::update()
 
 THUMB void dss::UnkDualCameraBase::calcPosition()
 {
-    unkfunc_02051c88();
+    updateCameraNo();
     unk_004.calcPosition();
 }
 
-THUMB void dss::UnkDualCameraBase::unkfunc_02051cbc()
+THUMB void dss::UnkDualCameraBase::applyCamera()
 {
     update();
     calcPosition();
-    unkfunc_02051cd8();
+    applyG3d();
 }
 
-THUMB void dss::UnkDualCameraBase::unkfunc_02051cd8()
+THUMB void dss::UnkDualCameraBase::applyG3d()
 {
-    unkfunc_02051c88();
+    updateCameraNo();
     Camera* camera;
     if (unk_0e4 != 0) {
         camera = &unk_074;
@@ -79,7 +79,7 @@ THUMB void dss::UnkDualCameraBase::unkfunc_02051cd8()
     data_02124bb4.flag &= ~0xe8;
 }
 
-THUMB void dss::UnkDualCameraBase::unkfunc_02051ddc(const Fix32Vector3& target, int screen)
+THUMB void dss::UnkDualCameraBase::setTarget(const Fix32Vector3& target, int screen)
 {
     if (screen == 0) {
         unk_004.setTarget(target);
@@ -90,7 +90,7 @@ THUMB void dss::UnkDualCameraBase::unkfunc_02051ddc(const Fix32Vector3& target, 
 
 THUMB dss::UnkDualCamera::UnkDualCamera()
 {
-    unkfunc_02051ddc(Fix32Vector3(0, 0, 0), 0);
+    setTarget(Fix32Vector3(0, 0, 0), 0);
     unk_0f0 = 0.0f;
     unk_0e4 = 1;
     unk_0f4 = 0;
@@ -112,8 +112,8 @@ THUMB void dss::UnkDualCamera::calcPosition()
     }
     UnkMatrix43 rotX;
     UnkMatrix43 rotY;
-    rotX.unkfunc_0204f4b4(unk_004.m_angle.vx);
-    rotY.unkfunc_0204f4ec(unk_004.m_angle.vy);
+    rotX.setRotX(unk_004.m_angle.vx);
+    rotY.setRotY(unk_004.m_angle.vy);
     Fix32Vector3 up(0, 1, 0);
     Fix32Vector3 offset;
     up = rotX * up;
@@ -124,11 +124,11 @@ THUMB void dss::UnkDualCamera::calcPosition()
     unk_074.setDistance(unk_004.getDistance());
     unk_074.setAngle(unk_004.getAngle());
     offset = unk_074.m_target_pos - unk_074.m_pos;
-    rotX.unkfunc_0204f4b4(unk_0f4);
-    rotY.unkfunc_0204f4ec(-unk_074.m_angle.vy);
+    rotX.setRotX(unk_0f4);
+    rotY.setRotY(-unk_074.m_angle.vy);
     offset = rotY * offset;
     offset = rotX * offset;
-    rotY.unkfunc_0204f4ec(unk_074.m_angle.vy);
+    rotY.setRotY(unk_074.m_angle.vy);
     offset = rotY * offset;
     unk_074.m_target_pos = unk_074.m_pos + offset;
 }

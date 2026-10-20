@@ -57,12 +57,12 @@ THUMB void MenuIconDisplay::draw(UnkOamBuffer* main, UnkOamBuffer* sub)
 THUMB void MenuIconDisplay::unkfunc_02064ddc(UnkOamBuffer* oam, int x, int y, int index)
 {
     index *= 8;
-    G2_SetOBJAttr(oam->unkfunc_0204dbc4(), x, y, 2, GX_OAM_MODE_NORMAL, FALSE, GX_OAM_EFFECT_NONE, GX_OAM_SHAPE_32x32, GX_OAM_COLORMODE_256, index + 0xe0, 0, 0);
-    G2_SetOBJAttr(oam->unkfunc_0204dbc4(), x, y + 0x20, 2, GX_OAM_MODE_NORMAL, FALSE, GX_OAM_EFFECT_NONE, GX_OAM_SHAPE_32x16, GX_OAM_COLORMODE_256, index + 0x160, 0, 0);
-    G2_SetOBJAttr(oam->unkfunc_0204dbc4(), x + 0x20, y, 2, GX_OAM_MODE_NORMAL, FALSE, GX_OAM_EFFECT_NONE, GX_OAM_SHAPE_16x16, GX_OAM_COLORMODE_256, index + 0x1a0, 0, 0);
-    G2_SetOBJAttr(oam->unkfunc_0204dbc4(), x + 0x20, y + 0x10, 2, GX_OAM_MODE_NORMAL, FALSE, GX_OAM_EFFECT_NONE, GX_OAM_SHAPE_16x16, GX_OAM_COLORMODE_256, index + 0x1a4, 0, 0);
-    G2_SetOBJAttr(oam->unkfunc_0204dbc4(), x + 0x20, y + 0x20, 2, GX_OAM_MODE_NORMAL, FALSE, GX_OAM_EFFECT_NONE, GX_OAM_SHAPE_16x8, GX_OAM_COLORMODE_256, index + 0x1e0, 0, 0);
-    G2_SetOBJAttr(oam->unkfunc_0204dbc4(), x + 0x20, y + 0x28, 2, GX_OAM_MODE_NORMAL, FALSE, GX_OAM_EFFECT_NONE, GX_OAM_SHAPE_16x8, GX_OAM_COLORMODE_256, index + 0x1e4, 0, 0);
+    G2_SetOBJAttr(oam->allocEntry(), x, y, 2, GX_OAM_MODE_NORMAL, FALSE, GX_OAM_EFFECT_NONE, GX_OAM_SHAPE_32x32, GX_OAM_COLORMODE_256, index + 0xe0, 0, 0);
+    G2_SetOBJAttr(oam->allocEntry(), x, y + 0x20, 2, GX_OAM_MODE_NORMAL, FALSE, GX_OAM_EFFECT_NONE, GX_OAM_SHAPE_32x16, GX_OAM_COLORMODE_256, index + 0x160, 0, 0);
+    G2_SetOBJAttr(oam->allocEntry(), x + 0x20, y, 2, GX_OAM_MODE_NORMAL, FALSE, GX_OAM_EFFECT_NONE, GX_OAM_SHAPE_16x16, GX_OAM_COLORMODE_256, index + 0x1a0, 0, 0);
+    G2_SetOBJAttr(oam->allocEntry(), x + 0x20, y + 0x10, 2, GX_OAM_MODE_NORMAL, FALSE, GX_OAM_EFFECT_NONE, GX_OAM_SHAPE_16x16, GX_OAM_COLORMODE_256, index + 0x1a4, 0, 0);
+    G2_SetOBJAttr(oam->allocEntry(), x + 0x20, y + 0x20, 2, GX_OAM_MODE_NORMAL, FALSE, GX_OAM_EFFECT_NONE, GX_OAM_SHAPE_16x8, GX_OAM_COLORMODE_256, index + 0x1e0, 0, 0);
+    G2_SetOBJAttr(oam->allocEntry(), x + 0x20, y + 0x28, 2, GX_OAM_MODE_NORMAL, FALSE, GX_OAM_EFFECT_NONE, GX_OAM_SHAPE_16x8, GX_OAM_COLORMODE_256, index + 0x1e4, 0, 0);
 }
 
 THUMB void MenuIconDisplay::loadIcon(int index, int value)
@@ -91,7 +91,7 @@ THUMB void MenuIconDisplay::loadIcon(int index, int value)
     transferIconTiles(index * 8 + 4, 14, src, 8, 3, 4);
     transferIconTiles(index * 8, 15, src, 8, 4, 4);
     transferIconTiles(index * 8 + 4, 15, src, 8, 5, 4);
-    getObjPaletteBuffer(1)->unkfunc_0204dbf4(0, 0, getMenuIconData(0xf5000000, 9999), 0xa0);
+    getObjPaletteBuffer(1)->loadColors(0, 0, getMenuIconData(0xf5000000, 9999), 0xa0);
 }
 
 THUMB void MenuIconDisplay::setIconPosition(int index, int x, int y)
@@ -107,5 +107,5 @@ THUMB void MenuIconDisplay::setIconVisible(int index, int flag)
 
 THUMB void MenuIconDisplay::transferIconTiles(int x, int y, void* src, int srcX, int srcY, int width)
 {
-    unkfunc_0204dca8(0x23, (x + y * 32) * 32, (char*)src + (srcX + srcY * 12) * 32, width * 32);
+    requestVramCopy(0x23, (x + y * 32) * 32, (char*)src + (srcX + srcY * 12) * 32, width * 32);
 }

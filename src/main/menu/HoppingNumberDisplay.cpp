@@ -79,7 +79,7 @@ THUMB void HoppingDigit::unkfunc_02065920(UnkOamBuffer* oam)
         default:
             return;
     }
-    G2_SetOBJAttr(oam->unkfunc_0204dbc4(), x_, drawY_, 0, GX_OAM_MODE_NORMAL, FALSE, GX_OAM_EFFECT_NONE, GX_OAM_SHAPE_8x8, GX_OAM_COLORMODE_16, name, 15, 0);
+    G2_SetOBJAttr(oam->allocEntry(), x_, drawY_, 0, GX_OAM_MODE_NORMAL, FALSE, GX_OAM_EFFECT_NONE, GX_OAM_SHAPE_8x8, GX_OAM_COLORMODE_16, name, 15, 0);
 }
 
 THUMB int HoppingDigit::isFree()

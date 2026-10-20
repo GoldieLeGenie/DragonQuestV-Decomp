@@ -12,29 +12,29 @@ ARM UnkModelMember::UnkModelMember()
     unk_04 = NULL;
 }
 
-ARM void UnkModelMember::unkfunc_02046c3c(void* data)
+ARM void UnkModelMember::setModelFile(void* data)
 {
-    unkfunc_02046c6c(data);
+    bindModelFile(data);
 }
 
-ARM void UnkModelMember::unkfunc_02046c48()
+ARM void UnkModelMember::release()
 {
-    unkfunc_02046dbc();
+    releaseModelFile();
 }
 
-ARM void UnkModelMember::unkfunc_02046c54()
+ARM void UnkModelMember::reloadTextures()
 {
-    unkfunc_02046e98();
-    unkfunc_02046dc8();
+    releaseTextures();
+    loadTextures();
 }
 
-ARM void UnkModelMember::unkfunc_02046c6c(void* data)
+ARM void UnkModelMember::bindModelFile(void* data)
 {
     unk_00 = data;
     if (data_020f3e88 != 0) {
         data_020f3e88 = 0;
     } else {
-        unkfunc_02046dc8();
+        loadTextures();
     }
     unk_04 = NNS_G3dGetMdlByIdx(func_02083268(unk_00), 0);
     NNSG3dResMdlSet* mdlSet = func_02083268(unk_00);
@@ -45,12 +45,12 @@ ARM void UnkModelMember::unkfunc_02046c6c(void* data)
     }
 }
 
-ARM void UnkModelMember::unkfunc_02046dbc()
+ARM void UnkModelMember::releaseModelFile()
 {
-    unkfunc_02046e98();
+    releaseTextures();
 }
 
-ARM void UnkModelMember::unkfunc_02046dc8()
+ARM void UnkModelMember::loadTextures()
 {
     NNSG3dResMdlSet* mdlSet = func_02083268(unk_00);
     NNSG3dResTex* tex = func_02083270(unk_00);
@@ -64,7 +64,7 @@ ARM void UnkModelMember::unkfunc_02046dc8()
     int plttSize = func_0207fd08(tex);
     int texKey = data_020f4f74.allocTexVram(texSize);
     int plttKey = data_020f4f74.allocPlttVram(plttSize);
-    unkfunc_020491f8(tex);
+    setPaletteEffectTexture(tex);
     if (!(tex->texInfo.flag & 1)) {
         func_0207fc4c(tex, texKey, 0);
         func_0207fd18(tex, plttKey);
@@ -75,7 +75,7 @@ ARM void UnkModelMember::unkfunc_02046dc8()
     func_0208012c(mdlSet, tex);
 }
 
-ARM void UnkModelMember::unkfunc_02046e98()
+ARM void UnkModelMember::releaseTextures()
 {
     NNSG3dResMdlSet* mdlSet = func_02083268(unk_00);
     NNSG3dResTex* tex = func_02083270(unk_00);
@@ -97,12 +97,12 @@ ARM void UnkModelMember::unkfunc_02046e98()
     unk_08 = NULL;
 }
 
-ARM void* UnkModelMember::unkfunc_02046f30()
+ARM void* UnkModelMember::getModelFile()
 {
     return unk_00;
 }
 
-ARM NNSG3dResMdl* UnkModelMember::unkfunc_02046f38()
+ARM NNSG3dResMdl* UnkModelMember::getModel()
 {
     return unk_04;
 }

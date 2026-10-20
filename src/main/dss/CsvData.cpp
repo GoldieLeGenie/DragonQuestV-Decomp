@@ -37,7 +37,7 @@ THUMB void CsvData::unkfunc_02052224(const char* filename, int a)
 THUMB void CsvData::unkfunc_02052248(const char* filename, int a)
 {
     unkfunc_02052224(filename, a);
-    row_ = (CsvRow*)unkfunc_0204c5bc(&data_020fd24c, 0x3840, -0x20);
+    row_ = (CsvRow*)dssAlloc(&data_020fd24c, 0x3840, -0x20);
     for (int i = 0; i < 0x384; i++) {
         row_[i].unkfunc_020521e0();
     }
@@ -63,9 +63,9 @@ THUMB void CsvData::unkfunc_02052248(const char* filename, int a)
             pos++;
         }
     } while (pos < size_);
-    CsvRow* rows = (CsvRow*)unkfunc_0204c5bc(&data_020fd24c, row * sizeof(CsvRow), 0x20);
+    CsvRow* rows = (CsvRow*)dssAlloc(&data_020fd24c, row * sizeof(CsvRow), 0x20);
     dss::memcpy(rows, row_, row * sizeof(CsvRow));
-    unkfunc_0204c5c8(&data_020fd24c, row_);
+    dssFree(&data_020fd24c, row_);
     row_ = rows;
     rowCount_ = row;
 }

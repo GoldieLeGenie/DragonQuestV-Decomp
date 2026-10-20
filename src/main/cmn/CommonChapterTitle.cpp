@@ -17,13 +17,13 @@ THUMB cmn::CommonChapterTitle::~CommonChapterTitle()
 THUMB void cmn::CommonChapterTitle::cleanup()
 {
     if (sprite_.unkfunc_02051b04()) {
-        sprite_.unkfunc_02051ac4();
+        sprite_.unload();
     }
 }
 
 THUMB void cmn::CommonChapterTitle::draw()
 {
     if (sprite_.unkfunc_02051b04()) {
-        sprite_.unkfunc_02051b68();
+        sprite_.draw();
     }
 }

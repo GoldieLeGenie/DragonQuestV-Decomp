@@ -69,10 +69,10 @@ THUMB void TextEnv::add_msg_var(int def, int array_index_no, int type, int no, i
 THUMB void TextEnv::process_msg(char* dst, int size, const char* src)
 {
     MessageMacro macro;
-    char* tmp = (char*)unkfunc_0204c504(&data_020fd24c, 0x802, 0x20);
+    char* tmp = (char*)allocAppHeap(&data_020fd24c, 0x802, 0x20);
     macro.processMessage(tmp, 0x800, src);
     expandVars(dst, size, (unsigned char*)tmp);
-    unkfunc_0204c5c8(&data_020fd24c, tmp);
+    dssFree(&data_020fd24c, tmp);
 }
 
 THUMB void TextEnv::expandVars(char* dst, int size, unsigned char* src)
@@ -186,15 +186,15 @@ THUMB char* TextEnv::unkfunc_0206c1f4(char* dst, int size, unsigned char* src, i
     unsigned char tmp[0x200];
     switch (cap) {
         case 1:
-            unkfunc_0204af38(data_02099e94[0], data_02099e94[1], (char*)tmp, 0x200, (char*)src, 1);
+            translateTextPrefix(data_02099e94[0], data_02099e94[1], (char*)tmp, 0x200, (char*)src, 1);
             src = tmp;
             break;
         case 2:
-            unkfunc_0204aed0(data_02099e94[0], data_02099e94[1], (char*)tmp, 0x200, (char*)src);
+            translateText(data_02099e94[0], data_02099e94[1], (char*)tmp, 0x200, (char*)src);
             src = tmp;
             break;
         case 3:
-            unkfunc_0204aed0(data_02099e94[1], data_02099e94[0], (char*)tmp, 0x200, (char*)src);
+            translateText(data_02099e94[1], data_02099e94[0], (char*)tmp, 0x200, (char*)src);
             src = tmp;
             break;
     }
@@ -264,8 +264,8 @@ THUMB MACRO_STAT TextEnv::macro_checkVowel(char* text)
         return (MACRO_STAT)result;
     }
     UnkUtf8Iterator it;
-    it.unkfunc_0204a800(text);
-    switch (it.unkfunc_0204a990()) {
+    it.setText(text);
+    switch (it.getChar()) {
         case 'A': case 'E': case 'I': case 'O': case 'U':
         case 'a': case 'e': case 'i': case 'o': case 'u':
         case 0xc0: case 0xc1: case 0xc2: case 0xc4: case 0xc8: case 0xc9: case 0xca: case 0xcb:
@@ -287,13 +287,13 @@ THUMB MACRO_STAT TextEnv::macro_checkLastS(char* text)
         return (MACRO_STAT)result;
     }
     UnkUtf8Iterator it;
-    it.unkfunc_0204a800(text);
-    int c = it.unkfunc_0204a990();
+    it.setText(text);
+    int c = it.getChar();
     int last = 0;
     while (c != 0) {
         last = c;
-        c = it.unkfunc_0204a990();
-        it.unkfunc_0204a9ec();
+        c = it.getChar();
+        it.nextChar();
     }
     switch (last) {
         case 'S': case 'X': case 'Z':

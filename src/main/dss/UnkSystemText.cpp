@@ -5,7 +5,7 @@
 
 void* data_02101550[5];
 
-THUMB void unkfunc_0204e654(void* res0, void* res1, void* res2, void* res3, void* res4)
+THUMB void initSystemText(void* res0, void* res1, void* res2, void* res3, void* res4)
 {
     for (int i = 0; i < 5; i++) {
         data_02101550[i] = NULL;
@@ -17,7 +17,7 @@ THUMB void unkfunc_0204e654(void* res0, void* res1, void* res2, void* res3, void
     data_02101550[4] = res4;
     unsigned char* tile = (unsigned char*)getSystemTextData(1);
     for (int i = 0; i < 0xa0; i++) {
-        unkfunc_0204ee28(tile, NULL);
+        flipTileHorizontal(tile, NULL);
         tile += 0x20;
     }
 }
@@ -27,12 +27,12 @@ THUMB void* getSystemTextData(int index)
     return data_02101550[index];
 }
 
-THUMB void* unkfunc_0204e6a4(int index)
+THUMB void* getSystemTextPalette(int index)
 {
     return data_02101550[index];
 }
 
-THUMB void unkfunc_0204e6b0(int type, int screen1, int screen2)
+THUMB void loadSystemTextChars(int type, int screen1, int screen2)
 {
     if (type == 0) {
         return;
@@ -43,20 +43,20 @@ THUMB void unkfunc_0204e6b0(int type, int screen1, int screen2)
         sub = 1;
         second = 0;
     }
-    unkfunc_0204dca8(unkfunc_0204de14(screen1), 0, getSystemTextData(0), 0x1000);
+    requestVramCopy(getBgCharVramType(screen1), 0, getSystemTextData(0), 0x1000);
     UnkCharBuffer buffer;
     void* chr = getSystemTextData(3);
     unkfunc_0204e558(&buffer, chr, 0x20, 8);
-    unkfunc_0204dca8(0x13, 0x2000, chr, 0x2000);
+    requestVramCopy(0x13, 0x2000, chr, 0x2000);
     if (sub) {
-        unkfunc_0204dca8(unkfunc_0204de14(screen1), 0x8000, getSystemTextData(0), 0x1000);
+        requestVramCopy(getBgCharVramType(screen1), 0x8000, getSystemTextData(0), 0x1000);
     }
     if (second) {
-        unkfunc_0204dca8(unkfunc_0204de14(screen2), 0, getSystemTextData(0), 0x1000);
+        requestVramCopy(getBgCharVramType(screen2), 0, getSystemTextData(0), 0x1000);
     }
 }
 
-THUMB void unkfunc_0204e74c(int type, int screen1, int screen2)
+THUMB void loadSystemTextPalettes(int type, int screen1, int screen2)
 {
     if (type == 0) {
         return;
@@ -65,8 +65,8 @@ THUMB void unkfunc_0204e74c(int type, int screen1, int screen2)
     if (type == 3) {
         second = 0;
     }
-    unsigned short* palette1 = (unsigned short*)unkfunc_0204e6a4(2);
-    unsigned short* palette2 = (unsigned short*)unkfunc_0204e6a4(4);
+    unsigned short* palette1 = (unsigned short*)getSystemTextPalette(2);
+    unsigned short* palette2 = (unsigned short*)getSystemTextPalette(4);
     unsigned short defaultPalette[16] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x7fff};
     if (palette1 == NULL) {
         palette1 = defaultPalette;
@@ -75,18 +75,18 @@ THUMB void unkfunc_0204e74c(int type, int screen1, int screen2)
         palette2 = defaultPalette;
     }
     UnkPaletteBuffer* bg = getBgPaletteBuffer(screen1);
-    bg->unkfunc_0204dbf4(0xe, 0, palette1 + 0x10, 0x10);
-    bg->unkfunc_0204dbf4(0xf, 0, palette1, 0x10);
+    bg->loadColors(0xe, 0, palette1 + 0x10, 0x10);
+    bg->loadColors(0xf, 0, palette1, 0x10);
     UnkPaletteBuffer* obj = getObjPaletteBuffer(0);
-    obj->unkfunc_0204dbf4(0xe, 0, palette2 + 0x10, 0x10);
-    obj->unkfunc_0204dbf4(0xf, 0, palette2, 0x10);
+    obj->loadColors(0xe, 0, palette2 + 0x10, 0x10);
+    obj->loadColors(0xf, 0, palette2, 0x10);
     if (second == 0) {
         return;
     }
     bg = getBgPaletteBuffer(screen2);
-    bg->unkfunc_0204dbf4(0xe, 0, palette1 + 0x10, 0x10);
-    bg->unkfunc_0204dbf4(0xf, 0, palette1, 0x10);
+    bg->loadColors(0xe, 0, palette1 + 0x10, 0x10);
+    bg->loadColors(0xf, 0, palette1, 0x10);
     obj = getObjPaletteBuffer(1);
-    obj->unkfunc_0204dbf4(0xe, 0, palette2 + 0x10, 0x10);
-    obj->unkfunc_0204dbf4(0xf, 0, palette2, 0x10);
+    obj->loadColors(0xe, 0, palette2 + 0x10, 0x10);
+    obj->loadColors(0xf, 0, palette2, 0x10);
 }
