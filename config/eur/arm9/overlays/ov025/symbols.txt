@@ -8,7 +8,7 @@ _ZN24UnkMaterielMenu_02187c7c9menuSetupEv kind:function(thumb,size=0x80) addr:0x
 _ZN24UnkMaterielMenu_02187c7c11menuExecuteEv kind:function(thumb,size=0x36) addr:0x02186e20
 _ZN24UnkMaterielMenu_02187c7c8menuDrawEv kind:function(thumb,size=0x34) addr:0x02186e58
 _ZN24UnkMaterielMenu_02187c7c10menuUpdateEv kind:function(thumb,size=0x220) addr:0x02186e8c
-_ZN24UnkMaterielMenu_02187c7c16unkfunc_021870acEv kind:function(thumb,size=0x88) addr:0x021870ac
+_ZN24UnkMaterielMenu_02187c7c15decideSelectionEv kind:function(thumb,size=0x88) addr:0x021870ac
 _ZN24UnkMaterielMenu_02187c989menuSetupEv kind:function(thumb,size=0x3c) addr:0x02187134
 _ZN24UnkMaterielMenu_02187c9811menuExecuteEv kind:function(thumb,size=0x10) addr:0x02187170
 _ZN24UnkMaterielMenu_02187c988menuDrawEv kind:function(thumb,size=0x28) addr:0x02187180
@@ -30,7 +30,7 @@ _ZN24UnkMaterielMenu_02187cec9menuSetupEv kind:function(thumb,size=0xd0) addr:0x
 _ZN24UnkMaterielMenu_02187cec11menuExecuteEv kind:function(thumb,size=0xc) addr:0x02187af8
 _ZN24UnkMaterielMenu_02187cec8menuDrawEv kind:function(thumb,size=0x32) addr:0x02187b04
 _ZN24UnkMaterielMenu_02187cec10menuUpdateEv kind:function(thumb,size=0x74) addr:0x02187b38
-_ZN24UnkMaterielMenu_02187cec16unkfunc_02187bacEi kind:function(thumb,size=0xa0) addr:0x02187bac
+_ZN24UnkMaterielMenu_02187cec22setTaishiMessageMacrosEi kind:function(thumb,size=0xa0) addr:0x02187bac
 _ZTV24UnkMaterielMenu_02187c60 kind:data(any) addr:0x02187c60
 _ZTV24UnkMaterielMenu_02187c7c kind:data(any) addr:0x02187c7c
 _ZTV24UnkMaterielMenu_02187c98 kind:data(any) addr:0x02187c98

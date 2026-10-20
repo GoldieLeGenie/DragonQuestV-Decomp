@@ -25,7 +25,7 @@ THUMB void menu::TownShopMenu::menuExecute()
 THUMB void menu::TownShopMenu::menuDraw()
 {
     if (type_ != -1) {
-        unkfunc_02173940(type_);
+        drawTownShopScreen(type_);
     }
 }
 

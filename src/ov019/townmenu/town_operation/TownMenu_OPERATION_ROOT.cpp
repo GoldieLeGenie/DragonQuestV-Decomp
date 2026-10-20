@@ -136,7 +136,7 @@ THUMB void TownMenu_OPERATION_ROOT::menuExecute()
 {
     if (!gTownMenu_MESSAGE.isOpen()) {
         MenuStatusInfo::setMode(MenuStatusInfo::PLAYER_MODE);
-        unkfunc_02171338(&menuItem_, menuItem_.active_, OP_EOF);
+        townMenuOperation(&menuItem_, menuItem_.active_, OP_EOF);
     }
 }
 
@@ -144,7 +144,7 @@ THUMB void TownMenu_OPERATION_ROOT::menuDraw()
 {
     MenuStatusInfo::setMode(MenuStatusInfo::PLAYER_MODE);
     int open = gTownMenu_MESSAGE.isOpen();
-    unkfunc_021735ec(open);
+    drawOperationRootScreen(open);
     if (!open) {
         menuItem_.drawActive();
     }
@@ -207,12 +207,12 @@ THUMB void TownMenu_OPERATION_ROOT::menuUpdate()
                 SoundManager::stopBgm(60);
                 abortMode_ = 3;
             }
-            unkfunc_02175c8c();
+            updateAbortSaveMessage();
             return;
         }
         if (stat == MENUBASE_STAT_OK) {
             if (mode_ == OP_ABORT) {
-                unkfunc_02175c8c();
+                updateAbortSaveMessage();
                 return;
             }
             gTownMenu_MESSAGE.close();
@@ -394,7 +394,7 @@ THUMB void TownMenu_OPERATION_ROOT::allRecoveryMessage(status::UseActionParam& u
     actionIndex_ = useActionParam.getActionIndex();
 }
 
-THUMB void TownMenu_OPERATION_ROOT::unkfunc_02175c8c()
+THUMB void TownMenu_OPERATION_ROOT::updateAbortSaveMessage()
 {
     switch (abortMode_) {
         case 0:

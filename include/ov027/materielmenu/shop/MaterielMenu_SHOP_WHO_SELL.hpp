@@ -13,7 +13,7 @@ struct MaterielMenu_SHOP_WHO_SELL : menu::MenuBase {
     virtual void menuExecute();
     virtual void menuDraw();
     virtual void menuUpdate();
-    void unkfunc_0218910c();
+    void selectSeller();
 };
 
 extern MaterielMenu_SHOP_WHO_SELL gMaterielMenu_SHOP_WHO_SELL;

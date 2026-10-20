@@ -37,7 +37,7 @@ THUMB void TownMenu_ROOT::menuExecute()
 THUMB void TownMenu_ROOT::menuDraw()
 {
     int open = gTownMenu_MESSAGE.isOpen();
-    unkfunc_02172ef0(open);
+    drawRootMenuScreen(open);
     if (!open) {
         menuItem_.drawActive();
     }
@@ -61,7 +61,7 @@ THUMB void TownMenu_ROOT::menuUpdate()
     if (result != 0) {
         redraw_ = 1;
         if (result == 2) {
-            unkfunc_02174c3c();
+            executeCommand();
         }
         if (result == 3) {
             close();
@@ -70,7 +70,7 @@ THUMB void TownMenu_ROOT::menuUpdate()
     }
 }
 
-THUMB void TownMenu_ROOT::unkfunc_02174c3c()
+THUMB void TownMenu_ROOT::executeCommand()
 {
     switch (menuItem_.active_) {
         case ROOT_TALK:
@@ -84,7 +84,7 @@ THUMB void TownMenu_ROOT::unkfunc_02174c3c()
             gTownMenu_PARTY_TALK.open();
             break;
         case ROOT_MAGIC:
-            unkfunc_02174d34();
+            openMagicMenu();
             break;
         case ROOT_ITEM:
             close();
@@ -120,7 +120,7 @@ THUMB void TownMenu_ROOT::unkfunc_02174c3c()
     }
 }
 
-THUMB void TownMenu_ROOT::unkfunc_02174d34()
+THUMB void TownMenu_ROOT::openMagicMenu()
 {
     MenuStatusInfo::setMode(MenuStatusInfo::BATTLE_MODE);
     int playerIndex = 0;

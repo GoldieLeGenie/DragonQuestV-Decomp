@@ -41,16 +41,16 @@ THUMB void TownMenu_OPERATION_SETTING::menuSetup()
 THUMB void TownMenu_OPERATION_SETTING::menuExecute()
 {
     MenuStatusInfo::setMode(MenuStatusInfo::PLAYER_MODE);
-    unkfunc_02171370(&bgmItem_, bgmItem_.active_);
-    unkfunc_0217138c(&seItem_, seItem_.active_);
-    unkfunc_021713a8(&battleItem_, battleItem_.active_);
+    townMenuBgmVolume(&bgmItem_, bgmItem_.active_);
+    townMenuEffectVolume(&seItem_, seItem_.active_);
+    townMenuBattleSpeed(&battleItem_, battleItem_.active_);
 }
 
 THUMB void TownMenu_OPERATION_SETTING::menuDraw()
 {
     MenuStatusInfo::setMode(MenuStatusInfo::PLAYER_MODE);
-    unkfunc_0217428c();
-    unkfunc_02176840();
+    drawSettingScreen();
+    drawSettingCursors();
     bgmItem_.drawActive();
     seItem_.drawActive();
     battleItem_.drawActive();
@@ -60,13 +60,13 @@ THUMB void TownMenu_OPERATION_SETTING::menuUpdate()
 {
     MenuStatusInfo::setMode(MenuStatusInfo::PLAYER_MODE);
     navigator_.setup(1, 1, 1);
-    if (!unkfunc_0217677c(&battleItem_, 0)) {
+    if (!updateSettingItem(&battleItem_, 0)) {
         return;
     }
-    if (!unkfunc_0217677c(&bgmItem_, 1)) {
+    if (!updateSettingItem(&bgmItem_, 1)) {
         return;
     }
-    if (!unkfunc_0217677c(&seItem_, 2)) {
+    if (!updateSettingItem(&seItem_, 2)) {
         return;
     }
     if (mode_ != prevMode_) {
@@ -102,7 +102,7 @@ THUMB void TownMenu_OPERATION_SETTING::loadOptionValues()
     battleItem_.active_ = g_Option.getBattleSpeed();
 }
 
-THUMB bool TownMenu_OPERATION_SETTING::unkfunc_0217677c(menu::MenuItem* menuItem, int mode)
+THUMB bool TownMenu_OPERATION_SETTING::updateSettingItem(menu::MenuItem* menuItem, int mode)
 {
     int result = MenuUpdate_Assist::menuSelect(*menuItem, navigator_);
     if (result != 0) {
@@ -158,7 +158,7 @@ THUMB bool TownMenu_OPERATION_SETTING::unkfunc_0217677c(menu::MenuItem* menuItem
     return true;
 }
 
-THUMB void TownMenu_OPERATION_SETTING::unkfunc_02176840()
+THUMB void TownMenu_OPERATION_SETTING::drawSettingCursors()
 {
     s_parts[0].x_ = battleItem_.active_ * 0x18 + 0x6e;
     s_parts[1].x_ = bgmItem_.active_ * 0x18 + 0x6e;

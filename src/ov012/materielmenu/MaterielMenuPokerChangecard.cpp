@@ -113,7 +113,7 @@ THUMB void MaterielMenuPokerChangecard::menuUpdate()
     }
     isPlaySound_ = 0;
     if (unk_20 == 1 && animation_ == 0) {
-        unkfunc_0212bab0();
+        updateWinningCardEffect();
     }
     if (animation_ == 1 || animation_ == 2) {
         return;
@@ -127,7 +127,7 @@ THUMB bool MaterielMenuPokerChangecard::messageUpdata()
 {
     if (gTownMenu_MESSAGE.isOpen()) {
         if (gameMode_ == 6) {
-            unkfunc_0212baf0();
+            countUpWinCoin();
             return true;
         }
         int stat = gTownMenu_MESSAGE.stat_;
@@ -347,7 +347,7 @@ THUMB void MaterielMenuPokerChangecard::setSoundNo()
     cmn::g_cmnSoundManager.setPlaySound(sound, false);
 }
 
-THUMB void MaterielMenuPokerChangecard::unkfunc_0212bab0()
+THUMB void MaterielMenuPokerChangecard::updateWinningCardEffect()
 {
     if (effectCount_ > 90) {
         for (int i = 0; i < 5; i++) {
@@ -361,7 +361,7 @@ THUMB void MaterielMenuPokerChangecard::unkfunc_0212bab0()
     }
 }
 
-THUMB void MaterielMenuPokerChangecard::unkfunc_0212baf0()
+THUMB void MaterielMenuPokerChangecard::countUpWinCoin()
 {
     SoundManager::playSe(0x154, 0);
     if ((dss::g_Pad.edge() & 1) || (dss::g_Pad.edge() & 0x400)) {

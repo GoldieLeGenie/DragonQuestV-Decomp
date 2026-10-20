@@ -29,11 +29,11 @@ THUMB void UnkMaterielMenu_02187cec::menuSetup()
             gTownMenu_MESSAGE.addMessage(0xcc643);
         }
     } else if (unk_20 == 0x27c) {
-        unkfunc_02187bac(-1);
+        setTaishiMessageMacros(-1);
         gTownMenu_MESSAGE.addMessageNOWAIT(0xcc5c6);
         gTownMenu_MESSAGE.addMessageWAITKEY();
     } else {
-        unkfunc_02187bac(unk_1c - 0x1b);
+        setTaishiMessageMacros(unk_1c - 0x1b);
         gTownMenu_MESSAGE.addMessageNOWAIT(0xcc63f);
         gTownMenu_MESSAGE.addMessageWAITKEY();
     }
@@ -83,7 +83,7 @@ THUMB void UnkMaterielMenu_02187cec::menuUpdate()
     }
 }
 
-THUMB void UnkMaterielMenu_02187cec::unkfunc_02187bac(int index)
+THUMB void UnkMaterielMenu_02187cec::setTaishiMessageMacros(int index)
 {
     char line1[0x40];
     char line2[0x40];

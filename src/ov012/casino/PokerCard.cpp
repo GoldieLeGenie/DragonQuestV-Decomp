@@ -17,7 +17,7 @@ THUMB void casino::PokerCard::setup()
     m_ctrl.set(1);
 }
 
-THUMB void casino::PokerCard::unkfunc_021282f0(dss::Fix32 scale)
+THUMB void casino::PokerCard::setScale(dss::Fix32 scale)
 {
     m_front_polygon.setScale(scale);
     m_back_polygon.setScale(scale);
@@ -25,7 +25,7 @@ THUMB void casino::PokerCard::unkfunc_021282f0(dss::Fix32 scale)
     m_glow_polygon.setScale(scale);
 }
 
-THUMB void casino::PokerCard::unkfunc_02128350(const UnkPolygonVertex* vertex)
+THUMB void casino::PokerCard::setVertex(const UnkPolygonVertex* vertex)
 {
     m_front_polygon.setVertex(vertex);
     m_back_polygon.setVertex(vertex);
@@ -53,17 +53,17 @@ THUMB void casino::PokerCard::setAngle(int angle)
     m_back_polygon.angle_ = angle + 0x8000;
 }
 
-THUMB void casino::PokerCard::unkfunc_02128400(const UnkBillboardTexCoord* texCoord)
+THUMB void casino::PokerCard::setFrontTexCoord(const UnkBillboardTexCoord* texCoord)
 {
     m_front_polygon.setTexCoord(texCoord);
 }
 
-THUMB void casino::PokerCard::unkfunc_02128408(const UnkBillboardTexCoord* texCoord)
+THUMB void casino::PokerCard::setBackTexCoord(const UnkBillboardTexCoord* texCoord)
 {
     m_back_polygon.setTexCoord(texCoord);
 }
 
-THUMB void casino::PokerCard::unkfunc_02128414(const UnkBillboardTexCoord* texCoord)
+THUMB void casino::PokerCard::setShineTexCoord(const UnkBillboardTexCoord* texCoord)
 {
     m_shine_polygon.setTexCoord(texCoord);
     m_shine_polygon.setAlpha(12);
@@ -77,27 +77,27 @@ THUMB void casino::PokerCard::unkfunc_02128414(const UnkBillboardTexCoord* texCo
     unk_230.v[3].vy = texCoord->v[3].vy;
 }
 
-THUMB void casino::PokerCard::unkfunc_021284a0(const UnkBillboardTexCoord* texCoord)
+THUMB void casino::PokerCard::setGlowTexCoord(const UnkBillboardTexCoord* texCoord)
 {
     m_glow_polygon.setTexCoord(texCoord);
 }
 
-THUMB void casino::PokerCard::unkfunc_021284b0(void* texture)
+THUMB void casino::PokerCard::setFrontTexture(void* texture)
 {
     m_front_polygon.texture_ = texture;
 }
 
-THUMB void casino::PokerCard::unkfunc_021284b4(void* texture)
+THUMB void casino::PokerCard::setBackTexture(void* texture)
 {
     m_back_polygon.texture_ = texture;
 }
 
-THUMB void casino::PokerCard::unkfunc_021284bc(void* texture)
+THUMB void casino::PokerCard::setShineTexture(void* texture)
 {
     m_shine_polygon.texture_ = texture;
 }
 
-THUMB void casino::PokerCard::unkfunc_021284c4(void* texture)
+THUMB void casino::PokerCard::setGlowTexture(void* texture)
 {
     m_glow_polygon.texture_ = texture;
     m_glow_polygon.setAlpha(1);
@@ -142,7 +142,7 @@ THUMB void casino::PokerCard::setEffect()
     m_shine_scroll_speed = 0x3333;
 }
 
-THUMB void casino::PokerCard::unkfunc_02128688(bool enable)
+THUMB void casino::PokerCard::setVisible(bool enable)
 {
     if (enable) {
         m_ctrl.set(1);

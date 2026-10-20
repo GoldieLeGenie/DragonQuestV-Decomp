@@ -125,14 +125,14 @@ THUMB void TownMenu_MAGIC_ROOT::menuSetup()
 THUMB void TownMenu_MAGIC_ROOT::menuExecute()
 {
     MenuStatusInfo::setMode(MenuStatusInfo::BATTLE_MODE);
-    unkfunc_02171598(&menuItem_, MenuStatusInfo::getPlayerActionCount(TownMenuPlayerControl::getSingleton()->activeChara_, MenuStatusInfo::USE_TOWN), menuItem_.active_);
+    townMenuSelectMagic(&menuItem_, MenuStatusInfo::getPlayerActionCount(TownMenuPlayerControl::getSingleton()->activeChara_, MenuStatusInfo::USE_TOWN), menuItem_.active_);
 }
 
 THUMB void TownMenu_MAGIC_ROOT::menuDraw()
 {
     MenuStatusInfo::setMode(MenuStatusInfo::BATTLE_MODE);
     int open = gTownMenu_MESSAGE.isOpen();
-    unkfunc_02173400(open);
+    drawMagicSpellSelectScreen(open);
     if (!open) {
         menuItem_.drawActive();
     }

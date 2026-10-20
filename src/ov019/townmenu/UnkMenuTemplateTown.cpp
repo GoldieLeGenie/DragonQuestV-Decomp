@@ -3,7 +3,7 @@
 
 // touch areas of the town menus
 
-THUMB void unkfunc_02171338(menu::MenuItem* menuItem, int active, int max)
+THUMB void townMenuOperation(menu::MenuItem* menuItem, int active, int max)
 {
     static MENUITEM_DATA menu[] = {
         {1, 2, 0x20, 0x3c, 0x56, 0x10},
@@ -21,7 +21,7 @@ THUMB void unkfunc_02171338(menu::MenuItem* menuItem, int active, int max)
     menuItem->active_ = active;
 }
 
-THUMB void unkfunc_02171354(menu::MenuItem* menuItem, int active, int max)
+THUMB void townMenuIcon32Grid(menu::MenuItem* menuItem, int active, int max)
 {
     static MENUITEM_DATA menu[] = {
         {1, 2, 0x14, 0x74, 0x20, 0x18},
@@ -40,7 +40,7 @@ THUMB void unkfunc_02171354(menu::MenuItem* menuItem, int active, int max)
     menuItem->active_ = active;
 }
 
-THUMB void unkfunc_02171370(menu::MenuItem* menuItem, int active)
+THUMB void townMenuBgmVolume(menu::MenuItem* menuItem, int active)
 {
     static MENUITEM_DATA menu[] = {
         {1, 2, 0x58, 0x2a, 0x10, 0x10},
@@ -54,7 +54,7 @@ THUMB void unkfunc_02171370(menu::MenuItem* menuItem, int active)
     menuItem->active_ = active;
 }
 
-THUMB void unkfunc_0217138c(menu::MenuItem* menuItem, int active)
+THUMB void townMenuEffectVolume(menu::MenuItem* menuItem, int active)
 {
     static MENUITEM_DATA menu[] = {
         {1, 2, 0x58, 0x42, 0x10, 0x10},
@@ -68,7 +68,7 @@ THUMB void unkfunc_0217138c(menu::MenuItem* menuItem, int active)
     menuItem->active_ = active;
 }
 
-THUMB void unkfunc_021713a8(menu::MenuItem* menuItem, int active)
+THUMB void townMenuBattleSpeed(menu::MenuItem* menuItem, int active)
 {
     static MENUITEM_DATA menu[] = {
         {1, 2, 0x58, 0x8a, 0x10, 0x10},
@@ -101,7 +101,7 @@ THUMB void unkfunc_021713c4(menu::MenuItem* menuItem, int active)
     menuItem->active_ = active;
 }
 
-THUMB void unkfunc_021713e0(menu::MenuItem* menuItem, int commandFlag, int active)
+THUMB void townMenuItemCommand(menu::MenuItem* menuItem, int commandFlag, int active)
 {
     static MENUITEM_DATA menuAll[] = {
         {1, 2, 0x10, 0x70, 0x40, 0x10},
@@ -155,7 +155,7 @@ THUMB void unkfunc_021713e0(menu::MenuItem* menuItem, int commandFlag, int activ
     }
 }
 
-THUMB void unkfunc_02171458(menu::MenuItem* menuItem, int max, int active, int x, int y)
+THUMB void townMenuTacticsSelectChara(menu::MenuItem* menuItem, int max, int active, int x, int y)
 {
     static MENUITEM_DATA menu[] = {
         {1, 2, 0x14, 0x58, 0x20, 0x18},
@@ -179,7 +179,7 @@ THUMB void unkfunc_02171458(menu::MenuItem* menuItem, int max, int active, int x
     menuItem->active_ = active;
 }
 
-THUMB void unkfunc_021714a8(menu::MenuItem* menuItem, int max, int active, int x, int y)
+THUMB void townMenuTacticsSelectHalfChara(menu::MenuItem* menuItem, int max, int active, int x, int y)
 {
     static MENUITEM_DATA menu[] = {
         {1, 2, 0x14, 0x80, 0x20, 0x18},
@@ -198,7 +198,7 @@ THUMB void unkfunc_021714a8(menu::MenuItem* menuItem, int max, int active, int x
     menuItem->active_ = active;
 }
 
-THUMB void unkfunc_021714f8(menu::MenuItem* menuItem, int max, int active)
+THUMB void townMenuItemSelectChara(menu::MenuItem* menuItem, int max, int active)
 {
     static MENUITEM_DATA menu[] = {
         {1, 2, 0x14, 0x58, 0x20, 0x18},
@@ -217,7 +217,7 @@ THUMB void unkfunc_021714f8(menu::MenuItem* menuItem, int max, int active)
     menuItem->active_ = active;
 }
 
-THUMB void unkfunc_02171514(menu::MenuItem* menuItem, int max, int active)
+THUMB void townMenuItemSelectHalfChara(menu::MenuItem* menuItem, int max, int active)
 {
     static MENUITEM_DATA menu[] = {
         {1, 2, 0x14, 0x80, 0x20, 0x18},
@@ -231,7 +231,7 @@ THUMB void unkfunc_02171514(menu::MenuItem* menuItem, int max, int active)
     menuItem->active_ = active;
 }
 
-THUMB void unkfunc_02171530(menu::MenuItem* menuItem, int active)
+THUMB void townMenuTacticsSelectTC(menu::MenuItem* menuItem, int active)
 {
     static MENUITEM_DATA menu[] = {
         {1, 2, 0x1c, 0x08, 0x38, 0x18},
@@ -263,7 +263,7 @@ THUMB void unkfunc_unused_0217f30c(menu::MenuItem* menuItem, int active)
     menuItem->active_ = active;
 }
 
-THUMB void unkfunc_0217154c(menu::MenuItem* menuItem, int max, int active)
+THUMB void townMenuPageTargetChara(menu::MenuItem* menuItem, int max, int active)
 {
     static MENUITEM_DATA menu[] = {
         {1, 2, 0x0c, 0x0c, 0x70, 0x38},
@@ -276,7 +276,7 @@ THUMB void unkfunc_0217154c(menu::MenuItem* menuItem, int max, int active)
     menuItem->active_ = active;
 }
 
-THUMB void unkfunc_02171568(menu::MenuItem* menuItem, int active)
+THUMB void townMenuTacticsBoxUp(menu::MenuItem* menuItem, int active)
 {
     static MENUITEM_DATA menu[] = {
         {1, 2, 0x10, 0x88, 0x56, 0x10},
@@ -287,7 +287,7 @@ THUMB void unkfunc_02171568(menu::MenuItem* menuItem, int active)
     menuItem->active_ = active;
 }
 
-THUMB void unkfunc_02171584(menu::MenuItem* menuItem)
+THUMB void townMenuRemoveEquip(menu::MenuItem* menuItem)
 {
     static MENUITEM_DATA menu[] = {
         {1, 2, 0x14, 0x6c, 0x68, 0x18},
@@ -297,7 +297,7 @@ THUMB void unkfunc_02171584(menu::MenuItem* menuItem)
     menuItem->setMenuItem(menu, 2, 1, 2);
 }
 
-THUMB void unkfunc_02171598(menu::MenuItem* menuItem, int max, int active)
+THUMB void townMenuSelectMagic(menu::MenuItem* menuItem, int max, int active)
 {
     static MENUITEM_DATA menu[] = {
         {1, 2, 0x14, 0x0c, 0x60, 0x10},

@@ -15,7 +15,7 @@ struct UnkTownMenuItemCharaSelect : menu::MenuBase {
     virtual void menuExecute();
     virtual void menuDraw();
     virtual void menuUpdate();
-    void unkfunc_02178480();
+    void selectFirstUnequippedItem();
 };
 
 extern UnkTownMenuItemCharaSelect data_ov019_02183524;

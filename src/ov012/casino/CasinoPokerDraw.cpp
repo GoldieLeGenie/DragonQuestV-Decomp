@@ -70,8 +70,8 @@ THUMB void casino::CasinoPokerDraw::setPoolPosition()
         pos.vx.value = cardSpace_.value * (i * 2 - 4);
         pos.vz.value = cardDepth_.value;
         defaultPos[i] = pos;
-        card[i].unkfunc_021282f0(cardScale_.value);
-        card[i].unkfunc_02128350(&s_vertex);
+        card[i].setScale(cardScale_.value);
+        card[i].setVertex(&s_vertex);
         card[i].setPosition(pos);
         setDisplay(i, true);
         setCardReverse(i);
@@ -93,8 +93,8 @@ THUMB void casino::CasinoPokerDraw::setHighLowPosition()
         }
         pos.vz.value = cardDepth_.value;
         defaultPos[i] = pos;
-        card[i].unkfunc_021282f0(cardScale_.value);
-        card[i].unkfunc_02128350(&s_vertex);
+        card[i].setScale(cardScale_.value);
+        card[i].setVertex(&s_vertex);
         card[i].setPosition(pos);
         setDisplay(i, true);
         setCardReverse(i);
@@ -129,12 +129,12 @@ THUMB void casino::CasinoPokerDraw::setCardTexture(int cardIndex, int type, int 
     dss::Vector2<dss::Fix32> rightTop((x + 1) * 42, y * 64);
     dss::Vector2<dss::Fix32> rightBottom((x + 1) * 42, (y + 1) * 64);
     dss::Vector2<dss::Fix32> leftBottom(x * 42, (y + 1) * 64);
-    card[cardIndex].unkfunc_021284b0(cardObject[type].getAddr());
+    card[cardIndex].setFrontTexture(cardObject[type].getAddr());
     s_texCoord.v[0] = leftBottom;
     s_texCoord.v[1] = rightBottom;
     s_texCoord.v[2] = rightTop;
     s_texCoord.v[3] = leftTop;
-    card[cardIndex].unkfunc_02128400(&s_texCoord);
+    card[cardIndex].setFrontTexCoord(&s_texCoord);
 }
 
 THUMB void casino::CasinoPokerDraw::setBackCardTexture()
@@ -144,12 +144,12 @@ THUMB void casino::CasinoPokerDraw::setBackCardTexture()
         dss::Vector2<dss::Fix32> rightTop(84, 0);
         dss::Vector2<dss::Fix32> rightBottom(84, 64);
         dss::Vector2<dss::Fix32> leftBottom(42, 64);
-        card[i].unkfunc_021284b4(cardObject[4].getAddr());
+        card[i].setBackTexture(cardObject[4].getAddr());
         s_texCoord.v[0] = leftBottom;
         s_texCoord.v[1] = rightBottom;
         s_texCoord.v[2] = rightTop;
         s_texCoord.v[3] = leftTop;
-        card[i].unkfunc_02128408(&s_texCoord);
+        card[i].setBackTexCoord(&s_texCoord);
     }
 }
 
@@ -160,24 +160,24 @@ THUMB void casino::CasinoPokerDraw::setEffectCardTexture()
         dss::Vector2<dss::Fix32> rightTop(42, 0);
         dss::Vector2<dss::Fix32> rightBottom(42, 64);
         dss::Vector2<dss::Fix32> leftBottom(0, 64);
-        card[i].unkfunc_021284bc(cardObject[5].getAddr());
+        card[i].setShineTexture(cardObject[5].getAddr());
         s_texCoord.v[0] = leftBottom;
         s_texCoord.v[1] = rightBottom;
         s_texCoord.v[2] = rightTop;
         s_texCoord.v[3] = leftTop;
-        card[i].unkfunc_02128414(&s_texCoord);
+        card[i].setShineTexCoord(&s_texCoord);
     }
     for (int i = 0; i < MAX_CARD_INSTANCE; i++) {
         dss::Vector2<dss::Fix32> leftTop(42, 0);
         dss::Vector2<dss::Fix32> rightTop(84, 0);
         dss::Vector2<dss::Fix32> rightBottom(84, 64);
         dss::Vector2<dss::Fix32> leftBottom(42, 64);
-        card[i].unkfunc_021284c4(cardObject[5].getAddr());
+        card[i].setGlowTexture(cardObject[5].getAddr());
         s_texCoord.v[0] = leftBottom;
         s_texCoord.v[1] = rightBottom;
         s_texCoord.v[2] = rightTop;
         s_texCoord.v[3] = leftTop;
-        card[i].unkfunc_021284a0(&s_texCoord);
+        card[i].setGlowTexCoord(&s_texCoord);
     }
 }
 
@@ -208,7 +208,7 @@ THUMB void casino::CasinoPokerDraw::setEffect(int cardIndex)
 
 THUMB void casino::CasinoPokerDraw::setDisplay(int cardIndex, bool flag)
 {
-    card[cardIndex].unkfunc_02128688(flag);
+    card[cardIndex].setVisible(flag);
 }
 
 THUMB void casino::CasinoPokerDraw::setAlpha(int cardIndex, unsigned char alpha)

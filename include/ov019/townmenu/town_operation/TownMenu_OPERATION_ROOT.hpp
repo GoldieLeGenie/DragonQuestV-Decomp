@@ -42,7 +42,7 @@ struct TownMenu_OPERATION_ROOT : menu::MenuBase {
     void hpMax();
     void boxUpArray();
     void allRecoveryMessage(status::UseActionParam& useActionParam);
-    void unkfunc_02175c8c();
+    void updateAbortSaveMessage();
 };
 
 extern TownMenu_OPERATION_ROOT gTownMenu_OPERATION_ROOT;

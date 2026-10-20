@@ -16,7 +16,7 @@ struct UnkMaterielMenu_02187c7c : menu::MenuBase {
     virtual void menuExecute();
     virtual void menuDraw();
     virtual void menuUpdate();
-    void unkfunc_021870ac();
+    void decideSelection();
 };
 
 extern UnkMaterielMenu_02187c7c data_ov019_02185900;

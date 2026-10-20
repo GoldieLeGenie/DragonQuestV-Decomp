@@ -19,9 +19,9 @@ struct UnkTownMenuOperationEquipItem : menu::MenuBase {
     virtual void menuDraw();
     virtual void menuUpdate();
     void setItemTypeList();
-    void unkfunc_02176424();
-    void unkfunc_021764c0();
-    void unkfunc_02176528();
+    void setEquip();
+    void removeEquipment();
+    void toggleAccessoryEquip();
 };
 
 extern UnkTownMenuOperationEquipItem data_ov019_02183b54;

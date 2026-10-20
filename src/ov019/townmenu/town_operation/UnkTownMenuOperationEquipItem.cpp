@@ -63,14 +63,14 @@ THUMB void UnkTownMenuOperationEquipItem::menuExecute()
 {
     MenuStatusInfo::setMode(MenuStatusInfo::PLAYER_MODE);
     setupItemIcon32Layout2x3(&itemItem_, itemNavigator_.getCountInPage(), itemItem_.active_);
-    unkfunc_02171584(&removeItem_);
+    townMenuRemoveEquip(&removeItem_);
 }
 
 THUMB void UnkTownMenuOperationEquipItem::menuDraw()
 {
     MenuStatusInfo::setMode(MenuStatusInfo::PLAYER_MODE);
     if (!gTownMenu_MESSAGE.isOpen()) {
-        unkfunc_02173894(itemPosList_, itemCount_, itemType_, itemListActive_);
+        drawEquipScreen(itemPosList_, itemCount_, itemType_, itemListActive_);
         itemItem_.drawActive();
         removeItem_.drawActive();
     }
@@ -105,9 +105,9 @@ THUMB void UnkTownMenuOperationEquipItem::menuUpdate()
         }
         if (result == 2) {
             if (itemType_ >= ITEM_WEAPON && itemType_ < ITEM_ACCESSORY) {
-                unkfunc_02176424();
+                setEquip();
             } else if (itemType_ == ITEM_ACCESSORY) {
-                unkfunc_02176528();
+                toggleAccessoryEquip();
             } else if (itemType_ > ITEM_ACCESSORY) {
                 int activeChara = TownMenuPlayerControl::getSingleton()->activeChara_;
                 status::HaveItem::setSortEnable(true);
@@ -162,7 +162,7 @@ THUMB void UnkTownMenuOperationEquipItem::menuUpdate()
             int activeChara = TownMenuPlayerControl::getSingleton()->activeChara_;
             status::HaveItem::setSortEnable(true);
             MenuStatusInfo::getHaveStatusInfo(activeChara).getHaveItem().sortEquipment();
-            unkfunc_021764c0();
+            removeEquipment();
         } else if (itemType_ >= ITEM_ACCESSORY) {
             if (removeItem_.active_ == 0) {
                 for (int i = 0; i < itemCount_; i++) {
@@ -281,7 +281,7 @@ THUMB void UnkTownMenuOperationEquipItem::setItemTypeList()
     }
 }
 
-THUMB void UnkTownMenuOperationEquipItem::unkfunc_02176424()
+THUMB void UnkTownMenuOperationEquipItem::setEquip()
 {
     int activeChara = TownMenuPlayerControl::getSingleton()->activeChara_;
     int activeItem = itemPosList_[itemNavigator_.getIndex(itemItem_.active_)];
@@ -300,7 +300,7 @@ THUMB void UnkTownMenuOperationEquipItem::unkfunc_02176424()
     TownMenuPlayerControl::getSingleton()->setActiveItemPage(0);
 }
 
-THUMB void UnkTownMenuOperationEquipItem::unkfunc_021764c0()
+THUMB void UnkTownMenuOperationEquipItem::removeEquipment()
 {
     int activeChara = TownMenuPlayerControl::getSingleton()->activeChara_;
     int activeItem = itemPosList_[itemNavigator_.getIndex(itemItem_.active_)];
@@ -314,7 +314,7 @@ THUMB void UnkTownMenuOperationEquipItem::unkfunc_021764c0()
     TownMenuPlayerControl::getSingleton()->setActiveItemPage(0);
 }
 
-THUMB void UnkTownMenuOperationEquipItem::unkfunc_02176528()
+THUMB void UnkTownMenuOperationEquipItem::toggleAccessoryEquip()
 {
     int activeChara = TownMenuPlayerControl::getSingleton()->activeChara_;
     int activeItem = itemPosList_[itemNavigator_.getIndex(itemItem_.active_)];

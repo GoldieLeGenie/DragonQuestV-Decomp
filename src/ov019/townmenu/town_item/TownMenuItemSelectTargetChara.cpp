@@ -36,9 +36,9 @@ THUMB void TownMenuItemSelectTargetChara::menuExecute()
 {
     MenuStatusInfo::setMode(MenuStatusInfo::PLAYER_MODE);
     if (unk_1c <= 5) {
-        unkfunc_02171514(&menuItem_, unk_1c, menuItem_.active_);
+        townMenuItemSelectHalfChara(&menuItem_, unk_1c, menuItem_.active_);
     } else {
-        unkfunc_021714f8(&menuItem_, unk_1c, menuItem_.active_);
+        townMenuItemSelectChara(&menuItem_, unk_1c, menuItem_.active_);
     }
 }
 
@@ -46,7 +46,7 @@ THUMB void TownMenuItemSelectTargetChara::menuDraw()
 {
     MenuStatusInfo::setMode(MenuStatusInfo::PLAYER_MODE);
     int open = gTownMenu_MESSAGE.isOpen();
-    unkfunc_021731f8(open);
+    drawItemTargetCharaScreen(open);
     if (!open) {
         menuItem_.drawActive();
     }

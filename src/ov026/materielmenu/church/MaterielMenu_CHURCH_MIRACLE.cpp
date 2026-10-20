@@ -196,7 +196,7 @@ THUMB bool MaterielMenu_CHURCH_MIRACLE::messageUpdate()
         case MIRACLE_ISEND:
             if (stat == MENUBASE_STAT_OK || stat == MENUBASE_STAT_CANCEL || gTownMenu_MESSAGE.isMessageWAITPROG()) {
                 gTownMenu_MESSAGE.close();
-                unkfunc_02186ec8();
+                selectRevivalEnd();
                 redraw_ = 1;
             }
             return true;
@@ -306,7 +306,7 @@ THUMB void MaterielMenu_CHURCH_MIRACLE::selectRevival()
     status::PartyStatusUtility::resetForceReorderMember();
 }
 
-THUMB void MaterielMenu_CHURCH_MIRACLE::unkfunc_02186ec8()
+THUMB void MaterielMenu_CHURCH_MIRACLE::selectRevivalEnd()
 {
     status::HaveStatusInfo& statusInfo = status::g_Party.getPlayerStatus(activeChara_).haveStatusInfo_;
     gTownMenu_MESSAGE.close();

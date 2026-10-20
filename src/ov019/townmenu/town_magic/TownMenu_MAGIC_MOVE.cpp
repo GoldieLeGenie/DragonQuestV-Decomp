@@ -122,14 +122,14 @@ THUMB void TownMenu_MAGIC_MOVE::menuSetup()
 THUMB void TownMenu_MAGIC_MOVE::menuExecute()
 {
     MenuStatusInfo::setMode(MenuStatusInfo::BATTLE_MODE);
-    unkfunc_02171598(&menuItem_, navigator_.getCountInPage(), menuItem_.active_);
+    townMenuSelectMagic(&menuItem_, navigator_.getCountInPage(), menuItem_.active_);
 }
 
 THUMB void TownMenu_MAGIC_MOVE::menuDraw()
 {
     MenuStatusInfo::setMode(MenuStatusInfo::BATTLE_MODE);
     int open = gTownMenu_MESSAGE.isOpen();
-    unkfunc_02173478(open, navigator_.getPageNo());
+    drawWarpTownSelectScreen(open, navigator_.getPageNo());
     if (!open) {
         menuItem_.drawActive();
     }

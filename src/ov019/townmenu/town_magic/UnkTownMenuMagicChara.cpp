@@ -38,9 +38,9 @@ THUMB void UnkTownMenuMagicChara::menuExecute()
     int count = MenuStatusInfo::getPartyCount(MenuStatusInfo::COUNT_ALL);
     int active = menuItem_.active_;
     if (count < 6) {
-        unkfunc_02171514(&menuItem_, count, active);
+        townMenuItemSelectHalfChara(&menuItem_, count, active);
     } else {
-        unkfunc_021714f8(&menuItem_, count, active);
+        townMenuItemSelectChara(&menuItem_, count, active);
     }
 }
 
@@ -48,7 +48,7 @@ THUMB void UnkTownMenuMagicChara::menuDraw()
 {
     MenuStatusInfo::setMode(MenuStatusInfo::BATTLE_MODE);
     int open = gTownMenu_MESSAGE.isOpen();
-    unkfunc_021733b0(open);
+    drawMagicCasterSelectScreen(open);
     if (!open) {
         menuItem_.drawActive();
     }

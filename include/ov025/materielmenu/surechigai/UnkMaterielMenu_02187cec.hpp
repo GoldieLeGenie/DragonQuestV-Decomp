@@ -14,7 +14,7 @@ struct UnkMaterielMenu_02187cec : menu::MenuBase {
     virtual void menuExecute();
     virtual void menuDraw();
     virtual void menuUpdate();
-    void unkfunc_02187bac(int index);
+    void setTaishiMessageMacros(int index);
 };
 
 extern UnkMaterielMenu_02187cec data_ov019_02185604;

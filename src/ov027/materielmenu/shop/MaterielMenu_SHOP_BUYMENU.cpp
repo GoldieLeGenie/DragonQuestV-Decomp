@@ -92,10 +92,10 @@ THUMB void MaterielMenu_SHOP_BUYMENU::menuUpdate()
             checkBuy();
         }
         else if (result == 6) {
-            unkfunc_02186c58(false);
+            changeQuantity(false);
         }
         else if (result == 7) {
-            unkfunc_02186c58(true);
+            changeQuantity(true);
         }
         else {
             MaterielMenu_SHOP_MANAGER::getSingleton()->setItemQuantity(active, 1);
@@ -147,7 +147,7 @@ THUMB void MaterielMenu_SHOP_BUYMENU::checkBuy()
     mode_ = MODE_NEXT;
 }
 
-THUMB void MaterielMenu_SHOP_BUYMENU::unkfunc_02186c58(bool add)
+THUMB void MaterielMenu_SHOP_BUYMENU::changeQuantity(bool add)
 {
     int active = menuItem_.active_;
     if (add == true) {

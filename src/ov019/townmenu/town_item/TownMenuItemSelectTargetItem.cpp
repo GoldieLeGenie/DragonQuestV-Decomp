@@ -65,7 +65,7 @@ THUMB void TownMenuItemSelectTargetItem::menuDraw()
 {
     MenuStatusInfo::setMode(MenuStatusInfo::PLAYER_MODE);
     int open = gTownMenu_MESSAGE.isOpen();
-    unkfunc_021732b0(open);
+    drawItemTargetItemScreen(open);
     if (!open) {
         menuItem_.drawActive();
     }
@@ -85,7 +85,7 @@ THUMB void TownMenuItemSelectTargetItem::menuUpdate()
         return;
     }
     TownMenuPlayerControl::getSingleton()->setTargetItemPage(navigator_.getPageNo());
-    if (unkfunc_02171304(navigator_.getPageNo()) == true) {
+    if (isEmptySlotSelected(navigator_.getPageNo()) == true) {
         TownMenuPlayerControl::getSingleton()->setTargetItem(-1);
     } else {
         TownMenuPlayerControl::getSingleton()->setTargetItem(menuItem_.active_);
@@ -101,7 +101,7 @@ THUMB void TownMenuItemSelectTargetItem::menuUpdate()
     redraw_ = 1;
 }
 
-THUMB bool TownMenuItemSelectTargetItem::unkfunc_02171304(int page)
+THUMB bool TownMenuItemSelectTargetItem::isEmptySlotSelected(int page)
 {
     int targetChara = TownMenuPlayerControl::getSingleton()->targetChara_;
     if (MenuStatusInfo::getPlayerItemCount(targetChara) != 12 && MenuStatusInfo::getPlayerItemCount(targetChara) == page * 6 + menuItem_.getActive()) {

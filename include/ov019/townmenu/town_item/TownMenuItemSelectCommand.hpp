@@ -20,7 +20,7 @@ struct TownMenuItemSelectCommand : menu::MenuBase {
     void judgeEquipItem();
     void setItemShowAction();
     void judgeThrowItem();
-    int unkfunc_0216fb40();
+    int getCommandCount();
     void closeMenuCheck();
     bool checkSeinenStart();
 };

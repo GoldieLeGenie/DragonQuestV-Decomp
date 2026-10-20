@@ -43,7 +43,7 @@ struct MaterielMenu_CHURCH_MIRACLE : menu::MenuBase {
     void selectUpdate();
     bool listUpdate();
     void selectRevival();
-    void unkfunc_02186ec8();
+    void selectRevivalEnd();
     void selectAntidote();
     void selectAntiCurse();
     void selectGoldCheck();

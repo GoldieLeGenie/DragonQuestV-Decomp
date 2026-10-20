@@ -43,11 +43,11 @@ THUMB void TownMenu_OPERATION_SORTITEM::menuExecute()
     MenuStatusInfo::setMode(MenuStatusInfo::BATTLE_MODE);
     int active = menuItem_.active_;
     if (m_mode == SORT_SACK) {
-        unkfunc_02171568(&menuItem_, active);
+        townMenuTacticsBoxUp(&menuItem_, active);
     } else if (m_selectPlayerCount - 1 < 5) {
-        unkfunc_02171514(&menuItem_, m_selectPlayerCount, active);
+        townMenuItemSelectHalfChara(&menuItem_, m_selectPlayerCount, active);
     } else {
-        unkfunc_02171458(&menuItem_, m_selectPlayerCount, active, -1, -1);
+        townMenuTacticsSelectChara(&menuItem_, m_selectPlayerCount, active, -1, -1);
     }
 }
 
@@ -55,7 +55,7 @@ THUMB void TownMenu_OPERATION_SORTITEM::menuDraw()
 {
     MenuStatusInfo::setMode(MenuStatusInfo::BATTLE_MODE);
     int open = gTownMenu_MESSAGE.isOpen();
-    unkfunc_02173610(open, m_mode);
+    drawSortItemScreen(open, m_mode);
     if (!open) {
         menuItem_.drawActive();
     }

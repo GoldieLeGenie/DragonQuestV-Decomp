@@ -32,12 +32,12 @@ THUMB void TownMenu_OPERATION_TACTICS::menuExecute()
     if (mode_ == 0) {
         int active = charaItem_.active_;
         if (charaCount_ < 5) {
-            unkfunc_021714a8(&charaItem_, charaCount_ + 1, active, -1, -1);
+            townMenuTacticsSelectHalfChara(&charaItem_, charaCount_ + 1, active, -1, -1);
         } else {
-            unkfunc_02171458(&charaItem_, charaCount_ + 1, active, -1, -1);
+            townMenuTacticsSelectChara(&charaItem_, charaCount_ + 1, active, -1, -1);
         }
     } else {
-        unkfunc_02171530(&tacticsItem_, tacticsItem_.active_);
+        townMenuTacticsSelectTC(&tacticsItem_, tacticsItem_.active_);
     }
 }
 
@@ -50,9 +50,9 @@ THUMB void TownMenu_OPERATION_TACTICS::menuDraw()
         chara = -2;
     }
     if (mode_ == 0) {
-        unkfunc_02173720(playerList_, chara);
+        drawTacticsScreen(playerList_, chara);
     } else {
-        unkfunc_02173770(playerList_, chara, active);
+        drawTacticsSelectScreen(playerList_, chara, active);
     }
     charaItem_.drawActive();
     tacticsItem_.drawActive();
@@ -71,7 +71,7 @@ THUMB void TownMenu_OPERATION_TACTICS::menuUpdate()
             }
             if (result == 2) {
                 mode_ = 1;
-                unkfunc_02177258();
+                loadActiveTactics();
             }
             redraw_ = 1;
         }
@@ -83,7 +83,7 @@ THUMB void TownMenu_OPERATION_TACTICS::menuUpdate()
             if (result == 2 || result == 3) {
                 mode_ = 0;
                 if (result == 2) {
-                    unkfunc_02177288();
+                    applyTactics();
                 }
             }
             redraw_ = 1;
@@ -105,7 +105,7 @@ THUMB void TownMenu_OPERATION_TACTICS::menuUpdate()
     }
 }
 
-THUMB void TownMenu_OPERATION_TACTICS::unkfunc_02177258()
+THUMB void TownMenu_OPERATION_TACTICS::loadActiveTactics()
 {
     unsigned char tactics;
     if (charaItem_.active_ == charaCount_) {
@@ -116,7 +116,7 @@ THUMB void TownMenu_OPERATION_TACTICS::unkfunc_02177258()
     tacticsItem_.active_ = tactics;
 }
 
-THUMB void TownMenu_OPERATION_TACTICS::unkfunc_02177288()
+THUMB void TownMenu_OPERATION_TACTICS::applyTactics()
 {
     int tactics[6] = {0, 1, 2, 3, 4, 5};
     int active = tacticsItem_.active_;

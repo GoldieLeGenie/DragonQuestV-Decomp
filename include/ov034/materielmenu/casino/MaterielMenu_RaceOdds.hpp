@@ -28,11 +28,11 @@ struct MaterielMenu_RaceOdds : menu::MenuBase {
     virtual void menuDraw();
     virtual void menuUpdate();
     void commandUpdate();
-    void unkfunc_02186cd8(int active, int result);
-    bool unkfunc_02186d18();
+    void adjustCursor(int active, int result);
+    bool updateHeldButton();
     bool betCoin();
     bool backCoin();
-    bool unkfunc_02186e28();
+    bool isStartSelected();
 };
 
 extern MaterielMenu_RaceOdds gMaterielMenu_RaceOdds;

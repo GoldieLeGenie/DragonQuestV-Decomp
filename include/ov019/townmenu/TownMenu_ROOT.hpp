@@ -23,8 +23,8 @@ struct TownMenu_ROOT : menu::MenuBase {
     virtual void menuExecute();
     virtual void menuDraw();
     virtual void menuUpdate();
-    void unkfunc_02174c3c();
-    void unkfunc_02174d34();
+    void executeCommand();
+    void openMagicMenu();
 };
 
 extern TownMenu_ROOT gTownMenu_ROOT;

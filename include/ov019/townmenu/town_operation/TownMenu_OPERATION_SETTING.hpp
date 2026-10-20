@@ -17,8 +17,8 @@ struct TownMenu_OPERATION_SETTING : menu::MenuBase {
     virtual void menuDraw();
     virtual void menuUpdate();
     void loadOptionValues();
-    bool unkfunc_0217677c(menu::MenuItem* menuItem, int mode);
-    void unkfunc_02176840();
+    bool updateSettingItem(menu::MenuItem* menuItem, int mode);
+    void drawSettingCursors();
 };
 
 extern TownMenu_OPERATION_SETTING gTownMenu_OPERATION_SETTING;

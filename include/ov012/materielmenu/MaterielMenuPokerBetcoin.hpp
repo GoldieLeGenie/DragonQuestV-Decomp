@@ -14,9 +14,9 @@ struct MaterielMenuPokerBetcoin : menu::MenuBase {
     virtual void menuExecute();
     virtual void menuDraw();
     virtual void menuUpdate();
-    int unkfunc_0212b1bc();
-    void unkfunc_0212b33c();
-    void unkfunc_0212b380();
+    int updateBetInput();
+    void updateMessage();
+    void updateBlink();
 };
 
 extern MaterielMenuPokerBetcoin gMaterielMenu_POKER_BETCOIN;

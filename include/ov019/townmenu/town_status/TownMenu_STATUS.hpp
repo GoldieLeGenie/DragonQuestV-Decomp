@@ -13,10 +13,10 @@ struct TownMenu_STATUS : menu::MenuBase {
     virtual void menuExecute();
     virtual void menuDraw();
     virtual void menuUpdate();
-    void unkfunc_02178bac();
+    void updateSelectSound();
 };
 
 extern TownMenu_STATUS gTownMenu_STATUS;
 
-int unkfunc_02178bd8(int index);                // status icon of a tactics
-int unkfunc_02178c00(int index);                // name of a tactics
+int getRootMenuKind(int index);                // status icon of a tactics
+int getRootMenuName(int index);                // name of a tactics

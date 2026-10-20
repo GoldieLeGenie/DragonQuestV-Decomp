@@ -30,9 +30,9 @@ THUMB void TownMenu_OPERATION_EQUIP::menuExecute()
     MenuStatusInfo::setMode(MenuStatusInfo::PLAYER_MODE);
     int count = MenuStatusInfo::getPartyCount(MenuStatusInfo::COUNT_ALL);
     if (count < 6) {
-        unkfunc_02171514(&menuItem_, count, menuItem_.active_);
+        townMenuItemSelectHalfChara(&menuItem_, count, menuItem_.active_);
     } else {
-        unkfunc_021714f8(&menuItem_, count, menuItem_.active_);
+        townMenuItemSelectChara(&menuItem_, count, menuItem_.active_);
     }
 }
 
@@ -40,7 +40,7 @@ THUMB void TownMenu_OPERATION_EQUIP::menuDraw()
 {
     MenuStatusInfo::setMode(MenuStatusInfo::PLAYER_MODE);
     int open = gTownMenu_MESSAGE.isOpen();
-    unkfunc_0217386c(open);
+    drawEquipCharaSelectScreen(open);
     if (!open) {
         menuItem_.drawActive();
     }

@@ -40,12 +40,12 @@ THUMB void MaterielMenuPokerBetcoin::menuDraw()
 THUMB void MaterielMenuPokerBetcoin::menuUpdate()
 {
     menu::MenuStatusInfo::setMode(menu::MenuStatusInfo::PLAYER_MODE);
-    if (unkfunc_0212b1bc() != 1) {
-        unkfunc_0212b33c();
+    if (updateBetInput() != 1) {
+        updateMessage();
     }
 }
 
-THUMB int MaterielMenuPokerBetcoin::unkfunc_0212b1bc()
+THUMB int MaterielMenuPokerBetcoin::updateBetInput()
 {
     if (messageMode_ == 0) {
         char mode;
@@ -65,7 +65,7 @@ THUMB int MaterielMenuPokerBetcoin::unkfunc_0212b1bc()
     if (!gTownMenu_MESSAGE.isOpen() || !gTownMenu_MESSAGE.isMessageWAITPROG()) {
         return 0;
     }
-    unkfunc_0212b380();
+    updateBlink();
     navigator_.setup(1, 1, 1);
     int result = MenuUpdate_Assist::menuSelect(menuItem_, navigator_);
     if (result != 0) {
@@ -117,7 +117,7 @@ THUMB int MaterielMenuPokerBetcoin::unkfunc_0212b1bc()
     return 1;
 }
 
-THUMB void MaterielMenuPokerBetcoin::unkfunc_0212b33c()
+THUMB void MaterielMenuPokerBetcoin::updateMessage()
 {
     int stat = gTownMenu_MESSAGE.stat_;
     if (stat == MENUBASE_STAT_OK) {
@@ -133,7 +133,7 @@ THUMB void MaterielMenuPokerBetcoin::unkfunc_0212b33c()
     }
 }
 
-THUMB void MaterielMenuPokerBetcoin::unkfunc_0212b380()
+THUMB void MaterielMenuPokerBetcoin::updateBlink()
 {
     if (blinkCount_ > 30) {
         blinkCount_ = 0;

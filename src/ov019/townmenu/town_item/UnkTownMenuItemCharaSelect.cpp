@@ -61,9 +61,9 @@ THUMB void UnkTownMenuItemCharaSelect::menuExecute()
 {
     MenuStatusInfo::setMode(MenuStatusInfo::PLAYER_MODE);
     if (charaCount_ <= 5) {
-        unkfunc_02171514(&menuItem_, charaCount_, menuItem_.active_);
+        townMenuItemSelectHalfChara(&menuItem_, charaCount_, menuItem_.active_);
     } else {
-        unkfunc_021714f8(&menuItem_, charaCount_, menuItem_.active_);
+        townMenuItemSelectChara(&menuItem_, charaCount_, menuItem_.active_);
     }
 }
 
@@ -71,7 +71,7 @@ THUMB void UnkTownMenuItemCharaSelect::menuDraw()
 {
     MenuStatusInfo::setMode(MenuStatusInfo::PLAYER_MODE);
     int open = gTownMenu_MESSAGE.isOpen();
-    unkfunc_02172f1c(open);
+    drawItemCharaSelectScreen(open);
     if (!open) {
         menuItem_.drawActive();
     }
@@ -140,7 +140,7 @@ THUMB void UnkTownMenuItemCharaSelect::menuUpdate()
                     gTownMenu_MESSAGE.addMessage(0xc4249);
                 }
             } else if (MenuStatusInfo::getPlayerItemCount(menuItem_.active_) > 0) {
-                unkfunc_02178480();
+                selectFirstUnequippedItem();
                 close();
                 gTownMenuItemSelectChara.meisanhinFlag_ = fromMateriel_;
                 gTownMenuItemSelectChara.open();
@@ -154,7 +154,7 @@ THUMB void UnkTownMenuItemCharaSelect::menuUpdate()
     }
 }
 
-THUMB void UnkTownMenuItemCharaSelect::unkfunc_02178480()
+THUMB void UnkTownMenuItemCharaSelect::selectFirstUnequippedItem()
 {
     int count = MenuStatusInfo::getPlayerItemCount(menuItem_.active_);
     int equipCount = 0;

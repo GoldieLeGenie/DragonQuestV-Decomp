@@ -28,7 +28,7 @@ THUMB void TownMenu_STATUS::menuSetup()
     mode_ = 0;
     navigator_.setupBase();
     navigator_.setup(5, 1, MenuStatusInfo::getPartyCount(MenuStatusInfo::COUNT_ALL) + 1);
-    unkfunc_02178bac();
+    updateSelectSound();
 }
 
 THUMB void TownMenu_STATUS::menuExecute()
@@ -42,19 +42,19 @@ THUMB void TownMenu_STATUS::menuDraw()
     int page = navigator_.getPageNo();
     switch (mode_) {
         case 0:
-            unkfunc_02173560(page);
+            drawStatusMainPage(page);
             break;
         case 1:
-            unkfunc_02173590(page);
+            drawStatusSpellPage(page);
             break;
         case 2:
-            unkfunc_021735d8(page);
+            drawStatusMoneyScreen(page);
             break;
         case 3:
-            unkfunc_021735b8(-2, 1, page);
+            drawStatusPartySummaryScreen(-2, 1, page);
             break;
         case 4:
-            unkfunc_021735b8(-2, 0, page);
+            drawStatusPartySummaryScreen(-2, 0, page);
             break;
     }
     menuItem_.drawActive();
@@ -109,12 +109,12 @@ THUMB void TownMenu_STATUS::menuUpdate()
                 mode_ = 0;
             }
         }
-        unkfunc_02178bac();
+        updateSelectSound();
         redraw_ = 1;
     }
 }
 
-THUMB void TownMenu_STATUS::unkfunc_02178bac()
+THUMB void TownMenu_STATUS::updateSelectSound()
 {
     int activeChara = TownMenuPlayerControl::getSingleton()->activeChara_;
     bool enable = false;
@@ -126,13 +126,13 @@ THUMB void TownMenu_STATUS::unkfunc_02178bac()
     menuItem_.setSEenable(enable);
 }
 
-THUMB int unkfunc_02178bd8(int index)
+THUMB int getRootMenuKind(int index)
 {
     int table[6] = {8, 2, 3, 0, 4, 1};
     return table[index];
 }
 
-THUMB int unkfunc_02178c00(int index)
+THUMB int getRootMenuName(int index)
 {
     int table[6] = {(int)0xe0000064, (int)0xe0000065, (int)0xe0000066, (int)0xe0000067, (int)0xe0000068, (int)0xe0000069};
     return table[index];

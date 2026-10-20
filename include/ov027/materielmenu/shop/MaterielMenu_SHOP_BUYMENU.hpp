@@ -20,7 +20,7 @@ struct MaterielMenu_SHOP_BUYMENU : menu::MenuBase {
     virtual void menuDraw();
     virtual void menuUpdate();
     void checkBuy();
-    void unkfunc_02186c58(bool add);
+    void changeQuantity(bool add);
 };
 
 extern MaterielMenu_SHOP_BUYMENU gMaterielMenu_SHOP_BUYMENU;

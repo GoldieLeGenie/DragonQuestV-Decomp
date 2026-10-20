@@ -19,7 +19,7 @@ struct TownMenu_OPERATION_SHIFT_PARTY : menu::MenuBase {
     virtual void menuExecute();
     virtual void menuDraw();
     virtual void menuUpdate();
-    void unkfunc_02176b1c();
+    void selectMember();
     void chengeChara();
 };
 

@@ -102,7 +102,7 @@ THUMB void TownMenuItemSelectChara::menuDraw()
 {
     if (gTownMenu_MESSAGE.isOpen() != true && curseMessage_ == 0) {
         MenuStatusInfo::setMode(MenuStatusInfo::PLAYER_MODE);
-        unkfunc_02172f6c(0, navigator_.getPageNo());
+        drawItemSelectScreen(0, navigator_.getPageNo());
         menuItem_.drawActive();
     }
 }

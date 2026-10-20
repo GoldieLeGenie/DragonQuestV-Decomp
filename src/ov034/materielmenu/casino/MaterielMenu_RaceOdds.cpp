@@ -118,7 +118,7 @@ THUMB void MaterielMenu_RaceOdds::menuUpdate()
 
 THUMB void MaterielMenu_RaceOdds::commandUpdate()
 {
-    if (unkfunc_02186d18()) {
+    if (updateHeldButton()) {
         return;
     }
     unk_28 = 0;
@@ -128,9 +128,9 @@ THUMB void MaterielMenu_RaceOdds::commandUpdate()
     if (result == 0) {
         return;
     }
-    unkfunc_02186cd8(active, result);
+    adjustCursor(active, result);
     if (result == 2) {
-        if (unkfunc_02186e28()) {
+        if (isStartSelected()) {
             if (g_RaceData.getBetCoin() == 0) {
                 menuItem_.resetResult();
                 return;
@@ -147,7 +147,7 @@ THUMB void MaterielMenu_RaceOdds::commandUpdate()
         redraw_ = 1;
     }
     if (result == 3) {
-        if (!unkfunc_02186e28()) {
+        if (!isStartSelected()) {
             if (backCoin()) {
                 unk_28 = 2;
             }
@@ -157,7 +157,7 @@ THUMB void MaterielMenu_RaceOdds::commandUpdate()
     menuItem_.resetResult();
 }
 
-THUMB void MaterielMenu_RaceOdds::unkfunc_02186cd8(int active, int result)
+THUMB void MaterielMenu_RaceOdds::adjustCursor(int active, int result)
 {
     int cursor = menuItem_.active_;
     if (g_RaceData.getPaddock() == 6) {
@@ -174,7 +174,7 @@ THUMB void MaterielMenu_RaceOdds::unkfunc_02186cd8(int active, int result)
     }
 }
 
-THUMB bool MaterielMenu_RaceOdds::unkfunc_02186d18()
+THUMB bool MaterielMenu_RaceOdds::updateHeldButton()
 {
     unsigned int coin = status::g_Party.getCasinoCoin();
     switch (unk_28) {
@@ -235,7 +235,7 @@ THUMB bool MaterielMenu_RaceOdds::backCoin()
     return false;
 }
 
-THUMB bool MaterielMenu_RaceOdds::unkfunc_02186e28()
+THUMB bool MaterielMenu_RaceOdds::isStartSelected()
 {
     if (g_RaceData.getPaddock() == 5) {
         if (menuItem_.active_ == 9) {

@@ -91,13 +91,13 @@ THUMB void UnkMaterielMenu_0218a5ec::menuUpdate()
             gMaterielMenu_SHOP_WHO_SELL.open();
         }
         if (result == 2) {
-            unkfunc_021887c0();
+            selectSellItem();
         }
         redraw_ = 1;
     }
 }
 
-THUMB void UnkMaterielMenu_0218a5ec::unkfunc_021887c0()
+THUMB void UnkMaterielMenu_0218a5ec::selectSellItem()
 {
     int active = menuItem_.active_;
     int itemID = MenuStatusInfo::getFukuroItemID(active, navigator_.getPageNo());

@@ -143,7 +143,7 @@ THUMB void UnkMaterielMenu_02187c7c::menuUpdate()
         return;
     }
     if (result == 2) {
-        unkfunc_021870ac();
+        decideSelection();
     }
     if (result == 3) {
         mode_--;
@@ -176,7 +176,7 @@ THUMB void UnkMaterielMenu_02187c7c::menuUpdate()
     redraw_ = 1;
 }
 
-THUMB void UnkMaterielMenu_02187c7c::unkfunc_021870ac()
+THUMB void UnkMaterielMenu_02187c7c::decideSelection()
 {
     switch (mode_) {
         case 0:

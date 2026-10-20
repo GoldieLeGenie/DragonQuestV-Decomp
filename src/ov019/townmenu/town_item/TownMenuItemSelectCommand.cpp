@@ -62,14 +62,14 @@ THUMB void TownMenuItemSelectCommand::menuExecute()
     } else {
         commandFlag_ = MenuStatusInfo::getPlayerItemCommandFlag(activeChara_, TownMenuPlayerControl::getSingleton()->getActiveItemIndexToAll());
     }
-    unkfunc_021713e0(&menuItem_, commandFlag_, menuItem_.active_);
+    townMenuItemCommand(&menuItem_, commandFlag_, menuItem_.active_);
 }
 
 THUMB void TownMenuItemSelectCommand::menuDraw()
 {
     MenuStatusInfo::setMode(MenuStatusInfo::PLAYER_MODE);
     int open = gTownMenu_MESSAGE.isOpen();
-    unkfunc_02173098(open, 0, itemID_, TownMenuPlayerControl::getSingleton()->activeItemPage_);
+    drawItemCommandScreen(open, 0, itemID_, TownMenuPlayerControl::getSingleton()->activeItemPage_);
     if (!open) {
         menuItem_.drawActive();
     }
@@ -130,7 +130,7 @@ THUMB void TownMenuItemSelectCommand::menuUpdate()
         }
         return;
     }
-    navigator_.setup(3, 2, unkfunc_0216fb40());
+    navigator_.setup(3, 2, getCommandCount());
     int result = MenuUpdate_Assist::menuSelect(menuItem_, navigator_);
     if (result != 0) {
         TownMenuPlayerControl::getSingleton()->setActiveCommand(menuItem_.active_);
@@ -317,7 +317,7 @@ THUMB void TownMenuItemSelectCommand::judgeThrowItem()
     }
 }
 
-THUMB int TownMenuItemSelectCommand::unkfunc_0216fb40()
+THUMB int TownMenuItemSelectCommand::getCommandCount()
 {
     switch (commandFlag_) {
         case 1:

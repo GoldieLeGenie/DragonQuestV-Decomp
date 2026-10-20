@@ -38,8 +38,8 @@ struct MaterielMenuPokerChangecard : menu::MenuBase {
     void pokerReverseCard(bool flag);
     void pokerFadeAnimation();
     void setSoundNo();
-    void unkfunc_0212bab0();
-    void unkfunc_0212baf0();
+    void updateWinningCardEffect();
+    void countUpWinCoin();
     void unkfunc_0212bb74();
     void unkfunc_0212bc70();
 };

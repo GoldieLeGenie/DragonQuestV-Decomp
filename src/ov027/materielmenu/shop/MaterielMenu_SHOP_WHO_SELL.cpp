@@ -75,13 +75,13 @@ THUMB void MaterielMenu_SHOP_WHO_SELL::menuUpdate()
             gMaterielMenu_SHOP_ROOT.mode_ = MaterielMenu_SHOP_ROOT::SHOP_MESWAIT;
         }
         if (result == 2) {
-            unkfunc_0218910c();
+            selectSeller();
         }
         redraw_ = 1;
     }
 }
 
-THUMB void MaterielMenu_SHOP_WHO_SELL::unkfunc_0218910c()
+THUMB void MaterielMenu_SHOP_WHO_SELL::selectSeller()
 {
     bool fukuro = false;
     int active = menuItem_.active_;

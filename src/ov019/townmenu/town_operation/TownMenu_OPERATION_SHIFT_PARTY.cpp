@@ -51,7 +51,7 @@ THUMB void TownMenu_OPERATION_SHIFT_PARTY::menuExecute()
     if (shiftPartyCharaCount_ != 0 && carriageEnable_ == 1) {
         count++;
     }
-    unkfunc_02171354(&menuItem_, menuItem_.active_, count);
+    townMenuIcon32Grid(&menuItem_, menuItem_.active_, count);
 }
 
 THUMB void TownMenu_OPERATION_SHIFT_PARTY::menuDraw()
@@ -78,7 +78,7 @@ THUMB void TownMenu_OPERATION_SHIFT_PARTY::menuDraw()
         }
         found = 0;
     }
-    unkfunc_021737e4(selectCharaAllocation_, list, menuItem_.active_, count);
+    drawShiftPartyScreen(selectCharaAllocation_, list, menuItem_.active_, count);
     menuItem_.drawActive();
 }
 
@@ -110,7 +110,7 @@ THUMB void TownMenu_OPERATION_SHIFT_PARTY::menuUpdate()
     int result = MenuUpdate_Assist::menuSelect(menuItem_, navigator_);
     if (result != 0) {
         if (result == 2) {
-            unkfunc_02176b1c();
+            selectMember();
         }
         if (result == 3) {
             if (shiftPartyCharaCount_ == 0) {
@@ -125,7 +125,7 @@ THUMB void TownMenu_OPERATION_SHIFT_PARTY::menuUpdate()
     }
 }
 
-THUMB void TownMenu_OPERATION_SHIFT_PARTY::unkfunc_02176b1c()
+THUMB void TownMenu_OPERATION_SHIFT_PARTY::selectMember()
 {
     MenuStatusInfo::setMode(MenuStatusInfo::SHIFT_MEMBER_MODE);
     int found = 0;
