@@ -1,19 +1,3 @@
-# Links the ARM9 ELF with one copy of each weak function/vtable per overlay.
-#
-# mwcc emits the out-of-line copies of inline functions and the weak vtables
-# as STB_LOPROC symbols. mwldarm keeps only ONE such copy for the whole link
-# (the first object in link order), even across overlays that share the same
-# memory, while the ROM has one copy per overlay (DSSAObject2D C1 in ov001 and
-# ov004, the cmn::PartyMoveAction vtable in ov001 and ov005).
-#
-# Before linking, a weak symbol defined in several overlays but not in the
-# static modules (main/ITCM/DTCM, whose copy the overlays do use) is made
-# local in each overlay where a single object defines and uses it. The patched
-# objects are written to a separate folder (same file names, so the LCF still
-# finds them) and the linker gets a new objects list.
-#
-# usage: overlay_weak_copies.py OBJECTS LCF OUTDIR -- LINKER ARGS...
-#        (the "@OBJECTS" argument of the linker is replaced by the new list)
 import os
 import re
 import struct
@@ -57,8 +41,8 @@ def main():
     objects = [line.strip().strip('"') for line in Path(objects_file).read_text().splitlines() if line.strip()]
 
     data = {}
-    weak_defs: dict[str, set[str]] = {}         # symbol -> regions defining it
-    users: dict[tuple[str, str], set[str]] = {}  # (symbol, region) -> objects defining or using it
+    weak_defs: dict[str, set[str]] = {}         
+    users: dict[tuple[str, str], set[str]] = {}  
     for path in objects:
         region = regions.get(os.path.basename(path), "ARM9")
         data[path] = bytearray(Path(path).read_bytes())
@@ -70,7 +54,7 @@ def main():
             if bind != STB_LOCAL:
                 users.setdefault((name, region), set()).add(path)
 
-    local: dict[str, set[str]] = {}  # object -> symbols to make local
+    local: dict[str, set[str]] = {}  
     for name, defined_in in weak_defs.items():
         overlays = defined_in - STATIC_REGIONS
         if len(overlays) < 2 or defined_in & STATIC_REGIONS:

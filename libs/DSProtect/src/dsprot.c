@@ -1,10 +1,4 @@
 // DS Protect anti-piracy runtime (third-party middleware linked into main).
-//
-// Parts of func_02007e74, func_02007f50, func_02008100 and func_0200819c are stored encrypted in the ROM
-// (symbols.txt dsprot_range). Each protected region is opened by DSPROT_BEGIN, which decrypts it in place
-// (func_020082dc) and is followed by a marker word, and closed by DSPROT_END, a marker word followed by the
-// re-encryption call (func_0200834c). The marker word doubles as the RC4 key seed of the region; the
-// decryption routines find the region's bounds by scanning for it. These sequences are hand-inserted asm.
 #include <nitro.h>
 
 #define DSPROT_BEGIN(marker)          \

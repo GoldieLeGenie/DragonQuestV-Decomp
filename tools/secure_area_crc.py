@@ -1,10 +1,6 @@
 #!/usr/bin/env python3
 """Gives a built ROM the secure area checksum of the base ROM.
 
-dsd re-encrypts the secure area of this game into bytes whose checksum differs
-from the one in the original header, although the decrypted secure area (and the
-whole program) is identical. The original checksum is copied from the base ROM's
-header, then the header checksum is computed again.
 """
 
 import argparse
